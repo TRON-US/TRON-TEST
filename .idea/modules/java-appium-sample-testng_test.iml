@@ -10,9 +10,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="java-appium-sample-testng_main" />
-    <orderEntry type="library" name="Gradle: org.testng:testng:6.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.testng:testng:6.9.9" level="project" />
     <orderEntry type="library" name="Gradle: com.experitest:appium:4.1.2" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Gradle: com.beust:jcommander:1.48" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.ant:ant:1.7.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.15" level="project" />
+    <orderEntry type="library" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
     <orderEntry type="library" name="Gradle: com.experitest:aspectjweaver:1.8.9" level="project" />
     <orderEntry type="library" name="Gradle: com.experitest:boon:0.33" level="project" />
     <orderEntry type="library" name="Gradle: com.experitest:cglib-nodep:3.2.4" level="project" />
@@ -68,6 +72,8 @@
     <orderEntry type="library" name="Gradle: com.experitest:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" name="Gradle: com.experitest:xmlrpc-client:3.1.2" level="project" />
     <orderEntry type="library" name="Gradle: com.experitest:xmlrpc-common:3.1.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.ant:ant-launcher:1.7.0" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="java-appium-sample-testng_main" />
 </module>

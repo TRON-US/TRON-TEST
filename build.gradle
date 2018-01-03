@@ -15,10 +15,12 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'org.testng', name: 'testng', version: '6.10'
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.9'
     testCompile group: 'com.experitest', name: 'appium', version:'4.1.2'
 }
 
 test {
-    useTestNG()
+    useTestNG(){
+        suites 'testng.xml'
+    }
 }
