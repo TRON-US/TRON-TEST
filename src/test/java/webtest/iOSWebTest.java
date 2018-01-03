@@ -16,7 +16,7 @@ public class iOSWebTest {
     IOSDriver driver = null;
     DesiredCapabilities dc = new DesiredCapabilities();
     String testName = "Testing Website on iOS Safari with Java";
-    String accessKey = "eyJ4cC51IjozMDAsInhwLnAiOjI5MywieHAubSI6Ik1UVXhNakk1TURjeE5URTVNUSIsImFsZyI6IkhTMjU2In0.eyJleHAiOjE4Mjg0NDE0NTQsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.YjmUogdZQJwXHfybjoctPi-C1JCKeCLDjl5R-1kpako";
+    String accessKey = System.getenv("SEETEST_IO_ACCESS_KEY");
 
     @BeforeClass
     public void setUp() throws MalformedURLException {
