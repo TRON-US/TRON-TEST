@@ -24,7 +24,7 @@ public class AndroidWebTest {
         dc.setCapability("testName", testName);
         dc.setCapability("accessKey",accessKey);
         dc.setBrowserName(MobileBrowserType.CHROME);
-        driver = new AndroidDriver(new URL("https://beta.seetest.io:443/wd/hub"),dc);
+        driver = new AndroidDriver(new URL("https://cloud.seetest.io:443/wd/hub"),dc);
     }
 
     @Test

@@ -30,7 +30,7 @@ public class AndroidAppTest {
         //launch the app
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.experitest.ExperiBank");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
-        driver = new AndroidDriver(new URL("https://beta.seetest.io:443/wd/hub"), dc);
+        driver = new AndroidDriver(new URL("https://cloud.seetest.io:443/wd/hub"), dc);
         System.out.println("Created first driver");
     }
 
