@@ -65,26 +65,27 @@ public class TronLink {
     }
   }
 
-  //判断设备是否休眠
-  public static void screenOn() throws IOException {
-    Runtime rt = Runtime.getRuntime();
-    Process p = rt.exec("adb shell dumpsys power | findstr \"Display Power:state=\"");
-    BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-    String line;
-    String content = "";
-    boolean flag = false;
-    while ((line = in.readLine()) != null) {
-      content = content + line;
+  //判断设备是否休眠，并解锁设备
+  public static void screenOn() {
+    try {
+      Runtime rt = Runtime.getRuntime();
+      Process p = rt.exec("adb shell dumpsys power | findstr \"Display Power:state=\"");
+      BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+      String line;
+      String content = "";
+      while ((line = in.readLine()) != null) {
+        content = content + line;
+      }
+      if (content.contains("Display Power: state=OFF")) {
+        // 模拟电源键
+        Runtime.getRuntime().exec("adb shell input keyevent 26");
+        // 模拟Home键
+        Runtime.getRuntime().exec("adb shell input keyevent 3");
+      }
+      p.destroy();
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
     }
-    if (content.contains("Display Power: state=OFF")) {
-      // 模拟电源键
-      Runtime.getRuntime().exec("adb shell input keyevent 26");
-      // 模拟Home键
-      Runtime.getRuntime().exec("adb shell input keyevent 3");
-    }
-    p.destroy();
-
   }
-
 
 }
