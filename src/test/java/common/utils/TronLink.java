@@ -62,7 +62,6 @@ public class TronLink {
         break;
       case "swipe":
         break;
-
     }
   }
 
