@@ -7,7 +7,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.xml.serializer.ExtendedContentHandler;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.naming.ldap.ExtendedRequest;
 
 public class TronLink {
 
@@ -39,7 +47,7 @@ public class TronLink {
   }
 
   public static void stepElement(AndroidDriver driver, String step) {
-    stepElement(driver, null, step, "");
+    stepElement(driver, "", step, "");
   }
 
   public static void stepElement(AndroidDriver driver, String resId, String step, String input) {
@@ -60,9 +68,33 @@ public class TronLink {
       case "input":
         element.setValue(input);
         break;
-      case "swipe":
+      case "swipeUp":
+        swipeUp(driver);
+        break;
+      case "swipeDown":
+        swipeDown(driver);
         break;
     }
+  }
+
+  public static void swipeUp(AndroidDriver driver){
+    int x = driver.manage().window().getSize().width;
+    int y = driver.manage().window().getSize().height;
+    int startx = (int)(x*0.5);
+    int starty = (int)(y*0.75);
+    int endx = (int)(x*0.5);
+    int endy = (int)(y*0.25);
+    driver.swipe(startx,starty,endx,endy,500);
+  }
+
+  public static void swipeDown(AndroidDriver driver){
+    int x = driver.manage().window().getSize().width;
+    int y = driver.manage().window().getSize().height;
+    int startx = (int)(x*0.5);
+    int starty = (int)(y*0.25);
+    int endx = (int)(x*0.5);
+    int endy = (int)(y*0.75);
+    driver.swipe(startx,starty,endx,endy,500);
   }
 
   //判断设备是否休眠，并解锁设备
@@ -84,8 +116,7 @@ public class TronLink {
       }
       p.destroy();
     } catch (IOException ex) {
-      System.out.println(ex.toString());
+      return;
     }
   }
-
 }
