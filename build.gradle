@@ -25,3 +25,13 @@ test {
         suites 'testng.xml'
     }
 }
+
+task tronlink(type: Test) {
+
+    useTestNG {
+        suites(file('src/test/resources/tronlink-testng.xml'))
+        parallel 'tests'
+        threadCount 1
+
+    }
+}
