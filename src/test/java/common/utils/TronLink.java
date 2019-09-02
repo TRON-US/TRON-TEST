@@ -4,16 +4,23 @@ package common.utils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.tools.ant.util.FileUtils;
 import org.apache.xml.serializer.ExtendedContentHandler;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.util.FileCopyUtils;
 
 import javax.naming.ldap.ExtendedRequest;
 
@@ -21,7 +28,7 @@ public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-  //public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
+//  public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
   public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/qh360/release/app-qh360-release.apk";
   public static String platformVersion = "9";
@@ -44,16 +51,17 @@ public class TronLink {
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     return;
   }
-
-  public static void testOperation(AndroidDriver driver, String resId, String step) {
-    testOperation(driver, resId, step, "");
+//click action
+  public static void testOperation(AndroidDriver driver, String resId, String step ,String description) {
+    testOperation(driver, resId, step, "",description);
+  }
+//swipe action
+  public static void testOperation(AndroidDriver driver, String step, String description) {
+    testOperation(driver, "", step, "",description);
   }
 
-  public static void testOperation(AndroidDriver driver, String step) {
-    testOperation(driver, "", step, "");
-  }
 
-  public static void testOperation(AndroidDriver driver, String resId, String action, String input) {
+  public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
 //        if (!resId.isEmpty()){
 //            WebDriverWait wait = new WebDriverWait(driver, 5);
 //            wait.until(ExpectedConditions
@@ -84,6 +92,7 @@ public class TronLink {
         swipeLeft(driver);
         break;
     }
+    getScreenshot(driver,description);
   }
 
   public static void swipeUp(AndroidDriver driver){
@@ -126,6 +135,18 @@ public class TronLink {
     driver.swipe(startx,starty,endx,endy,500);
   }
 
+//get screenshot
+  public static void getScreenshot(AndroidDriver driver,String description){
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String date = df.format(new Date());
+    File screen = ((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
+    File screenFile = new File("build/reports/tests/tronlink/screenShot/"+date+description+".png");
+    try {
+      org.apache.commons.io.FileUtils.copyFile(screen,screenFile);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
 
   //判断设备是否休眠，并解锁设备
