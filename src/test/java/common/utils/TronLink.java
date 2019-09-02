@@ -28,13 +28,15 @@ public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-//  public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
-  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
+//  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/qh360/release/app-qh360-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
+  public static String AcceptImportAccount = "com.tronlink.wallet:id/bt_accept";
+  public static String CreateWallet = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout\n";
   private AndroidDriver driver;
 
 
@@ -48,7 +50,7 @@ public class TronLink {
   }
 
   public static void waitTargetElementAppear(AndroidDriver driver) {
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     return;
   }
 //click action
@@ -62,15 +64,14 @@ public class TronLink {
 
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
-//        if (!resId.isEmpty()){
-//            WebDriverWait wait = new WebDriverWait(driver, 5);
-//            wait.until(ExpectedConditions
-//                .visibilityOfElementLocated(By.id(resId)));
-//        }
     waitTargetElementAppear(driver);
     MobileElement element = null;
     if (!resId.isEmpty()) {
-      element = (MobileElement) driver.findElementById(resId);
+      if (resId.indexOf("com.tronlink.wallet:id") != -1){
+        element = (MobileElement) driver.findElementById(resId);
+      }else {
+        element = (MobileElement) driver.findElementByXPath(resId);
+      }
     }
     switch (action) {
       case "click":
@@ -102,7 +103,7 @@ public class TronLink {
     int starty = (int)(y*0.75);
     int endx = (int)(x*0.5);
     int endy = (int)(y*0.25);
-    driver.swipe(startx,starty,endx,endy,500);
+    driver.swipe(startx,starty,endx,endy,100);
   }
 
   public static void swipeDown(AndroidDriver driver){
@@ -112,7 +113,7 @@ public class TronLink {
     int starty = (int)(y*0.25);
     int endx = (int)(x*0.5);
     int endy = (int)(y*0.75);
-    driver.swipe(startx,starty,endx,endy,500);
+    driver.swipe(startx,starty,endx,endy,100);
   }
 
   public static void swipeRight(AndroidDriver driver){
