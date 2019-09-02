@@ -51,15 +51,16 @@ public class importAccount {
         TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
         TronLink.getScreenshot(driver,"mnemonic");
-        List<String> text = driver.findElementsById("com.tronlink.wallet:id/text");
-        for (String data : text){
-            System.out.println(data);
+        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/position");
+        System.out.println(text.size());
+        for (MobileElement data : text){
+            System.out.println("postion:"+data.getText()+"postion");
         }
-        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+//        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
     }
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+//        driver.quit();
     }
 }
