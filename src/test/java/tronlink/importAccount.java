@@ -70,7 +70,7 @@ public class importAccount {
         //use Private Key import account
         TronLink.testOperation(driver,TronLink.privateKey,"click","click Private key");
         TronLink.testOperation(driver,TronLink.enterContent,"input","ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72","enter private key");
-        TronLink.testOperation(driver,TronLink.enterContent,"click","click Next step");
+        TronLink.testOperation(driver,TronLink.nextStep,"click","click Next step");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
         TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
