@@ -28,15 +28,40 @@ public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-  public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/qh360/release/app-qh360-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
-  public static String AcceptImportAccount = "com.tronlink.wallet:id/bt_accept";
-  public static String CreateWallet = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout\n";
+  public static String createAccountId = "com.tronlink.wallet:id/tv_create";
+  public static String acceptImportAccount = "com.tronlink.wallet:id/bt_accept";
+  public static String pricateKey = "com.tronlink.wallet:id/cd_pk";
+  public static String mnemonic = "com.tronlink.wallet:id/rl_mm";
+  public static String keystore = "com.tronlink.wallet:id/cd_kt";
+  public static String watchWallet = "com.tronlink.wallet:id/cd_ow";
+
+  public static String createWallet = "com.tronlink.wallet:id/cd_cw";
+  public static String setUpName = "com.tronlink.wallet:id/et_name";
+  public static String creatNextStep = "com.tronlink.wallet:id/creat";
+  public static String passWord = "com.tronlink.wallet:id/et_password";
+  public static String creatNextStep2 = "com.tronlink.wallet:id/creat";
+  public static String creatNextStep3 = "com.tronlink.wallet:id/creat";
+  public static String riskIgnore = "com.tronlink.wallet:id/tv_cancle";
+  public static String riskBackup = "com.tronlink.wallet:id/tv_ok";
+  public static String addressText = "com.tronlink.wallet:id/tv_address";
+  public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey2";
+  public static String backupKeystore = "com.tronlink.wallet:id/rl_keystore2";
+  public static String walletPassword = "com.tronlink.wallet:id/et_password";
+  public static String confirm = "com.tronlink.wallet:id/tv_ok";
+  public static String privateKeyText = "com.tronlink.wallet:id/tv_privatekey";
+  public static String Done = "com.tronlink.wallet:id/backup";
+  public static String backUpNow = "com.tronlink.wallet:id/backup";
+  public static String gotItButton = "com.tronlink.wallet:id/bt_know";
+  public static String saveKey = "com.tronlink.wallet:id/save";
+  public static String keyIndexText = "com.tronlink.wallet:id/text";
+
   private AndroidDriver driver;
 
 
@@ -138,7 +163,7 @@ public class TronLink {
 
 //get screenshot
   public static void getScreenshot(AndroidDriver driver,String description){
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
     String date = df.format(new Date());
     File screen = ((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
     File screenFile = new File("build/reports/tests/tronlink/screenShot/"+date+description+".png");

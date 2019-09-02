@@ -6,6 +6,10 @@ import io.appium.java_client.android.AndroidDriver;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,11 +30,32 @@ public class importAccount {
 
     @Test
     public void sampleTest() {
+        //create account
         TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
         TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,TronLink.AcceptImportAccount,"click","click Accept");
-        TronLink.testOperation(driver,TronLink.CreateWallet,"click","click create wallet");
+        TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
+        TronLink.testOperation(driver,TronLink.createWallet,"click","click create wallet");
+        TronLink.testOperation(driver,TronLink.setUpName,"click","click set up name");
+        Date date = new Date();
+        String timestamp = String.valueOf(date.getTime());
+        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+        TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
+        TronLink.testOperation(driver,TronLink.passWord,"click","input name");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
+        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","click carry out");
+
+        //backup mnemonic
+        TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
+        TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
+        TronLink.getScreenshot(driver,"mnemonic");
+        List<String> text = driver.findElementsById("com.tronlink.wallet:id/text");
+        for (String data : text){
+            System.out.println(data);
+        }
+        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
     }
 
     @AfterClass
