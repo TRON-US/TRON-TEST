@@ -27,9 +27,9 @@ public class TronLinkDemo {
   @Test
   public void sampleTest() {
 
-    TronLink.stepElement(driver, TronLink.importAccountId,"click");
-    TronLink.stepElement(driver,"swipeUp");
-    TronLink.stepElement(driver,"swipeDown");
+    TronLink.testOperation(driver, TronLink.importAccountId,"click");
+    TronLink.testOperation(driver,"swipeUp");
+    TronLink.testOperation(driver,"swipeDown");
     TronLink.waitTargetElementAppear(driver);
   }
 

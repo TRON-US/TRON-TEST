@@ -42,15 +42,15 @@ public class TronLink {
     return;
   }
 
-  public static void stepElement(AndroidDriver driver, String resId, String step) {
-    stepElement(driver, resId, step, "");
+  public static void testOperation(AndroidDriver driver, String resId, String step) {
+    testOperation(driver, resId, step, "");
   }
 
-  public static void stepElement(AndroidDriver driver, String step) {
-    stepElement(driver, "", step, "");
+  public static void testOperation(AndroidDriver driver, String step) {
+    testOperation(driver, "", step, "");
   }
 
-  public static void stepElement(AndroidDriver driver, String resId, String step, String input) {
+  public static void testOperation(AndroidDriver driver, String resId, String action, String input) {
 //        if (!resId.isEmpty()){
 //            WebDriverWait wait = new WebDriverWait(driver, 5);
 //            wait.until(ExpectedConditions
@@ -61,7 +61,7 @@ public class TronLink {
     if (!resId.isEmpty()) {
       element = (MobileElement) driver.findElementById(resId);
     }
-    switch (step) {
+    switch (action) {
       case "click":
         element.click();
         break;
@@ -119,4 +119,5 @@ public class TronLink {
       return;
     }
   }
+
 }
