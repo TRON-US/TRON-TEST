@@ -20,7 +20,10 @@ import javax.naming.ldap.ExtendedRequest;
 public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
-  public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
+
+  //public static String tronLinkApk = "/Users/tron/Documents/tronlink_baidu_v3.1.0.apk";
+  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
+  //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/qh360/release/app-qh360-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
@@ -74,6 +77,12 @@ public class TronLink {
       case "swipeDown":
         swipeDown(driver);
         break;
+      case "swipeRight":
+        swipeRight(driver);
+        break;
+      case "swipeLeft":
+        swipeLeft(driver);
+        break;
     }
   }
 
@@ -96,6 +105,28 @@ public class TronLink {
     int endy = (int)(y*0.75);
     driver.swipe(startx,starty,endx,endy,500);
   }
+
+  public static void swipeRight(AndroidDriver driver){
+    int x = driver.manage().window().getSize().width;
+    int y = driver.manage().window().getSize().height;
+    int startx = (int)(x*0.25);
+    int starty = (int)(y*0.5);
+    int endx = (int)(x*0.75);
+    int endy = (int)(y*0.5);
+    driver.swipe(startx,starty,endx,endy,500);
+  }
+
+  public static void swipeLeft(AndroidDriver driver){
+    int x = driver.manage().window().getSize().width;
+    int y = driver.manage().window().getSize().height;
+    int startx = (int)(x*0.75);
+    int starty = (int)(y*0.5);
+    int endx = (int)(x*0.25);
+    int endy = (int)(y*0.5);
+    driver.swipe(startx,starty,endx,endy,500);
+  }
+
+
 
   //判断设备是否休眠，并解锁设备
   public static void screenOn() {
