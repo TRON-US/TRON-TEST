@@ -2,6 +2,7 @@ package common.utils;
 
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,7 +38,10 @@ public class TronLink {
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
   public static String acceptImportAccount = "com.tronlink.wallet:id/bt_accept";
-  public static String pricateKey = "com.tronlink.wallet:id/cd_pk";
+  public static String privateKey = "com.tronlink.wallet:id/cd_pk";
+  public static String enterContent = "com.tronlink.wallet:id/et_content";
+  public static String nextStep = "com.tronlink.wallet:id/bt_next";
+  public static String privateKeyQR = "com.tronlink.wallet:id/iv_qr";
   public static String mnemonic = "com.tronlink.wallet:id/rl_mm";
   public static String keystore = "com.tronlink.wallet:id/cd_kt";
   public static String watchWallet = "com.tronlink.wallet:id/cd_ow";
@@ -75,7 +79,7 @@ public class TronLink {
   }
 
   public static void waitTargetElementAppear(AndroidDriver driver) {
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     return;
   }
 //click action
@@ -103,7 +107,9 @@ public class TronLink {
         element.click();
         break;
       case "input":
+        element.click();
         element.setValue(input);
+        (new TouchAction(driver)).tap(657, 495).perform();
         break;
       case "swipeUp":
         swipeUp(driver);
