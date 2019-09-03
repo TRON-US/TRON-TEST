@@ -1,5 +1,4 @@
 package tronlink;
-
 import common.utils.TronLink;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,8 +8,12 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -79,7 +82,13 @@ public class importAccount {
         TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
-//        TronLink.testOperation(driver,TronLink.riskIgnore,"click","cancel");
+        if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
+
+        //delete wallet
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
     }
 
     @Test
@@ -98,8 +107,34 @@ public class importAccount {
         String timestamp = String.valueOf(date.getTime());
         TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
-        TronLink.testOperation(driver,TronLink.riskIgnore,"click","cancel");
+//        if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
 
+        //delete wallet
+//        MobileElement el5 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/my");
+//        el5.click();
+//        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+//        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+//        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+//        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+        driver.navigate().back();
+//        try {
+//            Runtime.getRuntime().exec("adb shell am force-stop com.tronlink.wallet");
+//            Thread.sleep(2);
+//            Runtime.getRuntime().exec("adb shell am start -n com.tronlink.wallet/com.tron.wallet.bussiness.welcome.WelcomeActivity");
+//            Thread.sleep(2);
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+        MobileElement el4 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/rl_send");
+        el4.click();
+        MobileElement el5 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/et_address");
+        el5.sendKeys("TSnWgE4aLDY9GXfmopvMrpjgdxeWdc2RbN");
+        MobileElement el6 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/et_count");
+        el6.sendKeys("5");
+        MobileElement el7 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/send");
+        el7.click();
+        MobileElement el8 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/bt_go");
+        el8.click();
     }
 
     @AfterClass

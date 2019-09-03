@@ -66,6 +66,15 @@ public class TronLink {
   public static String saveKey = "com.tronlink.wallet:id/save";
   public static String keyIndexText = "com.tronlink.wallet:id/text";
 
+  public static String tabAssets = "com.tronlink.wallet:id/assets";
+  public static String tabAppmarket = "com.tronlink.wallet:id/appmarket";
+  public static String tabApp1 = "com.tronlink.wallet:id/app1";
+  public static String tabMy = "com.tronlink.wallet:id/my";
+
+  public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
+  public static String deleteWallet = "com.tronlink.wallet:id/delete";
+  public static String etPassword = "com.tronlink.wallet:id/et_password";
+
   private AndroidDriver driver;
 
 
@@ -79,7 +88,7 @@ public class TronLink {
   }
 
   public static void waitTargetElementAppear(AndroidDriver driver) {
-    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     return;
   }
 //click action
@@ -109,7 +118,8 @@ public class TronLink {
       case "input":
         element.click();
         element.setValue(input);
-        (new TouchAction(driver)).tap(657, 495).perform();
+        driver.navigate().back();
+//        (new TouchAction(driver)).tap(657, 495).perform();
         break;
       case "swipeUp":
         swipeUp(driver);
@@ -180,8 +190,22 @@ public class TronLink {
     }
   }
 
+  public static boolean isElement(AndroidDriver driver,String element){
+    boolean flag = false;
+    if (!element.isEmpty()){
+      try {
+        driver.findElementsById(element);
+        flag = true;
+      }catch (Exception e){
+        e.printStackTrace();
+        flag = false;
+      }
+    }
+    return flag;
+  }
 
-  //判断设备是否休眠，并解锁设备
+
+
   public static void screenOn() {
     try {
       Runtime rt = Runtime.getRuntime();
@@ -193,9 +217,7 @@ public class TronLink {
         content = content + line;
       }
       if (content.contains("Display Power: state=OFF")) {
-        // 模拟电源键
         Runtime.getRuntime().exec("adb shell input keyevent 26");
-        // 模拟Home键
         Runtime.getRuntime().exec("adb shell input keyevent 3");
       }
       p.destroy();

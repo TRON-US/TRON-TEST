@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import java.io.IOException;
+import java.lang.management.MonitorInfo;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -51,12 +52,14 @@ public class createAccount {
         TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
         TronLink.getScreenshot(driver,"mnemonic");
-        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/position");
+        MobileElement a = (MobileElement) driver.findElementById("com.tronlink.wallet:id/text");
+        System.out.println(a.getText());
+        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/text");
         System.out.println(text.size());
         for (MobileElement data : text){
             System.out.println("postion:"+data.getText()+"postion");
         }
-//        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
     }
 
     @AfterClass
