@@ -108,6 +108,11 @@ public class importAccount {
         backupkeystore = TronLink.getText(driver,TronLink.keystoreText);
         TronLink.testOperation(driver,TronLink.done,"click","click done");
 
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+
     }
 
     @Test
@@ -124,7 +129,7 @@ public class importAccount {
 
         //use Private Key import account
         TronLink.testOperation(driver,TronLink.privateKey,"click","click Private key");
-        TronLink.testOperation(driver,TronLink.enterContent,"input","ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72","enter private key");
+        TronLink.testOperation(driver,TronLink.enterContent,"input",walletPrivateKey,"enter private key");
         TronLink.testOperation(driver,TronLink.nextStep,"click","click Next step");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
@@ -134,12 +139,12 @@ public class importAccount {
         TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
-        //if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
 
         //delete wallet
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
         TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
     }
 
@@ -153,29 +158,20 @@ public class importAccount {
 
         //import watch account
         TronLink.testOperation(driver,TronLink.watchWallet,"click","click watch wallet");
-        TronLink.testOperation(driver,TronLink.enterContent,"input","TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of","enter address");
+        TronLink.testOperation(driver,TronLink.enterContent,"input",walletAddress,"enter address");
         TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
         TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
-//        if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
 
         //delete wallet
-        MobileElement el5 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/my");
-        el5.click();
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
         TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
-//        try {
-//            Runtime.getRuntime().exec("adb shell am force-stop com.tronlink.wallet");
-//            Thread.sleep(2);
-//            Runtime.getRuntime().exec("adb shell am start -n com.tronlink.wallet/com.tron.wallet.bussiness.welcome.WelcomeActivity");
-//            Thread.sleep(2);
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
     }
 
     @AfterClass
