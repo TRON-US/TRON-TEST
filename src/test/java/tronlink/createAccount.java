@@ -1,5 +1,6 @@
 package tronlink;
 
+
 import common.utils.TronLink;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -9,6 +10,7 @@ import java.lang.management.MonitorInfo;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +37,9 @@ public class createAccount {
         //create account
         TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.createAccountId,"click","click import Account");
-        TronLink.testOperation(driver,"swipeUp","");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
         TronLink.testOperation(driver,TronLink.setUpName,"click","click set up name");
         Date date = new Date();
@@ -51,15 +55,18 @@ public class createAccount {
         //backup mnemonic
         TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
-        TronLink.getScreenshot(driver,"mnemonic");
-        MobileElement a = (MobileElement) driver.findElementById("com.tronlink.wallet:id/text");
-        System.out.println(a.getText());
-        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/text");
-        System.out.println(text.size());
-        for (MobileElement data : text){
-            System.out.println("postion:"+data.getText()+"postion");
-        }
+        ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
+        TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+
+        //confirm mnemonic
+        List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
+        confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+
+        confirmElements = driver.findElementsById(TronLink.itemText);
+        confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
     }
 
     @AfterClass

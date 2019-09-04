@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +22,12 @@ import org.testng.annotations.Test;
 public class importAccount {
 
     private AndroidDriver driver;
+    public static String walletAddress = "";
+    public static String walletPassword = "Test0001";
+    public static String walletPrivateKey = "";
+    public static String backupMnemonic = "";
+    public static String backupkeystore = "";
+
 
     @BeforeClass
     public void setUp() throws MalformedURLException {
@@ -58,13 +65,49 @@ public class importAccount {
         TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
 
-        //TronLink.getScreenshot(driver,"mnemonic");
-        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/text");
-        System.out.println(text.size());
-        for (MobileElement data : text){
-            System.out.println("postion:"+data.getText()+"postion");
-        }
-//        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+        //backup mnemonic
+        TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
+        TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
+        ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+
+        //confirm mnemonic
+        List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
+        confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+        confirmElements = driver.findElementsById(TronLink.itemText);
+        confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
+
+        //tab me
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+        TronLink.testOperation(driver,TronLink.addressText,"click","click ok");
+
+        //get information
+        walletAddress = TronLink.getText(driver,TronLink.addressText);
+        TronLink.testOperation(driver,"swipeUp","");
+//        TronLink.testOperation(driver,TronLink.backupMnemonic,"click","click backup Mnemonic");
+//        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+//        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+
+        TronLink.testOperation(driver,TronLink.backupPrivateKey,"click","click backup PrivateKey");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+        walletPrivateKey = TronLink.getText(driver,TronLink.privateKeyText);
+        TronLink.testOperation(driver,TronLink.done,"click","click done");
+        TronLink.testOperation(driver,"swipeUp","");
+
+
+        TronLink.testOperation(driver,TronLink.backupKeystore,"click","click backup Keystore");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+        backupkeystore = TronLink.getText(driver,TronLink.keystoreText);
+        TronLink.testOperation(driver,TronLink.done,"click","click done");
+
     }
 
     @Test
@@ -119,13 +162,12 @@ public class importAccount {
 //        if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
 
         //delete wallet
-//        MobileElement el5 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/my");
-//        el5.click();
-//        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-//        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
-//        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
-//        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
-        driver.navigate().back();
+        MobileElement el5 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/my");
+        el5.click();
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
 //        try {
 //            Runtime.getRuntime().exec("adb shell am force-stop com.tronlink.wallet");
 //            Thread.sleep(2);
@@ -134,16 +176,6 @@ public class importAccount {
 //        }catch (Exception e){
 //            System.out.println(e);
 //        }
-        MobileElement el4 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/rl_send");
-        el4.click();
-        MobileElement el5 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/et_address");
-        el5.sendKeys("TSnWgE4aLDY9GXfmopvMrpjgdxeWdc2RbN");
-        MobileElement el6 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/et_count");
-        el6.sendKeys("5");
-        MobileElement el7 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/send");
-        el7.click();
-        MobileElement el8 = (MobileElement) driver.findElementById("com.tronlink.wallet:id/bt_go");
-        el8.click();
     }
 
     @AfterClass

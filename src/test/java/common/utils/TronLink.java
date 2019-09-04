@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.OutputType;
 import java.time.Duration;
@@ -27,9 +29,9 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-//  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+//  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -72,16 +74,20 @@ public class TronLink {
   public static String riskIgnore = "com.tronlink.wallet:id/tv_cancle";
   public static String riskBackup = "com.tronlink.wallet:id/tv_ok";
   public static String addressText = "com.tronlink.wallet:id/tv_address";
-  public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey2";
-  public static String backupKeystore = "com.tronlink.wallet:id/rl_keystore2";
   public static String walletPassword = "com.tronlink.wallet:id/et_password";
   public static String confirm = "com.tronlink.wallet:id/tv_ok";
   public static String privateKeyText = "com.tronlink.wallet:id/tv_privatekey";
-  public static String Done = "com.tronlink.wallet:id/backup";
+  public static String keystoreText = "com.tronlink.wallet:id/tv_keystore";
+  public static String done = "com.tronlink.wallet:id/backup";
   public static String backUpNow = "com.tronlink.wallet:id/backup";
   public static String gotItButton = "com.tronlink.wallet:id/bt_know";
   public static String saveKey = "com.tronlink.wallet:id/save";
   public static String keyIndexText = "com.tronlink.wallet:id/text";
+  public static String itemText = "com.tronlink.wallet:id/tv_item";
+  public static String numberIndex = "com.tronlink.wallet:id/tv_number";
+  public static String nextStepButton = "com.tronlink.wallet:id/tv_next";
+
+
 
   public static String tabAssets = "com.tronlink.wallet:id/assets";
   public static String tabAppmarket = "com.tronlink.wallet:id/appmarket";
@@ -91,9 +97,15 @@ public class TronLink {
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
   public static String etPassword = "com.tronlink.wallet:id/et_password";
+  public static String backupMnemonic = "com.tronlink.wallet:id/rl_mnemonic";
+  public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey2";
+  public static String backupKeystore = "com.tronlink.wallet:id/rl_keystore2";
+
+
   public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
   public static String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
   public static String testPassword = "Test0001";
+
 
   private AndroidDriver driver;
   public static AndroidTouchAction action;
@@ -120,6 +132,7 @@ public class TronLink {
   public static void testOperation(AndroidDriver driver, String step, String description) {
     testOperation(driver, "", step, "",description);
   }
+
 
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
@@ -163,7 +176,7 @@ public class TronLink {
         swipeLeft(driver);
         break;
     }
-    getScreenshot(driver,description);
+//    getScreenshot(driver,description);
   }
 
   public static void swipeUp(AndroidDriver driver){
@@ -235,20 +248,57 @@ public class TronLink {
   }
 
   public static boolean isElement(AndroidDriver driver,String element){
-    boolean flag = false;
-    if (!element.isEmpty()){
-      try {
-        driver.findElementsById(element);
-        flag = true;
-      }catch (Exception e){
-        e.printStackTrace();
-        flag = false;
-      }
+    String pageSource = driver.getPageSource();
+    System.out.println(pageSource);
+    if (pageSource.indexOf(element) == -1){
+      return false;
+    }else{
+      return true;
     }
-    return flag;
   }
 
+  public static boolean isEnabled(AndroidDriver driver,String element){
+    return driver.findElementById(element).isEnabled();
+  }
 
+  public static boolean isDisplayed(AndroidDriver driver,String element){
+    return driver.findElementById(element).isDisplayed();
+  }
+
+  public static ArrayList<String> getTextList(AndroidDriver driver,String element){
+    List<MobileElement> text = driver.findElementsById(element);
+    ArrayList<String> TextList = new ArrayList<>();
+    for (MobileElement data : text){
+      System.out.println(data.getText());
+      TextList.add(data.getText());
+    }
+    return TextList;
+  }
+
+  public static String getText(AndroidDriver driver,String element){
+    waitTargetElementAppear(driver);
+    String text = driver.findElementById(element).getText();
+    return text;
+  }
+
+  public static int getSameMnemonicIdex(AndroidDriver driver,ArrayList<String> allTextList,String confirmItem,String numberIndex){
+    List<String> confirmList = TronLink.getTextList(driver,confirmItem);
+    int number = 0;
+    if (confirmList.size() > 6){
+      List<MobileElement> numberList = driver.findElementsById(numberIndex);
+      number = Integer.parseInt(numberList.get(1).getText().substring(1)) - 1;
+      confirmList = TronLink.getTextList(driver,confirmItem).subList(6,12);
+      System.out.println(confirmList.size());
+      System.out.println(confirmList.toString());
+    }else {
+      number = Integer.parseInt(driver.findElementById(numberIndex).getText().substring(1)) - 1;
+    }
+    System.out.println("get："+ allTextList.get(number));
+    System.out.println(number);
+    int flag = confirmList.indexOf(allTextList.get(number));
+    System.out.println(flag);
+    return flag;
+  }
 
   public static void screenOn() {
     try {
@@ -300,5 +350,7 @@ public class TronLink {
     }
     return driver;
   }
+
+
 
 }
