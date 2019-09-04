@@ -26,9 +26,9 @@ public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+//  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
@@ -145,8 +145,7 @@ public class TronLink {
     int width = driver.manage().window().getSize().width;
     int height = driver.manage().window().getSize().height;
     System.out.print("   " + width + "   " + height);
-    int nanos=(int) (1.5*1000);
-    Duration duration = Duration.ofNanos(nanos);
+    Duration duration = Duration.ofMillis(100);
     //action.press(PointOption.point(511,1789)).moveTo(PointOption.point(511,420)).release().perform();
     action.press(PointOption.point(width/2, height*3/4)).waitAction(WaitOptions.waitOptions(duration)).moveTo(PointOption.point(width/2, height/4)).release().perform();
 
