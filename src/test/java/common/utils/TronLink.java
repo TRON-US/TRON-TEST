@@ -71,6 +71,8 @@ public class TronLink {
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
   public static String etPassword = "com.tronlink.wallet:id/et_password";
+  public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
+  public static String password = "Test0001";
 
   private AndroidDriver driver;
   public static AndroidTouchAction action;
@@ -196,6 +198,9 @@ public class TronLink {
   public static void getScreenshot(AndroidDriver driver,String description){
     SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
     String date = df.format(new Date());
+    if(description.equals("got it") || description.equals("back up now")) {
+      return;
+    }
     File screen = ((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
     File screenFile = new File("build/reports/tests/tronlink/screenShot/"+date+description+".png");
     try {
@@ -239,6 +244,35 @@ public class TronLink {
     } catch (IOException ex) {
       return;
     }
+  }
+
+  public static AndroidDriver importWallet(AndroidDriver driver,String privateKey) {
+    try {
+      TronLink.testOperation(driver, TronLink.importAccountId, "click", "click import Account");
+      TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, TronLink.acceptImportAccount, "click", "click Accept");
+      //use Private Key import account
+      TronLink.testOperation(driver, TronLink.privateKey, "click", "click Private key");
+      TronLink.testOperation(driver, TronLink.enterContent, "input", privateKey, "enter private key");
+      TronLink.testOperation(driver, TronLink.nextStep, "click", "click Next step");
+      Date date = new Date();
+      String timestamp = String.valueOf(date.getTime());
+      TronLink.testOperation(driver, TronLink.setUpName, "input", "Test_" + timestamp, "input name");
+      TronLink.testOperation(driver, TronLink.creatNextStep, "click", "1:input name");
+      TronLink.testOperation(driver, TronLink.passWord, "input", passWord, "input password");
+      TronLink.testOperation(driver, TronLink.creatNextStep2, "click", "2:click next step");
+      TronLink.testOperation(driver, TronLink.passWord, "input", passWord, "input password again");
+      TronLink.testOperation(driver, TronLink.creatNextStep3, "click", "3:click carry out");
+    }
+    catch (Exception ex) {
+      System.out.print(ex);
+      return null;
+    }
+    return driver;
   }
 
 }

@@ -40,6 +40,7 @@ public class importAccount {
         TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
         //create account
@@ -56,8 +57,9 @@ public class importAccount {
         //backup mnemonic
         TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
-        TronLink.getScreenshot(driver,"mnemonic");
-        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/position");
+
+        //TronLink.getScreenshot(driver,"mnemonic");
+        List<MobileElement> text = driver.findElementsById("com.tronlink.wallet:id/text");
         System.out.println(text.size());
         for (MobileElement data : text){
             System.out.println("postion:"+data.getText()+"postion");
@@ -70,6 +72,10 @@ public class importAccount {
         //startup page
         TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
@@ -85,7 +91,7 @@ public class importAccount {
         TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
-        if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
+        //if (TronLink.isElement(driver,TronLink.riskBackup)) driver.navigate().back();
 
         //delete wallet
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
