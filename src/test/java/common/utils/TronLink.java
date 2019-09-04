@@ -225,7 +225,7 @@ public class TronLink {
   }
 
   public static boolean isDisplayed(AndroidDriver driver,String element){
-    return driver.findElementById(element).isEnabled();
+    return driver.findElementById(element).isDisplayed();
   }
 
 
