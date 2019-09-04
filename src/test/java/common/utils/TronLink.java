@@ -26,9 +26,9 @@ public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-//  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+//  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
@@ -139,7 +139,7 @@ public class TronLink {
         swipeLeft(driver);
         break;
     }
-    getScreenshot(driver,description);
+//    getScreenshot(driver,description);
   }
 
   public static void swipeUp(AndroidDriver driver){
@@ -211,18 +211,23 @@ public class TronLink {
   }
 
   public static boolean isElement(AndroidDriver driver,String element){
-    boolean flag = false;
-    if (!element.isEmpty()){
-      try {
-        driver.findElementsById(element);
-        flag = true;
-      }catch (Exception e){
-        e.printStackTrace();
-        flag = false;
-      }
+    String pageSource = driver.getPageSource();
+    System.out.println(pageSource);
+    if (pageSource.indexOf(element) == -1){
+      return false;
+    }else{
+      return true;
     }
-    return flag;
   }
+
+  public static boolean isEnabled(AndroidDriver driver,String element){
+    return driver.findElementById(element).isEnabled();
+  }
+
+  public static boolean isDisplayed(AndroidDriver driver,String element){
+    return driver.findElementById(element).isEnabled();
+  }
+
 
 
 
