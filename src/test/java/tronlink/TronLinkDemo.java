@@ -28,8 +28,13 @@ public class TronLinkDemo {
   public void sampleTest() {
 
     TronLink.testOperation(driver, TronLink.importAccountId,"click");
-    TronLink.testOperation(driver,"swipeUp");
-    TronLink.testOperation(driver,"swipeDown");
+    TronLink.testOperation(driver,"swipeUp","");
+    TronLink.testOperation(driver,"swipeUp","");
+    TronLink.testOperation(driver,"swipeUp","");
+    TronLink.testOperation(driver,"swipeUp","");
+    TronLink.testOperation(driver,"swipeUp","");
+    //driver.getPageSource();
+    TronLink.testOperation(driver,"swipeDown","");
     TronLink.waitTargetElementAppear(driver);
   }
 

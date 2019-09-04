@@ -1,9 +1,13 @@
 package common.utils;
 
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -11,27 +15,20 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.tools.ant.util.FileUtils;
-import org.apache.xml.serializer.ExtendedContentHandler;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
+import java.time.Duration;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.util.FileCopyUtils;
-
-import javax.naming.ldap.ExtendedRequest;
+import io.appium.java_client.touch.WaitOptions;
 
 public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
-//  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-  //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/qh360/release/app-qh360-release.apk";
+  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
+  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
@@ -76,6 +73,7 @@ public class TronLink {
   public static String etPassword = "com.tronlink.wallet:id/et_password";
 
   private AndroidDriver driver;
+  public static AndroidTouchAction action;
 
 
   public static DesiredCapabilities getTronLinkDesiredCapabilities(
@@ -107,8 +105,13 @@ public class TronLink {
     if (!resId.isEmpty()) {
       if (resId.indexOf("com.tronlink.wallet:id") != -1){
         element = (MobileElement) driver.findElementById(resId);
+        //element = (MobileElement) driver.findElement(MobileBy.id(resId));
+        //element = driver.findElement(MobileBy.id(resId));
+
       }else {
-        element = (MobileElement) driver.findElementByXPath(resId);
+        element = (MobileElement) driver.findElement(MobileBy.id(resId));
+        //element = (MobileElement) driver.findElementByXPath(resId);
+
       }
     }
     switch (action) {
@@ -138,43 +141,31 @@ public class TronLink {
   }
 
   public static void swipeUp(AndroidDriver driver){
-    int x = driver.manage().window().getSize().width;
-    int y = driver.manage().window().getSize().height;
-    int startx = (int)(x*0.5);
-    int starty = (int)(y*0.75);
-    int endx = (int)(x*0.5);
-    int endy = (int)(y*0.25);
-    driver.swipe(startx,starty,endx,endy,100);
+    AndroidTouchAction action = new AndroidTouchAction(driver);
+    int width = driver.manage().window().getSize().width;
+    int height = driver.manage().window().getSize().height;
+    System.out.print("   " + width + "   " + height);
+    int nanos=(int) (1.5*1000);
+    Duration duration = Duration.ofNanos(nanos);
+    //action.press(PointOption.point(511,1789)).moveTo(PointOption.point(511,420)).release().perform();
+    action.press(PointOption.point(width/2, height*3/4)).waitAction(WaitOptions.waitOptions(duration)).moveTo(PointOption.point(width/2, height/4)).release().perform();
+
+    //action.longPress(LongPressOptions.longPressOptions().withDuration(duration));
+
+
+
   }
 
   public static void swipeDown(AndroidDriver driver){
-    int x = driver.manage().window().getSize().width;
-    int y = driver.manage().window().getSize().height;
-    int startx = (int)(x*0.5);
-    int starty = (int)(y*0.25);
-    int endx = (int)(x*0.5);
-    int endy = (int)(y*0.75);
-    driver.swipe(startx,starty,endx,endy,100);
+    (new TouchAction(driver)).press(PointOption.point(511,420)).moveTo(PointOption.point(511,1789)).release().perform();
   }
 
   public static void swipeRight(AndroidDriver driver){
-    int x = driver.manage().window().getSize().width;
-    int y = driver.manage().window().getSize().height;
-    int startx = (int)(x*0.25);
-    int starty = (int)(y*0.5);
-    int endx = (int)(x*0.75);
-    int endy = (int)(y*0.5);
-    driver.swipe(startx,starty,endx,endy,500);
+    (new TouchAction(driver)).press(PointOption.point(700,1789)).moveTo(PointOption.point(300,1789)).release().perform();
   }
 
   public static void swipeLeft(AndroidDriver driver){
-    int x = driver.manage().window().getSize().width;
-    int y = driver.manage().window().getSize().height;
-    int startx = (int)(x*0.75);
-    int starty = (int)(y*0.5);
-    int endx = (int)(x*0.25);
-    int endy = (int)(y*0.5);
-    driver.swipe(startx,starty,endx,endy,500);
+    (new TouchAction(driver)).press(PointOption.point(300,1789)).moveTo(PointOption.point(700,1789)).release().perform();
   }
 
 //get screenshot

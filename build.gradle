@@ -17,7 +17,7 @@ repositories {
 dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '6.9.9'
     //testCompile group: 'com.experitest', name: 'appium', version:'4.1.2'
-    testCompile group: 'io.appium', name: 'java-client', version: '4.1.2'
+    testCompile group: 'io.appium', name: 'java-client', version: '6.0.0'
 }
 
 test {
