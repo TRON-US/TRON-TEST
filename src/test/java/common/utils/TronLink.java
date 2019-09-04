@@ -27,16 +27,37 @@ import io.appium.java_client.touch.WaitOptions;
 public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
+  //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
   public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
+  //public static String deviceName = "192.168.56.101:5555";
   public static String platformName = "Android";
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
+  public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
+  public static String sendCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]";
+  public static String receiveCoinId = "com.tronlink.wallet:id/rl_receive";
+  public static String receiveCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]";
+  public static String freezeBalanceId = "com.tronlink.wallet:id/rl_freeze_unfreeze";
+  public static String tronLendingId = "com.tronlink.wallet:id/rl_energy_lease";
+  public static String voteId = "com.tronlink.wallet:id/rl_vote";
+  public static String addAsset = "com.tronlink.wallet:id/rl_add_assets";
+  public static String sendCoinAmountId = "com.tronlink.wallet:id/et_count";
+  public static Long sendCoinAmount = 1L;
+  public static String sendCoinButtonId = "com.tronlink.wallet:id/send";
+  public static String transferNowId = "com.tronlink.wallet:id/bt_go";
+  public static String transferConfirmButtonId = "com.tronlink.wallet:id/bt_send";
+  public static String transferInputPasswordId = "com.tronlink.wallet:id/et_new_password";
+  public static String receiveAddressId = "com.tronlink.wallet:id/et_address";
   public static String acceptImportAccount = "com.tronlink.wallet:id/bt_accept";
+  public static String assetIconId = "com.tronlink.wallet:id/assets";
+  public static String marketsIconId = "com.tronlink.wallet:id/appmarket";
+  public static String discoverIconId = "com.tronlink.wallet:id/app1";
+  public static String meIconId = "com.tronlink.wallet:id/my";
   public static String privateKey = "com.tronlink.wallet:id/cd_pk";
   public static String enterContent = "com.tronlink.wallet:id/et_content";
   public static String nextStep = "com.tronlink.wallet:id/bt_next";
@@ -44,7 +65,6 @@ public class TronLink {
   public static String mnemonic = "com.tronlink.wallet:id/rl_mm";
   public static String keystore = "com.tronlink.wallet:id/cd_kt";
   public static String watchWallet = "com.tronlink.wallet:id/cd_ow";
-
   public static String createWallet = "com.tronlink.wallet:id/cd_cw";
   public static String setUpName = "com.tronlink.wallet:id/et_name";
   public static String creatNextStep = "com.tronlink.wallet:id/creat";
@@ -83,7 +103,8 @@ public class TronLink {
 
 
   public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
-  public static String password = "Test0001";
+  public static String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+  public static String testPassword = "Test0001";
 
 
   private AndroidDriver driver;
@@ -128,6 +149,9 @@ public class TronLink {
         //element = (MobileElement) driver.findElementByXPath(resId);
 
       }
+    }
+    if (resId.contains("hierarchy")){
+      element = (MobileElement) driver.findElement(MobileBy.xpath(resId));
     }
     switch (action) {
       case "click":
@@ -304,6 +328,8 @@ public class TronLink {
       TronLink.testOperation(driver, "swipeUp", "");
       TronLink.testOperation(driver, "swipeUp", "");
       TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, "swipeUp", "");
+      TronLink.testOperation(driver, "swipeUp", "");
       TronLink.testOperation(driver, TronLink.acceptImportAccount, "click", "click Accept");
       //use Private Key import account
       TronLink.testOperation(driver, TronLink.privateKey, "click", "click Private key");
@@ -313,9 +339,9 @@ public class TronLink {
       String timestamp = String.valueOf(date.getTime());
       TronLink.testOperation(driver, TronLink.setUpName, "input", "Test_" + timestamp, "input name");
       TronLink.testOperation(driver, TronLink.creatNextStep, "click", "1:input name");
-      TronLink.testOperation(driver, TronLink.passWord, "input", passWord, "input password");
+      TronLink.testOperation(driver, TronLink.passWord, "input", testPassword, "input password");
       TronLink.testOperation(driver, TronLink.creatNextStep2, "click", "2:click next step");
-      TronLink.testOperation(driver, TronLink.passWord, "input", passWord, "input password again");
+      TronLink.testOperation(driver, TronLink.passWord, "input", testPassword, "input password again");
       TronLink.testOperation(driver, TronLink.creatNextStep3, "click", "3:click carry out");
     }
     catch (Exception ex) {
