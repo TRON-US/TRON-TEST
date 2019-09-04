@@ -37,6 +37,9 @@ public class importAccount {
         TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
         TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
         //create account

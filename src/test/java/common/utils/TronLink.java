@@ -26,9 +26,9 @@ public class TronLink {
 
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
 
-  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+//  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-//  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   public static String platformName = "Android";
@@ -145,26 +145,51 @@ public class TronLink {
     int width = driver.manage().window().getSize().width;
     int height = driver.manage().window().getSize().height;
     System.out.print("   " + width + "   " + height);
-    Duration duration = Duration.ofMillis(100);
-    //action.press(PointOption.point(511,1789)).moveTo(PointOption.point(511,420)).release().perform();
-    action.press(PointOption.point(width/2, height*3/4)).waitAction(WaitOptions.waitOptions(duration)).moveTo(PointOption.point(width/2, height/4)).release().perform();
-
-    //action.longPress(LongPressOptions.longPressOptions().withDuration(duration));
-
-
-
+    Duration duration = Duration.ofMillis(150);
+    action.press(
+            PointOption.point(width/2, height*4/5))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width/2, height/5))
+            .release().perform();
   }
 
   public static void swipeDown(AndroidDriver driver){
-    (new TouchAction(driver)).press(PointOption.point(511,420)).moveTo(PointOption.point(511,1789)).release().perform();
+    AndroidTouchAction action = new AndroidTouchAction(driver);
+    int width = driver.manage().window().getSize().width;
+    int height = driver.manage().window().getSize().height;
+    System.out.print("   " + width + "   " + height);
+    Duration duration = Duration.ofMillis(150);
+    action.press(
+            PointOption.point(width/2, height/5))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width/2, height*4/5))
+            .release().perform();
   }
 
   public static void swipeRight(AndroidDriver driver){
-    (new TouchAction(driver)).press(PointOption.point(700,1789)).moveTo(PointOption.point(300,1789)).release().perform();
+    AndroidTouchAction action = new AndroidTouchAction(driver);
+    int width = driver.manage().window().getSize().width;
+    int height = driver.manage().window().getSize().height;
+    System.out.print("   " + width + "   " + height);
+    Duration duration = Duration.ofMillis(150);
+    action.press(
+            PointOption.point(width*3/4, height/2))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width/4, height/2))
+            .release().perform();
   }
 
   public static void swipeLeft(AndroidDriver driver){
-    (new TouchAction(driver)).press(PointOption.point(300,1789)).moveTo(PointOption.point(700,1789)).release().perform();
+    AndroidTouchAction action = new AndroidTouchAction(driver);
+    int width = driver.manage().window().getSize().width;
+    int height = driver.manage().window().getSize().height;
+    System.out.print("   " + width + "   " + height);
+    Duration duration = Duration.ofMillis(150);
+    action.press(
+            PointOption.point(width/4, height/2))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width*3/4, height/2))
+            .release().perform();
   }
 
 //get screenshot
