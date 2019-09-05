@@ -43,11 +43,9 @@ public class importAccount {
         //startup page
         TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
         //create account
@@ -66,11 +64,10 @@ public class importAccount {
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
 
         //backup mnemonic
-        TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
-        TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
-        ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
         TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+        TronLink.testOperation(driver,TronLink.saveKey,"click","back up now");
+        ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
+
 
         //confirm mnemonic
         List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
@@ -83,16 +80,10 @@ public class importAccount {
         //tab me
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
-        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
-        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
-        TronLink.testOperation(driver,TronLink.addressText,"click","click ok");
 
         //get information
         walletAddress = TronLink.getText(driver,TronLink.addressText);
         TronLink.testOperation(driver,"swipeUp","");
-//        TronLink.testOperation(driver,TronLink.backupMnemonic,"click","click backup Mnemonic");
-//        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
-//        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
 
         TronLink.testOperation(driver,TronLink.backupPrivateKey,"click","click backup PrivateKey");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
@@ -118,13 +109,10 @@ public class importAccount {
     @Test
     public void import_PrivateKey(){
         //startup page
-        TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,"swipeUp","");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
         //use Private Key import account
@@ -143,7 +131,9 @@ public class importAccount {
         //delete wallet
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
-        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        while (!TronLink.isDisplayed(driver,TronLink.deleteWallet)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
     }
@@ -151,9 +141,10 @@ public class importAccount {
     @Test
     public void import_WatchAddress(){
         //startup page
-        TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
-        TronLink.testOperation(driver,"swipeUp","");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
         TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
         //import watch account
@@ -167,7 +158,7 @@ public class importAccount {
 
         //delete wallet
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,"swipeUp","");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
         TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");

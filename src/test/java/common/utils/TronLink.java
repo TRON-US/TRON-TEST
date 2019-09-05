@@ -110,8 +110,8 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
   public static String etPassword = "com.tronlink.wallet:id/et_password";
   public static String backupMnemonic = "com.tronlink.wallet:id/rl_mnemonic";
-  public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey2";
-  public static String backupKeystore = "com.tronlink.wallet:id/rl_keystore2";
+  public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey";
+  public static String backupKeystore = "com.tronlink.wallet:id/rl_keystore";
 
 
   public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
@@ -124,7 +124,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
 
 
   public static DesiredCapabilities getTronLinkDesiredCapabilities(
-      DesiredCapabilities desiredCapabilities) {
+          DesiredCapabilities desiredCapabilities) {
     desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
     desiredCapabilities.setCapability("platformName", TronLink.platformName);
     desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
@@ -136,11 +136,11 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     return;
   }
-//click action
+  //click action
   public static void testOperation(AndroidDriver driver, String resId, String step ,String description) {
     testOperation(driver, resId, step, "",description);
   }
-//swipe action
+  //swipe action
   public static void testOperation(AndroidDriver driver, String step, String description) {
     testOperation(driver, "", step, "",description);
   }
@@ -243,7 +243,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
             .release().perform();
   }
 
-//get screenshot
+  //get screenshot
   public static void getScreenshot(AndroidDriver driver,String description){
     SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
     String date = df.format(new Date());
