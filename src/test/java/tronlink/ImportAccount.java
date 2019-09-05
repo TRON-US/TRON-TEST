@@ -206,8 +206,7 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
         walletAddress = TronLink.getText(driver,TronLink.addressText);
         TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
-        TronLink.testOperation(driver,TronLink.deleteWalletTop,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
     }
