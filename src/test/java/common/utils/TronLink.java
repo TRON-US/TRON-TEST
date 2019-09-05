@@ -1,6 +1,12 @@
 package common.utils;
 
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -8,6 +14,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
+
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -15,13 +23,18 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.OutputType;
 import java.time.Duration;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import javax.imageio.ImageIO;
+
 import io.appium.java_client.touch.WaitOptions;
 
 public class TronLink {
@@ -36,6 +49,10 @@ public class TronLink {
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
   public static String platformName = "Android";
+  private static final int QRCOLOR = 0xFF000000;
+  private static final int BGWHITE = 0xFFFFFFFF;
+  private static final int WIDTH = 400;
+  private static final int HEIGHT = 400;
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
   public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
@@ -355,6 +372,52 @@ public class TronLink {
     return driver;
   }
 
+
+  /**
+   * 用于设置QR二维码参数
+   */
+  private static Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>() {
+    private static final long serialVersionUID = 1L;
+
+    {
+      // 设置QR二维码的纠错级别（H为最高级别）具体级别信息
+      put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+      // 设置编码方式
+      put(EncodeHintType.CHARACTER_SET, "utf-8");
+      put(EncodeHintType.MARGIN, 0);
+    }
+  };
+
+  /**
+   * 生成带logo的二维码图片
+   * 参数content：存入二维码的字符串
+   * 参数logoUrl：logo的地址
+   * 参数imgUrl：生成二维码的地址和名称
+   */
+  public static void QRCode(String content, String imgUrl) {
+    //图片存放地址
+    try {
+      //二维码存放位置
+      File codeFile = new File(imgUrl);
+      MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+      // 参数顺序分别为：编码内容，编码类型，生成图片宽度，生成图片高度，设置参数
+      BitMatrix bm = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
+      BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+      // 开始利用二维码数据创建Bitmap图片，分别设为黑（0xFFFFFFFF）白（0xFF000000）两色
+      for (int x = 0; x < WIDTH; x++) {
+        for (int y = 0; y < HEIGHT; y++) {
+          image.setRGB(x, y, bm.get(x, y) ? QRCOLOR : BGWHITE);
+        }
+      }
+      image.flush();
+      ImageIO.write(image, "png", codeFile);
+      Runtime rt = Runtime.getRuntime();
+      Process p = rt.exec("adb push"+imgUrl+" storage/sdcard0/Pictures/Screenshots/");
+      p.destroy();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
 
 }

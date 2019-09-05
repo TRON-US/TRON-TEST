@@ -1,26 +1,15 @@
 package tronlink;
 import common.utils.TronLink;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -116,6 +105,10 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
 
         System.out.println("walletAddress:" + walletAddress + "\nwalletPassword:" + walletPassword + "\nwalletPrivateKey:" +walletPrivateKey +"\nbackupMnemonic:" +backupMnemonic + "\nbackupkeystore:" + backupkeystore);
+        TronLink.QRCode(walletAddress,"build/reports/tests/tronlink/QRCode/walletAddress.png");
+        TronLink.QRCode(walletPrivateKey,"build/reports/tests/tronlink/QRCode/walletPrivateKey.png");
+        TronLink.QRCode(backupMnemonic,"build/reports/tests/tronlink/QRCode/backupMnemonic.png");
+        TronLink.QRCode(backupkeystore,"build/reports/tests/tronlink/QRCode/backupkeystore.png");
 
     }
 
