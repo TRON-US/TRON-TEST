@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tronlink.TronLinkDemo" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-08-30T07:25:04" hostname="wangzihedeMacBook-Pro.local" time="5.596">
-  <properties/>
-  <testcase name="sampleTest" classname="tronlink.TronLinkDemo" time="5.596"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
