@@ -29,9 +29,9 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-//  public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -42,16 +42,28 @@ public class TronLink {
   public static String sendCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]";
   public static String receiveCoinId = "com.tronlink.wallet:id/rl_receive";
   public static String receiveCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]";
-  public static String freezeBalanceId = "com.tronlink.wallet:id/rl_freeze_unfreeze";
   public static String tronLendingId = "com.tronlink.wallet:id/rl_energy_lease";
   public static String voteId = "com.tronlink.wallet:id/rl_vote";
+  public static String voteResetId = "com.tronlink.wallet:id/reset";
+  public static String voteSlectionInputId = "com.tronlink.wallet:id/et_input";
+  public static String voteInputQuantityXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[3]/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText";
+  public static Long voteQuantity = 2L;
+  public static String voteNowId = "com.tronlink.wallet:id/bt_go";
   public static String addAsset = "com.tronlink.wallet:id/rl_add_assets";
+  public static String energyOptionIconId = "com.tronlink.wallet:id/tv_energy";
+  public static String bandwidthOptionIconId = "com.tronlink.wallet:id/tv_bandwidth";
+  public static String frozenQuantityInputId = "com.tronlink.wallet:id/et_freeze_count";
+  public static String freeezeUnfreezeId = "com.tronlink.wallet:id/rl_freeze_unfreeze";
   public static String sendCoinAmountId = "com.tronlink.wallet:id/et_count";
   public static Long sendCoinAmount = 1L;
+  public static Long frozenQuantityForBandwidth = 2L;
+  public static Long frozenQuantityForEnergy = 3L;
+  public static String freezeIconId = "com.tronlink.wallet:id/freeze";
+  public static String freezeNowIconId = "com.tronlink.wallet:id/bt_go";
   public static String sendCoinButtonId = "com.tronlink.wallet:id/send";
   public static String transferNowId = "com.tronlink.wallet:id/bt_go";
-  public static String transferConfirmButtonId = "com.tronlink.wallet:id/bt_send";
-  public static String transferInputPasswordId = "com.tronlink.wallet:id/et_new_password";
+  public static String transactionConfirmButtonId = "com.tronlink.wallet:id/bt_send";
+  public static String transactionConfirmInputPasswordId = "com.tronlink.wallet:id/et_new_password";
   public static String receiveAddressId = "com.tronlink.wallet:id/et_address";
   public static String acceptImportAccount = "com.tronlink.wallet:id/bt_accept";
   public static String assetIconId = "com.tronlink.wallet:id/assets";
@@ -184,7 +196,7 @@ public class TronLink {
     int width = driver.manage().window().getSize().width;
     int height = driver.manage().window().getSize().height;
     System.out.print("   " + width + "   " + height);
-    Duration duration = Duration.ofMillis(150);
+    Duration duration = Duration.ofMillis(200);
     action.press(
             PointOption.point(width/2, height*4/5))
             .waitAction(WaitOptions.waitOptions(duration))

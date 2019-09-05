@@ -32,7 +32,7 @@ public class createAccount {
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
     }
 
-    @Test
+    @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
     public void createAccount() {
         //create account
         TronLink.getScreenshot(driver,"Startup page");
