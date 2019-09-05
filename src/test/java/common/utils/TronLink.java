@@ -174,7 +174,7 @@ public class TronLink {
         break;
       case "input":
         element.click();
-        element.setValue(input);
+        element.sendKeys(input);
         driver.navigate().back();
 //        (new TouchAction(driver)).tap(657, 495).perform();
         break;
