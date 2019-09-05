@@ -75,6 +75,7 @@ public class TronLink {
   public static String nextStep = "com.tronlink.wallet:id/bt_next";
   public static String privateKeyQR = "com.tronlink.wallet:id/iv_qr";
   public static String mnemonic = "com.tronlink.wallet:id/rl_mm";
+  public static String hdWallet = "com.tronlink.wallet:id/ll_hd_wallet";
   public static String keystore = "com.tronlink.wallet:id/cd_kt";
   public static String watchWallet = "com.tronlink.wallet:id/cd_ow";
   public static String createWallet = "com.tronlink.wallet:id/cd_cw";
@@ -108,6 +109,8 @@ public class TronLink {
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
+  public static String deleteWallet2 = "com.tronlink.wallet:id/delete2";
+  public static String deleteWalletTop = "com.tronlink.wallet:id/delete_top";
   public static String etPassword = "com.tronlink.wallet:id/et_password";
   public static String backupMnemonic = "com.tronlink.wallet:id/rl_mnemonic";
   public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey";
@@ -281,7 +284,6 @@ public class TronLink {
     List<MobileElement> text = driver.findElementsById(element);
     ArrayList<String> TextList = new ArrayList<>();
     for (MobileElement data : text){
-      System.out.println(data.getText());
       TextList.add(data.getText());
     }
     return TextList;
@@ -300,15 +302,10 @@ public class TronLink {
       List<MobileElement> numberList = driver.findElementsById(numberIndex);
       number = Integer.parseInt(numberList.get(1).getText().substring(1)) - 1;
       confirmList = TronLink.getTextList(driver,confirmItem).subList(6,12);
-      System.out.println(confirmList.size());
-      System.out.println(confirmList.toString());
     }else {
       number = Integer.parseInt(driver.findElementById(numberIndex).getText().substring(1)) - 1;
     }
-    System.out.println("get："+ allTextList.get(number));
-    System.out.println(number);
     int flag = confirmList.indexOf(allTextList.get(number));
-    System.out.println(flag);
     return flag;
   }
 
@@ -335,13 +332,9 @@ public class TronLink {
   public static AndroidDriver importWallet(AndroidDriver driver,String privateKey) {
     try {
       TronLink.testOperation(driver, TronLink.importAccountId, "click", "click import Account");
-      TronLink.testOperation(driver, "swipeUp", "");
-      TronLink.testOperation(driver, "swipeUp", "");
-      TronLink.testOperation(driver, "swipeUp", "");
-      TronLink.testOperation(driver, "swipeUp", "");
-      TronLink.testOperation(driver, "swipeUp", "");
-      TronLink.testOperation(driver, "swipeUp", "");
-      TronLink.testOperation(driver, "swipeUp", "");
+      while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+        TronLink.testOperation(driver,"swipeUp","");
+      }
       TronLink.testOperation(driver, TronLink.acceptImportAccount, "click", "click Accept");
       //use Private Key import account
       TronLink.testOperation(driver, TronLink.privateKey, "click", "click Private key");
