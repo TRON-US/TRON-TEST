@@ -19,7 +19,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class importAccount {
+public class ImportAccount {
 
     private AndroidDriver driver;
     public static String walletAddress = "";
