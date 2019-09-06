@@ -6,7 +6,7 @@
             <package name="tronlink.*"></package>
         </packages>-->
         <classes>
-            <class name="tronlink.ReceiveTrx"></class>
+            <class name="tronlink.AddAssets"></class>
         </classes>
     </test>
 </suite>
