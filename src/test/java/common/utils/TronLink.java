@@ -6,6 +6,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import java.io.BufferedReader;
@@ -136,6 +138,8 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     return;
   }
+
+
   //click action
   public static void testOperation(AndroidDriver driver, String resId, String step ,String description) {
     testOperation(driver, resId, step, "",description);
@@ -145,25 +149,31 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     testOperation(driver, "", step, "",description);
   }
 
+  public static void loadingPageWaitingAction(AndroidDriver driver, String resId) {
+    int repeatTimes = 1;
+    if (resId.equals(voteId) || resId.equals(marketsIconId) || resId.equals(meIconId) || resId.equals(assetIconId)){
+      repeatTimes = 300;
+    }
+    System.out.println("repeat times:" + repeatTimes);
+    while (repeatTimes-- > 0) {
+      TronLink.waitTargetElementAppear(driver);
+    }
+    return;
+  }
+
 
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
+    getScreenshot(driver,description);
     waitTargetElementAppear(driver);
     MobileElement element = null;
     if (!resId.isEmpty()) {
       if (resId.indexOf("com.tronlink.wallet:id") != -1){
         element = (MobileElement) driver.findElementById(resId);
-        //element = (MobileElement) driver.findElement(MobileBy.id(resId));
-        //element = driver.findElement(MobileBy.id(resId));
-
       }else {
-        element = (MobileElement) driver.findElement(MobileBy.id(resId));
-        //element = (MobileElement) driver.findElementByXPath(resId);
+        element = (MobileElement) driver.findElement(MobileBy.xpath(resId));
 
       }
-    }
-    if (resId.contains("hierarchy")){
-      element = (MobileElement) driver.findElement(MobileBy.xpath(resId));
     }
     switch (action) {
       case "click":
@@ -188,7 +198,8 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
         swipeLeft(driver);
         break;
     }
-//    getScreenshot(driver,description);
+    activeLoadingPage(driver,resId);
+    //getScreenshot(driver,description);
   }
 
   public static void swipeUp(AndroidDriver driver){
@@ -208,13 +219,36 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     AndroidTouchAction action = new AndroidTouchAction(driver);
     int width = driver.manage().window().getSize().width;
     int height = driver.manage().window().getSize().height;
-    System.out.print("   " + width + "   " + height);
+    //System.out.print("   " + width + "   " + height);
     Duration duration = Duration.ofMillis(150);
     action.press(
             PointOption.point(width/2, height/5))
             .waitAction(WaitOptions.waitOptions(duration))
             .moveTo(PointOption.point(width/2, height*4/5))
             .release().perform();
+  }
+
+  public static void activeLoadingPage(AndroidDriver driver,String resId) {
+    if (!resId.equals(voteId)) {
+      return;
+    }
+    AndroidTouchAction action = new AndroidTouchAction(driver);
+    int width = driver.manage().window().getSize().width;
+    int height = driver.manage().window().getSize().height;
+    Duration duration = Duration.ofMillis(1500);
+    int times = 0;
+    while (times++ < 500) {
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+    action.press(
+            PointOption.point(width/2, height*750/2094))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width/2, height*750/2094))
+            .release().perform();
+
+    while (times++ < 1500) {
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
   }
 
   public static void swipeRight(AndroidDriver driver){
@@ -245,6 +279,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
 
   //get screenshot
   public static void getScreenshot(AndroidDriver driver,String description){
+    waitTargetElementAppear(driver);
     SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
     String date = df.format(new Date());
     if(description.equals("got it") || description.equals("back up now")) {
@@ -355,6 +390,26 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
       TronLink.testOperation(driver, TronLink.creatNextStep2, "click", "2:click next step");
       TronLink.testOperation(driver, TronLink.passWord, "input", testPassword, "input password again");
       TronLink.testOperation(driver, TronLink.creatNextStep3, "click", "3:click carry out");
+
+/*      int times = 0;
+      while (times++ < 500) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      }
+      AndroidTouchAction action = new AndroidTouchAction(driver);
+      int width = driver.manage().window().getSize().width;
+      int height = driver.manage().window().getSize().height;
+      Duration duration = Duration.ofMillis(1500);
+      action.press(
+              PointOption.point(width/2, height*1/2))
+              .waitAction(WaitOptions.waitOptions(duration))
+              .moveTo(PointOption.point(width/2, height*1/2))
+              .release().perform();
+      while (times++ < 1000) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      }
+      driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      waitTargetElementAppear(driver);*/
+
     }
     catch (Exception ex) {
       System.out.print(ex);
