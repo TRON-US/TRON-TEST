@@ -44,9 +44,9 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-//public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -58,9 +58,10 @@ public class TronLink {
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
   public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
-  public static String sendCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]";
   public static String receiveCoinId = "com.tronlink.wallet:id/rl_receive";
-  public static String receiveCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]";
+  public static String receiveScreenSameQRCodeId = "com.tronlink.wallet:id/tv_common_right2";
+  public static String receiveScreenAddressTextId = "com.tronlink.wallet:id/address";
+  public static String copyAddressIconId = "com.tronlink.wallet:id/copy";
   public static String tronLendingId = "com.tronlink.wallet:id/rl_energy_lease";
   public static String voteId = "com.tronlink.wallet:id/rl_vote";
   public static String voteResetId = "com.tronlink.wallet:id/reset";
@@ -138,6 +139,7 @@ public class TronLink {
 
   public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
   public static String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+  public static String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
   public static String testPassword = "Test0001";
 
 
@@ -201,8 +203,12 @@ public class TronLink {
         break;
       case "input":
         element.sendKeys(input);
-        driver.navigate().back();
-//        (new TouchAction(driver)).tap(657, 495).perform();
+        if (input.equals(testPassword)) {
+          driver.navigate().back();
+        } else {
+          driver.hideKeyboard();
+        }
+
         break;
       case "swipeUp":
         swipeUp(driver);
