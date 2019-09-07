@@ -33,11 +33,31 @@ public class Markets {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01marketsScreen() {
+        //Test "Price Change" sort function
         TronLink.testOperation(driver,TronLink.marketsIconId,"click","Enter markets screen");
-        TronLink.testOperation(driver,TronLink.priceChangeId,"click","Price sort change");
-        List<MobileElement> elements =  driver.findElements(MobileBy.id(TronLink.marketsExchangeListId));
+        String originSortFirstPrice = TronLink.getText(driver,TronLink.firstPriceOfPriceChangeXPath);
+        TronLink.testOperation(driver,TronLink.priceChangeId,"click","Price sort change by \"Price Change\"");
+        String changeSortFirstPrice = TronLink.getText(driver,TronLink.firstPriceOfPriceChangeXPath);
+        Assert.assertFalse(originSortFirstPrice.equals(changeSortFirstPrice));
 
-        System.out.println(elements.get(0));
+        //Test "Lastest Price" sort function
+        TronLink.testOperation(driver,TronLink.lastestPriceXPath,"click","Price sort change by \"Latest Price\"");
+        originSortFirstPrice = TronLink.getText(driver,TronLink.firstPriceOfLastestPriceXPath);
+        //System.out.println("originSortFirstPrice:" + originSortFirstPrice);
+        TronLink.testOperation(driver,TronLink.lastestPriceXPath,"click","Price sort change by \"Latest Price\"");
+        changeSortFirstPrice = TronLink.getText(driver,TronLink.firstPriceOfLastestPriceXPath);
+        //System.out.println("changeSortFirstPrice:" + changeSortFirstPrice);
+        Assert.assertFalse(originSortFirstPrice.equals(changeSortFirstPrice));
+
+        //Test search markets function
+        TronLink.testOperation(driver,TronLink.marketsSearchId,"click","Enter markets search screen");
+        TronLink.testOperation(driver,TronLink.marketsSearchInputId,"input","TRX","Search trx");
+        //System.out.println(TronLink.getText(driver,TronLink.firstExchangeInMarketsSearchScreenXPath));
+        Assert.assertTrue(TronLink.getText(driver,TronLink.firstExchangeInMarketsSearchScreenXPath).contains("TRX"));
+
+
+
+
 
 
 

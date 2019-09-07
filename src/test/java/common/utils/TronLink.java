@@ -95,7 +95,13 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String assetsDisplayedFirstElementXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout";
   public static String marketsIconId = "com.tronlink.wallet:id/appmarket";
   public static String priceChangeId = "com.tronlink.wallet:id/tv_change";
+  public static String lastestPriceXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.TextView";
+  public static String firstPriceOfPriceChangeXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView";
+  public static String firstPriceOfLastestPriceXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView[1]";
   public static String marketsExchangeListId = "com.tronlink.wallet:id/rl_list";
+  public static String marketsSearchId = "com.tronlink.wallet:id/iv_search";
+  public static String marketsSearchInputId = "com.tronlink.wallet:id/et_search";
+  public static String firstExchangeInMarketsSearchScreenXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView[1]";
   public static String discoverIconId = "com.tronlink.wallet:id/app1";
   public static String meIconId = "com.tronlink.wallet:id/my";
   public static String privateKey = "com.tronlink.wallet:id/cd_pk";
@@ -354,9 +360,18 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     return TextList;
   }
 
-  public static String getText(AndroidDriver driver,String element){
+  public static String getText(AndroidDriver driver,String elementIdOrXPath){
     waitTargetElementAppear(driver);
-    String text = driver.findElementById(element).getText();
+    MobileElement element = null;
+    if (!elementIdOrXPath.isEmpty()) {
+      if (elementIdOrXPath.indexOf("com.tronlink.wallet:id") != -1){
+        element = (MobileElement) driver.findElementById(elementIdOrXPath);
+      }else {
+        element = (MobileElement) driver.findElement(MobileBy.xpath(elementIdOrXPath));
+
+      }
+    }
+    String text = element.getText();
     return text;
   }
 
