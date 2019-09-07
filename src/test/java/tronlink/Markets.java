@@ -8,8 +8,11 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import common.utils.TronLink;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -31,6 +34,11 @@ public class Markets {
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01marketsScreen() {
         TronLink.testOperation(driver,TronLink.marketsIconId,"click","Enter markets screen");
+        TronLink.testOperation(driver,TronLink.priceChangeId,"click","Price sort change");
+        List<MobileElement> elements =  driver.findElements(MobileBy.id(TronLink.marketsExchangeListId));
+
+        System.out.println(elements.get(0));
+
 
 
     }
