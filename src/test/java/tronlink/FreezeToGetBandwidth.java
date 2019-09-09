@@ -1,5 +1,6 @@
 package tronlink;
 
+import org.junit.Assert;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -29,6 +30,12 @@ public class FreezeToGetBandwidth {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test03FreezeToGetBandwidth() {
+        //Freeze 细则说明
+        TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
+        TronLink.testOperation(driver,TronLink.freezeRuleId,"click","Enter to freeze rule screen");
+        Assert.assertTrue(TronLink.getText(driver,TronLink.freezeDoc1Id).equals("TRX"));
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
         TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
         TronLink.testOperation(driver,TronLink.bandwidthOptionIconId,"click","Choose bandwidth option");
         TronLink.testOperation(driver,TronLink.frozenQuantityInputId,"input",String.valueOf(TronLink.frozenQuantityForBandwidth),"Input frozen quantity for bandwidth");

@@ -76,6 +76,12 @@ public class TronLink {
   public static String enter_NameIdContractAddress_InputBox_id = "com.tronlink.wallet:id/et_search";
   public static String energyOptionIconId = "com.tronlink.wallet:id/tv_energy";
   public static String bandwidthOptionIconId = "com.tronlink.wallet:id/tv_bandwidth";
+  public static String bandwidthQuestionId = "com.tronlink.wallet:id/bandwidth_question";
+  public static String energyQuestionId = "com.tronlink.wallet:id/bandwidth_question";
+  public static String bandwidthQuestionContentId = "com.tronlink.wallet:id/content";
+  public static String energyQuestionContentId = "com.tronlink.wallet:id/content";
+  public static String balanceInFrozenScreenId = "com.tronlink.wallet:id/current_use";
+  public static String trxValueInAssetScreenId = "com.tronlink.wallet:id/tv_trx_value";
   public static String frozenQuantityInputId = "com.tronlink.wallet:id/et_freeze_count";
   public static String freeezeUnfreezeId = "com.tronlink.wallet:id/rl_freeze_unfreeze";
   public static String sendCoinAmountId = "com.tronlink.wallet:id/et_count";
@@ -85,6 +91,17 @@ public class TronLink {
   public static Long assetIdOfQuery = 1000001L;
   public static String freezeIconId = "com.tronlink.wallet:id/freeze";
   public static String freezeNowIconId = "com.tronlink.wallet:id/bt_go";
+  public static String freezeRuleId = "com.tronlink.wallet:id/tv_common_right2";
+  public static String freezeDoc1Id = "com.tronlink.wallet:id/doc0_spe";
+  public static String freezeEnergyDetailId = "com.tronlink.wallet:id/ll_energy_arrow";
+  public static String freezeBandwidthDetailId = "com.tronlink.wallet:id/ll_bandwidth_arrow";
+  public static String myFreezeEnergyAmountId = "com.tronlink.wallet:id/tv_myfreeze";
+  public static String myFreezeBandwidthAmountid = "com.tronlink.wallet:id/tv_myfreeze_bandwidth";
+  public static String otherFreezeBandwidthAmountId = "com.tronlink.wallet:id/tv_otherfreeze_bandwidth";
+  public static String otherFreezeEnergyAmountId = "com.tronlink.wallet:id/tv_otherfreeze";
+  public static String totalFreezeEnergyAmountId = "com.tronlink.wallet:id/tv_totalfreeze";
+  public static String totalFreezeBandwidthAmountId = "com.tronlink.wallet:id/tv_totalfreeze_bandwidth";
+  public static String votingPowerInFreezeId = "com.tronlink.wallet:id/tv_voting_power";
   public static String sendCoinButtonId = "com.tronlink.wallet:id/send";
   public static String transferNowId = "com.tronlink.wallet:id/bt_go";
   public static String transactionConfirmButtonId = "com.tronlink.wallet:id/bt_send";
@@ -479,7 +496,7 @@ public class TronLink {
       TronLink.testOperation(driver, TronLink.passWord, "input", testPassword, "input password again");
       TronLink.testOperation(driver, TronLink.creatNextStep3, "click", "3:click carry out");
 
-/*      int times = 0;
+      int times = 0;
       while (times++ < 500) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
       }
@@ -496,7 +513,7 @@ public class TronLink {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
       }
       driver.pressKey(new KeyEvent(AndroidKey.BACK));
-      waitTargetElementAppear(driver);*/
+      waitTargetElementAppear(driver);
 
     }
     catch (Exception ex) {
