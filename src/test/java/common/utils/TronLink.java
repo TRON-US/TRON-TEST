@@ -44,9 +44,9 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+//public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -55,6 +55,9 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   private static final int BGWHITE = 0xFFFFFFFF;
   private static final int WIDTH = 400;
   private static final int HEIGHT = 400;
+  public static String mnemonicText = "";
+  public static String walletAddress = "";
+  public static String walletPrivateKey = "";
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
   public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
@@ -183,6 +186,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String itemText = "com.tronlink.wallet:id/tv_item";
   public static String numberIndex = "com.tronlink.wallet:id/tv_number";
   public static String nextStepButton = "com.tronlink.wallet:id/tv_next";
+  public static String totalAssets = "com.tronlink.wallet:id/tv_total_assets";
 
 
 
@@ -190,6 +194,19 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String tabAppmarket = "com.tronlink.wallet:id/appmarket";
   public static String tabApp1 = "com.tronlink.wallet:id/app1";
   public static String tabMy = "com.tronlink.wallet:id/my";
+  public static String settings = "com.tronlink.wallet:id/setting";
+  public static String setting_languane = "com.tronlink.wallet:id/languane";
+  public static String setting_currency = "com.tronlink.wallet:id/money";
+  public static String setting_node = "com.tronlink.wallet:id/node";
+  public static String setting_developer = "com.tronlink.wallet:id/testnode";
+  public static String setting_conversion = "com.tronlink.wallet:id/convert";
+  public static String setting_dapp = "com.tronlink.wallet:id/dapp";
+
+  public static String language_title = "com.tronlink.wallet:id/title";
+  public static String moneyValue = "com.tronlink.wallet:id/tv_money_value";
+  public static String mnemonicTool = "com.tronlink.wallet:id/et_innertitle";
+  public static String oneClickConvert = "com.tronlink.wallet:id/bt_convert";
+  public static String nodeShastText = "com.tronlink.wallet:id/tv_node_shast";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
@@ -250,7 +267,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
 
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
-    getScreenshot(driver,description);
+//    getScreenshot(driver,description);
     waitTargetElementAppear(driver);
     MobileElement element = null;
     if (!resId.isEmpty()) {
@@ -410,6 +427,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     return TextList;
   }
 
+
   public static String getText(AndroidDriver driver,String elementIdOrXPath){
     waitTargetElementAppear(driver);
     MobileElement element = null;
@@ -506,38 +524,91 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     return driver;
   }
 
+  public static AndroidDriver createWallet(AndroidDriver driver) {
+    try {
+      //startup page
+      TronLink.getScreenshot(driver,"Startup page");
+      TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+      while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+        TronLink.testOperation(driver,"swipeUp","");
+      }
+      TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
 
-  /**
-   * 用于设置QR二维码参数
-   */
+      //create account
+      TronLink.testOperation(driver,TronLink.createWallet,"click","click create wallet");
+      Date date = new Date();
+      String timestamp = String.valueOf(date.getTime());
+      TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+      TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
+      TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+      TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
+      TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
+      TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+
+      //backup mnemonic
+      TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
+      TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
+
+      //backup mnemonic
+      TronLink.testOperation(driver,"swipeUp","");
+      TronLink.testOperation(driver,TronLink.saveKey,"click","back up now");
+      ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
+      StringBuffer backupMnemonicBf = new StringBuffer(mnemonicText);
+      for (String data : allTextList){
+        backupMnemonicBf.append(data);
+        backupMnemonicBf.append(" ");
+      }
+      mnemonicText = backupMnemonicBf.toString();
+      System.out.println(mnemonicText);
+      //confirm mnemonic
+      List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
+      confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+      TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+      confirmElements = driver.findElementsById(TronLink.itemText);
+      confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+      TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
+
+      //tab me
+      TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+      TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+
+      //get information
+      walletAddress = TronLink.getText(driver,TronLink.addressText);
+      TronLink.testOperation(driver,"swipeUp","");
+
+      TronLink.testOperation(driver,TronLink.backupPrivateKey,"click","click backup PrivateKey");
+      TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+      TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+      walletPrivateKey = TronLink.getText(driver,TronLink.privateKeyText);
+      TronLink.testOperation(driver,TronLink.done,"click","click done");
+      driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      TronLink.testOperation(driver,TronLink.tabAssets,"click","click tab assets");
+    }
+    catch (Exception ex) {
+      System.out.print(ex);
+      return null;
+    }
+    return driver;
+  }
+
+
+
   private static Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>() {
     private static final long serialVersionUID = 1L;
 
     {
-      // 设置QR二维码的纠错级别（H为最高级别）具体级别信息
       put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-      // 设置编码方式
       put(EncodeHintType.CHARACTER_SET, "utf-8");
       put(EncodeHintType.MARGIN, 0);
     }
   };
 
-  /**
-   * 生成带logo的二维码图片
-   * 参数content：存入二维码的字符串
-   * 参数logoUrl：logo的地址
-   * 参数imgUrl：生成二维码的地址和名称
-   */
   public static void QRCode(String content, String imgUrl) {
-    //图片存放地址
     try {
-      //二维码存放位置
       File codeFile = new File(imgUrl);
       MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-      // 参数顺序分别为：编码内容，编码类型，生成图片宽度，生成图片高度，设置参数
       BitMatrix bm = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
       BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-      // 开始利用二维码数据创建Bitmap图片，分别设为黑（0xFFFFFFFF）白（0xFF000000）两色
       for (int x = 0; x < WIDTH; x++) {
         for (int y = 0; y < HEIGHT; y++) {
           image.setRGB(x, y, bm.get(x, y) ? QRCOLOR : BGWHITE);
@@ -546,7 +617,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
       image.flush();
       ImageIO.write(image, "png", codeFile);
       Runtime rt = Runtime.getRuntime();
-      Process p = rt.exec("adb push"+imgUrl+" storage/sdcard0/Pictures/Screenshots/");
+      Process p = rt.exec("/Users/tron/Library/Android/sdk/platform-tools/adb push"+imgUrl+" storage/sdcard0/Pictures/Screenshots/");
       p.destroy();
     } catch (Exception e) {
       e.printStackTrace();
