@@ -373,37 +373,22 @@ public class TronLink {
   }
 
 
-  /**
-   * 用于设置QR二维码参数
-   */
   private static Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>() {
     private static final long serialVersionUID = 1L;
 
     {
-      // 设置QR二维码的纠错级别（H为最高级别）具体级别信息
       put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-      // 设置编码方式
       put(EncodeHintType.CHARACTER_SET, "utf-8");
       put(EncodeHintType.MARGIN, 0);
     }
   };
 
-  /**
-   * 生成带logo的二维码图片
-   * 参数content：存入二维码的字符串
-   * 参数logoUrl：logo的地址
-   * 参数imgUrl：生成二维码的地址和名称
-   */
   public static void QRCode(String content, String imgUrl) {
-    //图片存放地址
     try {
-      //二维码存放位置
       File codeFile = new File(imgUrl);
       MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-      // 参数顺序分别为：编码内容，编码类型，生成图片宽度，生成图片高度，设置参数
       BitMatrix bm = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
       BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-      // 开始利用二维码数据创建Bitmap图片，分别设为黑（0xFFFFFFFF）白（0xFF000000）两色
       for (int x = 0; x < WIDTH; x++) {
         for (int y = 0; y < HEIGHT; y++) {
           image.setRGB(x, y, bm.get(x, y) ? QRCOLOR : BGWHITE);
@@ -412,7 +397,7 @@ public class TronLink {
       image.flush();
       ImageIO.write(image, "png", codeFile);
       Runtime rt = Runtime.getRuntime();
-      Process p = rt.exec("adb push"+imgUrl+" storage/sdcard0/Pictures/Screenshots/");
+      Process p = rt.exec("/Users/tron/Library/Android/sdk/platform-tools/adb push"+imgUrl+" storage/sdcard0/Pictures/Screenshots/");
       p.destroy();
     } catch (Exception e) {
       e.printStackTrace();
