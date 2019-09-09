@@ -226,14 +226,7 @@ public class TronLink {
   }
 
 
-  //click action
-  public static void testOperation(AndroidDriver driver, String resId, String step ,String description) {
-    testOperation(driver, resId, step, "",description);
-  }
-  //swipe action
-  public static void testOperation(AndroidDriver driver, String step, String description) {
-    testOperation(driver, "", step, "",description);
-  }
+
 
   public static void loadingPageWaitingAction(AndroidDriver driver, String resId) {
     int repeatTimes = 1;
@@ -247,10 +240,17 @@ public class TronLink {
     return;
   }
 
-
+  //click action
+  public static void testOperation(AndroidDriver driver, String resId, String step ,String description) {
+    testOperation(driver, resId, step, "",description);
+  }
+  //swipe action
+  public static void testOperation(AndroidDriver driver, String step, String description) {
+    testOperation(driver, "", step, "",description);
+  }
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
-//    getScreenshot(driver,description);
+    getScreenshot(driver,description);
     waitTargetElementAppear(driver);
     MobileElement element = null;
     if (!resId.isEmpty()) {
@@ -288,7 +288,6 @@ public class TronLink {
         break;
     }
     activeLoadingPage(driver,resId);
-    //getScreenshot(driver,description);
   }
 
   public static void swipeUp(AndroidDriver driver){
@@ -533,7 +532,7 @@ public class TronLink {
       TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
 
       //backup mnemonic
-      TronLink.testOperation(driver,"swipeUp","");
+      TronLink.testOperation(driver,"swipeUp","back up now");
       TronLink.testOperation(driver,TronLink.saveKey,"click","back up now");
       ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
       StringBuffer backupMnemonicBf = new StringBuffer(mnemonicText);
@@ -546,10 +545,10 @@ public class TronLink {
       //confirm mnemonic
       List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
       confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
-      TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+      TronLink.testOperation(driver,TronLink.nextStepButton,"click","back up now");
       confirmElements = driver.findElementsById(TronLink.itemText);
       confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
-      TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
+      TronLink.testOperation(driver,TronLink.nextStepButton,"click","back up now");
 
       //tab me
       TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");

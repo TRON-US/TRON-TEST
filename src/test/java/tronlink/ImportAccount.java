@@ -61,7 +61,7 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
 
         //backup mnemonic
-        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,"swipeUp","back up now");
         TronLink.testOperation(driver,TronLink.saveKey,"click","back up now");
         ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
         for (String data : allTextList){
@@ -74,10 +74,10 @@ public class ImportAccount {
         //confirm mnemonic
         List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
         confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
-        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+        TronLink.testOperation(driver,TronLink.nextStepButton,"click","back up now");
         confirmElements = driver.findElementsById(TronLink.itemText);
         confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
-        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
+        TronLink.testOperation(driver,TronLink.nextStepButton,"click","back up now");
 
         //tab me
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
