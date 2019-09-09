@@ -46,11 +46,29 @@ public class Settings {
             Assert.assertEquals(TronLink.getText(driver,TronLink.totalAssets),"总资产");
             Assert.assertEquals(TronLink.getText(driver,TronLink.energyOptionIconId),"能量");
             Assert.assertEquals(TronLink.getText(driver,TronLink.bandwidthOptionIconId),"带宽");
+
+            TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+            TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+            TronLink.testOperation(driver,TronLink.setting_languane,"click","click language");
+            elements.get(0).click();
+
+            Assert.assertEquals(TronLink.getText(driver,TronLink.totalAssets),"Total assets");
+            Assert.assertEquals(TronLink.getText(driver,TronLink.energyOptionIconId),"Energy");
+            Assert.assertEquals(TronLink.getText(driver,TronLink.bandwidthOptionIconId),"Bandwidth");
         }else {
             elements.get(0).click();
             Assert.assertEquals(TronLink.getText(driver,TronLink.totalAssets),"Total assets");
             Assert.assertEquals(TronLink.getText(driver,TronLink.energyOptionIconId),"Energy");
             Assert.assertEquals(TronLink.getText(driver,TronLink.bandwidthOptionIconId),"Bandwidth");
+
+            TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+            TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+            TronLink.testOperation(driver,TronLink.setting_languane,"click","click language");
+
+            elements.get(1).click();
+            Assert.assertEquals(TronLink.getText(driver,TronLink.totalAssets),"总资产");
+            Assert.assertEquals(TronLink.getText(driver,TronLink.energyOptionIconId),"能量");
+            Assert.assertEquals(TronLink.getText(driver,TronLink.bandwidthOptionIconId),"带宽");
         }
     }
 
@@ -67,11 +85,29 @@ public class Settings {
             TronLink.testOperation(driver,TronLink.tabAssets,"click","click start up");
             Assert.assertTrue(TronLink.getText(driver,TronLink.moneyValue).indexOf("USD") != -1);
 
+            TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+            TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+            TronLink.testOperation(driver,TronLink.setting_currency,"click","click currency");
+
+            elements.get(0).click();
+            driver.pressKey(new KeyEvent(AndroidKey.BACK));
+            TronLink.testOperation(driver,TronLink.tabAssets,"click","click start up");
+            Assert.assertTrue(TronLink.getText(driver,TronLink.moneyValue).indexOf("CNY") != -1);
+
         }else {
             elements.get(0).click();
             driver.pressKey(new KeyEvent(AndroidKey.BACK));
             TronLink.testOperation(driver,TronLink.tabAssets,"click","click start up");
             Assert.assertTrue(TronLink.getText(driver,TronLink.moneyValue).indexOf("CNY") != -1);
+
+            TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+            TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+            TronLink.testOperation(driver,TronLink.setting_currency,"click","click currency");
+
+            elements.get(1).click();
+            driver.pressKey(new KeyEvent(AndroidKey.BACK));
+            TronLink.testOperation(driver,TronLink.tabAssets,"click","click start up");
+            Assert.assertTrue(TronLink.getText(driver,TronLink.moneyValue).indexOf("USD") != -1);
         }
     }
 
@@ -83,26 +119,23 @@ public class Settings {
         TronLink.testOperation(driver,TronLink.setting_conversion,"click","click conversion");
         TronLink.testOperation(driver,TronLink.mnemonicTool,"input",TronLink.mnemonicText,"input mnemonicText");
         System.out.println(TronLink.mnemonicText);
+        System.out.println(TronLink.privateKeyText);
         TronLink.testOperation(driver,TronLink.oneClickConvert,"click","click conversion");
+        String privateKeyTest = TronLink.getText(driver,TronLink.privateKeyText);
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
     @Test
     public void test04DeveloperOptions() {
-        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
         TronLink.testOperation(driver,TronLink.setting_developer,"click","click developer options");
         TronLink.testOperation(driver,TronLink.confirm,"click","click connect");
         Assert.assertTrue(TronLink.getText(driver,TronLink.nodeShastText).indexOf("shasta") != -1);
         TronLink.testOperation(driver,TronLink.setting_developer,"click","click developer options");
         TronLink.testOperation(driver,TronLink.confirm,"click","click close connect");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
     @Test
-    public void test04DappBrowser() {
-        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+    public void test05DappBrowser() {
         TronLink.testOperation(driver,TronLink.setting_dapp,"click","click dapp browser");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
