@@ -166,6 +166,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String itemText = "com.tronlink.wallet:id/tv_item";
   public static String numberIndex = "com.tronlink.wallet:id/tv_number";
   public static String nextStepButton = "com.tronlink.wallet:id/tv_next";
+  public static String totalAssets = "com.tronlink.wallet:id/tv_total_assets";
 
 
 
@@ -173,6 +174,15 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String tabAppmarket = "com.tronlink.wallet:id/appmarket";
   public static String tabApp1 = "com.tronlink.wallet:id/app1";
   public static String tabMy = "com.tronlink.wallet:id/my";
+  public static String settings = "com.tronlink.wallet:id/setting";
+  public static String setting_languane = "com.tronlink.wallet:id/languane";
+  public static String setting_currency = "com.tronlink.wallet:id/money";
+  public static String setting_node = "com.tronlink.wallet:id/node";
+  public static String setting_developer = "com.tronlink.wallet:id/testnode";
+  public static String setting_conversion = "com.tronlink.wallet:id/convert";
+  public static String setting_dapp = "com.tronlink.wallet:id/dapp";
+
+  public static String language_title = "com.tronlink.wallet:id/title";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
@@ -392,6 +402,7 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     }
     return TextList;
   }
+
 
   public static String getText(AndroidDriver driver,String elementIdOrXPath){
     waitTargetElementAppear(driver);
