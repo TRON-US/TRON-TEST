@@ -189,6 +189,7 @@ public class TronLink {
   public static String moneyValue = "com.tronlink.wallet:id/tv_money_value";
   public static String mnemonicTool = "com.tronlink.wallet:id/et_innertitle";
   public static String oneClickConvert = "com.tronlink.wallet:id/bt_convert";
+  public static String nodeShastText = "com.tronlink.wallet:id/tv_node_shast";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";

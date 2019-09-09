@@ -81,9 +81,30 @@ public class Settings {
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.settings,"click","click settings");
         TronLink.testOperation(driver,TronLink.setting_conversion,"click","click conversion");
-        TronLink.testOperation(driver,TronLink.mnemonicTool,"input",TronLink.mnemonicText,"click conversion");
+        TronLink.testOperation(driver,TronLink.mnemonicTool,"input",TronLink.mnemonicText,"input mnemonicText");
         System.out.println(TronLink.mnemonicText);
         TronLink.testOperation(driver,TronLink.oneClickConvert,"click","click conversion");
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+    }
+
+    @Test
+    public void test04DeveloperOptions() {
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+        TronLink.testOperation(driver,TronLink.setting_developer,"click","click developer options");
+        TronLink.testOperation(driver,TronLink.confirm,"click","click connect");
+        Assert.assertTrue(TronLink.getText(driver,TronLink.nodeShastText).indexOf("shasta") != -1);
+        TronLink.testOperation(driver,TronLink.setting_developer,"click","click developer options");
+        TronLink.testOperation(driver,TronLink.confirm,"click","click close connect");
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+    }
+
+    @Test
+    public void test04DappBrowser() {
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+        TronLink.testOperation(driver,TronLink.setting_dapp,"click","click dapp browser");
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
 
