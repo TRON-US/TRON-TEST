@@ -31,7 +31,7 @@ public class Settings {
         desiredCapabilities = TronLink.getTronLinkDesiredCapabilities(desiredCapabilities);
         URL remoteUrl = new URL(TronLink.tronLinkUrl);
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
+        driver = TronLink.createWallet(driver);
     }
 
     @Test
@@ -54,26 +54,37 @@ public class Settings {
         }
     }
 
-//    @Test
-//    public void test02Currency() {
-//        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-//        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
-//        TronLink.testOperation(driver,TronLink.setting_languane,"click","click language");
-//
-//        List<MobileElement> elements = driver.findElementsById(TronLink.language_title);
-//        if (elements.get(0).isDisplayed()){
-//            elements.get(1).click();
-//            Assert.assertEquals(TronLink.getText(driver,TronLink.totalAssets),"总资产");
-//            Assert.assertEquals(TronLink.getText(driver,TronLink.energyOptionIconId),"能量");
-//            Assert.assertEquals(TronLink.getText(driver,TronLink.bandwidthOptionIconId),"带宽");
-//        }else {
-//            elements.get(0).click();
-//            Assert.assertEquals(TronLink.getText(driver,TronLink.totalAssets),"Total assets");
-//            Assert.assertEquals(TronLink.getText(driver,TronLink.energyOptionIconId),"Energy");
-//            Assert.assertEquals(TronLink.getText(driver,TronLink.bandwidthOptionIconId),"Bandwidth");
-//        }
-//    }
-//
+    @Test
+    public void test02Currency() {
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+        TronLink.testOperation(driver,TronLink.setting_currency,"click","click currency");
+
+        List<MobileElement> elements = driver.findElementsById(TronLink.language_title);
+        if (elements.get(0).isDisplayed()){
+            elements.get(1).click();
+            driver.pressKey(new KeyEvent(AndroidKey.BACK));
+            TronLink.testOperation(driver,TronLink.tabAssets,"click","click start up");
+            Assert.assertTrue(TronLink.getText(driver,TronLink.moneyValue).indexOf("USD") != -1);
+
+        }else {
+            elements.get(0).click();
+            driver.pressKey(new KeyEvent(AndroidKey.BACK));
+            TronLink.testOperation(driver,TronLink.tabAssets,"click","click start up");
+            Assert.assertTrue(TronLink.getText(driver,TronLink.moneyValue).indexOf("CNY") != -1);
+        }
+    }
+
+
+    @Test
+    public void test03Conversion() {
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
+        TronLink.testOperation(driver,TronLink.setting_conversion,"click","click conversion");
+        TronLink.testOperation(driver,TronLink.mnemonicTool,"input",TronLink.mnemonicText,"click conversion");
+        System.out.println(TronLink.mnemonicText);
+        TronLink.testOperation(driver,TronLink.oneClickConvert,"click","click conversion");
+    }
 
 
 
