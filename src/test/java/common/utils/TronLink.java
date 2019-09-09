@@ -44,9 +44,9 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+//public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -55,6 +55,9 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   private static final int BGWHITE = 0xFFFFFFFF;
   private static final int WIDTH = 400;
   private static final int HEIGHT = 400;
+  public static String mnemonicText = "";
+  public static String walletAddress = "";
+  public static String walletPrivateKey = "";
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
   public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
@@ -183,6 +186,9 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
   public static String setting_dapp = "com.tronlink.wallet:id/dapp";
 
   public static String language_title = "com.tronlink.wallet:id/title";
+  public static String moneyValue = "com.tronlink.wallet:id/tv_money_value";
+  public static String mnemonicTool = "com.tronlink.wallet:id/et_innertitle";
+  public static String oneClickConvert = "com.tronlink.wallet:id/bt_convert";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
@@ -499,6 +505,74 @@ public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clon
     }
     return driver;
   }
+
+  public static AndroidDriver createWallet(AndroidDriver driver) {
+    try {
+      //startup page
+      TronLink.getScreenshot(driver,"Startup page");
+      TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+      while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+        TronLink.testOperation(driver,"swipeUp","");
+      }
+      TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
+
+      //create account
+      TronLink.testOperation(driver,TronLink.createWallet,"click","click create wallet");
+      Date date = new Date();
+      String timestamp = String.valueOf(date.getTime());
+      TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+      TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
+      TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+      TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
+      TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
+      TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+
+      //backup mnemonic
+      TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
+      TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
+
+      //backup mnemonic
+      TronLink.testOperation(driver,"swipeUp","");
+      TronLink.testOperation(driver,TronLink.saveKey,"click","back up now");
+      ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
+      StringBuffer backupMnemonicBf = new StringBuffer(mnemonicText);
+      for (String data : allTextList){
+        backupMnemonicBf.append(data);
+        backupMnemonicBf.append(" ");
+      }
+      mnemonicText = backupMnemonicBf.toString();
+      System.out.println(mnemonicText);
+      //confirm mnemonic
+      List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
+      confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+      TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+      confirmElements = driver.findElementsById(TronLink.itemText);
+      confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
+      TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
+
+      //tab me
+      TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+      TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+
+      //get information
+      walletAddress = TronLink.getText(driver,TronLink.addressText);
+      TronLink.testOperation(driver,"swipeUp","");
+
+      TronLink.testOperation(driver,TronLink.backupPrivateKey,"click","click backup PrivateKey");
+      TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+      TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+      walletPrivateKey = TronLink.getText(driver,TronLink.privateKeyText);
+      TronLink.testOperation(driver,TronLink.done,"click","click done");
+      driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      TronLink.testOperation(driver,TronLink.tabAssets,"click","click tab assets");
+    }
+    catch (Exception ex) {
+      System.out.print(ex);
+      return null;
+    }
+    return driver;
+  }
+
 
 
   private static Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>() {
