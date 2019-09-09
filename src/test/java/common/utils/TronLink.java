@@ -267,7 +267,7 @@ public class TronLink {
   }
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
-    getScreenshot(driver,description);
+//    getScreenshot(driver,description);
     waitTargetElementAppear(driver);
     MobileElement element = null;
     if (!resId.isEmpty()) {
