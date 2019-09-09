@@ -578,7 +578,6 @@ public class TronLink {
       TronLink.testOperation(driver,TronLink.backupPrivateKey,"click","click backup PrivateKey");
       TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
       TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
-      walletPrivateKey = TronLink.getText(driver,TronLink.privateKeyText);
       TronLink.testOperation(driver,TronLink.done,"click","click done");
       driver.pressKey(new KeyEvent(AndroidKey.BACK));
       TronLink.testOperation(driver,TronLink.tabAssets,"click","click tab assets");
