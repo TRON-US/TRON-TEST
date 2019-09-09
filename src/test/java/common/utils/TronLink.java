@@ -12,6 +12,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
@@ -42,9 +44,9 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
-//public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -56,9 +58,10 @@ public class TronLink {
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
   public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
-  public static String sendCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]";
   public static String receiveCoinId = "com.tronlink.wallet:id/rl_receive";
-  public static String receiveCoinXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout[1]/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]";
+  public static String receiveScreenSameQRCodeId = "com.tronlink.wallet:id/tv_common_right2";
+  public static String receiveScreenAddressTextId = "com.tronlink.wallet:id/address";
+  public static String copyAddressIconId = "com.tronlink.wallet:id/copy";
   public static String tronLendingId = "com.tronlink.wallet:id/rl_energy_lease";
   public static String voteId = "com.tronlink.wallet:id/rl_vote";
   public static String voteResetId = "com.tronlink.wallet:id/reset";
@@ -66,7 +69,8 @@ public class TronLink {
   public static String voteInputQuantityXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[3]/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText";
   public static Long voteQuantity = 2L;
   public static String voteNowId = "com.tronlink.wallet:id/bt_go";
-  public static String addAsset = "com.tronlink.wallet:id/rl_add_assets";
+  public static String addAssetId = "com.tronlink.wallet:id/rl_add_assets";
+  public static String enter_NameIdContractAddress_InputBox_id = "com.tronlink.wallet:id/et_search";
   public static String energyOptionIconId = "com.tronlink.wallet:id/tv_energy";
   public static String bandwidthOptionIconId = "com.tronlink.wallet:id/tv_bandwidth";
   public static String frozenQuantityInputId = "com.tronlink.wallet:id/et_freeze_count";
@@ -75,6 +79,7 @@ public class TronLink {
   public static Long sendCoinAmount = 1L;
   public static Long frozenQuantityForBandwidth = 2L;
   public static Long frozenQuantityForEnergy = 3L;
+  public static Long assetIdOfQuery = 1000001L;
   public static String freezeIconId = "com.tronlink.wallet:id/freeze";
   public static String freezeNowIconId = "com.tronlink.wallet:id/bt_go";
   public static String sendCoinButtonId = "com.tronlink.wallet:id/send";
@@ -84,9 +89,54 @@ public class TronLink {
   public static String receiveAddressId = "com.tronlink.wallet:id/et_address";
   public static String acceptImportAccount = "com.tronlink.wallet:id/bt_accept";
   public static String assetIconId = "com.tronlink.wallet:id/assets";
+  public static String assetDisplayAreaId = "com.tronlink.wallet:id/rl_inner";
+  public static String assetSwitchId = "com.tronlink.wallet:id/iv_switch";
+  public static String assetsDisplayedXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]";
+  public static String assetsDisplayedFirstElementXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout";
   public static String marketsIconId = "com.tronlink.wallet:id/appmarket";
+  public static String priceChangeId = "com.tronlink.wallet:id/tv_change";
+  public static String lastestPriceXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.TextView";
+  public static String firstPriceOfPriceChangeXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView";
+  public static String firstPriceOfLastestPriceXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView[1]";
+  public static String marketsExchangeListId = "com.tronlink.wallet:id/rl_list";
+  public static String marketsSearchId = "com.tronlink.wallet:id/iv_search";
+  public static String marketsSearchInputId = "com.tronlink.wallet:id/et_search";
+  public static String firstExchangeInMarketsSearchScreenXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView[1]";
   public static String discoverIconId = "com.tronlink.wallet:id/app1";
+  public static String discoverSearchEnterId = "com.tronlink.wallet:id/iv_one";
+  public static String discoverSearchInputId = "com.tronlink.wallet:id/et_search";
+  public static String discoverSearchConfirmId = "com.tronlink.wallet:id/tv_search";
+  public static String discoverSearchResultNameId = "com.tronlink.wallet:id/tv_name";
+  public static String discoverSearchresultDescriptionId = "com.tronlink.wallet:id/tv_description";
+  public static String discoverSearchFirstResultXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]";
+  public static String enterConfirmIconOfFirstDiscoverSearchId = "com.tronlink.wallet:id/tv_ok";
+  public static String enterCancelIconOfFirstDiscoverSearchId = "com.tronlink.wallet:id/tv_cancle";
+  public static String discoverSearchHistoryId = "com.tronlink.wallet:id/imageview";
+  public static String discoverSearchScanId = "com.tronlink.wallet:id/iv_scan";
   public static String meIconId = "com.tronlink.wallet:id/my";
+  public static String meFriendInvitationId = "com.tronlink.wallet:id/tv_friend_invitation";
+  public static String meAnnouncementId = "com.tronlink.wallet:id/tv_an";
+  public static String meJoinOurCommunitiesId = "com.tronlink.wallet:id/join_community";
+  public static String meJoinOurCommunitiesEnglishTelegraphGroupId = "com.tronlink.wallet:id/rl_en_arrow";
+  public static String meJoinOurCommunitiesChineseTelegraphGroupId = "com.tronlink.wallet:id/rl_zh_arrow";
+  public static String meJoinOurCommunitiesTwitterId = "com.tronlink.wallet:id/rl_twitter_arrow";
+  public static String meJoinOurCommunitiesWechatId = "com.tronlink.wallet:id/rl_twitter_arrow";
+  public static String meHelpCenterId = "com.tronlink.wallet:id/help";
+  public static String meAboutUsId = "com.tronlink.wallet:id/about";
+  public static String meAboutUsVersionLogsId = "com.tronlink.wallet:id/log";
+  public static String meAbountUsVersionVersionUpdateId = "com.tronlink.wallet:id/update";
+  public static String transactionHistoryId = "com.tronlink.wallet:id/transfer_history";
+  public static String transactionHistoryQueryWalletId = "com.tronlink.wallet:id/iv_qr";
+  public static String transactionHistoryWalletResultNameId = "com.tronlink.wallet:id/tv_name";
+  public static String transactionHistoryReceiveXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[2]/android.widget.TextView";
+  public static String transactionHistorySentXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[3]/android.widget.TextView";
+  public static String transactionHistoryAllXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[1]/android.widget.TextView";
+  public static String transactionHistorySentFirstResultConfirmedXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[1]/android.widget.TextView";
+  public static String transactionHistorySentFirstResultAddressXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.TextView[1]";
+  public static String transactionHistorySentFirstResultContractTypeXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.TextView[2]";
+  public static String transactionHistorySentFirstResultAmountXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]";
+  public static String transactionHistorySentFirstResultDateXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.TextView";
+  public static String transactionHistoryReceivedFirstResultAddressXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView[2]";
   public static String privateKey = "com.tronlink.wallet:id/cd_pk";
   public static String enterContent = "com.tronlink.wallet:id/et_content";
   public static String nextStep = "com.tronlink.wallet:id/bt_next";
@@ -136,6 +186,7 @@ public class TronLink {
 
   public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
   public static String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+  public static String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
   public static String testPassword = "Test0001";
 
 
@@ -156,6 +207,8 @@ public class TronLink {
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     return;
   }
+
+
   //click action
   public static void testOperation(AndroidDriver driver, String resId, String step ,String description) {
     testOperation(driver, resId, step, "",description);
@@ -165,25 +218,31 @@ public class TronLink {
     testOperation(driver, "", step, "",description);
   }
 
+  public static void loadingPageWaitingAction(AndroidDriver driver, String resId) {
+    int repeatTimes = 1;
+    if (resId.equals(voteId) || resId.equals(marketsIconId) || resId.equals(meIconId) || resId.equals(assetIconId)){
+      repeatTimes = 300;
+    }
+    System.out.println("repeat times:" + repeatTimes);
+    while (repeatTimes-- > 0) {
+      TronLink.waitTargetElementAppear(driver);
+    }
+    return;
+  }
+
 
 
   public static void testOperation(AndroidDriver driver, String resId, String action, String input, String description) {
+    getScreenshot(driver,description);
     waitTargetElementAppear(driver);
     MobileElement element = null;
     if (!resId.isEmpty()) {
       if (resId.indexOf("com.tronlink.wallet:id") != -1){
         element = (MobileElement) driver.findElementById(resId);
-        //element = (MobileElement) driver.findElement(MobileBy.id(resId));
-        //element = driver.findElement(MobileBy.id(resId));
-
       }else {
-        element = (MobileElement) driver.findElement(MobileBy.id(resId));
-        //element = (MobileElement) driver.findElementByXPath(resId);
+        element = (MobileElement) driver.findElement(MobileBy.xpath(resId));
 
       }
-    }
-    if (resId.contains("hierarchy")){
-      element = (MobileElement) driver.findElement(MobileBy.xpath(resId));
     }
     switch (action) {
       case "click":
@@ -191,8 +250,12 @@ public class TronLink {
         break;
       case "input":
         element.sendKeys(input);
-        driver.navigate().back();
-//        (new TouchAction(driver)).tap(657, 495).perform();
+        if (input.equals(testPassword)) {
+          driver.navigate().back();
+        } else {
+          driver.hideKeyboard();
+        }
+
         break;
       case "swipeUp":
         swipeUp(driver);
@@ -207,7 +270,8 @@ public class TronLink {
         swipeLeft(driver);
         break;
     }
-//    getScreenshot(driver,description);
+    activeLoadingPage(driver,resId);
+    //getScreenshot(driver,description);
   }
 
   public static void swipeUp(AndroidDriver driver){
@@ -227,13 +291,36 @@ public class TronLink {
     AndroidTouchAction action = new AndroidTouchAction(driver);
     int width = driver.manage().window().getSize().width;
     int height = driver.manage().window().getSize().height;
-    System.out.print("   " + width + "   " + height);
+    //System.out.print("   " + width + "   " + height);
     Duration duration = Duration.ofMillis(150);
     action.press(
             PointOption.point(width/2, height/5))
             .waitAction(WaitOptions.waitOptions(duration))
             .moveTo(PointOption.point(width/2, height*4/5))
             .release().perform();
+  }
+
+  public static void activeLoadingPage(AndroidDriver driver,String resId) {
+    if (!resId.equals(voteId)) {
+      return;
+    }
+    AndroidTouchAction action = new AndroidTouchAction(driver);
+    int width = driver.manage().window().getSize().width;
+    int height = driver.manage().window().getSize().height;
+    Duration duration = Duration.ofMillis(1500);
+    int times = 0;
+    while (times++ < 500) {
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+    action.press(
+            PointOption.point(width/2, height*750/2094))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width/2, height*750/2094))
+            .release().perform();
+
+    while (times++ < 1500) {
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
   }
 
   public static void swipeRight(AndroidDriver driver){
@@ -264,6 +351,7 @@ public class TronLink {
 
   //get screenshot
   public static void getScreenshot(AndroidDriver driver,String description){
+    waitTargetElementAppear(driver);
     SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
     String date = df.format(new Date());
     if(description.equals("got it") || description.equals("back up now")) {
@@ -305,9 +393,18 @@ public class TronLink {
     return TextList;
   }
 
-  public static String getText(AndroidDriver driver,String element){
+  public static String getText(AndroidDriver driver,String elementIdOrXPath){
     waitTargetElementAppear(driver);
-    String text = driver.findElementById(element).getText();
+    MobileElement element = null;
+    if (!elementIdOrXPath.isEmpty()) {
+      if (elementIdOrXPath.indexOf("com.tronlink.wallet:id") != -1){
+        element = (MobileElement) driver.findElementById(elementIdOrXPath);
+      }else {
+        element = (MobileElement) driver.findElement(MobileBy.xpath(elementIdOrXPath));
+
+      }
+    }
+    String text = element.getText();
     return text;
   }
 
@@ -364,6 +461,26 @@ public class TronLink {
       TronLink.testOperation(driver, TronLink.creatNextStep2, "click", "2:click next step");
       TronLink.testOperation(driver, TronLink.passWord, "input", testPassword, "input password again");
       TronLink.testOperation(driver, TronLink.creatNextStep3, "click", "3:click carry out");
+
+/*      int times = 0;
+      while (times++ < 500) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      }
+      AndroidTouchAction action = new AndroidTouchAction(driver);
+      int width = driver.manage().window().getSize().width;
+      int height = driver.manage().window().getSize().height;
+      Duration duration = Duration.ofMillis(1500);
+      action.press(
+              PointOption.point(width/2, height*1/2))
+              .waitAction(WaitOptions.waitOptions(duration))
+              .moveTo(PointOption.point(width/2, height*1/2))
+              .release().perform();
+      while (times++ < 1000) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      }
+      driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      waitTargetElementAppear(driver);*/
+
     }
     catch (Exception ex) {
       System.out.print(ex);
