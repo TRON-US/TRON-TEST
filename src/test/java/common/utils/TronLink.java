@@ -145,6 +145,11 @@ public class TronLink {
   public static String meAboutUsId = "com.tronlink.wallet:id/about";
   public static String meAboutUsVersionLogsId = "com.tronlink.wallet:id/log";
   public static String meAbountUsVersionVersionUpdateId = "com.tronlink.wallet:id/update";
+  public static String mutliSignatureManagementId = "com.tronlink.wallet:id/rl_sign_manager";
+  public static String mutliSignQuestionId = "com.tronlink.wallet:id/iv_qr";
+  public static String mutliSignQuestionContentXPath = "/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.TextView";
+  public static String mutliSignAddPermissionId = "com.tronlink.wallet:id/bt_go";
+  public static String activeScreenMoreId = "com.tronlink.wallet:id/ll_more";
   public static String transactionHistoryId = "com.tronlink.wallet:id/transfer_history";
   public static String transactionHistoryQueryWalletId = "com.tronlink.wallet:id/iv_qr";
   public static String transactionHistoryWalletResultNameId = "com.tronlink.wallet:id/tv_name";
