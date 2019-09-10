@@ -105,11 +105,10 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
 
         System.out.println("walletAddress:" + walletAddress + "\nwalletPassword:" + walletPassword + "\nwalletPrivateKey:" +walletPrivateKey +"\nbackupMnemonic:" +backupMnemonic + "\nbackupkeystore:" + backupkeystore);
-        TronLink.QRCode(walletAddress,"build/reports/tests/tronlink/QRCode/walletAddress.png");
-        TronLink.QRCode(walletPrivateKey,"build/reports/tests/tronlink/QRCode/walletPrivateKey.png");
-        TronLink.QRCode(backupMnemonic,"build/reports/tests/tronlink/QRCode/backupMnemonic.png");
-        TronLink.QRCode(backupkeystore,"build/reports/tests/tronlink/QRCode/backupkeystore.png");
-
+        TronLink.QRCode(walletAddress,"src/test/resources/QRresources/walletAddress.png");
+        TronLink.QRCode(walletPrivateKey,"src/test/resources/QRresources/walletPrivateKey.png");
+        TronLink.QRCode(backupMnemonic,"src/test/resources/QRresources/backupMnemonic.png");
+        TronLink.QRCode(backupkeystore,"src/test/resources/QRresources/backupkeystore.png");
     }
 
     @Test
