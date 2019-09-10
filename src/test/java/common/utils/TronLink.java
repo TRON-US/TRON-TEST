@@ -187,6 +187,8 @@ public class TronLink {
   public static String numberIndex = "com.tronlink.wallet:id/tv_number";
   public static String nextStepButton = "com.tronlink.wallet:id/tv_next";
   public static String totalAssets = "com.tronlink.wallet:id/tv_total_assets";
+  public static String dappUrl = "com.tronlink.wallet:id/et_url";
+  public static String dappButton = "com.tronlink.wallet:id/bt";
 
 
 
