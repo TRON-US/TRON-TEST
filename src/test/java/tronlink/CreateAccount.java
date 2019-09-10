@@ -5,6 +5,9 @@ import common.utils.TronLink;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+
 import java.io.IOException;
 import java.lang.management.MonitorInfo;
 import java.net.MalformedURLException;
@@ -89,8 +92,8 @@ public class CreateAccount {
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
 
         TronLink.testOperation(driver,TronLink.assetsCount,"click","click assetscount");
-        TronLink.testOperation(driver,TronLink.assetsCount,"click","click assetscount");
         String balance = TronLink.getText(driver,TronLink.balance);
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
@@ -99,7 +102,6 @@ public class CreateAccount {
 
         TronLink.testOperation(driver,TronLink.manageropen,"click","click manageropen");
         TronLink.testOperation(driver,TronLink.selectWallet,"click","select wallet");
-
     }
 
     @AfterClass
