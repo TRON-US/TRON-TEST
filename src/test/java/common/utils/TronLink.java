@@ -60,6 +60,7 @@ public class TronLink {
   public static String walletPrivateKey = "";
   public static String importAccountId = "com.tronlink.wallet:id/tv_import";
   public static String createAccountId = "com.tronlink.wallet:id/tv_create";
+  public static String addWallet = "com.tronlink.wallet:id/tv_create";
   public static String sendCoinId = "com.tronlink.wallet:id/rl_send";
   public static String receiveCoinId = "com.tronlink.wallet:id/rl_receive";
   public static String receiveScreenSameQRCodeId = "com.tronlink.wallet:id/tv_common_right2";
@@ -108,6 +109,7 @@ public class TronLink {
   public static String transactionConfirmInputPasswordId = "com.tronlink.wallet:id/et_new_password";
   public static String receiveAddressId = "com.tronlink.wallet:id/et_address";
   public static String acceptImportAccount = "com.tronlink.wallet:id/bt_accept";
+  public static String assetsCount = "com.tronlink.wallet:id/assets_count";
   public static String assetIconId = "com.tronlink.wallet:id/assets";
   public static String assetDisplayAreaId = "com.tronlink.wallet:id/rl_inner";
   public static String assetSwitchId = "com.tronlink.wallet:id/iv_switch";
@@ -195,8 +197,6 @@ public class TronLink {
   public static String dappUrl = "com.tronlink.wallet:id/et_url";
   public static String dappButton = "com.tronlink.wallet:id/bt";
 
-
-
   public static String tabAssets = "com.tronlink.wallet:id/assets";
   public static String tabAppmarket = "com.tronlink.wallet:id/appmarket";
   public static String tabApp1 = "com.tronlink.wallet:id/app1";
@@ -214,6 +214,10 @@ public class TronLink {
   public static String mnemonicTool = "com.tronlink.wallet:id/et_innertitle";
   public static String oneClickConvert = "com.tronlink.wallet:id/bt_convert";
   public static String nodeShastText = "com.tronlink.wallet:id/tv_node_shast";
+  public static String balance = "com.tronlink.wallet:id/tv_balance";
+  public static String walletBalance = "com.tronlink.wallet:id/tv_blance";
+  public static String manageropen = "com.tronlink.wallet:id/manageropen";
+  public static String selectWallet = "com.tronlink.wallet:id/rl_selected";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
