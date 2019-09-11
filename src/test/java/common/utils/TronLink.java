@@ -47,6 +47,7 @@ public class TronLink {
   public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+  public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -188,7 +189,8 @@ public class TronLink {
   public static String privateKey = "com.tronlink.wallet:id/cd_pk";
   public static String enterContent = "com.tronlink.wallet:id/et_content";
   public static String nextStep = "com.tronlink.wallet:id/bt_next";
-  public static String privateKeyQR = "com.tronlink.wallet:id/iv_qr";
+  public static String qrButton = "com.tronlink.wallet:id/iv_qr";
+  public static String systemAllow = "com.android.packageinstaller:id/permission_allow_button";
   public static String mnemonic = "com.tronlink.wallet:id/rl_mm";
   public static String hdWallet = "com.tronlink.wallet:id/ll_hd_wallet";
   public static String keystore = "com.tronlink.wallet:id/cd_kt";
@@ -239,6 +241,8 @@ public class TronLink {
   public static String walletBalance = "com.tronlink.wallet:id/tv_blance";
   public static String manageropen = "com.tronlink.wallet:id/manageropen";
   public static String selectWallet = "com.tronlink.wallet:id/rl_selected";
+  public static String pictureName = "android:id/title";
+  public static String imageView = "android.widget.ImageView";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
@@ -633,7 +637,7 @@ public class TronLink {
     }
   };
 
-  public static void QRCode(String content, String imgUrl) {
+  public static void QRCode(String content, String imgUrl, String name) {
     try {
       File codeFile = new File(imgUrl);
       MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -646,13 +650,36 @@ public class TronLink {
       }
       image.flush();
       ImageIO.write(image, "png", codeFile);
-      Runtime rt = Runtime.getRuntime();
-      Process p = rt.exec("/Users/tron/Library/Android/sdk/platform-tools/adb push"+imgUrl+" storage/sdcard0/Pictures/Screenshots/");
-      p.destroy();
+      Runtime.getRuntime().exec(adb +" push "+imgUrl+" storage/sdcard0/tronlink/111" + name +".png");
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
+  public static void clickPicture(AndroidDriver driver,String pictureName){
+    systemAllow(driver);
+    MobileElement imageView = (MobileElement) driver.findElementByClassName(TronLink.imageView);
+    imageView.click();
+    TronLink.testOperation(driver,language_title,"click","");
+    systemAllow(driver);
+    List<MobileElement> name = driver.findElementsById(TronLink.pictureName);
+    for (MobileElement data : name){
+      System.out.println(data.getText());
+      if (data.getText().indexOf(pictureName)!=-1){
+        data.click();
+        break;
+      }
+    }
+  }
 
+  public static void systemAllow(AndroidDriver driver){
+    try{
+      MobileElement element = (MobileElement) driver.findElement(new MobileBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").textMatches(\".*ALLOW.*\")"));
+      if (element.isDisplayed()){
+        element.click();
+      }
+    } catch (Exception e){
+      System.out.println(e);
+    }
+  }
 }
