@@ -152,6 +152,27 @@ public class TronLink {
   public static String mutliSignQuestionContentXPath = "/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.TextView";
   public static String mutliSignAddPermissionId = "com.tronlink.wallet:id/bt_go";
   public static String activeScreenMoreId = "com.tronlink.wallet:id/ll_more";
+  public static String modifyPermissionsId = "com.tronlink.wallet:id/ll_edit";
+  public static String deletePermissionId = "com.tronlink.wallet:id/ll_delete";
+  public static String deletePermissionConfirmId = "com.tronlink.wallet:id/tv_ok";
+  public static String deletePermissionCancelId = "com.tronlink.wallet:id/tv_cancle";
+  public static String permissionOperationId = "com.tronlink.wallet:id/fl_operations";
+  public static String addPermissionId = "com.tronlink.wallet:id/bt_go";
+  public static String permissionNameInputId = "com.tronlink.wallet:id/et_permission_name";
+  public static String trxTransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.TextView";
+  public static String trc10TransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.TextView";
+  public static String trc20TransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.TextView";
+  public static String thresholdInAddPermissionInputId = "com.tronlink.wallet:id/et_threshold";
+  public static String permissionAddressInputId = "com.tronlink.wallet:id/et_key_address";
+  public static String permissionWeightInputId = "com.tronlink.wallet:id/et_weight";
+  public static String addKeyInAddPermissionId = "com.tronlink.wallet:id/rl_add_key_button";
+  public static String secondPermissionAddressInputXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[5]/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.EditText[1]";
+  public static String secondPermissionWeightInputXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[5]/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.EditText[2]";
+  public static String addPermissionConfirmId = "com.tronlink.wallet:id/tv_confirm";
+  public static String updateAccountPermissionServiceChargeId = "com.tronlink.wallet:id/tv_trx_amount";
+  public static String updateAccountPermissionInputPasswordId = "com.tronlink.wallet:id/et_new_password";
+  public static String updateAccountPermissionPayIconId = "com.tronlink.wallet:id/bt_send";
+
   public static String transactionHistoryId = "com.tronlink.wallet:id/transfer_history";
   public static String transactionHistoryQueryWalletId = "com.tronlink.wallet:id/iv_qr";
   public static String transactionHistoryWalletResultNameId = "com.tronlink.wallet:id/tv_name";
@@ -230,11 +251,11 @@ public class TronLink {
   public static String backupMnemonic = "com.tronlink.wallet:id/rl_mnemonic";
   public static String backupPrivateKey = "com.tronlink.wallet:id/rl_privatekey";
   public static String backupKeystore = "com.tronlink.wallet:id/rl_keystore";
-
-
   public static String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
   public static String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
   public static String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
+  public static String activePermissionManager1Address = "THph9K2M2nLvkianrMGswRhz5hjSA9fuH7";
+  public static String activePermissionManager2Address = "TV75jZpdmP2juMe1dRwGrwpV6AMU6mr1EU";
   public static String testPassword = "Test0001";
 
 
