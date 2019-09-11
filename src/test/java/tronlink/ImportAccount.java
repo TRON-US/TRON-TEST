@@ -1,5 +1,6 @@
 package tronlink;
 import common.utils.TronLink;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -105,10 +106,10 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
 
         System.out.println("walletAddress:" + walletAddress + "\nwalletPassword:" + walletPassword + "\nwalletPrivateKey:" +walletPrivateKey +"\nbackupMnemonic:" +backupMnemonic + "\nbackupkeystore:" + backupkeystore);
-        TronLink.QRCode(walletAddress,"src/test/resources/QRresources/walletAddress.png");
-        TronLink.QRCode(walletPrivateKey,"src/test/resources/QRresources/walletPrivateKey.png");
-        TronLink.QRCode(backupMnemonic,"src/test/resources/QRresources/backupMnemonic.png");
-        TronLink.QRCode(backupkeystore,"src/test/resources/QRresources/backupkeystore.png");
+        TronLink.QRCode(walletAddress,"/Users/tron/Documents/TestUi/tron-UITest/src/test/resources/QRresources/walletAddress.png","walletAddress");
+        TronLink.QRCode(walletPrivateKey,"/Users/tron/Documents/TestUi/tron-UITest/src/test/resources/QRresources/walletPrivateKey.png","walletPrivateKey");
+        TronLink.QRCode(backupMnemonic,"/Users/tron/Documents/TestUi/tron-UITest/src/test/resources/QRresources/backupMnemonic.png","backupMnemonic");
+        TronLink.QRCode(backupkeystore,"/Users/tron/Documents/TestUi/tron-UITest/src/test/resources/QRresources/backupkeystore.png","backupkeystore");
     }
 
     @Test
@@ -141,6 +142,35 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.deleteWallet2,"click","click delete wallet");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+
+        //use PrivateKey QRcode import account
+        TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
+        TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
+        TronLink.testOperation(driver,TronLink.privateKey,"click","click Private key");
+        TronLink.testOperation(driver,TronLink.qrButton,"click","click qr code");
+        TronLink.clickPicture(driver,"walletPrivateKey");
+
+        TronLink.testOperation(driver,TronLink.nextStep,"click","click Next step");
+        timestamp = String.valueOf(date.getTime());
+        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+        TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
+        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+
+        //delete wallet
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        walletAddress = TronLink.getText(driver,TronLink.addressText);
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,TronLink.deleteWallet2,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+
     }
 
     @Test
@@ -158,6 +188,28 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
+        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+
+        //delete wallet
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        TronLink.testOperation(driver,TronLink.deleteWalletTop,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.confirm,"click","click confirm");
+
+        //startup page
+        TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
+        TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
+
+        //import watch account use qrcode
+        TronLink.testOperation(driver,TronLink.watchWallet,"click","click watch wallet");
+        TronLink.testOperation(driver,TronLink.qrButton,"click","click qr code");
+        TronLink.clickPicture(driver,"walletAddress");
+        TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
+        timestamp = String.valueOf(date.getTime());
         TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
         TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
 
@@ -199,6 +251,36 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+
+        //startup page
+        TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
+        TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
+
+        //import Mnemonic account use qrcode
+        TronLink.testOperation(driver,TronLink.mnemonic,"click","click mnemonic wallet");
+        TronLink.testOperation(driver,TronLink.hdWallet,"click","click hdWallet");
+        TronLink.testOperation(driver,TronLink.qrButton,"click","click qr code");
+        TronLink.clickPicture(driver,"backupMnemonic");
+        TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
+        timestamp = String.valueOf(date.getTime());
+        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+        TronLink.testOperation(driver,TronLink.creatNextStep,"click","click next step");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
+        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+
+        //delete wallet
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        walletAddress = TronLink.getText(driver,TronLink.addressText);
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,TronLink.deleteWallet,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
     }
 
     @Test
@@ -217,6 +299,32 @@ public class ImportAccount {
         TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
+        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+        TronLink.testOperation(driver,TronLink.creatNextStep,"click","click next step");
+
+        //delete wallet
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        walletAddress = TronLink.getText(driver,TronLink.addressText);
+        TronLink.testOperation(driver,"swipeUp","");
+        TronLink.testOperation(driver,TronLink.deleteWallet2,"click","click delete wallet");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.riskBackup,"click","click ok");
+
+
+        TronLink.testOperation(driver, TronLink.importAccountId,"click","click import Account");
+        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
+            TronLink.testOperation(driver,"swipeUp","");
+        }
+        TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
+
+        //import Backupkeystore account use qrcode
+        TronLink.testOperation(driver,TronLink.keystore,"click","click keystore wallet");
+        TronLink.testOperation(driver,TronLink.qrButton,"click","click qr code");
+        TronLink.clickPicture(driver,"backupkeystore");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
+        timestamp = String.valueOf(date.getTime());
         TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
         TronLink.testOperation(driver,TronLink.creatNextStep,"click","click next step");
 

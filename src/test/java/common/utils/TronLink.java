@@ -649,10 +649,7 @@ public class TronLink {
       }
       image.flush();
       ImageIO.write(image, "png", codeFile);
-      Runtime rt = Runtime.getRuntime();
-      System.out.println("/Users/tron/Library/Android/sdk/platform-tools/adb push "+imgUrl+" storage/sdcard0/tronlink/" + name +".jpg");
-      Process p = rt.exec("/Users/tron/Library/Android/sdk/platform-tools/adb push "+imgUrl+" storage/sdcard0/tronlink/" + name +".jpg");
-      p.destroy();
+      Runtime.getRuntime().exec("/Users/tron/Library/Android/sdk/platform-tools/adb push "+imgUrl+" storage/sdcard0/tronlink/111" + name +".png");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -666,8 +663,10 @@ public class TronLink {
     systemAllow(driver);
     List<MobileElement> name = driver.findElementsById(TronLink.pictureName);
     for (MobileElement data : name){
-      if (data.getText() == pictureName){
+      System.out.println(data.getText());
+      if (data.getText().indexOf(pictureName)!=-1){
         data.click();
+        break;
       }
     }
   }
