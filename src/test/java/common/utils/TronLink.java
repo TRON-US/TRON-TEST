@@ -649,7 +649,7 @@ public class TronLink {
       }
       image.flush();
       ImageIO.write(image, "png", codeFile);
-      Runtime.getRuntime().exec("/Users/tron/Library/Android/sdk/platform-tools/adb push "+imgUrl+" storage/sdcard0/tronlink/111" + name +".png");
+      Runtime.getRuntime().exec("adb push "+imgUrl+" storage/sdcard0/tronlink/111" + name +".png");
     } catch (Exception e) {
       e.printStackTrace();
     }
