@@ -47,6 +47,7 @@ public class TronLink {
   public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
   //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
+  public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -649,7 +650,7 @@ public class TronLink {
       }
       image.flush();
       ImageIO.write(image, "png", codeFile);
-      Runtime.getRuntime().exec("adb push "+imgUrl+" storage/sdcard0/tronlink/111" + name +".png");
+      Runtime.getRuntime().exec(adb +" push "+imgUrl+" storage/sdcard0/tronlink/111" + name +".png");
     } catch (Exception e) {
       e.printStackTrace();
     }
