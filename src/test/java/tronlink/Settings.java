@@ -137,6 +137,8 @@ public class Settings {
     @Test
     public void test05DappBrowser() {
         TronLink.testOperation(driver,TronLink.setting_dapp,"click","click dapp browser");
+        TronLink.testOperation(driver,TronLink.dappUrl,"input","http://dapp.tronlink.org/#/","input url");
+        TronLink.testOperation(driver,TronLink.dappButton,"click","click button");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 

@@ -5,6 +5,9 @@ import common.utils.TronLink;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+
 import java.io.IOException;
 import java.lang.management.MonitorInfo;
 import java.net.MalformedURLException;
@@ -15,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -32,8 +36,8 @@ public class CreateAccount {
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
     }
 
-    @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
-    public void createAccount() {
+    @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
+    public void test01createAccount() {
         //create account
         TronLink.getScreenshot(driver,"Startup page");
         TronLink.testOperation(driver, TronLink.createAccountId,"click","click import Account");
@@ -69,8 +73,39 @@ public class CreateAccount {
         TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
     }
 
+    @Test
+    public void test02changeAccount(){
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+
+        TronLink.testOperation(driver,TronLink.addWallet,"click","click add wallet");
+        TronLink.testOperation(driver,TronLink.privateKey,"click","click Private key");
+        TronLink.testOperation(driver,TronLink.enterContent,"input",TronLink.testPrivateKey,"enter private key");
+        TronLink.testOperation(driver,TronLink.nextStep,"click","click Next step");
+        Date date = new Date();
+        String timestamp = String.valueOf(date.getTime());
+        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
+        TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
+        TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
+        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
+        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+
+        TronLink.testOperation(driver,TronLink.assetsCount,"click","click assetscount");
+        String balance = TronLink.getText(driver,TronLink.balance);
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
+        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
+        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+        String walletBalance = TronLink.getText(driver,TronLink.walletBalance);
+        Assert.assertEquals(balance + "TRX",walletBalance);
+
+        TronLink.testOperation(driver,TronLink.manageropen,"click","click manageropen");
+        TronLink.testOperation(driver,TronLink.selectWallet,"click","select wallet");
+    }
+
     @AfterClass
     public void tearDown() {
-//        driver.quit();
+        driver.quit();
     }
 }
