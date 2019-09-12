@@ -38,7 +38,7 @@ public class TransferTrx {
 
 
 
-    @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
+    @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
     public void test01TransferTrx() {
         TronLink.testOperation(driver,TronLink.meIconId,"click","Enter to market screen");
         TronLink.testOperation(driver,TronLink.discoverIconId,"click","Enter to market screen");
@@ -62,7 +62,7 @@ public class TransferTrx {
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
-    @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
+    @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
     public void test03FreezeToGetBandwidth() {
         TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
         TronLink.testOperation(driver,TronLink.bandwidthOptionIconId,"click","Choose bandwidth option");

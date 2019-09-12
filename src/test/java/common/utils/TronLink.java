@@ -44,10 +44,10 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
-  //public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
+  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
+  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
-  public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
+  public static String adb = "/Users/wangzihe/Library/android/platform-tools/adb";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -162,7 +162,7 @@ public class TronLink {
   public static String permissionNameInputId = "com.tronlink.wallet:id/et_permission_name";
   public static String trxTransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.TextView";
   public static String trc10TransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.TextView";
-  public static String trc20TransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.TextView";
+  public static String trc20TransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[3]/android.widget.TextView";
   public static String thresholdInAddPermissionInputId = "com.tronlink.wallet:id/et_threshold";
   public static String permissionAddressInputId = "com.tronlink.wallet:id/et_key_address";
   public static String permissionWeightInputId = "com.tronlink.wallet:id/et_weight";
@@ -532,7 +532,7 @@ public class TronLink {
       TronLink.testOperation(driver, TronLink.passWord, "input", testPassword, "input password again");
       TronLink.testOperation(driver, TronLink.creatNextStep3, "click", "3:click carry out");
 
-      int times = 0;
+/*      int times = 0;
       while (times++ < 500) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
       }
@@ -547,7 +547,7 @@ public class TronLink {
               .release().perform();
       while (times++ < 1000) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-      }
+      }*/
       driver.pressKey(new KeyEvent(AndroidKey.BACK));
       waitTargetElementAppear(driver);
 

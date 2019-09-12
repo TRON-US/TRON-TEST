@@ -33,10 +33,10 @@ public class FreezeToGetBandwidth {
         //Freeze 细则说明
         TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
         TronLink.testOperation(driver,TronLink.freezeRuleId,"click","Enter to freeze rule screen");
-        Assert.assertTrue(TronLink.getText(driver,TronLink.freezeDoc1Id).equals("TRX"));
+        Assert.assertTrue(TronLink.getText(driver,TronLink.freezeDoc1Id).contains("TRX"));
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
-        TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
+        //TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
         TronLink.testOperation(driver,TronLink.bandwidthOptionIconId,"click","Choose bandwidth option");
         TronLink.testOperation(driver,TronLink.frozenQuantityInputId,"input",String.valueOf(TronLink.frozenQuantityForBandwidth),"Input frozen quantity for bandwidth");
         TronLink.swipeUp(driver);

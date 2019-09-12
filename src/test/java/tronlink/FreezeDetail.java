@@ -64,10 +64,13 @@ public class FreezeDetail {
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         //Balance in frozen screen equal
+
         int balanceInFrozenScreen = Integer.valueOf(TronLink.getText(driver,TronLink
-                .balanceInFrozenScreenId).substring(0,TronLink.getText(driver,TronLink.balanceInFrozenScreenId).length() - 3));
+                .balanceInFrozenScreenId).substring(TronLink.getText(driver,TronLink.balanceInFrozenScreenId).indexOf(" ") + 1,TronLink.getText(driver,TronLink.balanceInFrozenScreenId).length() - 3));
+        System.out.println("balanceInFrozenScreen:" + balanceInFrozenScreen);
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
-        int balanceInAssetScreen = Integer.valueOf(TronLink.getText(driver,TronLink.trxValueInAssetScreenId).substring(TronLink.getText(driver,TronLink.trxValueInAssetScreenId).length() - 4));
+        System.out.println(TronLink.getText(driver,TronLink.trxValueInAssetScreenId));
+        int balanceInAssetScreen = Integer.valueOf(TronLink.getText(driver,TronLink.trxValueInAssetScreenId).substring(0,TronLink.getText(driver,TronLink.trxValueInAssetScreenId).length() - 4));
         Assert.assertTrue(balanceInFrozenScreen + votingPower == balanceInAssetScreen);
     }
 

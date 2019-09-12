@@ -24,7 +24,7 @@ public class TronLinkDemo {
     driver = new AndroidDriver(remoteUrl, desiredCapabilities);
   }
 
-  @Test
+  @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
   public void sampleTest() {
     TronLink.testOperation(driver,"swipeLeft","");
     TronLink.testOperation(driver,"swipeRight","");

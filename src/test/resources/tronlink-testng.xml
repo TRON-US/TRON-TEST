@@ -2,11 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tronlink" parallel="tests" thread-count="1">
     <test name="tronlink">
-<!--        <packages>
+        <packages>
             <package name="tronlink.*"></package>
-        </packages>-->
-        <classes>
+        </packages>
+<!--        <classes>
             <class name="tronlink.Markets"></class>
-        </classes>
+        </classes>-->
     </test>
 </suite>
