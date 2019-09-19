@@ -22,8 +22,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,10 +46,10 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  //public static String tronLinkApk = "/Users/tron/Documents/testnet-tronlink.apk";
-  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
+  public static String tronLinkApk = "/Users/tron/Desktop/mainnet_release.apk";
+//  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
-  public static String adb = "/Users/wangzihe/Library/android/platform-tools/adb";
+  public static String adb = "/Users/tron/Library/android/platform-tools/adb";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -308,7 +310,10 @@ public class TronLink {
     MobileElement element = null;
     if (!resId.isEmpty()) {
       if (resId.indexOf("com.tronlink.wallet:id") != -1){
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         element = (MobileElement) driver.findElementById(resId);
+      }else if (resId.indexOf(".png") != -1){
+        element = (MobileElement) driver.findElementByImage(getReferenceImageB64(resId));
       }else {
         element = (MobileElement) driver.findElement(MobileBy.xpath(resId));
 
@@ -321,7 +326,7 @@ public class TronLink {
       case "input":
         element.sendKeys(input);
         if (input.equals(testPassword)) {
-          driver.navigate().back();
+//          driver.navigate().back();
         } else {
           driver.hideKeyboard();
         }
@@ -681,5 +686,16 @@ public class TronLink {
     } catch (Exception e){
       System.out.println(e);
     }
+  }
+
+  public static String getReferenceImageB64(String image){
+    String elementsFile = null;
+    File refImgFile = new File(image);
+    try {
+      elementsFile = Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return elementsFile;
   }
 }
