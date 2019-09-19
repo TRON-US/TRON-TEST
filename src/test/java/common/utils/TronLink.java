@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.OutputType;
 import java.time.Duration;
@@ -49,7 +50,7 @@ public class TronLink {
   public static String tronLinkApk = "/Users/tron/Desktop/mainnet_release.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
-  public static String adb = "/Users/tron/Library/android/platform-tools/adb";
+  public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
   //public static String deviceName = "192.168.56.101:5555";
@@ -268,11 +269,30 @@ public class TronLink {
 
   public static DesiredCapabilities getTronLinkDesiredCapabilities(
           DesiredCapabilities desiredCapabilities) {
+    try{
+      TronLink.platformVersion = cmdReturn(adb + " shell getprop ro.build.version.release");
+      TronLink.deviceName = cmdReturn(adb + " -d shell getprop ro.product.model");
+      System.out.println(TronLink.platformVersion);
+      System.out.println(TronLink.deviceName);
+    }catch (IOException e){
+      System.out.println(e);
+    }
     desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
     desiredCapabilities.setCapability("platformName", TronLink.platformName);
     desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
     desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
     return desiredCapabilities;
+  }
+
+  public static String cmdReturn(String cmd) throws IOException{
+    Process process = Runtime.getRuntime().exec(cmd);
+    InputStreamReader isr=new InputStreamReader(process.getInputStream());
+    Scanner sc=new Scanner(isr);
+    StringBuffer sb = new StringBuffer();
+    while(sc.hasNext()){
+      sb.append(sc.next());
+    }
+    return sb.toString();
   }
 
   public static void waitTargetElementAppear(AndroidDriver driver) {
