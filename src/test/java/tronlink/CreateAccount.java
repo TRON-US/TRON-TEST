@@ -98,7 +98,7 @@ public class CreateAccount {
         TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
         TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
         String walletBalance = TronLink.getText(driver,TronLink.walletBalance);
-        Assert.assertEquals(balance + "TRX",walletBalance);
+        Assert.assertEquals(balance + " TRX",walletBalance);
 
         TronLink.testOperation(driver,TronLink.manageropen,"click","click manageropen");
         TronLink.testOperation(driver,TronLink.selectWallet,"click","select wallet");
