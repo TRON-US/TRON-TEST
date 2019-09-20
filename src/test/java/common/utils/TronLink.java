@@ -47,7 +47,7 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Desktop/mainnet_release.apk";
+  public static String tronLinkApk = "/Users/tron/Desktop/testnet_release.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
@@ -344,9 +344,9 @@ public class TronLink {
         element.click();
         break;
       case "input":
-        element.sendKeys(input);
+        element.setValue(input);
         if (input.equals(testPassword)) {
-//          driver.navigate().back();
+          driver.navigate().back();
         } else {
           driver.hideKeyboard();
         }
