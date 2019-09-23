@@ -47,7 +47,7 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Desktop/testnet_release.apk";
+  public static String tronLinkApk = "/Users/tron/Desktop/main1.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
@@ -234,6 +234,10 @@ public class TronLink {
   public static String setting_developer = "com.tronlink.wallet:id/testnode";
   public static String setting_conversion = "com.tronlink.wallet:id/convert";
   public static String setting_dapp = "com.tronlink.wallet:id/dapp";
+  public static String setting_dapp_change = "com.tronlink.wallet:id/ll_select";
+  public static String common_left = "com.tronlink.wallet:id/ll_common_left";
+  public static String assetsList = "com.tronlink.wallet:id/rl_main";
+  public static String withdrawButton = "com.tronlink.wallet:id/bt_go";
 
   public static String language_title = "com.tronlink.wallet:id/title";
   public static String moneyValue = "com.tronlink.wallet:id/tv_money_value";
@@ -246,6 +250,7 @@ public class TronLink {
   public static String selectWallet = "com.tronlink.wallet:id/rl_selected";
   public static String pictureName = "android:id/title";
   public static String imageView = "android.widget.ImageView";
+  public static String deposit = "com.tronlink.wallet:id/ll_deposit";
 
   public static String my_walletManager = "com.tronlink.wallet:id/wallet_manager";
   public static String deleteWallet = "com.tronlink.wallet:id/delete";
