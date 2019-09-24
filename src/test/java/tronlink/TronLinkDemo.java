@@ -18,10 +18,7 @@ public class TronLinkDemo {
   @BeforeClass
   public void setUp() throws MalformedURLException {
     TronLink.screenOn();
-    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-    desiredCapabilities = TronLink.getTronLinkDesiredCapabilities(desiredCapabilities);
-    URL remoteUrl = new URL(TronLink.tronLinkUrl);
-    driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+    driver = TronLink.driverTron;
   }
 
   @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
@@ -36,6 +33,6 @@ public class TronLinkDemo {
 
   @AfterClass
   public void tearDown() {
-    driver.quit();
+    driver.resetApp();
   }
 }

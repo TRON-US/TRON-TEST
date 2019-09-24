@@ -26,10 +26,7 @@ public class DappChain {
     @BeforeClass
     public void setUp() throws MalformedURLException {
         TronLink.screenOn();
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities = TronLink.getTronLinkDesiredCapabilities(desiredCapabilities);
-        URL remoteUrl = new URL(TronLink.tronLinkUrl);
-        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+        driver = TronLink.driverTron;
     }
 
     @Test
@@ -58,18 +55,6 @@ public class DappChain {
 
     @Test
     public void test01deposit() {
-        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-        TronLink.testOperation(driver,TronLink.settings,"click","click settings");
-        TronLink.testOperation(driver,TronLink.setting_node,"click","click node");
-
-        List<MobileElement> list = driver.findElementsById(TronLink.setting_dapp_change);
-        for (MobileElement a : list){
-            if (!a.isSelected())
-            a.click();
-        }
-        TronLink.testOperation(driver,TronLink.common_left,"click","click back");
-        TronLink.testOperation(driver,TronLink.common_left,"click","click back");
-        TronLink.testOperation(driver,TronLink.tabAssets,"click","click tab Assets");
 
         List<MobileElement> assets = driver.findElementsById(TronLink.assetsList);
         assets.get(0).click();
@@ -104,6 +89,6 @@ public class DappChain {
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+        driver.resetApp();
     }
 }

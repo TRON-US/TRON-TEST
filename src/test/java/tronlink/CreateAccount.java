@@ -28,12 +28,9 @@ public class CreateAccount {
     private AndroidDriver driver;
 
     @BeforeClass
-    public void setUp() throws MalformedURLException {
-        TronLink.screenOn();
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities = TronLink.getTronLinkDesiredCapabilities(desiredCapabilities);
-        URL remoteUrl = new URL(TronLink.tronLinkUrl);
-        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+    public void setUp(){
+//        TronLink.screenOn();
+        driver = TronLink.driverTron;
     }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
@@ -106,6 +103,6 @@ public class CreateAccount {
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+        driver.resetApp();
     }
 }

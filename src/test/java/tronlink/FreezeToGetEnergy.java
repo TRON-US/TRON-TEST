@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -18,12 +19,9 @@ public class FreezeToGetEnergy {
     private AndroidDriver driver;
 
     @BeforeClass
-    public void setUp() throws MalformedURLException {
+    public void setUp() throws MalformedURLException, IOException {
         TronLink.screenOn();
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities = TronLink.getTronLinkDesiredCapabilities(desiredCapabilities);
-        URL remoteUrl = new URL(TronLink.tronLinkUrl);
-        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+        driver = TronLink.driverTron;
         driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
     }
 
@@ -41,6 +39,6 @@ public class FreezeToGetEnergy {
 
     @AfterClass
     public void tearDown() {
-       driver.quit();
+       driver.resetApp();
     }
 }

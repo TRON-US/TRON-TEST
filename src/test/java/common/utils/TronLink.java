@@ -22,12 +22,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -47,12 +50,13 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Desktop/main1.apk";
+  public static String tronLinkApk = "/Users/tron/Desktop/app-tronTest-release.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
   public static String platformVersion = "9";
   public static String deviceName = "Android Device";
+  public static String udid = "";
   //public static String deviceName = "192.168.56.101:5555";
   public static String platformName = "Android";
   private static final int QRCOLOR = 0xFF000000;
@@ -268,12 +272,13 @@ public class TronLink {
   public static String testPassword = "Test0001";
 
 
-  private AndroidDriver driver;
+  public static AndroidDriver driverTron;
   public static AndroidTouchAction action;
 
 
-  public static DesiredCapabilities getTronLinkDesiredCapabilities(
-          DesiredCapabilities desiredCapabilities) {
+  public static AndroidDriver getDriver()throws MalformedURLException {
+    String port = "4723";
+    String url = "http://localhost:"+port+"/wd/hub";
     try{
       TronLink.platformVersion = cmdReturn(adb + " shell getprop ro.build.version.release");
       TronLink.deviceName = cmdReturn(adb + " -d shell getprop ro.product.model");
@@ -282,12 +287,18 @@ public class TronLink {
     }catch (IOException e){
       System.out.println(e);
     }
+    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
     desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
     desiredCapabilities.setCapability("platformName", TronLink.platformName);
     desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
     desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
-    return desiredCapabilities;
+    URL remoteUrl = new URL(url);
+    AndroidDriver driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+    driverTron = driver;
+    return driver;
   }
+
+
 
   public static String cmdReturn(String cmd) throws IOException{
     Process process = Runtime.getRuntime().exec(cmd);
@@ -298,6 +309,25 @@ public class TronLink {
       sb.append(sc.next());
     }
     return sb.toString();
+  }
+
+  public static ArrayList<String> devicesReturn(String cmd) throws IOException{
+    Process process = Runtime.getRuntime().exec(cmd);
+    InputStreamReader isr=new InputStreamReader(process.getInputStream());
+    Scanner sc=new Scanner(isr);
+    ArrayList<String> al = new ArrayList<>();
+    while(sc.hasNext()){
+      al.add(sc.next());
+    }
+    Iterator<String> iterator = al.iterator();
+    while (iterator.hasNext()){
+      String s = iterator.next();
+      if (s.equals("List")||s.equals("of")||s.equals("devices")||s.equals("attached")||s.equals("device")){
+        iterator.remove();
+      }
+    }
+    System.out.println(al);
+    return al;
   }
 
   public static void waitTargetElementAppear(AndroidDriver driver) {

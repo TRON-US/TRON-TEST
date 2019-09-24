@@ -24,10 +24,7 @@ public class Markets {
     @BeforeClass
     public void setUp() throws MalformedURLException {
         TronLink.screenOn();
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities = TronLink.getTronLinkDesiredCapabilities(desiredCapabilities);
-        URL remoteUrl = new URL(TronLink.tronLinkUrl);
-        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+        driver = TronLink.driverTron;
         driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
     }
 
@@ -66,6 +63,6 @@ public class Markets {
 
     @AfterClass
     public void tearDown() {
-       driver.quit();
+       driver.resetApp();
     }
 }
