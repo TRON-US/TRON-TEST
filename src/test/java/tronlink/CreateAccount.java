@@ -1,7 +1,8 @@
 package tronlink;
 
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -23,86 +24,75 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class CreateAccount {
+public class CreateAccount extends AppiumTestCase {
 
     private AndroidDriver driver;
-
-    @BeforeClass
-    public void setUp(){
-//        TronLink.screenOn();
-        driver = InitTest.driver;
-    }
-
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01createAccount() {
         //create account
-        TronLink.getScreenshot(driver,"Startup page");
-        TronLink.testOperation(driver, TronLink.createAccountId,"click","click import Account");
-        while (!TronLink.isEnabled(driver,TronLink.acceptImportAccount)){
-            TronLink.testOperation(driver,"swipeUp","");
+         testOperation(   createAccountId,"click","click import Account");
+        while (! isEnabled(  acceptImportAccount)){
+             testOperation( "swipeUp","");
         }
-        TronLink.testOperation(driver,TronLink.acceptImportAccount,"click","click Accept");
-        TronLink.testOperation(driver,TronLink.setUpName,"click","click set up name");
+         testOperation(  acceptImportAccount,"click","click Accept");
+         testOperation(  setUpName,"click","click set up name");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
-        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
-        TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
-        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
-        TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
-        TronLink.testOperation(driver,TronLink.passWord,"click","input name");
-        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
-        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","click carry out");
+         testOperation(  setUpName,"input","Test_"+timestamp,"input name");
+         testOperation(  creatNextStep,"click","1:input name");
+         testOperation(  passWord,"input","Test0001","input password");
+         testOperation(  creatNextStep2,"click","2:click next step");
+         testOperation(  passWord,"click","input name");
+         testOperation(  passWord,"input","Test0001","input password again");
+         testOperation(  creatNextStep3,"click","click carry out");
 
         //backup mnemonic
-        TronLink.testOperation(driver,TronLink.backUpNow,"click","back up now");
-        TronLink.testOperation(driver,TronLink.gotItButton,"click","got it");
-        ArrayList<String> allTextList = TronLink.getTextList(driver,TronLink.keyIndexText);
-        TronLink.testOperation(driver,"swipeUp","");
-        TronLink.testOperation(driver,TronLink.saveKey,"click","i have saved");
+         testOperation(  backUpNow,"click","back up now");
+         testOperation(  gotItButton,"click","got it");
+        ArrayList<String> allTextList =  getTextList(  keyIndexText);
+         testOperation( "swipeUp","");
+         testOperation(  saveKey,"click","i have saved");
 
         //confirm mnemonic
-        List<MobileElement> confirmElements = driver.findElementsById(TronLink.itemText);
-        confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
-        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click next step");
+        List<MobileElement> confirmElements = driver.findElementsById( itemText);
+        confirmElements.get( getSameMnemonicIdex( allTextList, itemText, numberIndex)).click();
+         testOperation(  nextStepButton,"click","click next step");
 
-        confirmElements = driver.findElementsById(TronLink.itemText);
-        confirmElements.get(TronLink.getSameMnemonicIdex(driver,allTextList,TronLink.itemText,TronLink.numberIndex)).click();
-        TronLink.testOperation(driver,TronLink.nextStepButton,"click","click carry out");
+        confirmElements = driver.findElementsById( itemText);
+        confirmElements.get( getSameMnemonicIdex( allTextList, itemText, numberIndex)).click();
+         testOperation(  nextStepButton,"click","click carry out");
     }
 
     @Test
     public void test02changeAccount(){
-        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
+         testOperation(  tabMy,"click","click tab My");
+         testOperation(  my_walletManager,"click","click wallet manager");
 
-        TronLink.testOperation(driver,TronLink.addWallet,"click","click add wallet");
-        TronLink.testOperation(driver,TronLink.privateKey,"click","click Private key");
-        TronLink.testOperation(driver,TronLink.enterContent,"input",TronLink.testPrivateKey,"enter private key");
-        TronLink.testOperation(driver,TronLink.nextStep,"click","click Next step");
+         testOperation(  addWallet,"click","click add wallet");
+         testOperation(  privateKey,"click","click Private key");
+         testOperation(  enterContent,"input", testPrivateKey,"enter private key");
+         testOperation(  nextStep,"click","click Next step");
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
-        TronLink.testOperation(driver,TronLink.setUpName,"input","Test_"+timestamp,"input name");
-        TronLink.testOperation(driver,TronLink.creatNextStep,"click","1:input name");
-        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
-        TronLink.testOperation(driver,TronLink.creatNextStep2,"click","2:click next step");
-        TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password again");
-        TronLink.testOperation(driver,TronLink.creatNextStep3,"click","3:click carry out");
+         testOperation(  setUpName,"input","Test_"+timestamp,"input name");
+         testOperation(  creatNextStep,"click","1:input name");
+         testOperation(  passWord,"input","Test0001","input password");
+         testOperation(  creatNextStep2,"click","2:click next step");
+         testOperation(  passWord,"input","Test0001","input password again");
+         testOperation(  creatNextStep3,"click","3:click carry out");
 
-        TronLink.testOperation(driver,TronLink.assetsCount,"click","click assetscount");
-        String balance = TronLink.getText(driver,TronLink.balance);
+         testOperation(  assetsCount,"click","click assetscount");
+        String balance1 = getText(balance);
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
-        TronLink.testOperation(driver,TronLink.tabMy,"click","click tab My");
-        TronLink.testOperation(driver,TronLink.my_walletManager,"click","click wallet manager");
-        String walletBalance = TronLink.getText(driver,TronLink.walletBalance);
-        Assert.assertEquals(balance + "TRX",walletBalance);
+         testOperation(  tabMy,"click","click tab My");
+         testOperation(  my_walletManager,"click","click wallet manager");
+        String walletBalance1 =  getText(walletBalance);
+        Assert.assertEquals(balance1 + "TRX",walletBalance1);
 
-        TronLink.testOperation(driver,TronLink.manageropen,"click","click manageropen");
-        TronLink.testOperation(driver,TronLink.selectWallet,"click","select wallet");
+         testOperation(  manageropen,"click","click manageropen");
+         testOperation(  selectWallet,"click","select wallet");
     }
 
-    @AfterClass
-    public void tearDown() {
-        driver.resetApp();
-    }
+
 }

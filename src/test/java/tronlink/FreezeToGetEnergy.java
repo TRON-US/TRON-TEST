@@ -9,36 +9,26 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class FreezeToGetEnergy {
+public class FreezeToGetEnergy extends AppiumTestCase {
 
-    private AndroidDriver driver;
-
-    @BeforeClass
-    public void setUp() throws MalformedURLException, IOException {
-        TronLink.screenOn();
-        driver = InitTest.driver;
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
-    }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test04FreezeToGetEnergy() {
-        TronLink.testOperation(driver,TronLink.energyOptionIconId,"click","Choose energy option");
-        TronLink.testOperation(driver,TronLink.frozenQuantityInputId,"input",String.valueOf(TronLink.frozenQuantityForEnergy),"Input frozen quantity for energy");
-        TronLink.swipeUp(driver);
-        TronLink.testOperation(driver,TronLink.freezeIconId,"click","Click freeze icon");
-        TronLink.testOperation(driver,TronLink.freezeNowIconId,"click","Freeze bandwidth now");
-        TronLink.testOperation(driver,TronLink.transactionConfirmInputPasswordId,"input",TronLink.testPassword,"Input password for freeze energy");
-        TronLink.testOperation(driver,TronLink.transactionConfirmButtonId,"click","Confirm the freeze energy transaction");
+         testOperation(  energyOptionIconId,"click","Choose energy option");
+         testOperation(  frozenQuantityInputId,"input",String.valueOf( frozenQuantityForEnergy),"Input frozen quantity for energy");
+         swipeUp();
+         testOperation(  freezeIconId,"click","Click freeze icon");
+         testOperation(  freezeNowIconId,"click","Freeze bandwidth now");
+         testOperation(  transactionConfirmInputPasswordId,"input", testPassword,"Input password for freeze energy");
+         testOperation(  transactionConfirmButtonId,"click","Confirm the freeze energy transaction");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
-    @AfterClass
-    public void tearDown() {
-       driver.resetApp();
-    }
+
 }

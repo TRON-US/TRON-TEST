@@ -12,7 +12,8 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -22,35 +23,24 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
 
-public class Vote {
+public class Vote extends AppiumTestCase {
 
-    private AndroidDriver driver;
-
-    @BeforeClass
-    public void setUp() throws MalformedURLException {
-        TronLink.screenOn();
-        driver = InitTest.driver;
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
-    }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01Vote() {
         //System.out.println(driver.getPageSource());
-        //TronLink.testOperation(driver,"com.tronlink.wallet:id/tv_walletname","click","");
-        //TronLink.testOperation(driver,TronLink.marketsIconId,"click","Enter markets screen");
-        //TronLink.testOperation(driver,TronLink.assetIconId,"click","Enter asset screen");
-        TronLink.testOperation(driver,TronLink.voteId,"click","Enter to vote screen");
+        // testOperation( "com.tronlink.wallet:id/tv_walletname","click","");
+        // testOperation(  marketsIconId,"click","Enter markets screen");
+        // testOperation(  assetIconId,"click","Enter asset screen");
+         testOperation(  voteId,"click","Enter to vote screen");
         System.out.println();
-        TronLink.testOperation(driver,TronLink.voteResetId,"click","Reset vote");
-        TronLink.testOperation(driver,TronLink.voteInputQuantityXPath,"input",String.valueOf(TronLink.voteQuantity),"Input vote amount");
-        TronLink.testOperation(driver,TronLink.voteId,"click","Vote");
-        TronLink.testOperation(driver,TronLink.voteNowId,"click","Vote now");
-        TronLink.testOperation(driver,TronLink.transactionConfirmInputPasswordId,"input",TronLink.testPassword,"Input password for vote");
-        TronLink.testOperation(driver,TronLink.transactionConfirmButtonId,"click","Confirm the vote transaction");
+         testOperation(  voteResetId,"click","Reset vote");
+         testOperation(  voteInputQuantityXPath,"input",String.valueOf( voteQuantity),"Input vote amount");
+         testOperation(  voteId,"click","Vote");
+         testOperation(  voteNowId,"click","Vote now");
+         testOperation(  transactionConfirmInputPasswordId,"input", testPassword,"Input password for vote");
+         testOperation(  transactionConfirmButtonId,"click","Confirm the vote transaction");
     }
 
-    @AfterClass
-    public void tearDown() {
-       driver.resetApp();
-    }
+
 }

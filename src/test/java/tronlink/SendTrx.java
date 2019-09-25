@@ -8,41 +8,31 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class SendTrx {
+public class SendTrx extends AppiumTestCase {
 
-    private AndroidDriver driver;
-
-    @BeforeClass
-    public void setUp() throws MalformedURLException {
-        TronLink.screenOn();
-        driver = InitTest.driver;
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
-    }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01TransferTrx() {
-        TronLink.testOperation(driver,TronLink.meIconId,"click","Enter to market screen");
-        TronLink.testOperation(driver,TronLink.discoverIconId,"click","Enter to market screen");
-        TronLink.testOperation(driver,TronLink.marketsIconId,"click","Enter to market screen");
-        TronLink.testOperation(driver,TronLink.assetIconId,"click","Enter asset screen");
-        TronLink.testOperation(driver,TronLink.sendCoinId,"click","Enter send coin screen");
-        TronLink.testOperation(driver,TronLink.receiveAddressId,"input",TronLink.receiverAddress,"Input receiver address");
-        TronLink.testOperation(driver,TronLink.sendCoinAmountId,"input",String.valueOf(TronLink.sendCoinAmount),"Input send coin amount");
-        TronLink.testOperation(driver,TronLink.sendCoinButtonId,"click","Send coin");
-        TronLink.testOperation(driver,TronLink.transferNowId,"click","Transfer trx now");
-        TronLink.testOperation(driver,TronLink.transactionConfirmInputPasswordId,"input",TronLink.testPassword,"Input password for transfer trx");
-        TronLink.testOperation(driver,TronLink.transactionConfirmButtonId,"click","Confirm the transfer");
+         testOperation(  meIconId,"click","Enter to market screen");
+         testOperation(  discoverIconId,"click","Enter to market screen");
+         testOperation(  marketsIconId,"click","Enter to market screen");
+         testOperation(  assetIconId,"click","Enter asset screen");
+         testOperation(  sendCoinId,"click","Enter send coin screen");
+         testOperation(  receiveAddressId,"input", receiverAddress,"Input receiver address");
+         testOperation(  sendCoinAmountId,"input",String.valueOf( sendCoinAmount),"Input send coin amount");
+         testOperation(  sendCoinButtonId,"click","Send coin");
+         testOperation(  transferNowId,"click","Transfer trx now");
+         testOperation(  transactionConfirmInputPasswordId,"input", testPassword,"Input password for transfer trx");
+         testOperation(  transactionConfirmButtonId,"click","Confirm the transfer");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
 
-    @AfterClass
-    public void tearDown() {
-       driver.resetApp();
-    }
+
 }

@@ -9,54 +9,48 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class MeScreen {
+public class MeScreen extends AppiumTestCase {
 
-    private AndroidDriver driver;
 
-    @BeforeClass
-    public void setUp() throws MalformedURLException {
-        TronLink.screenOn();
-        driver = InitTest.driver;
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
-    }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01MeScreen() {
         //Enter to Me screen
-        TronLink.testOperation(driver,TronLink.meIconId,"click","Enter me screen");
+         testOperation(  meIconId,"click","Enter me screen");
 
         //Friend invitation
-        TronLink.testOperation(driver,TronLink.meFriendInvitationId,"click","Enter to friend invitation screen");
-        TronLink.testOperation(driver,"swipeUp","");
+         testOperation(  meFriendInvitationId,"click","Enter to friend invitation screen");
+         testOperation( "swipeUp","");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         //Announcement screen
-        TronLink.testOperation(driver,TronLink.meAnnouncementId,"click","Enter to announcement screen");
-        TronLink.testOperation(driver,"swipeUp","");
+         testOperation(  meAnnouncementId,"click","Enter to announcement screen");
+         testOperation( "swipeUp","");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         //Join Our Communities
-        TronLink.testOperation(driver,TronLink.meJoinOurCommunitiesId,"click","Enter to Join Our Communitites screen");
-        Assert.assertTrue(TronLink.isEnabled(driver,TronLink.meJoinOurCommunitiesEnglishTelegraphGroupId));
-        Assert.assertTrue(TronLink.isEnabled(driver,TronLink.meJoinOurCommunitiesChineseTelegraphGroupId));
-        Assert.assertTrue(TronLink.isEnabled(driver,TronLink.meJoinOurCommunitiesTwitterId));
-        Assert.assertTrue(TronLink.isEnabled(driver,TronLink.meJoinOurCommunitiesWechatId));
+         testOperation(  meJoinOurCommunitiesId,"click","Enter to Join Our Communitites screen");
+        Assert.assertTrue( isEnabled(  meJoinOurCommunitiesEnglishTelegraphGroupId));
+        Assert.assertTrue( isEnabled(  meJoinOurCommunitiesChineseTelegraphGroupId));
+        Assert.assertTrue( isEnabled(  meJoinOurCommunitiesTwitterId));
+        Assert.assertTrue( isEnabled(  meJoinOurCommunitiesWechatId));
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         //Help Center
-        TronLink.testOperation(driver,TronLink.meHelpCenterId,"click","Enter to help center screen");
+         testOperation(  meHelpCenterId,"click","Enter to help center screen");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
         //About Us
-        TronLink.testOperation(driver,TronLink.meAboutUsId,"click","Enter to about Us screen");
-        TronLink.testOperation(driver,TronLink.meAboutUsVersionLogsId,"click","Enter to version logs screen");
+         testOperation(  meAboutUsId,"click","Enter to about Us screen");
+         testOperation(  meAboutUsVersionLogsId,"click","Enter to version logs screen");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
-        TronLink.testOperation(driver,TronLink.meAbountUsVersionVersionUpdateId,"click","Try to update version");
+         testOperation(  meAbountUsVersionVersionUpdateId,"click","Try to update version");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 
@@ -65,8 +59,5 @@ public class MeScreen {
     }
 
 
-    @AfterClass
-    public void tearDown() {
-       driver.resetApp();
-    }
+
 }

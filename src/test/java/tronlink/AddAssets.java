@@ -9,36 +9,28 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class AddAssets {
+public class AddAssets extends AppiumTestCase {
 
     private AndroidDriver driver;
 
-    @BeforeClass
-    public void setUp() throws MalformedURLException {
-        TronLink.screenOn();
-        driver = InitTest.driver;
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
-    }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01AddAssets() {
-        TronLink.testOperation(driver,TronLink.addAssetId,"click","Enter add asset screen");
-        TronLink.testOperation(driver,TronLink.enter_NameIdContractAddress_InputBox_id,"input",String.valueOf(TronLink.assetIdOfQuery),"Input query asset id");
-        Assert.assertTrue(driver.findElementById(TronLink.assetDisplayAreaId).isEnabled());
-        TronLink.testOperation(driver,TronLink.assetSwitchId,"click","Turn on/off the asset switch");
+         testOperation(  addAssetId,"click","Enter add asset screen");
+         testOperation(  enter_NameIdContractAddress_InputBox_id,"input",String.valueOf( assetIdOfQuery),"Input query asset id");
+        Assert.assertTrue(driver.findElementById( assetDisplayAreaId).isEnabled());
+         testOperation(  assetSwitchId,"click","Turn on/off the asset switch");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
-        TronLink.testOperation(driver,TronLink.assetsDisplayedXPath,"click","Display asset");
-        Assert.assertTrue(driver.findElementByXPath(TronLink.assetsDisplayedFirstElementXPath).isDisplayed());
+         testOperation(  assetsDisplayedXPath,"click","Display asset");
+        Assert.assertTrue(driver.findElementByXPath( assetsDisplayedFirstElementXPath).isDisplayed());
     }
 
 
-    @AfterClass
-    public void tearDown() {
-        driver.resetApp();
-    }
+
 }

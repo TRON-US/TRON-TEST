@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RunSuite {
-    public static void main(String[] args) {
+    public  static void main(String[] args) {
         TestListenerAdapter tla = new TestListenerAdapter();
         TestNG testng = new TestNG();
 

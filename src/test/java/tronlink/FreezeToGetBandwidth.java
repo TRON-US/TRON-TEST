@@ -9,43 +9,32 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import common.utils.TronLink;
+import common.utils.AppiumTestCase;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class FreezeToGetBandwidth {
-
-    private AndroidDriver driver;
-
-    @BeforeClass
-    public void setUp() throws MalformedURLException {
-        TronLink.screenOn();
-        driver = InitTest.driver;
-        driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
-    }
+public class FreezeToGetBandwidth extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test03FreezeToGetBandwidth() {
         //Freeze 细则说明
-        TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
-        TronLink.testOperation(driver,TronLink.freezeRuleId,"click","Enter to freeze rule screen");
-        Assert.assertTrue(TronLink.getText(driver,TronLink.freezeDoc1Id).contains("TRX"));
+         testOperation(  freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
+         testOperation(  freezeRuleId,"click","Enter to freeze rule screen");
+        Assert.assertTrue( getText(  freezeDoc1Id).contains("TRX"));
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
-        //TronLink.testOperation(driver,TronLink.freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
-        TronLink.testOperation(driver,TronLink.bandwidthOptionIconId,"click","Choose bandwidth option");
-        TronLink.testOperation(driver,TronLink.frozenQuantityInputId,"input",String.valueOf(TronLink.frozenQuantityForBandwidth),"Input frozen quantity for bandwidth");
-        TronLink.swipeUp(driver);
-        TronLink.testOperation(driver,TronLink.freezeIconId,"click","Click freeze icon");
-        TronLink.testOperation(driver,TronLink.freezeNowIconId,"click","Freeze bandwidth now");
-        TronLink.testOperation(driver,TronLink.transactionConfirmInputPasswordId,"input",TronLink.testPassword,"Input password for freeze bandwidth");
-        TronLink.testOperation(driver,TronLink.transactionConfirmButtonId,"click","Confirm the freeze bandwidth transaction");
+        // testOperation(  freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
+         testOperation(  bandwidthOptionIconId,"click","Choose bandwidth option");
+         testOperation(  frozenQuantityInputId,"input",String.valueOf( frozenQuantityForBandwidth),"Input frozen quantity for bandwidth");
+         swipeUp();
+         testOperation(  freezeIconId,"click","Click freeze icon");
+         testOperation(  freezeNowIconId,"click","Freeze bandwidth now");
+         testOperation(  transactionConfirmInputPasswordId,"input", testPassword,"Input password for freeze bandwidth");
+         testOperation(  transactionConfirmButtonId,"click","Confirm the freeze bandwidth transaction");
     }
 
 
-    @AfterClass
-    public void tearDown() {
-       driver.resetApp();
-    }
+
 }
