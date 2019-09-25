@@ -21,7 +21,7 @@ public class FreezeToGetEnergy {
     @BeforeClass
     public void setUp() throws MalformedURLException, IOException {
         TronLink.screenOn();
-        driver = TronLink.driverTron;
+        driver = InitTest.driver;
         driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
     }
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -19,36 +20,80 @@ import common.utils.TronLink;
 import io.appium.java_client.android.AndroidDriver;
 
 public class InitTest {
-    String port = "4723";
-    String url = "http://localhost:"+port+"/wd/hub";
+    public static AndroidDriver driver = null;
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","bootstrap_port"})
     @BeforeSuite
-    public void startServer() throws IOException {
-        Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port);
-        InputStreamReader isr=new InputStreamReader(process.getInputStream());
-        Scanner sc=new Scanner(isr);
-        StringBuffer sb = new StringBuffer();
-        sb.append(sc.next());
-        System.out.println(sb.toString());
-    }
+    public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid,String bootstrap_port) throws MalformedURLException{
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println(port+udid);
+                    Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -u " + udid + " -bp " + bootstrap_port);
+                    InputStreamReader isr=new InputStreamReader(process.getInputStream());
+                    Scanner sc=new Scanner(isr);
+                    StringBuffer sb = new StringBuffer();
+                    sb.append(sc.next());
+                    System.out.println(sb.toString());
 
-    @Test
-    public void setUp()throws IOException{
-        ArrayList<String> devices = TronLink.devicesReturn(TronLink.adb + " devices");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        System.out.println(port);
+        String url = "http://localhost:"+port+"/wd/hub";
+//        ArrayList<String> devices = TronLink.devicesReturn(TronLink.adb + " devices");
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        System.out.println(devices);
-        for (String udid :devices){
-            TronLink.platformVersion = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " shell getprop ro.build.version.release");
-            TronLink.deviceName = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " -d shell getprop ro.product.model");
-            desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
-            desiredCapabilities.setCapability("platformName", TronLink.platformName);
-            desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
-            desiredCapabilities.setCapability("udid", udid);
-        }
-        System.out.println(TronLink.platformVersion);
-        System.out.println(TronLink.deviceName);
+//        System.out.println(devices);
+//        for (String udid :devices){
+//            TronLink.platformVersion = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " shell getprop ro.build.version.release");
+//            TronLink.deviceName = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " -d shell getprop ro.product.model");
+//            desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
+//            desiredCapabilities.setCapability("platformName", TronLink.platformName);
+//            desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
+//            desiredCapabilities.setCapability("udid", udid);
+//        }
+        desiredCapabilities.setCapability("deviceName", deviceName);
+        desiredCapabilities.setCapability("platformName", platformName);
+        desiredCapabilities.setCapability("platformVersion", platformVersion);
+        desiredCapabilities.setCapability("udid", udid);
+//        System.out.println(TronLink.platformVersion);
+//        System.out.println(TronLink.deviceName);
         desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
         URL remoteUrl = new URL(url);
-        AndroidDriver driver = new AndroidDriver(remoteUrl, desiredCapabilities);
-        TronLink.driverTron = driver;
+        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+//        try {
+//            Thread.sleep(20000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
+//    @Parameters({"port", "platformName", "platformVersion", "deviceName"})
+//    @BeforeClass
+//    public void setUp(String appiumPort, String platformName, String platformVersion, String deviceName,String udid)throws IOException{
+//        System.out.println(appiumPort);
+//        String url = "http://localhost:"+appiumPort+"/wd/hub";
+////        ArrayList<String> devices = TronLink.devicesReturn(TronLink.adb + " devices");
+//        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+////        System.out.println(devices);
+////        for (String udid :devices){
+////            TronLink.platformVersion = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " shell getprop ro.build.version.release");
+////            TronLink.deviceName = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " -d shell getprop ro.product.model");
+////            desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
+////            desiredCapabilities.setCapability("platformName", TronLink.platformName);
+////            desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
+////            desiredCapabilities.setCapability("udid", udid);
+////        }
+//        desiredCapabilities.setCapability("deviceName", deviceName);
+//        desiredCapabilities.setCapability("platformName", platformName);
+//        desiredCapabilities.setCapability("platformVersion", platformVersion);
+//        desiredCapabilities.setCapability("udid", udid);
+////        System.out.println(TronLink.platformVersion);
+////        System.out.println(TronLink.deviceName);
+//        desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
+//        URL remoteUrl = new URL(url);
+//        AndroidDriver driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+//        TronLink.driverTron = driver;
+//    }
 }

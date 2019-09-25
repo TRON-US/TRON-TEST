@@ -30,7 +30,7 @@ public class ImportAccount {
     @BeforeClass
     public void setUp() throws MalformedURLException {
         TronLink.screenOn();
-        driver = TronLink.driverTron;
+        driver = InitTest.driver;
     }
 
     @Test

@@ -23,7 +23,7 @@ public class ReceiveTrx {
     @BeforeClass
     public void setUp() throws MalformedURLException {
         TronLink.screenOn();
-        driver = TronLink.driverTron;
+        driver = InitTest.driver;
         driver = TronLink.importWallet(driver,TronLink.testPrivateKey);
     }
 

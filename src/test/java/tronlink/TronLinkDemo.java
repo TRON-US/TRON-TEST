@@ -18,7 +18,7 @@ public class TronLinkDemo {
   @BeforeClass
   public void setUp() throws MalformedURLException {
     TronLink.screenOn();
-    driver = TronLink.driverTron;
+    driver = InitTest.driver;
   }
 
   @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)

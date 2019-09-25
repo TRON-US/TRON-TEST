@@ -30,7 +30,7 @@ public class CreateAccount {
     @BeforeClass
     public void setUp(){
 //        TronLink.screenOn();
-        driver = TronLink.driverTron;
+        driver = InitTest.driver;
     }
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)

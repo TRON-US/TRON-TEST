@@ -380,11 +380,11 @@ public class TronLink {
         break;
       case "input":
         element.setValue(input);
-        if (input.equals(testPassword)) {
-          driver.navigate().back();
-        } else {
-          driver.hideKeyboard();
-        }
+//        if (input.equals(testPassword)) {
+//          driver.navigate().back();
+//        } else {
+//          driver.hideKeyboard();
+//        }
 
         break;
       case "swipeUp":

@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import common.utils.TronLink;
+import tronlink.InitTest;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -24,9 +25,9 @@ public class DappChain {
     private AndroidDriver driver;
 
     @BeforeClass
-    public void setUp() throws MalformedURLException {
+    public void setUp(){
         TronLink.screenOn();
-        driver = TronLink.driverTron;
+        driver = InitTest.driver;
     }
 
     @Test
