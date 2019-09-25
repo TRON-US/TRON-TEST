@@ -3,6 +3,7 @@ package tronlink;
 
 import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -58,42 +59,13 @@ public class InitTest {
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("udid", udid);
-//        System.out.println(TronLink.platformVersion);
-//        System.out.println(TronLink.deviceName);
         desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
         URL remoteUrl = new URL(url);
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
-//        try {
-//            Thread.sleep(20000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
     }
-//    @Parameters({"port", "platformName", "platformVersion", "deviceName"})
-//    @BeforeClass
-//    public void setUp(String appiumPort, String platformName, String platformVersion, String deviceName,String udid)throws IOException{
-//        System.out.println(appiumPort);
-//        String url = "http://localhost:"+appiumPort+"/wd/hub";
-////        ArrayList<String> devices = TronLink.devicesReturn(TronLink.adb + " devices");
-//        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-////        System.out.println(devices);
-////        for (String udid :devices){
-////            TronLink.platformVersion = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " shell getprop ro.build.version.release");
-////            TronLink.deviceName = TronLink.cmdReturn(TronLink.adb + " -s " + udid + " -d shell getprop ro.product.model");
-////            desiredCapabilities.setCapability("deviceName", TronLink.deviceName);
-////            desiredCapabilities.setCapability("platformName", TronLink.platformName);
-////            desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
-////            desiredCapabilities.setCapability("udid", udid);
-////        }
-//        desiredCapabilities.setCapability("deviceName", deviceName);
-//        desiredCapabilities.setCapability("platformName", platformName);
-//        desiredCapabilities.setCapability("platformVersion", platformVersion);
-//        desiredCapabilities.setCapability("udid", udid);
-////        System.out.println(TronLink.platformVersion);
-////        System.out.println(TronLink.deviceName);
-//        desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
-//        URL remoteUrl = new URL(url);
-//        AndroidDriver driver = new AndroidDriver(remoteUrl, desiredCapabilities);
-//        TronLink.driverTron = driver;
-//    }
+
+    @AfterSuite
+    public void endServer(){
+        driver.quit();
+    }
 }
