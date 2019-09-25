@@ -350,11 +350,11 @@ public class TronLink {
         break;
       case "input":
         element.setValue(input);
-        if (input.equals(testPassword)) {
-          driver.navigate().back();
-        } else {
-          driver.hideKeyboard();
-        }
+//        if (input.equals(testPassword)) {
+//          driver.navigate().back();
+//        } else {
+//          driver.hideKeyboard();
+//        }
 
         break;
       case "swipeUp":
@@ -704,7 +704,7 @@ public class TronLink {
 
   public static void systemAllow(AndroidDriver driver){
     try{
-      MobileElement element = (MobileElement) driver.findElement(new MobileBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").textMatches(\".*ALLOW.*\")"));
+      MobileElement element = (MobileElement) driver.findElement(new MobileBy.ByAndroidUIAutomator("new UiSelector().className(\"android.widget.Button\").textMatches(\".*(?:ALLOW|允许|OK).*\")"));
       if (element.isDisplayed()){
         element.click();
       }

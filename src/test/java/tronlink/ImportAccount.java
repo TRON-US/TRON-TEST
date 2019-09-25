@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
@@ -369,6 +370,7 @@ public class ImportAccount {
         //import Backupkeystore account use qrcode
         TronLink.testOperation(driver,TronLink.keystore,"click","click keystore wallet");
         TronLink.testOperation(driver,TronLink.qrButton,"click","click qr code");
+        TronLink.systemAllow(driver);
         TronLink.clickPicture(driver,"backupkeystore");
         TronLink.testOperation(driver,TronLink.passWord,"input","Test0001","input password");
         TronLink.testOperation(driver,TronLink.nextStep,"click","click next step");
