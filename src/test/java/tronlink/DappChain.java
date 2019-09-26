@@ -1,5 +1,6 @@
 package tronlink;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import java.util.Date;
 import java.util.List;
@@ -63,5 +64,9 @@ public class DappChain extends AppiumTestCase {
         testOperation(sendCoinAmountId,"input","100","input amount of withdraw");
         testOperation(withdrawButton,"click","click withdraw");
 
+    }
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
     }
 }

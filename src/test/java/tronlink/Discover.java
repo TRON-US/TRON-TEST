@@ -52,19 +52,11 @@ public class Discover extends AppiumTestCase {
          testOperation(  discoverSearchScanId,"click","Scan function");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
-
-
-
-
-
-
-
-
-
-
-
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

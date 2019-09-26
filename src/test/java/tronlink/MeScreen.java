@@ -55,11 +55,11 @@ public class MeScreen extends AppiumTestCase {
          testOperation(  meAbountUsVersionVersionUpdateId,"click","Try to update version");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
-
-
-
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

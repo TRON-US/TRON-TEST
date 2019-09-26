@@ -40,6 +40,9 @@ public class ReceiveTrx extends AppiumTestCase {
 
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

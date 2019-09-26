@@ -64,6 +64,9 @@ public class FreezeDetail extends AppiumTestCase {
         Assert.assertTrue(balanceInFrozenScreen + votingPower == balanceInAssetScreen);
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

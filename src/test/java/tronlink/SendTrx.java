@@ -34,7 +34,10 @@ public class SendTrx extends AppiumTestCase {
          testOperation(  transactionConfirmButtonId,"click","Confirm the transfer");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 
 }

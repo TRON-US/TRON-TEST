@@ -37,6 +37,9 @@ public class FreezeToGetBandwidth extends AppiumTestCase {
          testOperation(  transactionConfirmButtonId,"click","Confirm the freeze bandwidth transaction");
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

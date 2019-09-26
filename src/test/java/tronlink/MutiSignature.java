@@ -74,6 +74,9 @@ public class MutiSignature extends AppiumTestCase {
          testOperation(  transactionConfirmButtonId,"click","Confirm the delete permission");*/
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

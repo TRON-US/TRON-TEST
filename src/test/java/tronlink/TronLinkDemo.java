@@ -26,5 +26,8 @@ public class TronLinkDemo extends AppiumTestCase {
      waitTargetElementAppear();
   }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 }

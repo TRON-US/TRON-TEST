@@ -297,7 +297,7 @@ public class AppiumTestCase {
     @BeforeTest()
     public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String bootstrap_port)throws MalformedURLException{
         System.out.println(port);
-        String url = "http://localhost:"+port+"/wd/hub";
+        String url = "http://127.0.0.1:"+port+"/wd/hub";
         desiredCapabilities.setCapability("deviceName", deviceName);
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
@@ -358,7 +358,7 @@ public class AppiumTestCase {
     }
 
     public static void waitTargetElementAppear() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return;
     }
 
@@ -494,7 +494,7 @@ public class AppiumTestCase {
         }
     }
 
-    public   boolean isEnabled(String element){
+    public static  boolean isEnabled(String element){
         return driver.findElementById(element).isEnabled();
     }
 
@@ -560,10 +560,6 @@ public class AppiumTestCase {
             return;
         }
     }
-
-
-
-
 
     private static  Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>() {
         private   final long serialVersionUID = 1L;
@@ -632,6 +628,28 @@ public class AppiumTestCase {
                 break;
             }
         }
+    }
+
+    public static void importWallet(String walletPrivateKey) {
+            //startup page
+            testOperation(   importAccountId,"click","click import Account");
+            while (! isEnabled(  acceptImportAccount)){
+                testOperation( "swipeUp","");
+            }
+            testOperation(  acceptImportAccount,"click","click Accept");
+
+            //use Private Key import account
+            testOperation(  privateKey,"click","click Private key");
+            testOperation(  enterContent,"input",walletPrivateKey,"enter private key");
+            testOperation(  nextStep,"click","click Next step");
+            Date date = new Date();
+            String timestamp = String.valueOf(date.getTime());
+            testOperation(  setUpName,"input","Test_"+timestamp,"input name");
+            testOperation(  creatNextStep,"click","1:input name");
+            testOperation(  passWord,"input","Test0001","input password");
+            testOperation(  creatNextStep2,"click","2:click next step");
+            testOperation(  passWord,"input","Test0001","input password again");
+            testOperation(  creatNextStep3,"click","3:click carry out");
     }
 }
 

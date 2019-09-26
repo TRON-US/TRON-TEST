@@ -32,5 +32,8 @@ public class FreezeToGetEnergy extends AppiumTestCase {
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 }

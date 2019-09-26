@@ -131,5 +131,9 @@ public class Settings extends AppiumTestCase {
          testOperation(  dappButton,"click","click button");
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

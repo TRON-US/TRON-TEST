@@ -89,6 +89,9 @@ public class TransferTrx extends AppiumTestCase {
          testOperation(  transactionConfirmInputPasswordId,"input", testPassword,"Input password for vote");
          testOperation(  transactionConfirmButtonId,"click","Confirm the vote transaction");
     }
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

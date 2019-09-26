@@ -61,12 +61,11 @@ public class TransactionHistory extends AppiumTestCase {
          testOperation(  transactionHistorySentXPath,"click","Switch to sent result");
          testOperation(  transactionHistorySentFirstResultConfirmedXPath,"click","Enter to tronscan");
 
-
-
-
-
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 }

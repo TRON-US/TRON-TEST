@@ -94,5 +94,8 @@ public class CreateAccount extends AppiumTestCase {
          testOperation(  selectWallet,"click","select wallet");
     }
 
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 }

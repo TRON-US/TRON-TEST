@@ -47,14 +47,11 @@ public class Markets extends AppiumTestCase {
         //System.out.println( getText(  firstExchangeInMarketsSearchScreenXPath));
         Assert.assertTrue( getText(  firstExchangeInMarketsSearchScreenXPath).contains("TRX"));
 
-
-
-
-
-
-
     }
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 
 
 }

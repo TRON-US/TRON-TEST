@@ -29,6 +29,8 @@ public class AddAssets extends AppiumTestCase {
          Assert.assertTrue(driver.findElementByXPath( assetsDisplayedFirstElementXPath).isDisplayed());
     }
 
-
-
+    @AfterClass
+    public void teardown(){
+        driver.resetApp();
+    }
 }

@@ -382,7 +382,7 @@ public class ImportAccount extends AppiumTestCase {
 
 
     @AfterClass
-    public void tearDown() {
-//        driver.resetApp();
+    public void teardown(){
+        driver.resetApp();
     }
 }
