@@ -327,7 +327,7 @@ public class AppiumTestCase {
         }
     }
 
-    public   String cmdReturn(String cmd) throws IOException {
+    public static  String cmdReturn(String cmd) throws IOException {
         Process process = Runtime.getRuntime().exec(cmd);
         InputStreamReader isr=new InputStreamReader(process.getInputStream());
         Scanner sc=new Scanner(isr);
@@ -338,7 +338,7 @@ public class AppiumTestCase {
         return sb.toString();
     }
 
-    public   ArrayList<String> devicesReturn(String cmd) throws IOException{
+    public static ArrayList<String> devicesReturn(String cmd) throws IOException{
         Process process = Runtime.getRuntime().exec(cmd);
         InputStreamReader isr=new InputStreamReader(process.getInputStream());
         Scanner sc=new Scanner(isr);
