@@ -20,7 +20,9 @@ public class FreezeToGetEnergy extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test04FreezeToGetEnergy() {
-         testOperation(  energyOptionIconId,"click","Choose energy option");
+        importWallet(testPrivateKey);
+
+        testOperation(  energyOptionIconId,"click","Choose energy option");
          testOperation(  frozenQuantityInputId,"input",String.valueOf( frozenQuantityForEnergy),"Input frozen quantity for energy");
          swipeUp();
          testOperation(  freezeIconId,"click","Click freeze icon");

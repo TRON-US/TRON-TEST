@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="tronlinkTest1" >
+    <parameter name="port"  value="4731"/>
+    <parameter name="udid" value="e007aa65"/>
+    <parameter name="platformName" value="Android"/>
+    <parameter name="platformVersion" value="10"/>
+    <parameter name="deviceName" value="onePlus"/>
+    <parameter name="noReset" value="false"/>
+    <parameter name="bootstrap_port" value="4831"/>
+
+    <test name="tronlink1">
+        <packages>
+            <package name="tronlink.*"></package>
+        </packages>
+<!--        <classes>-->
+<!--                    <class name="tronlink.DappChain"></class>-->
+<!--                </classes>-->
+    </test>
+</suite>

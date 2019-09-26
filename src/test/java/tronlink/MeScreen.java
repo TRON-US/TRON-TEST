@@ -21,6 +21,8 @@ public class MeScreen extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01MeScreen() {
+        importWallet(testPrivateKey);
+
         //Enter to Me screen
          testOperation(  meIconId,"click","Enter me screen");
 

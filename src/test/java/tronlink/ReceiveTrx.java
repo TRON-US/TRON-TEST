@@ -22,7 +22,9 @@ public class ReceiveTrx extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01Receiver() {
-         testOperation(  assetIconId,"click","Enter asset screen");
+        importWallet(testPrivateKey);
+
+        testOperation(  assetIconId,"click","Enter asset screen");
          testOperation(  receiveCoinId,"click","Enter receive screen");
          testOperation(  copyAddressIconId,"click","Copy address");
 

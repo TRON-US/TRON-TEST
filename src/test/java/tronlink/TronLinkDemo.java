@@ -16,7 +16,9 @@ public class TronLinkDemo extends AppiumTestCase {
 
   @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
   public void sampleTest() {
-     testOperation( "swipeLeft","");
+      importWallet(testPrivateKey);
+
+      testOperation( "swipeLeft","");
      testOperation( "swipeRight","");
      testOperation(   importAccountId,"click");
      testOperation( "swipeUp","");

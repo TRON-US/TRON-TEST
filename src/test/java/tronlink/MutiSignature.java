@@ -22,6 +22,8 @@ public class MutiSignature extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01MutiSignScreen() {
+        importWallet(testPrivateKey);
+
         //Enter to Multi-signature Management screen
          testOperation(  meIconId,"click","Enter me screen");
          testOperation(  my_walletManager,"click","Enter my wallet manager screen");

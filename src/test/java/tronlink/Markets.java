@@ -23,6 +23,8 @@ public class Markets extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01marketsScreen() {
+        importWallet(testPrivateKey);
+
         //Test "Price Change" sort function
          testOperation(  marketsIconId,"click","Enter markets screen");
         String originSortFirstPrice =  getText(  firstPriceOfPriceChangeXPath);

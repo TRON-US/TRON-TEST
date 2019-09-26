@@ -28,6 +28,8 @@ public class Vote extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01Vote() {
+        importWallet(testPrivateKey);
+
         //System.out.println(driver.getPageSource());
         // testOperation( "com.tronlink.wallet:id/tv_walletname","click","");
         // testOperation(  marketsIconId,"click","Enter markets screen");

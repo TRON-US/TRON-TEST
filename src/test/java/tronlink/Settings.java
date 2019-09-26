@@ -19,15 +19,14 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class Settings extends AppiumTestCase {
-    public   String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
-    public   String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
-    public   String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
-    public   String testPassword = "Test0001";
-    private AndroidDriver driver;
+    public  String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
+    public  String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+    public  String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
+    public  String testPassword = "Test0001";
 
     @Test
     public void test01Language() {
-         testOperation(  tabMy,"click","click tab My");
+        testOperation(  tabMy,"click","click tab My");
          testOperation(  settings,"click","click settings");
          testOperation(  setting_languane,"click","click language");
 

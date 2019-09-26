@@ -19,6 +19,8 @@ public class FreezeToGetBandwidth extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test03FreezeToGetBandwidth() {
+        importWallet(testPrivateKey);
+
         //Freeze 细则说明
          testOperation(  freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
          testOperation(  freezeRuleId,"click","Enter to freeze rule screen");

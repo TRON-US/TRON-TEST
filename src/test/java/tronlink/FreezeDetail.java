@@ -19,6 +19,8 @@ public class FreezeDetail extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01FreezeDetail() {
+        importWallet(testPrivateKey);
+
         //Freeze energy detail
          testOperation(freeezeUnfreezeId,"click","Enter to freeze/unfreeze screen");
          testOperation(  freezeEnergyDetailId,"click","Show energy detail");

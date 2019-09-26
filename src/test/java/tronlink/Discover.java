@@ -21,6 +21,8 @@ public class Discover extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01DiscoverScreen() {
+        importWallet(testPrivateKey);
+
         //Enter to discover screen
          testOperation(  discoverIconId,"click","Enter Discover screen");
          testOperation( "swipeDown","");

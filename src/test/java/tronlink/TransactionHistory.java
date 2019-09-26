@@ -17,10 +17,11 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class TransactionHistory extends AppiumTestCase {
 
-    private AndroidDriver driver;
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01DiscoverScreen() {
+        importWallet(testPrivateKey);
+
         //Enter to discover screen
          testOperation(  meIconId,"click","Enter me screen");
          testOperation(  transactionHistoryId,"click","Enter me screen");

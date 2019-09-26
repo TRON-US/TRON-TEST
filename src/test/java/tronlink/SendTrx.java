@@ -19,7 +19,9 @@ public class SendTrx extends AppiumTestCase {
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01TransferTrx() {
-         testOperation(  meIconId,"click","Enter to market screen");
+        importWallet(testPrivateKey);
+
+        testOperation(  meIconId,"click","Enter to market screen");
          testOperation(  discoverIconId,"click","Enter to market screen");
          testOperation(  marketsIconId,"click","Enter to market screen");
          testOperation(  assetIconId,"click","Enter asset screen");

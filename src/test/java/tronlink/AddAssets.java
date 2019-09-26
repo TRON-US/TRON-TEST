@@ -17,18 +17,16 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class AddAssets extends AppiumTestCase {
 
-    private AndroidDriver driver;
-
-
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01AddAssets() {
+        importWallet(testPrivateKey);
          testOperation(  addAssetId,"click","Enter add asset screen");
          testOperation(  enter_NameIdContractAddress_InputBox_id,"input",String.valueOf( assetIdOfQuery),"Input query asset id");
-        Assert.assertTrue(driver.findElementById( assetDisplayAreaId).isEnabled());
+         Assert.assertTrue(driver.findElementById( assetDisplayAreaId).isEnabled());
          testOperation(  assetSwitchId,"click","Turn on/off the asset switch");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+         driver.pressKey(new KeyEvent(AndroidKey.BACK));
          testOperation(  assetsDisplayedXPath,"click","Display asset");
-        Assert.assertTrue(driver.findElementByXPath( assetsDisplayedFirstElementXPath).isDisplayed());
+         Assert.assertTrue(driver.findElementByXPath( assetsDisplayedFirstElementXPath).isDisplayed());
     }
 
 
