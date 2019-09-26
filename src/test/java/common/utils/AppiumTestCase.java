@@ -269,17 +269,18 @@ public class AppiumTestCase {
     protected ReentrantLock serverLock = new ReentrantLock();
 
 
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","bootstrap_port"})
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
     @BeforeSuite
-    public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid,String bootstrap_port) {
-        boolean needStartServer = true;
-        if (needStartServer) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+    public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
+//        if (needStartServer) {
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
                     try {
+//                        serverLock.lock();
+//                        AppiumServerController.getInstance().startServer(serverLock,port,bootstrap_port,udid);
                         System.out.println(port+udid);
-                        Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -u " + udid + " -bp " + bootstrap_port);
+                        Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -u " + udid);
                         InputStreamReader isr=new InputStreamReader(process.getInputStream());
                         Scanner sc=new Scanner(isr);
                         StringBuffer sb = new StringBuffer();
@@ -288,20 +289,30 @@ public class AppiumTestCase {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-            }).start();
-        }
+//                }
+//            }).start();
+
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            serverLock.lock();
+//            System.out.println("Server with port "+ port + " has  started!!!");
+//            serverLock.unlock();
+//        }
     }
 
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","bootstrap_port"})
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
     @BeforeTest()
-    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String bootstrap_port)throws MalformedURLException{
+    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws MalformedURLException{
         System.out.println(port);
         String url = "http://127.0.0.1:"+port+"/wd/hub";
         desiredCapabilities.setCapability("deviceName", deviceName);
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("udid", udid);
+        desiredCapabilities.setCapability("systemPort", systemPort);
         desiredCapabilities.setCapability("app", "/Users/tron/Desktop/app-tronTest-release.apk");
         URL remoteUrl = new URL(url);
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
@@ -316,6 +327,7 @@ public class AppiumTestCase {
     @AfterSuite
     public void stopServer(String suitName, String port) {
         System.out.println("AfterSuite, stopServer() " + suitName);
+        AppiumServerController.getInstance().stopServer(port);
     }
 
 
