@@ -27,8 +27,6 @@ public class ImportAccount extends AppiumTestCase {
 
     @Test
     public void createAccount() {
-        importWallet(testPrivateKey);
-
         //startup page
          getScreenshot( "Startup page");
          testOperation(   importAccountId,"click","click import Account");
