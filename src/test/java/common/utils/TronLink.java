@@ -47,7 +47,7 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Desktop/main1.apk";
+  public static String tronLinkApk = "/Users/tron/Downloads/app-tronTest-release123.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
@@ -286,6 +286,7 @@ public class TronLink {
     desiredCapabilities.setCapability("platformName", TronLink.platformName);
     desiredCapabilities.setCapability("platformVersion", TronLink.platformVersion);
     desiredCapabilities.setCapability("app", TronLink.tronLinkApk);
+    desiredCapabilities.setCapability("noSign", "true");
     return desiredCapabilities;
   }
 
