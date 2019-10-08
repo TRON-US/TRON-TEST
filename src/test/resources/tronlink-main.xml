@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests" thread-count="2" >
-    <suite-files>
-        <suite-file path="tronlink-testng1.xml"/>
-        <suite-file path="tronlink-testng2.xml"/>
-    </suite-files>
+<suite name="tronlink" parallel="tests" thread-count="3">
+    <parameter name="port"  value="4800"/>
+    <parameter name="udid" value="988a1642484c58434a"/>
+    <parameter name="platformName" value="Android"/>
+    <parameter name="platformVersion" value="8"/>
+    <parameter name="deviceName" value="samsung"/>
+    <parameter name="noReset" value="false"/>
+    <parameter name="systemPort" value="8205"/>
+    <test name="tronlink1">
+        <parameter name="port"  value="4800"/>
+        <parameter name="udid" value="988a1642484c58434a"/>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="platformVersion" value="8"/>
+        <parameter name="deviceName" value="samsung"/>
+        <parameter name="noReset" value="false"/>
+        <parameter name="systemPort" value="8205"/>
+        <packages>
+            <package name="tronlink.*"></package>
+        </packages>
+    </test>
+    <test name="tronlink2">
+        <parameter name="port"  value="4798"/>
+        <parameter name="udid" value="e007aa65"/>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="platformVersion" value="10"/>
+        <parameter name="deviceName" value="onePlus"/>
+        <parameter name="noReset" value="false"/>
+        <parameter name="systemPort" value="8200"/>
+        <packages>
+            <package name="tronlink.*"></package>
+        </packages>
+    </test>
+    <test name="tronlink3">
+        <parameter name="port"  value="4801"/>
+        <parameter name="udid" value="CLB0218A10004233"/>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="platformVersion" value="9"/>
+        <parameter name="deviceName" value="huawei"/>
+        <parameter name="noReset" value="false"/>
+        <parameter name="systemPort" value="8210"/>
+        <packages>
+            <package name="tronlink.*"></package>
+        </packages>
+    </test>
+
+
 </suite>

@@ -17,7 +17,6 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class Discover extends AppiumTestCase {
 
-    private AndroidDriver driver;
 
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01DiscoverScreen() {
