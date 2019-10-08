@@ -47,7 +47,7 @@ public class TronLink {
   public static String tronLinkUrl = "http://localhost:4723/wd/hub";
   //public static String tronLinkUrl = "http://192.168.56.101:5555";
 
-  public static String tronLinkApk = "/Users/tron/Downloads/app-tronTest-release123.apk";
+  public static String tronLinkApk = "/Users/tron/Desktop/TronLink.apk";
 //  public static String tronLinkApk = "/Users/wangzihe/Desktop/tronlink_baidu_v3.1.0.apk";
 //public static String tronLinkApk = "/Users/wangzihe/Documents/Android-iTRON-clone/app/baidu/release/app-baidu-release.apk";
   public static String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
@@ -457,7 +457,7 @@ public class TronLink {
     if(description.equals("got it") || description.equals("back up now")) {
       return;
     }
-    File screen = ((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
+    File screen = driver.getScreenshotAs(OutputType.FILE);
     File screenFile = new File("build/reports/tests/tronlink/screenShot/"+date+description+".png");
     try {
       org.apache.commons.io.FileUtils.copyFile(screen,screenFile);
@@ -469,11 +469,7 @@ public class TronLink {
   public static boolean isElement(AndroidDriver driver,String element){
     String pageSource = driver.getPageSource();
     System.out.println(pageSource);
-    if (pageSource.indexOf(element) == -1){
-      return false;
-    }else{
-      return true;
-    }
+    return pageSource.indexOf(element) != -1;
   }
 
   public static boolean isEnabled(AndroidDriver driver,String element){

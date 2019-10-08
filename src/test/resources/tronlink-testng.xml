@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tronlink" parallel="tests" thread-count="1">
-    <test name="tronlink">
+    <listeners>
+        <listener class-name="com.tronlink.wallet.UITest.retry.RetryListener"/>
+    </listeners>
+    <test name="tronlink" junit="false">
         <packages>
-            <package name="tronlink.*"></package>
+            <!--<package name="tronlink.*"></package>-->
+            <package name="com.tronklink.wallet.regression.*"></package>
+
         </packages>
 <!--        <classes>
             <class name="tronlink.Markets"></class>
