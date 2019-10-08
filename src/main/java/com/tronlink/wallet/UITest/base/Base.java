@@ -3,7 +3,6 @@ package com.tronlink.wallet.UITest.base;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -27,25 +25,25 @@ import io.appium.java_client.touch.offset.PointOption;
 
 public class Base {
 
-    public static AndroidDriver<?> DRIVER;
+    public  AndroidDriver<?> DRIVER;
 
-    private static SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
+    private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
-    public static int RetryAgainTimes = 2;
+    public  int RetryAgainTimes = 2;
 
     //@Test(retryAnalyzer = TestRetryAnalyzer.class)
 
 
     //setUp
-    public static void setUpBeforeClass() throws Exception {
+    public  void setUp() throws Exception {
         //String[] deviceInfo = getDeviceInfo();
         File appDir = new File(System.getProperty("user.dir"), ".//");
         File app = new File(appDir, "TronLink.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //capabilities.setCapability("deviceName", "CLB0218A10004233");
-        capabilities.setCapability("deviceName", "98895a453650504c36");
+        capabilities.setCapability("deviceName", "CLB0218A10004233");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion", "8");
+        capabilities.setCapability("platformVersion", "9");
         //capabilities.setCapability("UninstallAfterCloseApp", true);
         capabilities.setCapability("appPackage", "com.tronlink.wallet");//包名
         capabilities.setCapability("appActivity", "com.tron.wallet.bussiness.welcome.WelcomeActivity");
@@ -63,7 +61,7 @@ public class Base {
 
 
     //导签名、密码
-    public static void getSign() throws Exception{
+    public  void getSign() throws Exception{
         findWebElement("com.tronlink.wallet:id/tv_import").click();
         //TimeUnit.SECONDS.sleep(3);
         while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
@@ -101,7 +99,7 @@ public class Base {
      * @return WebElement
      * @throws Exception
      */
-    public static WebElement findWebElement(String element) throws Exception {
+    public  WebElement findWebElement(String element) throws Exception {
         int tries = 0;
         Boolean Element_is_exist = false;
         WebElement el = null;
@@ -134,7 +132,7 @@ public class Base {
     }
 
 
-    public static void tearDownclass() {
+    public  void tearDownclass() {
         //writeLog("关闭app");
         DRIVER.closeApp();
         //writeLog("启动app");
@@ -142,7 +140,7 @@ public class Base {
     }
 
 
-    public static void tearDownAfterClass() {
+    public  void tearDownAfterClass() {
         //writeLog("删除 App");
         //DRIVER.removeApp("com.letv.iphone.client");
         //DRIVER.resetApp();
@@ -150,7 +148,7 @@ public class Base {
     }
 
 
-    public static void tearDownWithoutQuit() {
+    public  void tearDownWithoutQuit() {
         //writeLog("remove App");
         //DRIVER.removeApp("com.tronlink.wallet");
         DRIVER.closeApp();
@@ -158,13 +156,13 @@ public class Base {
     }
 
 
-    public static void log(String log) {
+    public  void log(String log) {
         String time = timeStamp.format(new Date()).toString();
         System.out.println(time + ": " + log);
     }
 
 
-    public static List<String> getDevicesInfo() throws IOException {
+    public  List<String> getDevicesInfo() throws IOException {
         List<String> list = new ArrayList<>();
         Process proc = Runtime.getRuntime().exec("adb devices");
         //Process proc = Runtime.getRuntime().exec("ideviceinfo");
@@ -184,7 +182,7 @@ public class Base {
     }
 
 
-    public static void main(String[] args) throws Exception {
+    public  void main(String[] args) throws Exception {
         getDevicesInfo();
     }
 

@@ -22,7 +22,7 @@ public class GuidePage extends AbstractPage {
         try {
             impAccount.click();
         }catch (Exception e){
-            Base.log("impAccount button not found");
+            new Base().log("impAccount button not found");
         }
         return new UserAgreementPage(driver);
     }

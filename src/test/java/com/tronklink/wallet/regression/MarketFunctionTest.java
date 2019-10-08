@@ -19,20 +19,20 @@ import static org.junit.Assert.assertThat;
 public class MarketFunctionTest extends Base {
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        Base.setUpBeforeClass();
+    public void setUpBeforeClass() throws Exception {
+        setUp();
 //      Base.getSign();
     }
 
     @BeforeMethod()
-    public static void setUpBefore() throws Exception{
+    public void setUpBefore() throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        Base.getSign();
+        getSign();
     }
 
     @AfterClass
-    public static void tearDownAfterClass() {
+    public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
         DRIVER.quit();
     }

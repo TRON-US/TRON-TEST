@@ -43,7 +43,7 @@ public class Retry2junit implements TestRule {
             }
 
             public void tearDown() throws Exception {
-                Base.tearDownWithoutQuit();
+                //Base.tearDownWithoutQuit();
             }
 
         };
