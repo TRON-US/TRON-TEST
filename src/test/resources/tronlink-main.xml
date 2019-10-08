@@ -16,9 +16,9 @@
         <parameter name="deviceName" value="samsung"/>
         <parameter name="noReset" value="false"/>
         <parameter name="systemPort" value="8205"/>
-        <packages>
-            <package name="tronlink.*"></package>
-        </packages>
+        <classes>
+            <class name="tronlink.ImportAccount"></class>
+        </classes>
     </test>
     <test name="tronlink2">
         <parameter name="port"  value="4798"/>
@@ -28,9 +28,9 @@
         <parameter name="deviceName" value="onePlus"/>
         <parameter name="noReset" value="false"/>
         <parameter name="systemPort" value="8200"/>
-        <packages>
-            <package name="tronlink.*"></package>
-        </packages>
+        <classes>
+            <class name="tronlink.ImportAccount"></class>
+        </classes>
     </test>
     <test name="tronlink3">
         <parameter name="port"  value="4801"/>
@@ -40,9 +40,9 @@
         <parameter name="deviceName" value="huawei"/>
         <parameter name="noReset" value="false"/>
         <parameter name="systemPort" value="8210"/>
-        <packages>
-            <package name="tronlink.*"></package>
-        </packages>
+        <classes>
+            <class name="tronlink.ImportAccount"></class>
+        </classes>
     </test>
 
 
