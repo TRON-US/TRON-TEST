@@ -13,9 +13,9 @@ import java.util.List;
 
 public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
-//    private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
-    private String adb = "adb";
-    private String packagesName = "<package name=\"tronlink.*\"></package>";
+    private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
+//    private String adb = "adb";
+    private String packagesName = "<package name=\"com.tronklink.wallet.regression.*\"></package>";
     private String platformName = "Android";
     private Boolean noReset = false;
     private Integer systemPort = 8200;
