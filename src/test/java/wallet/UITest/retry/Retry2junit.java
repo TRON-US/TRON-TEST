@@ -1,7 +1,6 @@
-package com.tronlink.wallet.UITest.retry;
+package wallet.UITest.retry;
 
 import org.junit.rules.TestRule;
-import com.tronlink.wallet.UITest.base.Base;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 

@@ -1,28 +1,24 @@
 package com.tronklink.wallet.regression;
 
-import com.tronlink.wallet.UITest.base.Base;
-import com.tronlink.wallet.pages.AssetPage;
-import com.tronlink.wallet.pages.MarketPage;
+import org.testng.Assert;
+import wallet.pages.MarketPage;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import wallet.UITest.base.Base;
+import wallet.pages.AssetPage;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThat;
 
 public class MarketFunctionTest extends Base {
 
-    @BeforeClass
-    public void setUpBeforeClass() throws Exception {
-        setUp();
-//      Base.getSign();
-    }
+//    @BeforeClass
+//    public void setUpBeforeClass() throws Exception {
+//        setUp();
+////      Base.getSign();
+//    }
 
     @BeforeMethod()
     public void setUpBefore() throws Exception{
@@ -42,7 +38,7 @@ public class MarketFunctionTest extends Base {
     public void test01_checkEnterMarketPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();
-        assertEquals(true,marketPage.Market_title.isDisplayed());
+        Assert.assertEquals(true,marketPage.Market_title.isDisplayed());
     }
 
 
@@ -53,7 +49,7 @@ public class MarketFunctionTest extends Base {
         String priceDesc = marketPage.sortFun();
         String priceAsc = marketPage.sortFun();
         //assertThat(priceDesc,is(equalTo(priceAsc)));
-        assertNotEquals(priceDesc,priceAsc);
+        Assert.assertNotEquals(priceDesc,priceAsc);
     }
 
 

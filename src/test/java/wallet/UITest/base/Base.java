@@ -1,27 +1,31 @@
-package com.tronlink.wallet.UITest.base;
+package wallet.UITest.base;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
-
-//@Listeners(com.tronlink.wallet.UITest.retry.RetryListener.class)
+//@Listeners(RetryListener.class)
 
 public class Base {
 
@@ -31,32 +35,65 @@ public class Base {
 
     public  int RetryAgainTimes = 2;
 
+    protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
     //@Test(retryAnalyzer = TestRetryAnalyzer.class)
 
 
     //setUp
-    public  void setUp() throws Exception {
-        //String[] deviceInfo = getDeviceInfo();
-        File appDir = new File(System.getProperty("user.dir"), ".//");
-        File app = new File(appDir, "TronLink.apk");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        //capabilities.setCapability("deviceName", "CLB0218A10004233");
-        capabilities.setCapability("deviceName", "CLB0218A10004233");
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion", "9");
-        //capabilities.setCapability("UninstallAfterCloseApp", true);
-        capabilities.setCapability("appPackage", "com.tronlink.wallet");//包名
-        capabilities.setCapability("appActivity", "com.tron.wallet.bussiness.welcome.WelcomeActivity");
-        capabilities.setCapability("unicodeKeyboard", true); // 输入中文
-        capabilities.setCapability("resetKeyboard", true);
-        capabilities.setCapability("noReset", false);
-        capabilities.setCapability("autoGrantPermissions", true);
-        capabilities.setCapability("noSign","true"); //with appium no sign again
-        //capabilities.setCapability("app", app.getAbsolutePath());
-        capabilities.setCapability("app", app.getAbsolutePath());
-        //create driver object
-        DRIVER = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
+    @BeforeTest
+    public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
+        try {
+            System.out.println(port+udid);
+            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -u " + udid);
+            InputStreamReader isr=new InputStreamReader(process.getInputStream());
+            Scanner sc=new Scanner(isr);
+            StringBuffer sb = new StringBuffer();
+            sb.append(sc.next());
+            System.out.println(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
+    @BeforeClass()
+    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws MalformedURLException {
+        System.out.println(port);
+        String url = "http://127.0.0.1:"+port+"/wd/hub";
+        desiredCapabilities.setCapability("deviceName", deviceName);
+        desiredCapabilities.setCapability("platformName", platformName);
+        desiredCapabilities.setCapability("platformVersion", platformVersion);
+        desiredCapabilities.setCapability("udid", udid);
+        desiredCapabilities.setCapability("systemPort", systemPort);
+        desiredCapabilities.setCapability("app", "/Users/tron/Desktop/app-tronTest-release.apk");
+        URL remoteUrl = new URL(url);
+        DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
+    }
+
+//    public  void setUp() throws Exception {
+//        //String[] deviceInfo = getDeviceInfo();
+//        File appDir = new File(System.getProperty("user.dir"), ".//");
+//        File app = new File(appDir, "TronLink.apk");
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        //capabilities.setCapability("deviceName", "CLB0218A10004233");
+//        capabilities.setCapability("deviceName", "CLB0218A10004233");
+//        capabilities.setCapability("platformName", "Android");
+//        capabilities.setCapability("platformVersion", "9");
+//        //capabilities.setCapability("UninstallAfterCloseApp", true);
+//        capabilities.setCapability("appPackage", "com.tronlink.wallet");//包名
+//        capabilities.setCapability("appActivity", "com.tron.wallet.bussiness.welcome.WelcomeActivity");
+//        capabilities.setCapability("unicodeKeyboard", true); // 输入中文
+//        capabilities.setCapability("resetKeyboard", true);
+//        capabilities.setCapability("noReset", false);
+//        capabilities.setCapability("autoGrantPermissions", true);
+//        capabilities.setCapability("noSign","true"); //with appium no sign again
+//        //capabilities.setCapability("app", app.getAbsolutePath());
+//        capabilities.setCapability("app", app.getAbsolutePath());
+//        //create driver object
+//        DRIVER = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+//    }
 
 
 
