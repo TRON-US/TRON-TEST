@@ -306,7 +306,7 @@ public class AppiumTestCase {
         driver.quit();
     }
 
-    public  String cmdReturn(String cmd) throws IOException {
+    public  static String cmdReturn(String cmd) throws IOException {
         Process process = Runtime.getRuntime().exec(cmd);
         InputStreamReader isr=new InputStreamReader(process.getInputStream());
         Scanner sc=new Scanner(isr);
@@ -317,7 +317,23 @@ public class AppiumTestCase {
         return sb.toString();
     }
 
-    public  ArrayList<String> devicesReturn(String cmd) throws IOException{
+    public  static List<String> getDeviceList(String cmd) throws IOException {
+        Process process = Runtime.getRuntime().exec(cmd);
+        InputStreamReader isr=new InputStreamReader(process.getInputStream());
+        Scanner s=new Scanner(isr);
+        List<String> deviceNamesList = new ArrayList<>();
+        String str;
+        while(s.hasNext()){
+            str = s.next();
+            if (str.equals("List")||str.equals("of")||str.equals("devices")||str.equals("attached")||str.equals("device")){
+                continue;
+            }
+            deviceNamesList.add(str);
+        }
+        return deviceNamesList;
+    }
+
+    public  static ArrayList<String> devicesReturn(String cmd) throws IOException{
         Process process = Runtime.getRuntime().exec(cmd);
         InputStreamReader isr=new InputStreamReader(process.getInputStream());
         Scanner sc=new Scanner(isr);
