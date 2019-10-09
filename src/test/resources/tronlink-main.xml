@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tronlink" parallel="tests" thread-count="3">
-    <parameter name="port"  value="4800"/>
-    <parameter name="udid" value="988a1642484c58434a"/>
-    <parameter name="platformName" value="Android"/>
-    <parameter name="platformVersion" value="8"/>
-    <parameter name="deviceName" value="samsung"/>
-    <parameter name="noReset" value="false"/>
-    <parameter name="systemPort" value="8205"/>
     <test name="tronlink1">
         <parameter name="port"  value="4800"/>
         <parameter name="udid" value="988a1642484c58434a"/>
