@@ -66,11 +66,12 @@ public class Base {
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("udid", udid);
+        desiredCapabilities.setCapability("noSign", true);
         desiredCapabilities.setCapability("systemPort", systemPort);
         File appDir = new File(System.getProperty("user.dir"), ".//");
         File app = new File(appDir, "TronLink.apk");
         desiredCapabilities.setCapability("app", app.getAbsolutePath());
-        //desiredCapabilities.setCapability("app", "/Users/tron/Desktop/app-tronTest-release.apk");
+//        desiredCapabilities.setCapability("app", "/Users/tron/Desktop/app-tronTest-release.apk");
         URL remoteUrl = new URL(url);
         DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
     }
