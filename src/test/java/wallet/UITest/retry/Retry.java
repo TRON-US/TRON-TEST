@@ -1,8 +1,8 @@
-package com.tronlink.wallet.UITest.retry;
+package wallet.UITest.retry;
 
-import com.tronlink.wallet.UITest.base.Base;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
+import wallet.UITest.base.Base;
 
 
 public class Retry implements IRetryAnalyzer {

@@ -1,24 +1,23 @@
 package com.tronklink.wallet.regression;
 
-import com.tronlink.wallet.UITest.base.Base;
-import com.tronlink.wallet.pages.AssetPage;
-import com.tronlink.wallet.pages.TransferPage;
-import com.tronlink.wallet.pages.VotePage;
+import wallet.pages.AssetPage;
+import wallet.pages.TransferPage;
+import wallet.pages.VotePage;
 import static org.junit.Assert.assertEquals;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import wallet.UITest.base.Base;
 
 
 public class DemoTest extends Base {
 
-    @BeforeClass
-    public void setUpBeforeClass() throws Exception {
-        setUp();
-        //Base.getSign();
-    }
+//    @BeforeClass
+//    public void setUpBeforeClass() throws Exception {
+//        setUp();
+//        //Base.getSign();
+//    }
 
     @BeforeMethod()
     public void setUpBefore() throws Exception{
