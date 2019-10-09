@@ -25,17 +25,17 @@ import io.appium.java_client.touch.offset.PointOption;
 
 public class Base {
 
-    public  AndroidDriver<?> DRIVER;
+    public AndroidDriver<?> DRIVER;
 
-    private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
+    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
-    public  int RetryAgainTimes = 2;
+    public int RetryAgainTimes = 2;
 
     //@Test(retryAnalyzer = TestRetryAnalyzer.class)
 
 
     //setUp
-    public  void setUp() throws Exception {
+    public void setUp() throws Exception {
         //String[] deviceInfo = getDeviceInfo();
         File appDir = new File(System.getProperty("user.dir"), ".//");
         File app = new File(appDir, "TronLink.apk");
@@ -59,9 +59,34 @@ public class Base {
     }
 
 
+    //setUp拆分，不清空缓存
+    public void setUpWithoutReset() throws Exception {
+        //String[] deviceInfo = getDeviceInfo();
+        File appDir = new File(System.getProperty("user.dir"), ".//");
+        File app = new File(appDir, "TronLink.apk");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        //capabilities.setCapability("deviceName", "CLB0218A10004233");
+        capabilities.setCapability("deviceName", "CLB0218A10004233");
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("platformVersion", "9");
+        //capabilities.setCapability("UninstallAfterCloseApp", true);
+        capabilities.setCapability("appPackage", "com.tronlink.wallet");//包名
+        capabilities.setCapability("appActivity", "com.tron.wallet.bussiness.welcome.WelcomeActivity");
+        capabilities.setCapability("unicodeKeyboard", true); // 输入中文
+        capabilities.setCapability("resetKeyboard", true);
+        capabilities.setCapability("noReset", true);
+        capabilities.setCapability("autoGrantPermissions", true);
+        capabilities.setCapability("noSign","true"); //with appium no sign again
+        //capabilities.setCapability("app", app.getAbsolutePath());
+        capabilities.setCapability("app", app.getAbsolutePath());
+        //create driver object
+        DRIVER = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    }
+
+
 
     //导签名、密码
-    public  void getSign() throws Exception{
+    public void getSign() throws Exception{
         findWebElement("com.tronlink.wallet:id/tv_import").click();
         //TimeUnit.SECONDS.sleep(3);
         while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
@@ -89,8 +114,6 @@ public class Base {
         findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
         findWebElement("com.tronlink.wallet:id/creat").click();
 
-
-
     }
 
     /**
@@ -99,7 +122,7 @@ public class Base {
      * @return WebElement
      * @throws Exception
      */
-    public  WebElement findWebElement(String element) throws Exception {
+    public WebElement findWebElement(String element) throws Exception {
         int tries = 0;
         Boolean Element_is_exist = false;
         WebElement el = null;
@@ -132,7 +155,7 @@ public class Base {
     }
 
 
-    public  void tearDownclass() {
+    public void tearDownclass() {
         //writeLog("关闭app");
         DRIVER.closeApp();
         //writeLog("启动app");
@@ -140,7 +163,7 @@ public class Base {
     }
 
 
-    public  void tearDownAfterClass() {
+    public void tearDownAfterClass() {
         //writeLog("删除 App");
         //DRIVER.removeApp("com.letv.iphone.client");
         //DRIVER.resetApp();
@@ -148,7 +171,7 @@ public class Base {
     }
 
 
-    public  void tearDownWithoutQuit() {
+    public void tearDownWithoutQuit() {
         //writeLog("remove App");
         //DRIVER.removeApp("com.tronlink.wallet");
         DRIVER.closeApp();
@@ -156,13 +179,13 @@ public class Base {
     }
 
 
-    public  void log(String log) {
+    public void log(String log) {
         String time = timeStamp.format(new Date()).toString();
         System.out.println(time + ": " + log);
     }
 
 
-    public  List<String> getDevicesInfo() throws IOException {
+    public List<String> getDevicesInfo() throws IOException {
         List<String> list = new ArrayList<>();
         Process proc = Runtime.getRuntime().exec("adb devices");
         //Process proc = Runtime.getRuntime().exec("ideviceinfo");
@@ -176,13 +199,16 @@ public class Base {
             }
         }
         for (int i=0;i<list.size();i++){
+            //System.out.println(list.get(i));
+            //打印设备信息
             System.out.println(list.get(i));
         }
+
         return list;
     }
 
 
-    public  void main(String[] args) throws Exception {
+    public void main(String[] args) throws Exception {
         getDevicesInfo();
     }
 
