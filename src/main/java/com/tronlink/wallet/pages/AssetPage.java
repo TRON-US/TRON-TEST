@@ -27,6 +27,12 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlink.wallet:id/appmarket")
     public WebElement market_btn;
 
+    @FindBy(id="com.tronlink.wallet:id/app1")
+    public WebElement find_btn;
+
+
+
+
 
     public TransferPage enterTransferPage() {
         assets_btn.click();
@@ -37,15 +43,25 @@ public class AssetPage extends AbstractPage {
         return new TransferPage(driver);
     }
 
+    //enter Vote Page
     public VotePage enterVotePage(){
         vote_btn.click();
         return new VotePage(driver);
     }
 
+    //enter Market Page
     public MarketPage enterMarketPage(){
         market_btn.click();
         return new MarketPage(driver);
     }
+
+    //enter Find Page
+    public FindPage enterFindPage() {
+        find_btn.click();
+        return new FindPage(driver);
+    }
+
+
 
 
 

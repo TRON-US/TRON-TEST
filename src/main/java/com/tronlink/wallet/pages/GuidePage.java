@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import com.tronlink.wallet.UITest.base.Base;
 import io.appium.java_client.android.AndroidDriver;
 
+
 public class GuidePage extends AbstractPage {
 
     public AndroidDriver<?> driver;

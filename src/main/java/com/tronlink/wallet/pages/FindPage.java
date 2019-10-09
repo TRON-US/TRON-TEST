@@ -5,21 +5,14 @@ import org.openqa.selenium.support.FindBy;
 
 import io.appium.java_client.android.AndroidDriver;
 
-/**
- * 收款页
- */
-
-public class VotePage extends AbstractPage {
+public class FindPage extends AbstractPage {
 
     public AndroidDriver<?> driver;
 
-    public VotePage(AndroidDriver<?> driver) {
+    public FindPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
     }
-
-    @FindBy(id = "com.tronlink.wallet:id/title")
-    public WebElement voteTitle_btn;
 
 
 

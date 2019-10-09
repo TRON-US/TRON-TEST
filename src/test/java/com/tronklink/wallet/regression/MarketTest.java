@@ -16,7 +16,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 
-public class MarketFunctionTest extends Base {
+
+/**
+ * 行情功能测试
+ */
+
+public class MarketTest extends Base {
 
     @BeforeClass
     public void setUpBeforeClass() throws Exception {
@@ -37,11 +42,18 @@ public class MarketFunctionTest extends Base {
         DRIVER.quit();
     }
 
+    public MarketPage enterMarketPage() {
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        return marketPage;
+    }
+
 
     @Test //测试进入市场页
     public void test01_checkEnterMarketPage() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MarketPage marketPage = asset.enterMarketPage();
+        MarketPage marketPage = enterMarketPage();
+        //AssetPage asset = new AssetPage(DRIVER);
+        //MarketPage marketPage = asset.enterMarketPage();
         assertEquals(true,marketPage.Market_title.isDisplayed());
     }
 
@@ -55,6 +67,8 @@ public class MarketFunctionTest extends Base {
         //assertThat(priceDesc,is(equalTo(priceAsc)));
         assertNotEquals(priceDesc,priceAsc);
     }
+
+
 
 
 
