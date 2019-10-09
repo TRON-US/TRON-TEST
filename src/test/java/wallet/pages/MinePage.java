@@ -1,11 +1,9 @@
 package wallet.pages;
 
-import com.tronlink.wallet.UITest.base.Base;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import io.appium.java_client.android.AndroidDriver;
+import wallet.UITest.base.Base;
 
 /**
  * 我的钱包页面
