@@ -46,7 +46,7 @@ public class Base {
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
         try {
             System.out.println(port+udid);
-            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -u " + udid);
+            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -U " + udid);
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
