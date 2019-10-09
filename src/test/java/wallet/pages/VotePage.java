@@ -1,9 +1,8 @@
-package com.tronlink.wallet.pages;
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+package wallet.pages;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * 收款页
