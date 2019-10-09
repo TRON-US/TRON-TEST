@@ -26,7 +26,7 @@ test {
     }
 }
 
-task tronlink(type: Test) {
+task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
 
     useTestNG {
         suites(file('src/test/resources/tronlink-testng.xml'))
