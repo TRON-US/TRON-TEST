@@ -265,8 +265,13 @@ public class AppiumTestCase {
     protected AndroidDriver driver;
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
     @BeforeSuite
+    public void setupDevices(){
+
+    }
+
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
+    @BeforeTest
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
                     try {
                         System.out.println(port+udid);
