@@ -1,4 +1,4 @@
-package com.tronlink.wallet.UITest.retry;
+package wallet.UITest.retry;
 
 import org.testng.ITestResult;
 import org.testng.util.RetryAnalyzerCount;
