@@ -3,14 +3,21 @@
 <suite name="tronlink" parallel="tests" thread-count="1">
     <test name= "988a1642484c58434a">
         <parameter name="port"  value="4800"/>
-        <parameter name="udid" value="988a1642484c58434a"/>
+        <parameter name="udid" value="CLB0218A10004233"/>
         <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value= "8.0.0"/>
-        <parameter name="deviceName" value= "dream2qltezc"/>
+        <parameter name="platformVersion" value= "9"/>
+        <parameter name="deviceName" value= "EML-AL00"/>
         <parameter name="noReset" value="false"/>
         <parameter name="systemPort"  value="8200"/>
+        <!--运行全部用例
+        <packages>
+            <package name="com.tronklink.wallet.regression.*"></package>
+        </packages>
+        -->
+        <!--运行单个测试类-->
         <classes>
             <class name="com.tronklink.wallet.regression.DemoTest"></class>
+            <class name="com.tronklink.wallet.regression.MarketFunctionTest"></class>
         </classes>
     </test>
 </suite>
