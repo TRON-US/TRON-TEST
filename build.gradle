@@ -38,7 +38,7 @@ task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
 
 task autoCreateTestngXml(type: Test) {
     useTestNG {
-        suites(file('src/test/resources/export-transaction-configuration.xml'))
+        suites(file('src/test/resources/autoCreateTestngXml.xml'))
         parallel 'tests'
         threadCount 1
     }
