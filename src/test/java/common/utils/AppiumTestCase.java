@@ -296,7 +296,10 @@ public class AppiumTestCase {
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("udid", udid);
         desiredCapabilities.setCapability("systemPort", systemPort);
-        desiredCapabilities.setCapability("app", "/Users/tron/Desktop/app-tronTest-release.apk");
+        desiredCapabilities.setCapability("noSign", true);
+        File appDir = new File(System.getProperty("user.dir"), ".//");
+        File app = new File(appDir, "TronLink.apk");
+        desiredCapabilities.setCapability("app", app.getAbsolutePath());
         URL remoteUrl = new URL(url);
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
     }
