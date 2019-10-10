@@ -45,7 +45,7 @@ public class SendTrx extends Base {
         SendTrxSuccessPage stsp = transfer.enterSendTrxSuccessPage();
         String trxValueNewest = stsp.trxCount.getText();
         //System.out.println(trxValue+"-----"+trxValueNewest);
-        Assert.assertNotEquals(trxValue,trxValueNewest);
+        Assert.assertEquals(trxValue,trxValueNewest);
     }
 
 
