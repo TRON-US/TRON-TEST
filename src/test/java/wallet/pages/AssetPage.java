@@ -26,14 +26,19 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlink.wallet:id/appmarket")
     public WebElement market_btn;
 
+    @FindBy(id="com.tronlink.wallet:id/tv_trx_value")
+    public WebElement trxValue;
 
-    public TransferPage enterTransferPage() {
+    @FindBy(id="com.tronlink.wallet:id/rl_receive")
+    public WebElement receipt_btn;
+
+    public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
 //        try {assets_btn.click();
 //        }catch (Exception e){
 //            Base.log("assets_btn button not found");
 //        }
-        return new TransferPage(driver);
+        return new SendTrxPage(driver);
     }
 
     public VotePage enterVotePage(){
@@ -44,6 +49,16 @@ public class AssetPage extends AbstractPage {
     public MarketPage enterMarketPage(){
         market_btn.click();
         return new MarketPage(driver);
+    }
+
+    public ReceiptPage enterReceiptPage(){
+        receipt_btn.click();
+        return new ReceiptPage(driver);
+    }
+
+    public String getTrxCount(){
+        String trxCount = trxValue.getText().split(" ")[0];
+        return trxCount;
     }
 
 

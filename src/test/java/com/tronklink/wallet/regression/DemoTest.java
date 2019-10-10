@@ -1,23 +1,16 @@
 package com.tronklink.wallet.regression;
 
 import wallet.pages.AssetPage;
-import wallet.pages.TransferPage;
+import wallet.pages.SendTrxPage;
 import wallet.pages.VotePage;
 import static org.junit.Assert.assertEquals;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import wallet.UITest.base.Base;
 
 
 public class DemoTest extends Base {
-
-//    @BeforeClass
-//    public void setUpBeforeClass() throws Exception {
-//        setUp();
-//        //Base.getSign();
-//    }
 
     @BeforeMethod()
     public void setUpBefore() throws Exception{
@@ -36,7 +29,7 @@ public class DemoTest extends Base {
     @Test //测试是否正常进行投票页
     public void test01_checkPopularSearch() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TransferPage transfer = asset.enterTransferPage();
+        SendTrxPage transfer = asset.enterSendTrxPage();
         assertEquals(true,transfer.transferTtile_btn.isDisplayed());
     }
 
