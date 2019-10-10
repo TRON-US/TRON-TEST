@@ -29,6 +29,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlink.wallet:id/tv_trx_value")
     public WebElement trxValue;
 
+    @FindBy(id="com.tronlink.wallet:id/rl_receive")
+    public WebElement receipt_btn;
 
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
@@ -47,6 +49,11 @@ public class AssetPage extends AbstractPage {
     public MarketPage enterMarketPage(){
         market_btn.click();
         return new MarketPage(driver);
+    }
+
+    public ReceiptPage enterReceiptPage(){
+        receipt_btn.click();
+        return new ReceiptPage(driver);
     }
 
     public String getTrxCount(){
