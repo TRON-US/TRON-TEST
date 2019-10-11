@@ -6,7 +6,7 @@
 # gradle
 .gradle
 build
-
+exceptionLogs
 # log
 logs
 consensus-logs
