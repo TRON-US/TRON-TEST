@@ -80,7 +80,6 @@ public class autoCreateTestngXml {
     );
 
 
-
     @BeforeClass
     public void beforeClass() throws IOException{
         deviceNameList = AppiumTestCase.getDeviceList(adb + " devices");
@@ -189,7 +188,7 @@ public class autoCreateTestngXml {
 
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
         Long amount, String fromKey) {
-        try {
+      try {
             final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("to_address", toAddress);
@@ -277,7 +276,7 @@ public class autoCreateTestngXml {
         Integer times = 0;
 
         while (times++ <= 10 && responseContent.getString("code") != null && responseContent
-            .getString("code").equalsIgnoreCase("SERVER_BUSY")) {
+                .getString("code").equalsIgnoreCase("SERVER_BUSY")) {
             try {
                 response = httpClient.execute(httppost);
             } catch (Exception e) {
