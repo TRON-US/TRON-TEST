@@ -2,6 +2,7 @@ package wallet.UITest.base;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import java.io.BufferedInputStream;
@@ -66,14 +67,17 @@ public class Base {
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("udid", udid);
-        desiredCapabilities.setCapability("noSign", true);
-        desiredCapabilities.setCapability("systemPort", systemPort);
-        File appDir = new File(System.getProperty("user.dir"), ".//");
-        File app = new File(appDir, "TronLink.apk");
-        desiredCapabilities.setCapability("app", app.getAbsolutePath());
-//        desiredCapabilities.setCapability("app", "/Users/tron/Desktop/app-tronTest-release.apk");
+        desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
+        desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+        desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+//        File appDir = new File(System.getProperty("user.dir"), ".//");
+//        File app = new File(appDir, "TronLink.apk");
+//        desiredCapabilities.setCapability("app", app.getAbsolutePath());
+//        System.out.println(app.getAbsoluteFile());
+        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
         URL remoteUrl = new URL(url);
         DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
+        screenOn();
     }
 
 //    public  void setUp() throws Exception {
@@ -220,6 +224,26 @@ public class Base {
             System.out.println(list.get(i));
         }
         return list;
+    }
+
+    public   void screenOn() {
+        try {
+            Runtime rt = Runtime.getRuntime();
+            Process p = rt.exec("adb shell dumpsys power | findstr \"Display Power:state=\"");
+            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            String content = "";
+            while ((line = in.readLine()) != null) {
+                content = content + line;
+            }
+            if (content.contains("Display Power: state=OFF")) {
+                Runtime.getRuntime().exec("adb shell input keyevent 26");
+                Runtime.getRuntime().exec("adb shell input keyevent 3");
+            }
+            p.destroy();
+        } catch (IOException ex) {
+            return;
+        }
     }
 
 
