@@ -46,8 +46,7 @@ public class SendTrxPage extends AbstractPage {
 
 
     public void swip(){
-        Helper helper = new Helper();
-        helper.swipScreen(driver);
+        Helper.swipScreen(driver);
     }
 
 
