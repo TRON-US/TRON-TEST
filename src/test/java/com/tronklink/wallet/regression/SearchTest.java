@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import wallet.UITest.base.Base;
-
+import org.testng.annotations.*;
 /**
  * 搜索功能测试
  * 在行情页面->搜索
@@ -18,11 +18,12 @@ public class SearchTest extends Base {
 //        setUp();
 //    }
 
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass

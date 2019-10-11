@@ -4,6 +4,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import org.testng.annotations.*;
 import wallet.UITest.base.Base;
 
 /**
@@ -17,11 +18,12 @@ public class SettingTest extends Base {
 //        setUp();
 //    }
 
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass
