@@ -9,7 +9,7 @@ import io.appium.java_client.touch.offset.PointOption;
 
 public class Helper {
 
-    public void swipScreen(AndroidDriver<?> driver){
+    public static void swipScreen(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
