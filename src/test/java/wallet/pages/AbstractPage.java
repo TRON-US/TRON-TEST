@@ -18,11 +18,9 @@ public abstract class AbstractPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
     }
 
     public WebElement WaitforElement(By element){
-
         PageFactory.initElements(driver, this);
         new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(element));
         return driver.findElement(element);
