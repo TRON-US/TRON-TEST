@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import wallet.UITest.base.Base;
-
+import org.testng.annotations.*;
 /**
  * 交易记录功能测试
  */
@@ -16,11 +16,12 @@ public class TransactionRecordTest extends Base {
 //        setUp();
 //    }
 
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass
