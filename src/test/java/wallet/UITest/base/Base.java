@@ -70,11 +70,11 @@ public class Base {
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-//        File appDir = new File(System.getProperty("user.dir"), ".//");
-//        File app = new File(appDir, "TronLink.apk");
-//        desiredCapabilities.setCapability("app", app.getAbsolutePath());
+        File appDir = new File(System.getProperty("user.dir"), ".//");
+        File app = new File(appDir, "TronLink.apk");
+        desiredCapabilities.setCapability("app", app.getAbsolutePath());
 //        System.out.println(app.getAbsoluteFile());
-        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
+//        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
         URL remoteUrl = new URL(url);
         DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
         screenOn();
