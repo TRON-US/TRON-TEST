@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import org.apache.tools.ant.taskdefs.EchoXML;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -37,6 +38,8 @@ public class Base {
     public  int RetryAgainTimes = 2;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
+    public String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
 
     //@Test(retryAnalyzer = TestRetryAnalyzer.class)
 
@@ -61,7 +64,6 @@ public class Base {
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
     @BeforeClass()
     public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws MalformedURLException {
-        System.out.println(port);
         String url = "http://127.0.0.1:"+port+"/wd/hub";
         desiredCapabilities.setCapability("deviceName", deviceName);
         desiredCapabilities.setCapability("platformName", platformName);
@@ -70,11 +72,11 @@ public class Base {
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
         desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-//        File appDir = new File(System.getProperty("user.dir"), ".//");
-//        File app = new File(appDir, "TronLink.apk");
-//        desiredCapabilities.setCapability("app", app.getAbsolutePath());
-//        System.out.println(app.getAbsoluteFile());
-        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
+        File appDir = new File(System.getProperty("user.dir"), ".//");
+        File app = new File(appDir, "TronLink.apk");
+        desiredCapabilities.setCapability("app", app.getAbsolutePath());
+        System.out.println(app.getAbsoluteFile());
+//        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
         URL remoteUrl = new URL(url);
         DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
         screenOn();
@@ -104,9 +106,8 @@ public class Base {
 //    }
 
 
-
     //导签名、密码
-    public  void getSign() throws Exception{
+    public  void getSign(String testPrivateKey) throws Exception{
         findWebElement("com.tronlink.wallet:id/tv_import").click();
         //TimeUnit.SECONDS.sleep(3);
         while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
@@ -123,7 +124,6 @@ public class Base {
         }
         findWebElement("com.tronlink.wallet:id/bt_accept").click();
         findWebElement("com.tronlink.wallet:id/cd_pk").click();
-        String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
         findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
         findWebElement("com.tronlink.wallet:id/bt_next").click();
         findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Auto-test");

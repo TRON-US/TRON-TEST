@@ -15,7 +15,7 @@ import wallet.pages.MarketPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-
+import org.testng.annotations.*;
 
 /**
  * 行情功能测试
@@ -26,14 +26,15 @@ public class MarketTest extends Base {
 //    @BeforeClass
 //    public void setUpBeforeClass() throws Exception {
 //        setUp();
-////      Base.getSign();
+////      Base.getSign(privateKey);
 //    }
 
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass
