@@ -4,6 +4,8 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 /**
  * 资产页
  */
@@ -32,6 +34,15 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlink.wallet:id/rl_receive")
     public WebElement receipt_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_bg_add_assets")
+    public WebElement addAssert_btn;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/assets_name")
+    public List<WebElement> myAddedAssert_btn;
+
+
+
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
 //        try {assets_btn.click();
@@ -59,6 +70,11 @@ public class AssetPage extends AbstractPage {
     public String getTrxCount(){
         String trxCount = trxValue.getText().split(" ")[0];
         return trxCount;
+    }
+
+    public AddAssertPage enterAddAssertPage(){
+        addAssert_btn.click();
+        return new AddAssertPage(driver);
     }
 
 
