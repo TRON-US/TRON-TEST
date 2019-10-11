@@ -10,6 +10,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import org.testng.collections.Lists;
 
 public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
@@ -20,7 +21,12 @@ public class autoCreateTestngXml {
     private Boolean noReset = false;
     private Integer systemPort = 8200;
     private Integer port = 4800;
+    int accoutNumber = 0;
     List<String> deviceNameList = new ArrayList<>();
+    List<String> account = Lists.newArrayList("ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72",
+        "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72",
+        "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72",
+        "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72");
 
 
 
@@ -52,6 +58,7 @@ public class autoCreateTestngXml {
             sb.append("        <parameter name=\"deviceName\" value= \"" + deviceName + "\"/>\n");
             sb.append("        <parameter name=\"noReset\" value=\"" + noReset.toString() + "\"/>\n");
             sb.append("        <parameter name=\"systemPort\"  value=\"" + systemPort++ + "\"/>\n");
+            sb.append("        <parameter name=\"privateKey\"  value=\"" + account.get(accoutNumber++) + "\"/>\n");
             sb.append("        <packages>\n" +
                     "            " + packagesName + "\n" +
                     "        </packages>\n" +

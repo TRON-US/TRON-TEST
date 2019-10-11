@@ -10,21 +10,22 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
-
+import org.testng.annotations.*;
 
 public class MarketFunctionTest extends Base {
 
 //    @BeforeClass
 //    public void setUpBeforeClass() throws Exception {
 //        setUp();
-////      Base.getSign();
+////      Base.getSign(privateKey);
 //    }
 
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass

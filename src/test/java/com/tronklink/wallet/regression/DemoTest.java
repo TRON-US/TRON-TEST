@@ -1,5 +1,6 @@
 package com.tronklink.wallet.regression;
 
+import org.testng.annotations.Parameters;
 import wallet.pages.AssetPage;
 import wallet.pages.SendTrxPage;
 import wallet.pages.VotePage;
@@ -8,15 +9,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import wallet.UITest.base.Base;
-
+import org.testng.annotations.*;
 
 public class DemoTest extends Base {
-
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass
