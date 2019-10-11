@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
 import wallet.pages.ReceiptPage;
-
+import org.testng.annotations.*;
 /**
  * receipt trx test
  */
@@ -23,11 +23,12 @@ public class ReceiptTest extends Base {
 //        setUp();
 //    }
 
+    @Parameters({"privateKey"})
     @BeforeMethod()
-    public void setUpBefore() throws Exception{
+    public void setUpBefore(String privateKey) throws Exception{
         DRIVER.closeApp();
         DRIVER.launchApp();
-        getSign();
+        getSign(privateKey);
     }
 
     @AfterClass
