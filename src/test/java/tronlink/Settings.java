@@ -24,14 +24,15 @@ public class Settings extends AppiumTestCase {
     public  String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
     public  String testPassword = "Test0001";
 
-    @Test
+    @Test(enabled = false)
     public void test01Language() {
+      importWallet(testPrivateKey);
         testOperation(  tabMy,"click","click tab My");
          testOperation(  settings,"click","click settings");
          testOperation(  setting_languane,"click","click language");
 
         List<MobileElement> elements = driver.findElementsById( language_title);
-        if (elements.get(0).isDisplayed()){
+        if (elements.get(0).isSelected()){
             elements.get(1).click();
             Assert.assertEquals( getText(  totalAssets),"总资产");
             Assert.assertEquals( getText(  energyOptionIconId),"能量");
@@ -55,21 +56,23 @@ public class Settings extends AppiumTestCase {
              testOperation(  settings,"click","click settings");
              testOperation(  setting_languane,"click","click language");
 
-            elements.get(1).click();
-            Assert.assertEquals( getText(  totalAssets),"总资产");
-            Assert.assertEquals( getText(  energyOptionIconId),"能量");
-            Assert.assertEquals( getText(  bandwidthOptionIconId),"带宽");
+//            elements.get(1).click();
+//            Assert.assertEquals( getText(  totalAssets),"总资产");
+//            Assert.assertEquals( getText(  energyOptionIconId),"能量");
+//            Assert.assertEquals( getText(  bandwidthOptionIconId),"带宽");
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void test02Currency() {
-         testOperation(  tabMy,"click","click tab My");
+      importWallet(testPrivateKey);
+
+      testOperation(  tabMy,"click","click tab My");
          testOperation(  settings,"click","click settings");
          testOperation(  setting_currency,"click","click currency");
 
         List<MobileElement> elements = driver.findElementsById( language_title);
-        if (elements.get(0).isDisplayed()){
+        if (elements.get(0).isSelected()){
             elements.get(1).click();
             driver.pressKey(new KeyEvent(AndroidKey.BACK));
              testOperation(  tabAssets,"click","click start up");
@@ -102,7 +105,7 @@ public class Settings extends AppiumTestCase {
     }
 
 
-    @Test
+    @Test(enabled = false)
     public void test03Conversion() {
          testOperation(  tabMy,"click","click tab My");
          testOperation(  settings,"click","click settings");
@@ -115,7 +118,7 @@ public class Settings extends AppiumTestCase {
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
-    @Test
+    @Test(enabled = false)
     public void test04DeveloperOptions() {
          testOperation(  setting_developer,"click","click developer options");
          testOperation(  confirm,"click","click connect");
@@ -124,7 +127,7 @@ public class Settings extends AppiumTestCase {
          testOperation(  confirm,"click","click close connect");
     }
 
-    @Test
+    @Test(enabled = false)
     public void test05DappBrowser() {
          testOperation(  setting_dapp,"click","click dapp browser");
          testOperation(  dappUrl,"input","http://dapp.tronlink.org/#/","input url");
@@ -133,7 +136,7 @@ public class Settings extends AppiumTestCase {
     }
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 
 }
