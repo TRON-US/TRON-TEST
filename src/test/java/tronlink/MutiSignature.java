@@ -76,7 +76,7 @@ public class MutiSignature extends AppiumTestCase {
 
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 
 }

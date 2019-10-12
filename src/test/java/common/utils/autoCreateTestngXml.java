@@ -176,7 +176,10 @@ public class autoCreateTestngXml {
     public void beforeWrite() {
         StringBuilder sb = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
-            + "<suite name=\"tronlink\" parallel=\"tests\" thread-count=\"" + deviceNameList.size() + "\">\n");
+            + "<suite name=\"tronlink\" parallel=\"tests\" thread-count=\"" + deviceNameList.size() + "\">\n"
+            + "    <listeners>\n"
+            + "        <listener class-name=\"wallet.UITest.retry.RetryListener\"/>\n"
+            + "    </listeners>\n");
         String res = sb.toString();
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"));
