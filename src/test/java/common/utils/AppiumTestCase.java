@@ -14,6 +14,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
@@ -296,6 +297,7 @@ public class AppiumTestCase {
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("unicodeKeyboard", true);
         desiredCapabilities.setCapability("udid", udid);
+        desiredCapabilities.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, 300000);
         desiredCapabilities.setCapability("systemPort", systemPort);
         desiredCapabilities.setCapability("noSign", true);
         File appDir = new File(System.getProperty("user.dir"), ".//");

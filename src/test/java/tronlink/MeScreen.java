@@ -59,7 +59,7 @@ public class MeScreen extends AppiumTestCase {
 
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 
 }
