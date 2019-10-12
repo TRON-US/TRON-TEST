@@ -25,12 +25,12 @@ public class AddAssets extends AppiumTestCase {
          Assert.assertTrue(driver.findElementById( assetDisplayAreaId).isEnabled());
          testOperation(  assetSwitchId,"click","Turn on/off the asset switch");
          driver.pressKey(new KeyEvent(AndroidKey.BACK));
-         testOperation(  assetsDisplayedXPath,"click","Display asset");
-         Assert.assertTrue(driver.findElementByXPath( assetsDisplayedFirstElementXPath).isDisplayed());
+//         testOperation(  assetsDisplayedXPath,"click","Display asset");
+//         Assert.assertTrue(driver.findElementByXPath( assetsDisplayedFirstElementXPath).isDisplayed());
     }
 
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 }

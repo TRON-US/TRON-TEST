@@ -20,7 +20,6 @@ public class SendTrx extends AppiumTestCase {
     @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
     public void test01TransferTrx() {
         importWallet(testPrivateKey);
-
         testOperation(  meIconId,"click","Enter to market screen");
          testOperation(  discoverIconId,"click","Enter to market screen");
          testOperation(  marketsIconId,"click","Enter to market screen");
@@ -36,8 +35,6 @@ public class SendTrx extends AppiumTestCase {
     }
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
-
-
 }
