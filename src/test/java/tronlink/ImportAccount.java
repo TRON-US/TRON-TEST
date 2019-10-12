@@ -134,7 +134,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRPrivateKey(){
 
         //use PrivateKey QRcode import account
@@ -193,7 +193,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRWatchAddress(){
 
         //startup page
@@ -254,7 +254,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRMnemonic(){
         //startup page
          testOperation(   importAccountId,"click","click import Account");
@@ -320,7 +320,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRBackupkeystore(){
         //startup page
          testOperation(   importAccountId,"click","click import Account");

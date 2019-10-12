@@ -294,6 +294,7 @@ public class AppiumTestCase {
         desiredCapabilities.setCapability("deviceName", deviceName);
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
+        desiredCapabilities.setCapability("unicodeKeyboard", true);
         desiredCapabilities.setCapability("udid", udid);
         desiredCapabilities.setCapability("systemPort", systemPort);
         desiredCapabilities.setCapability("noSign", true);
