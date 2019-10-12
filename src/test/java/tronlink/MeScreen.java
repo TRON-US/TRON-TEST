@@ -28,13 +28,13 @@ public class MeScreen extends AppiumTestCase {
 
         //Friend invitation
          testOperation(  meFriendInvitationId,"click","Enter to friend invitation screen");
-         testOperation( "swipeUp","");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+         testOperation(  common_left,"click","back");
+//         testOperation( "swipeUp","");
 
         //Announcement screen
          testOperation(  meAnnouncementId,"click","Enter to announcement screen");
-         testOperation( "swipeUp","");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+//         testOperation( "swipeUp","");
+      testOperation(  common_left,"click","back");
 
         //Join Our Communities
          testOperation(  meJoinOurCommunitiesId,"click","Enter to Join Our Communitites screen");
@@ -42,18 +42,18 @@ public class MeScreen extends AppiumTestCase {
         Assert.assertTrue( isEnabled(  meJoinOurCommunitiesChineseTelegraphGroupId));
         Assert.assertTrue( isEnabled(  meJoinOurCommunitiesTwitterId));
         Assert.assertTrue( isEnabled(  meJoinOurCommunitiesWechatId));
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      testOperation(  common_left,"click","back");
 
         //Help Center
          testOperation(  meHelpCenterId,"click","Enter to help center screen");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      testOperation(  common_left,"click","back");
 
         //About Us
          testOperation(  meAboutUsId,"click","Enter to about Us screen");
          testOperation(  meAboutUsVersionLogsId,"click","Enter to version logs screen");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      testOperation(  common_left,"click","back");
          testOperation(  meAbountUsVersionVersionUpdateId,"click","Try to update version");
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+      testOperation(  common_left,"click","back");
 
     }
 
