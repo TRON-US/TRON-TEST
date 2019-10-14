@@ -18,7 +18,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 public class Discover extends AppiumTestCase {
 
 
-    @Test(enabled = true, threadPoolSize = 1, invocationCount = 1)
+    @Test(enabled = false, threadPoolSize = 1, invocationCount = 1)
     public void test01DiscoverScreen() {
         importWallet(testPrivateKey);
 
@@ -55,7 +55,7 @@ public class Discover extends AppiumTestCase {
 
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 
 }
