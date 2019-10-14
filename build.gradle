@@ -38,9 +38,8 @@ task tronlinkTask(type: Test,dependsOn: 'autoCreateTestngXml') {
 task tronlink(type: Exec) {
     dependsOn 'tronlinkTask'
     //commandLine 'sh', '-c', 'collectExceptionLog.sh'
-    workingDir "$projectDir"
     executable 'sh'
-    args "-c","./collectExceptionLog.sh"
+    args "-c","$projectDir/collectExceptionLog.sh"
     doLast {
         println("before do last testng")
 /*        if (tasks.listenTronlinkException.process != null) {
@@ -61,8 +60,6 @@ task autoCreateTestngXml(type: Test,dependsOn: 'listenTronlinkException') {
 
 task listenTronlinkException() {
     doFirst {
-        println("$projectDir")
-        workingDir "$projectDir"
         ext.process = new ProcessBuilder()
                 .command('sh', '-c', 'listenTronlinkException.sh')
                 .start()
