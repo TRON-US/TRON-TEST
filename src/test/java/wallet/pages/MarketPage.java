@@ -27,12 +27,28 @@ public class MarketPage extends AbstractPage {
     public List<WebElement> firstRowPriceList;
 
 
-    public String sortFun(){
+    @FindBy(id = "com.tronlink.wallet:id/tv_change")
+    public WebElement quoteChange_btn;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_statue")
+    public WebElement firstQuoteChange_list;
+
+
+    public String sortPrice(){
         firstRowPriceList.get(0).click();
         String price = firstRowPriceList.get(1).getText();
-        System.out.println(price);
+        //System.out.println(price);
         return price;
     }
+
+    public String sortQuoteChange(){
+        quoteChange_btn.click();
+        String price = firstQuoteChange_list.getText();
+        return price;
+    }
+
+
 
 
 }
