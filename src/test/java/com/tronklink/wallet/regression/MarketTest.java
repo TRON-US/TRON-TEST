@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 import org.testng.annotations.*;
 
 /**
- * 行情功能测试
+ * market function test
  */
 
 public class MarketTest extends Base {
@@ -50,7 +50,7 @@ public class MarketTest extends Base {
     }
 
 
-    @Test //测试进入市场页
+    @Test(description = "Enter MarketPage Test")
     public void test01_checkEnterMarketPage() throws Exception {
         MarketPage marketPage = enterMarketPage();
         //AssetPage asset = new AssetPage(DRIVER);
@@ -59,13 +59,23 @@ public class MarketTest extends Base {
     }
 
 
-    @Test //测试点击价格排序功能是否正常
+    @Test(description = "newest price Sort Test") //测试点击价格排序功能是否正常
     public void test02_newPriceSort() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();
-        String priceDesc = marketPage.sortFun();
-        String priceAsc = marketPage.sortFun();
+        String priceDesc = marketPage.sortPrice();
+        String priceAsc = marketPage.sortPrice();
         //assertThat(priceDesc,is(equalTo(priceAsc)));
+        Assert.assertNotEquals(priceDesc,priceAsc);
+    }
+
+
+    @Test(description = "Quote change Sort Test")
+    public void test03_quoteChange() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        String priceDesc = marketPage.sortQuoteChange();
+        String priceAsc = marketPage.sortQuoteChange();
         Assert.assertNotEquals(priceDesc,priceAsc);
     }
 
