@@ -21,6 +21,6 @@ done
 for deviceName in ${devicesList[@]}
 do 
   echo $deviceName
-  nohup adb -s $deviceName logcat *:W | grep -E 'Fatal|Crash|AndroidRuntime|Exception' | grep 'com.tronlink.wallet'  > exception_$deviceName.log 2>&1 &
+  nohup adb -s $deviceName logcat *:E | grep -E 'Fatal|Crash|AndroidRuntime|Exception' | grep 'com.tronlink.wallet'  > exception_$deviceName.log 2>&1 &
   echo "adb nohup"
 done
