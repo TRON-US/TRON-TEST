@@ -37,12 +37,14 @@ task tronlinkTask(type: Test,dependsOn: 'autoCreateTestngXml') {
 
 task tronlink(type: Exec) {
     dependsOn 'tronlinkTask'
-    commandLine 'sh', '-c', 'collectExceptionLog.sh'
+    //commandLine 'sh', '-c', 'collectExceptionLog.sh'
+    executable 'sh'
+    args "-c","./collectExceptionLog.sh"
     doLast {
         println("before do last testng")
-        if (tasks.listenTronlinkException.process != null) {
+/*        if (tasks.listenTronlinkException.process != null) {
             tasks.listenTronlinkException.process.destroy()
-        }
+        }*/
         println("after do last testng")
 
     }
