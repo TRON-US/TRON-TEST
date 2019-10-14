@@ -20,7 +20,7 @@ public class ImportAccount extends AppiumTestCase {
 
     public   String walletAddress = "";
     public   String walletPassword = "Test0001";
-    public   String walletPrivateKey = "";
+    public   String walletPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
     public   String backupMnemonic = "";
     public   StringBuffer backupMnemonicBf = new StringBuffer();
     public   String backupkeystore = "";
@@ -101,40 +101,31 @@ public class ImportAccount extends AppiumTestCase {
          QRCode(backupkeystore,"/Users/tron/Documents/TestUi/tron-UITest/src/test/resources/QRresources/backupkeystore.png","backupkeystore");
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_PrivateKey(){
         //startup page
-         testOperation(   importAccountId,"click","click import Account");
-        while (! isEnabled(  acceptImportAccount)){
-             testOperation( "swipeUp","");
-        }
-         testOperation(  acceptImportAccount,"click","click Accept");
+      testOperation(   importAccountId,"click","click import Account");
+      while (! isEnabled(  acceptImportAccount)){
+        testOperation( "swipeUp","");
+      }
+      testOperation(  acceptImportAccount,"click","click Accept");
 
-        //use Private Key import account
-         testOperation(  privateKey,"click","click Private key");
-         testOperation(  enterContent,"input",walletPrivateKey,"enter private key");
-         testOperation(  nextStep,"click","click Next step");
-        Date date = new Date();
-        String timestamp = String.valueOf(date.getTime());
-         testOperation(  setUpName,"input","Test_"+timestamp,"input name");
-         testOperation(  creatNextStep,"click","1:input name");
-         testOperation(  passWord,"input","Test0001","input password");
-         testOperation(  creatNextStep2,"click","2:click next step");
-         testOperation(  passWord,"input","Test0001","input password again");
-         testOperation(  creatNextStep3,"click","3:click carry out");
-
-        //delete wallet
-         testOperation(  tabMy,"click","click tab My");
-         testOperation(  my_walletManager,"click","click wallet manager");
-        walletAddress =  getText(  addressText);
-         testOperation( "swipeUp","");
-         testOperation(  deleteWallet2,"click","click delete wallet");
-         testOperation(  passWord,"input","Test0001","input password");
-         testOperation(  riskBackup,"click","click ok");
+      //use Private Key import account
+      testOperation(  privateKey,"click","click Private key");
+      testOperation(  enterContent,"input",walletPrivateKey,"enter private key");
+      testOperation(  nextStep,"click","click Next step");
+      Date date = new Date();
+      String timestamp = String.valueOf(date.getTime());
+      testOperation(  setUpName,"input","Test_"+timestamp,"input name");
+      testOperation(  creatNextStep,"click","1:input name");
+      testOperation(  passWord,"input","Test0001","input password");
+      testOperation(  creatNextStep2,"click","2:click next step");
+      testOperation(  passWord,"input","Test0001","input password again");
+      testOperation(  creatNextStep3,"click","3:click carry out");
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRPrivateKey(){
 
         //use PrivateKey QRcode import account
@@ -193,7 +184,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRWatchAddress(){
 
         //startup page
@@ -254,7 +245,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRMnemonic(){
         //startup page
          testOperation(   importAccountId,"click","click import Account");
@@ -320,7 +311,7 @@ public class ImportAccount extends AppiumTestCase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void import_QRBackupkeystore(){
         //startup page
          testOperation(   importAccountId,"click","click import Account");
@@ -381,6 +372,6 @@ public class ImportAccount extends AppiumTestCase {
 
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 }

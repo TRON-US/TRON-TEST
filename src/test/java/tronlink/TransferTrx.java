@@ -91,7 +91,7 @@ public class TransferTrx extends AppiumTestCase {
     }
     @AfterClass
     public void teardown(){
-        driver.resetApp();
+        driver.quit();
     }
 
 }
