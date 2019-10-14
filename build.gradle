@@ -14,6 +14,7 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.44'
     compile group: 'org.testng', name: 'testng', version: '6.9.9'
     compile group: 'io.appium', name: 'java-client', version: '7.2.0'
     compile group: 'com.google.zxing', name: 'core', version: '3.1.0'
@@ -26,20 +27,40 @@ test {
     }
 }
 
-task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
-
+task tronlinkTask(type: Test,dependsOn: 'autoCreateTestngXml') {
     useTestNG {
         suites(file('src/test/resources/tronlink-testng.xml'))
         parallel 'tests'
         threadCount 1
+    }
+}
+
+task tronlink(type: Exec) {
+    dependsOn 'tronlinkTask'
+    commandLine 'sh', '-c', 'collectExceptionLog.sh'
+    doLast {
+        println("before do last testng")
+        if (tasks.listenTronlinkException.process != null) {
+            tasks.listenTronlinkException.process.destroy()
+        }
+        println("after do last testng")
 
     }
 }
 
-task autoCreateTestngXml(type: Test) {
+task autoCreateTestngXml(type: Test,dependsOn: 'listenTronlinkException') {
     useTestNG {
         suites(file('src/test/resources/autoCreateTestngXml.xml'))
         parallel 'tests'
         threadCount 1
     }
+}
+
+task listenTronlinkException() {
+    doFirst {
+        ext.process = new ProcessBuilder()
+                .command('sh', '-c', 'listenTronlinkException.sh')
+                .start()
+    }
+
 }
