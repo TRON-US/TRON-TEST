@@ -70,6 +70,11 @@ public class AddAssertPage extends AbstractPage {
 
     }
 
+    public int getSwitchBtnCount(){
+        int count = switch_btn.size();
+        return count;
+    }
+
 
 
 

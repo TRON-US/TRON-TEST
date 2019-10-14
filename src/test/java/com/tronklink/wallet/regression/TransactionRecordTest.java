@@ -1,20 +1,21 @@
 package com.tronklink.wallet.regression;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import wallet.UITest.base.Base;
+import wallet.pages.AssetPage;
+import wallet.pages.MinePage;
+import wallet.pages.TransactionRecordPage;
+
 import org.testng.annotations.*;
 /**
- * 交易记录功能测试
+ * Transaction Record function test
  */
 public class TransactionRecordTest extends Base {
 
-//    @BeforeClass
-//    public void setUpBeforeClass() throws Exception {
-//        setUp();
-//    }
 
     @Parameters({"privateKey"})
     @BeforeMethod()
@@ -31,6 +32,14 @@ public class TransactionRecordTest extends Base {
 
 
 
+    @Test(description = "Transaction Record test")
+    public void test001_transactionRecord() {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        transaction.navigation_tab.click();
+        Assert.assertEquals(transaction.owner_text.getText(),"TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of");
+    }
 
 
 }

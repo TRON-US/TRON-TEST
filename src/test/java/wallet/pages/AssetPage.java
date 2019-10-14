@@ -42,6 +42,15 @@ public class AssetPage extends AbstractPage {
     public List<WebElement> myAddedAssert_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_bg_freeze_unfreeze")
+    public WebElement freeze_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/my")
+    public WebElement mine_btn;
+
+
 
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
@@ -77,6 +86,17 @@ public class AssetPage extends AbstractPage {
         return new AddAssertPage(driver);
     }
 
+
+    public FrozenAndThawingPage enterFrozenAndThawingPage(){
+        freeze_btn.click();
+        return new FrozenAndThawingPage(driver);
+    }
+
+
+    public MinePage enterMinePage(){
+        mine_btn.click();
+        return new MinePage(driver);
+    }
 
 
 }
