@@ -1,22 +1,23 @@
 package com.tronklink.wallet.regression;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import org.testng.annotations.*;
 import wallet.UITest.base.Base;
+import wallet.pages.AssetPage;
+import wallet.pages.DAPP_BrowerPage;
+import wallet.pages.MinePage;
+import wallet.pages.SettingPage;
 
 /**
- * 设置功能测试
- * 我的页面->设置
+ * setting function test
  */
 public class SettingTest extends Base {
 
-//    @BeforeClass
-//    public void setUpBeforeClass() throws Exception {
-//        setUp();
-//    }
+
 
     @Parameters({"privateKey"})
     @BeforeMethod()
@@ -32,6 +33,33 @@ public class SettingTest extends Base {
     }
 
 
+    @Test(description = "switch Language Test")
+    public void test002_bulletin() {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+    }
+
+    @Test(description = "Developer options Test")
+    public void test002_developerOptions() {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        String developer = setting.testnode_text.getText();
+        setting.trunDeveloperOptions();
+        String developerNow = setting.testnode_text.getText();
+        Assert.assertNotEquals(developer,developerNow);
+    }
+
+    @Test(description = "DAPP Browser Test")
+    public void test003_DAPP_Browser() {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        DAPP_BrowerPage dapp =  setting.enterDAPP_BrowerPage();
+        dapp.testUrl();
+        Assert.assertEquals("TEST",dapp.dappTtile_btn.getText());
+    }
 
 
 }
