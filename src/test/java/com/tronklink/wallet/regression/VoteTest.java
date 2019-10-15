@@ -32,7 +32,7 @@ public class VoteTest extends Base {
 
 
 
-    @Test(description = "vote test")
+    @Test(description = "vote test",enabled = false)
     public void test001_vote() {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();

@@ -50,7 +50,7 @@ public class FrozenAndThawingTest extends Base {
     }
 
 
-    @Test(description = "Bandwidth Detail detail")
+    @Test(description = "Bandwidth Detail detail",enabled = false)
     public void test003_BandwidthDetail() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndThawingPage frozen =  asset.enterFrozenAndThawingPage();
