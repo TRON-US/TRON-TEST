@@ -104,7 +104,7 @@ public class FrozenAndThawingTest extends Base {
     }
 
     //Balance in frozen mainPage equal
-    @Test(description = "count remaining and voting equal trx")
+    @Test(description = "count remaining and voting equal trx",enabled = false)
     public void test008_countRemainingAndVotingEqualTrx() {
         AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(asset.getTrxCount());

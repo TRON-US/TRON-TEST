@@ -27,8 +27,8 @@ import org.testng.collections.Lists;
 
 public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
-    private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
-    //    private String adb = "adb";
+    //private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
+        private String adb = "adb";
     private String packagesName = "<package name=\"com.tronklink.wallet.regression.*\"></package>";
     private String platformName = "Android";
     private Boolean noReset = false;
@@ -90,7 +90,7 @@ public class autoCreateTestngXml {
         testAccountList.put("TMDs8oTj8mVnakqiVyDKdp2ruWPdFeDgbq","7652071f95c376e6d1100f9fed5c520f22262c1530f328bb1c3ed10bad771e68");
 
         Long balance = 0L;
-        Long targetAmount = 998000000L;
+        Long targetAmount = 1998000000L;
         for (HashMap.Entry entry : testAccountList.entrySet()) {
             try {
                 balance = 0L;
@@ -99,8 +99,9 @@ public class autoCreateTestngXml {
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
-            if (balance <= 500000) {
+            if (balance <= targetAmount/3) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
+                //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
         }
@@ -141,8 +142,8 @@ public class autoCreateTestngXml {
                 HashMap.Entry<String, String> entry = entries.next();
                 String udid = it.next();
                 sb.append("    <test name= \"" + udid + "\">\n");
-                adb = "/Users/tron/Library/Android/sdk/platform-tools/adb -s " + udid;
-                //adb = "adb -s " + udid;
+                //adb = "/Users/tron/Library/Android/sdk/platform-tools/adb -s " + udid;
+                adb = "adb -s " + udid;
                 String platformVersion = AppiumTestCase
                     .cmdReturn(adb + " shell getprop ro.build.version.release");
                 String deviceName = AppiumTestCase
@@ -337,6 +338,38 @@ public class autoCreateTestngXml {
         //HttpMethed.printJsonContent(responseContent);
         httppost.releaseConnection();
         return Long.parseLong(responseContent.get("balance").toString());
+    }
+
+    public static HttpResponse freezeBalance(String httpNode, String ownerAddress,
+                                             Long frozenBalance, Integer frozenDuration, Integer resourceCode, String receiverAddress,
+                                             String fromKey) {
+        try {
+            final String requestUrl = "http://" + httpNode + "/wallet/freezebalance";
+            JsonObject userBaseObj2 = new JsonObject();
+            userBaseObj2.addProperty("owner_address", ownerAddress);
+            userBaseObj2.addProperty("frozen_balance", frozenBalance);
+            userBaseObj2.addProperty("frozen_duration", frozenDuration);
+            userBaseObj2.addProperty("visible", true);
+            if (resourceCode == 0) {
+                userBaseObj2.addProperty("resource", "BANDWIDTH");
+            }
+            if (resourceCode == 1) {
+                userBaseObj2.addProperty("resource", "ENERGY");
+            }
+            if (receiverAddress != null) {
+                userBaseObj2.addProperty("receiver_address", receiverAddress);
+            }
+            response = createConnect(requestUrl, userBaseObj2);
+            transactionString = EntityUtils.toString(response.getEntity());
+            System.out.print(transactionString);
+            transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
+            response = broadcastTransaction(httpNode, transactionSignString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return response;
     }
 
 
