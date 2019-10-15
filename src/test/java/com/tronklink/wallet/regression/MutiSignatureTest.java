@@ -61,7 +61,7 @@ public class MutiSignatureTest extends Base {
 
 
 
-    @Test(description = "delete signature Test")
+    @Test(description = "delete signature Test",enabled = false)
     public void test003_delSignature() throws Exception {
         MultiSignManagerPage MultiSignManager =enterMultiSignManagerPage();
         String signName = MultiSignManager.permissionName_text.getText();
