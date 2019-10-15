@@ -52,6 +52,13 @@ public class AssetPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/app1")
+    public WebElement discover_btn;
+
+
+
+
+
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
 //        try {assets_btn.click();
@@ -96,6 +103,13 @@ public class AssetPage extends AbstractPage {
     public MinePage enterMinePage(){
         mine_btn.click();
         return new MinePage(driver);
+    }
+
+
+
+    public DiscoverPage enterDiscoverPage(){
+        discover_btn.click();
+        return new DiscoverPage(driver);
     }
 
 
