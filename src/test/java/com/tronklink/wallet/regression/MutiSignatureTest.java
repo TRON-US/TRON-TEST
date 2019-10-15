@@ -50,7 +50,7 @@ public class MutiSignatureTest extends Base {
 
 
 
-    @Test(description = "Add MutiSignature Test")
+    @Test(description = "Add MutiSignature Test",enabled = false)
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage MultiSignManager =enterMultiSignManagerPage();
