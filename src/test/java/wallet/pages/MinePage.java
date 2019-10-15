@@ -41,6 +41,8 @@ public class MinePage extends AbstractPage {
     public WebElement transferHistory_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/wallet_manager")
+    public WebElement myPurse_btn;
 
 
 
@@ -100,6 +102,19 @@ public class MinePage extends AbstractPage {
 
         return new TransactionRecordPage(driver);
     }
+
+
+    //enter wallet page
+    public MyPursePage enterMyPursePage(){
+        try {
+            myPurse_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new MyPursePage(driver);
+    }
+
 
 
 
