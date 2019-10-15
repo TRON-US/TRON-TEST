@@ -32,13 +32,14 @@ public class TransactionRecordTest extends Base {
 
 
 
+    @Parameters({"address"})
     @Test(description = "Transaction Record test")
-    public void test001_transactionRecord() {
+    public void test001_transactionRecord(String address) {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         transaction.navigation_tab.click();
-        Assert.assertEquals(transaction.owner_text.getText(),"TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of");
+        Assert.assertEquals(transaction.owner_text.getText(),address);
     }
 
 

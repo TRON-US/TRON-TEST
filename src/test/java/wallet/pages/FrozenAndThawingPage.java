@@ -99,7 +99,12 @@ public class FrozenAndThawingPage extends AbstractPage {
 
 
     public DetailsAndRulesPage enterDetailsAndRulesPage(){
-        detailsAndRules_btn.click();
+        try {
+            detailsAndRules_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+
+        }
         return new DetailsAndRulesPage(driver);
     }
 
@@ -107,9 +112,9 @@ public class FrozenAndThawingPage extends AbstractPage {
         try {
             //swip
             //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
-            Helper.swipScreen(driver);
+            //Helper.swipScreen(driver);
             BandwidthQuestion_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(e);
         }
