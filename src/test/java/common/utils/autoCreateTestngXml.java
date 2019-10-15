@@ -99,7 +99,7 @@ public class autoCreateTestngXml {
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
-            if (balance <= 500000) {
+            if (balance <= 598000000) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
             }
 
