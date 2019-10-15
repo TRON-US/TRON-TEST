@@ -37,11 +37,12 @@ public class ReceiptTest extends Base {
     }
 
 
+    @Parameters({"address"})
     @Test(description = "check Receipt Address")
-    public void test001_ckeckReceiptTrxAddress() throws Exception {
+    public void test001_ckeckReceiptTrxAddress(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         ReceiptPage receiptPage =  asset.enterReceiptPage();
-        Assert.assertEquals(receiptPage.ownerAddress_btn.getText(),"TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of");
+        Assert.assertEquals(receiptPage.ownerAddress_btn.getText(),address);
     }
 
 //    @Test(description = "Is the copy function normal")
