@@ -33,7 +33,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "SendTrx success test")
+    @Test(description = "SendTrx success test",enabled = false)
     public void tsst001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         String trxValue = asset.getTrxCount();
