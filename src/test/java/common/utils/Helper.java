@@ -49,24 +49,24 @@ public class Helper {
     }
 
 
-    public static AndroidDriver DRIVER = null;
+    public AndroidDriver DRIVER = null;
 
 
     @FindBy(id = "com.tronlink.wallet:id/assets")
-    public static WebElement assetsMain_btn;
+    public WebElement assetsMain_btn;
 
 
-    public static void getSign(String testPrivateKey,AndroidDriver driver){
-        DRIVER = driver;
+    public void getSign(String testPrivateKey,AndroidDriver driver){
+        this.DRIVER = driver;
         try {
             assetsMain_btn.isDisplayed();
         }catch (Exception e){
-            Helper.getSignOperate(testPrivateKey);
+            getSignOperate(testPrivateKey);
         }
     }
 
 
-    public static void getSignOperate(String testPrivateKey){
+    public void getSignOperate(String testPrivateKey){
         try {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
             //TimeUnit.SECONDS.sleep(3);
@@ -102,7 +102,7 @@ public class Helper {
 
 
 
-    public static WebElement findWebElement(String element) throws Exception {
+    public WebElement findWebElement(String element) throws Exception {
         int tries = 0;
         Boolean Element_is_exist = false;
         WebElement el = null;
@@ -110,8 +110,9 @@ public class Helper {
             tries++;
             try {
                 el = DRIVER.findElementById(element);
-            }catch (NoSuchElementException e){
                 Element_is_exist = true;
+            }catch (NoSuchElementException e){
+                //Element_is_exist = false;
                 TimeUnit.SECONDS.sleep(2);
             }
         }
