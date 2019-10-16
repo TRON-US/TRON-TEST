@@ -29,17 +29,17 @@ public class MarketFunctionTest extends Base {
 //        DRIVER.launchApp();
 //        getSign(privateKey);
 //    }
-//
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        //Base.tearDownAfterClass();
-//        DRIVER.quit();
-//    }
+
+    @AfterClass
+    public void tearDownAfterClass() {
+        //Base.tearDownAfterClass();
+        DRIVER.quit();
+    }
 
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
