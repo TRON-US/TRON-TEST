@@ -2,10 +2,13 @@ package com.tronklink.wallet.regression;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AddPermissionPage;
 import wallet.pages.AssetPage;
@@ -15,19 +18,32 @@ import wallet.pages.MyPursePage;
 
 public class MutiSignatureTest extends Base {
 
+//    @Parameters({"privateKey"})
+////    @BeforeMethod()
+////    public void setUpBefore(String privateKey) throws Exception{
+////        DRIVER.closeApp();
+////        DRIVER.launchApp();
+////        getSign(privateKey);
+////    }
+
     @Parameters({"privateKey"})
-    @BeforeMethod()
-    public void setUpBefore(String privateKey) throws Exception{
-        DRIVER.closeApp();
-        DRIVER.launchApp();
-        getSign(privateKey);
+    @BeforeClass()
+    public void setUpBefore(String privateKey) throws Exception {
+        Helper.getSign(privateKey,DRIVER);
     }
 
-    @AfterClass
-    public void tearDownAfterClass() {
-        //Base.tearDownAfterClass();
-        DRIVER.quit();
+    @AfterMethod
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
+
+
+//    @AfterClass
+//    public void tearDownAfterClass() {
+//        //Base.tearDownAfterClass();
+//        DRIVER.quit();
+//    }
 
 
     //public method. enter the MultiSignManagerPage

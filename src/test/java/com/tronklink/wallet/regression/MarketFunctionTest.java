@@ -1,6 +1,8 @@
 package com.tronklink.wallet.regression;
 
 import org.testng.Assert;
+
+import common.utils.Helper;
 import wallet.pages.MarketPage;
 import static org.hamcrest.core.Is.is;
 
@@ -20,18 +22,30 @@ public class MarketFunctionTest extends Base {
 ////      Base.getSign(privateKey);
 //    }
 
+//    @Parameters({"privateKey"})
+//    @BeforeMethod()
+//    public void setUpBefore(String privateKey) throws Exception{
+//        DRIVER.closeApp();
+//        DRIVER.launchApp();
+//        getSign(privateKey);
+//    }
+//
+//    @AfterClass
+//    public void tearDownAfterClass() {
+//        //Base.tearDownAfterClass();
+//        DRIVER.quit();
+//    }
+
     @Parameters({"privateKey"})
-    @BeforeMethod()
-    public void setUpBefore(String privateKey) throws Exception{
-        DRIVER.closeApp();
-        DRIVER.launchApp();
-        getSign(privateKey);
+    @BeforeClass()
+    public void setUpBefore(String privateKey) throws Exception {
+        Helper.getSign(privateKey,DRIVER);
     }
 
-    @AfterClass
-    public void tearDownAfterClass() {
-        //Base.tearDownAfterClass();
-        DRIVER.quit();
+    @AfterMethod
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
 
 
