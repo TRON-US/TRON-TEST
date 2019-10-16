@@ -27,7 +27,7 @@ public class SearchTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -36,10 +36,10 @@ public class SearchTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        DRIVER.quit();
+    }
 
 
 
