@@ -48,8 +48,8 @@ public class VoteTest extends Base {
 
 
     //because vote need Freeze trx
-    @Test(description = "Freeze Energy")
-    public void test009_freezeEnergy() {
+    @Test(enabled = false)
+    public void test001_freezeEnergy() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
         int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
@@ -62,7 +62,7 @@ public class VoteTest extends Base {
     }
 
     @Test(description = "vote test",enabled = false)
-    public void test001_vote() {
+    public void test002_vote() {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         VoteConfirmPage voteConfirmPage = vote.enterVoteConfirmPage();
