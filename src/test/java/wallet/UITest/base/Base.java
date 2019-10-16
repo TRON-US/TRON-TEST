@@ -62,7 +62,7 @@ public class Base {
     }
 
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
-    @BeforeClass()
+    @BeforeClass(alwaysRun = true) //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws MalformedURLException {
         String url = "http://127.0.0.1:"+port+"/wd/hub";
         desiredCapabilities.setCapability("deviceName", deviceName);
@@ -184,10 +184,7 @@ public class Base {
 
 
     public  void tearDownAfterClass() {
-        //writeLog("删除 App");
-        //DRIVER.removeApp("com.letv.iphone.client");
-        //DRIVER.resetApp();
-        DRIVER.quit();
+        //DRIVER.quit();
     }
 
 
@@ -245,8 +242,11 @@ public class Base {
     }
 
 
-    public  void main(String[] args) throws Exception {
-        getDevicesInfo();
+    public String removeSymbol(String arg){
+        if (arg.contains(",")){
+            arg = arg.replace(",","");
+        }
+        return arg;
     }
 
 

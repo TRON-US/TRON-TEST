@@ -29,7 +29,7 @@ public class MutiSignatureTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -39,11 +39,11 @@ public class MutiSignatureTest extends Base {
     }
 
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        //Base.tearDownAfterClass();
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        //Base.tearDownAfterClass();
+        DRIVER.quit();
+    }
 
 
     //public method. enter the MultiSignManagerPage
@@ -66,7 +66,7 @@ public class MutiSignatureTest extends Base {
 
 
 
-    @Test(description = "Add MutiSignature Test",enabled = false)
+    @Test(description = "Add MutiSignature Test")
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage MultiSignManager =enterMultiSignManagerPage();
@@ -77,7 +77,7 @@ public class MutiSignatureTest extends Base {
 
 
 
-    @Test(description = "delete signature Test",enabled = false)
+    @Test(description = "delete signature Test")
     public void test003_delSignature() throws Exception {
         MultiSignManagerPage MultiSignManager =enterMultiSignManagerPage();
         String signName = MultiSignManager.permissionName_text.getText();

@@ -2,8 +2,6 @@ package com.tronklink.wallet.regression;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
-
 import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
@@ -30,7 +28,7 @@ public class FrozenAndThawingTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -39,10 +37,10 @@ public class FrozenAndThawingTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        DRIVER.quit();
+    }
 
 
     @Test(description = "enter Details of the rules")
@@ -67,14 +65,14 @@ public class FrozenAndThawingTest extends Base {
     }
 
 
-    @Test(description = "Bandwidth Detail detail",enabled = false)
+    @Test(description = "Bandwidth Detail detail")
     public void test003_BandwidthDetail() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndThawingPage frozen =  asset.enterFrozenAndThawingPage();
         frozen.freezeBandwidthDetail_btn.click();
-        int myBandwidth = Integer.valueOf(frozen.myFreezeBandwidth_btn.getText());
-        int otherBandwidth = Integer.valueOf(frozen.otherFreezeBandwidth_btn.getText());
-        int totalBandwidth = Integer.valueOf(frozen.totalFreezeBandwidth_btn.getText());
+        int myBandwidth = Integer.valueOf(removeSymbol(frozen.myFreezeBandwidth_btn.getText()));
+        int otherBandwidth = Integer.valueOf(removeSymbol(frozen.otherFreezeBandwidth_btn.getText()));
+        int totalBandwidth = Integer.valueOf(removeSymbol(frozen.totalFreezeBandwidth_btn.getText()));
         Assert.assertTrue(myBandwidth + otherBandwidth == totalBandwidth);
     }
 
@@ -121,13 +119,13 @@ public class FrozenAndThawingTest extends Base {
     }
 
     //Balance in frozen mainPage equal
-    @Test(description = "count remaining and voting equal trx",enabled = false)
+    @Test(description = "count remaining and voting equal trx")
     public void test008_countRemainingAndVotingEqualTrx() {
         AssetPage asset = new AssetPage(DRIVER);
-        int trxCount = Integer.valueOf(asset.getTrxCount());
+        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
-        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
-        int currentCanUseTrx = Integer.valueOf(frozen.getCurrentCanUseTrx());
+        int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
+        int currentCanUseTrx = Integer.valueOf(removeSymbol(frozen.getCurrentCanUseTrx()));
         System.out.println(trxCount+"......"+myVotingPower+"....."+ currentCanUseTrx);
         Assert.assertTrue(myVotingPower + currentCanUseTrx == trxCount);
     }

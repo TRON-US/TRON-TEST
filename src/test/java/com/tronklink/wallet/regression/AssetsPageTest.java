@@ -31,7 +31,7 @@ public class AssetsPageTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -40,11 +40,11 @@ public class AssetsPageTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        //Base.tearDownAfterClass();
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        //Base.tearDownAfterClass();
+        DRIVER.quit();
+    }
 
 
 

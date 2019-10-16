@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
+import wallet.pages.FrozenAndThawingPage;
 import wallet.pages.VoteConfirmPage;
 import wallet.pages.VotePage;
 
@@ -29,7 +30,7 @@ public class VoteTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -39,12 +40,26 @@ public class VoteTest extends Base {
     }
 
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        DRIVER.quit();
+    }
 
 
+
+    //because vote need Freeze trx
+    @Test(description = "Freeze Energy")
+    public void test009_freezeEnergy() {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
+        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        frozen.freezeCount_input.sendKeys("1");
+        frozen.frozenTheEnergy(); //Freeze operating
+        asset = frozen.enterAssetPage();
+        frozen = asset.enterFrozenAndThawingPage();
+        //int currentVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        //Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
+    }
 
     @Test(description = "vote test",enabled = false)
     public void test001_vote() {

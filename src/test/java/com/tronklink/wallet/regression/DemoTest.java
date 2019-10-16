@@ -36,7 +36,7 @@ public class DemoTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -45,11 +45,11 @@ public class DemoTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        //Base.tearDownAfterClass();
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        //Base.tearDownAfterClass();
+        DRIVER.quit();
+    }
 
 
     @Test //测试是否正常进行投票页
