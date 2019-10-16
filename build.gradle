@@ -27,7 +27,7 @@ test {
     }
 }
 
-task tronlinkTask(type: Test,dependsOn: 'autoCreateTestngXml') {
+task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
     useTestNG {
         suites(file('src/test/resources/tronlink-testng.xml'))
         parallel 'tests'
@@ -35,22 +35,22 @@ task tronlinkTask(type: Test,dependsOn: 'autoCreateTestngXml') {
     }
 }
 
-task tronlink(type: Exec) {
+/*task tronlink(type: Exec) {
     dependsOn 'tronlinkTask'
     //commandLine 'sh', '-c', 'collectExceptionLog.sh'
     executable 'sh'
     args "-c","$projectDir/collectExceptionLog.sh"
     doLast {
         println("before do last testng")
-/*        if (tasks.listenTronlinkException.process != null) {
+*//*        if (tasks.listenTronlinkException.process != null) {
             tasks.listenTronlinkException.process.destroy()
-        }*/
+        }*//*
         println("after do last testng")
 
     }
-}
+}*/
 
-task autoCreateTestngXml(type: Test,dependsOn: 'listenTronlinkException') {
+task autoCreateTestngXml(type: Test) {
     useTestNG {
         suites(file('src/test/resources/autoCreateTestngXml.xml'))
         parallel 'tests'
@@ -58,11 +58,11 @@ task autoCreateTestngXml(type: Test,dependsOn: 'listenTronlinkException') {
     }
 }
 
-task listenTronlinkException() {
+/*task listenTronlinkException() {
     doFirst {
         ext.process = new ProcessBuilder()
                 .command('sh', '-c', 'listenTronlinkException.sh')
                 .start()
     }
 
-}
+}*/
