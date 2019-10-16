@@ -3,6 +3,8 @@ package com.tronklink.wallet.regression;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
+
+import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
 import wallet.pages.DetailsAndRulesPage;
@@ -14,18 +16,33 @@ import org.testng.annotations.*;
 public class FrozenAndThawingTest extends Base {
 
 
+//    @Parameters({"privateKey"})
+//    @BeforeMethod()
+//    public void setUpBefore(String privateKey) throws Exception{
+//        DRIVER.closeApp();
+//        DRIVER.launchApp();
+//        getSign(privateKey);
+//    }
+
+
+
+
     @Parameters({"privateKey"})
-    @BeforeMethod()
-    public void setUpBefore(String privateKey) throws Exception{
-        DRIVER.closeApp();
-        DRIVER.launchApp();
-        getSign(privateKey);
+    @BeforeClass()
+    public void setUpBefore(String privateKey) throws Exception {
+        Helper.getSign(privateKey,DRIVER);
     }
 
-    @AfterClass
-    public void tearDownAfterClass() {
-        DRIVER.quit();
+    @AfterMethod
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
+
+//    @AfterClass
+//    public void tearDownAfterClass() {
+//        DRIVER.quit();
+//    }
 
 
     @Test(description = "enter Details of the rules")

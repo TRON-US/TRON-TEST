@@ -1,6 +1,8 @@
 package com.tronklink.wallet.regression;
 
 import org.testng.annotations.Parameters;
+
+import common.utils.Helper;
 import wallet.pages.AssetPage;
 import wallet.pages.SendTrxPage;
 import wallet.pages.VotePage;
@@ -12,19 +14,42 @@ import wallet.UITest.base.Base;
 import org.testng.annotations.*;
 
 public class DemoTest extends Base {
+//    @Parameters({"privateKey"})
+//    @BeforeMethod()
+//    public void setUpBefore(String privateKey) throws Exception{
+//        DRIVER.closeApp();
+//        DRIVER.launchApp();
+//        getSign(privateKey);
+//    }
+
+//    @BeforeClass()
+//    public void setUpBefore(String privateKey) throws Exception {
+//        Helper.getSign(privateKey,DRIVER);
+//    }
+//
+//    @AfterMethod
+//    public void afterMethod(){
+//        DRIVER.closeApp();
+//        DRIVER.activateApp("com.tronlink.wallet");
+//    }
+
     @Parameters({"privateKey"})
-    @BeforeMethod()
-    public void setUpBefore(String privateKey) throws Exception{
-        DRIVER.closeApp();
-        DRIVER.launchApp();
-        getSign(privateKey);
+    @BeforeClass()
+    public void setUpBefore(String privateKey) throws Exception {
+        Helper.getSign(privateKey,DRIVER);
     }
 
-    @AfterClass
-    public void tearDownAfterClass() {
-        //Base.tearDownAfterClass();
-        DRIVER.quit();
+    @AfterMethod
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
+
+//    @AfterClass
+//    public void tearDownAfterClass() {
+//        //Base.tearDownAfterClass();
+//        DRIVER.quit();
+//    }
 
 
     @Test //测试是否正常进行投票页
