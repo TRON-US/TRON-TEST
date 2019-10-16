@@ -62,7 +62,7 @@ public class Base {
     }
 
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
-    @BeforeClass(alwaysRun = true) //Increase stability(because some case star setup error)
+    @BeforeClass() //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
