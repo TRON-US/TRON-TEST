@@ -63,22 +63,36 @@ public class Base {
 
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
     @BeforeClass(alwaysRun = true) //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws MalformedURLException {
-        String url = "http://127.0.0.1:"+port+"/wd/hub";
-        desiredCapabilities.setCapability("deviceName", deviceName);
-        desiredCapabilities.setCapability("platformName", platformName);
-        desiredCapabilities.setCapability("platformVersion", platformVersion);
-        desiredCapabilities.setCapability("udid", udid);
-        desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
-        desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-        desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-        File appDir = new File(System.getProperty("user.dir"), ".//");
-        File app = new File(appDir, "TronLink.apk");
-        desiredCapabilities.setCapability("app", app.getAbsolutePath());
-        System.out.println(app.getAbsoluteFile());
+    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws Exception {
+        int tries = 0;
+        Boolean driver_is_start = false;
+        while (!driver_is_start && tries < 5) {
+            tries++;
+            try {
+                System.out.println("try start driver "+tries+" times");
+                String url = "http://127.0.0.1:"+port+"/wd/hub";
+                desiredCapabilities.setCapability("deviceName", deviceName);
+                desiredCapabilities.setCapability("platformName", platformName);
+                desiredCapabilities.setCapability("platformVersion", platformVersion);
+                desiredCapabilities.setCapability("udid", udid);
+                desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
+                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+                desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+                File appDir = new File(System.getProperty("user.dir"), ".//");
+                File app = new File(appDir, "TronLink.apk");
+                desiredCapabilities.setCapability("app", app.getAbsolutePath());
+                System.out.println(app.getAbsoluteFile());
 //        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
-        URL remoteUrl = new URL(url);
-        DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
+                URL remoteUrl = new URL(url);
+                DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
+                driver_is_start = true;
+            }catch (Exception e){
+                System.out.println(e);
+                TimeUnit.SECONDS.sleep(2);
+            }
+        }
+
+
         screenOn();
     }
 
