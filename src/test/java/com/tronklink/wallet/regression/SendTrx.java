@@ -33,7 +33,7 @@ public class SendTrx extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        Helper.getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -42,16 +42,16 @@ public class SendTrx extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-//    @AfterClass
-//    public void tearDownAfterClass() {
-//        DRIVER.quit();
-//    }
+    @AfterClass
+    public void tearDownAfterClass() {
+        DRIVER.quit();
+    }
 
 
-    @Test(description = "SendTrx success test",enabled = false)
+    @Test(description = "SendTrx success test")
     public void tsst001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        String trxValue = asset.getTrxCount();
+        int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("1");
@@ -62,7 +62,7 @@ public class SendTrx extends Base {
         SendTrxSuccessPage stsp = transfer.enterSendTrxSuccessPage();
         String trxValueNewest = stsp.trxCount.getText();
         //System.out.println(trxValue+"-----"+trxValueNewest);
-        Assert.assertEquals(trxValue,trxValueNewest);
+        Assert.assertEquals(Integer.toString(trxValue),trxValueNewest);
     }
 
 
