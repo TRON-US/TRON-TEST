@@ -24,11 +24,6 @@ import wallet.pages.MinePage;
 public class MineTest extends Base {
 
 
-    @BeforeTest
-    public void beforMethod(){
-        DRIVER.removeApp("com.tronlink.wallet");
-    }
-
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
