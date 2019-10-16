@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
 import wallet.pages.ReceiptPage;
@@ -18,23 +19,32 @@ import org.testng.annotations.*;
  */
 public class ReceiptTest extends Base {
 
-//    @BeforeClass
-//    public void setUpBeforeClass() throws Exception {
-//        setUp();
+
+
+//    @Parameters({"privateKey"})
+//    @BeforeMethod()
+//    public void setUpBefore(String privateKey) throws Exception{
+//        DRIVER.closeApp();
+//        DRIVER.launchApp();
+//        getSign(privateKey);
 //    }
 
     @Parameters({"privateKey"})
-    @BeforeMethod()
-    public void setUpBefore(String privateKey) throws Exception{
-        DRIVER.closeApp();
-        DRIVER.launchApp();
-        getSign(privateKey);
+    @BeforeClass()
+    public void setUpBefore(String privateKey) throws Exception {
+        Helper.getSign(privateKey,DRIVER);
     }
 
-    @AfterClass
-    public void tearDownAfterClass() {
-        DRIVER.quit();
+    @AfterMethod
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
+
+//    @AfterClass
+//    public void tearDownAfterClass() {
+//        DRIVER.quit();
+//    }
 
 
     @Parameters({"address"})

@@ -6,8 +6,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AnnouncementPage;
 import wallet.pages.AssetPage;
@@ -21,10 +24,15 @@ import wallet.pages.MinePage;
 public class MineTest extends Base {
 
 
+    @BeforeTest
+    public void beforMethod(){
+        DRIVER.removeApp("com.tronlink.wallet");
+    }
+
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
-        getSign(privateKey);
+        Helper.getSign(privateKey,DRIVER);
     }
 
     @AfterMethod
@@ -33,10 +41,10 @@ public class MineTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-    @AfterClass
-    public void tearDownAfterClass() {
-        DRIVER.quit();
-    }
+//    @AfterClass
+//    public void tearDownAfterClass() {
+//        DRIVER.quit();
+//    }
 
 
     @Test(description = "Friend invitation Test")

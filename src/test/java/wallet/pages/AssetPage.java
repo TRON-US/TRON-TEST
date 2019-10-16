@@ -1,9 +1,16 @@
 package wallet.pages;
 
+import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.annotations.Parameters;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -46,16 +53,25 @@ public class AssetPage extends AbstractPage {
     public WebElement freeze_btn;
 
 
-
     @FindBy(id = "com.tronlink.wallet:id/my")
     public WebElement mine_btn;
-
 
 
     @FindBy(id = "com.tronlink.wallet:id/app1")
     public WebElement discover_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/assets")
+    public WebElement assetsMain_btn;
+
+
+//    public void isAssetPage(String privateKey){
+//        try {
+//            assetsMain_btn.isDisplayed();
+//        }catch (Exception e){
+//            Helper.getSign(privateKey,driver);
+//        }
+//    }
 
 
 
@@ -111,6 +127,8 @@ public class AssetPage extends AbstractPage {
         discover_btn.click();
         return new DiscoverPage(driver);
     }
+
+
 
 
 }
