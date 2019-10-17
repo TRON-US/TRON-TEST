@@ -91,8 +91,6 @@ public class Base {
                 TimeUnit.SECONDS.sleep(2);
             }
         }
-
-
         screenOn();
     }
 
@@ -210,7 +208,7 @@ public class Base {
     }
 
 
-    public  void log(String log) {
+    public void log(String log) {
         String time = timeStamp.format(new Date()).toString();
         System.out.println(time + ": " + log);
     }
@@ -235,7 +233,7 @@ public class Base {
         return list;
     }
 
-    public   void screenOn() {
+    public  void screenOn() {
         try {
             Runtime rt = Runtime.getRuntime();
             Process p = rt.exec("adb shell dumpsys power | findstr \"Display Power:state=\"");
@@ -257,10 +255,15 @@ public class Base {
 
 
     public String removeSymbol(String arg){
+        String value = arg;
         if (arg.contains(",")){
-            arg = arg.replace(",","");
+            value = arg.replace(",","");
         }
-        return arg;
+        if (arg.contains(".")){
+            String[] intValue = value.split("\\.");
+            value = intValue[0];
+        }
+        return value;
     }
 
 
