@@ -331,7 +331,7 @@ public class AppiumTestCase {
         String str;
         while(s.hasNext()){
             str = s.next();
-            if (str.equals("List")||str.equals("of")||str.equals("devices")||str.equals("attached")||str.equals("device")){
+            if (str.equals("List")||str.equals("of")||str.equals("devices")||str.equals("attached")||str.equals("device")||str.equals("unauthorized")){
                 continue;
             }
             deviceNamesList.add(str);
