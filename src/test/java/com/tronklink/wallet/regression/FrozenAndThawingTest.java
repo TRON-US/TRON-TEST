@@ -44,7 +44,7 @@ public class FrozenAndThawingTest extends Base {
 
 
     @Test(description = "enter Details of the rules")
-    public void test001_enterDetailsOfTheRules() {
+    public void test001_enterDetailsOfTheRules() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         String trxCount = asset.getTrxCount();
         FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
@@ -120,7 +120,7 @@ public class FrozenAndThawingTest extends Base {
 
     //Balance in frozen mainPage equal
     @Test(description = "count remaining and voting equal trx")
-    public void test008_countRemainingAndVotingEqualTrx() {
+    public void test008_countRemainingAndVotingEqualTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();

@@ -122,4 +122,19 @@ public class Helper {
 
 
 
+    public static void swipDropdownRefresh(AndroidDriver<?> driver) {
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(5500);
+        action.press(
+                PointOption.point(width/2, height*1/25))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*9/10))
+                .release().perform();
+    }
+
+
+
 }
