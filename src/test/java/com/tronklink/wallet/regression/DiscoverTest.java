@@ -69,7 +69,7 @@ public class DiscoverTest extends Base {
 //        Assert.assertTrue(dappSearchResult.searchResultFirst_btn.getText().contains("TRX"));
 //    }
 
-    @Test(description = "click Search Result")
+    @Test(description = "click Search Result",enabled = false)
     public void test002_clickSearchResult() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage discover = asset.enterDiscoverPage();

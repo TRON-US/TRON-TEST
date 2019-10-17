@@ -12,6 +12,7 @@ import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 资产页
@@ -99,7 +100,8 @@ public class AssetPage extends AbstractPage {
         return new ReceiptPage(driver);
     }
 
-    public String getTrxCount(){
+    public String getTrxCount() throws Exception {
+        TimeUnit.SECONDS.sleep(3);
         String trxCount = trxValue.getText().split(" ")[0];
         return trxCount;
     }
@@ -127,8 +129,6 @@ public class AssetPage extends AbstractPage {
         discover_btn.click();
         return new DiscoverPage(driver);
     }
-
-
 
 
 }

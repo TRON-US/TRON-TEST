@@ -22,7 +22,7 @@ public abstract class AbstractPage {
 
     public WebElement WaitforElement(By element){
         PageFactory.initElements(driver, this);
-        new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(driver,30).until(ExpectedConditions.elementToBeClickable(element));
         return driver.findElement(element);
 
     }
