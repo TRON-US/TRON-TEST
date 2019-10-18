@@ -20,7 +20,6 @@ public class Helper {
         int height = driver.manage().window().getSize().height;
         System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
-
         action.press(
                 PointOption.point(width/2, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
@@ -29,21 +28,23 @@ public class Helper {
     }
 
 
+    // swip the screen until element is display
     public static void scrollToElementUntilVisible(AndroidDriver<?> driver, WebElement we){
-        try {
-            while(we.isDisplayed() == false) {
+        for (int i=0;i<5;i++) {
+            try {
+                we.isDisplayed();
+            }catch (Exception e){
                 AndroidTouchAction action = new AndroidTouchAction(driver);
                 int width = driver.manage().window().getSize().width;
                 int height = driver.manage().window().getSize().height;
                 Duration duration = Duration.ofMillis(200);
                 action.press(
-                        PointOption.point(width/2, height*4/5))
+                        PointOption.point(width/2, height*1/3))
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();
+                System.out.println("swip the screen...");
             }
-        }catch (Exception e){
-            System.out.println(e);
         }
 
     }

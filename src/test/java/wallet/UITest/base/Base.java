@@ -75,6 +75,8 @@ public class Base {
                 desiredCapabilities.setCapability("platformName", platformName);
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
+                desiredCapabilities.setCapability("unicodeKeyboard", true);
+                desiredCapabilities.setCapability("resetKeyboard", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
