@@ -96,9 +96,31 @@ public class FrozenAndThawingPage extends AbstractPage {
     public WebElement back_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/error_trx_count")
+    public WebElement error_hits;
 
 
-    public DetailsAndRulesPage enterDetailsAndRulesPage(){
+    @FindBy(id = "com.tronlink.wallet:id/current_use")
+    public WebElement availableTrx_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/et_freeze_address")
+    public WebElement freezeAddress_input;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_cancle")
+    public WebElement cleanAddress_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/error_address")
+    public WebElement errorAddress_hits;
+
+
+
+    public DetailsAndRulesPage enterDetailsAndRulesPage() {
         try {
             detailsAndRules_btn.click();
             TimeUnit.SECONDS.sleep(2);
@@ -108,7 +130,7 @@ public class FrozenAndThawingPage extends AbstractPage {
         return new DetailsAndRulesPage(driver);
     }
 
-    public void questionClick(){
+    public void questionClick() {
         try {
             //swip
             //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
@@ -121,7 +143,7 @@ public class FrozenAndThawingPage extends AbstractPage {
 
     }
 
-    public String getCurrentCanUseTrx(){
+    public String getCurrentCanUseTrx() {
         String currentCanUseTrx = (currentCanUse_btn.getText().split(" ")[1]);
         currentCanUseTrx = currentCanUseTrx.substring(0,currentCanUseTrx.length()-3);
         return currentCanUseTrx;
@@ -145,12 +167,38 @@ public class FrozenAndThawingPage extends AbstractPage {
     }
 
 
-    public AssetPage enterAssetPage(){
+    public AssetPage enterAssetPage() {
         back_btn.click();
         return new AssetPage(driver);
     }
 
 
+    public void inputFrozenCount(String count) throws Exception {
+        //Helper.swipScreen(driver);
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.sendKeys(count);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    public void inputReceivingAddress(String address) throws Exception {
+        //Helper.swipScreen(driver);
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        cleanAddress_btn.click();
+        freezeCount_input.sendKeys("1");
+        freezeAddress_input.sendKeys(address);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    public String getAvailableTrx() {
+        String availableTrx = availableTrx_text.getText();
+        availableTrx = availableTrx.split(" ")[1];
+        availableTrx = availableTrx.substring(0,availableTrx.length()-3);
+        return availableTrx;
+    }
 
 
 
