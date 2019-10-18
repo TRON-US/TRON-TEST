@@ -167,8 +167,19 @@ public class SendTrx extends Base {
 
 
 
+    @Test(description = "Receiving Minimum Trx")
+    public void tsst011_sendMinimumTrx() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
+    }
+
+
+
     @Test(description = "SendTrx success test")
-    public void tsst011_sendTrxSuccess() throws Exception {
+    public void tsst012_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         SendTrxPage transfer = asset.enterSendTrxPage();
