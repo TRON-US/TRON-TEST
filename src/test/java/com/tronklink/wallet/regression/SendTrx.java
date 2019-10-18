@@ -34,6 +34,7 @@ public class SendTrx extends Base {
     @Parameters({"privateKey"})
     @BeforeClass()
     public void setUpBefore(String privateKey) throws Exception {
+        System.out.println("执行setUpBefore");
         new Helper().getSign(privateKey,DRIVER);
     }
 
@@ -156,7 +157,7 @@ public class SendTrx extends Base {
 
 
     @Test(description = "Receiving address trim")
-    public void tsst0010_receivingAddressTrim() throws Exception {
+    public void tsst010_receivingAddressTrim() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("1");
@@ -167,7 +168,7 @@ public class SendTrx extends Base {
 
 
     @Test(description = "SendTrx success test")
-    public void tsst0011_sendTrxSuccess() throws Exception {
+    public void tsst011_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         SendTrxPage transfer = asset.enterSendTrxPage();
