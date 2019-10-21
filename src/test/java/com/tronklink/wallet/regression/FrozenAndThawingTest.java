@@ -131,9 +131,11 @@ public class FrozenAndThawingTest extends Base {
     }
 
 
-    //Freeze Energy
-    @Test(description = "Freeze Energy")
-    public void test009_freezeEnergy() {
+    /**
+     * Freeze Energy
+     */
+    @Test(description = "Freeze Energy Scuuess")
+    public void test009_freezeEnergySuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
         int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
@@ -203,6 +205,7 @@ public class FrozenAndThawingTest extends Base {
     }
 
 
+
     @Test(description = "freeze Energy with not active Receiving Address")
     public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -210,6 +213,25 @@ public class FrozenAndThawingTest extends Base {
         frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
         String prompt = frozen.errorAddress_hits.getText();
         Assert.assertTrue(prompt.contains("请重新填写接收地址") || prompt.contains("has not been activated"));
+    }
+
+
+
+    /**
+     * freeze Bandwidth
+     */
+    @Test(description = "Freeze Bandwidth Success")
+    public void test016_freezeBandwidthSuccess() {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
+        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        frozen.bandwidth_btn.click();
+        frozen.freezeCount_input.sendKeys("1");
+        frozen.frozenTheEnergy(); //Freeze operating
+        asset = frozen.enterAssetPage();
+        frozen = asset.enterFrozenAndThawingPage();
+        int currentVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
 
 
