@@ -47,6 +47,14 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement delConfirmE_btn;
 
 
+    @FindBy(xpath = "//*[@text='修改权限']")
+    public WebElement modifyConfirmC_btn;
+
+
+    @FindBy(xpath = "//*[@text='Modify permissions']")
+    public WebElement modifyConfirmE_btn;
+
+
     @FindBy(id = "com.tronlink.wallet:id/tv_ok")
     public WebElement delConfirm_btn;
 
@@ -58,6 +66,9 @@ public class MultiSignManagerPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/bt_send")
     public WebElement send_btn;
+
+
+
 
 
     public AddPermissionPage enterAddPermissionPage(){
@@ -98,9 +109,19 @@ public class MultiSignManagerPage extends AbstractPage {
         password_input.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);
+    }
 
 
-
+    public ModifyPermissionPage enterModifyPermissionPage() throws Exception {
+        more_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        try {
+            modifyConfirmC_btn.click();
+        }catch (Exception e){
+            modifyConfirmE_btn.click();
+        }
+        TimeUnit.SECONDS.sleep(1);
+        return new ModifyPermissionPage(driver);
     }
 
 
