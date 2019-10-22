@@ -28,8 +28,13 @@ public class MyPursePage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_create")
+    public WebElement newCreate_btn;
 
-    public MultiSignManagerPage enterMultiSignManagerPage(){
+
+
+
+    public MultiSignManagerPage enterMultiSignManagerPage() {
         try {
             multSignManager_btn.click();
             TimeUnit.SECONDS.sleep(1);
@@ -39,6 +44,17 @@ public class MyPursePage extends AbstractPage {
         }
         return new MultiSignManagerPage(driver);
     }
+
+
+    public AddwalletPage enterAddwalletPage() throws Exception {
+        newCreate_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new AddwalletPage(driver);
+    }
+
+
+
+
 
 
 }

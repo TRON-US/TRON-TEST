@@ -70,19 +70,20 @@ public class Helper {
     public void getSignOperate(String testPrivateKey){
         try {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
-            //TimeUnit.SECONDS.sleep(3);
-            while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
-                AndroidTouchAction action = new AndroidTouchAction(DRIVER);
-                int width = DRIVER.manage().window().getSize().width;
-                int height = DRIVER.manage().window().getSize().height;
-                //System.out.print("   " + width + "   " + height);
-                Duration duration = Duration.ofMillis(200);
-                action.press(
-                        PointOption.point(width/2, height*4/5))
-                        .waitAction(WaitOptions.waitOptions(duration))
-                        .moveTo(PointOption.point(width/2, height/5))
-                        .release().perform();
-            }
+            swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
+//            TimeUnit.SECONDS.sleep(3);
+//            while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
+//                AndroidTouchAction action = new AndroidTouchAction(DRIVER);
+//                int width = DRIVER.manage().window().getSize().width;
+//                int height = DRIVER.manage().window().getSize().height;
+//                //System.out.print("   " + width + "   " + height);
+//                Duration duration = Duration.ofMillis(200);
+//                action.press(
+//                        PointOption.point(width/2, height*4/5))
+//                        .waitAction(WaitOptions.waitOptions(duration))
+//                        .moveTo(PointOption.point(width/2, height/5))
+//                        .release().perform();
+//            }
             findWebElement("com.tronlink.wallet:id/bt_accept").click();
             findWebElement("com.tronlink.wallet:id/cd_pk").click();
             findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
@@ -99,6 +100,43 @@ public class Helper {
             System.out.println(e);
         }
 
+    }
+
+
+    public void swipUntilElementEnable(String id) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        //while (findWebElement(id).isEnabled() == false) {
+        while (!findWebElement(id).isEnabled()) {
+            AndroidTouchAction action = new AndroidTouchAction(DRIVER);
+            int width = DRIVER.manage().window().getSize().width;
+            int height = DRIVER.manage().window().getSize().height;
+            System.out.print("  " + width + "   " + height);
+            Duration duration = Duration.ofMillis(200);
+            action.press(
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
+        }
+    }
+
+
+
+    public void swipUntilElementEnable(String id,AndroidDriver<?> driver) throws Exception{
+        this.DRIVER = driver;
+        TimeUnit.SECONDS.sleep(1);
+        //while (findWebElement(id).isEnabled() == false) {
+        while (!findWebElement(id).isEnabled()) {
+            AndroidTouchAction action = new AndroidTouchAction(DRIVER);
+            int width = DRIVER.manage().window().getSize().width;
+            int height = DRIVER.manage().window().getSize().height;
+            Duration duration = Duration.ofMillis(200);
+            action.press(
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
+        }
     }
 
 
@@ -123,18 +161,18 @@ public class Helper {
 
 
 
-    public static void swipDropdownRefresh(AndroidDriver<?> driver) {
-        AndroidTouchAction action = new AndroidTouchAction(driver);
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
-        Duration duration = Duration.ofMillis(5500);
-        action.press(
-                PointOption.point(width/2, height*1/25))
-                .waitAction(WaitOptions.waitOptions(duration))
-                .moveTo(PointOption.point(width/2, height*9/10))
-                .release().perform();
-    }
+//    public static void swipDropdownRefresh(AndroidDriver<?> driver) {
+//        AndroidTouchAction action = new AndroidTouchAction(driver);
+//        int width = driver.manage().window().getSize().width;
+//        int height = driver.manage().window().getSize().height;
+//        System.out.print("   " + width + "   " + height);
+//        Duration duration = Duration.ofMillis(5500);
+//        action.press(
+//                PointOption.point(width/2, height*1/25))
+//                .waitAction(WaitOptions.waitOptions(duration))
+//                .moveTo(PointOption.point(width/2, height*9/10))
+//                .release().perform();
+//    }
 
 
 
