@@ -66,6 +66,10 @@ public class AssetPage extends AbstractPage {
     public WebElement assetsMain_btn;
 
 
+    @FindBy(xpath = "//*[@text='TRX']")
+    public WebElement trx_btn;
+
+
 //    public void isAssetPage(String privateKey){
 //        try {
 //            assetsMain_btn.isDisplayed();
@@ -128,6 +132,13 @@ public class AssetPage extends AbstractPage {
     public DiscoverPage enterDiscoverPage(){
         discover_btn.click();
         return new DiscoverPage(driver);
+    }
+
+
+    public TrxPage enterTrxPage() throws Exception {
+        trx_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
     }
 
 
