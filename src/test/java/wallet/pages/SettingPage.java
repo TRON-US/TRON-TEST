@@ -43,6 +43,18 @@ public class SettingPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/node")
+    public WebElement node_btn;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_node_name")
+    public WebElement node_name;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    public WebElement back_btn;
+
+
 //    public void switchLanguage(String language){
 //        try {
 //            switch (language){
@@ -78,7 +90,19 @@ public class SettingPage extends AbstractPage {
 
 
 
+    public NodeSetPage enterNodeSetPage() throws Exception {
+        node_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new NodeSetPage(driver);
+    }
 
+
+
+    public MinePage enterMinePage() throws Exception {
+        back_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new MinePage(driver);
+    }
 
 
 

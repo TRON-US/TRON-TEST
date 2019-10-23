@@ -49,5 +49,13 @@ public class ImportPrivateKeyPage extends AbstractPage {
 
 
 
+    public String inputErrorKeyGetHits(String key) throws Exception {
+        content_text.sendKeys(key);
+        next_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return error_hits.getText();
+    }
+
+
 
 }
