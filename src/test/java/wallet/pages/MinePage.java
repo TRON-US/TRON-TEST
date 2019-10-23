@@ -45,6 +45,10 @@ public class MinePage extends AbstractPage {
     public WebElement myPurse_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/assets")
+    public WebElement assets_btn;
+
+
 
     //enter about us Page
     public AboutUsPage enterAboutUsPage(){
@@ -116,6 +120,11 @@ public class MinePage extends AbstractPage {
     }
 
 
+    public AssetPage enterAssetPage() throws Exception {
+        assets_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new AssetPage(driver);
+    }
 
 
 

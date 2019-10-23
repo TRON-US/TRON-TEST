@@ -18,6 +18,7 @@ import wallet.pages.PrivateKeySetPwdAgainPage;
 import wallet.pages.PrivateKeySetPwdPage;
 import wallet.pages.UserAgreementPage;
 
+
 public class ImportPrivateKey extends Base {
 
 
@@ -92,6 +93,7 @@ public class ImportPrivateKey extends Base {
     }
 
 
+
     @Parameters({"privateKey"})
     @Test(description = "Password Is Too Short")
     public void test006_passwordIsTooShort(String privateKey) throws Exception {
@@ -121,7 +123,7 @@ public class ImportPrivateKey extends Base {
 
     @Parameters({"privateKey"})
     @Test(description = "Wallet Name Has Alerady Exist")
-    public void test007_walletNameHasAleradyExist(String privateKey) throws Exception {
+    public void test008_walletNameHasAleradyExist(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("AutoM_Test");
@@ -143,7 +145,7 @@ public class ImportPrivateKey extends Base {
 
     @Parameters({"privateKey"})
     @Test(description = "Wallet The same name but different capitalization")
-    public void test008_sameNameButDifferentCapitalization(String privateKey) throws Exception {
+    public void test009_sameNameButDifferentCapitalization(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("auto_case");
@@ -157,6 +159,30 @@ public class ImportPrivateKey extends Base {
         setPwd = setName.enterPrivateKeySetPwdPage("AUTO_CASE");
         Assert.assertTrue(setPwd.pwd_title.isDisplayed());
     }
+
+
+
+
+    @Test(description = "privateKey Is All Numbers")
+    public void test010_privateKeyIsAllNumbers() throws Exception {
+        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        String hits = importPrivateKey.inputErrorKeyGetHits("1234567890");
+        Assert.assertTrue(hits.contains("format incorrect") || hits.contains("格式不正确"));
+    }
+
+
+
+
+    @Test(description = "privateKey Without Uppercase Letter")
+    public void test011_privateKeyWithoutUppercaseLetter() throws Exception {
+        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        String hits = importPrivateKey.inputErrorKeyGetHits("zxcvbnm1234567");
+        Assert.assertTrue(hits.contains("format incorrect") || hits.contains("格式不正确"));
+    }
+
+
+
+
 
 
 
