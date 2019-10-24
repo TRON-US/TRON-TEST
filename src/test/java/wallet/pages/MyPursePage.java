@@ -28,7 +28,10 @@ public class MyPursePage extends AbstractPage {
     public WebElement multSignManager_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_address")
-    public WebElement address_test;
+    public WebElement address_text;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    public WebElement walletname_text;
 
 
 
@@ -92,7 +95,7 @@ public class MyPursePage extends AbstractPage {
     public String getAddress(){
         String address = "";
         try {
-            address = address_test.getText();
+            address = address_text.getText();
         }catch (Exception e){
             System.out.println(e);
         }
