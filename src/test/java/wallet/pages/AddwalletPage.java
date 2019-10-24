@@ -1,5 +1,6 @@
 package wallet.pages;
 
+import common.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +26,9 @@ public class AddwalletPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='Private key']")
     public WebElement privateKeyE_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/cd_kt")
+    public WebElement keystore_btn;
+
 
 
     public ImportPrivateKeyPage enterImportPrivateKeyPage() throws Exception{
@@ -37,6 +41,15 @@ public class AddwalletPage extends AbstractPage {
         return new ImportPrivateKeyPage(driver);
     }
 
+    public ImportKeystorePage enterImportKeystorePage() throws Exception{
+        try {
+            keystore_btn.click();
+        }catch (Exception e){
+            keystore_btn.click();
+        }
+        TimeUnit.SECONDS.sleep(1);
+        return new ImportKeystorePage(driver);
+    }
 
 
 
