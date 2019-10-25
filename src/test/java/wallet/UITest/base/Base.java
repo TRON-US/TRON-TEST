@@ -17,9 +17,11 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import org.apache.tools.ant.taskdefs.EchoXML;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -77,6 +79,7 @@ public class Base {
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("unicodeKeyboard", true);
                 desiredCapabilities.setCapability("resetKeyboard", true);
+                desiredCapabilities.setCapability("automationName", "Uiautomator2");
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
@@ -270,7 +273,11 @@ public class Base {
 
 
 
-
+    // random a 6 decimal places digital, return String
+    public static String random(float multiple,float min) {
+        Random random = new Random();
+        return String.format("%.6f",Math.random()*multiple + min);
+    }
 
 
 }
