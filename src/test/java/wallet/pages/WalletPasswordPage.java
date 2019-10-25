@@ -31,7 +31,7 @@ public class WalletPasswordPage extends AbstractPage {
   @FindBy(id = "com.tronlink.wallet:id/tv_error")
   public WebElement error;
 
-  public void changePassword(String oldpw,String newpw,String confirmpw){
+  public void changePassword(String oldpw,String newpw,String confirmpw) throws Exception{
     oldPassword_et.sendKeys(oldpw);
     newPassword_et.sendKeys(newpw);
     confirmPassword_et.sendKeys(confirmpw);
