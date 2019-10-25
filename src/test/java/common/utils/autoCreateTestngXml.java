@@ -1,5 +1,6 @@
 package common.utils;
 
+import com.alibaba.fastjson.JSONArray;
 import com.google.gson.JsonObject;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;
@@ -97,10 +98,14 @@ public class autoCreateTestngXml {
 
         Long balance = 0L;
         Long targetAmount = 1998000000L;
+        Long tokenBalance = 0L;
+        Long targetTokenAmount = 50000000L;
         for (HashMap.Entry entry : testAccountList.entrySet()) {
             try {
                 balance = 0L;
                 balance = getBalance(httpnode, entry.getKey().toString());
+                tokenBalance = 0L;
+                tokenBalance = getTokenBalance(httpnode,entry.getKey().toString());
             } catch (Exception e) {
                 System.out.print(e + "\n");
             }
@@ -110,12 +115,18 @@ public class autoCreateTestngXml {
                 //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
+            if (tokenBalance <= targetTokenAmount/3) {
+                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+            }
+
         }
 
         for (HashMap.Entry entry : testAccountList.entrySet()) {
             try {
                 balance = 0L;
                 balance = getBalance(dappChainHttpNode, entry.getKey().toString());
+                tokenBalance = 0L;
+                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
             } catch (Exception e) {
                 System.out.print(e + "\n");
             }
@@ -124,6 +135,11 @@ public class autoCreateTestngXml {
                 sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
+
+            if (tokenBalance <= targetTokenAmount/3) {
+                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+            }
+
 
         }
 
@@ -248,6 +264,35 @@ public class autoCreateTestngXml {
         return response;
     }
 
+    /**
+     * constructor.
+     */
+    public static HttpResponse transferAsset(String httpNode, String ownerAddress,
+                                             String toAddress, String assetIssueById, Long amount, String fromKey) {
+        try {
+            final String requestUrl = "http://" + httpNode + "/wallet/transferasset";
+            JsonObject userBaseObj2 = new JsonObject();
+            userBaseObj2.addProperty("owner_address", ownerAddress);
+            userBaseObj2.addProperty("to_address", toAddress);
+            userBaseObj2.addProperty("asset_name", assetIssueById);
+            userBaseObj2.addProperty("amount", amount);
+            userBaseObj2.addProperty("visible", true);
+            response = createConnect(requestUrl, userBaseObj2);
+            transactionString = EntityUtils.toString(response.getEntity());
+            System.out.print(transactionString);
+            transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
+            response = broadcastTransaction(httpNode, transactionSignString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return response;
+    }
+
+
+
+
     public static HttpResponse createConnect(String url, JsonObject requestBody) {
         try {
             httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
@@ -364,6 +409,34 @@ public class autoCreateTestngXml {
         httppost.releaseConnection();
         return Long.parseLong(responseContent.get("balance").toString());
     }
+
+
+    public static Long getTokenBalance(String httpNode, String queryAddress) {
+        try {
+            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
+            JsonObject userBaseObj2 = new JsonObject();
+            userBaseObj2.addProperty("address", queryAddress);
+            userBaseObj2.addProperty("visible", true);
+            response = createConnect(requestUrl, userBaseObj2);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        responseContent = parseResponseContent(response);
+        JSONArray tokenArray = responseContent.getJSONArray("assetV2");
+        for (int i = 0; i < tokenArray.size();i++) {
+            System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
+            if (Integer.valueOf(String.valueOf(tokenArray.getJSONObject(i).get("key"))) == 1000042) {
+                return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
+            }
+        }
+        //HttpMethed.printJsonContent(responseContent);
+        httppost.releaseConnection();
+        return 0L;
+    }
+
+
 
     public static HttpResponse freezeBalance(String httpNode, String ownerAddress,
                                              Long frozenBalance, Integer frozenDuration, Integer resourceCode, String receiverAddress,
