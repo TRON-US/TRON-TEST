@@ -84,13 +84,13 @@ public class MyPursePage extends AbstractPage {
 
 
 
-    public String getBackupKeystore(){
+    public String getBackupKeystore(String password){
         String keystore = "";
         try {
             Helper.swipScreen(driver);
             backupKeystore_btn.click();
             TimeUnit.SECONDS.sleep(1);
-            password_et.sendKeys("Test0001");
+            password_et.sendKeys(password);
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);
             keystore = keystore_text.getText();
