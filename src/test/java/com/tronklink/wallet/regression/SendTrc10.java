@@ -1,6 +1,7 @@
 package com.tronklink.wallet.regression;
 
 import common.utils.Helper;
+import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -43,8 +44,22 @@ public class SendTrc10 extends Base {
     return transfer;
   }
 
+  @Test(description = "SendTrc10 success test")
+  public void tsst001_sendTrc10Success() throws Exception {
+    AssetPage asset = new AssetPage(DRIVER);
+    SendTrxPage transfer = asset.enterSendTrxPage();
+    int trc10Before = transfer.getTrc10Amount();
+    String trc10SendAmount = "1";
+    SendTrxSuccessPage stsp = transfer.normalSendTrc10(trc10SendAmount);
+    TimeUnit.SECONDS.sleep(3);
+    transfer = asset.enterSendTrxPage();
+    int trc10After = transfer.getTrc10Amount();
+    System.out.println(trc10After);
+    Assert.assertEquals(trc10Before,trc10After + Integer.valueOf(trc10SendAmount));
+  }
+
   @Test(description = "input max send number")
-  public void tsst001_inputMaxSendNumber() throws Exception {
+  public void tsst002_inputMaxSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("max");
     Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
@@ -53,7 +68,7 @@ public class SendTrc10 extends Base {
 
 
   @Test(description = "input mix send number")
-  public void tsst002_inputMixSendNumber() throws Exception {
+  public void tsst003_inputMixSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("mix");
     String centent = transfer.formatErrorHits_text.getText();
@@ -63,7 +78,7 @@ public class SendTrc10 extends Base {
 
 
   @Test(description = "input too Much TRX send number")
-  public void tsst003_inputTooMuchSendNumber() throws Exception {
+  public void tsst004_inputTooMuchSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("tooMuch");
     String centent = transfer.formatErrorHits_text.getText();
@@ -71,15 +86,4 @@ public class SendTrc10 extends Base {
   }
 
 
-
-  @Test(description = "SendTrx success test")
-  public void tsst007_sendTrxSuccess() throws Exception {
-    AssetPage asset = new AssetPage(DRIVER);
-    int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-    SendTrxPage transfer = asset.enterSendTrxPage();
-    SendTrxSuccessPage stsp = transfer.normalSendTrx();
-    asset = stsp.enterSendTrxPage();
-    int trxValueNewest = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-    Assert.assertEquals(trxValue-1,trxValueNewest);
-  }
 }
