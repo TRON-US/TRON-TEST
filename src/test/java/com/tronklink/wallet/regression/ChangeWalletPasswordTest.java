@@ -19,7 +19,7 @@ import wallet.pages.PrivateKeySetNamePage;
 import wallet.pages.PrivateKeySetPwdPage;
 import wallet.pages.WalletPasswordPage;
 
-public class ChangeWalletPassword extends Base {
+public class ChangeWalletPasswordTest extends Base {
   String keystore = "";
   String oldPassword = "Test0001";
   String newPassword = "Admin1234";
