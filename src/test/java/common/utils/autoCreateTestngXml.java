@@ -72,6 +72,7 @@ public class autoCreateTestngXml {
         String foundationAccountKey = "7400E3D0727F8A61041A8E8BF86599FE5597CE19DE451E59AED07D60967A5E25";
         String foundationAccountAddress = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
         String httpnode = "47.252.85.177:8090";
+        String dappChainHttpNode = "47.252.80.185:8090";
         HashMap<String,String> testAccountList = new HashMap<>();
         testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
         testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");
@@ -107,6 +108,21 @@ public class autoCreateTestngXml {
             if (balance <= targetAmount/3) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
+            }
+
+        }
+
+        for (HashMap.Entry entry : testAccountList.entrySet()) {
+            try {
+                balance = 0L;
+                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
+            } catch (Exception e) {
+                System.out.print(e + "\n");
+            }
+            System.out.print("balance:" + balance + "\n");
+            if (balance <= targetAmount/3) {
+                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
+                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
         }
