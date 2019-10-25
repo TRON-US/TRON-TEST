@@ -98,6 +98,17 @@ public class TransferInPage extends AbstractPage {
     }
 
 
+    public TrxPage enterTrxPageWithTransferInSuccess() throws Exception {
+        count_text.sendKeys("10");
+        transferIn_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        password_input.sendKeys("Test0001");
+        finish_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+
     public TrxPage enterTrxPageWithTransferInSuccess(String count) throws Exception {
         count_text.sendKeys(count);
         transferIn_btn.click();
