@@ -33,6 +33,9 @@ public class MyPursePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_name")
     public WebElement walletname_text;
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_password")
+    public WebElement walletPassword_btn;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/tv_create")
@@ -73,6 +76,12 @@ public class MyPursePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new AddwalletPage(driver);
     }
+    public WalletPasswordPage enterwalletPasswordPage() throws Exception {
+        walletPassword_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new WalletPasswordPage(driver);
+    }
+
 
 
     public String getBackupKeystore(){
