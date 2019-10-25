@@ -1,12 +1,9 @@
 package wallet.pages;
 
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import io.appium.java_client.android.AndroidDriver;
 
 public class TrxPage extends AbstractPage {
@@ -36,6 +33,30 @@ public class TrxPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_freeze_amout")
+    public WebElement freezeCount_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_count")
+    public WebElement trxTotal_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    public WebElement back_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_tab_title")
+    public List<WebElement> tranfer_tab;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_count")
+    public List<WebElement> tranferIncount_text;
+
+
 
     public TransferInPage enterTransferInPage() throws Exception {
         transferIn_btn.click();
@@ -45,7 +66,18 @@ public class TrxPage extends AbstractPage {
 
 
 
+    public AssetPage enterAssetPage() throws Exception {
+        back_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new AssetPage(driver);
+    }
 
+
+    public boolean AssertDateExists() {
+
+
+        return false;
+    }
 
 
 }
