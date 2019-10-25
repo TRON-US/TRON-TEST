@@ -42,7 +42,7 @@ public class ImportKeystore extends Base {
     AssetPage asset = new AssetPage(DRIVER);
     MinePage minePage = asset.enterMinePage();
     MyPursePage myPursePage = minePage.enterMyPursePage();
-    keystore = myPursePage.getBackupKeystore();
+    keystore = myPursePage.getBackupKeystore(password);
     AddwalletPage addwalletPage = myPursePage.enterAddwalletPage();
     ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
     String errorHits = importKeystorePage.inputErrorKeyGetHits(keystore,password + "error");
@@ -73,6 +73,7 @@ public class ImportKeystore extends Base {
     asset.enterMinePage();
     minePage.enterMyPursePage();
     Assert.assertEquals(myPursePage.getAddress(),address);
+    Assert.assertEquals("Auto_Test2",myPursePage.walletname_text.getText());
   }
 
 }

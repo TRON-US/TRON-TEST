@@ -28,7 +28,13 @@ public class MyPursePage extends AbstractPage {
     public WebElement multSignManager_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_address")
-    public WebElement address_test;
+    public WebElement address_text;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    public WebElement walletname_text;
+
+    @FindBy(id = "com.tronlink.wallet:id/rl_password")
+    public WebElement walletPassword_btn;
 
 
 
@@ -70,15 +76,21 @@ public class MyPursePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new AddwalletPage(driver);
     }
+    public WalletPasswordPage enterwalletPasswordPage() throws Exception {
+        walletPassword_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new WalletPasswordPage(driver);
+    }
 
 
-    public String getBackupKeystore(){
+
+    public String getBackupKeystore(String password){
         String keystore = "";
         try {
             Helper.swipScreen(driver);
             backupKeystore_btn.click();
             TimeUnit.SECONDS.sleep(1);
-            password_et.sendKeys("Test0001");
+            password_et.sendKeys(password);
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);
             keystore = keystore_text.getText();
@@ -92,7 +104,7 @@ public class MyPursePage extends AbstractPage {
     public String getAddress(){
         String address = "";
         try {
-            address = address_test.getText();
+            address = address_text.getText();
         }catch (Exception e){
             System.out.println(e);
         }
