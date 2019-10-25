@@ -1,6 +1,8 @@
 package com.tronklink.wallet.regression;
 
 import common.utils.Helper;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -30,7 +32,7 @@ public class ChangeWalletPassword extends Base {
   }
 
   @AfterMethod
-  public void afterMethod(){
+  public void afterMethod()throws Exception{
     DRIVER.closeApp();
     DRIVER.activateApp("com.tronlink.wallet");
   }
@@ -49,34 +51,50 @@ public class ChangeWalletPassword extends Base {
   }
 
 
-  @Test(description = "")
-  public void test0001ImportCorrectPassword() throws Exception{
+  @Test(description = "Input correct password")
+  public void test0001InputCorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(oldPassword,oldPassword,oldPassword);
+    TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "")
-  public void test0002ImportIncorrectPassword() throws Exception{
+  @Test(description = "Input dont match password")
+  public void test0002InputIncorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
-    walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
+    walletPasswordPage.changePassword(oldPassword,newPassword,oldPassword);
     String error = walletPasswordPage.error.getText();
     Assert.assertTrue(error.equals("Password does not match")||error.equals("两次密码不一致"));
+    TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "")
-  public void test0003ImportIncorrectPassword() throws Exception{
+  @Test(description = "input correct password")
+  public void test0003InputIncorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
+    TimeUnit.SECONDS.sleep(3);
     MyPursePage myPursePage = new MyPursePage(DRIVER);
-    keystore = myPursePage.getBackupKeystore();
+    keystore = myPursePage.getBackupKeystore(newPassword);
     Assert.assertFalse(keystore.isEmpty());
+    TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "")
-  public void test0004ImportCorrectPassword() throws Exception{
+  @Test(description = "input incorrect password")
+  public void test0004InputIncorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
-    walletPasswordPage.changePassword(oldPassword,oldPassword,oldPassword);
+    walletPasswordPage.changePassword(newPassword,newPassword,newPassword);
+    TimeUnit.SECONDS.sleep(3);
+    MyPursePage myPursePage = new MyPursePage(DRIVER);
+    keystore = myPursePage.getBackupKeystore(oldPassword);
+    Assert.assertTrue(keystore.isEmpty());
+    TimeUnit.SECONDS.sleep(1);
+  }
+
+  @Test(description = "input incorrect password")
+  public void test0005InputCorrectPassword() throws Exception{
+    WalletPasswordPage walletPasswordPage = walletPasswordPage();
+    walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
     String error = walletPasswordPage.error.getText();
     Assert.assertTrue(error.equals("incorrect password")||error.equals("密码错误"));
+    TimeUnit.SECONDS.sleep(1);
   }
 }
