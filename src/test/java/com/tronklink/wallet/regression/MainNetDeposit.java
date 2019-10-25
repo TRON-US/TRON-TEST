@@ -164,7 +164,6 @@ public class MainNetDeposit extends Base {
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                System.out.println(count+"*******"+tranferInCount);
                 if (count.equals(tranferInCount)){
                     exist = true;
                     break;
