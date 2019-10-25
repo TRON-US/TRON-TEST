@@ -65,86 +65,86 @@ public class MainNetDeposit extends Base {
 
 
 
-//    @Test(description = "Change Chain")
-//    public void test001_changeChain() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        String nodeName = set.node_name.getText();
-//        NodeSetPage nodeSet = set.enterNodeSetPage();
-//        set = nodeSet.enterSettingPageChoiseDappChain();
-//        String currentNodeName = set.node_name.getText();
-//        Assert.assertNotEquals(nodeName,currentNodeName);
-//    }
-//
-//
-//
-//    @Test(description = "Check TransferIn Chain Name")
-//    public void test002_checkTransferInChainName() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferInPage transferIn = trx.enterTransferInPage();
-//        String chain = transferIn.chain_text.getText();
-//        Assert.assertTrue(chain.equals("DAppChain"));
-//    }
-//
-//
-//
-//
-//    @Test(description = "Check TransferIn Trx Count")
-//    public void test003_checkTransferInTrx() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferInPage transferIn = trx.enterTransferInPage();
-//        String info = transferIn.getTransferInInfo("trx");
-//        Assert.assertTrue(info.contains("10"));
-//    }
-//
-//
-//
-//    @Test(description = "Check TransferIn Hits")
-//    public void test004_checkTransferInHits() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferInPage transferIn = trx.enterTransferInPage();
-//        String info = transferIn.getTransferInInfo("hits");
-//        Assert.assertTrue(info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。"));
-//    }
-//
-//
-//
-//    @Test(description = "Check TransferIn Fee")
-//    public void test005_checkTransferInFee() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferInPage transferIn = trx.enterTransferInPage();
-//        String info = transferIn.getTransferInInfo("fee");
-//        int count = Integer.valueOf(info);
-//        Assert.assertTrue(50 <= count && count <= 500);
-//    }
-//
-//
-//
-//    @Test(description = "Check Available Balance")
-//    public void test006_checkAvailableBalance() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        NodeSetPage nodeSet = set.enterNodeSetPage();
-//        set = nodeSet.enterSettingPageChoiseMainChain();
-//        MinePage mine  = set.enterMinePage();
-//        AssetPage asset = mine.enterAssetPage();
-//        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-//        TrxPage trx = asset.enterTrxPage();
-//        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
-//        TransferInPage transferIn = trx.enterTransferInPage();
-//        int availableBalance = Integer.valueOf(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
-//        Assert.assertTrue(trxCount == frozenCount + availableBalance);
-//    }
-//
-//
-//
-//    @Test(description = "TransferIn Success Checkout Available trx")
-//    public void test007_checkAvailableBalance() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-//        TransferInPage transferIn =  trx.enterTransferInPage();
-//        trx = transferIn.enterTrxPageWithTransferInSuccess();
-//        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-//        Assert.assertTrue(trxCount >= trxCountNow + 10);
-//    }
+    @Test(description = "Change Chain")
+    public void test001_changeChain() throws Exception {
+        SettingPage set = enterSettingPage();
+        String nodeName = set.node_name.getText();
+        NodeSetPage nodeSet = set.enterNodeSetPage();
+        set = nodeSet.enterSettingPageChoiseDappChain();
+        String currentNodeName = set.node_name.getText();
+        Assert.assertNotEquals(nodeName,currentNodeName);
+    }
+
+
+
+    @Test(description = "Check TransferIn Chain Name")
+    public void test002_checkTransferInChainName() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferInPage transferIn = trx.enterTransferInPage();
+        String chain = transferIn.chain_text.getText();
+        Assert.assertTrue(chain.equals("DAppChain"));
+    }
+
+
+
+
+    @Test(description = "Check TransferIn Trx Count")
+    public void test003_checkTransferInTrx() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferInPage transferIn = trx.enterTransferInPage();
+        String info = transferIn.getTransferInInfo("trx");
+        Assert.assertTrue(info.contains("10"));
+    }
+
+
+
+    @Test(description = "Check TransferIn Hits")
+    public void test004_checkTransferInHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferInPage transferIn = trx.enterTransferInPage();
+        String info = transferIn.getTransferInInfo("hits");
+        Assert.assertTrue(info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。"));
+    }
+
+
+
+    @Test(description = "Check TransferIn Fee")
+    public void test005_checkTransferInFee() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferInPage transferIn = trx.enterTransferInPage();
+        String info = transferIn.getTransferInInfo("fee");
+        int count = Integer.valueOf(info);
+        Assert.assertTrue(50 <= count && count <= 500);
+    }
+
+
+
+    @Test(description = "Check Available Balance")
+    public void test006_checkAvailableBalance() throws Exception {
+        SettingPage set = enterSettingPage();
+        NodeSetPage nodeSet = set.enterNodeSetPage();
+        set = nodeSet.enterSettingPageChoiseMainChain();
+        MinePage mine  = set.enterMinePage();
+        AssetPage asset = mine.enterAssetPage();
+        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+        TrxPage trx = asset.enterTrxPage();
+        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
+        TransferInPage transferIn = trx.enterTransferInPage();
+        int availableBalance = Integer.valueOf(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
+        Assert.assertTrue(trxCount == frozenCount + availableBalance);
+    }
+
+
+
+    @Test(description = "TransferIn Success Checkout Available trx")
+    public void test007_checkAvailableBalance() throws Exception {
+        TrxPage trx = enterTrxPage();
+        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        TransferInPage transferIn =  trx.enterTransferInPage();
+        trx = transferIn.enterTrxPageWithTransferInSuccess();
+        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        Assert.assertTrue(trxCount >= trxCountNow + 10);
+    }
 
 
 
