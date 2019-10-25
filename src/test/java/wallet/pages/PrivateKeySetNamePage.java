@@ -44,6 +44,11 @@ public class PrivateKeySetNamePage extends AbstractPage {
         return new PrivateKeySetPwdPage(driver);
     }
 
+    public void setName(String name){
+        name_input.sendKeys(name);
+        next_btn.click();
+    }
+
 
 
 }
