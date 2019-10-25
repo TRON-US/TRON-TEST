@@ -1,0 +1,41 @@
+package wallet.pages;
+
+import io.appium.java_client.android.AndroidDriver;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class WalletPasswordPage extends AbstractPage {
+
+  public AndroidDriver<?> driver;
+
+
+  public WalletPasswordPage(AndroidDriver<?> driver)  {
+    super(driver);
+    this.driver = driver;
+  }
+
+
+  @FindBy(id = "com.tronlink.wallet:id/et_oldpassword")
+  public WebElement oldPassword_et;
+
+  @FindBy(id = "com.tronlink.wallet:id/et_newpassword")
+  public WebElement newPassword_et;
+
+  @FindBy(id = "com.tronlink.wallet:id/et_confirm_password")
+  public WebElement confirmPassword_et;
+
+  @FindBy(id = "com.tronlink.wallet:id/ok")
+  public WebElement ok_btn;
+
+  @FindBy(id = "com.tronlink.wallet:id/tv_error")
+  public WebElement error;
+
+  public void changePassword(String oldpw,String newpw,String confirmpw){
+    oldPassword_et.sendKeys(oldpw);
+    newPassword_et.sendKeys(newpw);
+    confirmPassword_et.sendKeys(confirmpw);
+    ok_btn.click();
+  }
+
+}
