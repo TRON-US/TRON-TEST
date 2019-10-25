@@ -63,6 +63,14 @@ public class SendTrxPage extends AbstractPage {
     public WebElement tvMax_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_token")
+    public WebElement token_btn;
+
+
+    @FindBy(id = "//*[@text='(1000042)']")
+    public WebElement trc10_btn;
+
+
 
     public void swip(){
         Helper.swipScreen(driver);
@@ -117,6 +125,29 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
+    public void sendAllTrc10(String value) throws Exception {
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        //calculate trx
+        switch(value){
+            case "max":
+//                String current = balance_text.getText();
+//                int  index = current.lastIndexOf(" ");
+//                current = current.substring(index + 1,current.length());
+//                tranferCount_text.sendKeys(current);
+                tvMax_btn.click();
+                break;
+            case "mix":
+                tranferCount_text.sendKeys("0");
+                break;
+            case "tooMuch":
+                tranferCount_text.sendKeys("9999999999");
+                break;
+        }
+        token_btn.click();
+        trc10_btn.click();
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
 
 
 
