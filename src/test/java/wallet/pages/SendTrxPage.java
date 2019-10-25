@@ -1,7 +1,10 @@
 package wallet.pages;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -67,7 +70,11 @@ public class SendTrxPage extends AbstractPage {
     public WebElement token_btn;
 
 
-    @FindBy(id = "//*[@text='(1000042)']")
+    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
+    public WebElement back_bt;
+
+
+    @FindBy(xpath = "//*[@text='(1000042)']")
     public WebElement trc10_btn;
 
 
@@ -94,6 +101,33 @@ public class SendTrxPage extends AbstractPage {
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new SendTrxSuccessPage(driver);
+    }
+
+    public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        token_btn.click();
+        trc10_btn.click();
+        tranferCount_text.sendKeys(number);
+        swip();
+        send_btn.click();
+        transferNow_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        back_bt.click();
+        return new SendTrxSuccessPage(driver);
+    }
+
+    public int getTrc10Amount() throws Exception {
+        token_btn.click();
+        trc10_btn.click();
+        String balance = balance_text.getText();
+        int trc10Amount = 0;
+        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
+        Matcher matcher = pattern.matcher(balance);
+        if(matcher.find())
+            trc10Amount = Integer.valueOf(matcher.group(0));
+        return trc10Amount;
     }
 
 
@@ -127,6 +161,8 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrc10(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        token_btn.click();
+        trc10_btn.click();
         //calculate trx
         switch(value){
             case "max":
@@ -143,8 +179,7 @@ public class SendTrxPage extends AbstractPage {
                 tranferCount_text.sendKeys("9999999999");
                 break;
         }
-        token_btn.click();
-        trc10_btn.click();
+        Helper.swipScreen(driver);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
