@@ -50,6 +50,34 @@ public class TransferInPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_balance")
+    public WebElement availableBalance_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/et_new_password")
+    public WebElement password_input;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/bt_send")
+    public WebElement finish_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_tab_title")
+    public WebElement transferIn_tab;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/time")
+    public WebElement time_text;
+
+
+
+
+
+
     public String getTransferInInfo(String info) throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
@@ -68,5 +96,37 @@ public class TransferInPage extends AbstractPage {
         }
         return value;
     }
+
+
+    public TrxPage enterTrxPageWithTransferInSuccess(String count) throws Exception {
+        count_text.sendKeys(count);
+        transferIn_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        password_input.sendKeys("Test0001");
+        finish_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+
+
+    public boolean checkStep() {
+
+        transferIn_tab.click();
+        try {
+            time_text.getText();
+        }catch (Exception e){
+
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
 
 }
