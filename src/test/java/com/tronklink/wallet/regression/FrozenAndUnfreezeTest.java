@@ -11,7 +11,7 @@ import org.testng.annotations.*;
 /**
  * Frozen page function test
  */
-public class FrozenAndThawingTest extends Base {
+public class FrozenAndUnfreezeTest extends Base {
 
 
 //    @Parameters({"privateKey"})
@@ -59,8 +59,8 @@ public class FrozenAndThawingTest extends Base {
         FrozenAndThawingPage frozen =  asset.enterFrozenAndThawingPage();
         frozen.freezeEnergyDetail_btn.click();
         int myFreeze = Integer.valueOf(frozen.myFreeze_btn.getText());
-        int otherFreeze = Integer.valueOf(frozen.otherFreeze_btn.getText());
-        int totalFreeze = Integer.valueOf(frozen.totalFreeze_btn.getText());
+        int otherFreeze = Integer.valueOf(removeSymbol(frozen.otherFreeze_btn.getText()));
+        int totalFreeze = Integer.valueOf(removeSymbol(frozen.totalFreeze_btn.getText()));
         Assert.assertTrue(myFreeze + otherFreeze == totalFreeze);
     }
 
@@ -83,9 +83,9 @@ public class FrozenAndThawingTest extends Base {
         FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
         frozen.freezeEnergyDetail_btn.click();
         frozen.freezeBandwidthDetail_btn.click();
-        int myFreeze = Integer.valueOf(frozen.myFreeze_btn.getText());
-        int myBandwidth = Integer.valueOf(frozen.myFreezeBandwidth_btn.getText());
-        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        int myFreeze = Integer.valueOf(removeSymbol(frozen.myFreeze_btn.getText()));
+        int myBandwidth = Integer.valueOf(removeSymbol(frozen.myFreezeBandwidth_btn.getText()));
+        int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         Assert.assertTrue(myFreeze + myBandwidth == myVotingPower);
     }
 
@@ -143,7 +143,7 @@ public class FrozenAndThawingTest extends Base {
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndThawingPage();
-        int currentVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
 
@@ -230,7 +230,7 @@ public class FrozenAndThawingTest extends Base {
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndThawingPage();
-        int currentVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
 
