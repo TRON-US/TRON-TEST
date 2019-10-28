@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
+import org.apache.tools.ant.taskdefs.EchoXML;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Parameters;
@@ -95,12 +96,22 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage(){
-        market_btn.click();
+        try {
+            market_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
+        }
         return new MarketPage(driver);
     }
 
     public ReceiptPage enterReceiptPage(){
-        receipt_btn.click();
+        try {
+            receipt_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
+        }
         return new ReceiptPage(driver);
     }
 
@@ -122,8 +133,14 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public MinePage enterMinePage(){
-        mine_btn.click();
+    public MinePage enterMinePage() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            mine_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
+        }
         return new MinePage(driver);
     }
 
