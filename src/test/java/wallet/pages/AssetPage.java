@@ -123,9 +123,13 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public MinePage enterMinePage()throws Exception {
-        TimeUnit.SECONDS.sleep(1);
-        mine_btn.click();
+    public MinePage enterMinePage() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            mine_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+        }
         return new MinePage(driver);
     }
 
