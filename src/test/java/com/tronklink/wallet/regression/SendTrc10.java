@@ -77,7 +77,7 @@ public class SendTrc10 extends Base {
 
 
 
-  @Test(description = "input too Much TRX send number")
+  @Test(description = "input too Much trc10 send number")
   public void tsst004_inputTooMuchSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("tooMuch");
