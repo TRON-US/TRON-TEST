@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
+import org.apache.tools.ant.taskdefs.EchoXML;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Parameters;
@@ -122,7 +123,8 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public MinePage enterMinePage(){
+    public MinePage enterMinePage()throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         mine_btn.click();
         return new MinePage(driver);
     }
