@@ -23,13 +23,6 @@ public class DappMutiSignatureTest extends Base {
   @BeforeClass()
   public void setUpBefore(String privateKey) throws Exception {
     new Helper().getSign(privateKey,DRIVER);
-    AssetPage asset = new AssetPage(DRIVER);
-    MinePage mine = asset.enterMinePage();
-    SettingPage setting = mine.enterSettingPage();
-    NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-    nodeSetPage.enterSettingPageChoiseDappChain();
-    DRIVER.closeApp();
-    DRIVER.activateApp("com.tronlink.wallet");
   }
 
   @AfterMethod
@@ -47,7 +40,7 @@ public class DappMutiSignatureTest extends Base {
 
 
   //public method. enter the MultiSignManagerPage
-  public MultiSignManagerPage enterMultiSignManagerPage(){
+  public MultiSignManagerPage enterMultiSignManagerPage()throws Exception{
     AssetPage asset = new AssetPage(DRIVER);
     MinePage mine = asset.enterMinePage();
     MyPursePage myPursePage = mine.enterMyPursePage();
@@ -60,6 +53,13 @@ public class DappMutiSignatureTest extends Base {
 
   @Test(description = "MutiSignature Question Content Test")
   public void test001_MutiSignatureQuestionContentTest() throws Exception {
+    AssetPage asset = new AssetPage(DRIVER);
+    MinePage mine = asset.enterMinePage();
+    SettingPage setting = mine.enterSettingPage();
+    NodeSetPage nodeSetPage = setting.enterNodeSetPage();
+    nodeSetPage.enterSettingPageChoiseDappChain();
+    DRIVER.closeApp();
+    DRIVER.activateApp("com.tronlink.wallet");
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     String content = multiSignManager.questionClick();
     Assert.assertTrue(content.contains("Active Permission"));
@@ -74,6 +74,7 @@ public class DappMutiSignatureTest extends Base {
     MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();
     multiSignManager = add.addPermission(signName);
+    TimeUnit.SECONDS.sleep(1);
     Assert.assertEquals(signName,multiSignManager.permissionName_text.getText());
   }
 
