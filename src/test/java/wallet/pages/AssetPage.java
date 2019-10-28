@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 资产页
+ * AssetPage
  */
 
 public class AssetPage extends AbstractPage {
@@ -122,7 +122,8 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public MinePage enterMinePage(){
+    public MinePage enterMinePage() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         mine_btn.click();
         return new MinePage(driver);
     }

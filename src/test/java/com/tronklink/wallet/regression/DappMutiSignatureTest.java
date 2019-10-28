@@ -47,7 +47,7 @@ public class DappMutiSignatureTest extends Base {
 
 
   //public method. enter the MultiSignManagerPage
-  public MultiSignManagerPage enterMultiSignManagerPage(){
+  public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     MinePage mine = asset.enterMinePage();
     MyPursePage myPursePage = mine.enterMyPursePage();
