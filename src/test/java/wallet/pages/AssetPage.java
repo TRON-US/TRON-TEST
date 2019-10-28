@@ -96,12 +96,22 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage(){
-        market_btn.click();
+        try {
+            market_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
+        }
         return new MarketPage(driver);
     }
 
     public ReceiptPage enterReceiptPage(){
-        receipt_btn.click();
+        try {
+            receipt_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
+        }
         return new ReceiptPage(driver);
     }
 
@@ -129,6 +139,7 @@ public class AssetPage extends AbstractPage {
             mine_btn.click();
         }catch (Exception e){
             System.out.println(e);
+            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
         }
         return new MinePage(driver);
     }
