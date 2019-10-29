@@ -48,14 +48,14 @@ public class SettingTest extends Base {
 
 
     @Test(description = "switch Language Test")
-    public void test002_bulletin() {
+    public void test002_bulletin() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
     }
 
     @Test(description = "Developer options Test")
-    public void test002_developerOptions() {
+    public void test002_developerOptions() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
@@ -66,7 +66,7 @@ public class SettingTest extends Base {
     }
 
     @Test(description = "DAPP Browser Test")
-    public void test003_DAPP_Browser() {
+    public void test003_DAPP_Browser() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();

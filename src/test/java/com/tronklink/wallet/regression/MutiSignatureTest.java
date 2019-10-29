@@ -50,7 +50,7 @@ public class MutiSignatureTest extends Base {
 
 
     //public method. enter the MultiSignManagerPage
-    public MultiSignManagerPage enterMultiSignManagerPage(){
+    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         MyPursePage myPursePage = mine.enterMyPursePage();
@@ -77,6 +77,7 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(signName,multiSignManager.permissionName_text.getText());
     }
 
