@@ -97,7 +97,8 @@ public class Base {
                 TimeUnit.SECONDS.sleep(2);
             }
         }
-        screenOn();
+        DRIVER.unlockDevice();
+//        screenOn();
     }
 
 //    public  void setUp() throws Exception {
