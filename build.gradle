@@ -35,6 +35,14 @@ task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
     }
 }
 
+task ios(type: Test) {
+    useTestNG {
+        suites(file('src/test/resources/tronlink-ios.xml'))
+        parallel 'tests'
+        threadCount 1
+    }
+}
+
 /*task tronlink(type: Exec) {
     dependsOn 'tronlinkTask'
     //commandLine 'sh', '-c', 'collectExceptionLog.sh'
