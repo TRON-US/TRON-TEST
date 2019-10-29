@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.FindBys;
 
 
 /**
@@ -73,11 +74,11 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
     public WebElement back_bt;
 
-
     @FindBy(xpath = "//*[@text='(1000042)']")
     public WebElement trc10_btn;
 
-    @FindBy(xpath = "//*[@text='TestTrc20Name']")
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
     public WebElement trc20_btn;
 
 

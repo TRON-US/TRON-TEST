@@ -44,46 +44,46 @@ public class DappSendTrc20 extends Base {
     return transfer;
   }
 
-//  @Test(description = "SendTrc20 success test")
-//  public void tsst001_sendTrc20Success() throws Exception {
-//    AssetPage asset = new AssetPage(DRIVER);
-//    SendTrxPage transfer = asset.enterSendTrxPage();
-//    int trc20Before = transfer.getTrc20Amount();
-//    String trc20SendAmount = "1";
-//    SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
-//    TimeUnit.SECONDS.sleep(3);
-//    transfer = asset.enterSendTrxPage();
-//    int trc20After = transfer.getTrc20Amount();
-//    System.out.println(trc20After);
-//    Assert.assertEquals(trc20Before,trc20After + Integer.valueOf(trc20SendAmount));
-//  }
-//
-//  @Test(description = "input max send number")
-//  public void tsst002_inputMaxSendNumber() throws Exception {
-//    SendTrxPage transfer = enterToSendTrxPage();
-//    transfer.sendAllTrc20("max");
-//    Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
-//  }
-//
-//
-//
-//  @Test(description = "input mix send number")
-//  public void tsst003_inputMixSendNumber() throws Exception {
-//    SendTrxPage transfer = enterToSendTrxPage();
-//    transfer.sendAllTrc20("mix");
-//    String centent = transfer.formatErrorHits_text.getText();
-//    Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-//  }
-//
-//
-//
-//  @Test(description = "input too Much trc20 send number")
-//  public void tsst004_inputTooMuchSendNumber() throws Exception {
-//    SendTrxPage transfer = enterToSendTrxPage();
-//    transfer.sendAllTrc20("tooMuch");
-//    String centent = transfer.formatErrorHits_text.getText();
-//    Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-//  }
+  @Test(description = "SendTrc20 success test")
+  public void tsst001_sendTrc20Success() throws Exception {
+    AssetPage asset = new AssetPage(DRIVER);
+    SendTrxPage transfer = asset.enterSendTrxPage();
+    int trc20Before = transfer.getTrc20Amount();
+    String trc20SendAmount = "1";
+    SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
+    TimeUnit.SECONDS.sleep(3);
+    transfer = asset.enterSendTrxPage();
+    int trc20After = transfer.getTrc20Amount();
+    System.out.println(trc20After);
+    Assert.assertEquals(trc20Before,trc20After + Integer.valueOf(trc20SendAmount));
+  }
+
+  @Test(description = "input max send number")
+  public void tsst002_inputMaxSendNumber() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.sendAllTrc20("max");
+    Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
+  }
+
+
+
+  @Test(description = "input mix send number")
+  public void tsst003_inputMixSendNumber() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.sendAllTrc20("mix");
+    String centent = transfer.formatErrorHits_text.getText();
+    Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+  }
+
+
+
+  @Test(description = "input too Much trc20 send number")
+  public void tsst004_inputTooMuchSendNumber() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.sendAllTrc20("tooMuch");
+    String centent = transfer.formatErrorHits_text.getText();
+    Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+  }
 
 
 }
