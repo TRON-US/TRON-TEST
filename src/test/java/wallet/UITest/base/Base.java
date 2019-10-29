@@ -97,8 +97,7 @@ public class Base {
                 TimeUnit.SECONDS.sleep(2);
             }
         }
-        DRIVER.unlockDevice();
-//        screenOn();
+        screenOn();
     }
 
 //    public  void setUp() throws Exception {
@@ -252,7 +251,7 @@ public class Base {
             }
             if (content.contains("Display Power: state=OFF")) {
                 Runtime.getRuntime().exec("adb shell input keyevent 26");
-                Runtime.getRuntime().exec("adb shell input keyevent 3");
+                Runtime.getRuntime().exec("adb shell input keyevent 82");
             }
             p.destroy();
         } catch (IOException ex) {
