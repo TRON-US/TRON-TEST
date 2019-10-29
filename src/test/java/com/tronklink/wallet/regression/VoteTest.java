@@ -3,12 +3,11 @@ package com.tronklink.wallet.regression;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 import common.utils.Helper;
 import wallet.UITest.base.Base;
 import wallet.pages.AssetPage;
-import wallet.pages.FrozenAndThawingPage;
+import wallet.pages.FrozenAndUnfreezePage;
 import wallet.pages.VoteConfirmPage;
 import wallet.pages.VotePage;
 
@@ -51,7 +50,7 @@ public class VoteTest extends Base {
     @Test(enabled = false)
     public void test001_freezeEnergy() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
