@@ -1,17 +1,10 @@
 package wallet.pages;
 
-import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 
-import org.apache.tools.ant.taskdefs.EchoXML;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.Parameters;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -127,9 +120,9 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public FrozenAndThawingPage enterFrozenAndThawingPage(){
+    public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
         freeze_btn.click();
-        return new FrozenAndThawingPage(driver);
+        return new FrozenAndUnfreezePage(driver);
     }
 
 
