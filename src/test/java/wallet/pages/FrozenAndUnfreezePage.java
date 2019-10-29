@@ -8,11 +8,11 @@ import java.util.concurrent.TimeUnit;
 import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
 
-public class FrozenAndThawingPage extends AbstractPage {
+public class FrozenAndUnfreezePage extends AbstractPage {
 
     public AndroidDriver<?> driver;
 
-    public FrozenAndThawingPage(AndroidDriver<?> driver) {
+    public FrozenAndUnfreezePage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
     }
