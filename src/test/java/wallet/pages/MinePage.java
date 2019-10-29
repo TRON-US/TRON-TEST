@@ -14,12 +14,28 @@ import wallet.UITest.base.Base;
  */
 public class MinePage extends AbstractPage {
 
-    public AndroidDriver<?> driver;
 
     public MinePage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
+
     }
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_pic")
+    public WebElement ad_pic;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_close")
+    public WebElement adClose_btn;
+
 
     @FindBy(id = "com.tronlink.wallet:id/tv_about")
     public WebElement aboutUs_btn;

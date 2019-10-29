@@ -2,6 +2,8 @@ package wallet.pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,12 +12,28 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MarketPage extends AbstractPage {
 
-    public AndroidDriver<?> driver;
 
     public MarketPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
+
     }
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_pic")
+    public WebElement ad_pic;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_close")
+    public WebElement adClose_btn;
+
 
     @FindBy(id = "com.tronlink.wallet:id/tv_market")
     public WebElement Market_title;
