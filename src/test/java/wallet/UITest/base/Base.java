@@ -37,7 +37,7 @@ public class Base {
 
     private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
-    public  int RetryAgainTimes = 3;
+    public  int RetryAgainTimes = 4;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
@@ -63,9 +63,9 @@ public class Base {
         }
     }
 
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort"})
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey"})
     @BeforeClass() //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort)throws Exception {
+    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey)throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -80,6 +80,7 @@ public class Base {
                 desiredCapabilities.setCapability("unicodeKeyboard", true);
                 desiredCapabilities.setCapability("resetKeyboard", true);
                 desiredCapabilities.setCapability("automationName", "Uiautomator2");
+                desiredCapabilities.setCapability("privateKey", privateKey);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);

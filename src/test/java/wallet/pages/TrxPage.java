@@ -58,11 +58,12 @@ public class TrxPage extends AbstractPage {
 
 
 
-    public TransferInPage enterTransferInPage() throws Exception {
+    public TransferPage enterTransferPage() throws Exception {
         transferIn_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        return new TransferInPage(driver);
+        return new TransferPage(driver);
     }
+
 
 
 
@@ -73,11 +74,6 @@ public class TrxPage extends AbstractPage {
     }
 
 
-    public boolean AssertDateExists() {
-
-
-        return false;
-    }
 
 
 }

@@ -7,13 +7,13 @@ import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 
-public class TransferInPage extends AbstractPage {
+public class TransferPage extends AbstractPage {
 
 
     public AndroidDriver<?> driver;
 
 
-    public TransferInPage(AndroidDriver<?> driver) {
+    public TransferPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
     }
@@ -78,7 +78,7 @@ public class TransferInPage extends AbstractPage {
 
 
 
-    public String getTransferInInfo(String info) throws Exception {
+    public String getTransferInfo(String info) throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -98,7 +98,7 @@ public class TransferInPage extends AbstractPage {
     }
 
 
-    public TrxPage enterTrxPageWithTransferInSuccess() throws Exception {
+    public TrxPage enterTrxPageWithTransferSuccess() throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -109,7 +109,7 @@ public class TransferInPage extends AbstractPage {
     }
 
 
-    public TrxPage enterTrxPageWithTransferInSuccess(String count) throws Exception {
+    public TrxPage enterTrxPageWithTransferSuccess(String count) throws Exception {
         count_text.sendKeys(count);
         transferIn_btn.click();
         TimeUnit.SECONDS.sleep(2);

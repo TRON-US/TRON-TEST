@@ -1,17 +1,10 @@
 package wallet.pages;
 
-import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 
-import org.apache.tools.ant.taskdefs.EchoXML;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.Parameters;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -21,27 +14,54 @@ import java.util.concurrent.TimeUnit;
 
 public class AssetPage extends AbstractPage {
 
+
     public AndroidDriver<?> driver;
+
 
     public AssetPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
+
     }
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_pic")
+    public WebElement ad_pic;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_close")
+    public WebElement adClose_btn;
+
+
 
     @FindBy(id = "com.tronlink.wallet:id/rl_send")
     public WebElement assets_btn;
 
+
     @FindBy(id="com.tronlink.wallet:id/rl_bg_vote")
     public WebElement vote_btn;
+
 
     @FindBy(id="com.tronlink.wallet:id/appmarket")
     public WebElement market_btn;
 
+
     @FindBy(id="com.tronlink.wallet:id/tv_trx_value")
     public WebElement trxValue;
 
+
     @FindBy(id="com.tronlink.wallet:id/rl_receive")
     public WebElement receipt_btn;
+
 
     @FindBy(id = "com.tronlink.wallet:id/rl_bg_add_assets")
     public WebElement addAssert_btn;
@@ -96,22 +116,12 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage(){
-        try {
-            market_btn.click();
-        }catch (Exception e){
-            System.out.println(e);
-            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
-        }
+        market_btn.click();
         return new MarketPage(driver);
     }
 
     public ReceiptPage enterReceiptPage(){
-        try {
-            receipt_btn.click();
-        }catch (Exception e){
-            System.out.println(e);
-            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
-        }
+        receipt_btn.click();
         return new ReceiptPage(driver);
     }
 
@@ -127,20 +137,14 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public FrozenAndThawingPage enterFrozenAndThawingPage(){
+    public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
         freeze_btn.click();
-        return new FrozenAndThawingPage(driver);
+        return new FrozenAndUnfreezePage(driver);
     }
 
 
-    public MinePage enterMinePage() {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            mine_btn.click();
-        }catch (Exception e){
-            System.out.println(e);
-            System.out.println("PageSource:---------------------------\n"+driver.getPageSource());
-        }
+    public MinePage enterMinePage(){
+        mine_btn.click();
         return new MinePage(driver);
     }
 
