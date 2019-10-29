@@ -77,7 +77,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='(1000042)']")
     public WebElement trc10_btn;
 
-    @FindBy(xpath = "//*[@text='TestTrc20Name']")
+    @FindBy(xpath = "//*[@text='(TH5z****bupc)']")
     public WebElement trc20_btn;
 
 
