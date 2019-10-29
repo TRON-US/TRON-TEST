@@ -47,7 +47,7 @@ public class TransactionRecordTest extends Base {
 
     @Parameters({"address"})
     @Test(description = "Transaction Record test")
-    public void test001_transactionRecord(String address) {
+    public void test001_transactionRecord(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
