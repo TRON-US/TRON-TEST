@@ -99,6 +99,17 @@ public class AssetPage extends AbstractPage {
 //        }
 //    }
 
+    @FindBy(xpath = "//*[@text='可用投票数不足']")
+    public WebElement availableVote_toast;
+
+    @FindBy(xpath = "//*[@text='Insufficient number of votes available']")
+    public WebElement english_availableVote_toast;
+
+    @FindBy(xpath = "//*[@text='投票数为空']")
+    public WebElement availableVote_toast_null;
+
+    @FindBy(xpath = "//*[@text='0 vote']")
+    public WebElement english_availableVote_toast_null;
 
 
     public SendTrxPage enterSendTrxPage() {
