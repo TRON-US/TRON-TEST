@@ -108,17 +108,6 @@ public class AssetPage extends AbstractPage {
 //        }
 //    }
 
-    @FindBy(xpath = "//*[@text='可用投票数不足']")
-    public WebElement availableVote_toast;
-
-    @FindBy(xpath = "//*[@text='Insufficient number of votes available']")
-    public WebElement english_availableVote_toast;
-
-    @FindBy(xpath = "//*[@text='投票数为空']")
-    public WebElement availableVote_toast_null;
-
-    @FindBy(xpath = "//*[@text='0 vote']")
-    public WebElement english_availableVote_toast_null;
 
 
     public SendTrxPage enterSendTrxPage() {
@@ -131,7 +120,12 @@ public class AssetPage extends AbstractPage {
     }
 
     public VotePage enterVotePage(){
-        vote_btn.click();
+        try {
+            vote_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         return new VotePage(driver);
     }
 
@@ -158,7 +152,12 @@ public class AssetPage extends AbstractPage {
 
 
     public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
-        freeze_btn.click();
+        try {
+            freeze_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
         return new FrozenAndUnfreezePage(driver);
     }
 
