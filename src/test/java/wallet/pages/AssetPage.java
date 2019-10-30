@@ -91,6 +91,15 @@ public class AssetPage extends AbstractPage {
     public WebElement trx_btn;
 
 
+    @FindBy(xpath = "//*[@text='TRX']")
+    public List<WebElement> trxAsset_list;
+
+
+
+    @FindBy(xpath = "//*[@text='tronlink_token']")
+    public WebElement trx10_btn;
+
+
 //    public void isAssetPage(String privateKey){
 //        try {
 //            assetsMain_btn.isDisplayed();
@@ -99,6 +108,17 @@ public class AssetPage extends AbstractPage {
 //        }
 //    }
 
+    @FindBy(xpath = "//*[@text='可用投票数不足']")
+    public WebElement availableVote_toast;
+
+    @FindBy(xpath = "//*[@text='Insufficient number of votes available']")
+    public WebElement english_availableVote_toast;
+
+    @FindBy(xpath = "//*[@text='投票数为空']")
+    public WebElement availableVote_toast_null;
+
+    @FindBy(xpath = "//*[@text='0 vote']")
+    public WebElement english_availableVote_toast_null;
 
 
     public SendTrxPage enterSendTrxPage() {
@@ -158,6 +178,20 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrxPage() throws Exception {
         trx_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+
+    public TrxPage enterTrx10Page() throws Exception {
+        trx10_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+
+    public TrxPage enterTrx20Page() throws Exception {
+        trxAsset_list.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
