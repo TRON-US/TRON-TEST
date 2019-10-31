@@ -11,6 +11,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import wallet.pages.AssetPage;
+import wallet.pages.MinePage;
+import wallet.pages.NodeSetPage;
+import wallet.pages.SettingPage;
 
 public class Helper {
 
@@ -109,6 +113,12 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
             findWebElement("com.tronlink.wallet:id/creat").click();
             TimeUnit.SECONDS.sleep(2);
+//            AssetPage asset = new AssetPage(DRIVER);
+//            MinePage mine = asset.enterMinePage();
+//            SettingPage setting = mine.enterSettingPage();
+//            setting.enterVersionSetPage();
+//            findWebElement("com.tronlink.wallet:id/rl_test").click();
+//            TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
         }
