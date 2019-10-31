@@ -137,23 +137,23 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public int getTrc10Amount() throws Exception {
+    public double getTrc10Amount() throws Exception {
         token_btn.click();
         trc10_btn.click();
         String balance = balance_text.getText();
-        int trc10Amount = 0;
+        double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
         if(matcher.find())
-            trc10Amount = Integer.valueOf(matcher.group(0));
+            trc10Amount = Double.valueOf(matcher.group(0));
         return trc10Amount;
     }
 
-    public int getTrc20Amount() throws Exception {
+    public double getTrc20Amount() throws Exception {
         token_btn.click();
         trc20_btn.click();
         String balance = balance_text.getText();
-        int trc10Amount = 0;
+        double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
         if(matcher.find())

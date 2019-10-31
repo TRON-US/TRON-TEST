@@ -48,12 +48,12 @@ public class SendTrc20 extends Base {
   public void tsst001_sendTrc20Success() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     SendTrxPage transfer = asset.enterSendTrxPage();
-    int trc20Before = transfer.getTrc20Amount();
+    double trc20Before = transfer.getTrc20Amount();
     String trc20SendAmount = "1";
     SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
     TimeUnit.SECONDS.sleep(3);
     transfer = asset.enterSendTrxPage();
-    int trc20After = transfer.getTrc20Amount();
+    double trc20After = transfer.getTrc20Amount();
     System.out.println(trc20After);
     Assert.assertEquals(trc20Before,trc20After + Integer.valueOf(trc20SendAmount));
   }
