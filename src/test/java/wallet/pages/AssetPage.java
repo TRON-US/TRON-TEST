@@ -91,6 +91,15 @@ public class AssetPage extends AbstractPage {
     public WebElement trx_btn;
 
 
+    @FindBy(xpath = "//*[@text='TRX']")
+    public List<WebElement> trxAsset_list;
+
+
+
+    @FindBy(xpath = "//*[@text='tronlink_token']")
+    public WebElement trx10_btn;
+
+
 //    public void isAssetPage(String privateKey){
 //        try {
 //            assetsMain_btn.isDisplayed();
@@ -111,7 +120,12 @@ public class AssetPage extends AbstractPage {
     }
 
     public VotePage enterVotePage(){
-        vote_btn.click();
+        try {
+            vote_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         return new VotePage(driver);
     }
 
@@ -138,7 +152,12 @@ public class AssetPage extends AbstractPage {
 
 
     public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
-        freeze_btn.click();
+        try {
+            freeze_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
         return new FrozenAndUnfreezePage(driver);
     }
 
@@ -158,6 +177,20 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrxPage() throws Exception {
         trx_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+
+    public TrxPage enterTrx10Page() throws Exception {
+        trx10_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+
+    public TrxPage enterTrx20Page() throws Exception {
+        trxAsset_list.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
