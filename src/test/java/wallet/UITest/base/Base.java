@@ -58,6 +58,7 @@ public class Base {
             StringBuffer sb = new StringBuffer();
             sb.append(sc.next());
             System.out.println(sb.toString());
+            Runtime.getRuntime().exec("adb shell am start -n com.tronlink.wallet/com.tron.wallet.bussiness.welcome.WelcomeActivity");
         } catch (Exception e) {
             e.printStackTrace();
         }
