@@ -182,6 +182,22 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
     }
 
+    public AssetPage forzenSuccessEnterAssetPage(String count) throws Exception {
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.sendKeys(count);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        freezeNow_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        checkPasswotd_input.sendKeys("Test0001");
+        TimeUnit.SECONDS.sleep(1);
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        back_btn.click();
+        return new AssetPage(driver);
+    }
+
     public void inputReceivingAddress(String address) throws Exception {
         //Helper.swipScreen(driver);
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
@@ -200,6 +216,21 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return availableTrx;
     }
 
+    public void inputFrozenCount1() throws Exception{
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.sendKeys("10");
+
+        TimeUnit.SECONDS.sleep(1);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        freezeNow_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        checkPasswotd_input.sendKeys("Test0001");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+
+    }
 
 
 

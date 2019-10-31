@@ -53,16 +53,18 @@ public class MarketPage extends AbstractPage {
     public WebElement firstQuoteChange_list;
 
 
-    public String sortPrice(){
+    public String sortPrice() throws Exception {
         firstRowPriceList.get(0).click();
         String price = firstRowPriceList.get(1).getText();
+        TimeUnit.SECONDS.sleep(1);
         //System.out.println(price);
         return price;
     }
 
-    public String sortQuoteChange(){
+    public String sortQuoteChange() throws Exception {
         quoteChange_btn.click();
         String price = firstQuoteChange_list.getText();
+        TimeUnit.SECONDS.sleep(1);
         return price;
     }
 
