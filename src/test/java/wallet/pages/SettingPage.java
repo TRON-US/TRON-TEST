@@ -46,6 +46,9 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/node")
     public WebElement node_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/switch_version")
+    public WebElement version_btn;
+
 
     @FindBy(id = "com.tronlink.wallet:id/tv_node_name")
     public WebElement node_name;
@@ -92,6 +95,12 @@ public class SettingPage extends AbstractPage {
 
     public NodeSetPage enterNodeSetPage() throws Exception {
         node_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new NodeSetPage(driver);
+    }
+
+    public NodeSetPage enterVersionSetPage() throws Exception {
+        version_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new NodeSetPage(driver);
     }
