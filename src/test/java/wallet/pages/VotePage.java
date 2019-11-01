@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -15,16 +16,12 @@ public class VotePage extends AbstractPage {
 
     public AndroidDriver<?> driver;
 
-    public static String Address_Second;
 
     public VotePage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
     }
 
-    public static String getSecondAddress() {
-        return Address_Second;
-    }
 
     @FindBy(id = "com.tronlink.wallet:id/title")
     public WebElement voteTitle_btn;
@@ -69,7 +66,44 @@ public class VotePage extends AbstractPage {
     public WebElement search_edit_text;
 
 
-    public void unusualVoteOperate() {
+
+    @FindBy(xpath = "//*[@text='可用投票数不足']")
+    public WebElement availableVote_toast;
+
+    @FindBy(xpath = "//*[@text='Insufficient number of votes available']")
+    public WebElement english_availableVote_toast;
+
+    @FindBy(xpath = "//*[@text='投票数为空']")
+    public WebElement availableVote_toast_null;
+
+    @FindBy(xpath = "//*[@text='0 vote']")
+    public WebElement english_availableVote_toast_null;
+
+    public boolean getHits(){
+        boolean hits = false;
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (vote_btn != null) {
+            hits = true;
+        }
+        return hits;
+    }
+
+    public boolean getTostInfo() {
+        boolean tostInfo = false;
+        if (vote_btn != null) {
+            tostInfo = true;
+        }
+        System.out.println(tostInfo);
+        return tostInfo;
+    }
+
+    public void unusualVoteOperate() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         reset_btn.click();
         int surplusAvailableVoteNum = Integer.parseInt(surplusAvailableVote_text.getText().toString());
         int unusualVoteNum = surplusAvailableVoteNum + 20;
@@ -93,6 +127,7 @@ public class VotePage extends AbstractPage {
             my_voted_item.click();
             TimeUnit.SECONDS.sleep(1);
         }
+        TimeUnit.SECONDS.sleep(3);
     }
 
     public void checkTheSecondInfoOfVoted01() throws Exception {
@@ -109,6 +144,7 @@ public class VotePage extends AbstractPage {
     }
 
     public VoteConfirmPage setrVotePremise() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         reset_btn.click();
         TimeUnit.SECONDS.sleep(1);
         all_witness_edit_text.get(0).sendKeys("1");
