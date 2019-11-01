@@ -177,7 +177,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         frozen.inputFrozenCount("0");
         String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.equals("输入不能为空") || prompt.contains("cannot be empty"));
+        Assert.assertTrue(prompt.equals("最小冻结数量为") || prompt.contains("Minimum freeze is"));
     }
 
 
@@ -190,7 +190,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         frozen.inputFrozenCount("");
         String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.equals("输入不能为空") || prompt.contains("cannot be empty"));
+        Assert.assertTrue(prompt.equals("最小冻结数量为") || prompt.contains("Minimum freeze is"));
     }
 
 
@@ -201,7 +201,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
         String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.equals("地址格式不正确") || prompt.contains("Incorrect Format"));
+        Assert.assertTrue(prompt.equals("地址错误") || prompt.contains("Incorrect address"));
     }
 
 

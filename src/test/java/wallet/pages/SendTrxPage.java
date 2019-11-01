@@ -1,6 +1,5 @@
 package wallet.pages;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
 import java.util.regex.Matcher;

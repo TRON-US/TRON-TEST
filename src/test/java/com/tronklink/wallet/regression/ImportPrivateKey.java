@@ -49,7 +49,7 @@ public class ImportPrivateKey extends Base {
     public void test001_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
-        Assert.assertTrue(hits.contains("format incorrect") || hits.contains("格式不正确"));
+        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
 
 
@@ -66,7 +66,7 @@ public class ImportPrivateKey extends Base {
     public void test003_importPrivateKeyIsTooLarge() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab");
-        Assert.assertTrue(hits.contains("format incorrect") || hits.contains("格式不正确"));
+        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
 
 
@@ -167,7 +167,7 @@ public class ImportPrivateKey extends Base {
     public void test010_privateKeyIsAllNumbers() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("1234567890");
-        Assert.assertTrue(hits.contains("format incorrect") || hits.contains("格式不正确"));
+        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
 
 
@@ -177,7 +177,7 @@ public class ImportPrivateKey extends Base {
     public void test011_privateKeyWithoutUppercaseLetter() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("zxcvbnm1234567");
-        Assert.assertTrue(hits.contains("format incorrect") || hits.contains("格式不正确"));
+        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
 
 
