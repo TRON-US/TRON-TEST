@@ -182,7 +182,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
     }
 
-    public void inputFrozenCountAndSure(String count) throws Exception {
+    public AssetPage forzenSuccessEnterAssetPage(String count) throws Exception {
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
@@ -194,6 +194,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        back_btn.click();
+        return new AssetPage(driver);
     }
 
     public void inputReceivingAddress(String address) throws Exception {
