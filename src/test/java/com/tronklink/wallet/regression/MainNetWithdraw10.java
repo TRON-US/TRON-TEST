@@ -123,7 +123,7 @@ public class MainNetWithdraw10 extends Base {
 
 
 
-    @Test(description = "Check Available Balance")
+    @Test(description = "Check Available Balance",enabled = false)
     public void test005_checkAvailableBalance() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();

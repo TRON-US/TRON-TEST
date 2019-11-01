@@ -79,58 +79,58 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-//    @Test(description = "Check transferOut Chain Name")
-//    public void test001_checkTransferOutChainName() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferPage();
-//        String chain = transferOut.chain_text.getText();
-//        Assert.assertTrue(chain.equals("MainChain"));
-//    }
-//
-//
-//
-//
-//    @Test(description = "Check transferOut Trx Count")
-//    public void test002_checkTransferOutTrx() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferPage();
-//        String info = transferOut.getTransferInfo("trx");
-//        Assert.assertTrue(info.contains("10"));
-//    }
-//
-//
-//
-//    @Test(description = "Check transferOut Hits")
-//    public void test003_checkTransferOutHits() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferPage();
-//        String info = transferOut.getTransferInfo("hits");
-//        Assert.assertTrue(info.equals("转出需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
-//    }
-//
-//
-//
-//    @Test(description = "Check transferOut Fee")
-//    public void test004_checkTransferOutFee() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferPage();
-//        String info = transferOut.getTransferInfo("fee");
-//        int count = Integer.valueOf(info);
-//        Assert.assertTrue(50 <= count && count <= 500);
-//    }
-//
-//
-//
-//
-//    @Test(description = "transferOut Success Checkout Available trx")
-//    public void test005_checkAvailableBalance() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-//        TransferPage transferOut =  trx.enterTransferPage();
-//        trx = transferOut.enterTrxPageWithTransferSuccess();
-//        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-//        Assert.assertTrue(trxCount >= trxCountNow + 10);
-//    }
+    @Test(description = "Check transferOut Chain Name")
+    public void test001_checkTransferOutChainName() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferPage();
+        String chain = transferOut.chain_text.getText();
+        Assert.assertTrue(chain.equals("MainChain"));
+    }
+
+
+
+
+    @Test(description = "Check transferOut Trx Count")
+    public void test002_checkTransferOutTrx() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferPage();
+        String info = transferOut.getTransferInfo("trx");
+        Assert.assertTrue(info.contains("10"));
+    }
+
+
+
+    @Test(description = "Check transferOut Hits")
+    public void test003_checkTransferOutHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferPage();
+        String info = transferOut.getTransferInfo("hits");
+        Assert.assertTrue(info.equals("转出需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
+    }
+
+
+
+    @Test(description = "Check transferOut Fee")
+    public void test004_checkTransferOutFee() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferPage();
+        String info = transferOut.getTransferInfo("fee");
+        int count = Integer.valueOf(info);
+        Assert.assertTrue(50 <= count && count <= 500);
+    }
+
+
+
+
+    @Test(description = "transferOut Success Checkout Available trx")
+    public void test005_checkAvailableBalance() throws Exception {
+        TrxPage trx = enterTrxPage();
+        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        TransferPage transferOut =  trx.enterTransferPage();
+        trx = transferOut.enterTrxPageWithTransferSuccess();
+        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        Assert.assertTrue(trxCount >= trxCountNow + 10);
+    }
 
 
 
