@@ -43,7 +43,7 @@ public class ImportPrivateKeyPage extends AbstractPage {
     public PrivateKeySetNamePage enterPrivateKeySetNamePage(String key) throws Exception{
         content_text.sendKeys(key);
         next_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return new PrivateKeySetNamePage(driver);
     }
 
@@ -52,7 +52,7 @@ public class ImportPrivateKeyPage extends AbstractPage {
     public String inputErrorKeyGetHits(String key) throws Exception {
         content_text.sendKeys(key);
         next_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return error_hits.getText();
     }
 

@@ -33,6 +33,8 @@ import org.testng.annotations.Parameters;
 
 public class Base {
 
+
+
     public  AndroidDriver<?> DRIVER;
 
     private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
@@ -43,7 +45,9 @@ public class Base {
 
     public String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
 
+
     //@Test(retryAnalyzer = TestRetryAnalyzer.class)
+
 
 
     //setUp
@@ -62,6 +66,7 @@ public class Base {
             e.printStackTrace();
         }
     }
+
 
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey"})
     @BeforeClass() //Increase stability(because some case star setup error)
@@ -84,6 +89,8 @@ public class Base {
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+                System.out.println("mobile: " + deviceName + " " + udid);
+                System.out.println("privateKey: " + privateKey);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
                 File app = new File(appDir, "TronLink.apk");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
@@ -92,6 +99,7 @@ public class Base {
                 URL remoteUrl = new URL(url);
                 DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
+                System.out.println("setUp DRIVER success");
             }catch (Exception e){
                 System.out.println(e);
                 TimeUnit.SECONDS.sleep(2);
@@ -99,6 +107,9 @@ public class Base {
         }
         screenOn();
     }
+
+
+
 
 //    public  void setUp() throws Exception {
 //        //String[] deviceInfo = getDeviceInfo();
@@ -154,6 +165,7 @@ public class Base {
 //
 //    }
 
+
 //    /**
 //     * 找元素加固，如果没有找到元素，则再找5次，每次停留2S
 //     * @param element
@@ -193,6 +205,7 @@ public class Base {
 //    }
 
 
+
     public  void tearDownclass() {
         //writeLog("关闭app");
         DRIVER.closeApp();
@@ -201,9 +214,11 @@ public class Base {
     }
 
 
+
     public  void tearDownAfterClass() {
         //DRIVER.quit();
     }
+
 
 
     public  void tearDownWithoutQuit() {
@@ -214,10 +229,12 @@ public class Base {
     }
 
 
+
     public void log(String log) {
         String time = timeStamp.format(new Date()).toString();
         System.out.println(time + ": " + log);
     }
+
 
 
     public  List<String> getDevicesInfo() throws IOException {
@@ -239,6 +256,8 @@ public class Base {
         return list;
     }
 
+
+
     public  void screenOn() {
         try {
             Runtime rt = Runtime.getRuntime();
@@ -258,6 +277,7 @@ public class Base {
             return;
         }
     }
+
 
 
     public String removeSymbol(String arg){

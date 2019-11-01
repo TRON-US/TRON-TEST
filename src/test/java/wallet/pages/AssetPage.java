@@ -1,5 +1,6 @@
 package wallet.pages;
 
+import common.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
 
 import org.openqa.selenium.WebElement;
@@ -92,7 +93,7 @@ public class AssetPage extends AbstractPage {
 
 
     @FindBy(xpath = "//*[@text='TRX']")
-    public List<WebElement> trxAsset_list;
+    public List<WebElement> trx20_btn;
 
 
 
@@ -119,6 +120,8 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(xpath = "//*[@text='0 vote']")
     public WebElement english_availableVote_toast_null;
+
+
 
 
     public SendTrxPage enterSendTrxPage() {
@@ -177,13 +180,15 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrxPage() throws Exception {
-        trx_btn.click();
+        Helper.scrollToElementUntilVisible(driver,trx_btn);
+        trx20_btn.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
 
 
     public TrxPage enterTrx10Page() throws Exception {
+        Helper.scrollToElementUntilVisible(driver,trx10_btn);
         trx10_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
@@ -191,7 +196,8 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx20Page() throws Exception {
-        trxAsset_list.get(1).click();
+        Helper.swipScreen(driver);
+        trx20_btn.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
