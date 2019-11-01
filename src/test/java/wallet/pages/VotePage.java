@@ -81,7 +81,13 @@ public class VotePage extends AbstractPage {
 
     public boolean getHits(){
         boolean hits = false;
-        if (availableVote_toast.getText() != null || english_availableVote_toast.getText() != null){
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (vote_btn != null) {
             hits = true;
         }
         return hits;
@@ -89,7 +95,7 @@ public class VotePage extends AbstractPage {
 
     public boolean getTostInfo() {
         boolean tostInfo = false;
-        if (availableVote_toast_null.getText() != null || english_availableVote_toast_null.getText() != null) {
+        if (vote_btn != null) {
             tostInfo = true;
         }
         System.out.println(tostInfo);
