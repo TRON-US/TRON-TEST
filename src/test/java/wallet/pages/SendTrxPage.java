@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.FindBys;
 
 
 /**
@@ -72,11 +73,11 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
     public WebElement back_bt;
 
-
     @FindBy(xpath = "//*[@text='(1000042)']")
     public WebElement trc10_btn;
 
-    @FindBy(xpath = "//*[@text='TestTrc20Name']")
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
     public WebElement trc20_btn;
 
 
@@ -135,23 +136,23 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public int getTrc10Amount() throws Exception {
+    public double getTrc10Amount() throws Exception {
         token_btn.click();
         trc10_btn.click();
         String balance = balance_text.getText();
-        int trc10Amount = 0;
+        double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
         if(matcher.find())
-            trc10Amount = Integer.valueOf(matcher.group(0));
+            trc10Amount = Double.valueOf(matcher.group(0));
         return trc10Amount;
     }
 
-    public int getTrc20Amount() throws Exception {
+    public double getTrc20Amount() throws Exception {
         token_btn.click();
         trc20_btn.click();
         String balance = balance_text.getText();
-        int trc10Amount = 0;
+        double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
         if(matcher.find())

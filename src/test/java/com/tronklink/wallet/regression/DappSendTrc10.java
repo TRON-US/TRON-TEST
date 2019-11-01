@@ -58,12 +58,12 @@ public class DappSendTrc10 extends Base {
   public void tsst001_sendTrc10Success() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     SendTrxPage transfer = asset.enterSendTrxPage();
-    int trc10Before = transfer.getTrc10Amount();
+    double trc10Before = transfer.getTrc10Amount();
     String trc10SendAmount = "1";
     SendTrxSuccessPage stsp = transfer.normalSendTrc10(trc10SendAmount);
     TimeUnit.SECONDS.sleep(3);
     transfer = asset.enterSendTrxPage();
-    int trc10After = transfer.getTrc10Amount();
+    double trc10After = transfer.getTrc10Amount();
     System.out.println(trc10After);
     Assert.assertEquals(trc10Before,trc10After + Integer.valueOf(trc10SendAmount));
   }
