@@ -23,6 +23,7 @@ public class GuidePage extends AbstractPage {
 
     public UserAgreementPage enterUserAgreementPage() {
         try {
+            TimeUnit.SECONDS.sleep(1);
             impAccount.click();
             TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){
