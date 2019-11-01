@@ -95,7 +95,7 @@ public class Base {
                 File app = new File(appDir, "TronLink.apk");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());
-//        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
+                //desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
                 URL remoteUrl = new URL(url);
                 DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
