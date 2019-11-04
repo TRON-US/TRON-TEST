@@ -35,7 +35,7 @@ public class DappFrozenTest extends Base {
   }
 
 
-  @Test(description = "enter Details of the rules")
+  @Test(description = "enter Details of the rules",alwaysRun = true)
   public void test001_enterDetailsOfTheRules() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     String trxCount = asset.getTrxCount();
@@ -45,7 +45,7 @@ public class DappFrozenTest extends Base {
   }
 
 
-  @Test(description = "Freeze energy detail")
+  @Test(description = "Freeze energy detail",alwaysRun = true)
   public void test002_FreezeEnergyDetail() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen =  asset.enterFrozenAndThawingPage();
@@ -57,7 +57,7 @@ public class DappFrozenTest extends Base {
   }
 
 
-  @Test(description = "Bandwidth Detail detail")
+  @Test(description = "Bandwidth Detail detail",alwaysRun = true)
   public void test003_BandwidthDetail() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen =  asset.enterFrozenAndThawingPage();
@@ -82,7 +82,7 @@ public class DappFrozenTest extends Base {
 //  }
 
 
-  @Test(description = "Energy Question Test")
+  @Test(description = "Energy Question Test",alwaysRun = true)
   public void test005_checkEnergyQuestion() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -91,7 +91,7 @@ public class DappFrozenTest extends Base {
   }
 
 
-  @Test(description = "Bandwidth Question Test")
+  @Test(description = "Bandwidth Question Test",alwaysRun = true)
   public void test006_checkBandwidthQuestion() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -101,7 +101,7 @@ public class DappFrozenTest extends Base {
   }
 
 
-  @Test(description = "Bandwidth Question Test")
+  @Test(description = "Bandwidth Question Test",alwaysRun = true)
   public void test007_checkBandwidthQuestion() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -115,7 +115,7 @@ public class DappFrozenTest extends Base {
   /**
    * Freeze Energy
    */
-  @Test(description = "Freeze Energy Scuuess")
+  @Test(description = "Freeze Energy Scuuess",alwaysRun = true)
   public void test009_freezeEnergySuccess() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -130,7 +130,7 @@ public class DappFrozenTest extends Base {
 
 
   //Freeze Energy more than trx
-  @Test(description = "Freeze Energy more than trx")
+  @Test(description = "Freeze Energy more than trx",alwaysRun = true)
   public void test010_freezeEnergyMoreThanTrx() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -141,7 +141,7 @@ public class DappFrozenTest extends Base {
 
 
   //Freeze Energy equals trx
-  @Test(description = "Freeze Energy more than trx")
+  @Test(description = "Freeze Energy more than trx",alwaysRun = true)
   public void test011_freezeEnergyMoreThanTrx() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -152,7 +152,7 @@ public class DappFrozenTest extends Base {
 
 
   //Freeze Energy with 0 trx
-  @Test(description = "Freeze Energy with zero trx")
+  @Test(description = "Freeze Energy with zero trx",alwaysRun = true)
   public void test012_freezeEnergyZeroTrx() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -165,7 +165,7 @@ public class DappFrozenTest extends Base {
 
 
   //Freeze Energy with null trx
-  @Test(description = "Freeze Energy with zero trx")
+  @Test(description = "Freeze Energy with zero trx",alwaysRun = true)
   public void test013_freezeEnergyNullTrx() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -176,7 +176,7 @@ public class DappFrozenTest extends Base {
 
 
 
-  @Test(description = "freeze Energy with Error Receiving Address")
+  @Test(description = "freeze Energy with Error Receiving Address",alwaysRun = true)
   public void test014_freezeEnergyErrorReceivingAddress() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -187,7 +187,7 @@ public class DappFrozenTest extends Base {
 
 
 
-  @Test(description = "freeze Energy with not active Receiving Address")
+  @Test(description = "freeze Energy with not active Receiving Address",alwaysRun = true)
   public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
@@ -201,7 +201,7 @@ public class DappFrozenTest extends Base {
   /**
    * freeze Bandwidth
    */
-  @Test(description = "Freeze Bandwidth Success")
+  @Test(description = "Freeze Bandwidth Success",alwaysRun = true)
   public void test016_freezeBandwidthSuccess() {
     AssetPage asset = new AssetPage(DRIVER);
     FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
