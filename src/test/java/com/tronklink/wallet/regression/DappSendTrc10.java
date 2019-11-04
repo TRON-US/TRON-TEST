@@ -65,7 +65,7 @@ public class DappSendTrc10 extends Base {
     transfer = asset.enterSendTrxPage();
     double trc10After = transfer.getTrc10Amount();
     System.out.println(trc10After);
-    Assert.assertEquals(trc10Before,trc10After + Integer.valueOf(trc10SendAmount));
+    Assert.assertEquals(trc10Before,trc10After + Double.valueOf(trc10SendAmount));
   }
 
   @Test(description = "input max send number")
