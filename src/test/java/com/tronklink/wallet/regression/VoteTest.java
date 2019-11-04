@@ -83,7 +83,7 @@ public class VoteTest extends Base {
 
 
 
-    @Test(description = "enter a number that great than the number of votes available")
+    @Test(description = "enter a number that great than the number of votes available",alwaysRun = true)
     public void test003_vote01() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -93,7 +93,7 @@ public class VoteTest extends Base {
 
 
 
-    @Test(description = "Enter a vote of 0,prompt 'vote number null'")
+    @Test(description = "Enter a vote of 0,prompt 'vote number null'",alwaysRun = true)
     public void test004_vote02() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -106,7 +106,7 @@ public class VoteTest extends Base {
 
 
 
-    @Test(description = "The number of votes entered is empty,prompt 'vote number null'")
+    @Test(description = "The number of votes entered is empty,prompt 'vote number null'",alwaysRun = true)
     public void test005_vote03() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -119,7 +119,7 @@ public class VoteTest extends Base {
 
 
 
-    @Test(description = "Gets the address of the second candidate")
+    @Test(description = "Gets the address of the second candidate",alwaysRun = true)
     public void test006_searchVoteInfo() throws Exception {
         AssetPage asset = forzenTrx();
         VotePage vote = asset.enterVotePage();
