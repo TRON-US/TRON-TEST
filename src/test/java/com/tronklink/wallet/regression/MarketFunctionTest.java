@@ -49,7 +49,7 @@ public class MarketFunctionTest extends Base {
     }
 
 
-    @Test //测试进入市场页
+    @Test(alwaysRun = true) //测试进入市场页
     public void test01_checkEnterMarketPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();
@@ -57,7 +57,7 @@ public class MarketFunctionTest extends Base {
     }
 
 
-    @Test //测试点击价格排序功能是否正常
+    @Test(alwaysRun = true) //测试点击价格排序功能是否正常
     public void test02_newPriceSort() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();

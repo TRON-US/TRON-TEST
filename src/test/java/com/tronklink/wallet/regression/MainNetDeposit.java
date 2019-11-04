@@ -66,7 +66,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "Change Chain")
+    @Test(description = "Change Chain",alwaysRun = true)
     public void test001_changeChain() throws Exception {
         SettingPage set = enterSettingPage();
         String nodeName = set.node_name.getText();
@@ -78,7 +78,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "Check TransferIn Chain Name")
+    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
     public void test002_checkTransferInChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -89,7 +89,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "Check TransferIn Trx Count")
+    @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
     public void test003_checkTransferInTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -99,7 +99,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "Check TransferIn Hits")
+    @Test(description = "Check TransferIn Hits",alwaysRun = true)
     public void test004_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -109,7 +109,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "Check TransferIn Fee")
+    @Test(description = "Check TransferIn Fee",alwaysRun = true)
     public void test005_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -120,7 +120,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "Check Available Balance")
+    @Test(description = "Check Available Balance",alwaysRun = true)
     public void test006_checkAvailableBalance() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
@@ -137,7 +137,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "TransferIn Success Checkout Available trx")
+    @Test(description = "TransferIn Success Checkout Available trx",alwaysRun = true)
     public void test007_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -149,7 +149,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "TransferIn Success Recording")
+    @Test(description = "TransferIn Success Recording",alwaysRun = true)
     public void test008_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn =  trx.enterTransferPage();

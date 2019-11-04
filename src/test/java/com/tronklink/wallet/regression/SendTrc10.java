@@ -44,7 +44,7 @@ public class SendTrc10 extends Base {
     return transfer;
   }
 
-  @Test(description = "SendTrc10 success test")
+  @Test(description = "SendTrc10 success test",alwaysRun = true)
   public void tsst001_sendTrc10Success() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     SendTrxPage transfer = asset.enterSendTrxPage();
@@ -58,7 +58,7 @@ public class SendTrc10 extends Base {
     Assert.assertEquals(trc10Before,trc10After + Integer.valueOf(trc10SendAmount));
   }
 
-  @Test(description = "input max send number")
+  @Test(description = "input max send number",alwaysRun = true)
   public void tsst002_inputMaxSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("max");
@@ -67,7 +67,7 @@ public class SendTrc10 extends Base {
 
 
 
-  @Test(description = "input mix send number")
+  @Test(description = "input mix send number",alwaysRun = true)
   public void tsst003_inputMixSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("mix");
@@ -77,7 +77,7 @@ public class SendTrc10 extends Base {
 
 
 
-  @Test(description = "input too Much trc10 send number")
+  @Test(description = "input too Much trc10 send number",alwaysRun = true)
   public void tsst004_inputTooMuchSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("tooMuch");
