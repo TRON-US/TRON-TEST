@@ -42,7 +42,7 @@ public class MineTest extends Base {
     }
 
 
-    @Test(description = "Friend invitation Test")
+    @Test(description = "Friend invitation Test",alwaysRun = true)
     public void test001_friendInvitation() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
@@ -51,7 +51,7 @@ public class MineTest extends Base {
     }
 
 
-    @Test(description = "Announcement Test")
+    @Test(description = "Announcement Test",alwaysRun = true)
     public void test002_bulletin() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
