@@ -52,7 +52,7 @@ public class DemoTest extends Base {
     }
 
 
-    @Test //测试是否正常进行投票页
+    @Test(alwaysRun = true) //测试是否正常进行投票页
     public void test01_checkPopularSearch() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -60,7 +60,7 @@ public class DemoTest extends Base {
     }
 
 
-    @Test //测试进入投票页
+    @Test(alwaysRun = true) //测试进入投票页
     public void test02_checkPopular() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -68,7 +68,7 @@ public class DemoTest extends Base {
     }
 
 
-    @Test //测试进入投票页
+    @Test(alwaysRun = true) //测试进入投票页
     public void test03_checkPopular() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
