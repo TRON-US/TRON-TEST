@@ -133,11 +133,27 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage(){
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
         market_btn.click();
         return new MarketPage(driver);
     }
 
     public ReceiptPage enterReceiptPage(){
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
         receipt_btn.click();
         return new ReceiptPage(driver);
     }
@@ -149,6 +165,14 @@ public class AssetPage extends AbstractPage {
     }
 
     public AddAssertPage enterAddAssertPage(){
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
         addAssert_btn.click();
         return new AddAssertPage(driver);
     }
@@ -166,6 +190,14 @@ public class AssetPage extends AbstractPage {
 
 
     public MinePage enterMinePage(){
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
         mine_btn.click();
         return new MinePage(driver);
     }
