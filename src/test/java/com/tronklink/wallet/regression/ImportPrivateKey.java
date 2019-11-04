@@ -45,7 +45,7 @@ public class ImportPrivateKey extends Base {
     }
 
 
-    @Test(description = "Import PrivateKey Format Incorrect")
+    @Test(description = "Import PrivateKey Format Incorrect",alwaysRun = true)
     public void test001_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
@@ -54,7 +54,7 @@ public class ImportPrivateKey extends Base {
 
 
 
-    @Test(description = "Import PrivateKey Is NULL")
+    @Test(description = "Import PrivateKey Is NULL",alwaysRun = true)
     public void test002_importPrivateKeyIsNull() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         Assert.assertFalse(importPrivateKey.next_btn.isEnabled());
@@ -62,7 +62,7 @@ public class ImportPrivateKey extends Base {
 
 
 
-    @Test(description = "Import PrivateKey Is Too Large")
+    @Test(description = "Import PrivateKey Is Too Large",alwaysRun = true)
     public void test003_importPrivateKeyIsTooLarge() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab");
@@ -71,7 +71,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "PrivateKey Name Too Long")
+    @Test(description = "PrivateKey Name Too Long",alwaysRun = true)
     public void test004_privateKeyNameTooLong(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -83,7 +83,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "Password without uppercase letter")
+    @Test(description = "Password without uppercase letter",alwaysRun = true)
     public void test005_passwordWithoutUppercaseLetter(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -95,7 +95,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "Password Is Too Short")
+    @Test(description = "Password Is Too Short",alwaysRun = true)
     public void test006_passwordIsTooShort(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -106,7 +106,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "Two Password Is diffent")
+    @Test(description = "Two Password Is diffent",alwaysRun = true)
     public void test007_twoPasswordDiffent(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -122,7 +122,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "Wallet Name Has Alerady Exist")
+    @Test(description = "Wallet Name Has Alerady Exist",alwaysRun = true)
     public void test008_walletNameHasAleradyExist(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -144,7 +144,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "Wallet The same name but different capitalization")
+    @Test(description = "Wallet The same name but different capitalization",alwaysRun = true)
     public void test009_sameNameButDifferentCapitalization(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -163,7 +163,7 @@ public class ImportPrivateKey extends Base {
 
 
 
-    @Test(description = "privateKey Is All Numbers")
+    @Test(description = "privateKey Is All Numbers",alwaysRun = true)
     public void test010_privateKeyIsAllNumbers() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("1234567890");
@@ -173,7 +173,7 @@ public class ImportPrivateKey extends Base {
 
 
 
-    @Test(description = "privateKey Without Uppercase Letter")
+    @Test(description = "privateKey Without Uppercase Letter",alwaysRun = true)
     public void test011_privateKeyWithoutUppercaseLetter() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("zxcvbnm1234567");

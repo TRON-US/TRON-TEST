@@ -49,7 +49,7 @@ public class AddAssetsTest extends Base {
 
 
 
-    @Test(description = "test add assert")
+    @Test(description = "test add assert",alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         AddAssertPage addAssert =  asset.enterAddAssertPage();
@@ -63,7 +63,7 @@ public class AddAssetsTest extends Base {
     }
 
 
-    @Test(description = "test remove asset")
+    @Test(description = "test remove asset",alwaysRun = true)
     public void test003_removeAsset(){
         AssetPage asset = new AssetPage(DRIVER);
         AddAssertPage addAssert =  asset.enterAddAssertPage();
