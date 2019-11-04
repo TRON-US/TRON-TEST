@@ -55,7 +55,7 @@ public class SendTrc20 extends Base {
     transfer = asset.enterSendTrxPage();
     double trc20After = transfer.getTrc20Amount();
     System.out.println(trc20After);
-    Assert.assertEquals(trc20Before,trc20After + Integer.valueOf(trc20SendAmount));
+    Assert.assertEquals(trc20Before,trc20After + Double.valueOf(trc20SendAmount));
   }
 
   @Test(description = "input max send number",alwaysRun = true)

@@ -19,6 +19,7 @@ public class DappSendTrc20 extends Base {
   public void setUpBefore(String privateKey) throws Exception {
     System.out.println("执行setUpBefore");
     new Helper().getSign(privateKey,DRIVER);
+    new Helper().changeDappchain();
   }
 
 
