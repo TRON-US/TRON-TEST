@@ -21,13 +21,7 @@ public class DappAddAssetsTest extends Base {
   @BeforeClass()
   public void setUpBefore(String privateKey) throws Exception {
     new Helper().getSign(privateKey,DRIVER);
-    AssetPage asset = new AssetPage(DRIVER);
-    MinePage mine = asset.enterMinePage();
-    SettingPage setting = mine.enterSettingPage();
-    NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-    nodeSetPage.enterSettingPageChoiseDappChain();
-    DRIVER.closeApp();
-    DRIVER.activateApp("com.tronlink.wallet");
+    new Helper().changeDappchain();
   }
 
   @AfterMethod

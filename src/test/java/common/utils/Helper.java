@@ -83,6 +83,16 @@ public class Helper {
         }
     }
 
+    public void changeDappchain() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = setting.enterNodeSetPage();
+        nodeSetPage.enterSettingPageChoiseDappChain();
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
+    }
+
 
     public void getSignOperate(String testPrivateKey){
         try {
