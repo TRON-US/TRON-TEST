@@ -1,6 +1,7 @@
 package com.tronklink.wallet.regression;
 
 import common.utils.Helper;
+import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -70,6 +71,7 @@ public class ImportKeystore extends Base {
     ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
     PrivateKeySetNamePage setName = importKeystorePage.enterPrivateKeySetNamePage(keystore,password);
     setName.setName("Auto_Test2");
+    TimeUnit.SECONDS.sleep(2);
     asset.enterMinePage();
     minePage.enterMyPursePage();
     Assert.assertEquals(myPursePage.getAddress(),address);
