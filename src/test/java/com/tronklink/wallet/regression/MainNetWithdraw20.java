@@ -79,7 +79,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "Check transferOut Chain Name")
+    @Test(description = "Check transferOut Chain Name",alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -90,7 +90,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "Check transferOut Trx Count")
+    @Test(description = "Check transferOut Trx Count",alwaysRun = true)
     public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -100,7 +100,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "Check transferOut Hits")
+    @Test(description = "Check transferOut Hits",alwaysRun = true)
     public void test003_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -110,7 +110,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "Check transferOut Fee")
+    @Test(description = "Check transferOut Fee",alwaysRun = true)
     public void test004_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -122,7 +122,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "transferOut Success Checkout Available trx")
+    @Test(description = "transferOut Success Checkout Available trx",alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -134,7 +134,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "transferOut Success Recording")
+    @Test(description = "transferOut Success Recording",alwaysRun = true)
     public void test006_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut =  trx.enterTransferPage();

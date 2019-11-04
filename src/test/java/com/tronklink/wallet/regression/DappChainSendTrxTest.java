@@ -49,7 +49,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input Privatekey to Receiving address")
+  @Test(description = "input Privatekey to Receiving address",alwaysRun = true)
   public void tsst001_inputPrivatekey() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     SendTrxPage transfer = enterToSendTrxPage();
@@ -60,7 +60,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input error address to Receiving address")
+  @Test(description = "input error address to Receiving address",alwaysRun = true)
   public void tsst002_inputErrorAddress() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendKey(transfer.receiveAddress_text,"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
@@ -70,7 +70,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input not active Receiving address")
+  @Test(description = "input not active Receiving address",alwaysRun = true)
   public void tsst003_inputNotActiveAddress() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendKey(transfer.receiveAddress_text,"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
@@ -81,7 +81,7 @@ public class DappChainSendTrxTest extends Base {
 
 
   @Parameters({"address"})
-  @Test(description = "input Receiving address same as send address")
+  @Test(description = "input Receiving address same as send address",alwaysRun = true)
   public void tsst004_inputReceivingAddressSameAsSend(String address) throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendKey(transfer.receiveAddress_text,address);
@@ -91,7 +91,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input Null Receiving address")
+  @Test(description = "input Null Receiving address",alwaysRun = true)
   public void tsst005_inputNullReceivingAddress() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendKey(transfer.tranferCount_text,"1");
@@ -100,7 +100,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input max send number")
+  @Test(description = "input max send number",alwaysRun = true)
   public void tsst006_inputMaxSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrx("max");
@@ -109,7 +109,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input mix send number")
+  @Test(description = "input mix send number",alwaysRun = true)
   public void tsst007_inputMixSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrx("mix");
@@ -119,7 +119,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "input too Much TRX send number")
+  @Test(description = "input too Much TRX send number",alwaysRun = true)
   public void tsst008_inputTooMuchSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrx("tooMuch");
@@ -129,7 +129,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "password error")
+  @Test(description = "password error",alwaysRun = true)
   public void tsst009_passwordError() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -142,7 +142,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "Receiving address trim")
+  @Test(description = "Receiving address trim",alwaysRun = true)
   public void tsst010_receivingAddressTrim() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
@@ -153,7 +153,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "Receiving Minimum Trx")
+  @Test(description = "Receiving Minimum Trx",alwaysRun = true)
   public void tsst011_sendMinimumTrx() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
@@ -164,7 +164,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @Test(description = "SendTrx success test")
+  @Test(description = "SendTrx success test",alwaysRun = true)
   public void tsst012_sendTrxSuccess() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
