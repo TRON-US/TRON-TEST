@@ -180,7 +180,7 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrxPage() throws Exception {
         Helper.scrollToElementUntilVisible(driver,trx_btn);
-        trx20_btn.get(1).click();
+        trx_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
