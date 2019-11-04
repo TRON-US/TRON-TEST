@@ -49,7 +49,7 @@ public class ImportKeystore extends Base {
     Assert.assertTrue(errorHits.equals("Keystore incorrect") ||errorHits.equals("Keystore不正确"));
   }
 
-  @Test(description = "import wallet with keystore by incorrect password")
+  @Test(description = "import wallet with keystore by incorrect password",alwaysRun = true)
   public void test0002ImportsErrorKeystore() throws Exception{
     AssetPage asset = new AssetPage(DRIVER);
     MinePage minePage = asset.enterMinePage();
@@ -61,7 +61,7 @@ public class ImportKeystore extends Base {
   }
 
   @Parameters({"address"})
-  @Test(description = "import wallet with correct keystore")
+  @Test(description = "import wallet with correct keystore",alwaysRun = true)
   public void test0003ImportsKeystore(String address) throws Exception{
     AssetPage asset = new AssetPage(DRIVER);
     MinePage minePage = asset.enterMinePage();

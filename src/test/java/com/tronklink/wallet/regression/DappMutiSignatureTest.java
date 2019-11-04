@@ -58,7 +58,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "MutiSignature Question Content Test")
+  @Test(description = "MutiSignature Question Content Test",alwaysRun = true)
   public void test001_MutiSignatureQuestionContentTest() throws Exception {
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     String content = multiSignManager.questionClick();
@@ -68,7 +68,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "Add MutiSignature Test")
+  @Test(description = "Add MutiSignature Test",alwaysRun = true)
   public void test002_mutiSignature() throws Exception {
     String signName = "AutoTest-" + System.currentTimeMillis();
     MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
@@ -79,7 +79,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "delete signature Test")
+  @Test(description = "delete signature Test",alwaysRun = true)
   public void test003_delSignature() throws Exception {
     MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
     String signName = multiSignManager.permissionName_text.getText();
@@ -91,7 +91,7 @@ public class DappMutiSignatureTest extends Base {
 
   //Modify signature,Return to the before state
   @Parameters({"address"})
-  @Test(description = "Modify signature Test")
+  @Test(description = "Modify signature Test",alwaysRun = true)
   public void test004_modifySignature(String address) throws Exception {
     MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
     ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
@@ -103,7 +103,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "signature is exist")
+  @Test(description = "signature is exist",alwaysRun = true)
   public void test005_signatureIsExist() throws Exception {
     MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -116,7 +116,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "signature Name Is Null")
+  @Test(description = "signature Name Is Null",alwaysRun = true)
   public void test006_signatureNameIsNull() throws Exception {
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -128,7 +128,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "signature Name Is too long")
+  @Test(description = "signature Name Is too long",alwaysRun = true)
   public void test007_signatureNameIsSoLong() throws Exception {
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -140,7 +140,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "signature without choise Permission")
+  @Test(description = "signature without choise Permission",alwaysRun = true)
   public void test008_signatureWithoutPermission() throws Exception {
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -150,7 +150,7 @@ public class DappMutiSignatureTest extends Base {
   }
 
 
-  @Test(description = "signature threshold > 100")
+  @Test(description = "signature threshold > 100",alwaysRun = true)
   public void test009_thresholdTooLarge() throws Exception {
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -163,7 +163,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-  @Test(description = "signature threshold Is 0")
+  @Test(description = "signature threshold Is 0",alwaysRun = true)
   public void test010_thresholdIsZero() throws Exception {
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     AddPermissionPage add = multiSignManager.enterAddPermissionPage();

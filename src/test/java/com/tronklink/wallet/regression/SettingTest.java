@@ -54,7 +54,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
     }
 
-    @Test(description = "Developer options Test")
+    @Test(description = "Developer options Test",alwaysRun = true)
     public void test002_developerOptions() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -65,7 +65,7 @@ public class SettingTest extends Base {
         Assert.assertNotEquals(developer,developerNow);
     }
 
-    @Test(description = "DAPP Browser Test")
+    @Test(description = "DAPP Browser Test",alwaysRun = true)
     public void test003_DAPP_Browser() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
