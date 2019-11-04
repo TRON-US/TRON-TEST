@@ -48,7 +48,7 @@ public class ReceiptTest extends Base {
 
 
     @Parameters({"address"})
-    @Test(description = "check Receipt Address")
+    @Test(description = "check Receipt Address",alwaysRun = true)
     public void test001_ckeckReceiptTrxAddress(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         ReceiptPage receiptPage =  asset.enterReceiptPage();

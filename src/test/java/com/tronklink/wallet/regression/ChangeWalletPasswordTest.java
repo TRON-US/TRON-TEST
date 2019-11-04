@@ -51,14 +51,14 @@ public class ChangeWalletPasswordTest extends Base {
   }
 
 
-  @Test(description = "Input correct password")
+  @Test(description = "Input correct password",alwaysRun = true)
   public void test0001InputCorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(oldPassword,oldPassword,oldPassword);
     TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "Input dont match password")
+  @Test(description = "Input dont match password",alwaysRun = true)
   public void test0002InputIncorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(oldPassword,newPassword,oldPassword);
@@ -67,7 +67,7 @@ public class ChangeWalletPasswordTest extends Base {
     TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "input correct password")
+  @Test(description = "input correct password",alwaysRun = true)
   public void test0003InputIncorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
@@ -78,7 +78,7 @@ public class ChangeWalletPasswordTest extends Base {
     TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "input incorrect password")
+  @Test(description = "input incorrect password",alwaysRun = true)
   public void test0004InputIncorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(newPassword,newPassword,newPassword);
@@ -89,7 +89,7 @@ public class ChangeWalletPasswordTest extends Base {
     TimeUnit.SECONDS.sleep(1);
   }
 
-  @Test(description = "input incorrect password")
+  @Test(description = "input incorrect password",alwaysRun = true)
   public void test0005InputCorrectPassword() throws Exception{
     WalletPasswordPage walletPasswordPage = walletPasswordPage();
     walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
