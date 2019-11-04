@@ -138,7 +138,7 @@ public class MainNetDeposit20 extends Base {
 
 
 
-    @Test(description = "TransferIn Success Checkout Available trc20")
+    @Test(description = "TransferIn Success Checkout Available trc20",enabled = false)
     public void test007_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -155,6 +155,7 @@ public class MainNetDeposit20 extends Base {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn =  trx.enterTransferPage();
         String count = random(10,10);
+        System.out.println("count = " + count);
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
@@ -166,6 +167,7 @@ public class MainNetDeposit20 extends Base {
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                System.out.println("tranferInCount = " + tranferInCount);
                 if (count.equals(tranferInCount)){
                     exist = true;
                     break;
@@ -174,5 +176,7 @@ public class MainNetDeposit20 extends Base {
         }
         Assert.assertTrue(exist);
     }
+
+
 
 }
