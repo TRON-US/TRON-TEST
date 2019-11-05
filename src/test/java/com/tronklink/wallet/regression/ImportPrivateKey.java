@@ -29,7 +29,7 @@ public class ImportPrivateKey extends Base {
     }
 
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
         DRIVER.quit();
