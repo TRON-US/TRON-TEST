@@ -34,7 +34,7 @@ public class DappChainSendTrxTest extends Base {
 
 
 
-  @AfterClass
+  @AfterClass(alwaysRun = true)
   public void tearDownAfterClass() {
     DRIVER.quit();
   }
