@@ -32,7 +32,7 @@
 //
 //
 //
-//  @AfterClass
+//  @AfterClass(alwaysRun = true)
 //  public void tearDownAfterClass() {
 //    DRIVER.quit();
 //  }
