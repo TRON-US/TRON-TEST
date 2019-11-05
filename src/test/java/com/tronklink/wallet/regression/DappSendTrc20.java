@@ -15,7 +15,7 @@ import wallet.pages.SendTrxSuccessPage;
 
 public class DappSendTrc20 extends Base {
   @Parameters({"privateKey"})
-  @BeforeClass()
+  @BeforeClass(alwaysRun = true)
   public void setUpBefore(String privateKey) throws Exception {
     System.out.println("执行setUpBefore");
     new Helper().getSign(privateKey,DRIVER);
@@ -24,7 +24,7 @@ public class DappSendTrc20 extends Base {
 
 
 
-  @AfterMethod
+  @AfterMethod(alwaysRun = true)
   public void afterMethod(){
     DRIVER.closeApp();
     DRIVER.activateApp("com.tronlink.wallet");

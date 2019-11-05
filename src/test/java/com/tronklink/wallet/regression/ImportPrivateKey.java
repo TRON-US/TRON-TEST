@@ -22,7 +22,7 @@ import wallet.pages.UserAgreementPage;
 public class ImportPrivateKey extends Base {
 
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void afterMethod(){
         DRIVER.closeApp();
         DRIVER.launchApp();
