@@ -22,7 +22,7 @@ public class MainNetDeposit10 extends Base {
 
 
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
         DRIVER.quit();

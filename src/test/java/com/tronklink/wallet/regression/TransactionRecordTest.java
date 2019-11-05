@@ -38,7 +38,7 @@ public class TransactionRecordTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         DRIVER.quit();
     }

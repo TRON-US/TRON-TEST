@@ -20,7 +20,7 @@
 //
 //
 //
-//    @AfterClass
+//    @AfterClass(alwaysRun = true)
 //    public void tearDownAfterClass() {
 //        //reset DAPP chain trun main chain
 //        changeToMainChain();

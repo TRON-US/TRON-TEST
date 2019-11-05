@@ -30,7 +30,7 @@
 ////        getSign(privateKey);
 ////    }
 //
-//    @AfterClass
+//    @AfterClass(alwaysRun = true)
 //    public void tearDownAfterClass() {
 //        //Base.tearDownAfterClass();
 //        DRIVER.quit();
