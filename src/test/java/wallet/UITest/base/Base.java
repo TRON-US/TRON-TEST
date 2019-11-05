@@ -308,11 +308,22 @@ public class Base {
 
 
     public  void changeDappchain() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-        nodeSetPage.enterSettingPageChoiseDappChain();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (DRIVER.findElementById("com.tronlink.wallet:id/iv_pic").isDisplayed()){
+                DRIVER.findElementById("com.tronlink.wallet:id/iv_close").click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
+        DRIVER.findElementById("com.tronlink.wallet:id/my").click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.findElementById("com.tronlink.wallet:id/setting").click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.findElementById("com.tronlink.wallet:id/node").click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.findElementsById("com.tronlink.wallet:id/iv_select").get(1).click();
+        TimeUnit.SECONDS.sleep(1);
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
