@@ -182,7 +182,7 @@ public class autoCreateTestngXml {
                 adb = "adb -s " + udid;
                 AppiumTestCase.cmdReturn(adb + " uninstall com.tronlink.wallet");
                 System.out.print("Uninstall succesfully\n");
-                AppiumTestCase.cmdReturn(adb + " install TronLink.apk");
+                //AppiumTestCase.cmdReturn(adb + " install -r TronLink.apk");
                 System.out.print("Install succesfully");
                 String platformVersion = AppiumTestCase
                     .cmdReturn(adb + " shell getprop ro.build.version.release");
