@@ -26,12 +26,12 @@ public class ChangeWalletPasswordTest extends Base {
   String confirmPassword = "Admin1234";
 
   @Parameters({"privateKey"})
-  @BeforeClass()
+  @BeforeClass(alwaysRun = true)
   public void setUpBefore(String privateKey) throws Exception {
     new Helper().getSign(privateKey,DRIVER);
   }
 
-  @AfterMethod
+  @AfterMethod(alwaysRun = true)
   public void afterMethod()throws Exception{
     DRIVER.closeApp();
     DRIVER.activateApp("com.tronlink.wallet");
