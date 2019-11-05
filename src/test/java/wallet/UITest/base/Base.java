@@ -28,6 +28,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import wallet.pages.AssetPage;
+import wallet.pages.MinePage;
+import wallet.pages.NodeSetPage;
+import wallet.pages.SettingPage;
 
 //@Listeners(RetryListener.class)
 
@@ -300,6 +304,17 @@ public class Base {
     public static String random(float multiple,float min) {
         Random random = new Random();
         return String.format("%.6f",Math.random()*multiple + min);
+    }
+
+
+    public  void changeDappchain() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = setting.enterNodeSetPage();
+        nodeSetPage.enterSettingPageChoiseDappChain();
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
 
 
