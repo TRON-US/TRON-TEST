@@ -13,12 +13,12 @@ import org.testng.annotations.*;
 public class FindPageTest extends Base {
 
     @Parameters({"privateKey"})
-    @BeforeClass()
+    @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey,DRIVER);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void afterMethod(){
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
