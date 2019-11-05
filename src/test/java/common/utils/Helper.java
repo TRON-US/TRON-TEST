@@ -45,6 +45,22 @@ public class Helper {
     }
 
 
+
+    public static void swipeLeftScreen(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width*4/5, height/2))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width*1/5, height/2))
+                .release().perform();
+    }
+
+
+
     // swip the screen until element is display
     public static void scrollToElementUntilVisible(AndroidDriver<?> driver, WebElement we){
         for (int i=0;i<5;i++) {
