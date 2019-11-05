@@ -19,7 +19,6 @@
 //  public void setUpBefore(String privateKey) throws Exception {
 //    System.out.println("执行setUpBefore");
 //    new Helper().getSign(privateKey,DRIVER);
-//    new Helper().changeDappchain();
 //  }
 //
 //
@@ -47,6 +46,7 @@
 //
 //  @Test(description = "SendTrc20 success test",alwaysRun = true)
 //  public void tsst001_sendTrc20Success() throws Exception {
+//    changeDappchain();
 //    AssetPage asset = new AssetPage(DRIVER);
 //    SendTrxPage transfer = asset.enterSendTrxPage();
 //    double trc20Before = transfer.getTrc20Amount();

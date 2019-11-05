@@ -23,8 +23,6 @@ public class DappMutiSignatureTest extends Base {
   @BeforeClass(alwaysRun = true)
   public void setUpBefore(String privateKey) throws Exception {
     new Helper().getSign(privateKey,DRIVER);
-    new Helper().changeDappchain();
-
   }
 
   @AfterMethod(alwaysRun = true)
@@ -55,6 +53,7 @@ public class DappMutiSignatureTest extends Base {
 
   @Test(description = "MutiSignature Question Content Test",alwaysRun = true)
   public void test001_MutiSignatureQuestionContentTest() throws Exception {
+    changeDappchain();
     MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
     String content = multiSignManager.questionClick();
     Assert.assertTrue(content.contains("Active Permission"));
