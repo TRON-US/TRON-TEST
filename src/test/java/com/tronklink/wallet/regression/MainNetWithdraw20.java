@@ -122,7 +122,7 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-    @Test(description = "transferOut Success Checkout Available trx",alwaysRun = true)
+    @Test(description = "transferOut Success Checkout Available trx",enabled = false)
     public void test005_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
