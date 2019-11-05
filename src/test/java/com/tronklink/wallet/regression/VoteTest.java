@@ -42,7 +42,7 @@ public class VoteTest extends Base {
     }
 
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         DRIVER.quit();
     }
