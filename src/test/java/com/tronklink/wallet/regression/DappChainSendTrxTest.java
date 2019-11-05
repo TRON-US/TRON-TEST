@@ -21,7 +21,6 @@ public class DappChainSendTrxTest extends Base {
   public void setUpBefore(String privateKey) throws Exception {
     System.out.println("执行setUpBefore");
     new Helper().getSign(privateKey,DRIVER);
-    new Helper().changeDappchain();
   }
 
 
@@ -51,6 +50,7 @@ public class DappChainSendTrxTest extends Base {
 
   @Test(description = "input Privatekey to Receiving address",alwaysRun = true)
   public void tsst001_inputPrivatekey() throws Exception {
+    changeDappchain();
     AssetPage asset = new AssetPage(DRIVER);
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendKey(transfer.receiveAddress_text,"324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");

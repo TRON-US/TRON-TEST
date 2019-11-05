@@ -33,7 +33,7 @@ public class DAPP_BrowerPage extends AbstractPage {
 
     public void testUrl(){
         try {
-            url_input.sendKeys("www.baidu.com");
+            url_input.sendKeys("https://www.wink.org/#/");
             enterBrowser_btn.click();
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){

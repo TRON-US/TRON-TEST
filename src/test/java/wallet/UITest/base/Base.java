@@ -28,6 +28,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import wallet.pages.AssetPage;
+import wallet.pages.MinePage;
+import wallet.pages.NodeSetPage;
+import wallet.pages.SettingPage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //@Listeners(RetryListener.class)
@@ -88,6 +92,7 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", "Uiautomator2");
                 desiredCapabilities.setCapability("privateKey", privateKey);
                 desiredCapabilities.setCapability("clearSystemFiles", true);
+                desiredCapabilities.setCapability("recreateChromeDriverSessions", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 //desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemAtomicPort.addAndGet(1));
@@ -304,6 +309,28 @@ public class Base {
     public static String random(float multiple,float min) {
         Random random = new Random();
         return String.format("%.6f",Math.random()*multiple + min);
+    }
+
+
+    public  void changeDappchain() throws Exception{
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+            if (DRIVER.findElementById("com.tronlink.wallet:id/iv_pic").isDisplayed()){
+                DRIVER.findElementById("com.tronlink.wallet:id/iv_close").click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
+        DRIVER.findElementById("com.tronlink.wallet:id/my").click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.findElementById("com.tronlink.wallet:id/setting").click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.findElementById("com.tronlink.wallet:id/node").click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.findElementsById("com.tronlink.wallet:id/iv_select").get(1).click();
+        TimeUnit.SECONDS.sleep(1);
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
 
 
