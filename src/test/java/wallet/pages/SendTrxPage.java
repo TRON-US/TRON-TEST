@@ -156,7 +156,7 @@ public class SendTrxPage extends AbstractPage {
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
         if(matcher.find())
-            trc10Amount = Integer.valueOf(matcher.group(0));
+            trc10Amount = Double.valueOf(matcher.group(0));
         return trc10Amount;
     }
 
