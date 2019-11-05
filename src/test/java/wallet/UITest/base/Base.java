@@ -87,6 +87,7 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", "Uiautomator2");
                 desiredCapabilities.setCapability("privateKey", privateKey);
                 desiredCapabilities.setCapability("clearSystemFiles", true);
+                desiredCapabilities.setCapability("recreateChromeDriverSessions", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
