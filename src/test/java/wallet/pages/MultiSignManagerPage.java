@@ -68,6 +68,11 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement send_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/ll_indicator")
+    public WebElement mulSign_span;
+
+
+
 
 
 
