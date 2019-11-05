@@ -28,6 +28,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import java.util.concurrent.atomic.AtomicInteger;
 
 //@Listeners(RetryListener.class)
 
@@ -45,7 +46,7 @@ public class Base {
 
     public String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
 
-
+    public static AtomicInteger systemAtomicPort = new AtomicInteger(8200);
     //@Test(retryAnalyzer = TestRetryAnalyzer.class)
 
 
@@ -88,8 +89,12 @@ public class Base {
                 desiredCapabilities.setCapability("privateKey", privateKey);
                 desiredCapabilities.setCapability("clearSystemFiles", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+                //desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemAtomicPort.addAndGet(1));
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+                if (systemAtomicPort.get() == 8299) {
+                    systemAtomicPort.set(8200);
+                }
                 System.out.println("mobile: " + deviceName + " " + udid);
                 System.out.println("privateKey: " + privateKey);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
