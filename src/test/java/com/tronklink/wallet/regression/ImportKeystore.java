@@ -75,7 +75,7 @@ public class ImportKeystore extends Base {
     asset.enterMinePage();
     minePage.enterMyPursePage();
     Assert.assertEquals(myPursePage.getAddress(),address);
-    Assert.assertEquals("Auto_Test2",myPursePage.walletname_text.getText());
+    Assert.assertEquals("Auto_Test_ks",myPursePage.walletname_text.getText());
   }
 
 }
