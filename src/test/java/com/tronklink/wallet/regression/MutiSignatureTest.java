@@ -49,6 +49,20 @@ public class MutiSignatureTest extends Base {
     }
 
 
+    // if exist mult sign del this sign
+    public void delSignData(MultiSignManagerPage multiSign){
+        int tries = 0;
+        Boolean exist = false;
+        while(exist == false && tries < 7) {
+            tries++;
+            try {
+                multiSign.mulSign_span.isDisplayed();
+                Helper.swipeLeftScreen(DRIVER);
+                multiSign.delSign();
+            }catch (Exception e){}
+        }
+    }
+
     //public method. enter the MultiSignManagerPage
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -57,7 +71,6 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
         return MultiSignManager;
     }
-
 
 
 
@@ -74,7 +87,9 @@ public class MutiSignatureTest extends Base {
     @Test(description = "Add MutiSignature Test",alwaysRun = true)
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
-        MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        //del before sign
+        delSignData(multiSignManager);
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
         TimeUnit.SECONDS.sleep(1);
