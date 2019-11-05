@@ -31,7 +31,7 @@ public class SendTrc20 extends Base {
 
 
 
-  @AfterClass
+  @AfterClass(alwaysRun = true)
   public void tearDownAfterClass() {
     DRIVER.quit();
   }
