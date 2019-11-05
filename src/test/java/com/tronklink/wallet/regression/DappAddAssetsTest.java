@@ -21,7 +21,6 @@ public class DappAddAssetsTest extends Base {
   @BeforeClass(alwaysRun = true)
   public void setUpBefore(String privateKey) throws Exception {
     new Helper().getSign(privateKey,DRIVER);
-    new Helper().changeDappchain();
   }
 
   @AfterMethod(alwaysRun = true)
@@ -39,6 +38,7 @@ public class DappAddAssetsTest extends Base {
 
   @Test(description = "test add assert",alwaysRun = true)
   public void test002_addAsset() throws Exception {
+    changeDappchain();
     AssetPage asset = new AssetPage(DRIVER);
     AddAssertPage addAssert =  asset.enterAddAssertPage();
     SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
