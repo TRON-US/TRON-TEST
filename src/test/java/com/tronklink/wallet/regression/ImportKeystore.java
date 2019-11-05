@@ -22,12 +22,12 @@ public class ImportKeystore extends Base {
   String password = "Test0001";
 
   @Parameters({"privateKey"})
-  @BeforeClass()
+  @BeforeClass(alwaysRun = true)
   public void setUpBefore(String privateKey) throws Exception {
     new Helper().getSign(privateKey,DRIVER);
   }
 
-  @AfterMethod
+  @AfterMethod(alwaysRun = true)
   public void afterMethod(){
     DRIVER.closeApp();
     DRIVER.activateApp("com.tronlink.wallet");
@@ -70,7 +70,7 @@ public class ImportKeystore extends Base {
     AddwalletPage addwalletPage = myPursePage.enterAddwalletPage();;
     ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
     PrivateKeySetNamePage setName = importKeystorePage.enterPrivateKeySetNamePage(keystore,password);
-    setName.setName("Auto_Test2");
+    setName.setName("Auto_Test_ks");
     TimeUnit.SECONDS.sleep(2);
     asset.enterMinePage();
     minePage.enterMyPursePage();
