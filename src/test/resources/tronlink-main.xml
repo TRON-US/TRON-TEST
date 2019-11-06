@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="tronlink" parallel="tests" thread-count="1">
+<suite name="android.com.tronlink" parallel="tests" thread-count="1">
     <listeners>
-        <listener class-name="wallet.UITest.retry.RetryListener"/>
+        <listener class-name="android.com.wallet.UITest.retry.RetryListener"/>
     </listeners>
-    <test name= "988a1642484c58434a">
+    <test name= "CLB0218A10004233">
         <parameter name="port"  value="4800"/>
         <parameter name="udid" value="CLB0218A10004233"/>
         <parameter name="platformName" value="Android"/>
@@ -12,14 +12,10 @@
         <parameter name="deviceName" value= "EML-AL00"/>
         <parameter name="noReset" value="false"/>
         <parameter name="systemPort"  value="8200"/>
-        <!--运行全部用例
+        <parameter name="address"  value="TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb"/>
+        <parameter name="privateKey"  value="a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026"/>
         <packages>
-            <package name="com.tronklink.wallet.regression.*"></package>
+            <package name="android.com.tronlink.wallet.regression.*"></package>
         </packages>
-        -->
-        <!--运行单个测试类-->
-        <classes>
-            <class name="com.tronklink.wallet.regression.SendTrx"></class>
-        </classes>
     </test>
 </suite>

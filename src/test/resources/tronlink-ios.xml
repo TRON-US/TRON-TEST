@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="tronlink" parallel="tests" thread-count="1">
+<suite name="android.com.tronlink" parallel="tests" thread-count="1">
 <!--    <listeners>
-        <listener class-name="wallet.UITest.retry.RetryListener"/>
+        <listener class-name="RetryListener"/>
     </listeners>-->
     <test name= "988a1642484c58434a">
         <parameter name="port"  value="4800"/>
@@ -17,12 +17,12 @@
         <parameter name="privateKey" value="cec7fc3c9c603ae6cdc026c777db037b8ca4995d451fa5fe7b2f19a0dc01cd98"/>
         <!--运行全部用例
         <packages>
-            <package name="com.tronklink.wallet.regression.*"></package>
+            <package name="com.tronklink.android.com.wallet.regression.*"></package>
         </packages>
         -->
         <!--运行单个测试类-->
         <classes>
-            <class name="com.tronlink.wallet.ios.DemoTest"></class>
+            <class name="ios.tronlink.DemoTest"></class>
         </classes>
     </test>
 </suite>
