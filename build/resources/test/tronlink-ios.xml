@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="android.com.tronlink" parallel="tests" thread-count="1">
+<!--    <listeners>
+        <listener class-name="RetryListener"/>
+    </listeners>-->
+    <test name= "988a1642484c58434a">
+        <parameter name="port"  value="4800"/>
+        <parameter name="udid" value="00008020-001661EE0C88003A"/>
+        <parameter name="platformName" value="iOS"/>
+        <parameter name="platformVersion" value= "12.4"/>
+        <parameter name="deviceName" value= "autotest-ios"/>
+        <parameter name="noReset" value="false"/>
+        <parameter name="systemPort"  value="8200"/>
+        <parameter name="bundleId" value="com.tronlink.hdwallet"/>
+        <parameter name="automationName" value="XCUITest"/>
+        <parameter name="privateKey" value="cec7fc3c9c603ae6cdc026c777db037b8ca4995d451fa5fe7b2f19a0dc01cd98"/>
+        <!--运行全部用例
+        <packages>
+            <package name="com.tronklink.android.com.wallet.regression.*"></package>
+        </packages>
+        -->
+        <!--运行单个测试类-->
+        <classes>
+            <class name="ios.tronlink.DemoTest"></class>
+        </classes>
+    </test>
+</suite>
