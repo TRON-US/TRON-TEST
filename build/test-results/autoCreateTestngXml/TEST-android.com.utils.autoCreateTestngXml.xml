@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="android.com.utils.autoCreateTestngXml" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-06T07:13:44" hostname="trondeMacBook-Pro-83.local" time="5.519">
+  <properties/>
+  <testcase name="createXml" classname="android.com.utils.autoCreateTestngXml" time="5.519"/>
+  <system-out><![CDATA[Uninstall succesfully
+Install succesfully]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
