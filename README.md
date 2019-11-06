@@ -15,4 +15,4 @@ You can run single tests should you choose to.
 The tests rely on an access key that allows you to send test requests to seetest.io cloud. In the code, the access key tries to look for an access key as
 environment variable. If you haven't configured an access key as environment variable, you will have to specify it directly in the code.
 
-To run the test from your IDE after having downloaded the code, simply run `gradlew tronlink`
+To run the test from your IDE after having downloaded the code, simply run `gradlew android.com.tronlink`
