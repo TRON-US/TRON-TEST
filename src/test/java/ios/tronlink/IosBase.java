@@ -42,11 +42,12 @@ public class IosBase {
 
     //setUp
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
-    @BeforeTest
+    @BeforeTest(enabled = true)
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
         try {
             System.out.println(port+udid);
-            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -U " + udid);
+            Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp 2252 --udid " + udid + " --command-timeout 600 --webdriveragent-port 8100");
+
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
@@ -75,9 +76,9 @@ public class IosBase {
                 desiredCapabilities.setCapability("resetKeyboard", true);
                 desiredCapabilities.setCapability("automationName", "XCUITest");
                 //desiredCapabilities.setCapability();
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
+                //desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+                //desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
