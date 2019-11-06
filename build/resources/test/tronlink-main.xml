@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="android.com.tronlink" parallel="tests" thread-count="1">
+    <listeners>
+        <listener class-name="android.com.wallet.UITest.retry.RetryListener"/>
+    </listeners>
+    <test name= "CLB0218A10004233">
+        <parameter name="port"  value="4800"/>
+        <parameter name="udid" value="CLB0218A10004233"/>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="platformVersion" value= "9"/>
+        <parameter name="deviceName" value= "EML-AL00"/>
+        <parameter name="noReset" value="false"/>
+        <parameter name="systemPort"  value="8200"/>
+        <parameter name="address"  value="TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb"/>
+        <parameter name="privateKey"  value="a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026"/>
+        <packages>
+            <package name="android.com.tronlink.wallet.regression.*"></package>
+        </packages>
+    </test>
+</suite>
