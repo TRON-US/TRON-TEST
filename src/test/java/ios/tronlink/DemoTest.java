@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
 import static org.junit.Assert.assertEquals;
 
 public class DemoTest extends IosBase {
@@ -47,11 +49,13 @@ public class DemoTest extends IosBase {
         DRIVER.quit();
     }*/
 
-
+    @Parameters({"privateKey"})
     @Test //测试是否正常进行投票页
-    public void test01_checkPopularSearch() throws Exception {
+    public void test01_checkPopularSearch(String privateKey) throws Exception {
 
+        new Helper().getSign(privateKey,DRIVER);
         System.out.print(DRIVER.getBatteryInfo());
+
     }
 
 
