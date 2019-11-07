@@ -50,7 +50,9 @@ public class Base {
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid,String bpPort,String webDriverPort) {
         try {
             System.out.println(port+udid);
-            Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --command-timeout 600 --webdriveragent-port " + webDriverPort);
+            Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
+            //Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --command-timeout 600 --webdriveragent-port " + webDriverPort);
+
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
@@ -78,8 +80,10 @@ public class Base {
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("automationName", automationName);
-                desiredCapabilities.setCapability("newCommandTimeout", 150);
+                desiredCapabilities.setCapability("newCommandTimeout", 50);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
+                desiredCapabilities.setCapability("xcodeOrgId","736VAMJ43C");
+                desiredCapabilities.setCapability("xcodeSigningId","iPhone Developer");
                 desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT, webDriverPort);
                 //desiredCapabilities.setCapability("hidekeyboard", true);
 

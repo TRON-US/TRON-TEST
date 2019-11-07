@@ -35,28 +35,13 @@ task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
     }
 }
 
-task ios(type: Test) {
+task ios(type: Test,dependsOn: 'autoCreateIosTestngXml') {
     useTestNG {
         suites(file('src/test/resources/tronlink-ios.xml'))
         parallel 'tests'
-        threadCount 1
+        threadCount 10
     }
 }
-
-/*task android.com.tronlink(type: Exec) {
-    dependsOn 'tronlinkTask'
-    //commandLine 'sh', '-c', 'collectExceptionLog.sh'
-    executable 'sh'
-    args "-c","$projectDir/collectExceptionLog.sh"
-    doLast {
-        println("before do last testng")
-*//*        if (tasks.listenTronlinkException.process != null) {
-            tasks.listenTronlinkException.process.destroy()
-        }*//*
-        println("after do last testng")
-
-    }
-}*/
 
 task autoCreateTestngXml(type: Test) {
     useTestNG {
@@ -66,11 +51,10 @@ task autoCreateTestngXml(type: Test) {
     }
 }
 
-/*task listenTronlinkException() {
-    doFirst {
-        ext.process = new ProcessBuilder()
-                .command('sh', '-c', 'listenTronlinkException.sh')
-                .start()
+task autoCreateIosTestngXml(type: Test) {
+    useTestNG {
+        suites(file('src/test/resources/autoCreateIosTestngXml.xml'))
+        parallel 'tests'
+        threadCount 1
     }
-
-}*/
+}
