@@ -4,16 +4,19 @@
 <!--    <listeners>
         <listener class-name="RetryListener"/>
     </listeners>-->
-    <test name= "988a1642484c58434a">
-        <parameter name="port"  value="4800"/>
-        <parameter name="udid" value="00008020-001661EE0C88003A"/>
+    <test name= "7d7e0ff85f9f971f61c677d1968c7399771f99d0">
+        <parameter name="port"  value="4729"/>
+        <parameter name="udid" value="7d7e0ff85f9f971f61c677d1968c7399771f99d0"/>
         <parameter name="platformName" value="iOS"/>
-        <parameter name="platformVersion" value= "12.4"/>
-        <parameter name="deviceName" value= "autotest-ios"/>
+        <parameter name="platformVersion" value= "13.0"/>
+        <parameter name="deviceName" value= "iPhone"/>
         <parameter name="noReset" value="false"/>
-        <parameter name="systemPort"  value="8200"/>
+        <parameter name="webDriverPort"  value="8101"/>
+        <parameter name="bpPort"  value="2251"/>
         <parameter name="bundleId" value="com.tronlink.hdwallet"/>
         <parameter name="automationName" value="XCUITest"/>
+        <parameter name="xcodeOrgId" value="736VAMJ43C"/>
+        <parameter name="xcodeSigningId" value="iPhone Developer"/>
         <parameter name="privateKey" value="cec7fc3c9c603ae6cdc026c777db037b8ca4995d451fa5fe7b2f19a0dc01cd98"/>
         <!--运行全部用例
         <packages>
