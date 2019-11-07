@@ -108,12 +108,12 @@ public class autoCreateTestngXml {
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
-            if (balance <= targetAmount/3) {
+            if (balance <= targetAmount * 3 / 5) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
-            if (tokenBalance <= targetTokenAmount/3) {
+            if (tokenBalance <= targetTokenAmount * 3 / 5) {
                 transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
@@ -129,12 +129,12 @@ public class autoCreateTestngXml {
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
-            if (balance <= targetAmount/3) {
+            if (balance <= targetAmount * 3 / 5) {
                 sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
-            if (tokenBalance <= targetTokenAmount/3) {
+            if (tokenBalance <= targetTokenAmount * 3 / 5) {
                 transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
