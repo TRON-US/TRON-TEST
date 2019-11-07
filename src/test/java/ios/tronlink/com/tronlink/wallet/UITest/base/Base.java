@@ -21,6 +21,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.IOSMobileCapabilityType;
 
 //@Listeners(RetryListener.class)
 
@@ -44,12 +45,12 @@ public class Base {
 
 
     //setUp
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","bpPort","webDriverPort"})
     @BeforeTest
-    public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
+    public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid,String bpPort,String webDriverPort) {
         try {
             System.out.println(port+udid);
-            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -U " + udid);
+            Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --command-timeout 600 --webdriveragent-port " + webDriverPort);
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
@@ -62,9 +63,9 @@ public class Base {
 
 
 
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","automationName"})
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","webDriverPort","automationName"})
     @BeforeClass() //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String automationName)throws Exception {
+    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String webDriverPort,String automationName)throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -79,6 +80,7 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", automationName);
                 desiredCapabilities.setCapability("newCommandTimeout", 150);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
+                desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT, webDriverPort);
                 //desiredCapabilities.setCapability("hidekeyboard", true);
 
 
@@ -87,7 +89,7 @@ public class Base {
 
                 //desiredCapabilities.setCapability();
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+                //desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
                 File app = new File(appDir, "Tronlink.ipa");
