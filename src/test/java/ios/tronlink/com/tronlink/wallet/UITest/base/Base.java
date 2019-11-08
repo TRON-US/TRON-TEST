@@ -52,7 +52,6 @@ public class Base {
             System.out.println(port+udid);
             Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
             //Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --command-timeout 600 --webdriveragent-port " + webDriverPort);
-
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
@@ -82,24 +81,14 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", automationName);
                 desiredCapabilities.setCapability("newCommandTimeout", 50);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
+                desiredCapabilities.setCapability("noReset", true);
                 desiredCapabilities.setCapability("xcodeOrgId","736VAMJ43C");
                 desiredCapabilities.setCapability("xcodeSigningId","iPhone Developer");
                 desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT, webDriverPort);
-                //desiredCapabilities.setCapability("hidekeyboard", true);
-
-
-
-
-
-                //desiredCapabilities.setCapability();
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
-                //desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());
-//        desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
                 URL remoteUrl = new URL(url);
                 DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
