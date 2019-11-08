@@ -1,9 +1,9 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.VotePage;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
@@ -23,17 +23,38 @@ public class DemoTest extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+
+    @AfterMethod
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.launchApp();
+    }
+
+
+    @AfterClass
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
         DRIVER.quit();
     }
 
+
     @Test //测试是否正常进行投票页
     public void test01_checkPopularSearch() throws Exception {
-
-        System.out.print(DRIVER.getBatteryInfo());
+        AssetPage assetPage = new AssetPage(DRIVER);
+        VotePage votePage = assetPage.enterVotePage();
+        Assert.assertEquals(votePage.vote_title.getText(),"投票");
     }
+
+
+
+    @Test //测试是否正常进行投票页
+    public void test02_checkPopularSearch() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        VotePage votePage = assetPage.enterVotePage();
+        Assert.assertEquals(votePage.vote_title.getText(),"投票");
+    }
+
+
 
 
 
