@@ -31,26 +31,53 @@ public class Helper {
 
     public void getSignOperate(String testPrivateKey) throws Exception{
         System.out.println("222222222222222");
-        findWebElement("导入钱包").click();
-        System.out.println("111111111111");
-        while (!findWebElement("接受").isEnabled()) {
-            IOSTouchAction action = new IOSTouchAction(DRIVER);
-            int width = DRIVER.manage().window().getSize().width;
-            int height = DRIVER.manage().window().getSize().height;
-            Duration duration = Duration.ofMillis(200);
-            action.press(
-                    PointOption.point(width/2, height*4/5))
-                    .waitAction(WaitOptions.waitOptions(duration))
-                    .moveTo(PointOption.point(width/2, height/5))
-                    .release().perform();
-
+        try {
+            findWebElement("导入钱包").click();
+            getSignStep(testPrivateKey);
+        }catch (Exception e){
         }
-        findWebElement("接受").click();
-        findWebElement("私钥导入").click();
-        DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextView")).sendKeys(testPrivateKey);
-        DRIVER.hideKeyboard("key_name","完成");
-        findWebElement("下一步").click();
-        TimeUnit.SECONDS.sleep(10);
+
+
+
+    }
+
+
+    public void getSignStep(String testPrivateKey){
+        System.out.println("111111111111");
+        try {
+            DRIVER.findElement(By.name("接受"));
+            while (!findWebElement("接受").isEnabled()) {
+                IOSTouchAction action = new IOSTouchAction(DRIVER);
+                int width = DRIVER.manage().window().getSize().width;
+                int height = DRIVER.manage().window().getSize().height;
+                Duration duration = Duration.ofMillis(200);
+                action.press(
+                        PointOption.point(width/2, height*4/5))
+                        .waitAction(WaitOptions.waitOptions(duration))
+                        .moveTo(PointOption.point(width/2, height/5))
+                        .release().perform();
+            }
+            findWebElement("接受").click();
+        }catch (Exception e){
+        }
+        try {
+            findWebElement("私钥导入").click();
+            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextView")).sendKeys(testPrivateKey);
+            findWebElement("Done").click();
+            findWebElement("下一步").click();
+            TimeUnit.SECONDS.sleep(7);
+            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextField")).sendKeys("Auto_test");
+            findWebElement("Done").click();
+            findWebElement("下一步").click();
+            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeSecureTextField")).sendKeys("Test0001");
+            findWebElement("Done").click();
+            findWebElement("下一步").click();
+            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeSecureTextField")).sendKeys("Test0001");
+            findWebElement("Done").click();
+            findWebElement("完成").click();
+            TimeUnit.SECONDS.sleep(5);
+        }catch (Exception e){}
+
     }
 
 
