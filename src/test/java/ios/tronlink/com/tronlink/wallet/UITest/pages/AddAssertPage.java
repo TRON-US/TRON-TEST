@@ -32,6 +32,9 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(name = "首页资产管理")
     public WebElement mainPageAssetManage_tab;
 
+    @FindBy(name = "热门资产")
+    public WebElement hotAssetManage_tab;
+
 
 
     @FindBy(name = "ID 1000027")
