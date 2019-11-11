@@ -4,6 +4,8 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.sql.Time;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class AssetPage extends AbstractPage {
@@ -19,7 +21,6 @@ public class AssetPage extends AbstractPage {
             TimeUnit.SECONDS.sleep(2);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
-                System.out.println(ad_pic.getText()+"11111111111111111111111");
                 adClose_btn.click();
                 TimeUnit.SECONDS.sleep(1);
             }
@@ -28,21 +29,35 @@ public class AssetPage extends AbstractPage {
     }
 
 
+
     //ad
     @FindBy(xpath = "//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeImage")
     public WebElement ad_pic;
+
 
 
     @FindBy(name = "home pop close")
     public WebElement adClose_btn;
 
 
+
     @FindBy(name = "投票")
     public WebElement vote_btn;
 
 
+
     @FindBy(name = "冻结/解冻")
     public WebElement frozen_btn;
+
+
+
+    @FindBy(name = "添加资产")
+    public WebElement addAssert_btn;
+
+
+
+    @FindBy(name = "testAssetIssue_1567077083240")
+    public WebElement myNewAddAsset_text;
 
 
 
@@ -58,6 +73,7 @@ public class AssetPage extends AbstractPage {
 
 
 
+    //enter FrozenAndUnfreeze Page
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
         try {
             frozen_btn.click();
@@ -67,6 +83,18 @@ public class AssetPage extends AbstractPage {
         }
         return new FrozenAndUnfreezePage(driver);
     }
+
+
+
+    //enter AddAssert Page
+    public AddAssertPage enterAddAssertPage() throws Exception {
+        addAssert_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new AddAssertPage(driver);
+    }
+
+
+
 
 
 }
