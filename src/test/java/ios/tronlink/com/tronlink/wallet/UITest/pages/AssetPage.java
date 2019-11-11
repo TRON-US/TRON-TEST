@@ -61,6 +61,11 @@ public class AssetPage extends AbstractPage {
 
 
 
+    @FindBy(name = "我")
+    public WebElement mine_btn;
+
+
+
     public VotePage enterVotePage(){
         try {
             vote_btn.click();
@@ -92,6 +97,17 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         return new AddAssertPage(driver);
     }
+
+
+
+    //enter mine page
+    public MinePage enterMinePage(){
+        mine_btn.click();
+        return new MinePage(driver);
+    }
+
+
+
 
 
 
