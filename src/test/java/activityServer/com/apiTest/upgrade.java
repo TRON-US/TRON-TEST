@@ -15,12 +15,14 @@ public class upgrade {
     private HttpResponse response;
     private JSONObject responseContent;
 
-    @Test(enabled = true)
-    public void sendCoinToTestCount() throws Exception {
+    @Test(enabled = true, description = "Api upgrade test")
+    public void upgrade() throws Exception {
         response = api.upgrade();
         //Assert.assertTrue(api.verificationResult(response));
         responseContent = api.parseResponseContent(response);
         api.printJsonContent(responseContent);
+        Assert.assertTrue(responseContent.size() >= 5);
+        Assert.assertTrue(responseContent.containsKey("latest_version"));
 
     }
 }
