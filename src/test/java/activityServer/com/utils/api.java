@@ -5,12 +5,13 @@ import android.com.utils.AppiumTestCase;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
-
+import java.net.URI;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
@@ -63,6 +64,38 @@ public class api {
         Assert.assertTrue(api.verificationResult(response));
         return response;
     }
+
+    public static HttpResponse multiTrxReword(HashMap<String, String> param) throws Exception{
+        final String requestUrl = HttpNode + "/api/wallet/multi/trx_record";
+        URIBuilder builder = new URIBuilder(requestUrl);
+        if (param != null) {
+            for (String key : param.keySet()) {
+                builder.addParameter(key, param.get(key));
+            }
+        }
+        URI uri = builder.build();
+        //System.out.println(requestUrl);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
+    public static HttpResponse multiSocket(HashMap<String, String> param) throws Exception{
+        final String requestUrl = HttpNode + "/api/wallet/multi/socket";
+        URIBuilder builder = new URIBuilder(requestUrl);
+        if (param != null) {
+            for (String key : param.keySet()) {
+                builder.addParameter(key, param.get(key));
+            }
+        }
+        URI uri = builder.build();
+        //System.out.println(requestUrl);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
+
 
 
     /**
@@ -120,6 +153,23 @@ public class api {
                     connectionTimeout);
             httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
             httpGet = new HttpGet(url);
+            httpGet.setHeader("Content-type", "application/json; charset=utf-8");
+            httpGet.setHeader("Connection", "Close");
+            response = httpClient.execute(httpGet);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httpGet.releaseConnection();
+            return null;
+        }
+        return response;
+    }
+
+    public static HttpResponse createGetConnect(URI uri) {
+        try {
+            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+                    connectionTimeout);
+            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            httpGet = new HttpGet(uri);
             httpGet.setHeader("Content-type", "application/json; charset=utf-8");
             httpGet.setHeader("Connection", "Close");
             response = httpClient.execute(httpGet);
