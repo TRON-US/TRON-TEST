@@ -58,3 +58,11 @@ task autoCreateIosTestngXml(type: Test) {
         threadCount 1
     }
 }
+
+task activityServer(type: Test) {
+    useTestNG {
+        suites(file('src/test/resources/tronlink-activity-server.xml'))
+        parallel 'tests'
+        threadCount 1
+    }
+}
