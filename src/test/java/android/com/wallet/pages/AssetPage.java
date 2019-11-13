@@ -31,9 +31,19 @@ public class AssetPage extends AbstractPage {
             }
         }catch (Exception e){}
 
+        try {
+            if (update_topview.isDisplayed()) {
+                update_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
     }
 
+    @FindBy(id = "com.tronlink.wallet:id/top")
+    public WebElement update_topview;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_cancle")
+    public WebElement update_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/iv_pic")
     public WebElement ad_pic;
@@ -117,7 +127,7 @@ public class AssetPage extends AbstractPage {
         assets_btn.click();
 //        try {assets_btn.click();
 //        }catch (Exception e){
-//            Base.log("assets_btn button not found");
+//            Base.log("assets_btn bton not found");
 //        }
         return new SendTrxPage(driver);
     }
