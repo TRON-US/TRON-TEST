@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
-
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,14 +19,29 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
                 TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){}
-
+//        try {
+//            // if updateview display ,close
+//            if (update_topview.isDisplayed()) {
+//                update_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
+//
+        try {
+            // if mutisignview display ,close
+            if (mutisign_tipview.isDisplayed()) {
+                mutisign_closebtn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){
+        }
     }
 
 
@@ -34,6 +50,13 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeImage")
     public WebElement ad_pic;
 
+//提示
+    @FindBy(name = "提示")
+    public WebElement mutisign_tipview;
+
+    //home popView close
+    @FindBy(name = "home popView close")
+    public WebElement mutisign_closebtn;
 
 
     @FindBy(name = "home pop close")
@@ -61,7 +84,7 @@ public class AssetPage extends AbstractPage {
 
 
 
-    @FindBy(name = "我")
+    @FindBy(name = "我")//XCUIElementTypeButton[@name="我"]
     public WebElement mine_btn;
 
 

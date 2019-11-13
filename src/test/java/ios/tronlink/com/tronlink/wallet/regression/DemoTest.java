@@ -47,15 +47,6 @@ public class DemoTest extends Base {
 
 
 
-    @Test //测试是否正常进行投票页
-    public void test02_checkPopularSearch() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        VotePage votePage = assetPage.enterVotePage();
-        Assert.assertEquals(votePage.vote_title.getText(),"投票");
-    }
-
-
-
 
 
 
