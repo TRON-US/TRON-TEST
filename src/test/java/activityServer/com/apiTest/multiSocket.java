@@ -19,13 +19,15 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
+import java.net.Socket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.java_websocket.drafts.Draft;
 import activityServer.com.utils.api;
 import activityServer.com.utils.newTronlinkSocketClient;
 import activityServer.com.utils.tronlinkSocketClient;
+import sun.net.www.http.HttpClient;
+import org.java_websocket.drafts.Draft_6455;
 /**
  * Created by wangzihe on 2019/11/12.
  */
@@ -35,6 +37,52 @@ public class multiSocket {
     private JSONObject responseContent;
     private HashMap<String,String> param = new HashMap<>();
 
+
+    @Test
+    public void demoSocket() throws Exception {
+        WebSocketClient mWs = new WebSocketClient( new URI( "wss://testlist.tronlink.org/api/wallet/multi/socket" ), new Draft_6455() )
+        {
+            @Override
+            public void onMessage( String message ) {
+                System.out.println( "received: " + message );
+            }
+
+            @Override
+            public void onOpen( ServerHandshake handshake ) {
+                System.out.println( "opened connection" );
+            }
+
+            @Override
+            public void onClose( int code, String reason, boolean remote ) {
+                System.out.println( "closed connection" );
+            }
+
+            @Override
+            public void onError( Exception ex ) {
+                ex.printStackTrace();
+            }
+
+        };
+        //open websocket
+        mWs.connect();
+        mWs.isOpen();
+        int i = 0;
+        while (i++ < 100) {
+            if (mWs.isOpen()){
+                break;
+            }
+            System.out.println(mWs.isOpen());
+        }
+        System.out.println();
+        JSONObject obj = new JSONObject();
+        obj.put("address", "TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb");
+        obj.put("state", "1");
+        String message = obj.toString();
+        //send message
+        mWs.send(message);
+
+
+    }
 
     @Test(enabled = true, description = "Mutli socket test")
     public void multiSocket() throws Exception {
