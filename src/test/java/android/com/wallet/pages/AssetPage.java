@@ -23,7 +23,7 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
@@ -32,12 +32,28 @@ public class AssetPage extends AbstractPage {
         }catch (Exception e){}
 
         try {
+            // if updateview display ,close
             if (update_topview.isDisplayed()) {
                 update_btn.click();
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(0.5);
+            }
+        }catch (Exception e){}
+
+        try {
+            // if mutisignview display ,close
+            if (mutisign_tipview.isDisplayed()) {
+                mutisign_closebtn.click();
+                TimeUnit.SECONDS.sleep(0.5);
             }
         }catch (Exception e){}
     }
+
+
+    @FindBy(id = "com.tronlink.wallet:id/rl_deal_sign_tip")
+    public WebElement mutisign_tipview;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_sign_close")
+    public WebElement mutisign_closebtn;
 
     @FindBy(id = "com.tronlink.wallet:id/top")
     public WebElement update_topview;
