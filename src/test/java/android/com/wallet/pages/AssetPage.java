@@ -35,7 +35,7 @@ public class AssetPage extends AbstractPage {
             // if updateview display ,close
             if (update_topview.isDisplayed()) {
                 update_btn.click();
-                TimeUnit.SECONDS.sleep(0.5);
+                TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){}
 
@@ -43,7 +43,7 @@ public class AssetPage extends AbstractPage {
             // if mutisignview display ,close
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
-                TimeUnit.SECONDS.sleep(0.5);
+                TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){}
     }
