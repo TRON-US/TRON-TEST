@@ -102,7 +102,7 @@ public class AssetPage extends AbstractPage {
 
 
     //enter FrozenAndUnfreeze Page
-    public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
+    public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
         try {
             frozen_btn.click();
             TimeUnit.SECONDS.sleep(1);

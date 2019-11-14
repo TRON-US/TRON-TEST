@@ -31,22 +31,22 @@ public class FrozenAndUnfreezeTest extends Base {
     }
 
 
-
-    @Test //测试是否正常进行投票页
-    public void test01_checkFrozen() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndUnfreezePage();
-        Assert.assertEquals(frozenAndUnfreezePage.assert_title.getText(),"资源");
-    }
-
-
-
-    @Test //测试是否正常进行投票页
-    public void test02_checkEnterFrozenAndUnfreeze() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndUnfreezePage();
-        Assert.assertEquals(frozenAndUnfreezePage.assert_title.getText(),"资源");
-    }
+//
+//    @Test //测试是否正常进行投票页
+//    public void test01_checkFrozen() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndUnfreezePage();
+//        Assert.assertEquals(frozenAndUnfreezePage.assert_title.getText(),"资源");
+//    }
+//
+//
+//
+//    @Test //测试是否正常进行投票页
+//    public void test02_checkEnterFrozenAndUnfreeze() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndUnfreezePage();
+//        Assert.assertEquals(frozenAndUnfreezePage.assert_title.getText(),"资源");
+//    }
 
 
 
