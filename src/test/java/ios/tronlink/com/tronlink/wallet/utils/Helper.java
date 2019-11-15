@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -100,6 +99,68 @@ public class Helper {
         return el;
     }
 
+    // swip the screen until element is display
+    public static void scrollToElementUntilVisible(IOSDriver<?> driver, WebElement we){
+        for (int i=0;i<5;i++) {
+            try {
+                we.isDisplayed();
+            }catch (Exception e){
+                IOSTouchAction action = new IOSTouchAction(driver);
+                int width = driver.manage().window().getSize().width;
+                int height = driver.manage().window().getSize().height;
+                Duration duration = Duration.ofMillis(200);
+                action.press(
+                        PointOption.point(width/2, height*1/3))
+                        .waitAction(WaitOptions.waitOptions(duration))
+                        .moveTo(PointOption.point(width/2, height/5))
+                        .release().perform();
+                System.out.println("swip the screen...");
+            }
+        }
+
+    }
+
+    public static void swipScreen(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height/5))
+                .release().perform();
+    }
+
+    public void swipUntilElementEnable(String id,IOSDriver<?> driver) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        //while (findWebElement(id).isEnabled() == false) {
+        while (!findWebElement(id).isEnabled()) {
+            IOSTouchAction action = new IOSTouchAction(DRIVER);
+            int width = DRIVER.manage().window().getSize().width;
+            int height = DRIVER.manage().window().getSize().height;
+            System.out.print("  " + width + "   " + height);
+            Duration duration = Duration.ofMillis(200);
+            action.press(
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
+        }
+    }
 
 
+    public static void swipeLeftScreen(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width*4/5, height/2))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width*1/5, height/2))
+                .release().perform();
+    }
 }
