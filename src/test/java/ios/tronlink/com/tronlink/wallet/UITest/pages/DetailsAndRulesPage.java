@@ -19,6 +19,4 @@ public class DetailsAndRulesPage extends AbstractPage {
 
 
 
-
-
 }
