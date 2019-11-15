@@ -143,6 +143,15 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement errorAddress_hits;
 
 
+    public DetailsAndRulesPage enterDetailsAndRulesPage() {
+        try {
+            detailsAndRules_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+
+        }
+        return new DetailsAndRulesPage(driver);
+    }
 
     public AssetPage forzenSuccessEnterAssetPage(String count) throws Exception {
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
@@ -180,4 +189,72 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         back_btn.click();
         return new AssetPage(driver);
     }
+
+    public void questionClick() {
+        try {
+            //swip
+            //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
+            //Helper.swipScreen(driver);
+            BandwidthQuestion_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+
+    public String getCurrentCanUseTrx() {
+        String currentCanUseTrx = (currentCanUse_btn.getText().split(" ")[1]);
+        currentCanUseTrx = currentCanUseTrx.substring(0,currentCanUseTrx.length()-3);
+        return currentCanUseTrx;
+    }
+
+
+
+    public void inputFrozenCount(String count) throws Exception {
+        //Helper.swipScreen(driver);
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.sendKeys(count);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+
+
+    public void inputReceivingAddress(String address) throws Exception {
+        //Helper.swipScreen(driver);
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        cleanAddress_btn.click();
+        freezeCount_input.sendKeys("1");
+        freezeAddress_input.sendKeys(address);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    public String getAvailableTrx() {
+        String availableTrx = availableTrx_text.getText();
+        availableTrx = availableTrx.split(" ")[1];
+        availableTrx = availableTrx.substring(0,availableTrx.length()-3);
+        return availableTrx;
+    }
+
+    public void inputFrozenCount1() throws Exception{
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.sendKeys("10");
+
+        TimeUnit.SECONDS.sleep(1);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        freezeNow_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        checkPasswotd_input.sendKeys("Test0001");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+
+    }
+
 }

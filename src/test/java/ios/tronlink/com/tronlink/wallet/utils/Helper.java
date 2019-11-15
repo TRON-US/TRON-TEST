@@ -151,4 +151,16 @@ public class Helper {
     }
 
 
+    public static void swipeLeftScreen(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width*4/5, height/2))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width*1/5, height/2))
+                .release().perform();
+    }
 }

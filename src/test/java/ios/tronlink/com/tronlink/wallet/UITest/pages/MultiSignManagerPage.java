@@ -133,6 +133,4 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
 
-
-
 }
