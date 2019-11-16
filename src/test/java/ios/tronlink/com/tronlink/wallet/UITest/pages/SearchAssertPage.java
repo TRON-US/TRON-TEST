@@ -4,8 +4,6 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.concurrent.TimeUnit;
-
 public class SearchAssertPage extends AddAssertPage {
 
 
@@ -36,33 +34,6 @@ public class SearchAssertPage extends AddAssertPage {
 
 
 
-    /**
-     * turn on assert(open)
-     */
-    public void openAssert(){
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            if (turnAsset_btn.isSelected() == false){
-                turnAsset_btn.click();
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
-    /**
-     * turn off assert(close)
-     */
-    public void cloeAssert(){
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            if (turnAsset_btn.isSelected() == true){
-                turnAsset_btn.click();
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
 
 
     public AddAssertPage enterAddAssertPage(){
