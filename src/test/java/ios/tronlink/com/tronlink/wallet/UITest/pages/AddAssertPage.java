@@ -28,14 +28,14 @@ public class AddAssertPage extends AbstractPage {
     public WebElement back_btn;
 
 
+
     @FindBy(name = "首页资产管理")
-    public List<WebElement> mainPageAssetManage_tab;
+    public WebElement mainPageAssetManage_tab;
 
     @FindBy(name = "热门资产")
     public WebElement hotAssetManage_tab;
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
-    public List<WebElement> switch_btn;
+
 
     @FindBy(name = "ID 1000027")
     public WebElement myNewAddAsset_text;
@@ -43,13 +43,6 @@ public class AddAssertPage extends AbstractPage {
 
     @FindBy(className =  "XCUIElementTypeSwitch")
     public List<WebElement> assertSwitch_btn;
-
-
-    @FindBy(xpath = "//*[@text='ID 1000029']")
-    public WebElement myNewAddAsset_btn;
-
-    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
-    public WebElement switchFirst_btn;
 
 
 
@@ -68,15 +61,5 @@ public class AddAssertPage extends AbstractPage {
     }
 
 
-    public void removeAsset(){
-        try {
-            for(int i = 0;i < switch_btn.size(); i++){
-                switch_btn.get(i).click();
-            }
-        }catch (Exception e){
-            System.out.println("no assets can remove, skip");
-        }
-
-    }
 
 }
