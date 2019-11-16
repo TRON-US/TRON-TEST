@@ -1,21 +1,35 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-//import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
-import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
+import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AnnouncementPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.FriendInvitationPage;
-//import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
+import ios.tronlink.com.tronlink.wallet.UITest.pages.FriendInvitationPage;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+public class MineTest extends Base {
 
-public class MineTest extends BaseTest {
+    @Parameters({"privateKey"})
+    @BeforeClass(alwaysRun = true)
+    public void setUpBefore(String privateKey) throws Exception {
+        new Helper().getSign(privateKey,DRIVER);
+    }
 
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(){
+        DRIVER.closeApp();
+        DRIVER.launchApp();
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void tearDownAfterClass() {
+        DRIVER.quit();
+    }
 
 
     @Test(description = "Friend invitation Test",alwaysRun = true)
