@@ -68,6 +68,7 @@ public class MainNetDeposit extends Base {
 
     @Test(description = "Change Chain",alwaysRun = true)
     public void test001_changeChain() throws Exception {
+        TimeUnit.SECONDS.sleep(5);
         SettingPage set = enterSettingPage();
         String nodeName = set.node_name.getText();
         NodeSetPage nodeSet = set.enterNodeSetPage();
