@@ -24,7 +24,7 @@ public class multiTrxRecord {
         param.put("address","TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb");
         param.put("start","0");
         param.put("limit","40");
-        param.put("state","0");
+        param.put("state","1");
         param.put("netType","main_net");
         response = api.multiTrxReword(param);
         Assert.assertTrue(api.verificationResult(response));
@@ -34,6 +34,7 @@ public class multiTrxRecord {
         Assert.assertTrue(responseContent.getString("message").equals("OK"));
 
         JSONArray array = responseContent.getJSONObject("data").getJSONArray("data");
+        array.contains("signatureProgress");
         for (int i = 0; i < array.size();i++) {
             System.out.println(array.get(i));
             System.out.println("-----------------------");
