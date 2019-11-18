@@ -63,9 +63,9 @@ public class Base {
     }
 
 
-    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey"})
+    @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey","noReset"})
     @BeforeClass() //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey)throws Exception {
+    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey,String noReset)throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -82,6 +82,7 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", "Uiautomator2");
                 desiredCapabilities.setCapability("privateKey", privateKey);
                 desiredCapabilities.setCapability("clearSystemFiles", true);
+                desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("recreateChromeDriverSessions", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 //desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);

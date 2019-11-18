@@ -48,7 +48,7 @@ public class DappMutiSignatureTest extends Base {
         while(exist == false && tries < 7) {
             tries++;
             try {
-                multiSign.mulSign_span.isDisplayed();
+                //multiSign.mulSign_span.isDisplayed();
                 Helper.swipeLeftScreen(DRIVER);
                 multiSign.delSign();
             }catch (Exception e){}
