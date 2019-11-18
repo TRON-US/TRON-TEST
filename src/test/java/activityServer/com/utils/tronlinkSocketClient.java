@@ -1,6 +1,9 @@
 package activityServer.com.utils;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Iterator;
 
 import org.java_websocket.client.WebSocketClient;
@@ -25,6 +28,7 @@ public class tronlinkSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String paramString) {
+        writeResponse(paramString);
         System.out.println("接收到消息："+paramString);
     }
 
@@ -37,6 +41,18 @@ public class tronlinkSocketClient extends WebSocketClient {
     public void onError(Exception e) {
         System.out.println("异常"+e);
 
+    }
+
+    public void writeResponse(String responseMessage) {
+        String socketMessage = "socketMessage.log";
+        StringBuilder sb = new StringBuilder();
+        sb.append(responseMessage);
+        String res = sb.toString();
+        try {
+            Files.write((Paths.get(socketMessage)), res.getBytes("utf-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -7,6 +7,10 @@ import org.apache.http.HttpResponse;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 
 import activityServer.com.utils.api;
@@ -24,7 +28,7 @@ public class multiTransaction {
     private String multiKey = "dad5b1d416822eb02e79bb818c35411e58b88db85562bcc8e71cac2c1ffa441c";
 
     @Test(enabled = true, description = "Api multi transaction")
-    public void multiTrxRecord() throws Exception {
+    public void multiTransaction() throws Exception {
         String url = "wss://testlist.tronlink.org/api/wallet/multi/socket?address=" + multiAddress + "&netType=main_net";
         tronlinkSocketClient mWs = new tronlinkSocketClient(url);
         mWs.connect();
@@ -35,4 +39,6 @@ public class multiTransaction {
             Thread.sleep(3000);
         }
     }
+
+
 }
