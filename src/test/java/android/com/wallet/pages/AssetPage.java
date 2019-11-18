@@ -52,17 +52,26 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/rl_deal_sign_tip")
     public WebElement mutisign_tipview;
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/iv_sign_close")
     public WebElement mutisign_closebtn;
+
+
 
     @FindBy(id = "com.tronlink.wallet:id/top")
     public WebElement update_topview;
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/tv_cancle")
     public WebElement update_btn;
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/iv_pic")
     public WebElement ad_pic;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/iv_close")
@@ -74,24 +83,30 @@ public class AssetPage extends AbstractPage {
     public WebElement assets_btn;
 
 
+
     @FindBy(id="com.tronlink.wallet:id/rl_bg_vote")
     public WebElement vote_btn;
+
 
 
     @FindBy(id="com.tronlink.wallet:id/appmarket")
     public WebElement market_btn;
 
 
+
     @FindBy(id="com.tronlink.wallet:id/tv_trx_value")
     public WebElement trxValue;
+
 
 
     @FindBy(id="com.tronlink.wallet:id/rl_receive")
     public WebElement receipt_btn;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/rl_bg_add_assets")
     public WebElement addAssert_btn;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/assets_name")
@@ -102,16 +117,20 @@ public class AssetPage extends AbstractPage {
     public WebElement freeze_btn;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/my")
     public WebElement mine_btn;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/app1")
     public WebElement discover_btn;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/assets")
     public WebElement assetsMain_btn;
+
 
 
     @FindBy(xpath = "//*[@text='TRX']")

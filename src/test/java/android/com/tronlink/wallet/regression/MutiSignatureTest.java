@@ -109,6 +109,8 @@ public class MutiSignatureTest extends Base {
         Assert.assertTrue(multiSignManager.permissionName_text.isDisplayed());
     }
 
+
+
     //Modify signature,Return to the before state
     @Parameters({"address"})
     @Test(description = "Modify signature Test",alwaysRun = true)
