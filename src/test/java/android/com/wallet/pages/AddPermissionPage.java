@@ -104,6 +104,7 @@ public class AddPermissionPage extends AbstractPage {
     }
 
 
+
     //add permission
     public MultiSignManagerPage addPermission(String signName){
         try {

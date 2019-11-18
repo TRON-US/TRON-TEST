@@ -1,5 +1,6 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -107,7 +108,10 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
 
+
     public void delSign() throws Exception{
+        Helper.swipeLeftScreen(driver);
+        Helper.swipeLeftScreen(driver);
         more_btn.click();
         TimeUnit.SECONDS.sleep(2);
         try {
@@ -125,6 +129,8 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
     public ModifyPermissionPage enterModifyPermissionPage() throws Exception {
+        Helper.swipeLeftScreen(driver);
+        Helper.swipeLeftScreen(driver);
         more_btn.click();
         TimeUnit.SECONDS.sleep(2);
         try {
