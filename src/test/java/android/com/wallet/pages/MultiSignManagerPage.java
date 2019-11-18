@@ -3,6 +3,7 @@ package android.com.wallet.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -17,7 +18,10 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt_go")
+//    @FindBy(id = "com.tronlink.wallet:id/bt_go")
+//    public WebElement addPermission_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_add")
     public WebElement addPermission_btn;
 
 
@@ -68,9 +72,12 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_indicator")
-    public WebElement mulSign_span;
+//    @FindBy(id = "com.tronlink.wallet:id/ll_indicator")
+//    public WebElement mulSign_span;
 
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
+    public List<WebElement> mulSign_span;
 
 
 
