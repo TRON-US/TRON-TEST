@@ -56,6 +56,7 @@ public class MutiSignatureTest extends Base {
         System.out.println("current mulSign count is : " + mulCount);
         if (mulCount >= 3){
             for (int i = 3;i <= mulCount; i++){
+                System.out.println("delete a mulSign");
                 TimeUnit.SECONDS.sleep(4);
                 Helper.swipeLeftScreen(DRIVER);
                 Helper.swipeLeftScreen(DRIVER);
@@ -142,7 +143,7 @@ public class MutiSignatureTest extends Base {
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
         multiSignManager = modifyPermission.modify(address);
         String signName = multiSignManager.permissionName_text.getText();
-        Assert.assertEquals(signName,"active");
+        Assert.assertEquals(signName,"active_newest");
     }
 
 
@@ -152,7 +153,7 @@ public class MutiSignatureTest extends Base {
     public void test006_signatureIsExist() throws Exception {
         MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        add.permissionName_input.sendKeys("Owner");
+        add.permissionName_input.sendKeys("owner");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.tip_hits.getText();
         Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
@@ -165,8 +166,10 @@ public class MutiSignatureTest extends Base {
     public void test007_signatureNameIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
+        Helper.swipScreen(DRIVER);
         add.confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        Helper.swipScreenToTop(DRIVER);
         String tip = add.tip_hits.getText();
         Assert.assertTrue(tip.contains("名字长度须") || tip.contains("Name length must be"));
     }
@@ -238,6 +241,7 @@ public class MutiSignatureTest extends Base {
     public void test013_AdressIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
+        Helper.swipScreen(DRIVER);
         add.confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
         String tip = add.addkey_tip.getText();
