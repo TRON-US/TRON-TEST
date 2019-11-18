@@ -32,6 +32,20 @@ public class Helper {
                 .release().perform();
     }
 
+
+    public static void swipScreenToTop(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*4/5))
+                .release().perform();
+    }
+
     public static void swipeDownScreen(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
