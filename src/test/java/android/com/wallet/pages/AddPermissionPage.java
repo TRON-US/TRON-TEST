@@ -47,6 +47,9 @@ public class AddPermissionPage extends AbstractPage {
     public WebElement weight_input;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/et_weight")
+    public List<WebElement> weightSecond_input;
+
     @FindBy(id = "com.tronlink.wallet:id/tv_confirm")
     public WebElement confirm_btn;
 
@@ -126,16 +129,23 @@ public class AddPermissionPage extends AbstractPage {
         threshold_input.sendKeys("1");
         address_input.get(0).sendKeys("THph9K2M2nLvkianrMGswRhz5hjSA9fuH7");
         weight_input.sendKeys("1");
+        Helper.swipScreen(driver);
         confirm_btn.click();
     }
 
 
 
     public void inputSameAddress() throws Exception {
+        permissionName_input.sendKeys("AutoTets003");
+        weights_btn.click();
+        threshold_input.sendKeys("1");
+        Helper.swipScreen(driver);
         address_input.get(0).sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
+        weight_input.sendKeys("1");
         addKey_btn.click();
         TimeUnit.SECONDS.sleep(1);
         address_input.get(1).sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
+        weightSecond_input.get(1).sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
     }
 
