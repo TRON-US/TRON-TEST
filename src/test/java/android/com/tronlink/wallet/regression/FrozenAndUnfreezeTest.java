@@ -203,7 +203,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
         String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.contains("地址错误") || prompt.contains("Incorrect address"));
+        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
     }
 
 
