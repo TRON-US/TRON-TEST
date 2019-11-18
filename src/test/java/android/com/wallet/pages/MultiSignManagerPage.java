@@ -108,6 +108,7 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
 
+
     public void delSign() throws Exception{
         Helper.swipeLeftScreen(driver);
         Helper.swipeLeftScreen(driver);
