@@ -1,5 +1,6 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -46,16 +47,22 @@ public class ModifyPermissionPage extends AbstractPage {
     //modify sign info
     public MultiSignManagerPage modify(String address) throws Exception {
         modifyPermissionName_input.clear();
-        modifyPermissionName_input.sendKeys("active");
+        modifyPermissionName_input.sendKeys("active_new");
         modifyAddress_input.clear();
         modifyAddress_input.sendKeys(address);
+        Helper.swipScreen(driver);
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         password_input.sendKeys("Test0001");
         pay_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         return new MultiSignManagerPage(driver);
     }
+
+
+
+
+
 
 
 
