@@ -47,7 +47,7 @@ public class ModifyPermissionPage extends AbstractPage {
     //modify sign info
     public MultiSignManagerPage modify(String address) throws Exception {
         modifyPermissionName_input.clear();
-        modifyPermissionName_input.sendKeys("active_new");
+        modifyPermissionName_input.sendKeys("active_newest");
         modifyAddress_input.clear();
         modifyAddress_input.sendKeys(address);
         Helper.swipScreen(driver);
