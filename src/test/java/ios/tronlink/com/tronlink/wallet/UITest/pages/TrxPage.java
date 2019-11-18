@@ -32,6 +32,7 @@ public class TrxPage extends AbstractPage {
 
 
 
+
     @FindBy(name = "com.tronlink.wallet:id/tv_freeze_amout")
     public WebElement freezeCount_text;
 
