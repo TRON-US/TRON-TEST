@@ -1,5 +1,6 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -94,8 +95,10 @@ public class AddPermissionPage extends AbstractPage {
         permissionName_input.sendKeys(signName);
         weights_btn.click();
         threshold_input.sendKeys("1");
-        address_input.get(0).sendKeys("THph9K2M2nLvkianrMGswRhz5hjSA9fuH7");
+        address_input.get(0).sendKeys("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ");
         weight_input.sendKeys("1");
+        //Helper.scrollToElementUntilVisible(driver,confirm_btn);
+        Helper.swipScreen(driver);
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
