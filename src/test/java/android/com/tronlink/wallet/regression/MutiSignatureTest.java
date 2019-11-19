@@ -120,44 +120,32 @@ public class MutiSignatureTest extends Base {
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
         multiSignManager = modifyPermission.modify(address);
         String signName = multiSignManager.permissionName_text.getText();
-        Assert.assertEquals(signName,"active_new");
+        System.out.println("get modify mulSign name is : " + signName);
+        Assert.assertEquals(signName,"active_newest");
+    }
+
+
+
+    @Test(description = "signature is exist",alwaysRun = true)
+    public void test004_signatureIsExist() throws Exception {
+        MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
+        AddPermissionPage add = multiSignManager.enterAddPermissionPage();
+        add.permissionName_input.sendKeys("active_newest");
+        TimeUnit.SECONDS.sleep(1);
+        String tip = add.tip_hits.getText();
+        Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
     }
 
 
 
     @Test(description = "delete signature Test",alwaysRun = true)
-    public void test004_delSignature() throws Exception {
+    public void test005_delSignature() throws Exception {
         MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
         String signName = multiSignManager.permissionName_text.getText();
         multiSignManager.delSign();
         Assert.assertNotEquals(signName,multiSignManager.permissionName_text.getText());
     }
 
-
-
-    //Modify signature,Return to the before state
-    @Parameters({"address"})
-    @Test(description = "Modify signature Test",alwaysRun = true)
-    public void test005_modifySignature(String address) throws Exception {
-        MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
-        ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
-        multiSignManager = modifyPermission.modify(address);
-        String signName = multiSignManager.permissionName_text.getText();
-        Assert.assertEquals(signName,"active_newest");
-    }
-
-
-
-
-    @Test(description = "signature is exist",alwaysRun = true)
-    public void test006_signatureIsExist() throws Exception {
-        MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
-        AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        add.permissionName_input.sendKeys("owner");
-        TimeUnit.SECONDS.sleep(1);
-        String tip = add.tip_hits.getText();
-        Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
-    }
 
 
 
