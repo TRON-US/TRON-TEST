@@ -133,10 +133,13 @@ public class MainNetDeposit extends Base {
         MinePage mine  = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+        System.out.println("trxCount = " + trxCount);
         TrxPage trx = asset.enterTrxPage();
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
+        System.out.println("frozenCount = " + frozenCount);
         TransferPage transferIn = trx.enterTransferPage();
         int availableBalance = Integer.valueOf(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
+        System.out.println("availableBalance = " + availableBalance);
         Assert.assertTrue(trxCount == frozenCount + availableBalance);
     }
 
@@ -154,7 +157,7 @@ public class MainNetDeposit extends Base {
 
 
 
-    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    @Test(description = "TransferIn Success Recording",alwaysRun = true,enabled = false)
     public void test008_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn =  trx.enterTransferPage();
