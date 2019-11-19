@@ -227,7 +227,7 @@ public class api {
      * constructor.
      */
     public static String getTransactionSignStringFromFullnode(String httpNode, String fromAddress, String toAddress,
-                                        Long amount, Integer permissionId,String[] managerKeys) {
+                                        Long amount, Integer permissionId,String managerKeys) {
         try {
             final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
@@ -239,12 +239,11 @@ public class api {
             response = createConnect(requestUrl, userBaseObj2);
             transactionSignString = EntityUtils.toString(response.getEntity());
 
-            for (String key : managerKeys) {
-                transactionSignString = gettransactionsign(httpNode, transactionSignString, key);
+            transactionSignString = gettransactionsign(httpNode, transactionSignString, managerKeys);
                 //System.out.println("transactionSignString:" + transactionSignString);
 
 
-            }
+
             //response = broadcastTransaction(httpNode, transactionSignString);
         } catch (Exception e) {
             e.printStackTrace();
