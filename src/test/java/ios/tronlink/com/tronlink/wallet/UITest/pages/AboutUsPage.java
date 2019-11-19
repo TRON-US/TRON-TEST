@@ -21,8 +21,16 @@ public class AboutUsPage extends AbstractPage {
     @FindBy(name = "关于我们")
     public WebElement title;
 
+    @FindBy(name = "版本日志")
+    public WebElement recordVersion_btn;
 
-
-
+    public VersionsPage enterVersionsPage(){
+        try {
+            recordVersion_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new VersionsPage(driver);
+    }
 
 }
