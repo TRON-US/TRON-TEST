@@ -70,12 +70,16 @@ public class MainNetDeposit20 extends Base {
 
     @Test(description = "Change Chain",alwaysRun = true)
     public void test001_changeChain() throws Exception {
-        TimeUnit.SECONDS.sleep(5);
         SettingPage set = enterSettingPage();
         String nodeName = set.node_name.getText();
+        System.out.println("chain name is : " + nodeName);
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseDappChain();
-        String currentNodeName = set.node_name.getText();
+        //String currentNodeName = set.node_name.getText();
+        MinePage mine = set.enterMinePage();
+        AssetPage assetPage = mine.enterAssetPage();
+        String currentNodeName = assetPage.currChain_name.getText();
+        System.out.println("change chain to : " + currentNodeName);
         Assert.assertNotEquals(nodeName,currentNodeName);
     }
 
