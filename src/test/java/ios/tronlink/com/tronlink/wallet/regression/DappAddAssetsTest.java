@@ -23,7 +23,7 @@ public class DappAddAssetsTest extends BaseTest {
     searchAssert.openAssert();
     TimeUnit.SECONDS.sleep(5);
     addAssert = searchAssert.enterAddAssertPage();
-    addAssert.mainPageAssetManage_tab.get(1).click();
+    addAssert.mainPageAssetManage_tab.click();
     Assert.assertTrue(addAssert.myNewAddAsset_btn.isDisplayed());
   }
 
@@ -31,8 +31,9 @@ public class DappAddAssetsTest extends BaseTest {
   @Test(description = "test remove asset",alwaysRun = true)
   public void test003_removeAsset(){
     AssetPage asset = new AssetPage(DRIVER);
-    AddAssertPage addAssert =  asset.enterAddAssertPage();
-    addAssert.mainPageAssetManage_tab.get(1).click();
+    AddAssertPage addAssert =  asset.
+            enterAddAssertPage();
+    addAssert.mainPageAssetManage_tab.click();
     addAssert.removeAsset();
     Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
   }
