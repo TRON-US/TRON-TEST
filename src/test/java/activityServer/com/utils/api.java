@@ -5,6 +5,9 @@ import android.com.utils.AppiumTestCase;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
+import java.io.FileReader;
+import java.io.StringReader;
 import java.net.URI;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
@@ -18,6 +21,7 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.junit.Assert;
+import org.openqa.selenium.json.Json;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -64,6 +68,13 @@ public class api {
         Assert.assertTrue(api.verificationResult(response));
         return response;
     }
+
+    public static HttpResponse multiTransaction(JsonObject transaction) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/multi/transaction";
+        response = createConnect(requestUrl, transaction);
+        return response;
+    }
+
 
     public static HttpResponse multiTrxReword(HashMap<String, String> param) throws Exception{
         final String requestUrl = HttpNode + "/api/wallet/multi/trx_record";
@@ -193,6 +204,79 @@ public class api {
             return null;
         }
     }
+
+
+    public static String gettransactionsign(String fullnodeNode, String transactionString,
+                                            String privateKey) {
+        try {
+            String requestUrl = "http://" + fullnodeNode + "/wallet/gettransactionsign";
+            JsonObject userBaseObj2 = new JsonObject();
+            userBaseObj2.addProperty("transaction", transactionString);
+            userBaseObj2.addProperty("privateKey", privateKey);
+            response = createConnect(requestUrl, userBaseObj2);
+            transactionSignString = EntityUtils.toString(response.getEntity());
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return transactionSignString;
+    }
+
+    /**
+     * constructor.
+     */
+    public static String getTransactionSignStringFromFullnode(String httpNode, String fromAddress, String toAddress,
+                                        Long amount, Integer permissionId,String[] managerKeys) {
+        try {
+            final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
+            JsonObject userBaseObj2 = new JsonObject();
+            userBaseObj2.addProperty("to_address", toAddress);
+            userBaseObj2.addProperty("owner_address", fromAddress);
+            userBaseObj2.addProperty("amount", amount);
+            userBaseObj2.addProperty("Permission_id",permissionId);
+            //userBaseObj2.addProperty("visible",true);
+            response = createConnect(requestUrl, userBaseObj2);
+            transactionSignString = EntityUtils.toString(response.getEntity());
+
+            for (String key : managerKeys) {
+                transactionSignString = gettransactionsign(httpNode, transactionSignString, key);
+                //System.out.println("transactionSignString:" + transactionSignString);
+
+
+            }
+            //response = broadcastTransaction(httpNode, transactionSignString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return transactionSignString;
+    }
+
+    public static HttpResponse createConnect(String url, JsonObject requestBody) {
+        try {
+            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+                    connectionTimeout);
+            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            httppost = new HttpPost(url);
+            httppost.setHeader("Content-type", "application/json; charset=utf-8");
+            httppost.setHeader("Connection", "Close");
+            if (requestBody != null) {
+                StringEntity entity = new StringEntity(requestBody.toString(), Charset.forName("UTF-8"));
+                entity.setContentEncoding("UTF-8");
+                entity.setContentType("application/json");
+                httppost.setEntity(entity);
+            }
+            response = httpClient.execute(httppost);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return response;
+    }
+
 
 
 
