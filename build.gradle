@@ -70,3 +70,19 @@ task activityServer(type: Test) {
         threadCount 1
     }
 }
+
+task releaseTronlink(type: Test,dependsOn: 'autoCreateTestngXmlForRelease') {
+    useTestNG {
+        suites(file('src/test/resources/tronlink-testng.xml'))
+        parallel 'tests'
+        threadCount 10
+    }
+}
+
+task autoCreateTestngXmlForRelease(type: Test) {
+    useTestNG {
+        suites(file('src/test/resources/autoCreateTestngForReleaseXml.xml'))
+        parallel 'tests'
+        threadCount 1
+    }
+}
