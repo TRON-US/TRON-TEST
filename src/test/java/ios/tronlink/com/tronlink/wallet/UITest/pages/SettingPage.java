@@ -18,6 +18,9 @@ public class SettingPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(name = "设置")
+    public WebElement title;
+
     @FindBy(name = "com.tronlink.wallet:id/languane")
     public WebElement languane_btn;
 
