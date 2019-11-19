@@ -1,6 +1,5 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 import io.appium.java_client.ios.IOSDriver;
-import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import org.openqa.selenium.WebElement;
@@ -21,11 +20,11 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         try {
-            TimeUnit.SECONDS.sleep(1);
+//            TimeUnit.SECONDS.sleep(1);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
+//                TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){}
 //        try {
@@ -40,7 +39,7 @@ public class AssetPage extends AbstractPage {
             // if mutisignview display ,close
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
-                TimeUnit.SECONDS.sleep(1);
+//                TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){
         }
