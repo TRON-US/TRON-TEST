@@ -121,7 +121,7 @@ public class MutiSignatureTest extends Base {
         multiSignManager = modifyPermission.modify(address);
         String signName = multiSignManager.permissionName_text.getText();
         System.out.println("get modify mulSign name is : " + signName);
-        Assert.assertEquals(signName,"active_newest");
+        Assert.assertEquals(signName,"active_est");
     }
 
 
@@ -130,7 +130,7 @@ public class MutiSignatureTest extends Base {
     public void test004_signatureIsExist() throws Exception {
         MultiSignManagerPage multiSignManager =enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        add.permissionName_input.sendKeys("active_newest");
+        add.permissionName_input.sendKeys("owner");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.tip_hits.getText();
         Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
