@@ -45,6 +45,12 @@ public class AssetPage extends AbstractPage {
         }
     }
 
+    @FindBy(name = "转账")
+    public WebElement transfer_btn;
+
+    @FindBy(name = "收款")
+    public WebElement receipt_btn;
+
 
     @FindBy(id="com.tronlink.wallet:id/appmarket")
     public WebElement market_btn;
@@ -80,6 +86,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "添加资产")
     public WebElement addAssert_btn;
 
+    @FindBy(name = "能量租赁")
+    public WebElement eneryRant_btn;
 
 
     @FindBy(name = "testAssetIssue_1567077083240")
@@ -115,8 +123,6 @@ public class AssetPage extends AbstractPage {
     public WebElement trxValue;
 
 
-    @FindBy(id="com.tronlink.")
-    public WebElement receipt_btn;
 
     public VotePage enterVotePage(){
         try {
@@ -129,6 +135,26 @@ public class AssetPage extends AbstractPage {
     }
 
 
+    //enter transfer Page
+    public TransferPage enterTransportPage(){
+        try {
+            transfer_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new TransferPage(driver);
+    }
+    //ReceiptPage
+    public ReceiptPage enterReceiptCoinPage(){
+        try {
+            receipt_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ReceiptPage(driver);
+    }
 
     //enter FrozenAndUnfreeze Page
     public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
@@ -157,8 +183,11 @@ public class AssetPage extends AbstractPage {
         return new AddAssertPage(driver);
     }
 
-
-
+//    EnergyRentPage
+public EnergyRentPage entereneryRantage(){
+    eneryRant_btn.click();
+    return new EnergyRentPage(driver);
+}
     //enter mine page
     public MinePage enterMinePage(){
         mine_btn.click();
