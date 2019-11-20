@@ -15,31 +15,32 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
 
 public class MainNetWithdraw extends Base {
-
 
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //reset DAPP chain trun main chain
         changeToMainChain();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
-
 
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
 
-
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
@@ -52,10 +53,10 @@ public class MainNetWithdraw extends Base {
             NodeSetPage nodeSet = set.enterNodeSetPage();
             nodeSet.enterSettingPageChoiseMainChain();
             TimeUnit.SECONDS.sleep(1);
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
-
 
 
     //enter SettingPage
@@ -66,21 +67,18 @@ public class MainNetWithdraw extends Base {
     }
 
 
-
     //enter TRXPage
-    public TrxPage enterTrxPage() throws Exception{
+    public TrxPage enterTrxPage() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseDappChain();
-        MinePage mine  = set.enterMinePage();
+        MinePage mine = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
         return asset.enterTrxPage();
     }
 
 
-
-
-    @Test(description = "Check transferOut Chain Name",alwaysRun = true)
+    @Test(description = "Check transferOut Chain Name", alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -89,9 +87,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-
-
-    @Test(description = "Check transferOut Trx Count",alwaysRun = true)
+    @Test(description = "Check transferOut Trx Count", alwaysRun = true)
     public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -100,8 +96,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-
-    @Test(description = "Check transferOut Hits",alwaysRun = true)
+    @Test(description = "Check transferOut Hits", alwaysRun = true)
     public void test003_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -110,8 +105,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-
-    @Test(description = "Check transferOut Fee",alwaysRun = true)
+    @Test(description = "Check transferOut Fee", alwaysRun = true)
     public void test004_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -121,13 +115,12 @@ public class MainNetWithdraw extends Base {
     }
 
 
-
-    @Test(description = "Check Available Balance",alwaysRun = true)
+    @Test(description = "Check Available Balance", alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine  = set.enterMinePage();
+        MinePage mine = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
@@ -138,28 +131,26 @@ public class MainNetWithdraw extends Base {
     }
 
 
-
-    @Test(description = "transferOut Success Checkout Available trx",alwaysRun = true)
+    @Test(description = "transferOut Success Checkout Available trx", alwaysRun = true)
     public void test006_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferOut =  trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferPage();
         trx = transferOut.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
 
 
-
-    @Test(description = "transferOut Success Recording",alwaysRun = true)
+    @Test(description = "transferOut Success Recording", alwaysRun = true)
     public void test007_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut =  trx.enterTransferPage();
-        String count = random(10,10);
+        TransferPage transferOut = trx.enterTransferPage();
+        String count = random(10, 10);
         trx = transferOut.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
-        while(exist == false && tries < 7) {
+        while (exist == false && tries < 7) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
@@ -167,24 +158,15 @@ public class MainNetWithdraw extends Base {
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                if (count.equals(tranferInCount)){
+                if (count.equals(tranferInCount)) {
                     exist = true;
                     break;
                 }
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         Assert.assertTrue(exist);
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

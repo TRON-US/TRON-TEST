@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import org.testng.annotations.*;
+
 /**
  * 资产页面测试
  */
@@ -30,11 +31,11 @@ public class AssetsPageTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
@@ -42,9 +43,11 @@ public class AssetsPageTest extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
-
 
 
 }
