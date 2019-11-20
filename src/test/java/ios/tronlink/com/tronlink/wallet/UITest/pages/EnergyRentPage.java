@@ -5,24 +5,19 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ReceiptPage extends AbstractPage {
+public class EnergyRentPage extends AbstractPage {
     public IOSDriver<?> driver;
 
 
-    public ReceiptPage(IOSDriver<?> driver) {
+    public EnergyRentPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
     }
 
-    @FindBy(name = "收款")
+    @FindBy(name = "TronLending")
     public WebElement title;
 
-    @FindBy(name = "com.tronlink.wallet:id/address")
-    public WebElement ownerAddress_btn;
 
-
-    @FindBy(name = "com.tronlink.wallet:id/copy")
-    public WebElement copy_btn;
 
 
 
