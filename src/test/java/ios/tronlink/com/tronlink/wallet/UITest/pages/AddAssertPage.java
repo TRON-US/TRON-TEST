@@ -27,6 +27,8 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement back_btn;
 
+    @FindBy(name = "资产")
+    public WebElement title;
 
 
     @FindBy(name = "首页资产管理")

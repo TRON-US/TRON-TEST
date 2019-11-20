@@ -16,6 +16,8 @@ public class TransferPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(name = "转账")
+    public WebElement title;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_trx_amount")
     public WebElement trx_text;
