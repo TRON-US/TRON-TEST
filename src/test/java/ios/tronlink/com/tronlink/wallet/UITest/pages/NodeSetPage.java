@@ -16,19 +16,34 @@ public class NodeSetPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "black path")
+    public WebElement back_btn;
 
+    @FindBy(name = "设置")
+    public WebElement title;
 
+    @FindBy(name =  "MainChain")
+    public WebElement MainChain_btn;
+
+    @FindBy(name =  "DAppChain")
+    public WebElement DAppChain_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/iv_select")
     public List<WebElement> node_selected;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
-    public WebElement back_btn;
 
 
+    public NodeSetDetailPage enterSettingPageDAppChain() throws Exception {
+        DAppChain_btn.click();
+        return new NodeSetDetailPage(driver);
+    }
 
+    public NodeSetDetailPage enterSettingPageMainChain() throws Exception {
+        MainChain_btn.click();
+        return new NodeSetDetailPage(driver);
+    }
 
 
     public SettingPage enterSettingPageChoiseDappChain() throws Exception {
