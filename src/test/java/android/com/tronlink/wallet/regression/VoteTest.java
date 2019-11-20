@@ -32,11 +32,11 @@ public class VoteTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
@@ -44,13 +44,16 @@ public class VoteTest extends Base {
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
-    public AssetPage forzenTrx() throws Exception{
+    public AssetPage forzenTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndThawingPage =  asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndThawingPage = asset.enterFrozenAndThawingPage();
         //FrozenAndUnfreezePage frozenAndThawingPage =new FrozenAndUnfreezePage(DRIVER);
         asset = frozenAndThawingPage.forzenSuccessEnterAssetPage("10");
         return asset;
@@ -71,20 +74,19 @@ public class VoteTest extends Base {
         //Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
 
-    @Test(description = "vote test",enabled = false)
+    @Test(description = "vote test", enabled = false)
     public void test002_vote() {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         VoteConfirmPage voteConfirmPage = vote.enterVoteConfirmPage();
         voteConfirmPage.voteOperate();
         String count = vote.et_input.getText();
-        Assert.assertEquals(count,"1");
+        Assert.assertEquals(count, "1");
     }
 
 
-
-    @Test(description = "enter a number that great than the number of votes available",alwaysRun = true)
-    public void test003_vote01() throws Exception{
+    @Test(description = "enter a number that great than the number of votes available", alwaysRun = true)
+    public void test003_vote01() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.unusualVoteOperate();
@@ -92,9 +94,8 @@ public class VoteTest extends Base {
     }
 
 
-
-    @Test(description = "Enter a vote of 0,prompt 'vote number null'",alwaysRun = true)
-    public void test004_vote02() throws Exception{
+    @Test(description = "Enter a vote of 0,prompt 'vote number null'", alwaysRun = true)
+    public void test004_vote02() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.reset_btn.click();
@@ -105,8 +106,7 @@ public class VoteTest extends Base {
     }
 
 
-
-    @Test(description = "The number of votes entered is empty,prompt 'vote number null'",alwaysRun = true)
+    @Test(description = "The number of votes entered is empty,prompt 'vote number null'", alwaysRun = true)
     public void test005_vote03() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -117,9 +117,7 @@ public class VoteTest extends Base {
     }
 
 
-
-
-    @Test(description = "Gets the address of the second candidate",alwaysRun = true)
+    @Test(description = "Gets the address of the second candidate", alwaysRun = true)
     public void test006_searchVoteInfo() throws Exception {
         AssetPage asset = forzenTrx();
         VotePage vote = asset.enterVotePage();
