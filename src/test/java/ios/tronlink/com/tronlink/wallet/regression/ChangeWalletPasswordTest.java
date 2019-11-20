@@ -43,9 +43,7 @@ public class ChangeWalletPasswordTest extends BaseTest {
     public void test0001InputIncorrectPassword() throws Exception{
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
         walletPasswordPage.changePassword(oldPassword,newPassword,oldPassword);
-
         Assert.assertTrue(contentTexts(walletPasswordPage.testarray,"两次输入密码不一致"));
-
 
     }
 
