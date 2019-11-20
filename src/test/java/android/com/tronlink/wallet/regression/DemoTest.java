@@ -9,6 +9,7 @@ import android.com.wallet.pages.VotePage;
 import org.testng.annotations.Parameters;
 
 import static org.junit.Assert.assertEquals;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -37,11 +38,11 @@ public class DemoTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
@@ -49,7 +50,10 @@ public class DemoTest extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
@@ -57,7 +61,7 @@ public class DemoTest extends Base {
     public void test01_checkPopularSearch() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
-        assertEquals(true,transfer.transferTtile_btn.isDisplayed());
+        assertEquals(true, transfer.transferTtile_btn.isDisplayed());
     }
 
 
@@ -65,7 +69,7 @@ public class DemoTest extends Base {
     public void test02_checkPopular() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        assertEquals(true,vote.voteTitle_btn.isDisplayed());
+        assertEquals(true, vote.voteTitle_btn.isDisplayed());
     }
 
 
@@ -74,11 +78,8 @@ public class DemoTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         //Assert.assertEquals(vote.voteTitle_btn.getText(),"投票");
-        assertEquals(true,vote.voteTitle_btn.isDisplayed());
+        assertEquals(true, vote.voteTitle_btn.isDisplayed());
     }
-
-
-
 
 
 }
