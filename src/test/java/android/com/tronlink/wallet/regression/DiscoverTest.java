@@ -43,11 +43,11 @@ public class DiscoverTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
@@ -55,7 +55,10 @@ public class DiscoverTest extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
@@ -68,7 +71,7 @@ public class DiscoverTest extends Base {
 //        Assert.assertTrue(dappSearchResult.searchResultFirst_btn.getText().contains("TRX"));
 //    }
 
-    @Test(description = "click Search Result",enabled = false,alwaysRun = true)
+    @Test(description = "click Search Result", enabled = false, alwaysRun = true)
     public void test002_clickSearchResult() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage discover = asset.enterDiscoverPage();
@@ -76,19 +79,9 @@ public class DiscoverTest extends Base {
         DAPP_SearchResultPage dappSearchResult = dappSearch.search("TRX");
         String serachResult = dappSearchResult.searchResultFirst_btn.getText();
         DAPP_BrowerPage dapp = dappSearchResult.enterDAPP_BrowerPage();
-        Assert.assertEquals(serachResult,dapp.dappTtile_btn.getText());
+        Assert.assertEquals(serachResult, dapp.dappTtile_btn.getText());
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }
