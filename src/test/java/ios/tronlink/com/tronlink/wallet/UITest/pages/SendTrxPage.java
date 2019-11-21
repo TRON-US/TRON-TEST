@@ -96,6 +96,10 @@ public class SendTrxPage extends AbstractPage {
         Helper.swipScreen(driver);
     }
 
+    public WebElement findsend_btn(){
+        WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '发送'");
+        return element;
+    }
     public void broadcastButtonClick(){
 
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
