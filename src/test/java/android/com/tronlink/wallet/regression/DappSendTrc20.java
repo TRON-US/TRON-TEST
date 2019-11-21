@@ -46,6 +46,8 @@ public class DappSendTrc20 extends Base {
         return transfer;
     }
 
+
+
     @Test(description = "SendTrc20 success test", alwaysRun = true)
     public void tsst001_sendTrc20Success() throws Exception {
         changeDappchain();
