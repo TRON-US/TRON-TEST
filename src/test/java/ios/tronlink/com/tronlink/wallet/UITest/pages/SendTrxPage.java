@@ -4,6 +4,8 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +24,29 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(className = "XCUIElementTypeTextField")
+    public List<WebElement> testfieldArray;
+
+    @FindBy(className = "XCUIElementTypeStaticText")
+    public List<WebElement> alltextArray;
+
+    @FindBy(className = "XCUIElementTypeTextView")
+    public WebElement textview;
+
+    @FindBy(name = "ic arrow drop")
+    public WebElement token_btn;
+
+    @FindBy(name = "MAX")
+    public WebElement tvMax_btn;
+
+    @FindBy(name = "发送")
+    public WebElement send_btn;
+
+    @FindBy(name = "white back arrow")
+    public WebElement back_bt;
+
+
+
     @FindBy(name = "com.tronlink.wallet:id/tv_common_title")
     public WebElement transferTtile_btn;
 
@@ -32,15 +57,13 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/et_count")
     public WebElement tranferCount_text;
 
-    @FindBy(name = "com.tronlink.wallet:id/send")
-    public WebElement send_btn;
 
-
-    @FindBy(name = "com.tronlink.wallet:id/bt_go")
+    @FindBy(name = "立即转账")
     public WebElement transferNow_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_new_password")
+
+    @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement InputPasswordConfim_btn;
 
 
@@ -60,17 +83,6 @@ public class SendTrxPage extends AbstractPage {
     public WebElement balance_text;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_max")
-    public WebElement tvMax_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/rl_token")
-    public WebElement token_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/ll_common_left")
-    public WebElement back_bt;
-
     @FindBy(xpath = "//*[@text='(1000042)']")
     public WebElement trc10_btn;
 
@@ -84,7 +96,12 @@ public class SendTrxPage extends AbstractPage {
         Helper.swipScreen(driver);
     }
 
+    public void broadcastButtonClick(){
 
+        WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
+        element.click();
+
+    }
 
     public SendTrxSuccessPage enterSendTrxSuccessPage(){
         confirm_btn.click();
@@ -166,21 +183,17 @@ public class SendTrxPage extends AbstractPage {
 
 
     public void sendAllTrx(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         //calculate trx
         switch(value){
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":
-                tranferCount_text.sendKeys("0");
+                testfieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
-                tranferCount_text.sendKeys("9999999999");
+                testfieldArray.get(2).sendKeys("9999999999");
                 break;
         }
         send_btn.click();

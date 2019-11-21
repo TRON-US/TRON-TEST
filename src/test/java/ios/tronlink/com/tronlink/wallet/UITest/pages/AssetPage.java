@@ -119,7 +119,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='tronlink_token']")
     public WebElement trx10_btn;
 
-    @FindBy(id="com.tronlink.wallet:id/tv_trx_value")
+    @FindBy(name ="trxLabel")
     public WebElement trxValue;
 
 
@@ -197,7 +197,7 @@ public EnergyRentPage entereneryRantage(){
 
 
     public SendTrxPage enterSendTrxPage() {
-        assets_btn.click();
+        transfer_btn.click();
 //        try {assets_btn.click();
 //        }catch (Exception e){
 //            Base.log("assets_btn bton not found");
