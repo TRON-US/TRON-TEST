@@ -2,6 +2,7 @@ package activityServer.com.utils;
 
 import android.com.utils.AppiumTestCase;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
@@ -39,8 +40,10 @@ public class api {
     public static String HOME_HOST = "https://list.tronlink.org";//host
     public static String TEST_HOST = "https://testlist.tronlink.org";//test
     public static String PRE_HOST = "https://testpre.tronlink.org";//pre
-    public static String HttpNode = TEST_HOST;
-
+    public static String HttpNode = HOME_HOST;
+    public static String testAddressBase58 = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
+    public static String testAddressBase64 = "416C0214C9995C6F3A61AB23F0EB84B0CDE7FD9C7C";
+    public static String testAccountKey = "7400E3D0727F8A61041A8E8BF86599FE5597CE19DE451E59AED07D60967A5E25";
     static HttpClient httpClient;
     static HttpPost httppost;
     static HttpGet httpGet;
@@ -90,6 +93,60 @@ public class api {
         response = createConnect(requestUrl, transaction);
         return response;
     }
+
+    public static HttpResponse getAssetList(JsonObject address) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/assetlist";
+        response = createConnect(requestUrl, address);
+        return response;
+    }
+
+    public static HttpResponse getAllClassAsset(JSONObject address) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/class/allasset";
+        response = createConnect(requestUrl, address);
+        return response;
+    }
+
+    public static List<String> getTrc10TokenIdList(JSONArray tokenArray) throws Exception {
+        List<String> tokenIdList = new ArrayList<>();
+        String id = "";
+        for (int i = 0; i < tokenArray.size();i++) {
+            id = tokenArray.getJSONObject(i).getString("id");
+            if (id.isEmpty()){
+                continue;
+            }
+            tokenIdList.add(id);
+        }
+        return tokenIdList;
+    }
+
+    public static List<String> getTrc20AddressList(JSONArray tokenArray) throws Exception {
+        List<String> trc20ContractAddressList = new ArrayList<>();
+        String contractAddress = "";
+        for (int i = 0; i < tokenArray.size();i++) {
+            contractAddress = tokenArray.getJSONObject(i).getString("contractAddress");
+            if (contractAddress.isEmpty()){
+                continue;
+            }
+            trc20ContractAddressList.add(contractAddress);
+        }
+        return trc20ContractAddressList;
+    }
+
+
+
+    public static HttpResponse addAsset(JsonObject address) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/addasset";
+        response = createConnect(requestUrl, address);
+        return response;
+    }
+
+    public static HttpResponse addAsset(JSONObject address) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/addasset";
+        response = createConnect(requestUrl, address);
+        return response;
+    }
+
+
 
 
     public static HttpResponse multiTrxReword(HashMap<String, String> param) throws Exception{
@@ -221,6 +278,14 @@ public class api {
         }
     }
 
+    public static void printJsonArray(JSONArray jsonArray) {
+        System.out.println("-----------------This Json Array size are " + jsonArray.size() + "----------------------");
+        for (int i = 0; i < jsonArray.size();i++) {
+            System.out.println(jsonArray.getString(i));
+        }
+
+    }
+
 
     public static String gettransactionsign(String fullnodeNode, String transactionString,
                                             String privateKey) {
@@ -273,6 +338,29 @@ public class api {
         try {
             httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
                     connectionTimeout);
+            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            httppost = new HttpPost(url);
+            httppost.setHeader("Content-type", "application/json; charset=utf-8");
+            httppost.setHeader("Connection", "Close");
+            if (requestBody != null) {
+                StringEntity entity = new StringEntity(requestBody.toString(), Charset.forName("UTF-8"));
+                entity.setContentEncoding("UTF-8");
+                entity.setContentType("application/json");
+                httppost.setEntity(entity);
+            }
+            response = httpClient.execute(httppost);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return response;
+    }
+
+    public static HttpResponse createConnect(String url, JSONObject requestBody) {
+        try {
+            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+                connectionTimeout);
             httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
             httppost = new HttpPost(url);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
