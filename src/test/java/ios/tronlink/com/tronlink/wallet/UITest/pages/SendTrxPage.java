@@ -83,11 +83,11 @@ public class SendTrxPage extends AbstractPage {
     public WebElement balance_text;
 
 
-    @FindBy(xpath = "//*[@text='(1000042)']")
+    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='tronlink_token (1000042)']")
     public WebElement trc10_btn;
 
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
+    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='TRX (TXgxGokbKCeHrg6CbSgtJegZN9hEmVhwBP)']")
     public WebElement trc20_btn;
 
 
@@ -201,53 +201,46 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void sendAllTrc10(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.tapWhitePlace(driver);
         token_btn.click();
         trc10_btn.click();
         //calculate trx
         switch(value){
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":
-                tranferCount_text.sendKeys("0");
+                testfieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
-                tranferCount_text.sendKeys("9999999999");
+                testfieldArray.get(2).sendKeys("9999999999");
                 break;
         }
-        Helper.swipScreen(driver);
+        Helper.tapWhitePlace(driver);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
     }
 
     public void sendAllTrc20(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.tapWhitePlace(driver);
         token_btn.click();
         trc20_btn.click();
         //calculate trx
         switch(value){
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
+
                 tvMax_btn.click();
                 break;
             case "mix":
-                tranferCount_text.sendKeys("0");
+                testfieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
-                tranferCount_text.sendKeys("9999999999");
+                testfieldArray.get(2).sendKeys("9999999999");
                 break;
         }
-        Helper.swipScreen(driver);
+        Helper.tapWhitePlace(driver);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
     }
 
 
