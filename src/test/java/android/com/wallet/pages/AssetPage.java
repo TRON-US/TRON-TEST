@@ -22,16 +22,17 @@ public class AssetPage extends AbstractPage {
     public AssetPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
 
         try {
+            TimeUnit.SECONDS.sleep(1);
             // if updateview display ,close
             if (update_topview.isDisplayed()) {
                 update_btn.click();
@@ -39,13 +40,14 @@ public class AssetPage extends AbstractPage {
             }
         }catch (Exception e){}
 
-        try {
-            // if mutisignview display ,close
-            if (mutisign_tipview.isDisplayed()) {
-                mutisign_closebtn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//            // if mutisignview display ,close
+//            if (mutisign_tipview.isDisplayed()) {
+//                mutisign_closebtn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
     }
 
 
@@ -146,24 +148,15 @@ public class AssetPage extends AbstractPage {
     public WebElement trx10_btn;
 
 
-//    public void isAssetPage(String privateKey){
-//        try {
-//            assetsMain_btn.isDisplayed();
-//        }catch (Exception e){
-//            Helper.getSign(privateKey,driver);
-//        }
-//    }
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_chain_name")
+    public WebElement currChain_name;
 
 
 
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
-//        try {assets_btn.click();
-//        }catch (Exception e){
-//            Base.log("assets_btn bton not found");
-//        }
         return new SendTrxPage(driver);
     }
 
@@ -178,27 +171,27 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage(){
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
         market_btn.click();
         return new MarketPage(driver);
     }
 
     public ReceiptPage enterReceiptPage(){
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
         receipt_btn.click();
         return new ReceiptPage(driver);
     }
@@ -210,14 +203,14 @@ public class AssetPage extends AbstractPage {
     }
 
     public AddAssertPage enterAddAssertPage(){
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
         addAssert_btn.click();
         return new AddAssertPage(driver);
     }
@@ -235,14 +228,14 @@ public class AssetPage extends AbstractPage {
 
 
     public MinePage enterMinePage(){
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
         mine_btn.click();
         return new MinePage(driver);
     }
@@ -264,7 +257,8 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx10Page() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,trx10_btn);
+        //Helper.scrollToElementUntilVisible(driver,trx10_btn);
+        Helper.swipScreen(driver);
         trx10_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
