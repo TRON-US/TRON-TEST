@@ -32,26 +32,28 @@ public class AddAssetsTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
-
-    @Test(description = "test add assert",alwaysRun = true)
+    @Test(description = "test add assert", alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        AddAssertPage addAssert =  asset.enterAddAssertPage();
+        AddAssertPage addAssert = asset.enterAddAssertPage();
         SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
         searchAssert.addAssert_input.sendKeys("1000029");
         searchAssert.openAssert();
@@ -62,16 +64,14 @@ public class AddAssetsTest extends Base {
     }
 
 
-    @Test(description = "test remove asset",alwaysRun = true)
-    public void test003_removeAsset(){
+    @Test(description = "test remove asset", alwaysRun = true)
+    public void test003_removeAsset() {
         AssetPage asset = new AssetPage(DRIVER);
-        AddAssertPage addAssert =  asset.enterAddAssertPage();
+        AddAssertPage addAssert = asset.enterAddAssertPage();
         addAssert.mainPageAssetManage_tab.get(1).click();
         addAssert.removeAsset();
         Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
     }
-
-
 
 
 }
