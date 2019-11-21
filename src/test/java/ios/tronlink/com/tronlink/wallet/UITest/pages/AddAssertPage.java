@@ -27,15 +27,17 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement back_btn;
 
+    @FindBy(name = "资产")
+    public WebElement title;
+
 
     @FindBy(name = "首页资产管理")
-    public List<WebElement> mainPageAssetManage_tab;
+    public WebElement mainPageAssetManage_tab;
 
     @FindBy(name = "热门资产")
     public WebElement hotAssetManage_tab;
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
-    public List<WebElement> switch_btn;
+
 
     @FindBy(name = "ID 1000027")
     public WebElement myNewAddAsset_text;
@@ -43,6 +45,12 @@ public class AddAssertPage extends AbstractPage {
 
     @FindBy(className =  "XCUIElementTypeSwitch")
     public List<WebElement> assertSwitch_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
+    public List<WebElement> switch_btn;
+
 
 
     @FindBy(xpath = "//*[@text='ID 1000029']")
