@@ -119,10 +119,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='tronlink_token']")
     public WebElement trx10_btn;
 
-    @FindBy(id="com.tronlink.wallet:id/tv_trx_value")
+    @FindBy(name ="trxLabel")
     public WebElement trxValue;
 
-
+    @FindBy(name ="balanceLabel")
+    public List<WebElement> cellArray;
 
     public VotePage enterVotePage(){
         try {
@@ -197,7 +198,7 @@ public EnergyRentPage entereneryRantage(){
 
 
     public SendTrxPage enterSendTrxPage() {
-        assets_btn.click();
+        transfer_btn.click();
 //        try {assets_btn.click();
 //        }catch (Exception e){
 //            Base.log("assets_btn bton not found");
@@ -213,25 +214,25 @@ public EnergyRentPage entereneryRantage(){
 
 
     public TrxPage enterTrxPage() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,trx_btn);
-        trx_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        Helper.scrollToElementUntilVisible(driver,cellArray.get(0));
+        cellArray.get(0).click();
+//        TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
 
 
     public TrxPage enterTrx10Page() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,trx10_btn);
-        trx10_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        Helper.scrollToElementUntilVisible(driver,cellArray.get(2));
+        cellArray.get(2).click();
+//        TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
 
 
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
-        trx20_btn.get(1).click();
-        TimeUnit.SECONDS.sleep(3);
+        cellArray.get(1).click();
+//        TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
 
@@ -240,7 +241,16 @@ public EnergyRentPage entereneryRantage(){
         String trxCount = trxValue.getText().split(" ")[0];
         return trxCount;
     }
-
+    public String getTrx10Count() throws Exception {
+        TimeUnit.SECONDS.sleep(3);
+        String trxCount = cellArray.get(2).getText().split(" ")[0];
+        return trxCount;
+    }
+    public String getTrx20Count() throws Exception {
+        TimeUnit.SECONDS.sleep(3);
+        String trxCount = cellArray.get(1).getText().split(" ")[0];
+        return trxCount;
+    }
     public MarketPage enterMarketPage(){
         try {
             TimeUnit.SECONDS.sleep(2);

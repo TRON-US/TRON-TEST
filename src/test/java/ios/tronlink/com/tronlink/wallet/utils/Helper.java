@@ -1,11 +1,13 @@
 package ios.tronlink.com.tronlink.wallet.utils;
 
 
+import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.ios.IOSDriver;
@@ -19,7 +21,42 @@ public class Helper {
 
     public IOSDriver DRIVER = null;
 
+    public static  boolean fastFindMainChain(List<WebElement> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getText().contains("MainChain")){
+                return  true;
+            }
+            if (list.get(i).getText().contains("DAppChain")){
+                return  false;
+            }
+        }
+        return  true;
+    }
 
+    public static boolean contentTexts(List<WebElement> list, String name) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Totalsize:" + list.size() + " itme:" + i + "name:" + list.get(i).getText());
+            if (list.get(i).getText().contains(name)){
+                return  true;
+            }
+        }
+        return  false;
+    }
+    public static boolean contentTextsFromDown(List<WebElement> list, String name) {
+        for (int i = list.size() - 1 ; i > -1; i--) {
+            System.out.println("Totalsize:" + list.size() + " itme:" + i + "name:" + list.get(i).getText());
+            if (list.get(i).getText().contains(name)){
+                return  true;
+            }
+        }
+        return  false;
+    }
+
+    public static void tapWhitePlace(IOSDriver driver)  throws Exception{
+        TouchAction action = new TouchAction(driver);
+        PointOption whiteplace = PointOption.point(10,130);
+        action.tap(whiteplace).perform().release();
+    }
 
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
