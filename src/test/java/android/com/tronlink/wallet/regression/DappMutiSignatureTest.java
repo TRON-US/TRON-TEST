@@ -119,7 +119,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "signature is exist", alwaysRun = true)
+    @Test(description = "signature is exist", alwaysRun = true,enabled = false)
     public void test004_signatureIsExist() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
