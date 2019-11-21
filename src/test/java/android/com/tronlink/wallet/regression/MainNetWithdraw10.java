@@ -148,6 +148,7 @@ public class MainNetWithdraw10 extends Base {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
         String count = random(10, 10);
+        System.out.println("count = " + count);
         trx = transferOut.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
@@ -159,6 +160,7 @@ public class MainNetWithdraw10 extends Base {
                 trx.tranfer_tab.get(6).click();
                 TimeUnit.SECONDS.sleep(3);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                System.out.println("tranferInCount = " + tranferInCount);
                 if (count.equals(tranferInCount)) {
                     exist = true;
                     break;
