@@ -12,11 +12,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import org.testng.annotations.*;
+
 /**
  * receipt trx test
  */
 public class ReceiptTest extends Base {
-
 
 
 //    @Parameters({"privateKey"})
@@ -30,27 +30,30 @@ public class ReceiptTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
     @Parameters({"address"})
-    @Test(description = "check Receipt Address",alwaysRun = true)
+    @Test(description = "check Receipt Address", alwaysRun = true)
     public void test001_ckeckReceiptTrxAddress(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        ReceiptPage receiptPage =  asset.enterReceiptPage();
-        Assert.assertEquals(receiptPage.ownerAddress_btn.getText(),address);
+        ReceiptPage receiptPage = asset.enterReceiptPage();
+        Assert.assertEquals(receiptPage.ownerAddress_btn.getText(), address);
     }
 
 //    @Test(description = "Is the copy function normal")
