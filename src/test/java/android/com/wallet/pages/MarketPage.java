@@ -55,6 +55,7 @@ public class MarketPage extends AbstractPage {
 
     public String sortPrice() throws Exception {
         firstRowPriceList.get(0).click();
+        TimeUnit.SECONDS.sleep(2);
         String price = firstRowPriceList.get(1).getText();
         TimeUnit.SECONDS.sleep(1);
         //System.out.println(price);
