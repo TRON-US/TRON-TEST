@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ChangeWalletPasswordTest extends BaseTest {
     String keystore = "";
-    String oldPassword = "Test00001";
+    String oldPassword = "Test0001";
     String newPassword = "Admin1234";
 
 
