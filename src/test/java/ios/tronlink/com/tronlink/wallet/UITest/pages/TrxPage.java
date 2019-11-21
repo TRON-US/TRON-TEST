@@ -55,6 +55,8 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
+    @FindBy(name = "balanceLabe")
+    public WebElement balanceLabe_text;
 
 
     public TransferPage enterTransferPage() throws Exception {
