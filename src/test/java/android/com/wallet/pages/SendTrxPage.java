@@ -108,6 +108,7 @@ public class SendTrxPage extends AbstractPage {
     public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         trc10_btn.click();
         tranferCount_text.sendKeys(number);
         swip();
@@ -123,6 +124,7 @@ public class SendTrxPage extends AbstractPage {
     public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         trc20_btn.click();
         tranferCount_text.sendKeys(number);
         swip();
@@ -137,6 +139,7 @@ public class SendTrxPage extends AbstractPage {
 
     public double getTrc10Amount() throws Exception {
         token_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         trc10_btn.click();
         String balance = balance_text.getText();
         double trc10Amount = 0;
@@ -149,6 +152,7 @@ public class SendTrxPage extends AbstractPage {
 
     public double getTrc20Amount() throws Exception {
         token_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         trc20_btn.click();
         String balance = balance_text.getText();
         double trc10Amount = 0;
@@ -191,6 +195,7 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrc10(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         trc10_btn.click();
         //calculate trx
         switch(value){
@@ -216,6 +221,7 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrc20(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         trc20_btn.click();
         //calculate trx
         switch(value){

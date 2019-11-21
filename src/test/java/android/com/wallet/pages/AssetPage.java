@@ -257,7 +257,8 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx10Page() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,trx10_btn);
+        //Helper.scrollToElementUntilVisible(driver,trx10_btn);
+        Helper.swipScreen(driver);
         trx10_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
