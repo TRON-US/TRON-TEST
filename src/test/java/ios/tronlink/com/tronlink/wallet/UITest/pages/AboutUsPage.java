@@ -1,6 +1,8 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 
 import java.util.concurrent.TimeUnit;
@@ -16,10 +18,19 @@ public class AboutUsPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(name = "关于我们")
+    public WebElement title;
 
+    @FindBy(name = "版本日志")
+    public WebElement recordVersion_btn;
 
-
-
-
+    public VersionsPage enterVersionsPage(){
+        try {
+            recordVersion_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new VersionsPage(driver);
+    }
 
 }
