@@ -25,6 +25,8 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/ll_deposit")
     public WebElement transferIn_btn;
 
+    @FindBy(name = "转入") ////XCUIElementTypeApplication[@name="TronLink"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]
+    public List<WebElement> transferIn_btnArray;
 
 
     @FindBy(name = "com.tronlink.wallet:id/tv_trx_amount")
@@ -32,17 +34,17 @@ public class TrxPage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_freeze_amout")
+    @FindBy(name = "freezeLabel")
     public WebElement freezeCount_text;
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_count")
+    @FindBy(name = "balanceLabel")
     public WebElement trxTotal_text;
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/iv_common_left")
+    @FindBy(name = "white back arrow")
     public WebElement back_btn;
 
 
@@ -55,14 +57,22 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
+    @FindBy(name = "balanceLabe")
+    public WebElement balanceLabe_text;
+
 
 
     public TransferPage enterTransferPage() throws Exception {
-        transferIn_btn.click();
+        transferIn_btnArray.get(1).click();
         TimeUnit.SECONDS.sleep(1);
         return new TransferPage(driver);
     }
-
+    public TransferPage enterTransferInPage() throws Exception {
+        System.out.println(transferIn_btnArray.size());
+        transferIn_btnArray.get(1).click();
+        TimeUnit.SECONDS.sleep(1);
+        return new TransferPage(driver);
+    }
 
 
 

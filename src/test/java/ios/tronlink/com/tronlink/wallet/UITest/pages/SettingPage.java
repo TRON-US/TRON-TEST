@@ -68,7 +68,7 @@ public class SettingPage extends AbstractPage {
     public WebElement node_name;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/iv_common_left")
+    @FindBy(name = "black path")
     public WebElement back_btn;
 
     @FindBy(name = "转换工具")
@@ -102,6 +102,9 @@ public class SettingPage extends AbstractPage {
     public WebElement MainChain_btn;
     @FindBy(name =  "DappChain")
     public WebElement DappChain_btn;
+
+    @FindBy(className = "XCUIElementTypeStaticText")
+    public List<WebElement> textArray;
 
 //    public void switchLanguage(String language){
 //        try {
