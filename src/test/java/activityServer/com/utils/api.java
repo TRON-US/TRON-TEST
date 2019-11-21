@@ -69,6 +69,22 @@ public class api {
         return response;
     }
 
+  public static HttpResponse trxTransferRecord(HashMap<String, String> param) throws Exception{
+    final String requestUrl = HttpNode + "/api/simple-transfer";
+    URIBuilder builder = new URIBuilder(requestUrl);
+    if (param != null) {
+      for (String key : param.keySet()) {
+        builder.addParameter(key, param.get(key));
+      }
+    }
+    URI uri = builder.build();
+    //System.out.println(requestUrl);
+    response = createGetConnect(uri);
+    Assert.assertTrue(api.verificationResult(response));
+    return response;
+  }
+
+
     public static HttpResponse multiTransaction(JsonObject transaction) throws Exception {
         final String requestUrl = HttpNode + "/api/wallet/multi/transaction";
         response = createConnect(requestUrl, transaction);
