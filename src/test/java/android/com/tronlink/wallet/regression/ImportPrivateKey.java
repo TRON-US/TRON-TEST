@@ -17,6 +17,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
 
 
@@ -24,7 +25,7 @@ public class ImportPrivateKey extends Base {
 
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.launchApp();
     }
@@ -33,7 +34,10 @@ public class ImportPrivateKey extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
@@ -46,7 +50,7 @@ public class ImportPrivateKey extends Base {
     }
 
 
-    @Test(description = "Import PrivateKey Format Incorrect",alwaysRun = true)
+    @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
     public void test001_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
@@ -54,16 +58,14 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
-    @Test(description = "Import PrivateKey Is NULL",alwaysRun = true)
+    @Test(description = "Import PrivateKey Is NULL", alwaysRun = true)
     public void test002_importPrivateKeyIsNull() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         Assert.assertFalse(importPrivateKey.next_btn.isEnabled());
     }
 
 
-
-    @Test(description = "Import PrivateKey Is Too Large",alwaysRun = true)
+    @Test(description = "Import PrivateKey Is Too Large", alwaysRun = true)
     public void test003_importPrivateKeyIsTooLarge() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab");
@@ -72,7 +74,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "PrivateKey Name Too Long",alwaysRun = true)
+    @Test(description = "PrivateKey Name Too Long", alwaysRun = true)
     public void test004_privateKeyNameTooLong(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -82,9 +84,8 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
     @Parameters({"privateKey"})
-    @Test(description = "Password without uppercase letter",alwaysRun = true)
+    @Test(description = "Password without uppercase letter", alwaysRun = true)
     public void test005_passwordWithoutUppercaseLetter(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -94,9 +95,8 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
     @Parameters({"privateKey"})
-    @Test(description = "Password Is Too Short",alwaysRun = true)
+    @Test(description = "Password Is Too Short", alwaysRun = true)
     public void test006_passwordIsTooShort(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -107,7 +107,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "Two Password Is diffent",alwaysRun = true)
+    @Test(description = "Two Password Is diffent", alwaysRun = true)
     public void test007_twoPasswordDiffent(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -121,9 +121,8 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
     @Parameters({"privateKey"})
-    @Test(description = "Wallet Name Has Alerady Exist",alwaysRun = true)
+    @Test(description = "Wallet Name Has Alerady Exist", alwaysRun = true)
     public void test008_walletNameHasAleradyExist(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -143,9 +142,8 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
     @Parameters({"privateKey"})
-    @Test(description = "Wallet The same name but different capitalization",alwaysRun = true)
+    @Test(description = "Wallet The same name but different capitalization", alwaysRun = true)
     public void test009_sameNameButDifferentCapitalization(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -162,9 +160,7 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
-
-    @Test(description = "privateKey Is All Numbers",alwaysRun = true)
+    @Test(description = "privateKey Is All Numbers", alwaysRun = true)
     public void test010_privateKeyIsAllNumbers() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("1234567890");
@@ -172,19 +168,12 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
-
-    @Test(description = "privateKey Without Uppercase Letter",alwaysRun = true)
+    @Test(description = "privateKey Without Uppercase Letter", alwaysRun = true)
     public void test011_privateKeyWithoutUppercaseLetter() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("zxcvbnm1234567");
         Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
-
-
-
-
-
 
 
 }
