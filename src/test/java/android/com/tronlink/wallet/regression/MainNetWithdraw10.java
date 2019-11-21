@@ -157,7 +157,7 @@ public class MainNetWithdraw10 extends Base {
             try {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrx10Page();
-                trx.tranfer_tab.get(6).click();
+                trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
                 System.out.println("tranferInCount = " + tranferInCount);
@@ -166,6 +166,7 @@ public class MainNetWithdraw10 extends Base {
                     break;
                 }
             } catch (Exception e) {
+                System.out.println(e);
             }
         }
         Assert.assertTrue(exist);
