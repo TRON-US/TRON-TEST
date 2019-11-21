@@ -22,28 +22,28 @@ import android.com.wallet.pages.MinePage;
 public class MainNetDeposit20 extends Base {
 
 
-
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
-
 
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
-
 
 
     //enter SettingPage
@@ -54,21 +54,18 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-
     //enter TRXPage
-    public TrxPage enterTrxPage() throws Exception{
+    public TrxPage enterTrxPage() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine  = set.enterMinePage();
+        MinePage mine = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
         return asset.enterTrx20Page();
     }
 
 
-
-
-    @Test(description = "Change Chain",alwaysRun = true)
+    @Test(description = "Change Chain", alwaysRun = true)
     public void test001_changeChain() throws Exception {
         SettingPage set = enterSettingPage();
         String nodeName = set.node_name.getText();
@@ -80,12 +77,11 @@ public class MainNetDeposit20 extends Base {
         AssetPage assetPage = mine.enterAssetPage();
         String currentNodeName = assetPage.currChain_name.getText();
         System.out.println("change chain to : " + currentNodeName);
-        Assert.assertNotEquals(nodeName,currentNodeName);
+        Assert.assertNotEquals(nodeName, currentNodeName);
     }
 
 
-
-    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
+    @Test(description = "Check TransferIn Chain Name", alwaysRun = true)
     public void test002_checkTransferInChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -94,9 +90,7 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-
-
-    @Test(description = "Check TransferIn Trc20 Count",alwaysRun = true)
+    @Test(description = "Check TransferIn Trc20 Count", alwaysRun = true)
     public void test003_checkTransferInTrc10() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -105,8 +99,7 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-
-    @Test(description = "Check TransferIn Hits",alwaysRun = true)
+    @Test(description = "Check TransferIn Hits", alwaysRun = true)
     public void test004_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -115,8 +108,7 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-
-    @Test(description = "Check TransferIn Fee",alwaysRun = true)
+    @Test(description = "Check TransferIn Fee", alwaysRun = true)
     public void test005_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
@@ -126,13 +118,12 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-
-    @Test(description = "Check Available Balance",enabled = false)
+    @Test(description = "Check Available Balance", enabled = false)
     public void test006_checkAvailableBalance() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine  = set.enterMinePage();
+        MinePage mine = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrx10Page();
@@ -143,29 +134,27 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-
-    @Test(description = "TransferIn Success Checkout Available trc20",enabled = false)
+    @Test(description = "TransferIn Success Checkout Available trc20", enabled = false)
     public void test007_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
 
 
-
-    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    @Test(description = "TransferIn Success Recording", alwaysRun = true)
     public void test008_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferIn =  trx.enterTransferPage();
-        String count = random(10,10);
+        TransferPage transferIn = trx.enterTransferPage();
+        String count = random(10, 10);
         System.out.println("count = " + count);
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
-        while(exist == false && tries < 7) {
+        while (exist == false && tries < 7) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
@@ -174,15 +163,15 @@ public class MainNetDeposit20 extends Base {
                 TimeUnit.SECONDS.sleep(3);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
                 System.out.println("tranferInCount = " + tranferInCount);
-                if (count.equals(tranferInCount)){
+                if (count.equals(tranferInCount)) {
                     exist = true;
                     break;
                 }
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         Assert.assertTrue(exist);
     }
-
 
 
 }

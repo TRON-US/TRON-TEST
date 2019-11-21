@@ -19,7 +19,6 @@ import android.com.wallet.pages.SettingPage;
 public class SettingTest extends Base {
 
 
-
 //    @Parameters({"privateKey"})
 //    @BeforeMethod()
 //    public void setUpBefore(String privateKey) throws Exception{
@@ -31,18 +30,21 @@ public class SettingTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
@@ -53,7 +55,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
     }
 
-    @Test(description = "Developer options Test",alwaysRun = true)
+    @Test(description = "Developer options Test", alwaysRun = true)
     public void test002_developerOptions() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -61,17 +63,17 @@ public class SettingTest extends Base {
         String developer = setting.testnode_text.getText();
         setting.trunDeveloperOptions();
         String developerNow = setting.testnode_text.getText();
-        Assert.assertNotEquals(developer,developerNow);
+        Assert.assertNotEquals(developer, developerNow);
     }
 
-    @Test(description = "DAPP Browser Test",alwaysRun = true)
+    @Test(description = "DAPP Browser Test", alwaysRun = true)
     public void test003_DAPP_Browser() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
-        DAPP_BrowerPage dapp =  setting.enterDAPP_BrowerPage();
+        DAPP_BrowerPage dapp = setting.enterDAPP_BrowerPage();
         dapp.testUrl();
-        Assert.assertEquals("TEST",dapp.dappTtile_btn.getText());
+        Assert.assertEquals("TEST", dapp.dappTtile_btn.getText());
     }
 
 
