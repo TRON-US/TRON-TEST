@@ -19,25 +19,20 @@ public class SendTrc10 extends BaseTest {
     return transfer;
   }
 
-  @Test(description = "SendTrc10 success test",alwaysRun = true)
-  public void tsst001_sendTrc10Success() throws Exception {
-    AssetPage asset = new AssetPage(DRIVER);
-    SendTrxPage transfer = asset.enterSendTrxPage();
-    Double trc10Before = transfer.getTrc10Amount();
-    String trc10SendAmount = "1";
-    SendTrxSuccessPage stsp = transfer.normalSendTrc10(trc10SendAmount);
-    TimeUnit.SECONDS.sleep(3);
-    transfer = asset.enterSendTrxPage();
-    double trc10After = transfer.getTrc10Amount();
-    System.out.println(trc10After);
-    Assert.assertEquals(trc10Before,trc10After + Double.valueOf(trc10SendAmount));
+  @Test(description = "ssendaddressChanged test",alwaysRun = true)
+  public void tsst001_sendaddressChanged() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.testfieldArray.get(0).sendKeys(" ");
+    Helper.tapWhitePlace(transfer.driver);
+    Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"转出地址格式不正确"));
   }
 
   @Test(description = "input max send number",alwaysRun = true)
   public void tsst002_inputMaxSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("max");
-    Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
+    Assert.assertTrue(transfer.send_btn.isEnabled());
+
   }
 
 
@@ -46,8 +41,7 @@ public class SendTrc10 extends BaseTest {
   public void tsst003_inputMixSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("mix");
-    String centent = transfer.formatErrorHits_text.getText();
-    Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"格式错误"));
   }
 
 
@@ -56,9 +50,25 @@ public class SendTrc10 extends BaseTest {
   public void tsst004_inputTooMuchSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc10("tooMuch");
-    String centent = transfer.formatErrorHits_text.getText();
-    Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+    Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"余额不足"));
   }
 
+  @Test(description = "SendTrc10 success test",alwaysRun = true)
+  public void tsst005_sendTrc10Success() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+    Helper.tapWhitePlace(transfer.driver);
+    transfer.token_btn.click();
+    transfer.trc10_btn.click();
+    transfer.testfieldArray.get(2).sendKeys("1");
+    Helper.tapWhitePlace(transfer.driver);
+    transfer.send_btn.click();
+    transfer.transferNow_btn.click();
+    transfer.InputPasswordConfim_btn.sendKeys("Test0001");
+    transfer.broadcastButtonClick();
+//    String  othcode = DRIVER.getTitle();
+//    System.out.println(trcode +"----------"+othcode);
+//    Assert.assertFalse(Helper.contentTexts(transfer.alltextArray,"选择token"));
+  }
 
 }

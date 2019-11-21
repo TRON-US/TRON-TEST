@@ -20,6 +20,8 @@ public class TransactionRecordPage extends AbstractPage {
 
 
 //
+    @FindBy(id = "ic account")
+    public  WebElement icNav_Icon;
     @FindBy(id = "com.tronlink.wallet:id/tv_three")
     public WebElement owner_text;
 

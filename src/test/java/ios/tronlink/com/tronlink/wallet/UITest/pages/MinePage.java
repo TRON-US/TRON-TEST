@@ -31,6 +31,11 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "公告")
     public WebElement announcement_btn;
 
+    @FindBy(name = "帮助中心")
+    public WebElement helpCenter_btn;
+
+    @FindBy(name = "加入社群")
+    public WebElement intoGroup_btn;
 
     @FindBy(name = "交易记录")
     public WebElement transferHistory_btn;
@@ -66,7 +71,24 @@ public class MinePage extends AbstractPage {
         return new SettingPage(driver);
     }
 
-
+    //enter Group page
+    public GroupPage enterGroupPage(){
+        try {
+            intoGroup_btn.click();
+        }catch (Exception e){
+            new Base().log("intoGroup_btn button not found");
+        }
+        return new GroupPage(driver);
+    }
+    //enter Help page
+    public HelpPage enterHelpPage(){
+        try {
+            helpCenter_btn.click();
+        }catch (Exception e){
+            new Base().log("intoGroup_btn button not found");
+        }
+        return new HelpPage(driver);
+    }
     //enter FriendInvitation Page
     public FriendInvitationPage enterFriendInvitationPage(){
         try {
