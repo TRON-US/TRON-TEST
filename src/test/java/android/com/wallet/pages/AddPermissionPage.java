@@ -98,7 +98,7 @@ public class AddPermissionPage extends AbstractPage {
         permissionName_input.sendKeys(signName);
         weights_btn.click();
         threshold_input.sendKeys("1");
-        address_input.get(0).sendKeys("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ");
+        address_input.get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         weight_input.sendKeys("1");
         //Helper.scrollToElementUntilVisible(driver,confirm_btn);
         Helper.swipScreen(driver);
