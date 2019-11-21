@@ -23,7 +23,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+        System.out.println("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
