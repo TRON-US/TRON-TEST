@@ -23,7 +23,7 @@ public class multiTrxRecord {
     public void multiTrxRecord() throws Exception {
         param.put("address","TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb");
         param.put("start","0");
-        param.put("limit","40");
+        param.put("limit","39");
         param.put("state","1");
         param.put("netType","main_net");
         response = api.multiTrxReword(param);
