@@ -81,7 +81,7 @@ public class SendTrx extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("max");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(transfer.send_btn.isEnabled());
+        Assert.assertTrue(transfer.findsend_btn().isEnabled());
     }
 
 
