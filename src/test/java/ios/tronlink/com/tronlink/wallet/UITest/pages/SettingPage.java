@@ -18,7 +18,10 @@ public class SettingPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(name = "com.tronlink.wallet:id/languane")
+    @FindBy(name = "设置")
+    public WebElement title;
+
+    @FindBy(name = "语言")
     public WebElement languane_btn;
 
 
@@ -26,24 +29,35 @@ public class SettingPage extends AbstractPage {
     public List<WebElement> selected_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/testnode")
+    @FindBy(name = "开发者选项")
     public WebElement developerOptions_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_testnode")
+    @FindBy(name = "节点设置")
     public WebElement testnode_text;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_ok")
+    @FindBy(name = "连接")
     public WebElement connect_btn;
 
+    @FindBy(name = "已选择shasta网络")
+    public WebElement connected_title;
 
-    @FindBy(name = "com.tronlink.wallet:id/dapp")
+    @FindBy(name = "未选择")
+    public WebElement disconnected_title;
+
+    @FindBy(name = "断开")
+    public WebElement disconnec_btn;
+
+    @FindBy(name = "取消")
+    public WebElement connect_cancel_btn;
+
+    @FindBy(name = "Dapp测试工具")
     public WebElement dapp_btn;
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/node")
+    @FindBy(name = "节点设置")
     public WebElement node_btn;
 
     @FindBy(name = "com.tronlink.wallet:id/switch_version")
@@ -54,9 +68,43 @@ public class SettingPage extends AbstractPage {
     public WebElement node_name;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/iv_common_left")
+    @FindBy(name = "black path")
     public WebElement back_btn;
 
+    @FindBy(name = "转换工具")
+    public WebElement mnemTools_btn;
+
+
+    @FindBy(name =  "英文")
+    public WebElement english_btn;
+
+    @FindBy(name =  "简体中文")
+    public WebElement chinese_btn;
+
+    @FindBy(name =  "取消")
+    public WebElement Cancal_btn;
+    @FindBy(name =  "Language")
+    public WebElement languaneEn_btn;
+
+    @FindBy(name =  "Simplified Chinese")
+    public WebElement languaneCn_btn;
+
+    @FindBy(name =  "货币单位")
+    public WebElement currencyUnit_btn;
+
+    @FindBy(name =  "USD")
+    public WebElement USDUnit_btn;
+
+    @FindBy(name =  "CNY")
+    public WebElement CNYUnit_btn;
+
+    @FindBy(name =  "MainChain")
+    public WebElement MainChain_btn;
+    @FindBy(name =  "DappChain")
+    public WebElement DappChain_btn;
+
+    @FindBy(className = "XCUIElementTypeStaticText")
+    public List<WebElement> textArray;
 
 //    public void switchLanguage(String language){
 //        try {
@@ -84,7 +132,17 @@ public class SettingPage extends AbstractPage {
         }
     }
 
-
+    //turn Developer options
+    public void trunOffDeveloperOptions(){
+        try {
+            developerOptions_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+            disconnec_btn.click();
+            TimeUnit.SECONDS.sleep(3);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     public DAPP_BrowerPage enterDAPP_BrowerPage(){
         dapp_btn.click();
@@ -106,7 +164,11 @@ public class SettingPage extends AbstractPage {
         return new NodeSetPage(driver);
     }
 
-
+    public MnemonicToolsPage enternemTools_btnPage() throws Exception {
+        mnemTools_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new MnemonicToolsPage(driver);
+    }
 
     public MinePage enterMinePage() throws Exception {
         back_btn.click();

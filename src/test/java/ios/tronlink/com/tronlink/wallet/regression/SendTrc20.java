@@ -4,6 +4,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxSuccessPage;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -17,25 +18,19 @@ public class SendTrc20 extends BaseTest {
     return transfer;
   }
 
-  @Test(description = "SendTrc20 success test",alwaysRun = true)
-  public void tsst001_sendTrc20Success() throws Exception {
-    AssetPage asset = new AssetPage(DRIVER);
-    SendTrxPage transfer = asset.enterSendTrxPage();
-    double trc20Before = transfer.getTrc20Amount();
-    String trc20SendAmount = "1";
-    SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
-    TimeUnit.SECONDS.sleep(3);
-    transfer = asset.enterSendTrxPage();
-    double trc20After = transfer.getTrc20Amount();
-    System.out.println(trc20After);
-    Assert.assertEquals(trc20Before,trc20After + Double.valueOf(trc20SendAmount));
+  @Test(description = "ssendaddressChanged test",alwaysRun = true)
+  public void tsst001_sendaddressChanged() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.testfieldArray.get(0).sendKeys(" ");
+    Helper.tapWhitePlace(transfer.driver);
+    Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"转出地址格式不正确"));
   }
 
   @Test(description = "input max send number",alwaysRun = true)
   public void tsst002_inputMaxSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc20("max");
-    Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
+    Assert.assertTrue(transfer.send_btn.isEnabled());
   }
 
 
@@ -44,8 +39,7 @@ public class SendTrc20 extends BaseTest {
   public void tsst003_inputMixSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc20("mix");
-    String centent = transfer.formatErrorHits_text.getText();
-    Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"格式错误"));
   }
 
 
@@ -54,8 +48,22 @@ public class SendTrc20 extends BaseTest {
   public void tsst004_inputTooMuchSendNumber() throws Exception {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.sendAllTrc20("tooMuch");
-    String centent = transfer.formatErrorHits_text.getText();
-    Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+    Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"余额不足"));
   }
 
+  @Test(description = "SendTrc20 success test",alwaysRun = true)
+  public void tsst005_sendTrc20Success() throws Exception {
+    SendTrxPage transfer = enterToSendTrxPage();
+    transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+    Helper.tapWhitePlace(transfer.driver);
+    transfer.token_btn.click();
+    transfer.trc20_btn.click();
+    transfer.testfieldArray.get(2).sendKeys("1");
+    Helper.tapWhitePlace(transfer.driver);
+    transfer.send_btn.click();
+    transfer.transferNow_btn.click();
+    transfer.InputPasswordConfim_btn.sendKeys("Test0001");
+    transfer.broadcastButtonClick();
+//    Assert.assertFalse(Helper.contentTexts(transfer.alltextArray,"选择token"));
+  }
 }

@@ -14,6 +14,8 @@ public class ReceiptPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(name = "收款")
+    public WebElement title;
 
     @FindBy(name = "com.tronlink.wallet:id/address")
     public WebElement ownerAddress_btn;
