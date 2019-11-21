@@ -28,10 +28,9 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(name =  "DAppChain")
     public WebElement DAppChain_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_select")
-    public List<WebElement> node_selected;
 
-
+    @FindBy(className = "XCUIElementTypeButton")
+    public List<WebElement> buttonArray;
 
 
 
@@ -47,17 +46,15 @@ public class NodeSetPage extends AbstractPage {
 
 
     public SettingPage enterSettingPageChoiseDappChain() throws Exception {
-        node_selected.get(1).click();
+        buttonArray.get(3).click();
         back_btn.click();
-        TimeUnit.SECONDS.sleep(1);
         return new SettingPage(driver);
     }
 
 
     public SettingPage enterSettingPageChoiseMainChain() throws Exception {
-        node_selected.get(0).click();
+        buttonArray.get(1).click();
         back_btn.click();
-        TimeUnit.SECONDS.sleep(1);
         return new SettingPage(driver);
     }
 
