@@ -34,17 +34,20 @@ public class MarketFunctionTest extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //Base.tearDownAfterClass();
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
@@ -54,7 +57,7 @@ public class MarketFunctionTest extends Base {
     public void test01_checkEnterMarketPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();
-        Assert.assertEquals(true,marketPage.Market_title.isDisplayed());
+        Assert.assertEquals(true, marketPage.Market_title.isDisplayed());
     }
 
 
@@ -65,9 +68,8 @@ public class MarketFunctionTest extends Base {
         String priceDesc = marketPage.sortPrice();
         String priceAsc = marketPage.sortPrice();
         //assertThat(priceDesc,is(equalTo(priceAsc)));
-        Assert.assertNotEquals(priceDesc,priceAsc);
+        Assert.assertNotEquals(priceDesc, priceAsc);
     }
-
 
 
 }
