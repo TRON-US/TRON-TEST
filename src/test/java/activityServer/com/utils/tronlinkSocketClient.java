@@ -1,5 +1,7 @@
 package activityServer.com.utils;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -53,6 +55,21 @@ public class tronlinkSocketClient extends WebSocketClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getResonse(){
+        String transaction = "";
+        try{
+            InputStream is = new FileInputStream("socketMessage.log");
+            int iAvail = is.available();
+            byte[] bytes = new byte[iAvail];
+            is.read(bytes);
+            transaction = new String(bytes);
+            is.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return transaction;
     }
 
 }

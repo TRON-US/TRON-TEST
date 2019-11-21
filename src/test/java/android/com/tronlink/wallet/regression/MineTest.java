@@ -24,22 +24,25 @@ public class MineTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
-    @Test(description = "Friend invitation Test",alwaysRun = true)
+    @Test(description = "Friend invitation Test", alwaysRun = true)
     public void test001_friendInvitation() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
@@ -48,17 +51,13 @@ public class MineTest extends Base {
     }
 
 
-    @Test(description = "Announcement Test",alwaysRun = true)
+    @Test(description = "Announcement Test", alwaysRun = true)
     public void test002_bulletin() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         AnnouncementPage announcement = minePage.enterAnnouncementPage();
         Assert.assertTrue(announcement.announcementPage_title.isDisplayed());
     }
-
-
-
-
 
 
 }

@@ -11,6 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import org.testng.annotations.*;
+
 /**
  * Transaction Record function test
  */
@@ -28,30 +29,32 @@ public class TransactionRecordTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+        try {
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
     }
 
 
-
     @Parameters({"address"})
-    @Test(description = "Transaction Record test",alwaysRun = true)
+    @Test(description = "Transaction Record test", alwaysRun = true)
     public void test001_transactionRecord(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         transaction.navigation_tab.click();
-        Assert.assertEquals(transaction.owner_text.getText(),address);
+        Assert.assertEquals(transaction.owner_text.getText(), address);
     }
 
 
