@@ -21,8 +21,30 @@ public class Helper {
 
     public IOSDriver DRIVER = null;
 
+    public static  boolean fastFindMainChain(List<WebElement> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getText().contains("MainChain")){
+                return  true;
+            }
+            if (list.get(i).getText().contains("DAppChain")){
+                return  false;
+            }
+        }
+        return  true;
+    }
+
     public static boolean contentTexts(List<WebElement> list, String name) {
         for (int i = 0; i < list.size(); i++) {
+            System.out.println("Totalsize:" + list.size() + " itme:" + i + "name:" + list.get(i).getText());
+            if (list.get(i).getText().contains(name)){
+                return  true;
+            }
+        }
+        return  false;
+    }
+    public static boolean contentTextsFromDown(List<WebElement> list, String name) {
+        for (int i = list.size() - 1 ; i > -1; i--) {
+            System.out.println("Totalsize:" + list.size() + " itme:" + i + "name:" + list.get(i).getText());
             if (list.get(i).getText().contains(name)){
                 return  true;
             }

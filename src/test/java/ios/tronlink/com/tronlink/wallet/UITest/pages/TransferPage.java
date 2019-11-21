@@ -1,9 +1,9 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.concurrent.TimeUnit;
 
 public class TransferPage extends AbstractPage {
@@ -34,7 +34,7 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_count")
+    @FindBy(className = "XCUIElementTypeTextField")
     public WebElement count_text;
 
 
@@ -49,18 +49,16 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_balance")
+    @FindBy(name = "amountDesContent")
     public WebElement availableBalance_text;
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_new_password")
+    @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement password_input;
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/bt_send")
-    public WebElement finish_btn;
 
 
 
@@ -72,14 +70,35 @@ public class TransferPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/time")
     public WebElement time_text;
 
+    public WebElement get_inter_btn(){
+        return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转入'");
+    }
+    public WebElement get_finish_btn(){
+        return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'");
+    }
 
 
 
+    public void inputAndTapToTransfer() throws Exception {
+        count_text.sendKeys("10");
+        Helper.tapWhitePlace(driver);
+        get_inter_btn().click();
+        TimeUnit.SECONDS.sleep(2);
+
+    }
+
+    public String getvalueofBandwidthText(){
+        WebElement element = driver.findElementByName("bandwidthText");
+        String val = element.getText().split(" ")[0];
+
+        return  val;
+    }
 
 
     public String getTransferInfo(String info) throws Exception {
         count_text.sendKeys("10");
-        transferIn_btn.click();
+        Helper.tapWhitePlace(driver);
+        get_inter_btn().click();
         TimeUnit.SECONDS.sleep(1);
         String value = "";
         switch (info){
@@ -99,10 +118,12 @@ public class TransferPage extends AbstractPage {
 
     public TrxPage enterTrxPageWithTransferSuccess() throws Exception {
         count_text.sendKeys("10");
-        transferIn_btn.click();
+        Helper.tapWhitePlace(driver);
+        get_inter_btn().click();
         TimeUnit.SECONDS.sleep(2);
         password_input.sendKeys("Test0001");
-        finish_btn.click();
+        Helper.tapWhitePlace(driver);
+        get_finish_btn().click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
@@ -110,10 +131,11 @@ public class TransferPage extends AbstractPage {
 
     public TrxPage enterTrxPageWithTransferSuccess(String count) throws Exception {
         count_text.sendKeys(count);
-        transferIn_btn.click();
+        get_inter_btn().click();
         TimeUnit.SECONDS.sleep(2);
         password_input.sendKeys("Test0001");
-        finish_btn.click();
+        Helper.tapWhitePlace(driver);
+        get_finish_btn().click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
