@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,11 +52,14 @@ public class TrxPage extends AbstractPage {
 
 
 
-    @FindBy(name = "转出")
-    public List<WebElement> tranfer_tab;
+    @FindBy(name = "全部")
+    public List<WebElement> tranfer_all;
 
     @FindBy(name = "转出")
     public List<WebElement> tranferOut_tab;
+
+    @FindBy(name = "转入")
+    public List<WebElement> tranferIn_tab;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
@@ -63,30 +67,57 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "balanceLabe")
     public WebElement balanceLabe_text;
 
-//    public List<WebElement> getFirstTransferOutNumber(){
-//        WebElement element =  driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeTable/XCUIElementTypeCell[2]/");
-//
-//        return  element.findElements(By.className("XCUIElementTypeStaticText"));
-////        System.out.println("begain getFirstTransferOutNumber ");
-////        WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell/");
-////        System.out.println("over getFirstTransferOutNumber ");
-////
-////        List<WebElement> lintels = view.findElements(By.className("XCUIElementTypeCell"));
-////                System.out.println("steqp1 XCUIElementTypeCell ");
-////
-////        System.out.println(lintels.size());
-////        WebElement firstly = lintels.get(1);
-////        List<WebElement> listed = firstly.findElements(By.className("XCUIElementTypeStaticText"));
-////        System.out.println("steqp1 XCUIElementTypeStaticText ");
-////
-////        System.out.println(listed.size());
-////
-////        return  listed;
-//    }
-    public List<WebElement> getFirstTransferOutNumber() {
+    public List<WebElement> getFirstTransferNumberList(){
+        WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell");
+//        List<WebElement> lintels = view.findElements(By.className("XCUIElementTypeCell"));
+//        WebElement firstly = lintels.get(1);
+        List<WebElement> listed = view.findElements(By.className("XCUIElementTypeStaticText"));
+
+        return listed;
+
+    }
+    public List<WebElement> getFirstTransferOutNumber()  {
+
         List<WebElement> list = (List<WebElement>) driver.findElementsByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText");
         return  list;
     }
+
+    public TransactionRecordPage getFirstTransferItemDetailPage() throws InterruptedException {
+        System.out.println("11111114");
+//        WebElement element =  driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeTable/XCUIElementTypeCell[2]");
+
+        WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell");
+        System.out.println("a");
+
+        System.out.println("aover");
+
+        List<WebElement> lintels = view.findElements(By.className("XCUIElementTypeCell"));
+        System.out.println("steqp1 XCUIElementTypeCell ");
+
+        System.out.println("b");
+
+        WebElement firstly = lintels.get(1);
+        List<WebElement> listed = firstly.findElements(By.className("XCUIElementTypeStaticText"));
+        System.out.println(listed.size());
+        System.out.println("b1");
+
+        for (WebElement e:listed
+        ) {
+            System.out.println(e.getText());
+        }
+
+        System.out.println("c");
+
+        firstly.click();
+
+        System.out.println("22222224");
+
+        TimeUnit.SECONDS.sleep(6);
+        System.out.println("66666664");
+
+        return new  TransactionRecordPage(driver);
+    }
+
     public TransferPage enterTransferPage() throws Exception {
         transferIn_btnArray.get(1).click();
         TimeUnit.SECONDS.sleep(1);
