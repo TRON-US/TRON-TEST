@@ -125,7 +125,6 @@ public class MainNetDeposit extends BaseTest {
     public void test006_checkAvailableBalance() throws Exception {
 
         AssetPage asset = enterAssetPage();
-
         int trxCount = Integer.parseInt(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
         int frozenCount = Integer.parseInt(removeSymbol(trx.freezeCount_text.getText()));
@@ -150,30 +149,31 @@ public class MainNetDeposit extends BaseTest {
 
 
 
-//    @Test(description = "TransferIn Success Recording",alwaysRun = true)
-//    public void test008_transferInSuccessRecording() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferIn =  trx.enterTransferPage();
-//        String count = random(10,10);
-//        trx = transferIn.enterTrxPageWithTransferSuccess(count);
-//        int tries = 0;
-//        Boolean exist = false;
-//        while(exist == false && tries < 7) {
-//            tries++;
-//            try {
-//                AssetPage arret = trx.enterAssetPage();
-//                trx = arret.enterTrxPage();
-//                trx.tranfer_tab.get(3).click();
-//                TimeUnit.SECONDS.sleep(3);
-//                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-//                if (count.equals(tranferInCount)){
-//                    exist = true;
-//                    break;
-//                }
-//            }catch (Exception e){}
-//        }
-//        Assert.assertTrue(exist);
-//    }
+    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    public void test008_transferInSuccessRecording() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn =  trx.enterTransferPage();
+        String count = random(10,10);
+        trx = transferIn.enterTrxPageWithTransferSuccess(count);
+        int tries = 0;
+        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
+        while(!exist && tries < 7) {
+            tries++;
+            try {
+                AssetPage arrest = trx.enterAssetPage();
+                trx = arrest.enterTrxPage();
+                trx.tranferOut_tab.get(2).click();
+                TimeUnit.SECONDS.sleep(3);
+                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
+                if(Helper.contentTexts(lintiest,count)){
+                    exist = true;
+                    break;
+                }
+
+            }catch (Exception e){}
+        }
+        Assert.assertTrue(exist);
+    }
 
 
 
