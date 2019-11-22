@@ -154,25 +154,34 @@ public class MainNetDeposit extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn =  trx.enterTransferPage();
         String count = random(10,10);
+        count = Helper.getPrettyNumber(count);
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
-        int tries = 0;
-        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
-        while(!exist && tries < 7) {
-            tries++;
-            try {
-                AssetPage arrest = trx.enterAssetPage();
-                trx = arrest.enterTrxPage();
-                trx.tranferOut_tab.get(2).click();
-                TimeUnit.SECONDS.sleep(3);
-                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
-                if(Helper.contentTexts(lintiest,count)){
-                    exist = true;
-                    break;
-                }
-
-            }catch (Exception e){}
-        }
-        Assert.assertTrue(exist);
+//        int tries = 0;
+//        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell  19.382761
+//        while(!exist && tries < 7) {
+//            tries++;
+//            try {
+//                AssetPage arrest = trx.enterAssetPage();
+//                trx = arrest.enterTrxPage();
+//                trx.tranferIn_tab.get(2).click();
+//                System.out.println("begainsearch");
+////                TransactionRecordPage page = trx.getFirstTransferNumberList();
+////                System.out.println("33333334");
+////
+////                if(page.headerLabel_text.getText().contains(count)){
+////                    exist = true;
+////                    break;
+////                }
+//                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
+//
+//                if(Helper.contentTexts(lintiest,count)){
+//                    exist = true;
+//                    break;
+//                }
+//
+//            }catch (Exception e){}
+//        }
+//        Assert.assertTrue(exist);
     }
 
 
