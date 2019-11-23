@@ -29,7 +29,7 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_chain_name")
+    @FindBy(name = "directionContent")
     public WebElement chain_text;
 
 
@@ -73,6 +73,9 @@ public class TransferPage extends AbstractPage {
     public WebElement get_inter_btn(){
         return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转入'");
     }
+    public WebElement get_out_btn(){
+        return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转出'");
+    }
     public WebElement get_finish_btn(){
         return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'");
     }
@@ -86,7 +89,13 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
 
     }
+    public void inputAndTapToTransferOut() throws Exception {
+        count_text.sendKeys("10");
+        Helper.tapWhitePlace(driver);
+        get_out_btn().click();
+        TimeUnit.SECONDS.sleep(2);
 
+    }
     public String getvalueofBandwidthText(){
         WebElement element = driver.findElementByName("bandwidthText");
         String val = element.getText().split(" ")[0];
@@ -128,9 +137,9 @@ public class TransferPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
-
     public TrxPage enterTrxPageWithTransferSuccess(String count) throws Exception {
         count_text.sendKeys(count);
+        Helper.tapWhitePlace(driver);
         get_inter_btn().click();
         TimeUnit.SECONDS.sleep(2);
         password_input.sendKeys("Test0001");
@@ -141,6 +150,29 @@ public class TransferPage extends AbstractPage {
     }
 
 
+    public TrxPage enterTrxPageWithTransferOutSuccess() throws Exception {
+        count_text.sendKeys("10");
+        Helper.tapWhitePlace(driver);
+        get_out_btn().click();
+        TimeUnit.SECONDS.sleep(2);
+        password_input.sendKeys("Test0001");
+        Helper.tapWhitePlace(driver);
+        get_finish_btn().click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
+
+    public TrxPage enterTrxPageWithTransferOutSuccess(String count) throws Exception {
+        count_text.sendKeys(count);
+        Helper.tapWhitePlace(driver);
+        get_out_btn().click();
+        TimeUnit.SECONDS.sleep(2);
+        password_input.sendKeys("Test0001");
+        Helper.tapWhitePlace(driver);
+        get_finish_btn().click();
+        TimeUnit.SECONDS.sleep(3);
+        return new TrxPage(driver);
+    }
 
     public boolean checkStep() {
 
