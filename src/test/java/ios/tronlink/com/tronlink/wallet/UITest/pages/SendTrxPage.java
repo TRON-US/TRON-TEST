@@ -100,6 +100,10 @@ public class SendTrxPage extends AbstractPage {
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '发送'");
         return element;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> add_case_ipa
     public void broadcastButtonClick(){
 
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
