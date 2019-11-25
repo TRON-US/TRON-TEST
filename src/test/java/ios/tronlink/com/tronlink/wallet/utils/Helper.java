@@ -64,6 +64,7 @@ public class Helper {
     }
 
 
+
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
         getSignOperate(testPrivateKey);
