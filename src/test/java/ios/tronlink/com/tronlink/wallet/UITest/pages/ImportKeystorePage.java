@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,18 +18,13 @@ public class ImportKeystorePage extends AbstractPage {
     this.driver = driver;
   }
 
-  @FindBy(name = "com.tronlink.wallet:id/et_content")
+  @FindBy(className = "XCUIElementTypeTextView")
   public WebElement content_text;
 
 
 
-  @FindBy(name = "com.tronlink.wallet:id/et_password")
+  @FindBy(className = "XCUIElementTypeSecureTextField")
   public WebElement password_text;
-
-
-
-  @FindBy(name = "com.tronlink.wallet:id/bt_next")
-  public WebElement next_btn;
 
 
 
@@ -38,30 +34,19 @@ public class ImportKeystorePage extends AbstractPage {
 
 
   public PrivateKeySetNamePage enterPrivateKeySetNamePage(String key,String password) throws Exception{
-    content_text.sendKeys(key);
-    password_text.sendKeys(password);
-    next_btn.click();
+    inputKeyAndPassword(key,password);
     TimeUnit.SECONDS.sleep(1);
     return new PrivateKeySetNamePage(driver);
   }
 
-
-
-  public String inputErrorKeyGetHits(String key,String password) throws Exception {
+  public void inputKeyAndPassword(String key,String password) throws Exception {
     content_text.sendKeys(key);
+    Helper.tapWhitePlace(driver);
     password_text.sendKeys(password);
-    next_btn.click();
-    TimeUnit.SECONDS.sleep(1);
-    return error_hits.get(0).getText();
+    Helper.tapWhitePlace(driver);
+    driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
   }
 
-  public String inputErrorPasswordHits(String key,String password) throws Exception {
-    content_text.sendKeys(key);
-    password_text.sendKeys(password);
-    next_btn.click();
-    TimeUnit.SECONDS.sleep(1);
-    return error_hits.get(1).getText();
-  }
 
 
 
