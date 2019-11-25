@@ -222,6 +222,9 @@ public class autoCreateTestngXml {
                 sb.append(
                     "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
                         + "\"/>\n");
+                sb.append(
+                        "        <parameter name=\"address\"  value=\"" + entry.getKey()
+                                + "\"/>\n");
                 sb.append("        <packages>\n" +
                     "            " + packagesName + "\n" +
                     "        </packages>\n" +

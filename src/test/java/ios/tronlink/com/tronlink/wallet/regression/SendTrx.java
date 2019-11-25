@@ -71,7 +71,7 @@ public class SendTrx extends BaseTest {
     public void tsst005_inputNullReceivingAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(2),"1");
-        Assert.assertFalse(transfer.send_btn.isEnabled()); //send btn can click
+        Assert.assertFalse(transfer.findsend_btn().isEnabled()); //send btn can click
     }
 
 
