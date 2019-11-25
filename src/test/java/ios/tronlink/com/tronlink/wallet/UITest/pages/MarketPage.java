@@ -18,6 +18,8 @@ public class MarketPage extends AbstractPage {
         super(driver);
         this.driver = driver;
     }
+    @FindBy(name = "行情")
+    public WebElement title;
 
     @FindBy(name = "com.tronlink.wallet:id/iv_pic")
     public WebElement ad_pic;

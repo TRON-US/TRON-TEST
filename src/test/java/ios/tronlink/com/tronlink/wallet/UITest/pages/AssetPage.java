@@ -52,7 +52,7 @@ public class AssetPage extends AbstractPage {
     public WebElement receipt_btn;
 
 
-    @FindBy(id="com.tronlink.wallet:id/appmarket")
+    @FindBy(name="行情")
     public WebElement market_btn;
 
     //ad
@@ -101,6 +101,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/app1")
     public WebElement discover_btn;
 
+    @FindBy(name = "home manager")
+    public WebElement addWallet_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/assets")
     public WebElement assetsMain_btn;
