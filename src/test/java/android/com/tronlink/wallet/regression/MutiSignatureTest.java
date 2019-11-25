@@ -129,6 +129,7 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.permissionName_input.sendKeys("owner");
+        //todo 出现一次Owner权限名称为"owner "的情况导致出错
         TimeUnit.SECONDS.sleep(1);
         String tip = add.tip_hits.getText();
         Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
