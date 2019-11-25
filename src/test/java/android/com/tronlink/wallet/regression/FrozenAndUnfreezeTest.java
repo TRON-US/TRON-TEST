@@ -142,7 +142,7 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test009_freezeEnergySuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
-        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
@@ -223,7 +223,7 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test016_freezeBandwidthSuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
-        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
+        int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
