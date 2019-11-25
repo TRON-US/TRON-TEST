@@ -3,9 +3,11 @@ package ios.tronlink.com.tronlink.wallet.regression;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MainNetDeposit10 extends BaseTest {
@@ -116,7 +118,6 @@ public class MainNetDeposit10 extends BaseTest {
         transferIn.inputAndTapToTransfer();
         String val = transferIn.getvalueofBandwidthText();
         int count = Integer.parseInt(removeSymbol(val));
-        System.out.println("-------:----");
         Assert.assertTrue(50 <= count && count <= 500);
     }
 
@@ -147,29 +148,31 @@ public class MainNetDeposit10 extends BaseTest {
 
 
 
-//    @Test(description = "TransferIn Success Recording",alwaysRun = true)
-//    public void test008_transferInSuccessRecording() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferIn =  trx.enterTransferPage();
-//        String count = random(10,10);
-//        trx = transferIn.enterTrxPageWithTransferSuccess(count);
+    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    public void test008_transferInSuccessRecording() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn =  trx.enterTransferPage();
+        String count = random(10,10);
+        count = Helper.getPrettyNumber(count);
+        trx = transferIn.enterTrxPageWithTransferSuccess(count);
 //        int tries = 0;
-//        Boolean exist = false;
-//        while(exist == false && tries < 7) {
+//        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
+//        while(!exist && tries < 7) {
 //            tries++;
 //            try {
-//                AssetPage arret = trx.enterAssetPage();
-//                trx = arret.enterTrx10Page();
-//                trx.tranfer_tab.get(3).click();
+//                AssetPage arrest = trx.enterAssetPage();
+//                trx = arrest.enterTrxPage();
+//                trx.tranferIn_tab.get(2).click();
 //                TimeUnit.SECONDS.sleep(3);
-//                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-//                if (count.equals(tranferInCount)){
+//                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
+//                if(Helper.contentTexts(lintiest,count)){
 //                    exist = true;
 //                    break;
 //                }
+//
 //            }catch (Exception e){}
 //        }
 //        Assert.assertTrue(exist);
-//    }
+    }
 
 }

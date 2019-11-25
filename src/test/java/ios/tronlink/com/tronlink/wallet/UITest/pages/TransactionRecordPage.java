@@ -25,6 +25,8 @@ public class TransactionRecordPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_three")
     public WebElement owner_text;
 
+    @FindBy(name = "headerLabel")
+    public WebElement headerLabel_text;
 
     @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[2]/android.widget.TextView")
     public WebElement navigation_tab;

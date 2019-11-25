@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -57,6 +58,11 @@ public class Helper {
         PointOption whiteplace = PointOption.point(10,130);
         action.tap(whiteplace).perform().release();
     }
+    public static String getPrettyNumber(String number) {
+        return BigDecimal.valueOf(Double.parseDouble(number))
+                .stripTrailingZeros().toPlainString();
+    }
+
 
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
@@ -170,6 +176,19 @@ public class Helper {
                 .release().perform();
     }
 
+    public static void swipRefreshScreen(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*4/5))
+                .release().perform();
+    }
+
     public void swipUntilElementEnable(String id,IOSDriver<?> driver) throws Exception{
         TimeUnit.SECONDS.sleep(1);
         //while (findWebElement(id).isEnabled() == false) {
@@ -195,9 +214,9 @@ public class Helper {
         System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
-                PointOption.point(width*4/5, height/2))
+                PointOption.point(width*4/5, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
-                .moveTo(PointOption.point(width*1/5, height/2))
+                .moveTo(PointOption.point(width*1/5, height*4/5))
                 .release().perform();
     }
 }
