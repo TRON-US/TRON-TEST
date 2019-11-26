@@ -168,7 +168,22 @@ public String getBackupKeystoreInClipboard(String password){
             return false;
         }
     }
+    public boolean deleteObserveWallet(){
+        WebElement  confirm_btn;
+        try {
+            Helper.swipScreen(driver);
+            TimeUnit.SECONDS.sleep(1);
+            deletewallet_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+            confirm_btn.click();
+            return  !confirm_btn.isDisplayed();
 
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
     public String getAddress(){
         String address = "";
         try {
