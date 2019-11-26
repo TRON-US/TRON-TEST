@@ -1,9 +1,11 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ImportPrivateKeyPage extends AbstractPage {
@@ -15,7 +17,7 @@ public class ImportPrivateKeyPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(name = "com.tronlink.wallet:id/et_content")
+    @FindBy(className = "XCUIElementTypeTextView")
     public WebElement content_text;
 
 
@@ -25,22 +27,31 @@ public class ImportPrivateKeyPage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_error")
-    public WebElement error_hits;
+    @FindBy(className = "XCUIElementTypeButton" )
+    public List<WebElement> error_hits;
 
+    public WebElement getNext_btn(){
+       return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'");
+    }
 
+    //XCUIElementTypeButton
+    public WebElement getError_hits_btn(){
+        return error_hits.get(2);
+
+    }
     public String checkPrivateKey(String key) throws Exception {
         content_text.sendKeys(key);
-        next_btn.click();
+        Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(1);
-        String hits = error_hits.getText();
+        String hits = getError_hits_btn().getText();
         return hits;
     }
 
 
     public PrivateKeySetNamePage enterPrivateKeySetNamePage(String key) throws Exception{
         content_text.sendKeys(key);
-        next_btn.click();
+        Helper.tapWhitePlace(driver);
+        getNext_btn().click();
         TimeUnit.SECONDS.sleep(2);
         return new PrivateKeySetNamePage(driver);
     }
@@ -49,9 +60,10 @@ public class ImportPrivateKeyPage extends AbstractPage {
 
     public String inputErrorKeyGetHits(String key) throws Exception {
         content_text.sendKeys(key);
-        next_btn.click();
+        Helper.tapWhitePlace(driver);
+        getNext_btn().click();
         TimeUnit.SECONDS.sleep(2);
-        return error_hits.getText();
+        return getError_hits_btn().getText();
     }
 
 
