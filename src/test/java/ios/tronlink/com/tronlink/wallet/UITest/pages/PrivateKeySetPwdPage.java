@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,13 +19,8 @@ public class PrivateKeySetPwdPage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_password")
+    @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement pwd_input;
-
-
-
-    @FindBy(name = "com.tronlink.wallet:id/creat")
-    public WebElement next_btn;
 
 
 
@@ -32,12 +28,15 @@ public class PrivateKeySetPwdPage extends AbstractPage {
     public WebElement pwd_title;
 
 
-
+    public WebElement getNext_btn(){
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'");
+    }
 
 
     public PrivateKeySetPwdAgainPage enterPrivateKeySetPwdAgainPage(String pwd) throws Exception {
         pwd_input.sendKeys(pwd);
-        next_btn.click();
+        Helper.tapWhitePlace(driver);
+        getNext_btn().click();
         TimeUnit.SECONDS.sleep(1);
         return new PrivateKeySetPwdAgainPage(driver);
     }
