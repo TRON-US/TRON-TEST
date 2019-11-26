@@ -1,17 +1,16 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.ImportKeystorePage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.MyPursePage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class ImportKeystore extends BaseTest {
-    String keystore = "{'version':3,'type':'private-key','crypto':{'ciphertext':'e9acd16091a4f659e497eb82a4cc4141e632fff583cd5e6e1dc717253d18e183','cipherparams':{'iv':'9581c5d224de5573ef5f018f2bfd5943'},'kdf':'scrypt','kdfparams':{'r':8,'p':6,'n':4096,'dklen':32,'salt':'8e81ea5fedc207eb691ba3b12fb29c03934cec0e1275e9eeefa460a459827625'},'mac':'c303a6d0ba6ac48d20594ed98e3c4d2f422bbfbd4a8cadce1fb79012ae6d4502','cipher':'aes-128-ctr'},'id':'e3723584-2c23-4794-a64a-37c32504e884','address':'41040e77C44E48bE3e04706ff8C96554AaB43E5cd3'}";
-    String oldKeystore = "";
+    String keystore = "{\"id\":\"9f3f57f3-95f1-4725-ab5b-a074a921a2d3\",\"version\":3,\"crypto\":{\"ciphertext\":\"ab54e64f4f6424cd67b534d2fbaed626d2718589b400e3aad86b1104f7e90673\",\"cipherparams\":{\"iv\":\"230307285d920b7b1ee3d798d2164d85\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"r\":8,\"p\":6,\"n\":4096,\"dklen\":32,\"salt\":\"f84e9561e94ff33313e76d4a3c1288bb811580a0fa34bf3852c037086edb421a\"},\"mac\":\"e086407b58e5021e32c6ceec7970959fcdca4db1d1be0d95079a754606d40667\",\"cipher\":\"aes-128-ctr\"},\"address\":\"416F366492B1bBA81A17470d7A8980430BA4200058\",\"type\":\"private-key\"}";
+    String oldKeystore;
     public ImportKeystorePage getImportKeystorePage(){
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.addWallet_btn.click();
@@ -35,13 +34,13 @@ public class ImportKeystore extends BaseTest {
         Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '格式错误'").isDisplayed());
 
     }
-//    @Test(description = "test  input wrong format Password",alwaysRun = true)
-//    public void test003_inputWrongPasswordKeystore() throws Exception {
-//        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-//        importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
-//        Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '密码错误'").isDisplayed());
-//
-//    }
+    @Test(description = "test  input wrong format Password",alwaysRun = true)
+    public void test003_inputWrongPasswordKeystore() throws Exception {
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
+        Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '密码错误'").isDisplayed());
+
+    }
 
     @Test(description = "test have KeyStore",alwaysRun = true)
     public void test000_getKeyStore() throws Exception {
@@ -56,5 +55,48 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
         Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '钱包已存在'").isDisplayed());
+    }
+
+    @Test(description = "test import Keystore name Too long number",alwaysRun = true)
+    public  void test005_keystoreNameSetlongNumber() throws Exception {
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
+        setNamePage.name_input.sendKeys("123456789012345");
+        Helper.tapWhitePlace(DRIVER);
+        boolean testresult = setNamePage.toolongname.isDisplayed();
+        setNamePage.goback();
+        Assert.assertTrue(testresult);
+    }
+
+    @Test(description = "test import Keystore name Too long Chines",alwaysRun = true)
+    public  void test006_keystoreNameSetlongChines() throws Exception {
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
+        setNamePage.name_input.sendKeys("一二三四五六七超");
+        Helper.tapWhitePlace(DRIVER);
+        boolean testresult = setNamePage.toolongname.isDisplayed();
+        setNamePage.goback();
+        Assert.assertTrue(testresult);
+    }
+
+    @Test(description = "test import Keystore name Success",alwaysRun = true)
+    public  void test007_keystoreNameSetSuccess() throws Exception {
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
+        setNamePage.name_input.sendKeys("willbedelete");
+        Helper.tapWhitePlace(DRIVER);
+        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]);
+        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
+    }
+
+    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+    public void  test008_testDeletewalletSuccess(){
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage =  assetPage.enterMinePage();
+        MyPursePage walletPage = minePage.enterMyPursePage();
+        walletPage.deletWallet("Qqqqqqq1");
+        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
     }
 }
