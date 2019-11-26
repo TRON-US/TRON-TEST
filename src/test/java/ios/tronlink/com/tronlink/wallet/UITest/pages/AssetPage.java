@@ -95,7 +95,7 @@ public class AssetPage extends AbstractPage {
 
 
 
-    @FindBy(name = "我")//XCUIElementTypeButton[@name="我"]
+    @FindBy(name = "我")
     public WebElement mine_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/app1")
