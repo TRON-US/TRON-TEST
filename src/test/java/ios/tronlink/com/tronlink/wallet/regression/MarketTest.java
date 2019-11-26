@@ -7,13 +7,16 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class MarketTest extends BaseTest {
 
-    @Test(description = "test Me into MarketPage",alwaysRun = true)
-    public void test001_enteraboutus() throws Exception {
+    @Test(description = "test  into MarketPage",alwaysRun = true)
+    public void test001_enterMarketPage()  {
         AssetPage assetPage = new AssetPage(DRIVER);
-        MarketPage minePage =  assetPage.enterMarketPage();
-
-//        Assert.assertTrue(Helper.contentTexts(minePage.textArray,"行情"));
+        assetPage.enterMarketPage();
+//        MarketPage minePage =  assetPage.enterMarketPage();
+//        TimeUnit.SECONDS.sleep(3); //抓不上来
+//        Assert.assertTrue(minePage.newPrice_btn.isDisplayed());
     }
 }
