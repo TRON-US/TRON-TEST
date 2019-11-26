@@ -30,7 +30,7 @@ public class ImportKeystore extends BaseTest {
     @Test(description = "test  input wrong format Keystore",alwaysRun = true)
     public void test002_inputWrongFormatKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
-        importKeystorePage.inputKeyAndPassword("wrong keysotre format","aaasdfdsf");
+        importKeystorePage.content_text.sendKeys("wrong keysotre format");
         Helper.tapWhitePlace(DRIVER);
         Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '格式错误'").isDisplayed());
 

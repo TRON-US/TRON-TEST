@@ -34,7 +34,7 @@ public class MarketPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/tv_market")
     public WebElement Market_title;
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_price")
+    @FindBy(name = "最新价格")
     public WebElement newPrice_btn;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_price")

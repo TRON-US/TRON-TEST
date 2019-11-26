@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class MyPurseTest extends BaseTest {
     String password = "Test0001";
-//String keystore = "";
+    String keystore = "";
     @Test(description = "test goto MyPurse",alwaysRun = true)
     public void test001_gotoMyPurse() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -23,7 +23,7 @@ public class MyPurseTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
-        String keystore = walletPage.getBackupKeystore("Test0001");
+        keystore = walletPage.getBackupKeystore("Test0001");
         Assert.assertTrue(keystore.length() > 10);
     }
 
