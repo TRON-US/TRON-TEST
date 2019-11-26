@@ -14,7 +14,7 @@ public class MarketTest extends BaseTest {
     @Test(description = "test  into MarketPage",alwaysRun = true)
     public void test001_enterMarketPage()  {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.enterMarketPage();
+        Assert.assertTrue(assetPage.enterMarketPage().toString().length() > 0); ;
 //        MarketPage minePage =  assetPage.enterMarketPage();
 //        TimeUnit.SECONDS.sleep(3); //抓不上来
 //        Assert.assertTrue(minePage.newPrice_btn.isDisplayed());
