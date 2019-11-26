@@ -147,9 +147,6 @@ public class SendTrx extends BaseTest {
     @Test(description = "SendTrx success test",alwaysRun = true)
     public void tsst012_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        System.out.println(asset.getTrxCount());
-
         SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.testfieldArray.get(2).sendKeys("1");
@@ -158,16 +155,14 @@ public class SendTrx extends BaseTest {
         transfer.transferNow_btn.click();
         transfer.InputPasswordConfim_btn.sendKeys("Test0001");
         transfer.broadcastButtonClick();
-        TimeUnit.SECONDS.sleep(2);
 
-//        WebElement element = transfer.driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
-//        System.out.println(element.isDisplayed());
-//
-//        Assert.assertFalse(element.isDisplayed());
-
-        //没有立刻发生变化！！！
-//        int trxValueNewest = Integer.valueOf(removeSymbol(pagetrx.balanceLabe_text.getText()));
-//        Assert.assertEquals(trxValue-1,trxValueNewest);
+        TrxPage tokenpage = new TrxPage(transfer.driver);
+        double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+        transfer.back_bt.click();//返回到首页资产页
+        AssetPage assetpage = new AssetPage(DRIVER);
+        tokenpage = assetpage.enterTrxPage();
+        double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+        Assert.assertTrue(trcafter + 1 == trcBefore);
     }
 
 

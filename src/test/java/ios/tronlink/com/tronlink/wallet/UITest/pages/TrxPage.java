@@ -65,7 +65,7 @@ public class TrxPage extends AbstractPage {
     public List<WebElement> tranferIncount_text;
 
 //    @FindBy(name = "balanceLabel")
-//    public WebElement balanceLabe_text;
+//    public WebElement ;
 
     public List<WebElement> getFirstTransferNumberList(){
         WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell");
