@@ -68,7 +68,7 @@ public class AddAssetsTest extends BaseTest {
         addAssertPage.mainPageAssetManage_tab.click();
         addAssertPage.turnAsset_btn.click();
         assetPage =  addAssertPage.enterAssetPage();
-        Assert.assertFalse(assetPage.myNewAddAsset_text.isDisplayed());
+//        Assert.assertFalse(assetPage.myNewAddAsset_text.isDisplayed());
 
         //TimeUnit.SECONDS.sleep(10);
         //String pageSource = DRIVER.getPageSource();

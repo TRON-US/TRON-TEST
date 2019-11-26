@@ -5,6 +5,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxSuccessPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.TrxPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -66,9 +67,13 @@ public class SendTrc10 extends BaseTest {
     transfer.transferNow_btn.click();
     transfer.InputPasswordConfim_btn.sendKeys("Test0001");
     transfer.broadcastButtonClick();
-//    String  othcode = DRIVER.getTitle();
-//    System.out.println(trcode +"----------"+othcode);
-//    Assert.assertFalse(Helper.contentTexts(transfer.alltextArray,"选择token"));
+    TrxPage tokenpage = new TrxPage(transfer.driver);
+    double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+    transfer.back_bt.click();//返回到首页资产页
+    AssetPage assetpage = new AssetPage(DRIVER);
+    tokenpage = assetpage.enterTrx10Page();
+    double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+    Assert.assertTrue(trc10after + 1 == trc10Before);
   }
 
 }
