@@ -16,7 +16,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         AboutUsPage aboutusPage = minePage.enterAboutUsPage();
-        Assert.assertEquals(aboutusPage.title.getText(),"关于我们");
+        Assert.assertTrue(aboutusPage.title.isDisplayed());
 
     }
     @Test(description = "test Me into wallet",alwaysRun = true)
