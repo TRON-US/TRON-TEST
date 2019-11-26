@@ -32,14 +32,17 @@ public class PrivateKeySetNamePage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeButton" )
     public List<WebElement> error_hits;
 
-    public WebElement getNext_btn(){
-        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'");
-    }
-
     public String  getError_hits(){
         return error_hits.get(2).getText();
     }
 
+    public WebElement getNext_btn(){
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'");
+    }
+
+    public WebElement getComplish_btn(){
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'");
+    }
     public PrivateKeySetPwdPage enterPrivateKeySetPwdPage(String name) throws Exception {
         name_input.sendKeys(name);
         Helper.tapWhitePlace(driver);

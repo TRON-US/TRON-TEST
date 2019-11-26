@@ -53,7 +53,7 @@ public class ImportPrivateKey extends BaseTest {
         Assert.assertTrue(setName.toolongname.isDisplayed());
     }
     @Test(description = "PrivateKey Name chinese Too Long", alwaysRun = true)
-    public void test005_privateKeyNameTooLong() throws Exception {
+    public void test005_privateKeychineseNameTooLong() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
 
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
@@ -62,7 +62,7 @@ public class ImportPrivateKey extends BaseTest {
         Assert.assertTrue(setName.toolongname.isDisplayed());
     }
     @Test(description = "Wallet Name Has Alerady Exist", alwaysRun = true)
-    public void test006_walletNameHasAleradyExist() throws Exception {
+    public void test006_PrivateKeywalletNameHasAleradyExist() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         setName.name_input.sendKeys("Auto_test");
@@ -72,7 +72,7 @@ public class ImportPrivateKey extends BaseTest {
     }
 
     @Test(description = "Wallet The same name but different capitalization", alwaysRun = true)
-    public void test007_sameNameButDifferentCapitalization() throws Exception {
+    public void test007_PrivateKeysameNameButDifferentCapitalization() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         setName.name_input.sendKeys("AUto_test");
@@ -81,7 +81,7 @@ public class ImportPrivateKey extends BaseTest {
     }
 
     @Test(description = "Password without uppercase letter", alwaysRun = true)
-    public void test008_passwordWithoutUppercaseLetter() throws Exception {
+    public void test008_PrivateKeypasswordWithoutUppercaseLetter() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -92,7 +92,7 @@ public class ImportPrivateKey extends BaseTest {
 
 
     @Test(description = "Password Is Too Short", alwaysRun = true)
-    public void test009_passwordIsTooShort() throws Exception {
+    public void test009_PrivateKeypasswordIsTooShort() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -101,7 +101,7 @@ public class ImportPrivateKey extends BaseTest {
         Assert.assertFalse(setPwd.getNext_btn().isEnabled());
     }
     @Test(description = "Password has no number", alwaysRun = true)
-    public void test010_passwordIsNonumber() throws Exception {
+    public void test010_PrivateKeypasswordIsNonumber() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -111,7 +111,7 @@ public class ImportPrivateKey extends BaseTest {
     }
 
     @Test(description = "Password has no lowCaseChar", alwaysRun = true)
-    public void test011_passwordIsNoLowercase() throws Exception {
+    public void test011_PrivateKeypasswordIsNoLowercase() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -142,7 +142,7 @@ public class ImportPrivateKey extends BaseTest {
     }
 
     @Test(description = "Two Password Is diffent", alwaysRun = true)
-    public void test014_twoPasswordDiffent() throws Exception {
+    public void test014_PrivateKeytwoPasswordDiffent() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -155,7 +155,7 @@ public class ImportPrivateKey extends BaseTest {
 
 
     @Test(description = "test import privateKey Success",alwaysRun = true)
-    public  void test015_keystoreNameSetSuccess() throws Exception {
+    public  void test015_PrivateKeyNameSetSuccess() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -169,7 +169,7 @@ public class ImportPrivateKey extends BaseTest {
     }
 
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test016_testDeletewalletSuccess(){
+    public void  test016_testDeletePrivateKeywalletSuccess(){
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
