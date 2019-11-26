@@ -66,7 +66,6 @@ public class SendTrc20 extends BaseTest {
         transfer.InputPasswordConfim_btn.sendKeys("Test0001");
         transfer.broadcastButtonClick();
         TrxPage tokenpage = new TrxPage(transfer.driver);
-        System.out.println(tokenpage.trxTotal_text.getText());
         double trc20Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         transfer.back_bt.click();//返回到首页资产页
         AssetPage assetpage = new AssetPage(DRIVER);
