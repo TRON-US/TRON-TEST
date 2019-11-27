@@ -1,25 +1,64 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxSuccessPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.TrxPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
-
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-public class SendTrc20 extends BaseTest {
-
-    public SendTrxPage enterToSendTrxPage() {
+public class DappSendTrc20 extends BaseTest {
+    public SendTrxPage enterToSendTrxPage(){
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
     }
 
+
+    //enter SettingPage
+    public SettingPage enterSettingPage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        return mine.enterSettingPage();
+    }
+
+    //enter TRXPage
+    public TrxPage enterTrxPage() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(!Helper.fastFindMainChain(asset.textArray)){
+            return asset.enterTrxPage();
+        }else{
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+            return asset.enterTrxPage();
+        }
+
+    }
+    //enter Dapp AssetPage
+    public AssetPage enterAssetPage() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(!Helper.fastFindMainChain(asset.textArray)){
+            return asset;
+        }else{
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+            return asset;
+        }
+    }
+
+
+    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferOutPage();
+        String chain = transferOut.chain_text.getText();
+        Assert.assertTrue(chain.contains("MainChain"));
+    }
     @Test(description = "ssendaddressChanged test", alwaysRun = true)
     public void tsst001_sendaddressChanged() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
@@ -74,6 +113,3 @@ public class SendTrc20 extends BaseTest {
         Assert.assertTrue(trc20after + 1 == trc20Before);
     }
 }
-
-
-
