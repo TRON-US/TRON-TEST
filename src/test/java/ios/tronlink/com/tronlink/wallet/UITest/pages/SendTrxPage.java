@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
@@ -87,11 +88,12 @@ public class SendTrxPage extends AbstractPage {
     public WebElement trc10_btn;
 
 
-    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='TRX (TXgxGokbKCeHrg6CbSgtJegZN9hEmVhwBP)']")
-    public WebElement trc20_btn;
 
 
-
+    public WebElement getTrc20Token(){
+        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
+        return  cells.get(1);
+    }
 
     public void swip(){
         Helper.swipScreen(driver);
@@ -145,7 +147,7 @@ public class SendTrxPage extends AbstractPage {
     public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
-        trc20_btn.click();
+        getTrc20Token().click();
         tranferCount_text.sendKeys(number);
         swip();
         send_btn.click();
@@ -171,7 +173,7 @@ public class SendTrxPage extends AbstractPage {
 
     public double getTrc20Amount() throws Exception {
         token_btn.click();
-        trc20_btn.click();
+        getTrc20Token().click();
         String balance = balance_text.getText();
         double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
@@ -231,7 +233,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
         token_btn.click();
-        trc20_btn.click();
+        getTrc20Token().click();
         //calculate trx
         switch(value){
             case "max":
