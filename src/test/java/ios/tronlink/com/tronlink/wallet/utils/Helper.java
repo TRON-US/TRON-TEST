@@ -63,7 +63,14 @@ public class Helper {
                 .stripTrailingZeros().toPlainString();
     }
 
-
+    public static boolean isElementExist(IOSDriver driver,String name) {
+       try {
+           driver.findElementByName(name);
+           return  true;
+       }catch (org.openqa.selenium.NoSuchElementException ex){
+           return  false;
+       }
+    }
 
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
