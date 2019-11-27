@@ -74,6 +74,10 @@ public class TrxPage extends AbstractPage {
     }
 
 
+    public boolean getTrxVale(){
+        return true;
+    }
+
 
 
 }
