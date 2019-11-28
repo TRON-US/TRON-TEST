@@ -1,5 +1,6 @@
 package android.com.wallet.pages;
 
+import android.com.wallet.UITest.base.Base;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -104,7 +105,7 @@ public class VotePage extends AbstractPage {
     public void unusualVoteOperate() throws Exception{
         TimeUnit.SECONDS.sleep(2);
         reset_btn.click();
-        int surplusAvailableVoteNum = Integer.parseInt(surplusAvailableVote_text.getText().toString());
+        int surplusAvailableVoteNum = Integer.parseInt(new Base().removeSymbol(surplusAvailableVote_text.getText().toString()));
         int unusualVoteNum = surplusAvailableVoteNum + 20;
         et_input.sendKeys(String.valueOf(unusualVoteNum));
         vote_btn.click();
