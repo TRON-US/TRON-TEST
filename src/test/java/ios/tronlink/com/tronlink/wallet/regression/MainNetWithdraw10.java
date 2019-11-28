@@ -129,7 +129,7 @@ public class MainNetWithdraw10 extends BaseTest {
         TrxPage trx = enterTrxPage();
         double trc10before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         TransferPage transferOut =  trx.enterTransferOutPage();
-        String count = random(10,10);
+        String count = removeSymbol(random(10,10));
         trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
         TimeUnit.SECONDS.sleep(1);
         AssetPage assetPage = trx.enterAssetPage();

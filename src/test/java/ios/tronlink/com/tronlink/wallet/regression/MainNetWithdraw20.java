@@ -128,32 +128,14 @@ public class MainNetWithdraw20 extends BaseTest {
         TrxPage trx = enterTrxPage();
         double trc20before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         TransferPage transferOut =  trx.enterTransferOutPage();
-        String count = random(10,10);
+        String count = removeSymbol(random(10,10));
         trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
         TimeUnit.SECONDS.sleep(1);
         AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrx10Page();
+        trx =  assetPage.enterTrx20Page();
         double trc20after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         Assert.assertTrue(trc20after + Double.parseDouble(count) <= trc20before );
-//
-//        int tries = 0;
-//        Boolean exist = false;
-//        while(!exist && tries < 7) {
-//            tries++;
-//            try {
-//                AssetPage arret = trx.enterAssetPage();
-//                trx = arret.enterTrxPage();
-//                trx.tranferOut_tab.get(2).click();
-//                TimeUnit.SECONDS.sleep(3);
-//                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
-//                if(Helper.contentTexts(lintiest,count)){
-//                    exist = true;
-//                    break;
-//                }
-//
-//            }catch (Exception e){}
-//        }
-//        Assert.assertTrue(exist);
+
     }
 
 
