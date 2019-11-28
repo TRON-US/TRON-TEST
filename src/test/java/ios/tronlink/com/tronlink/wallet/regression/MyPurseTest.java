@@ -13,40 +13,40 @@ import java.util.concurrent.TimeUnit;
 public class MyPurseTest extends BaseTest {
     String password = "Test0001";
     String keystore = "";
-    @Test(description = "test goto MyPurse",alwaysRun = true)
-    public void test001_gotoMyPurse() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        Assert.assertEquals(walletPage.title.getText(),"钱包管理");
-    }
-
-    @Test(description = "test have KeyStore",alwaysRun = true)
-    public void test002_haveKeyStore() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        keystore = walletPage.getBackupKeystore("Test0001");
-        Assert.assertTrue(keystore.length() > 10);
-    }
-
-
-    @Test(description = "test Clipboard have KeyStore",alwaysRun = true)
-    public void test003_Clipboard_haveKeyStore() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        String copyed = walletPage.getBackupKeystoreInClipboard(password);
-        Assert.assertTrue(copyed.contains("已复制"));
-    }
-
-    @Test(description = "test Delete Wallet Cancal",alwaysRun = true)
-    public void  test004_testDeletewalletCancal(){
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        Assert.assertTrue(walletPage.deletableCancel(password));
-    }
+//    @Test(description = "test goto MyPurse",alwaysRun = true)
+//    public void test001_gotoMyPurse() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        Assert.assertEquals(walletPage.title.getText(),"钱包管理");
+//    }
+//
+//    @Test(description = "test have KeyStore",alwaysRun = true)
+//    public void test002_haveKeyStore() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        keystore = walletPage.getBackupKeystore("Test0001");
+//        Assert.assertTrue(keystore.length() > 10);
+//    }
+//
+//
+//    @Test(description = "test Clipboard have KeyStore",alwaysRun = true)
+//    public void test003_Clipboard_haveKeyStore() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        String copyed = walletPage.getBackupKeystoreInClipboard(password);
+//        Assert.assertTrue(copyed.contains("已复制"));
+//    }
+//
+//    @Test(description = "test Delete Wallet Cancal",alwaysRun = true)
+//    public void  test004_testDeletewalletCancal(){
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        Assert.assertTrue(walletPage.deletableCancel(password));
+//    }
     @Test(description = "test Delete Wallet wrong password",alwaysRun = true)
     public void  test005_testDeletewalletWronpassCancal(){
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -59,9 +59,6 @@ public class MyPurseTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
-        walletPage.deletWallet(password);
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(Helper.isElementExist(walletPage.driver,"冷钱包"));
-//        Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '冷钱包'").isDisplayed());
+        Assert.assertTrue(walletPage.deletWallet(password));
     }
 }

@@ -134,11 +134,11 @@ public class MainNetWithdraw extends BaseTest {
         double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
 
         TransferPage transferOut =  trx.enterTransferOutPage();
-        String count = random(10,10);
+        String count = removeSymbol(random(10,10));
         trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
         TimeUnit.SECONDS.sleep(1);
         AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrx10Page();
+        trx =  assetPage.enterTrxPage();
         double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
 //        int tries = 0;
