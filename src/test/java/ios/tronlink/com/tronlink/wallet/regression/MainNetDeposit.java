@@ -55,97 +55,97 @@ public class MainNetDeposit extends BaseTest {
     }
 
 
-//    @Test(description = "Change Chain DappChain",alwaysRun = true)
-//    public void test001_changeChain() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        if(Helper.contentTexts(set.textArray,"MainChain")){
-//            NodeSetPage nodeSet = set.enterNodeSetPage();
-//            set = nodeSet.enterSettingPageChoiseDappChain();
-//            TimeUnit.SECONDS.sleep(2);
-//            Assert.assertTrue(Helper.contentTexts(set.textArray,"DAppChain"));
-//        }
-//
-//    }
-//
-//    @Test(description = "Change Chain MainChain",alwaysRun = true)
-//    public void test0011_checkTransferInChainName() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        if(Helper.contentTexts(set.textArray,"DAppChain")){
-//            NodeSetPage nodeSet = set.enterNodeSetPage();
-//            set = nodeSet.enterSettingPageChoiseMainChain();
-//            TimeUnit.SECONDS.sleep(2);
-//            Assert.assertTrue(Helper.contentTexts(set.textArray,"MainChain"));
-//        }
-//    }
-//
-//    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
-//    public void test002_checkTransferInChainName() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        Assert.assertTrue(trx.transferIn_btnArray.size()>1);
-//    }
-//
-//
-//
-//
-//    @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
-//    public void test003_checkTransferInTrx() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferIn = trx.enterTransferInPage();
-//        transferIn.inputAndTapToTransfer();
-//        Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"10"));
-//    }
-//
-//
-//
-//    @Test(description = "Check TransferIn Hits",alwaysRun = true)
-//    public void test004_checkTransferInHits() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferIn = trx.enterTransferInPage();
-//        transferIn.inputAndTapToTransfer();
-//        Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"转入需要执行智能合约"));
-////转入需要执行智能合约。执行智能合约同时会消耗 Energy。
-//    }
-//
-//
-//
-//    @Test(description = "Check TransferIn Fee",alwaysRun = true)
-//    public void test005_checkTransferInFee() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferIn = trx.enterTransferInPage();
-//        transferIn.inputAndTapToTransfer();
-//        String val = transferIn.getvalueofBandwidthText();
-//        int count = Integer.parseInt(removeSymbol(val));
-//        System.out.println("-------:----");
-//        Assert.assertTrue(50 <= count && count <= 500);
-//    }
-//
-//
-//
-//    @Test(description = "Check Available Balance",alwaysRun = true)
-//    public void test006_checkAvailableBalance() throws Exception {
-//
-//        AssetPage asset = enterAssetPage();
-//        int trxCount = Integer.parseInt(removeSymbol(asset.getTrxCount()));
-//        TrxPage trx = asset.enterTrxPage();
-//        int frozenCount = Integer.parseInt(removeSymbol(trx.freezeCount_text.getText()));
-//        TransferPage transferIn = trx.enterTransferPage();
-//        int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
-//        Assert.assertTrue(trxCount == frozenCount + availableBalance);
-//    }
-//
-//
-//
-//    @Test(description = "TransferIn Success Checkout Available trx",alwaysRun = true)
-//    public void test007_checkAvailableBalance() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-//        TransferPage transferIn =  trx.enterTransferPage();
-//        trx = transferIn.enterTrxPageWithTransferSuccess();
-//        AssetPage page = trx.enterAssetPage();
-//        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrxCount()));
-//        TimeUnit.SECONDS.sleep(3);
-//        Assert.assertTrue(trxCount >= trxCountNow + 10);
-//    }
+    @Test(description = "Change Chain DappChain",alwaysRun = true)
+    public void test001_changeChain() throws Exception {
+        SettingPage set = enterSettingPage();
+        if(Helper.contentTexts(set.textArray,"MainChain")){
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertTrue(Helper.contentTexts(set.textArray,"DAppChain"));
+        }
+
+    }
+
+    @Test(description = "Change Chain MainChain",alwaysRun = true)
+    public void test0011_checkTransferInChainName() throws Exception {
+        SettingPage set = enterSettingPage();
+        if(Helper.contentTexts(set.textArray,"DAppChain")){
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseMainChain();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertTrue(Helper.contentTexts(set.textArray,"MainChain"));
+        }
+    }
+
+    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
+    public void test002_checkTransferInChainName() throws Exception {
+        TrxPage trx = enterTrxPage();
+        Assert.assertTrue(trx.transferIn_btnArray.size()>1);
+    }
+
+
+
+
+    @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
+    public void test003_checkTransferInTrx() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn = trx.enterTransferInPage();
+        transferIn.inputAndTapToTransfer();
+        Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"10"));
+    }
+
+
+
+    @Test(description = "Check TransferIn Hits",alwaysRun = true)
+    public void test004_checkTransferInHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn = trx.enterTransferInPage();
+        transferIn.inputAndTapToTransfer();
+        Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"转入需要执行智能合约"));
+//转入需要执行智能合约。执行智能合约同时会消耗 Energy。
+    }
+
+
+
+    @Test(description = "Check TransferIn Fee",alwaysRun = true)
+    public void test005_checkTransferInFee() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn = trx.enterTransferInPage();
+        transferIn.inputAndTapToTransfer();
+        String val = transferIn.getvalueofBandwidthText();
+        int count = Integer.parseInt(removeSymbol(val));
+        System.out.println("-------:----");
+        Assert.assertTrue(50 <= count && count <= 500);
+    }
+
+
+
+    @Test(description = "Check Available Balance",alwaysRun = true)
+    public void test006_checkAvailableBalance() throws Exception {
+
+        AssetPage asset = enterAssetPage();
+        int trxCount = Integer.parseInt(removeSymbol(asset.getTrxCount()));
+        TrxPage trx = asset.enterTrxPage();
+        int frozenCount = Integer.parseInt(removeSymbol(trx.freezeCount_text.getText()));
+        TransferPage transferIn = trx.enterTransferPage();
+        int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
+        Assert.assertTrue(trxCount == frozenCount + availableBalance);
+    }
+
+
+
+    @Test(description = "TransferIn Success Checkout Available trx",alwaysRun = true)
+    public void test007_checkAvailableBalance() throws Exception {
+        TrxPage trx = enterTrxPage();
+        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
+        TransferPage transferIn =  trx.enterTransferPage();
+        trx = transferIn.enterTrxPageWithTransferSuccess();
+        AssetPage page = trx.enterAssetPage();
+        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrxCount()));
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(trxCount >= trxCountNow + 10);
+    }
 
 
 
