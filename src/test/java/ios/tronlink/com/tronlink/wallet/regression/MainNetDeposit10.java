@@ -151,28 +151,17 @@ public class MainNetDeposit10 extends BaseTest {
     @Test(description = "TransferIn Success Recording",alwaysRun = true)
     public void test008_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
+        double trc10before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         TransferPage transferIn =  trx.enterTransferPage();
-        String count = random(10,10);
+        String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
-//        int tries = 0;
-//        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
-//        while(!exist && tries < 7) {
-//            tries++;
-//            try {
-//                AssetPage arrest = trx.enterAssetPage();
-//                trx = arrest.enterTrxPage();
-//                trx.tranferIn_tab.get(2).click();
-//                TimeUnit.SECONDS.sleep(3);
-//                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
-//                if(Helper.contentTexts(lintiest,count)){
-//                    exist = true;
-//                    break;
-//                }
-//
-//            }catch (Exception e){}
-//        }
-//        Assert.assertTrue(exist);
+        TimeUnit.SECONDS.sleep(1);
+        AssetPage assetPage = trx.enterAssetPage();
+        trx =  assetPage.enterTrx10Page();
+        double trc10after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        Assert.assertTrue(trc10after + Double.parseDouble(count) <= trc10before );
+
     }
 
 }

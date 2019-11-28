@@ -1,9 +1,11 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class PrivateKeySetNamePage extends AbstractPage {
@@ -16,36 +18,46 @@ public class PrivateKeySetNamePage extends AbstractPage {
     }
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_name")
+    @FindBy(className = "XCUIElementTypeTextField")
     public WebElement name_input;
 
+    @FindBy(name = "钱包名称过长")
+    public WebElement toolongname;
 
-
-    @FindBy(name = "com.tronlink.wallet:id/creat")
-    public WebElement next_btn;
-
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_error")
-    public WebElement error_hits;
+    @FindBy(id = "black path")
+    public WebElement back_btn;
 
 
 
+    @FindBy(className = "XCUIElementTypeButton" )
+    public List<WebElement> error_hits;
 
+    public String  getError_hits(){
+        return error_hits.get(2).getText();
+    }
 
+    public WebElement getNext_btn(){
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'");
+    }
 
+    public WebElement getComplish_btn(){
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'");
+    }
     public PrivateKeySetPwdPage enterPrivateKeySetPwdPage(String name) throws Exception {
         name_input.sendKeys(name);
-        next_btn.click();
+        Helper.tapWhitePlace(driver);
+        getNext_btn().click();
         TimeUnit.SECONDS.sleep(1);
         return new PrivateKeySetPwdPage(driver);
     }
 
     public void setName(String name){
         name_input.sendKeys(name);
-        next_btn.click();
+        getNext_btn().click();
     }
-
+    public void goback(){
+        back_btn.click();
+    }
 
 
 }

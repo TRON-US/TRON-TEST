@@ -22,6 +22,8 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(name = "token名称/token ID/智能合约地址")
     public WebElement addAssert_input;
 
+    @FindBy(name = "testAssetIssue_1567077083240 (), 0, ID 1000027")
+    public WebElement turnAsset_btn;
 
 
     @FindBy(name = "white back arrow")
