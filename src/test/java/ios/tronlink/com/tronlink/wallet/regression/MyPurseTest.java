@@ -4,8 +4,11 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MyPursePage;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class MyPurseTest extends BaseTest {
     String password = "Test0001";
@@ -52,11 +55,13 @@ public class MyPurseTest extends BaseTest {
         Assert.assertTrue(walletPage.deletWallet(password+"123424"));
     }
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test006_testDeletewalletSuccess(){
+    public void  test006_testDeletewalletSuccess() throws InterruptedException {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
         walletPage.deletWallet(password);
-        Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '冷钱包'").isDisplayed());
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(Helper.isElementExist(walletPage.driver,"冷钱包"));
+//        Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '冷钱包'").isDisplayed());
     }
 }
