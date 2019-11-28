@@ -4,10 +4,14 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AddAssertPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SearchAssertPage;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 
 public class AddAssetsTest extends BaseTest {
@@ -49,8 +53,8 @@ public class AddAssetsTest extends BaseTest {
         searchAssertPage.turnAsset_btn.click();
         addAssertPage = searchAssertPage.enterAddAssertPage();
         assetPage = addAssertPage.enterAssetPage();
-        //TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(assetPage.myNewAddAsset_text.isDisplayed());//.contains("testAssetIssue_1567077083240")
+        TimeUnit.SECONDS.sleep(2);
+        assertTrue(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
     }
 
 
@@ -68,16 +72,8 @@ public class AddAssetsTest extends BaseTest {
         addAssertPage.mainPageAssetManage_tab.click();
         addAssertPage.turnAsset_btn.click();
         assetPage =  addAssertPage.enterAssetPage();
-//        Assert.assertFalse(assetPage.myNewAddAsset_text.isDisplayed());
-
-        //TimeUnit.SECONDS.sleep(10);
-        //String pageSource = DRIVER.getPageSource();
-        //System.out.println(pageSource);
-//        System.out.println("12121212312321---"+addAssertPage.assertSwitch_btn.size());
-//        Assert.assertTrue(addAssertPage.assertSwitch_btn.size() >= 3);
-
-        //addAssertPage.removeAsset();
-        //Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
+        TimeUnit.SECONDS.sleep(2);
+        assertFalse(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
     }
 
 }
