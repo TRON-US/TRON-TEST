@@ -1,21 +1,14 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxSuccessPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.TrxPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-/**
- * 转帐功能测试
- */
-public class SendTrx extends BaseTest {
+public class DappChainSendTrxTest extends BaseTest {
 
     public SendTrxPage enterToSendTrxPage(){
         AssetPage asset = new AssetPage(DRIVER);
@@ -24,6 +17,52 @@ public class SendTrx extends BaseTest {
     }
 
 
+    //enter SettingPage
+    public SettingPage enterSettingPage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        return mine.enterSettingPage();
+    }
+
+    //enter TRXPage
+    public TrxPage enterTrxPage() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(!Helper.fastFindMainChain(asset.textArray)){
+            return asset.enterTrxPage();
+        }else{
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+            return asset.enterTrxPage();
+        }
+
+    }
+    //enter Dapp AssetPage
+    public AssetPage enterAssetPage() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(!Helper.fastFindMainChain(asset.textArray)){
+            return asset;
+        }else{
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+            return asset;
+        }
+    }
+
+
+
+    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferOutPage();
+        String chain = transferOut.chain_text.getText();
+        Assert.assertTrue(chain.contains("MainChain"));
+    }
 
     @Test(description = "input Privatekey to Receiving address",alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {
@@ -42,7 +81,6 @@ public class SendTrx extends BaseTest {
         Helper.tapWhitePlace(transfer.driver);
         Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"收款地址格式不正确"));
     }
-
 
 
     @Test(description = "input not active Receiving address",alwaysRun = true)
@@ -176,6 +214,4 @@ public class SendTrx extends BaseTest {
         Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"精确到0.000001"));
 
     }
-
-
 }
