@@ -151,13 +151,13 @@ public String getBackupKeystoreInClipboard(String password){
         }
     }
 
-    public boolean deletWallet(String password){
+    public boolean deletWallet (String password){
         WebElement  confirm_btn;
         try {
             Helper.swipScreen(driver);
             TimeUnit.SECONDS.sleep(1);
             deletewallet_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             password_et.sendKeys(password);
             confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();

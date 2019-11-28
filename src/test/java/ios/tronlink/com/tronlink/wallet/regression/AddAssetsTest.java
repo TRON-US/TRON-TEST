@@ -19,30 +19,6 @@ public class AddAssetsTest extends BaseTest {
 
 
 
-
-//    @Test(description = "test add assert",alwaysRun = true)
-//    public void test002_addAsset() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        AddAssertPage addAssert =  asset.enterAddAssertPage();
-//        SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
-//        searchAssert.addAssert_input.sendKeys("1000029");
-//        searchAssert.openAssert();
-//        TimeUnit.SECONDS.sleep(5);
-//        addAssert = searchAssert.enterAddAssertPage();
-//        addAssert.mainPageAssetManage_tab.click();
-//        Assert.assertTrue(addAssert.myNewAddAsset_btn.isDisplayed());
-//    }
-//
-//
-//    @Test(description = "test remove asset",alwaysRun = true)
-//    public void test003_removeAsset(){
-//        AssetPage asset = new AssetPage(DRIVER);
-//        AddAssertPage addAssert =  asset.enterAddAssertPage();
-//        addAssert.mainPageAssetManage_tab.click();
-//        addAssert.removeAsset();
-//        Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
-//    }
-
     @Test(description = "test add assert",alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
