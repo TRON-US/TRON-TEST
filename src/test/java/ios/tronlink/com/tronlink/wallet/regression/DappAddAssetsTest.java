@@ -1,24 +1,62 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.AddAssertPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SearchAssertPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+public class DappAddAssetsTest extends BaseTest {
+    //enter SettingPage
+    public SettingPage enterSettingPage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        return mine.enterSettingPage();
+    }
 
-public class AddAssetsTest extends BaseTest {
+    //enter TRXPage
+    public TrxPage enterTrxPage() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(!Helper.fastFindMainChain(asset.textArray)){
+            return asset.enterTrxPage();
+        }else{
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+            return asset.enterTrxPage();
+        }
+
+    }
+    //enter Dapp AssetPage
+    public AssetPage enterAssetPage() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(!Helper.fastFindMainChain(asset.textArray)){
+            return asset;
+        }else{
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+            return asset;
+        }
+    }
 
 
-
-
+    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferOutPage();
+        String chain = transferOut.chain_text.getText();
+        assertTrue(chain.contains("MainChain"));
+    }
     @Test(description = "test add assert",alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -50,6 +88,7 @@ public class AddAssetsTest extends BaseTest {
         assetPage =  addAssertPage.enterAssetPage();
         TimeUnit.SECONDS.sleep(2);
         assertFalse(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
+
     }
 
 }

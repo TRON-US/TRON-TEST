@@ -53,6 +53,6 @@ public class AssetsPageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         EnergyRentPage receiptPage = assetPage.entereneryRantage();
         TimeUnit.SECONDS.sleep(3);
-        Assert.assertEquals(receiptPage.title.getText(),"TronLending");
+        Assert.assertEquals(true,receiptPage.contentNamerant.isDisplayed());
     }
 }
