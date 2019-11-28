@@ -159,6 +159,7 @@ public class MainNetWithdraw10 extends Base {
                 trx = arret.enterTrx10Page();
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
+                exist = trx.getTrxVale();
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
                 System.out.println("tranferInCount = " + tranferInCount);
                 if (count.equals(tranferInCount)) {
