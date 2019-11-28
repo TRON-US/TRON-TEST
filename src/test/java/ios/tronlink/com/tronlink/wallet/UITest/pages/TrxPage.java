@@ -64,8 +64,8 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
-    @FindBy(name = "balanceLabe")
-    public WebElement balanceLabe_text;
+//    @FindBy(name = "balanceLabel")
+//    public WebElement ;
 
     public List<WebElement> getFirstTransferNumberList(){
         WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell");

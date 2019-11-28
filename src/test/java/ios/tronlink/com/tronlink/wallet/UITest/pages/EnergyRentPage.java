@@ -18,7 +18,8 @@ public class EnergyRentPage extends AbstractPage {
     public WebElement title;
 
 
-
+    @FindBy(name = "租用量")
+    public WebElement contentNamerant;
 
 
 
