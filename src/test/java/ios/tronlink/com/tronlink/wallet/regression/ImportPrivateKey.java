@@ -52,6 +52,8 @@ public class ImportPrivateKey extends BaseTest {
         Helper.tapWhitePlace(DRIVER);
         Assert.assertTrue(setName.toolongname.isDisplayed());
     }
+
+
     @Test(description = "PrivateKey Name chinese Too Long", alwaysRun = true)
     public void test005_privateKeychineseNameTooLong() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
@@ -61,6 +63,8 @@ public class ImportPrivateKey extends BaseTest {
         Helper.tapWhitePlace(DRIVER);
         Assert.assertTrue(setName.toolongname.isDisplayed());
     }
+
+
     @Test(description = "Wallet Name Has Alerady Exist", alwaysRun = true)
     public void test006_PrivateKeywalletNameHasAleradyExist() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
@@ -100,6 +104,8 @@ public class ImportPrivateKey extends BaseTest {
         Helper.tapWhitePlace(DRIVER);
         Assert.assertFalse(setPwd.getNext_btn().isEnabled());
     }
+
+
     @Test(description = "Password has no number", alwaysRun = true)
     public void test010_PrivateKeypasswordIsNonumber() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
@@ -169,11 +175,12 @@ public class ImportPrivateKey extends BaseTest {
 //    }
 
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test016_testDeletePrivateKeywalletSuccess(){
+    public void  test016_testDeletePrivateKeywalletSuccess() throws InterruptedException {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
         walletPage.deletWallet("Test0001");
+        Thread.sleep(2);
         Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
     }
 }
