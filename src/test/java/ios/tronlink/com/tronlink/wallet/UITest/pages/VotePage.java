@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -48,11 +49,11 @@ public WebElement vote_title;
     @FindBy(name = "com.tronlink.wallet:id/tv_me")
     public WebElement my_voted_item;
 
-    @FindBy(name = "com.tronlink.wallet:id/et_input")
+    @FindBy(name = "XCUIElementTypeTextField")//从2开始
     public List<WebElement> all_witness_edit_text;
 
-    @FindBy(name = "com.tronlink.wallet:id/address")
-    public List<WebElement> voted_address;
+    @FindBy(name = "voteNumberValueLabel")//从0开始
+    public List<WebElement> voted_TotalGets;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_vote_role")
     public WebElement myVoteAndAllWitnessList;
@@ -63,6 +64,11 @@ public WebElement vote_title;
     @FindBy(name = "com.tronlink.wallet:id/et_search")
     public WebElement search_edit_text;
 
+    @FindBy(id = "remainingNumberLabel")
+    public WebElement avilabelAmount;
+
+    @FindBy(id = "vote header note")
+    public WebElement voteDetailBtn;
 
 
     @FindBy(xpath = "//*[@text='可用投票数不足']")
@@ -102,7 +108,8 @@ public WebElement vote_title;
 
     public void unusualVoteOperate() throws Exception{
         TimeUnit.SECONDS.sleep(2);
-        reset_btn.click();
+        driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
+//        reset_btn.click();
         int surplusAvailableVoteNum = Integer.parseInt(surplusAvailableVote_text.getText().toString());
         int unusualVoteNum = surplusAvailableVoteNum + 20;
         et_input.sendKeys(String.valueOf(unusualVoteNum));
@@ -155,10 +162,34 @@ public WebElement vote_title;
     public VoteConfirmPage confirmVote() {
         return new VoteConfirmPage(driver);
     }
+    public boolean  VoteDetail() throws Exception {
+        voteDetailBtn.click();
+        return  Helper.isElementExist(driver,"投票细则");
+    }
+    public boolean  VoteTextRightTest() throws Exception {
+        Thread.sleep(3);
+        driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
+        Thread.sleep(3);
+        System.out.println("suze:-" + all_witness_edit_text.size());
+        all_witness_edit_text.get(2).sendKeys("1");
+        Helper.tapWhitePlace(driver);
+        driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '投票'").get(1).click();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即投票'").click();
+        return driver.findElementsByName("numberLabel").get(0).getText().contains("1");
+    }
 
 
-
-
-
+    public String    VoteRightTest() throws Exception {
+        Thread.sleep(3);
+        driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
+        Thread.sleep(3);
+        all_witness_edit_text.get(2).sendKeys("1");
+        Helper.tapWhitePlace(driver);
+        driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '投票'").get(1).click();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即投票'").click();
+        driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        return avilabelAmount.getText();
+    }
 
 }
