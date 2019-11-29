@@ -92,11 +92,12 @@ public class ImportKeystore extends BaseTest {
 //    }
 
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test008_testDeletewalletSuccess(){
+    public void  test008_testDeletewalletSuccess() throws InterruptedException {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
         walletPage.deletWallet("Test0001");
+        Thread.sleep(2);
         Assert.assertNotEquals(DRIVER.findElementByName("trxLabel").getText().split(" ")[0],"0");
     }
 }
