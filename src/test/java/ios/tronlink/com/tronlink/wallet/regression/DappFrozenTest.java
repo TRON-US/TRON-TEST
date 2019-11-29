@@ -12,7 +12,7 @@ public class DappFrozenTest extends BaseTest {
 
 
 
-    //enter TRXPage
+    //enter TRXPage  DappChain
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         if(!Helper.fastFindMainChain(asset.textArray)){
