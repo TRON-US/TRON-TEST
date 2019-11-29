@@ -116,6 +116,7 @@ public class ImportObserve extends BaseTest {
         MyPursePage walletPage = minePage.enterMyPursePage();
         walletPage.deleteObserveWallet();
         TimeUnit.SECONDS.sleep(3);
+        Thread.sleep(2);
         Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
     }
 }
