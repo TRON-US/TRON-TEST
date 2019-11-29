@@ -8,6 +8,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class FrozenAndUnfreezePage extends AbstractPage {
@@ -46,23 +47,29 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement freeze_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/ll_energy_arrow")
-    public WebElement freezeEnergyDetail_btn;
+    @FindBy(name = "解冻")
+    public WebElement unfreeze_btn;
+
+    @FindBy(id = "timeLeftLabel")
+    public WebElement unfreezeTimetitle;
+
+    @FindBy(name = "assets show normal")
+    public List<WebElement> freezeEnergyDetail_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_myfreeze")
-    public WebElement myFreeze_btn;
+    @FindBy(name = "owerFreezedLabel")
+    public List<WebElement> myFreeze_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_otherfreeze")
-    public WebElement otherFreeze_btn;
+    @FindBy(name = "otherFreezedLabel")
+    public List<WebElement> otherFreeze_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_totalfreeze")
-    public WebElement totalFreeze_btn;
+    @FindBy(name = "totalFreezedLabel")
+    public List<WebElement> totalFreeze_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_common_right2")
+    @FindBy(name = "细则说明")
     public WebElement detailsAndRules_btn;
 
     @FindBy(name = "com.tronlink.wallet:id/ll_bandwidth_arrow")
@@ -83,11 +90,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement votingPower_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/bandwidth_question")
+    @FindBy(name = "expectGetTitleLabel")
     public WebElement BandwidthQuestion_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/content")
+    @FindBy(id = "textLabel")
     public WebElement questionContent_btn;
 
 
@@ -100,15 +107,15 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement currentCanUse_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_freeze_count")
-    public WebElement freezeCount_input;
+    @FindBy(className = "XCUIElementTypeTextField")
+    public List<WebElement> freezeCount_input;
 
 
     @FindBy(name = "com.tronlink.wallet:id/bt_go")
     public WebElement freezeNow_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/et_new_password")
+    @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement checkPasswotd_input;
 
 
@@ -119,18 +126,13 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/iv_common_left")
     public WebElement back_btn;
 
-
-    @FindBy(name = "com.tronlink.wallet:id/error_trx_count")
+//开发时候用id都可以,调试时候找不到
+    @FindBy(id = "incorrectLabel")
     public WebElement error_hits;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/current_use")
+    @FindBy(id = "currentLabel")
     public WebElement availableTrx_text;
-
-
-
-    @FindBy(name = "com.tronlink.wallet:id/et_freeze_address")
-    public WebElement freezeAddress_input;
 
 
 
@@ -139,10 +141,31 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
-    @FindBy(name = "com.tronlink.wallet:id/error_address")
+    @FindBy(id = "addressErrorLabel")
     public WebElement errorAddress_hits;
 
 
+    public WebElement getConfirm_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '完成'");
+    }
+    public WebElement getbandwidth_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '带宽'");
+    }
+    public WebElement getConfirmGo_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '继续'");
+    }
+    public WebElement getfreezeNow_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '立即冻结'");
+    }
+
+    public WebElement getDirectionFzUfz_btn(){
+        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结' OR name = '解冻'");
+        return list.get(0);
+    }
+    public WebElement getFreeze_btn(){
+        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结'");
+        return list.get((list.size()-1 >0)?list.size()-1:0);
+    }
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
         try {
             detailsAndRules_btn.click();
@@ -154,31 +177,35 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public AssetPage forzenSuccessEnterAssetPage(String count) throws Exception {
-        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
         TimeUnit.SECONDS.sleep(1);
-        freezeCount_input.sendKeys(count);
-        freeze_btn.click();
+        freezeCount_input.get(0).sendKeys(count);
+        Helper.tapWhitePlace(driver);
+        getFreeze_btn().click();
         TimeUnit.SECONDS.sleep(2);
-        freezeNow_btn.click();
+        getfreezeNow_btn().click();
         TimeUnit.SECONDS.sleep(2);
         checkPasswotd_input.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(1);
-        confirm_btn.click();
+        getConfirm_btn().click();
         TimeUnit.SECONDS.sleep(1);
-        back_btn.click();
+        swipToLeave();
         return new AssetPage(driver);
     }
 
     public void frozenTheEnergy() {
-        //swipToFrozenBtnDisplay();
         Helper.swipScreen(driver);
         try {
-            freeze_btn.click();
+            getFreeze_btn().click();
             TimeUnit.SECONDS.sleep(1);
-            freezeNow_btn.click();
+            if(Helper.isElementExist(driver,"继续")){
+                getConfirmGo_btn().click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+            getfreezeNow_btn().click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
-            confirm_btn.click();
+            getConfirm_btn().click();
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(e);
@@ -213,30 +240,35 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
     public void inputFrozenCount(String count) throws Exception {
-        //Helper.swipScreen(driver);
-        Helper.scrollToElementUntilVisible(driver,freeze_btn);
-        TimeUnit.SECONDS.sleep(1);
-        freezeCount_input.sendKeys(count);
-        freeze_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        Helper.swipScreen(driver);
+        freezeCount_input.get(0).click();
+        TimeUnit.SECONDS.sleep(3);
+        freezeCount_input.get(0).sendKeys(count);
+
+
+        Helper.tapWhitePlace(driver);
+;
     }
 
 
 
     public void inputReceivingAddress(String address) throws Exception {
         //Helper.swipScreen(driver);
-        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
         TimeUnit.SECONDS.sleep(1);
-        cleanAddress_btn.click();
-        freezeCount_input.sendKeys("1");
-        freezeAddress_input.sendKeys(address);
-        freeze_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        freezeCount_input.get(0).sendKeys("1");
+        Helper.tapWhitePlace(driver);
+        freezeCount_input.get(1).sendKeys("");
+        freezeCount_input.get(1).sendKeys(address);
+        Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(1);
+
     }
 
     public String getAvailableTrx() {
         String availableTrx = availableTrx_text.getText();
-        availableTrx = availableTrx.split(" ")[1];
+        String[]   array = availableTrx.split("：");
+        availableTrx = array[1];
         availableTrx = availableTrx.substring(0,availableTrx.length()-3);
         return availableTrx;
     }
@@ -244,7 +276,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public void inputFrozenCount1() throws Exception{
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
         TimeUnit.SECONDS.sleep(1);
-        freezeCount_input.sendKeys("10");
+        freezeCount_input.get(0).sendKeys("10");
 
         TimeUnit.SECONDS.sleep(1);
         freeze_btn.click();
@@ -254,6 +286,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         checkPasswotd_input.sendKeys("Test0001");
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
+
 
     }
 
