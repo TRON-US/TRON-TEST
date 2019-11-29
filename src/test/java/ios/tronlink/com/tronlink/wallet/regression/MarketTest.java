@@ -12,9 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class MarketTest extends BaseTest {
 
     @Test(description = "test  into MarketPage",alwaysRun = true)
-    public void test001_enterMarketPage()  {
+    public void test001_enterMarketPage() throws InterruptedException {
         AssetPage assetPage = new AssetPage(DRIVER);
-        Assert.assertTrue(assetPage.enterMarketPage().toString().length() > 0); ;
+        Thread.sleep(1);
+        Assert.assertTrue(assetPage.enterMarketPage().toString().length() > 0);
+
+
 //        MarketPage minePage =  assetPage.enterMarketPage();
 //        TimeUnit.SECONDS.sleep(3); //抓不上来
 //        Assert.assertTrue(minePage.newPrice_btn.isDisplayed());
