@@ -2,6 +2,10 @@ package ios.tronlink.com.tronlink.wallet.utils;
 
 
 import io.appium.java_client.TouchAction;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.NodeSetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.SettingPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -86,9 +90,18 @@ public class Helper {
             getSignStep(testPrivateKey);
         }catch (Exception e){
         }
-
-
-
+    }
+    public static boolean guaranteeMainChain(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        if(fastFindMainChain(asset.textArray)){
+            return true;
+        }else{
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            SettingPage settingPage = nodeSet.enterSettingPageChoiseMainChain();
+            return fastFindMainChain(settingPage.textArray);
+        }
     }
 
 
