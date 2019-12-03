@@ -246,10 +246,10 @@ public class autoCreateTestngXml {
     public void beforeWrite() {
         StringBuilder sb = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
-            + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + 5 + "\">\n");
-/*            + "    <listeners>\n"
+            + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + 5 + "\">\n"
+            + "    <listeners>\n"
             + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener\"/>\n"
-            + "    </listeners>\n");*/
+            + "    </listeners>\n");
         String res = sb.toString();
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"));
