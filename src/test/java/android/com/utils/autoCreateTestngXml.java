@@ -72,6 +72,7 @@ public class autoCreateTestngXml {
         String foundationAccountAddress = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
         String httpnode = "47.252.85.177:8090";
         String dappChainHttpNode = "47.252.80.185:8090";
+        //niluohe
         //String httpnode = "47.90.214.183:50051";
         HashMap<String,String> testAccountList = new HashMap<>();
         testAccountList.put("TR8CyAPJFMjCvphCVuWeeVxBh5iTG7VWxe","cfd889566341aea937737ecf4bc35f9be7c5b43f594c9a230a0348183472245e");
