@@ -12,16 +12,16 @@ import org.testng.annotations.*;
 public class SettingTest extends BaseTest {
 
 
-
-    @Test(description = "into Chain Set Page Test")
-    public void test001_bulletin() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-        Assert.assertEquals(nodeSetPage.title.getText(),"设置");
-
-    }
+//
+//    @Test(description = "into Chain Set Page Test")
+//    public void test001_bulletin() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage mine = asset.enterMinePage();
+//        SettingPage setting = mine.enterSettingPage();
+//        NodeSetPage nodeSetPage = setting.enterNodeSetPage();
+//        Assert.assertEquals(nodeSetPage.title.getText(),"设置");
+//
+//    }
 
     @Test(description = "Developer options On Test",alwaysRun = true)
     public void test002_developerOnOptions() throws Exception {
@@ -101,15 +101,15 @@ public class SettingTest extends BaseTest {
 
     }
 
-    @Test(description = "DAPP BrowserPage Test",alwaysRun = true)
-    public void test009_DAPP_Browser()  {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        DAPP_BrowerPage dapp1 =  setting.enterDAPP_BrowerPage();
-        dapp1.testUrl();
-//        Assert.assertEquals("TEST",dapp.dappTtile_btn.getText());
-    }
+//    @Test(description = "DAPP BrowserPage Test",alwaysRun = true)
+//    public void test009_DAPP_Browser()  {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage mine = asset.enterMinePage();
+//        SettingPage setting = mine.enterSettingPage();
+//        DAPP_BrowerPage dapp1 =  setting.enterDAPP_BrowerPage();
+//        dapp1.testUrl();
+////        Assert.assertEquals("TEST",dapp.dappTtile_btn.getText());
+//    }
 
 
 }
