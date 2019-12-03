@@ -127,39 +127,39 @@ public class MainNetWithdraw extends BaseTest {
     }
 
 
-
-    @Test(description = "transferOut TRX Success Recording",alwaysRun = true)
-    public void test007_transferOutSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-
-        TransferPage transferOut =  trx.enterTransferOutPage();
-        String count = removeSymbol(random(10,10));
-        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-        TimeUnit.SECONDS.sleep(1);
-        AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrxPage();
-        double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
-//        int tries = 0;
-//        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
-//        while(!exist && tries < 7) {
-//            tries++;
-//            try {
-//                AssetPage arret = trx.enterAssetPage();
-//                trx = arret.enterTrxPage();
-//                trx.tranferOut_tab.get(2).click();
-//                TimeUnit.SECONDS.sleep(3);
-//                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
-//                if(Helper.contentTexts(lintiest,count)){
-//                    exist = true;
-//                    break;
-//                }
 //
-//            }catch (Exception e){}
-//        }
-//        Assert.assertTrue(exist);
-    }
+//    @Test(description = "transferOut TRX Success Recording",alwaysRun = true)
+//    public void test007_transferOutSuccessRecording() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+//
+//        TransferPage transferOut =  trx.enterTransferOutPage();
+//        String count = removeSymbol(random(10,10));
+//        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
+//        TimeUnit.SECONDS.sleep(1);
+//        AssetPage assetPage = trx.enterAssetPage();
+//        trx =  assetPage.enterTrxPage();
+//        double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+//        Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
+////        int tries = 0;
+////        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
+////        while(!exist && tries < 7) {
+////            tries++;
+////            try {
+////                AssetPage arret = trx.enterAssetPage();
+////                trx = arret.enterTrxPage();
+////                trx.tranferOut_tab.get(2).click();
+////                TimeUnit.SECONDS.sleep(3);
+////                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
+////                if(Helper.contentTexts(lintiest,count)){
+////                    exist = true;
+////                    break;
+////                }
+////
+////            }catch (Exception e){}
+////        }
+////        Assert.assertTrue(exist);
+//    }
 
 
 

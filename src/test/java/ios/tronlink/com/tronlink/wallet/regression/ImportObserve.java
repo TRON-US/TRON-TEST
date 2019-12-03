@@ -84,15 +84,15 @@ public class ImportObserve extends BaseTest {
         Assert.assertTrue(hits.contains("钱包名已存在") || hits.contains("already exists"));
     }
 
-    @Test(description = "Observe The same name but different capitalization", alwaysRun = true)
-    public void test008_ObservesameNameButDifferentCapitalization() throws Exception {
-        ObservePage importObservePage = enterImportObservePage();
-        importObservePage.inputAddreseString(addressNew);
-        PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
-        namePage.name_input.sendKeys("AUto_test");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(namePage.getComplish_btn().isEnabled());
-    }
+//    @Test(description = "Observe The same name but different capitalization", alwaysRun = true)
+//    public void test008_ObservesameNameButDifferentCapitalization() throws Exception {
+//        ObservePage importObservePage = enterImportObservePage();
+//        importObservePage.inputAddreseString(addressNew);
+//        PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
+//        namePage.name_input.sendKeys("AUto_test");
+//        Helper.tapWhitePlace(DRIVER);
+//        Assert.assertTrue(namePage.getComplish_btn().isEnabled());
+//    }
 
 
 // 不添加因为有风险，删除时候找不到元素就会导致其他案例失败
