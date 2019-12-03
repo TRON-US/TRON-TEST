@@ -6,6 +6,8 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class VoteTest extends BaseTest {
 
@@ -30,7 +32,7 @@ public class VoteTest extends BaseTest {
     public VotePage enterVotePage() throws InterruptedException {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        Thread.sleep(1);
+        TimeUnit.SECONDS.sleep(1);
         return vote;
     }
     @Test(description = "Guarantee Main Chain in VoteTest Test",alwaysRun = true)
