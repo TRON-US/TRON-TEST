@@ -26,7 +26,9 @@ public class MyPurseTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
+        TimeUnit.SECONDS.sleep(2);
         keystore = walletPage.getBackupKeystore("Test0001");
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(keystore.length() > 10);
     }
 
@@ -49,6 +51,7 @@ public class MyPurseTest extends BaseTest {
     }
     @Test(description = "test Delete Wallet wrong password",alwaysRun = true)
     public void  test005_testDeletewalletWronpassCancal(){
+
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();

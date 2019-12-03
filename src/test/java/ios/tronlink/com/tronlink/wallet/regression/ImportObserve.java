@@ -109,16 +109,4 @@ public class ImportObserve extends BaseTest {
 //        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
 //    }
 
-    @Test(description = "test Delete Observe Wallet ",alwaysRun = true)
-    public void  test010_testDeleteObservewalletSuccess() throws InterruptedException {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        walletPage.deleteObserveWallet();
-        TimeUnit.SECONDS.sleep(3);
-        Thread.sleep(2);
-        Assert.assertTrue(Helper.isElementExist(DRIVER,"冷钱包"));
-
-//        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
-    }
 }
