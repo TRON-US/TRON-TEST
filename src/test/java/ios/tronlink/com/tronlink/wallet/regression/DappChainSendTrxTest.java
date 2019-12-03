@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class DappChainSendTrxTest extends BaseTest {
 
     public SendTrxPage enterToSendTrxPage(){
@@ -119,6 +121,7 @@ public class DappChainSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("max");
         Helper.tapWhitePlace(transfer.driver);
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.findsend_btn().isEnabled());
     }
 

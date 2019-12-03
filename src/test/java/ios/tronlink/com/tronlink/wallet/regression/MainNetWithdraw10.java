@@ -124,19 +124,19 @@ public class MainNetWithdraw10 extends BaseTest {
     }
 
 
-    @Test(description = "transferOut Success trc10 Recording",alwaysRun = true)
-    public void test007_transferOutSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        double trc10before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferOut =  trx.enterTransferOutPage();
-        String count = removeSymbol(random(10,10));
-        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-        TimeUnit.SECONDS.sleep(1);
-        AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrx10Page();
-        double trc10after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trc10after + Double.parseDouble(count) <= trc10before );
-    }
+//    @Test(description = "transferOut Success trc10 Recording",alwaysRun = true)
+//    public void test007_transferOutSuccessRecording() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        double trc10before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+//        TransferPage transferOut =  trx.enterTransferOutPage();
+//        String count = removeSymbol(random(10,10));
+//        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
+//        TimeUnit.SECONDS.sleep(1);
+//        AssetPage assetPage = trx.enterAssetPage();
+//        trx =  assetPage.enterTrx10Page();
+//        double trc10after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+//        Assert.assertTrue(trc10after + Double.parseDouble(count) <= trc10before );
+//    }
 
 
 
