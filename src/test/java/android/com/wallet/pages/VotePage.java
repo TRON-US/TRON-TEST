@@ -111,6 +111,9 @@ public class VotePage extends AbstractPage {
         vote_btn.click();
     }
 
+    public boolean getExist(){
+        return true;
+    }
     public VoteConfirmPage enterVoteConfirmPage(){
         reset_btn.click();
         et_input.sendKeys("1");

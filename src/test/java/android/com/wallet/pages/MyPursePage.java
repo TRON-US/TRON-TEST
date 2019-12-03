@@ -74,12 +74,19 @@ public class MyPursePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new AddwalletPage(driver);
     }
+
+
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
         walletPassword_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new WalletPasswordPage(driver);
     }
 
+
+    public boolean getExitst(){
+        boolean eitst = true;
+        return eitst;
+    }
 
 
     public String getBackupKeystore(String password){
