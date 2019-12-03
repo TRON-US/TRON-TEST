@@ -62,7 +62,7 @@ public class FrozenAndUnfreezeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         frozen.freezeEnergyDetail_btn.click();
-        int myFreeze = Integer.valueOf(frozen.myFreeze_btn.getText());
+        int myFreeze = Integer.valueOf(removeSymbol(frozen.myFreeze_btn.getText()));
         int otherFreeze = Integer.valueOf(removeSymbol(frozen.otherFreeze_btn.getText()));
         int totalFreeze = Integer.valueOf(removeSymbol(frozen.totalFreeze_btn.getText()));
         Assert.assertTrue(myFreeze + otherFreeze == totalFreeze);
