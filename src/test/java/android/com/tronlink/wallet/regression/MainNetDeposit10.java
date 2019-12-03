@@ -153,6 +153,7 @@ public class MainNetDeposit10 extends Base {
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
+        exist = trx.getTrxVale();
         while (exist == false && tries < 7) {
             tries++;
             try {
@@ -160,7 +161,6 @@ public class MainNetDeposit10 extends Base {
                 trx = arret.enterTrx10Page();
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
-                exist = trx.getTrxVale();
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
                 if (count.equals(tranferInCount)) {
                     exist = true;
