@@ -26,8 +26,10 @@ public class ImportPrivateKey extends Base {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        DRIVER.closeApp();
-        DRIVER.launchApp();
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlink.wallet");
+        }catch (Exception e){}
     }
 
 
