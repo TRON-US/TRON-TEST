@@ -56,28 +56,28 @@ public class MainNetDeposit10 extends BaseTest {
 
 
 
-//    @Test(description = "Change Chain DappChain",alwaysRun = true)
-//    public void test001_changeChain() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        if(Helper.contentTexts(set.textArray,"MainChain")){
-//            NodeSetPage nodeSet = set.enterNodeSetPage();
-//            set = nodeSet.enterSettingPageChoiseDappChain();
-//            TimeUnit.SECONDS.sleep(2);
-//            Assert.assertTrue(Helper.contentTexts(set.textArray,"DAppChain"));
-//        }
-//
-//    }
-//
-//    @Test(description = "Change Chain MainChain",alwaysRun = true)
-//    public void test0011_checkTransferInChainName() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        if(Helper.contentTexts(set.textArray,"DAppChain")){
-//            NodeSetPage nodeSet = set.enterNodeSetPage();
-//            set = nodeSet.enterSettingPageChoiseMainChain();
-//            TimeUnit.SECONDS.sleep(2);
-//            Assert.assertTrue(Helper.contentTexts(set.textArray,"MainChain"));
-//        }
-//    }
+    @Test(description = "Change Chain DappChain",alwaysRun = true)
+    public void test001_changeChain() throws Exception {
+        SettingPage set = enterSettingPage();
+        if(Helper.contentTexts(set.textArray,"MainChain")){
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertTrue(Helper.contentTexts(set.textArray,"DAppChain"));
+        }
+
+    }
+
+    @Test(description = "Change Chain MainChain",alwaysRun = true)
+    public void test0011_checkTransferInChainName() throws Exception {
+        SettingPage set = enterSettingPage();
+        if(Helper.contentTexts(set.textArray,"DAppChain")){
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseMainChain();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertTrue(Helper.contentTexts(set.textArray,"MainChain"));
+        }
+    }
 
 
 
