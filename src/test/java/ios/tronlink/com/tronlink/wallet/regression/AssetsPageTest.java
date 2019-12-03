@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.*;
+
 
 /**
  * 资产页面测试
@@ -20,9 +22,15 @@ public class AssetsPageTest extends BaseTest {
 
     @Test(description = "Assert TransportPage test",alwaysRun = true)
     public void test001_transportPage() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        TransferPage transferPage = assetPage.enterTransportPage();
-        Assert.assertEquals(transferPage.title.getText(),"转账");
+
+        if (Helper.guaranteeMainChain(DRIVER)){
+            AssetPage assetPage = new AssetPage(DRIVER);
+            TransferPage transferPage = assetPage.enterTransportPage();
+            Assert.assertEquals(transferPage.title.getText(),"转账");
+        }else {
+            System.out.println("guaranteeMainChain failed");
+        }
+
     }
 
     @Test(description = "Assert ReceiptPage test",alwaysRun = true)
