@@ -66,7 +66,6 @@ public class AssetsPageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         EnergyRentPage receiptPage = assetPage.entereneryRantage();
         TimeUnit.SECONDS.sleep(3);
-        Thread.sleep(5);
         Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"租用记录"));
     }
 }
