@@ -30,8 +30,10 @@ public class DappMutiSignatureTest extends Base {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlink.wallet");
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlink.wallet");
+        }catch (Exception e){}
     }
 
 
