@@ -152,6 +152,7 @@ public class MainNetWithdraw10 extends Base {
         trx = transferOut.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
+        exist = trx.getTrxVale();
         while (exist == false && tries < 7) {
             tries++;
             try {
