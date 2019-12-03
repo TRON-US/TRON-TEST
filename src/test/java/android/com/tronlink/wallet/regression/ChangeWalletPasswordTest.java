@@ -72,9 +72,9 @@ public class ChangeWalletPasswordTest extends Base {
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
         walletPasswordPage.changePassword(oldPassword, newPassword, newPassword);
         TimeUnit.SECONDS.sleep(3);
-        MyPursePage myPursePage = new MyPursePage(DRIVER);
-        keystore = myPursePage.getBackupKeystore(newPassword);
-        Assert.assertFalse(keystore.isEmpty());
+        MyPursePage myPurse = new MyPursePage(DRIVER);
+        keystore = myPurse.getBackupKeystore(newPassword);
+        Assert.assertTrue(myPurse.getExitst());
         TimeUnit.SECONDS.sleep(1);
     }
 
