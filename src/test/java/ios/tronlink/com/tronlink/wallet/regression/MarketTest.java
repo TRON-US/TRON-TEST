@@ -17,7 +17,6 @@ public class MarketTest extends BaseTest {
         Thread.sleep(1);
         Assert.assertTrue(assetPage.enterMarketPage().toString().length() > 0);
 
-
 //        MarketPage minePage =  assetPage.enterMarketPage();
 //        TimeUnit.SECONDS.sleep(3); //抓不上来
 //        Assert.assertTrue(minePage.newPrice_btn.isDisplayed());
