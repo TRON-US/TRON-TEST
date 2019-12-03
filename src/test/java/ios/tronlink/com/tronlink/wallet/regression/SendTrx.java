@@ -27,6 +27,7 @@ public class SendTrx extends BaseTest {
 
     @Test(description = "input Privatekey to Receiving address",alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         Helper.tapWhitePlace(transfer.driver);
