@@ -97,7 +97,7 @@ public class ImportKeystore extends BaseTest {
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
         walletPage.deletWallet("Test0001");
-        Thread.sleep(2);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(Helper.isElementExist(DRIVER,"冷钱包"));
 //        Assert.assertNotEquals(DRIVER.findElementByName("trxLabel").getText().split(" ")[0],"0");
     }
