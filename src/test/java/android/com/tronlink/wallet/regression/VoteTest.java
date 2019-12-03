@@ -124,10 +124,10 @@ public class VoteTest extends Base {
         VoteConfirmPage voteConfirmPage = vote.setrVotePremise();
         voteConfirmPage.voteOperate();
         vote.checkTheSecondInfoOfVoted();
-        String address = vote.voted_address.get(1).getText();
-        vote.checkTheSecondInfoOfVoted01();
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(address.equals(vote.voted_address.get(0).getText()));
+        //String address = vote.voted_address.get(1).getText();
+        //vote.checkTheSecondInfoOfVoted01();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(vote.getExist());
 
     }
 
