@@ -157,7 +157,7 @@ public class MainNetDeposit20 extends Base {
         int tries = 0;
         Boolean exist = false;
         exist = trx.getTrxVale();
-        while (exist == false && tries < 7) {
+        while (exist == false && tries < 5) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
