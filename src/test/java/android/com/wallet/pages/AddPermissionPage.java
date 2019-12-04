@@ -94,9 +94,24 @@ public class AddPermissionPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_operation")
+    public List<WebElement> permission_btn;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/bt_confirm")
+    public WebElement conf_btn;
+
+
+
     public void inputInfo(String signName) throws Exception{
         permissionName_input.sendKeys(signName);
         weights_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        permission_btn.get(3).click();
+        TimeUnit.SECONDS.sleep(1);
+        permission_btn.get(4).click();
+        conf_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         threshold_input.sendKeys("1");
         address_input.get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         weight_input.sendKeys("1");

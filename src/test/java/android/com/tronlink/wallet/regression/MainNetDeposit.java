@@ -158,7 +158,7 @@ public class MainNetDeposit extends Base {
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
-        while (exist == false && tries < 7) {
+        while (exist == false && tries < 5) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
