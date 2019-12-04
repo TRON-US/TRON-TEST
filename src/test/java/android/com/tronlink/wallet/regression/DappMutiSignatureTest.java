@@ -230,7 +230,7 @@ public class DappMutiSignatureTest extends Base {
         add.inputSameAddress();
         TimeUnit.SECONDS.sleep(1);
         String tip = add.addkey_tip.getText();
-        Assert.assertTrue(tip.contains("key重复") || tip.contains("has been added"));
+        Assert.assertTrue(tip.contains("重复") || tip.contains("has been added"));
     }
 
 
