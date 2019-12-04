@@ -147,24 +147,37 @@ public class ImportPrivateKey extends Base {
     @Parameters({"privateKey"})
     @Test(description = "Wallet The same name but different capitalization", alwaysRun = true)
     public void test009_sameNameButDifferentCapitalization(String privateKey) throws Exception {
-        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+//        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+//        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
+//        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("auto_case");
+//        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
+//        AssetPage asset = setPwdAgain.enterAssetPage("Test0001");
+//        MinePage mine = asset.enterMinePage();
+//        MyPursePage myPurse = mine.enterMyPursePage();
+//        AddwalletPage addwallet = myPurse.enterAddwalletPage();
+//        importPrivateKey = addwallet.enterImportPrivateKeyPage();
+//        setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
+//        setPwd = setName.enterPrivateKeySetPwdPage("AUTO_CASE");
+//        Assert.assertTrue(setPwd.pwd_title.isDisplayed());
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage = assetPage.enterMinePage();
+        MyPursePage myPursePage = minePage.enterMyPursePage();
+        AddwalletPage addwallet = myPursePage.enterAddwalletPage();
+        ImportPrivateKeyPage importPrivateKey = addwallet.enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("auto_case");
-        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-        AssetPage asset = setPwdAgain.enterAssetPage("Test0001");
-        MinePage mine = asset.enterMinePage();
-        MyPursePage myPurse = mine.enterMyPursePage();
-        AddwalletPage addwallet = myPurse.enterAddwalletPage();
-        importPrivateKey = addwallet.enterImportPrivateKeyPage();
-        setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        setPwd = setName.enterPrivateKeySetPwdPage("AUTO_CASE");
+        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("AUtOM_TEST");
         Assert.assertTrue(setPwd.pwd_title.isDisplayed());
     }
 
 
     @Test(description = "privateKey Is All Numbers", alwaysRun = true)
     public void test010_privateKeyIsAllNumbers() throws Exception {
-        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage = assetPage.enterMinePage();
+        MyPursePage myPursePage = minePage.enterMyPursePage();
+        AddwalletPage addwallet = myPursePage.enterAddwalletPage();
+        ImportPrivateKeyPage importPrivateKey = addwallet.enterImportPrivateKeyPage();
+        //ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("1234567890");
         Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
@@ -172,7 +185,12 @@ public class ImportPrivateKey extends Base {
 
     @Test(description = "privateKey Without Uppercase Letter", alwaysRun = true)
     public void test011_privateKeyWithoutUppercaseLetter() throws Exception {
-        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage = assetPage.enterMinePage();
+        MyPursePage myPursePage = minePage.enterMyPursePage();
+        AddwalletPage addwallet = myPursePage.enterAddwalletPage();
+        ImportPrivateKeyPage importPrivateKey = addwallet.enterImportPrivateKeyPage();
+        //ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         String hits = importPrivateKey.inputErrorKeyGetHits("zxcvbnm1234567");
         Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
