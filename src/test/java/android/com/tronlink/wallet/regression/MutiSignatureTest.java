@@ -130,7 +130,7 @@ public class MutiSignatureTest extends Base {
     public void test004_signatureIsExist() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        add.permissionName_input.sendKeys("owner");
+        add.permissionName_input.sendKeys("active");
         //todo 出现一次Owner权限名称为"owner "的情况导致出错
         TimeUnit.SECONDS.sleep(1);
         String tip = add.tip_hits.getText();

@@ -3,6 +3,7 @@ package android.com.wallet.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -20,12 +21,12 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_trx_amount")
+    @FindBy(id = "com.tronlink.wallet:id/tv_right")
     public WebElement trx_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_no_bandwidth")
+    @FindBy(id = "com.tronlink.wallet:id/tv_hint")
     public WebElement hits_text;
 
 
@@ -45,8 +46,8 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_bw_amount")
-    public WebElement fee_text;
+    @FindBy(id = "com.tronlink.wallet:id/tv_right")
+    public List<WebElement> fee_text;
 
 
 
@@ -85,17 +86,20 @@ public class TransferPage extends AbstractPage {
         String value = "";
         switch (info){
             case "trx":
-                value = trx_text.getText();
+                value = trx_text.getText().split(" ")[0];
                 break;
             case "hits":
                 value = hits_text.getText();
                 break;
             case "fee":
-                value = fee_text.getText().split(" ")[0];
+                //value = fee_text.getText().split(" ")[0];
+                String feeStr = fee_text.get(1).getText();
+                value = feeStr.substring(0,feeStr.length()-2);
                 break;
         }
         return value;
     }
+
 
 
     public TrxPage enterTrxPageWithTransferSuccess() throws Exception {
