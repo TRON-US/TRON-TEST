@@ -143,10 +143,12 @@ public class MainNetDeposit extends Base {
     public void test007_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("trxCount = " + trxCount);
         TransferPage transferIn = trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        System.out.println("trxCountNow = " + trxCountNow);
+        Assert.assertTrue(trxCount >= trxCountNow);
     }
 
 
