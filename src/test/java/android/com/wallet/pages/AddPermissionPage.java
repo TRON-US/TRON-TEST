@@ -153,6 +153,13 @@ public class AddPermissionPage extends AbstractPage {
     public void inputSameAddress() throws Exception {
         permissionName_input.sendKeys("AutoTets003");
         weights_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        permission_btn.get(3).click();
+        TimeUnit.SECONDS.sleep(1);
+        permission_btn.get(4).click();
+        conf_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+
         threshold_input.sendKeys("1");
         Helper.swipScreen(driver);
         address_input.get(0).sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
