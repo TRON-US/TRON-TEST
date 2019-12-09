@@ -73,6 +73,10 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement send_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    public WebElement title_text;
+
+
 //    @FindBy(id = "com.tronlink.wallet:id/ll_indicator")
 //    public WebElement mulSign_span;
 
@@ -125,6 +129,11 @@ public class MultiSignManagerPage extends AbstractPage {
         password_input.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);
+    }
+
+
+    public String getName(){
+        return "active";
     }
 
 
