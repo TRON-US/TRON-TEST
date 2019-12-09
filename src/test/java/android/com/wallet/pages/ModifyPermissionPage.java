@@ -42,6 +42,8 @@ public class ModifyPermissionPage extends AbstractPage {
     public WebElement pay_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    public WebElement title_text;
 
 
     //modify sign info

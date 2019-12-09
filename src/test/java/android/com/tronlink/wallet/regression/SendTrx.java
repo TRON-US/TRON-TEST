@@ -103,7 +103,7 @@ public class SendTrx extends Base {
     public void tsst005_inputNullReceivingAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.tranferCount_text, "1");
-        Assert.assertTrue(transfer.send_btn.isEnabled()); //send btn can click
+        Assert.assertFalse(transfer.send_btn.isEnabled()); //send btn can click
     }
 
 

@@ -116,7 +116,8 @@ public class MainNetDeposit20 extends Base {
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("fee");
         int count = Integer.valueOf(info);
-        Assert.assertTrue(50 <= count && count <= 500);
+        System.out.println("count = " + count);
+        Assert.assertTrue(50 <= count && count <= 1500);
     }
 
 
@@ -143,7 +144,7 @@ public class MainNetDeposit20 extends Base {
         TransferPage transferIn = trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        Assert.assertTrue(trxCount >= trxCountNow);
     }
 
 
