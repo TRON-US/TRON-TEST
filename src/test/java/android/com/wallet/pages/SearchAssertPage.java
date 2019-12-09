@@ -30,6 +30,15 @@ public class SearchAssertPage  extends AbstractPage {
     public WebElement back_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    public WebElement back_s;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    public WebElement search_btn;
+
+
 
     /**
      * turn on assert(open)
