@@ -141,7 +141,7 @@ public class MainNetWithdraw10 extends Base {
         TransferPage transferOut = trx.enterTransferPage();
         trx = transferOut.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        Assert.assertTrue(trxCount >= trxCountNow);
     }
 
 

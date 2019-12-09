@@ -137,10 +137,12 @@ public class MainNetWithdraw extends Base {
     public void test006_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("trxCount = " + trxCount);
         TransferPage transferOut = trx.enterTransferPage();
         trx = transferOut.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        System.out.println("trxCountNow = " + trxCountNow);
+        Assert.assertTrue(trxCount >= trxCountNow);
     }
 
 
