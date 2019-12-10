@@ -81,6 +81,7 @@ public class ImportObserve extends BaseTest {
         namePage.name_input.sendKeys("Auto_test");
         Helper.tapWhitePlace(DRIVER);
         String hits = namePage.getError_hits();
+        System.out.println(hits);
         Assert.assertTrue(hits.contains("钱包名已存在") || hits.contains("already exists"));
     }
 
