@@ -179,6 +179,22 @@ public class api {
         return response;
     }
 
+    public static HttpResponse inviteList(HashMap<String,String> param) throws Exception{
+        final String requesturl = HttpNode + "/api/wallet/invite/list";
+        URIBuilder builder = new URIBuilder(requesturl);
+        if (param != null) {
+            for (String key : param.keySet()) {
+                builder.addParameter(key, param.get(key));
+            }
+        }
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+
+    }
+
 
 
 
