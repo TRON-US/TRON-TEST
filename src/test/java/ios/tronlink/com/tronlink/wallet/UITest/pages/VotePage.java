@@ -67,7 +67,7 @@ public WebElement vote_title;
     @FindBy(id = "remainingNumberLabel")
     public WebElement avilabelAmount;
 
-    @FindBy(id = "vote header note")
+    @FindBy(id = "assets instruction")
     public WebElement voteDetailBtn;
 
 
