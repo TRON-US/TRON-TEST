@@ -69,7 +69,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public List<WebElement> totalFreeze_btn;
 
 
-    @FindBy(name = "细则说明")
+    @FindBy(id = "assets instruction")
     public WebElement detailsAndRules_btn;
 
     @FindBy(name = "com.tronlink.wallet:id/ll_bandwidth_arrow")
