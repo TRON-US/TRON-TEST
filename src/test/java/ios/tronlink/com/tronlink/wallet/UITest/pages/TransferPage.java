@@ -83,6 +83,7 @@ public class TransferPage extends AbstractPage {
 
 
     public void inputAndTapToTransfer() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys("10");
         Helper.tapWhitePlace(driver);
         get_inter_btn().click();
@@ -97,7 +98,7 @@ public class TransferPage extends AbstractPage {
 
     }
     public String getvalueofBandwidthText(){
-        WebElement element = driver.findElementByName("bandwidthText");
+        WebElement element = driver.findElementById("bandwidthText");
         String val = element.getText().split(" ")[0];
 
         return  val;
@@ -141,7 +142,7 @@ public class TransferPage extends AbstractPage {
         count_text.sendKeys(count);
         Helper.tapWhitePlace(driver);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         get_finish_btn().click();
