@@ -192,7 +192,18 @@ public class api {
         response = createGetConnect(uri);
         Assert.assertTrue(api.verificationResult(response));
         return response;
+    }
 
+    public static HttpResponse getInviteCode(JSONObject address) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/invite/get_code";
+        response = createConnect(requestUrl, address);
+        return response;
+    }
+
+    public static HttpResponse insertInviteCode(JSONObject address) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/invite/code";
+        response = createConnect(requestUrl, address);
+        return response;
     }
 
 
