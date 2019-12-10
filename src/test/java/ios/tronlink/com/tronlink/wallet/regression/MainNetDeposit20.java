@@ -104,12 +104,14 @@ public class MainNetDeposit20 extends BaseTest {
 
     @Test(description = "Check TransferIn Fee",alwaysRun = true)
     public void test005_checkTransferInFee() throws Exception {
+        TimeUnit.SECONDS.sleep(8);
+        Helper.swipRefreshScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(8);
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
         String val = transferIn.getvalueofBandwidthText();
         int count = Integer.parseInt(removeSymbol(val));
-        System.out.println("-------:----");
         Assert.assertTrue(50 <= count && count <= 500);
     }
 
@@ -147,6 +149,9 @@ public class MainNetDeposit20 extends BaseTest {
         TransferPage transferIn =  trx.enterTransferPage();
         String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
+        TimeUnit.SECONDS.sleep(8);
+        Helper.swipRefreshScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(8);
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
         AssetPage assetPage = trx.enterAssetPage();
