@@ -26,7 +26,7 @@ public class PrivateKeySetPwdAgainPage extends AbstractPage {
     public WebElement create_btn;
 
     public String  getError_hits(){
-        return error_hits.get(2).getText();
+        return error_hits.get(0).getText()+error_hits.get(1).getText()+error_hits.get(2).getText();
     }
 
     public WebElement getComplish_btn(){
