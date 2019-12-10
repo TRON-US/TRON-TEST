@@ -113,7 +113,6 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("1");
         Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
-        transfer.transferNow_btn.click();
         transfer.InputPasswordConfim_btn.sendKeys("forget_password");
         transfer.broadcastButtonClick();
         WebElement element = transfer.driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
@@ -140,7 +139,7 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("0.000001");
         Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
-        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
+        Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
     }
 
 
@@ -153,7 +152,6 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("1");
         Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
-        transfer.transferNow_btn.click();
         transfer.InputPasswordConfim_btn.sendKeys("Test0001");
         transfer.broadcastButtonClick();
 

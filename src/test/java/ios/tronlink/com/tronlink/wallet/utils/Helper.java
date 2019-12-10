@@ -125,18 +125,24 @@ public class Helper {
         }
         try {
             findWebElement("私钥导入").click();
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextView")).sendKeys(testPrivateKey);
-            findWebElement("Done").click();
+            DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(testPrivateKey);
+//            findWebElement("Done").click();
+            tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
             TimeUnit.SECONDS.sleep(7);
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextField")).sendKeys("Auto_test");
-            findWebElement("Done").click();
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys("Auto_test");
+            tapWhitePlace(DRIVER);
+//            findWebElement("Done").click();
             findWebElement("下一步").click();
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeSecureTextField")).sendKeys("Test0001");
-            findWebElement("Done").click();
+            TimeUnit.SECONDS.sleep(5);
+            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+            tapWhitePlace(DRIVER);
+//            findWebElement("Done").click();
             findWebElement("下一步").click();
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeSecureTextField")).sendKeys("Test0001");
-            findWebElement("Done").click();
+            TimeUnit.SECONDS.sleep(5);
+            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+            tapWhitePlace(DRIVER);
+//            findWebElement("Done").click();
             findWebElement("完成").click();
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){}
