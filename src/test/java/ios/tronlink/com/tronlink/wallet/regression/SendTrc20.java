@@ -33,6 +33,7 @@ public class SendTrc20 extends BaseTest {
     public void tsst002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
+        transfer.transferNow_btn.click();
         Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
     }
 
@@ -63,6 +64,7 @@ public class SendTrc20 extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("1");
         Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
+        transfer.transferNow_btn.click();
         transfer.InputPasswordConfim_btn.sendKeys("Test0001");
         transfer.broadcastButtonClick();
         TrxPage tokenpage = new TrxPage(transfer.driver);
