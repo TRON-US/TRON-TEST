@@ -94,6 +94,10 @@ public class SendTrxPage extends AbstractPage {
         List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
         return  cells.get(1);
     }
+    public WebElement getTrc10Token(){
+        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
+        return  cells.get(2);
+    }
 
     public void swip(){
         Helper.swipScreen(driver);
@@ -132,7 +136,7 @@ public class SendTrxPage extends AbstractPage {
     public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
-        trc10_btn.click();
+        getTrc10Token().click();
         tranferCount_text.sendKeys(number);
         swip();
         send_btn.click();
@@ -161,7 +165,7 @@ public class SendTrxPage extends AbstractPage {
 
     public double getTrc10Amount() throws Exception {
         token_btn.click();
-        trc10_btn.click();
+        getTrc10Token().click();
         String balance = balance_text.getText();
         double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
@@ -212,7 +216,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
         token_btn.click();
-        trc10_btn.click();
+        getTrc10Token().click();
         //calculate trx
         switch(value){
             case "max":
