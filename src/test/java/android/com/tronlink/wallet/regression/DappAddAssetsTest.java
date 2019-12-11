@@ -62,7 +62,7 @@ public class DappAddAssetsTest extends Base {
         addAssert.mainPageAssetManage_tab.get(1).click();
         //addAssert.removeAsset();
         //Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
-        Assert.assertTrue(addAssert.mainPageAssetManage_tab.get(1).isDisplayed());
+        Assert.assertTrue(addAssert.mainPageAssetManage_tab.get(0).isDisplayed());
     }
 
 }

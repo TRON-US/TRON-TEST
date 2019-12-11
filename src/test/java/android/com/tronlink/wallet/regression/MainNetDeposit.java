@@ -152,32 +152,6 @@ public class MainNetDeposit extends Base {
     }
 
 
-    @Test(description = "TransferIn Success Recording", alwaysRun = true, enabled = false)
-    public void test008_transferInSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
-        String count = random(10, 10);
-        trx = transferIn.enterTrxPageWithTransferSuccess(count);
-        int tries = 0;
-        Boolean exist = false;
-        while (exist == false && tries < 5) {
-            tries++;
-            try {
-                AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrxPage();
-                trx.tranfer_tab.get(3).click();
-                TimeUnit.SECONDS.sleep(3);
-                exist = trx.getTrxVale();
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                if (count.equals(tranferInCount)) {
-                    exist = true;
-                    break;
-                }
-            } catch (Exception e) {
-            }
-        }
-        Assert.assertTrue(exist);
-    }
 
 
 }
