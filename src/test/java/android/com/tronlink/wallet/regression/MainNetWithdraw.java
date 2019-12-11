@@ -146,8 +146,17 @@ public class MainNetWithdraw extends Base {
     }
 
 
+    @Test(description = "Check transferOut Hits", alwaysRun = true)
+    public void test007_checkTransferOutHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferPage();
+        String info = transferOut.getTransferInfo("hits");
+        Assert.assertTrue(info.contains("行智能合约") || info.contains("smart contract"));
+    }
+
+
     @Test(description = "transferOut Success Recording")
-    public void test007_transferOutSuccessRecording() throws Exception {
+    public void test008_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
         String count = random(10, 10);
