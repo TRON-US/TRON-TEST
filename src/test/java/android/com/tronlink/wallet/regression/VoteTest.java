@@ -62,30 +62,6 @@ public class VoteTest extends Base {
     }
 
 
-    //because vote need Freeze trx
-    @Test(enabled = false)
-    public void test001_freezeEnergy() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
-        int myVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
-        frozen.freezeCount_input.sendKeys("1");
-        frozen.frozenTheEnergy(); //Freeze operating
-        asset = frozen.enterAssetPage();
-        frozen = asset.enterFrozenAndThawingPage();
-        //int currentVotingPower = Integer.valueOf(frozen.votingPower_btn.getText());
-        //Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
-    }
-
-    @Test(description = "vote test", enabled = false)
-    public void test002_vote() {
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        VoteConfirmPage voteConfirmPage = vote.enterVoteConfirmPage();
-        voteConfirmPage.voteOperate();
-        String count = vote.et_input.getText();
-        Assert.assertEquals(count, "1");
-    }
-
 
     @Test(description = "enter a number that great than the number of votes available", alwaysRun = true)
     public void test003_vote01() throws Exception {
