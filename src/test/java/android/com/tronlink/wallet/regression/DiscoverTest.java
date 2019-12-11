@@ -73,17 +73,6 @@ public class DiscoverTest extends Base {
 //        Assert.assertTrue(dappSearchResult.searchResultFirst_btn.getText().contains("TRX"));
 //    }
 
-    @Test(description = "click Search Result", enabled = false, alwaysRun = true)
-    public void test002_clickSearchResult() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
-        DAPP_SearchPage dappSearch = discover.enterDAPP_SearchPage();
-        DAPP_SearchResultPage dappSearchResult = dappSearch.search("TRX");
-        String serachResult = dappSearchResult.searchResultFirst_btn.getText();
-        DAPP_BrowerPage dapp = dappSearchResult.enterDAPP_BrowerPage();
-        Assert.assertEquals(serachResult, dapp.dappTtile_btn.getText());
-
-    }
 
 
 }
