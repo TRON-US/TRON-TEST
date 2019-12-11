@@ -193,16 +193,36 @@ public class api {
         Assert.assertTrue(api.verificationResult(response));
         return response;
     }
-
-    public static HttpResponse getInviteCode(JSONObject address) throws Exception {
-        final String requestUrl = HttpNode + "/api/wallet/invite/get_code";
-        response = createConnect(requestUrl, address);
+    public static HttpResponse inviteLeaderBoard(HashMap<String,String> param) throws Exception{
+        final String requesturl = HttpNode + "/api/wallet/invite/list";
+        URIBuilder builder = new URIBuilder(requesturl);
+        if (param != null) {
+            for (String key : param.keySet()) {
+                builder.addParameter(key, param.get(key));
+            }
+        }
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
         return response;
     }
 
-    public static HttpResponse insertInviteCode(JSONObject address) throws Exception {
+    public static HttpResponse getInviteCode(JSONObject param) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/invite/get_code";
+        response = createConnect(requestUrl, param);
+        return response;
+    }
+
+    public static HttpResponse insertInviteCode(JSONObject param) throws Exception {
         final String requestUrl = HttpNode + "/api/wallet/invite/code";
-        response = createConnect(requestUrl, address);
+        response = createConnect(requestUrl, param);
+        return response;
+    }
+
+    public static HttpResponse getNodeInfo(String param) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/node_info";
+        response = createConnect(requestUrl, param);
         return response;
     }
 
@@ -394,6 +414,29 @@ public class api {
             httppost.setHeader("Connection", "Close");
             if (requestBody != null) {
                 StringEntity entity = new StringEntity(requestBody.toString(), Charset.forName("UTF-8"));
+                entity.setContentEncoding("UTF-8");
+                entity.setContentType("application/json");
+                httppost.setEntity(entity);
+            }
+            response = httpClient.execute(httppost);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return response;
+    }
+
+    public static HttpResponse createConnect(String url, String requestBody) {
+        try {
+            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+                connectionTimeout);
+            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            httppost = new HttpPost(url);
+            httppost.setHeader("Content-type", "application/json; charset=utf-8");
+            httppost.setHeader("Connection", "Close");
+            if (!requestBody.isEmpty()) {
+                StringEntity entity = new StringEntity(requestBody);
                 entity.setContentEncoding("UTF-8");
                 entity.setContentType("application/json");
                 httppost.setEntity(entity);
