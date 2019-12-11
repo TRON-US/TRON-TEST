@@ -120,20 +120,6 @@ public class MainNetDeposit10 extends Base {
     }
 
 
-    @Test(description = "Check Available Balance", enabled = false)
-    public void test006_checkAvailableBalance() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
-        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        TrxPage trx = asset.enterTrx10Page();
-        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
-        TransferPage transferIn = trx.enterTransferPage();
-        int availableBalance = Integer.valueOf(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
-        Assert.assertTrue(trxCount == frozenCount + availableBalance);
-    }
 
 
     @Test(description = "TransferIn Success Checkout Available trc10", alwaysRun = true)
@@ -149,8 +135,17 @@ public class MainNetDeposit10 extends Base {
     }
 
 
+    @Test(description = "Check TransferIn Hits", alwaysRun = true)
+    public void test008_checkTransferInHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn = trx.enterTransferPage();
+        String info = transferIn.getTransferInfo("hits");
+        Assert.assertTrue(info.equals("智能合约") || info.contains("smart contract"));
+    }
+
+
     @Test(description = "TransferIn Success Recording", alwaysRun = true)
-    public void test008_transferInSuccessRecording() throws Exception {
+    public void test009_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String count = random(10, 10);

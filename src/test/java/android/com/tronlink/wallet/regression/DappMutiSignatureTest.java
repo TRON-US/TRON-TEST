@@ -122,16 +122,6 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "signature is exist", alwaysRun = true,enabled = false)
-    public void test004_signatureIsExist() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
-        AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        add.permissionName_input.sendKeys("active_newest");
-        //TimeUnit.SECONDS.sleep(1);
-        //String tip = add.tip_hits.getText();
-        //Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
-        Assert.assertTrue(add.permissionName_input.isDisplayed());
-    }
 
 
     @Test(description = "delete signature Test", alwaysRun = true)

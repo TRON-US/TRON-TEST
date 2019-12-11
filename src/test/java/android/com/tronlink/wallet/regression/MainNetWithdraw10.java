@@ -118,31 +118,6 @@ public class MainNetWithdraw10 extends Base {
     }
 
 
-    @Test(description = "Check Available Balance", enabled = false, alwaysRun = true)
-    public void test005_checkAvailableBalance() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
-        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        TrxPage trx = asset.enterTrxPage();
-        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
-        TransferPage transferOut = trx.enterTransferPage();
-        int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
-        Assert.assertTrue(trxCount == frozenCount + availableBalance);
-    }
-
-
-    @Test(description = "transferOut Success Checkout Available trx", enabled = false)
-    public void test006_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferOut = trx.enterTransferPage();
-        trx = transferOut.enterTrxPageWithTransferSuccess();
-        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        Assert.assertTrue(trxCount >= trxCountNow);
-    }
 
 
     @Test(description = "transferOut Success Recording", alwaysRun = true)
