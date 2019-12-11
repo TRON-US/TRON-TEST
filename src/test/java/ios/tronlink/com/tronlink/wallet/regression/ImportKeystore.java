@@ -18,16 +18,15 @@ public class ImportKeystore extends BaseTest {
         return new ImportKeystorePage(DRIVER);
     }
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
-    public void test001_gotoimportFromeKeyStroe() throws Exception {
+    public void test000_gotoimportFromeKeyStroe() throws Exception {
 
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         Assert.assertTrue(Helper.contentTexts(importKeystorePage.textArray,"Keystore 导入"));
 
-
     }
 
     @Test(description = "test  input wrong format Keystore",alwaysRun = true)
-    public void test002_inputWrongFormatKeystore() throws Exception {
+    public void test001_inputWrongFormatKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.content_text.sendKeys("wrong keysotre format");
         Helper.tapWhitePlace(DRIVER);
@@ -35,15 +34,15 @@ public class ImportKeystore extends BaseTest {
 
     }
     @Test(description = "test  input wrong format Password",alwaysRun = true)
-    public void test003_inputWrongPasswordKeystore() throws Exception {
+    public void test002_inputWrongPasswordKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
         Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '密码错误'").isDisplayed());
 
     }
-
+//
     @Test(description = "test have KeyStore",alwaysRun = true)
-    public void test000_getKeyStore() throws Exception {
+    public void test003_getKeyStore() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
@@ -54,6 +53,7 @@ public class ImportKeystore extends BaseTest {
     public void test004_inputhavedKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '钱包已存在'").isDisplayed());
     }
 
