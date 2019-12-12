@@ -72,7 +72,12 @@ public class Helper {
            driver.findElementByName(name);
            return  true;
        }catch (org.openqa.selenium.NoSuchElementException ex){
-           return  false;
+           try {
+               driver.findElementById(name);
+               return  true;
+           }catch (org.openqa.selenium.NoSuchElementException eex){
+               return  false;
+           }
        }
     }
 
@@ -100,8 +105,28 @@ public class Helper {
             SettingPage set = mine.enterSettingPage();
             NodeSetPage nodeSet = set.enterNodeSetPage();
             SettingPage settingPage = nodeSet.enterSettingPageChoiseMainChain();
-            return fastFindMainChain(settingPage.textArray);
+            boolean ismain = fastFindMainChain(settingPage.textArray);
+            mine = settingPage.enterMinePage();
+            mine.enterAssetPage();
+            return  ismain;
         }
+    }
+    public static void switchToReleaseNet(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        MinePage minePage = asset.enterMinePage();
+        SettingPage settingPage = minePage.enterSettingPage();
+        settingPage.switchToRelease();
+        minePage = settingPage.enterMinePage();
+        minePage.enterAssetPage();
+    }
+
+    public static void switchToDevNet(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        MinePage minePage = asset.enterMinePage();
+        SettingPage settingPage = minePage.enterSettingPage();
+        settingPage.switchToDev();
+        minePage = settingPage.enterMinePage();
+        minePage.enterAssetPage();
     }
 
 
