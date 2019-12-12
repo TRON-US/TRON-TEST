@@ -27,6 +27,7 @@ public class SendTrx extends BaseTest {
 
     @Test(description = "input Privatekey to Receiving address",alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         Helper.tapWhitePlace(transfer.driver);
@@ -139,7 +140,8 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("0.000001");
         Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
-        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
+        transfer.transferNow_btn.click();
+        Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
     }
 
 

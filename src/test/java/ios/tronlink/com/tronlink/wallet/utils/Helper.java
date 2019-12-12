@@ -2,6 +2,10 @@ package ios.tronlink.com.tronlink.wallet.utils;
 
 
 import io.appium.java_client.TouchAction;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.NodeSetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.SettingPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -68,7 +72,12 @@ public class Helper {
            driver.findElementByName(name);
            return  true;
        }catch (org.openqa.selenium.NoSuchElementException ex){
-           return  false;
+           try {
+               driver.findElementById(name);
+               return  true;
+           }catch (org.openqa.selenium.NoSuchElementException eex){
+               return  false;
+           }
        }
     }
 
@@ -86,9 +95,38 @@ public class Helper {
             getSignStep(testPrivateKey);
         }catch (Exception e){
         }
+    }
+    public static boolean guaranteeMainChain(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        if(fastFindMainChain(asset.textArray)){
+            return true;
+        }else{
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            SettingPage settingPage = nodeSet.enterSettingPageChoiseMainChain();
+            boolean ismain = fastFindMainChain(settingPage.textArray);
+            mine = settingPage.enterMinePage();
+            mine.enterAssetPage();
+            return  ismain;
+        }
+    }
+    public static void switchToReleaseNet(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        MinePage minePage = asset.enterMinePage();
+        SettingPage settingPage = minePage.enterSettingPage();
+        settingPage.switchToRelease();
+        minePage = settingPage.enterMinePage();
+        minePage.enterAssetPage();
+    }
 
-
-
+    public static void switchToDevNet(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        MinePage minePage = asset.enterMinePage();
+        SettingPage settingPage = minePage.enterSettingPage();
+        settingPage.switchToDev();
+        minePage = settingPage.enterMinePage();
+        minePage.enterAssetPage();
     }
 
 
@@ -112,18 +150,24 @@ public class Helper {
         }
         try {
             findWebElement("私钥导入").click();
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextView")).sendKeys(testPrivateKey);
-            findWebElement("Done").click();
+            DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(testPrivateKey);
+//            findWebElement("Done").click();
+            tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
             TimeUnit.SECONDS.sleep(7);
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeTextField")).sendKeys("Auto_test");
-            findWebElement("Done").click();
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys("Auto_test");
+            tapWhitePlace(DRIVER);
+//            findWebElement("Done").click();
             findWebElement("下一步").click();
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeSecureTextField")).sendKeys("Test0001");
-            findWebElement("Done").click();
+            TimeUnit.SECONDS.sleep(5);
+            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+            tapWhitePlace(DRIVER);
+//            findWebElement("Done").click();
             findWebElement("下一步").click();
-            DRIVER.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeSecureTextField")).sendKeys("Test0001");
-            findWebElement("Done").click();
+            TimeUnit.SECONDS.sleep(5);
+            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+            tapWhitePlace(DRIVER);
+//            findWebElement("Done").click();
             findWebElement("完成").click();
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){}

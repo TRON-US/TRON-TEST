@@ -173,14 +173,16 @@ public class ImportPrivateKey extends BaseTest {
 //        System.out.println(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]);
 //        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
 //    }
-
-    @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test016_testDeletePrivateKeywalletSuccess() throws InterruptedException {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        walletPage.deletWallet("Test0001");
-        Thread.sleep(2);
-        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
-    }
+//
+//    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+//    public void  test016_testDeletePrivateKeywalletSuccess() throws InterruptedException {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        walletPage.deletWallet("Test0001");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(Helper.isElementExist(DRIVER,"冷钱包"));
+//
+////        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
+//    }
 }

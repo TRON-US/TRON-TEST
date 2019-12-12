@@ -100,8 +100,15 @@ public class SettingPage extends AbstractPage {
 
     @FindBy(name =  "MainChain")
     public WebElement MainChain_btn;
-    @FindBy(name =  "DappChain")
-    public WebElement DappChain_btn;
+
+    @FindBy(id =  "切换版本")
+    public WebElement switchVersionBtn;
+
+    @FindBy(name = "正式版本")
+    public  WebElement releaseBtn;
+
+    @FindBy(name = "测试版本")
+    public  WebElement devBtn;
 
     @FindBy(className = "XCUIElementTypeStaticText")
     public List<WebElement> textArray;
@@ -178,6 +185,14 @@ public class SettingPage extends AbstractPage {
 
 
 
+    public void switchToRelease(){
+        switchVersionBtn.click();
+        releaseBtn.click();
+    }
 
+    public void switchToDev(){
+        switchVersionBtn.click();
+        devBtn.click();
+    }
 
 }

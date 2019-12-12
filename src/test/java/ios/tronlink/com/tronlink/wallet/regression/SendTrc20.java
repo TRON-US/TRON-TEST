@@ -22,6 +22,7 @@ public class SendTrc20 extends BaseTest {
 
     @Test(description = "ssendaddressChanged test", alwaysRun = true)
     public void tsst001_sendaddressChanged() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
@@ -32,7 +33,8 @@ public class SendTrc20 extends BaseTest {
     public void tsst002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
-        Assert.assertTrue(transfer.send_btn.isEnabled());
+        transfer.transferNow_btn.click();
+        Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
     }
 
 
