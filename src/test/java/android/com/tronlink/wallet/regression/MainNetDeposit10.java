@@ -140,7 +140,7 @@ public class MainNetDeposit10 extends Base {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("hits");
-        Assert.assertTrue(info.equals("智能合约") || info.contains("smart contract"));
+        Assert.assertTrue(info.contains("智能合约") || info.contains("smart contract"));
     }
 
 
