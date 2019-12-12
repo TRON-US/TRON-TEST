@@ -15,7 +15,7 @@ public class BaseTest  extends Base {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(){
+    public void afterMethod() throws Exception {
         DRIVER.closeApp();
         DRIVER.launchApp();
     }
