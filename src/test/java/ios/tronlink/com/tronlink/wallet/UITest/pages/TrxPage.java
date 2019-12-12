@@ -126,7 +126,7 @@ public class TrxPage extends AbstractPage {
     public TransferPage enterTransferInPage() throws Exception {
         System.out.println(transferIn_btnArray.size());
         transferIn_btnArray.get(1).click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return new TransferPage(driver);
     }
     public TransferPage enterTransferOutPage() throws Exception {

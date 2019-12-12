@@ -23,7 +23,6 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         Assert.assertTrue(Helper.contentTexts(importKeystorePage.textArray,"Keystore 导入"));
 
-
     }
 
     @Test(description = "test  input wrong format Keystore",alwaysRun = true)
@@ -39,22 +38,23 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
         Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '密码错误'").isDisplayed());
-
     }
 
-    @Test(description = "test have KeyStore",alwaysRun = true)
-    public void test000_getKeyStore() throws Exception {
+
+    @Test(description = "test  input haved Keystore",alwaysRun = true)
+    public void test004_inputhavedKeystore() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
         oldKeystore = walletPage.getBackupKeystore("Test0001");
-    }
-
-    @Test(description = "test  input haved Keystore",alwaysRun = true)
-    public void test004_inputhavedKeystore() throws Exception {
+        System.out.println("oldKeystore:" + oldKeystore);
+        walletPage.backbtn.click();
+        walletPage.enterAssetPage();
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
-        Assert.assertTrue(DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '钱包已存在'").isDisplayed());
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包已存在"));
     }
 
     @Test(description = "test import Keystore name Too long number",alwaysRun = true)
@@ -91,13 +91,14 @@ public class ImportKeystore extends BaseTest {
 ////        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
 //    }
 
-    @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test008_testDeletewalletSuccess() throws InterruptedException {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        walletPage.deletWallet("Test0001");
-        Thread.sleep(2);
-        Assert.assertNotEquals(DRIVER.findElementByName("trxLabel").getText().split(" ")[0],"0");
-    }
+//    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+//    public void  test008_testDeletewalletSuccess() throws InterruptedException {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        walletPage.deletWallet("Test0001");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(Helper.isElementExist(DRIVER,"冷钱包"));
+////        Assert.assertNotEquals(DRIVER.findElementByName("trxLabel").getText().split(" ")[0],"0");
+//    }
 }
