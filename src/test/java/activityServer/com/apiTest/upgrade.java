@@ -21,7 +21,7 @@ public class upgrade {
     public void upgrade() throws Exception {
         param.put("packageName","com.tronlink.wallet");
         param.put("DownloadPlatform","googlePlayAisle");
-        param.put("DeviceID","xxxhsjxxx");
+        param.put("DeviceID","sdfsasdfsa");
         param.put("Lang","1");
         param.put("Version","3.2.0");
         param.put("System","Android");
