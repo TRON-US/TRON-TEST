@@ -33,7 +33,7 @@ public class PrivateKeySetNamePage extends AbstractPage {
     public List<WebElement> error_hits;
 
     public String  getError_hits(){
-        return error_hits.get(2).getText();
+        return error_hits.get(0).getText() + error_hits.get(1).getText() + error_hits.get(2).getText();
     }
 
     public WebElement getNext_btn(){
