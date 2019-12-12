@@ -64,6 +64,10 @@ public class MinePage extends AbstractPage {
     public WebElement assets_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/committee_proposals")
+    public WebElement committeeProposals_btn;
+
+
 
     //enter about us Page
     public AboutUsPage enterAboutUsPage(){
@@ -132,6 +136,17 @@ public class MinePage extends AbstractPage {
             System.out.println(e);
         }
         return new MyPursePage(driver);
+    }
+
+
+    public CommitteeProposalPage enterCommitteeProposalPage(){
+        try {
+            committeeProposals_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new CommitteeProposalPage(driver);
     }
 
 
