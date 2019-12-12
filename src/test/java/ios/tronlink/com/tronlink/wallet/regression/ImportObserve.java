@@ -81,18 +81,19 @@ public class ImportObserve extends BaseTest {
         namePage.name_input.sendKeys("Auto_test");
         Helper.tapWhitePlace(DRIVER);
         String hits = namePage.getError_hits();
+        System.out.println(hits);
         Assert.assertTrue(hits.contains("钱包名已存在") || hits.contains("already exists"));
     }
 
-    @Test(description = "Observe The same name but different capitalization", alwaysRun = true)
-    public void test008_ObservesameNameButDifferentCapitalization() throws Exception {
-        ObservePage importObservePage = enterImportObservePage();
-        importObservePage.inputAddreseString(addressNew);
-        PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
-        namePage.name_input.sendKeys("AUto_test");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(namePage.getComplish_btn().isEnabled());
-    }
+//    @Test(description = "Observe The same name but different capitalization", alwaysRun = true)
+//    public void test008_ObservesameNameButDifferentCapitalization() throws Exception {
+//        ObservePage importObservePage = enterImportObservePage();
+//        importObservePage.inputAddreseString(addressNew);
+//        PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
+//        namePage.name_input.sendKeys("AUto_test");
+//        Helper.tapWhitePlace(DRIVER);
+//        Assert.assertTrue(namePage.getComplish_btn().isEnabled());
+//    }
 
 
 // 不添加因为有风险，删除时候找不到元素就会导致其他案例失败
@@ -109,14 +110,4 @@ public class ImportObserve extends BaseTest {
 //        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
 //    }
 
-    @Test(description = "test Delete Observe Wallet ",alwaysRun = true)
-    public void  test010_testDeleteObservewalletSuccess() throws InterruptedException {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        walletPage.deleteObserveWallet();
-        TimeUnit.SECONDS.sleep(3);
-        Thread.sleep(2);
-        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
-    }
 }

@@ -45,8 +45,11 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "com.tronlink.wallet:id/tv_create")
     public WebElement newCreate_btn;
 
-    @FindBy(name = "com.tronlink.wallet:id/rl_keystore2")
-    public WebElement backupKeystore_btn;
+    @FindBy(name = "black path")
+    public WebElement backbtn;
+
+    @FindBy(name = "资源")
+    public WebElement asset_btn;
 
     @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement password_et;
@@ -100,7 +103,7 @@ public class MyPursePage extends AssetPage {
             WebElement  confirm_btn;
             confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             keystore = keystore_text.getText();
             done_btn.click();
         }catch (Exception e){
@@ -194,6 +197,9 @@ public String getBackupKeystoreInClipboard(String password){
         return address;
     }
 
-
+    public AssetPage enterAssetPage(){
+        asset_btn.click();
+        return new AssetPage(driver);
+    }
 
 }

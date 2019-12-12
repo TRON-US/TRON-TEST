@@ -71,7 +71,8 @@ public class DappSendTrc20 extends BaseTest {
     public void tsst002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
-        Assert.assertTrue(transfer.send_btn.isEnabled());
+        transfer.transferNow_btn.click();
+        Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
     }
 
 

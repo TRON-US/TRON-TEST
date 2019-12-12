@@ -34,17 +34,18 @@ public class DappFrozenTest extends BaseTest {
         return asset.enterFrozenAndThawingPage();
     }
 
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        String chain = transferOut.chain_text.getText();
-        Assert.assertTrue(chain.contains("MainChain"));
-    }
+//    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+//    public void test000_GuaranteeChainName() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage transferOut = trx.enterTransferOutPage();
+//        String chain = transferOut.chain_text.getText();
+//        Assert.assertTrue(chain.contains("MainChain"));
+//    }
 
 
     @Test(description = "enter Details of the rules", alwaysRun = true)
-    public void test001_enterDetailsOfTheRules()  {
+    public void test001_enterDetailsOfTheRules() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         FrozenAndUnfreezePage frozen = interferonPage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
         Assert.assertTrue(Helper.isElementExist(detailsAndRules.driver,"TRX冻结解冻细则"));
@@ -150,27 +151,27 @@ public class DappFrozenTest extends BaseTest {
         Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
   }
 
-    @Test(description = "freeze Energy with Error Receiving Address", alwaysRun = true)
-    public void test014_freezeEnergyErrorReceivingAddress() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.inputFrozenCount("1");
-        frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
-        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-//        String prompt = frozen.errorAddress_hits.getText();
-//        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
-    }
-
-
-    @Test(description = "freeze Energy with not active Receiving Address", alwaysRun = true)
-    public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.inputFrozenCount("1");
-        frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
-        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-
-//        String prompt = frozen.errorAddress_hits.getText();
-//        Assert.assertTrue(prompt.contains("未在TRON网络上激活") || prompt.contains("has not been activated"));
-    }
+//    @Test(description = "freeze Energy with Error Receiving Address", alwaysRun = true)
+//    public void test014_freezeEnergyErrorReceivingAddress() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.inputFrozenCount("1");
+//        frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
+//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+////        String prompt = frozen.errorAddress_hits.getText();
+////        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
+//    }
+//
+//
+//    @Test(description = "freeze Energy with not active Receiving Address", alwaysRun = true)
+//    public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.inputFrozenCount("1");
+//        frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
+//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+//
+////        String prompt = frozen.errorAddress_hits.getText();
+////        Assert.assertTrue(prompt.contains("未在TRON网络上激活") || prompt.contains("has not been activated"));
+//    }
 
     /**
     freeze Energy
