@@ -61,7 +61,8 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/iv_switch")
     public WebElement switchFirst_btn;
 
-
+    @FindBy(className = "XCUIElementTypeSwitch")
+    public List<WebElement> switchArr;
 
 
     public SearchAssertPage enterSearchAssertPage(){
@@ -88,5 +89,15 @@ public class AddAssertPage extends AbstractPage {
         }
 
     }
-
+    /**
+     * turn off assert(close)
+     */
+    public void cloeAssert(){
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            switchArr.get(switchArr.size() - 1).click();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }
