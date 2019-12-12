@@ -4,6 +4,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SearchAssertPage extends AddAssertPage {
@@ -27,6 +28,8 @@ public class SearchAssertPage extends AddAssertPage {
     @FindBy(name = "testAssetIssue_1567077083240 (), 0, ID 1000027")
     public WebElement turnAsset_btn;
 
+    @FindBy(className = "XCUIElementTypeSwitch")
+    public List<WebElement> switchArr;
 
     @FindBy(name = "Done")
     public WebElement keyboard_btn;
@@ -42,27 +45,13 @@ public class SearchAssertPage extends AddAssertPage {
     public void openAssert(){
         try {
             TimeUnit.SECONDS.sleep(1);
-            if (turnAsset_btn.isSelected() == false){
-                turnAsset_btn.click();
-            }
+            switchArr.get(0).click();
         }catch (Exception e){
             System.out.println(e);
         }
     }
 
-    /**
-     * turn off assert(close)
-     */
-    public void cloeAssert(){
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            if (turnAsset_btn.isSelected() == true){
-                turnAsset_btn.click();
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
+
 
 
     public AddAssertPage enterAddAssertPage(){
