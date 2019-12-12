@@ -109,33 +109,9 @@ public class MainNetDeposit20 extends BaseTest {
         String val = transferIn.getvalueofBandwidthText();
         int count = Integer.parseInt(removeSymbol(val));
         System.out.println("-------:----");
-        Assert.assertTrue(50 <= count && count <= 500);
+        Assert.assertTrue(50 <= count && count <= 1000);
     }
 
-
-
-    @Test(description = "Check Available Balance",enabled = false)
-    public void test006_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn = trx.enterTransferPage();
-        int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
-        Assert.assertTrue(trxCount == availableBalance);
-    }
-
-
-
-    @Test(description = "TransferIn Success Checkout Available trc20",enabled = false)
-    public void test007_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
-        trx = transferIn.enterTrxPageWithTransferSuccess();
-        AssetPage page = trx.enterAssetPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrx10Count()));
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
-    }
 
 
 
