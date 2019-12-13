@@ -213,6 +213,16 @@ public class api {
         Assert.assertTrue(api.verificationResult(response));
         return response;
     }
+
+    public static HttpResponse lotteryData() throws Exception{
+        final String requesturl = HttpNode + "/api/wallet/lottery/default_data";
+        URIBuilder builder = new URIBuilder(requesturl);
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
     public static HttpResponse inviteLeaderBoard(HashMap<String,String> param) throws Exception{
         final String requesturl = HttpNode + "/api/wallet/invite/list";
         URIBuilder builder = new URIBuilder(requesturl);
@@ -221,6 +231,26 @@ public class api {
                 builder.addParameter(key, param.get(key));
             }
         }
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
+    public static HttpResponse trxPrice() throws Exception{
+        final String requesturl = HttpNode + "/api/v1/wallet/trxPrice";
+        URIBuilder builder = new URIBuilder(requesturl);
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
+    public static HttpResponse getCoinCapTrxPrice() throws Exception{
+        final String requesturl = HttpNode + "/api/v1/wallet/getCoinCapTrxPrice";
+        URIBuilder builder = new URIBuilder(requesturl);
         URI uri = builder.build();
         System.out.println(uri);
         response = createGetConnect(uri);
@@ -243,6 +273,19 @@ public class api {
     public static HttpResponse getNodeInfo(String param) throws Exception {
         final String requestUrl = HttpNode + "/api/wallet/node_info";
         response = createConnect(requestUrl, param);
+        return response;
+    }
+
+    public static HttpResponse getHotToken(JSONObject param,HashMap<String,String> header) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/hot_token";
+        URIBuilder builder = new URIBuilder(requestUrl);
+        if (header != null) {
+            for (String key : header.keySet()) {
+                builder.addParameter(key, header.get(key));
+            }
+        }
+        URI uri = builder.build();
+        response = createConnect(requestUrl,param, header);
         return response;
     }
 
@@ -477,6 +520,32 @@ public class api {
             httppost.setHeader("Connection", "Close");
             if (!requestBody.isEmpty()) {
                 StringEntity entity = new StringEntity(requestBody);
+                entity.setContentEncoding("UTF-8");
+                entity.setContentType("application/json");
+                httppost.setEntity(entity);
+            }
+            response = httpClient.execute(httppost);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        return response;
+    }
+
+    public static HttpResponse createConnect(String url, JSONObject requestBody,HashMap<String,String> header) {
+        try {
+            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+                connectionTimeout);
+            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            httppost = new HttpPost(url);
+            for (HashMap.Entry<String,String> entry : header.entrySet()){
+                httppost.setHeader(entry.getKey(),entry.getValue());
+            }
+            httppost.setHeader("Content-type", "application/json; charset=utf-8");
+            httppost.setHeader("Connection", "Close");
+            if (requestBody != null) {
+                StringEntity entity = new StringEntity(requestBody.toString(), Charset.forName("UTF-8"));
                 entity.setContentEncoding("UTF-8");
                 entity.setContentType("application/json");
                 httppost.setEntity(entity);
