@@ -163,6 +163,7 @@ public class MainNetWithdraw extends Base {
         trx = transferOut.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
+        //exist = trx.getTrxVale();
         while (exist == false && tries < 5) {
             tries++;
             try {
@@ -171,7 +172,6 @@ public class MainNetWithdraw extends Base {
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
                 //todo 转出转入记录中没有最新数据
-                exist = trx.getTrxVale();
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
                 if (count.equals(tranferInCount)) {
                     exist = true;
