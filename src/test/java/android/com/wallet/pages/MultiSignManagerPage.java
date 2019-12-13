@@ -138,8 +138,9 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
     public ModifyPermissionPage enterModifyPermissionPage() throws Exception {
-        Helper.swipeLeftScreen(driver);
-        Helper.swipeLeftScreen(driver);
+        for (int i=0;i<=7;i++){
+            Helper.swipeLeftScreen(driver);
+        }
         more_btn.click();
         TimeUnit.SECONDS.sleep(2);
         try {
