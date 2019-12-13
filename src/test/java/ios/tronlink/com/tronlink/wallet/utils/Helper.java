@@ -89,11 +89,15 @@ public class Helper {
 
 
     public void getSignOperate(String testPrivateKey) throws Exception{
-        System.out.println("222222222222222");
+        System.out.println("0000000");
         try {
+            System.out.println("111111");
+
             findWebElement("导入钱包").click();
             getSignStep(testPrivateKey);
         }catch (Exception e){
+            System.out.println("33333");
+
         }
     }
     public static boolean guaranteeMainChain(IOSDriver driver) throws Exception {
@@ -154,7 +158,7 @@ public class Helper {
 //            findWebElement("Done").click();
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(7);
+            TimeUnit.SECONDS.sleep(20);
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys("Auto_test");
             tapWhitePlace(DRIVER);
 //            findWebElement("Done").click();
