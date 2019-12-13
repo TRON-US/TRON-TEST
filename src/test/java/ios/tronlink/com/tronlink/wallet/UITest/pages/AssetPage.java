@@ -124,7 +124,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name ="trxLabel")
     public WebElement trxValue;
 
-    @FindBy(name ="balanceLabel")
+    @FindBy(name ="nameLabel")
     public List<WebElement> cellArray;
 
     public VotePage enterVotePage(){
@@ -216,17 +216,15 @@ public EnergyRentPage entereneryRantage(){
 
 
     public TrxPage enterTrxPage() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,cellArray.get(0));
         cellArray.get(0).click();
-//        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
     }
 
 
     public TrxPage enterTrx10Page() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,cellArray.get(2));
         cellArray.get(2).click();
-//        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
     }
 
@@ -234,7 +232,7 @@ public EnergyRentPage entereneryRantage(){
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
         cellArray.get(1).click();
-//        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
     }
 
