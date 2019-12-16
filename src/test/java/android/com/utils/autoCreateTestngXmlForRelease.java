@@ -29,7 +29,7 @@ import java.util.List;
 public class autoCreateTestngXmlForRelease {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
     private String adb = "adb";
-    private String preClass = "<class name=\"android.com.tronlink.wallet.regression.";
+    private String preClass = "<class name=\"android.com.tronlink.wallet.";
     private String afterClass = "\"></class>";
     private String platformName = "Android";
     private Boolean noReset = false;
@@ -46,7 +46,7 @@ public class autoCreateTestngXmlForRelease {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
-    static List<String> classNameList;
+    static List<String> classNameList = new ArrayList<>();
 
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
@@ -172,7 +172,9 @@ public class autoCreateTestngXmlForRelease {
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
         String testCaseDir = "src/test/java/android/com/tronlink/wallet/regression";
-        classNameList = findNameList(testCaseDir,1);
+        classNameList = findNameList(classNameList,testCaseDir,1);
+        testCaseDir = "src/test/java/android/com/tronlink/wallet/committeeProposal";
+        classNameList = findNameList(classNameList,testCaseDir,1);
         Integer deviceIndex = 0;
         List<List<String>> classContent = new ArrayList<>();
 
@@ -490,8 +492,10 @@ public class autoCreateTestngXmlForRelease {
     }
 
 
-    public static List<String> findNameList(String pathName,int depth) throws IOException{
-        List<String> nameList = new ArrayList<>();
+    public static List<String> findNameList(List<String> nameList,String pathName,int depth) throws IOException{
+        //List<String> nameList = new ArrayList<>();
+        String[] dirNameArray = pathName.split("/");
+        String dirName = dirNameArray[dirNameArray.length - 1];
         int filecount=0;
         //获取pathName的File对象
         File dirFile = new File(pathName);
@@ -525,7 +529,7 @@ public class autoCreateTestngXmlForRelease {
             //如果是一个目录，搜索深度depth++，输出目录名后，进行递归
             if (file.isDirectory()) {
                 //递归
-                findNameList(file.getCanonicalPath(),currentDepth);
+                findNameList(nameList,file.getCanonicalPath(),currentDepth);
             }else{
                 //如果是文件，则直接输出文件名
                 for (int j = 0; j < currentDepth; j++) {
@@ -533,7 +537,7 @@ public class autoCreateTestngXmlForRelease {
                 }
                 System.out.print("|--");
                 System.out.println(name);
-                nameList.add(name);
+                nameList.add(dirName + "." + name);
 
             }
         }

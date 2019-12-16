@@ -29,6 +29,7 @@ public class autoCreateTestngXml {
     //private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
     private String adb = "adb";
     private String packagesName = "<package name=\"android.com.tronlink.wallet.regression.*\"></package>";
+    private String singleTestPackagesName = "<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>";
     private String platformName = "Android";
     private Boolean noReset = false;
     private Integer systemPort = 8200;
@@ -173,6 +174,7 @@ public class autoCreateTestngXml {
         StringBuilder sb = new StringBuilder();
 
         {
+            int singleTestPackageIndex = 0;
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
             for (Iterator<String> it = deviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
                 HashMap.Entry<String, String> entry = entries.next();
@@ -209,9 +211,12 @@ public class autoCreateTestngXml {
                     "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
                         + "\"/>\n");
                 sb.append("        <packages>\n" +
-                    "            " + packagesName + "\n" +
-                    "        </packages>\n" +
-                    "    </test>\n");
+                    "            " + packagesName + "\n");
+                if (singleTestPackageIndex++ == 0) {
+                    sb.append("            " + singleTestPackagesName + "\n");
+                }
+                sb.append("        </packages>\n");
+                sb.append("    </test>\n");
                 it.remove();
             }
         }
