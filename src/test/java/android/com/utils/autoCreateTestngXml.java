@@ -29,7 +29,7 @@ public class autoCreateTestngXml {
     //private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
     private String adb = "adb";
     private String packagesName = "<package name=\"android.com.tronlink.wallet.regression.*\"></package>";
-    private String singleTestPackagesName = "<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>";
+    private List<String> singleTestPackagesNameList = new ArrayList<>();
     private String platformName = "Android";
     private Boolean noReset = false;
     private Integer systemPort = 8200;
@@ -58,6 +58,7 @@ public class autoCreateTestngXml {
     @BeforeClass
     public void beforeClass() throws IOException{
         try {
+            singleTestPackagesNameList.add("<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>");
             deviceNameList = AppiumTestCase.getDeviceList(adb + " devices");
         } catch (Exception e) {
             adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
@@ -213,7 +214,10 @@ public class autoCreateTestngXml {
                 sb.append("        <packages>\n" +
                     "            " + packagesName + "\n");
                 if (singleTestPackageIndex++ == 0) {
-                    sb.append("            " + singleTestPackagesName + "\n");
+                    for (int i = 0; i < singleTestPackagesNameList.size();i++) {
+                        sb.append("            " + singleTestPackagesNameList.get(i) + "\n");
+                    }
+
                 }
                 sb.append("        </packages>\n");
                 sb.append("    </test>\n");
