@@ -11,7 +11,7 @@ public class lotteryData {
   private HttpResponse response;
 
   @Test(enabled = true, description = "Api GET /api/wallet/lottery/default_data test")
-  public void test001LotteryRecord() throws Exception {
+  public void test001LotteryData() throws Exception {
     response = api.lotteryData();
     JSONObject lotteryDataInfo = api.parseResponseContent(response);
     api.printJsonContent(lotteryDataInfo);

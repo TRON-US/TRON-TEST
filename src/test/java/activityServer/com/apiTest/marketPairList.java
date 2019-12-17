@@ -12,7 +12,7 @@ public class marketPairList {
   private HttpResponse response;
 
   @Test(enabled = true, description = "Api GET /api/exchange/marketPair/list test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001MarketPairList() throws Exception {
 
     response = api.marketPairList();
 

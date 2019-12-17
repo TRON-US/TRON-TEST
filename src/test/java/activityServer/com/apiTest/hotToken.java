@@ -16,7 +16,7 @@ public class hotToken {
   private HashMap<String,String> header = new HashMap<>();
 
   @Test(enabled = true, description = "Api POST /api/wallet/hot_token test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001HotToken() throws Exception {
 //    addressJson.put("address", api.testAddressBase64);
     addressJson.put("address", "417d0ccaab6375b9e1c26f370d723a1a1ac2175b41");
     header.put("DeviceID","sdfsasdfsa");
