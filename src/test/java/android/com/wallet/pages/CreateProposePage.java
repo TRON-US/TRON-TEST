@@ -41,6 +41,14 @@ public class CreateProposePage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_reset")
+    public WebElement reset_btn;
+
+
+
+
+
+
     public CommitteeProposalPage createProposal() throws Exception {
         proValue_ipt.get(1).clear();
         proValue_ipt.get(1).sendKeys("9997");
