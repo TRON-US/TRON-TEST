@@ -12,7 +12,7 @@ public class invite_leaderBoard {
   private HashMap<String, String> parameter = new HashMap();
 
   @Test(enabled = true, description = "Api GET /api/wallet/invite/leaderBoard test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001InviteLeaderBoard() throws Exception {
     parameter.put("start", "1");
     parameter.put("limit","20");
     response = api.inviteLeaderBoard(parameter);

@@ -12,7 +12,7 @@ public class getCoinCapTrxPrice {
 
   private HttpResponse response;
   @Test(enabled = true, description = "Api /api/v1/wallet/getCoinCapTrxPrice  test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001CoinCapTrxPrice() throws Exception {
     response = api.getCoinCapTrxPrice();
 
     JSONObject jsonObject = api.parseResponseContent(response);

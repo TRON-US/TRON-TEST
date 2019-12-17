@@ -13,7 +13,7 @@ public class trxPrice {
   private JSONObject responseContent;
 
   @Test(enabled = true, description = "Api /api/v1/wallet/trxPrice test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001TrxPrice() throws Exception {
     response = api.trxPrice();
 
     JSONObject jsonObject = api.parseResponseContent(response);
