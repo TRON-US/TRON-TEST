@@ -12,7 +12,7 @@ public class invite_getCode {
   private JSONObject parameter = new JSONObject();
 
   @Test(enabled = true, description = "Api POST /api/wallet/invite/get_code test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001InviteGetCode() throws Exception {
     parameter.put("address", api.testAddressBase64);
     response = api.getInviteCode(parameter);
 

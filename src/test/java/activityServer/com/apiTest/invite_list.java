@@ -11,7 +11,7 @@ public class invite_list {
   private HashMap<String,String> parameter = new HashMap();
 
   @Test(enabled = true, description = "Api GET /api/wallet/invite/list test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001InviteList() throws Exception {
     parameter.put("address", api.testAddressBase64);
     parameter.put("system","Android");
     parameter.put("deviceId","xxxxxx2x");

@@ -12,7 +12,7 @@ public class getNodeInfo {
   private HttpResponse response;
 
   @Test(enabled = true, description = "Api POST /api/wallet/node_info")
-  public void test001AllClassAsset() throws Exception {
+  public void test001NodeInfo() throws Exception {
 //    parameter.put("System", "Android");
 //    parameter.put("DeviceID","xxxx2xxx");
     String parameter = "[{\"12sfa4\":1},{\"12sfa5\":1}]";
