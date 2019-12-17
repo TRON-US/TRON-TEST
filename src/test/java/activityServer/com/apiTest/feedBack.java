@@ -12,7 +12,7 @@ public class feedBack {
   private JSONObject parameter = new JSONObject();
 
   @Test(enabled = true, description = "Api POST /api/v1/wallet/feedback test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001FeedBack() throws Exception {
     parameter.put("title", "test");
     parameter.put("system","Android");
     parameter.put("depict","test test test test test");

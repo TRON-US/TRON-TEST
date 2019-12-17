@@ -11,7 +11,7 @@ public class invite_code {
   private JSONObject addressJson = new JSONObject();
 
   @Test(enabled = true, description = "Api POST /api/wallet/invite/code test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001InviteCode() throws Exception {
 //    addressJson.put("address", api.testAddressBase64);
     addressJson.put("invitedCode", "10000");
     response = api.insertInviteCode(addressJson);

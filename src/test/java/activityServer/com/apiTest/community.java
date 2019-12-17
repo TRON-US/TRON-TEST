@@ -10,7 +10,7 @@ public class community {
   private HttpResponse response;
 
   @Test(enabled = true, description = "Api GET /api/v1/wallet/community test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001Community() throws Exception {
     response = api.community();
 
     JSONObject jsonObject = api.parseResponseContent(response);

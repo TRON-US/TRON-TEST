@@ -13,7 +13,7 @@ public class versionLog {
   private HashMap<String,String> parameter = new HashMap();
 
   @Test(enabled = true, description = "Api GET /api/v1/wallet/version_log test")
-  public void test001AllClassAsset() throws Exception {
+  public void test001VersionLog() throws Exception {
     parameter.put("lang", "2");
     parameter.put("system","Android");
     response = api.getVersionLog(parameter);
