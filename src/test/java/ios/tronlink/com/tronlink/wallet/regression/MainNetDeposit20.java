@@ -135,7 +135,8 @@ public class MainNetDeposit20 extends BaseTest {
         TransferPage transferIn =  trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         AssetPage page = trx.enterAssetPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrx10Count()));
+        trx =  page.enterTrx20Page();
+        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
