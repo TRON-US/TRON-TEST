@@ -237,6 +237,20 @@ public class api {
         Assert.assertTrue(api.verificationResult(response));
         return response;
     }
+    public static HttpResponse getVersionLog(HashMap<String,String> param) throws Exception{
+        final String requesturl = HttpNode + "/api/v1/wallet/version_log";
+        URIBuilder builder = new URIBuilder(requesturl);
+        if (param != null) {
+            for (String key : param.keySet()) {
+                builder.addParameter(key, param.get(key));
+            }
+        }
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
 
     public static HttpResponse trxPrice() throws Exception{
         final String requesturl = HttpNode + "/api/v1/wallet/trxPrice";
@@ -258,6 +272,26 @@ public class api {
         return response;
     }
 
+    public static HttpResponse getLatestAPK() throws Exception{
+        final String requesturl = HttpNode + "/api/v1/wallet/getLatestAPK";
+        URIBuilder builder = new URIBuilder(requesturl);
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
+    public static HttpResponse community() throws Exception{
+        final String requesturl = HttpNode + "/api/v1/wallet/community";
+        URIBuilder builder = new URIBuilder(requesturl);
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
     public static HttpResponse getInviteCode(JSONObject param) throws Exception {
         final String requestUrl = HttpNode + "/api/wallet/invite/get_code";
         response = createConnect(requestUrl, param);
@@ -266,6 +300,12 @@ public class api {
 
     public static HttpResponse insertInviteCode(JSONObject param) throws Exception {
         final String requestUrl = HttpNode + "/api/wallet/invite/code";
+        response = createConnect(requestUrl, param);
+        return response;
+    }
+
+    public static HttpResponse feedBack(JSONObject param) throws Exception {
+        final String requestUrl = TEST_HOST + "/api/v1/wallet/feedback";
         response = createConnect(requestUrl, param);
         return response;
     }
