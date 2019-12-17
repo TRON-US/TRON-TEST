@@ -252,6 +252,21 @@ public class api {
         return response;
     }
 
+    public static HttpResponse transactionHistory(HashMap<String,String> param) throws Exception{
+        final String requesturl = HttpNode + "/api/simple-transaction";
+        URIBuilder builder = new URIBuilder(requesturl);
+        if (param != null) {
+            for (String key : param.keySet()) {
+                builder.addParameter(key, param.get(key));
+            }
+        }
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
     public static HttpResponse trxPrice() throws Exception{
         final String requesturl = HttpNode + "/api/v1/wallet/trxPrice";
         URIBuilder builder = new URIBuilder(requesturl);
@@ -284,6 +299,16 @@ public class api {
 
     public static HttpResponse community() throws Exception{
         final String requesturl = HttpNode + "/api/v1/wallet/community";
+        URIBuilder builder = new URIBuilder(requesturl);
+        URI uri = builder.build();
+        System.out.println(uri);
+        response = createGetConnect(uri);
+        Assert.assertTrue(api.verificationResult(response));
+        return response;
+    }
+
+    public static HttpResponse marketPairList() throws Exception{
+        final String requesturl = HttpNode + "/api/exchange/marketPair/list";
         URIBuilder builder = new URIBuilder(requesturl);
         URI uri = builder.build();
         System.out.println(uri);
