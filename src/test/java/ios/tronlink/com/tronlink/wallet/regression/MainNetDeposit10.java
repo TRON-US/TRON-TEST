@@ -142,6 +142,7 @@ public class MainNetDeposit10 extends BaseTest {
         TransferPage transferIn =  trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         AssetPage page = trx.enterAssetPage();
+        TimeUnit.SECONDS.sleep(5);
         int trxCountNow = Integer.parseInt(removeSymbol(page.getTrx10Count()));
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
