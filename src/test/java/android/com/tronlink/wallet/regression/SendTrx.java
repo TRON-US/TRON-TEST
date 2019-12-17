@@ -165,26 +165,26 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "SendTrx success test", alwaysRun = true)
-    public void tsst012_sendTrxSuccess() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        SendTrxPage transfer = asset.enterSendTrxPage();
-//        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-//        transfer.tranferCount_text.sendKeys("1");
-//        transfer.swip();
-//        transfer.send_btn.click();
-//        transfer.transferNow_btn.click();
-//        transfer.InputPasswordConfim_btn.sendKeys("Test0001");
-//        SendTrxSuccessPage stsp = transfer.enterSendTrxSuccessPage();
-//        String trxValueNewest = stsp.trxCount.getText();
-//        System.out.println(trxValue+"-----"+trxValueNewest);
-//        int NewestTrx = Integer.valueOf(removeSymbol(trxValueNewest));
-        SendTrxSuccessPage stsp = transfer.normalSendTrx();
-        asset = stsp.enterSendTrxPage();
-        int trxValueNewest = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        Assert.assertEquals(trxValue - 1, trxValueNewest);
-    }
+//    @Test(description = "SendTrx success test", alwaysRun = true)
+//    public void tsst012_sendTrxSuccess() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+//        SendTrxPage transfer = asset.enterSendTrxPage();
+////        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+////        transfer.tranferCount_text.sendKeys("1");
+////        transfer.swip();
+////        transfer.send_btn.click();
+////        transfer.transferNow_btn.click();
+////        transfer.InputPasswordConfim_btn.sendKeys("Test0001");
+////        SendTrxSuccessPage stsp = transfer.enterSendTrxSuccessPage();
+////        String trxValueNewest = stsp.trxCount.getText();
+////        System.out.println(trxValue+"-----"+trxValueNewest);
+////        int NewestTrx = Integer.valueOf(removeSymbol(trxValueNewest));
+//        SendTrxSuccessPage stsp = transfer.normalSendTrx();
+//        asset = stsp.enterSendTrxPage();
+//        int trxValueNewest = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+//        Assert.assertEquals(trxValue - 1, trxValueNewest);
+//    }
 
 
 }
