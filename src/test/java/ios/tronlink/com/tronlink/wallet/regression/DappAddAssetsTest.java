@@ -50,45 +50,45 @@ public class DappAddAssetsTest extends BaseTest {
     }
 
 
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        String chain = transferOut.chain_text.getText();
-        assertTrue(chain.contains("MainChain"));
-    }
-    @Test(description = "test add assert",alwaysRun = true)
-    public void test002_addAsset() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
-        SearchAssertPage searchAssertPage =addAssertPage.enterSearchAssertPage();
-        searchAssertPage.addAssert_input.sendKeys("1000027");
-        searchAssertPage.keyboard_btn.click();
-        searchAssertPage.turnAsset_btn.click();
-        addAssertPage = searchAssertPage.enterAddAssertPage();
-        assetPage = addAssertPage.enterAssetPage();
-        TimeUnit.SECONDS.sleep(2);
-        assertTrue(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
-    }
-
-
-
-    @Test(description = "test remove asset",alwaysRun = true)
-    public void test003_removeAsset() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        AddAssertPage addAssertPage =  assetPage.enterAddAssertPage();
-        addAssertPage.mainPageAssetManage_tab.click();
-        addAssertPage.hotAssetManage_tab.click();
-        addAssertPage.mainPageAssetManage_tab.click();
-        addAssertPage.hotAssetManage_tab.click();
-        addAssertPage.mainPageAssetManage_tab.click();
-        addAssertPage.hotAssetManage_tab.click();
-        addAssertPage.mainPageAssetManage_tab.click();
-        addAssertPage.turnAsset_btn.click();
-        assetPage =  addAssertPage.enterAssetPage();
-        TimeUnit.SECONDS.sleep(2);
-        assertFalse(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
-
-    }
+//    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+//    public void test000_GuaranteeChainName() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage transferOut = trx.enterTransferOutPage();
+//        String chain = transferOut.chain_text.getText();
+//        assertTrue(chain.contains("MainChain"));
+//    }
+//    @Test(description = "test add assert",alwaysRun = true)
+//    public void test002_addAsset() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
+//        SearchAssertPage searchAssertPage =addAssertPage.enterSearchAssertPage();
+//        searchAssertPage.addAssert_input.sendKeys("1000027");
+//        searchAssertPage.keyboard_btn.click();
+//        searchAssertPage.turnAsset_btn.click();
+//        addAssertPage = searchAssertPage.enterAddAssertPage();
+//        assetPage = addAssertPage.enterAssetPage();
+//        TimeUnit.SECONDS.sleep(2);
+//        assertTrue(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
+//    }
+//
+//
+//
+//    @Test(description = "test remove asset",alwaysRun = true)
+//    public void test003_removeAsset() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        AddAssertPage addAssertPage =  assetPage.enterAddAssertPage();
+//        addAssertPage.mainPageAssetManage_tab.click();
+//        addAssertPage.hotAssetManage_tab.click();
+//        addAssertPage.mainPageAssetManage_tab.click();
+//        addAssertPage.hotAssetManage_tab.click();
+//        addAssertPage.mainPageAssetManage_tab.click();
+//        addAssertPage.hotAssetManage_tab.click();
+//        addAssertPage.mainPageAssetManage_tab.click();
+//        addAssertPage.turnAsset_btn.click();
+//        assetPage =  addAssertPage.enterAssetPage();
+//        TimeUnit.SECONDS.sleep(2);
+//        assertFalse(Helper.isElementExist(assetPage.driver,"testAssetIssue_1567077083240"));
+//
+//    }
 
 }
