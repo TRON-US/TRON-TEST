@@ -91,6 +91,7 @@ public class MyPursePage extends AssetPage {
         return new AddwalletPage(driver);
     }
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         walletPassword_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new WalletPasswordPage(driver);
