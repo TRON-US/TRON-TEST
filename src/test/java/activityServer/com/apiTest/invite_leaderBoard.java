@@ -21,6 +21,5 @@ public class invite_leaderBoard {
     api.printJsonContent(inviteListInfo);
 
     JSONObject inviteList = inviteListInfo.getJSONObject("data");
-    api.printJsonContent(inviteList);
   }
 }
