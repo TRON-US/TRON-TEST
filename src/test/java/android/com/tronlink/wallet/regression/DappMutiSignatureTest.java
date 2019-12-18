@@ -86,7 +86,6 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(description = "MutiSignature Question Content Test", alwaysRun = true)
     public void test001_MutiSignatureQuestionContentTest() throws Exception {
-        changeDappchain();
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         String content = multiSignManager.questionClick();
         System.out.println("MutiSignature question content is : " + content);
