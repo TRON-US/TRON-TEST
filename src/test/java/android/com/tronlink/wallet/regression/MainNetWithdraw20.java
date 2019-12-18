@@ -120,7 +120,6 @@ public class MainNetWithdraw20 extends Base {
 
 
 
-
     @Test(description = "transferOut Success Recording", alwaysRun = true)
     public void test007_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
@@ -151,6 +150,10 @@ public class MainNetWithdraw20 extends Base {
         }
         Assert.assertTrue(exist);
     }
+
+
+}
+
 
 //    @AfterClass(alwaysRun = true)
 //    public void tearDownAfterClass() {
@@ -287,5 +290,3 @@ public class MainNetWithdraw20 extends Base {
 //        Assert.assertTrue(exist);
 //    }
 
-
-}
