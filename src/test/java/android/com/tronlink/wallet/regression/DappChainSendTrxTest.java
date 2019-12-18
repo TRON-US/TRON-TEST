@@ -26,7 +26,8 @@ public class DappChainSendTrxTest extends Base {
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlink.wallet");
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
 
@@ -48,8 +49,7 @@ public class DappChainSendTrxTest extends Base {
 
     @Test(description = "input Privatekey to Receiving address", alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {
-        changeDappchain();
-        //AssetPage asset = new AssetPage(DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         String hits = transfer.formatErrorHits_text.getText();
@@ -150,16 +150,5 @@ public class DappChainSendTrxTest extends Base {
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
 
-
-    @Test(description = "SendTrx success test", alwaysRun = true)
-    public void tsst012_sendTrxSuccess() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        int trxValue = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        SendTrxSuccessPage stsp = transfer.normalSendTrx();
-        asset = stsp.enterSendTrxPage();
-        int trxValueNewest = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        Assert.assertEquals(trxValue - 1, trxValueNewest);
-    }
 
 }
