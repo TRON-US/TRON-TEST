@@ -16,6 +16,8 @@ import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.SearchAssertPage;
 
 public class DappAddAssetsTest extends Base {
+
+
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -28,6 +30,7 @@ public class DappAddAssetsTest extends Base {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlink.wallet");
         }catch (Exception e){}
+
     }
 
     @AfterClass(alwaysRun = true)
@@ -41,7 +44,6 @@ public class DappAddAssetsTest extends Base {
 
     @Test(description = "test add assert", alwaysRun = true)
     public void test002_addAsset() throws Exception {
-        changeDappchain();
         AssetPage asset = new AssetPage(DRIVER);
         AddAssertPage addAssert = asset.enterAddAssertPage();
         SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
@@ -62,7 +64,7 @@ public class DappAddAssetsTest extends Base {
         addAssert.mainPageAssetManage_tab.get(1).click();
         //addAssert.removeAsset();
         //Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
-        Assert.assertTrue(addAssert.mainPageAssetManage_tab.get(0).isDisplayed());
+        Assert.assertTrue(addAssert.mainPageAssetManage_tab.get(1).isDisplayed());
     }
 
 }
