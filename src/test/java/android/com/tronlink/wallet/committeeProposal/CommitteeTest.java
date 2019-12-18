@@ -104,7 +104,6 @@ public class CommitteeTest extends Base {
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
-        //拿取这个值，然后对比？？？？？？？？？？？？？？？？？？？？
         createProposePage.proValue_ipt.get(1).clear();
         createProposePage.reset_btn.click();
         Assert.assertTrue(createProposePage.proValue_ipt.get(1).getText().equals("9999"));
@@ -139,6 +138,8 @@ public class CommitteeTest extends Base {
         ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
         Assert.assertTrue(proposalDetailsPage.proposalsState_btn.isDisplayed());
     }
+
+
 
     //............................
     //add 详情页显示  展示总票数
@@ -221,7 +222,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         committeeProposalPage.pw_input.sendKeys("Test0001");
         committeeProposalPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
         Assert.assertTrue(proposalDetailsPage.pproversPeo_text.isDisplayed());
     }
@@ -240,7 +241,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         committeeProposalPage.pw_input.sendKeys("Test0001");
         committeeProposalPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         Assert.assertTrue(committeeProposalPage.approveNum_text.getText()!="0");
     }
 
@@ -265,7 +266,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         committeeProposalPage.pw_input.sendKeys("Test0001");
         committeeProposalPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         String number = committeeProposalPage.approveNum_text.getText();
         System.out.println("number=" + number);
         Assert.assertTrue(number.equals("0"));
@@ -294,23 +295,73 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         String proposalStatus = committeeProposalPage.proposals_state_btn.getText();
         Assert.assertTrue(proposalStatus.equals("已取消"));
     }
 
 
+
     //提议撤销时间 关键字
+    @Test(description = "cancel proposal", alwaysRun = true)
+    public void test016_cancelProposalDetailsStatus() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.proposalsState_btn.isDisplayed());
+    }
 
 
-    //进入我发起的提议
+
+    @Test(description = "cancel proposal", alwaysRun = true)
+    public void test017_cancelProposalDetailsTimes() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.createTime_text.isDisplayed());
+    }
+
+
+
+
+    //我发起的提议
+    @Test(description = "my proposals ", alwaysRun = true)
+    public void test018_myProposals() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(committeeProposalPage.myProposals_text.getText() != "0");
+    }
+
+
 
 
     //我赞成的提议
+    @Test(description = "my Approve Proposals", alwaysRun = true)
+    public void test019_myApproveProposals() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(committeeProposalPage.myApproved_text.getText() != "0");
+    }
+
+
 
 
     //另一个入口发起提议，按钮可以点击就可以
-
+    @Test(description = "create Proposals Entrance", alwaysRun = true)
+    public void test020_createProposalsEntrance() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        TimeUnit.SECONDS.sleep(5);
+        MyProposalsPage myProposals = committeeProposalPage.enterMyProposals();
+        Assert.assertTrue(myProposals.createProposal_btn.isEnabled());
+    }
 
 
 
