@@ -17,12 +17,14 @@ import org.apache.http.util.EntityUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -31,6 +33,9 @@ public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-ios.xml";
     private String adb = "adb";
     private String packagesName = "<package name=\"ios.tronlink.com.tronlink.wallet.regression.*\"></package>";
+    private String preClass = "<class name=\"ios.tronlink.com.tronlink.wallet.";
+    private String afterClass = "\"></class>";
+    private List<String> dirList = new ArrayList<>();
     private String platformName = "iOS";
     private Boolean noReset = false;
     private Integer webDriverPort = 8100;
@@ -48,6 +53,9 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
+    static List<String> taskClassNameList = new ArrayList<>();
+    static List<String> taskSingleClassNameList = new ArrayList<>();
+    static List<String> singleClassNameList = new ArrayList<>();
 
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
@@ -60,9 +68,13 @@ public class autoCreateTestngXml {
 
     @BeforeClass
     public void beforeClass() throws IOException{
+        //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
+        //singleClassNameList.add("");
+        dirList.add("regression");
         iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
         iosDeviceNameList.add("00008020-001661EE0C88003A");
         iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
+        //iosDeviceNameList.add("00008020-001E202E2288002E");
 /*        String udid;
         for (int i = 0; i < iosDeviceNameList.size();i++) {
             udid = iosDeviceNameList.get(i);
@@ -180,6 +192,23 @@ public class autoCreateTestngXml {
 
         String deviceList = AppiumTestCase.cmdReturn("idevice_id -l");
 
+        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
+        taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
+
+        String extendSingleClassContent = "";
+        for (int i = 0; i < taskSingleClassNameList.size();i++) {
+            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
+        }
+
+        taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
+        String classContent = "";
+        for (int i = 0; i < taskClassNameList.size();i++) {
+            classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
+        }
+
+
+        boolean singleClassHasSetToSingleDevice = false;
+
         {
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
             for (Iterator<String> it = iosDeviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
@@ -225,10 +254,16 @@ public class autoCreateTestngXml {
                 sb.append(
                         "        <parameter name=\"address\"  value=\"" + entry.getKey()
                                 + "\"/>\n");
-                sb.append("        <packages>\n" +
-                    "            " + packagesName + "\n" +
-                    "        </packages>\n" +
-                    "    </test>\n");
+                sb.append("        <classes>\n");
+                if (!singleClassHasSetToSingleDevice) {
+                    singleClassHasSetToSingleDevice = true;
+                    sb.append(extendSingleClassContent);
+                } else {
+                    sb.append(classContent);
+                }
+
+                sb.append("        </classes>\n");
+                sb.append("    </test>\n");
                 it.remove();
             }
         }
@@ -507,6 +542,75 @@ public class autoCreateTestngXml {
         }
         return deviceVersion;
     }
+
+    public static List<String> findNameList(List<String> nameList,String pathName,int depth) throws IOException{
+        //List<String> nameList = new ArrayList<>();
+        String[] dirNameArray = pathName.split("/");
+        String dirName = dirNameArray[dirNameArray.length - 1];
+        int filecount=0;
+        //获取pathName的File对象
+        File dirFile = new File(pathName);
+        //判断该文件或目录是否存在，不存在时在控制台输出提醒
+        if (!dirFile.exists()) {
+            System.out.println("do not exit");
+            return null;
+        }
+        //判断如果不是一个目录，就判断是不是一个文件，时文件则输出文件路径
+        if (!dirFile.isDirectory()) {
+            if (dirFile.isFile()) {
+                System.out.println(dirFile.getCanonicalFile());
+            }
+            return null;
+        }
+
+        for (int j = 0; j < depth; j++) {
+            System.out.print("  ");
+        }
+        System.out.print("|--");
+        System.out.println(dirFile.getName());
+        //获取此目录下的所有文件名与目录名
+        String[] fileList = dirFile.list();
+        int currentDepth=depth+1;
+        for (int i = 0; i < fileList.length; i++) {
+            //遍历文件目录
+            String string = fileList[i];
+            //File("documentName","fileName")是File的另一个构造器
+            File file = new File(dirFile.getPath(),string);
+            String name = file.getName();
+            //如果是一个目录，搜索深度depth++，输出目录名后，进行递归
+            if (file.isDirectory()) {
+                //递归
+                findNameList(nameList,file.getCanonicalPath(),currentDepth);
+            }else{
+                //如果是文件，则直接输出文件名
+                for (int j = 0; j < currentDepth; j++) {
+                    System.out.print("   ");
+                }
+                System.out.print("|--");
+                System.out.println(name);
+                nameList.add(dirName + "." + name);
+
+            }
+        }
+
+        Collections.sort(nameList);
+        return nameList;
+    }
+
+    public List<String> removeSingleClass(List<String> singleClassList, List<String> removeList) {
+        for (int i = 0 ; i < singleClassList.size();i++) {
+            for (int j = 0; j < removeList.size();j++) {
+                if (singleClassList.get(i).contains(removeList.get(j))) {
+                    singleClassList.remove(i);
+                    continue;
+                }
+            }
+        }
+        return singleClassList;
+    }
+
+
+
 
 
 }
