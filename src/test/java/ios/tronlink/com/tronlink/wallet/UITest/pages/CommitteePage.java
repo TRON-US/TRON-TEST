@@ -57,6 +57,7 @@ public class CommitteePage extends AbstractPage {
 
     public void change1proposal(String pro){
         try {
+            TimeUnit.SECONDS.sleep(2);
             textfieldList.get(1).clear();
             textfieldList.get(1).sendKeys(pro);
             Helper.tapWhitePlace(driver);

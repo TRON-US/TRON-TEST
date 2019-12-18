@@ -21,6 +21,7 @@ public class YCommitteeTest extends BaseTest {
 
     String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
     public String myChangeCount;
+    public boolean isimport = false;
     public CommitteePage perparWallet() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.addWallet_btn.click();
@@ -30,7 +31,7 @@ public class YCommitteeTest extends BaseTest {
         DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privateKey);
         Helper.tapWhitePlace(DRIVER);
         findWebElement("下一步").click();
-        TimeUnit.SECONDS.sleep(20);
+        TimeUnit.SECONDS.sleep(10);
         DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys("Committee");
         Helper.tapWhitePlace(DRIVER);
         findWebElement("下一步").click();
@@ -59,9 +60,13 @@ public class YCommitteeTest extends BaseTest {
 
     @Test(description = "send proposals",alwaysRun = true)
     public void test_001SendProposals() throws Exception{
-
-            CommitteePage committeePage = perparWallet();
-//            CommitteePage committeePage = enterCommitteePage();
+             CommitteePage committeePage;
+            if (!isimport){
+                committeePage = perparWallet();
+                isimport = true;
+            }else {
+                 committeePage = enterCommitteePage();
+            }
             TimeUnit.SECONDS.sleep(2);
             committeePage.Setuppropos.click();
             String count = String.format("%.0f",Math.random()*100000);
