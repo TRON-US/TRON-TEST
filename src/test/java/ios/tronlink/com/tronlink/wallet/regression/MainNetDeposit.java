@@ -82,7 +82,7 @@ public class MainNetDeposit extends BaseTest {
     public void test002_checkTransferInChainName() throws Exception {
         Helper.guaranteeMainChain(DRIVER);
         TrxPage trx = enterTrxPage();
-        Assert.assertTrue(trx.transferIn_btnArray.size()>1);
+        Assert.assertTrue(trx.transferIn_btnArray.size()>0);
     }
 
 
