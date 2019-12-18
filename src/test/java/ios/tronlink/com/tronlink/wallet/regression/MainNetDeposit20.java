@@ -86,7 +86,7 @@ public class MainNetDeposit20 extends BaseTest {
     public void test003_checkTransferInTrc10() throws Exception {
         Helper.guaranteeMainChain(DRIVER);
         TrxPage trx = enterTrxPage();
-        Assert.assertTrue(trx.transferIn_btnArray.size()>1);
+        Assert.assertTrue(trx.transferIn_btnArray.size()>0);
 
     }
 

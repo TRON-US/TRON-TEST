@@ -55,11 +55,11 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "全部")
     public List<WebElement> tranfer_all;
 
-    @FindBy(name = "转出")
-    public List<WebElement> tranferOut_tab;
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]")
+    public WebElement tranferOut_tab;
 
-    @FindBy(name = "转入")
-    public List<WebElement> tranferIn_tab;
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]")
+    public WebElement tranferIn_tab;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
@@ -119,18 +119,23 @@ public class TrxPage extends AbstractPage {
     }
 
     public TransferPage enterTransferPage() throws Exception {
-        transferIn_btnArray.get(1).click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
+        tranferIn_tab.click();
+        TimeUnit.SECONDS.sleep(2);
         return new TransferPage(driver);
     }
     public TransferPage enterTransferInPage() throws Exception {
-        System.out.println(transferIn_btnArray.size());
-        transferIn_btnArray.get(1).click();
+//        System.out.println(transferIn_btnArray.size());
+//        transferIn_btnArray.get(1).click();
+        TimeUnit.SECONDS.sleep(3);
+        tranferIn_tab.click();
         TimeUnit.SECONDS.sleep(2);
         return new TransferPage(driver);
     }
     public TransferPage enterTransferOutPage() throws Exception {
-        transferOut_btnArray.get(1).click();
+        TimeUnit.SECONDS.sleep(3);
+        tranferOut_tab.click();
+//        transferOut_btnArray.get(1).click();
         TimeUnit.SECONDS.sleep(1);
         return new TransferPage(driver);
     }
