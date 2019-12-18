@@ -94,7 +94,7 @@ public class CommitteeTest extends Base {
     }
 
 
-    //test003_enterProposalDetails  票数  总票数  创建时间（多个） 赞成者
+
 
 
 
@@ -125,13 +125,112 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(committeeProposalPage.title_btn.isDisplayed());
     }
 
-    //add  投票中！！！！！！
+
+
+    //............................
+    //add 详情页显示  投票中！！！！！！
+    @Test(description = "display Proposal Details Is Voteing", alwaysRun = true)
+    public void test006_ProposalDetailsVoteing() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.proposalsState_btn.isDisplayed());
+    }
+
+    //............................
+    //add 详情页显示  展示总票数
+    @Test(description = "display Proposal Details count of Vote", alwaysRun = true)
+    public void test007_ProposalDetailsVoteCount() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.numAllVotes_btn.isDisplayed());
+    }
+
+
+    //add 详情页显示  展示有效票数
+    @Test(description = "display Proposal Details Valid Vote", alwaysRun = true)
+    public void test008_ProposalDetailsValidVote() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.numValidVotes_btn.isDisplayed());
+    }
+
+
+
+    //add 详情页显示  展示有效票数
+    @Test(description = "display Proposal Details Create Time", alwaysRun = true)
+    public void test009_ProposalDetailsCreateTime() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.createTime_text.isDisplayed());
+    }
+
+
+    //add 详情页显示  展示结束时间
+    @Test(description = "display Proposal End Time", alwaysRun = true)
+    public void test010_ProposalDetailsEndTime() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.endTime_text.isDisplayed());
+    }
+
+
+
+    //add 详情页显示  无赞成者
+    @Test(description = "display Proposal End Time", alwaysRun = true)
+    public void test011_ProposalDetails() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.noApprovers_text.isDisplayed());
+    }
+
+
+
+    //赞成，然后看详情有赞成者
+    @Test(description = "have approve People", alwaysRun = true)
+    public void test012_haveApprovePeople() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+        committeeProposalPage = createProposePage.createProposal();
+        committeeProposalPage.agree_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        committeeProposalPage.pw_input.sendKeys("Test0001");
+        committeeProposalPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
+        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+        Assert.assertTrue(proposalDetailsPage.pproversPeo_text.isDisplayed());
+    }
 
 
 
 
     @Test(description = "approve proposal", alwaysRun = true)
-    public void test006_approveProposal() throws Exception {
+    public void test013_approveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
@@ -151,7 +250,7 @@ public class CommitteeTest extends Base {
 
 
     @Test(description = "disapprove proposal", alwaysRun = true)
-    public void test007_disApproveProposal() throws Exception {
+    public void test014_disApproveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
@@ -177,7 +276,7 @@ public class CommitteeTest extends Base {
 
     //撤销
     @Test(description = "cancel proposal", alwaysRun = true)
-    public void test008_cancelProposal() throws Exception {
+    public void test015_cancelProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
