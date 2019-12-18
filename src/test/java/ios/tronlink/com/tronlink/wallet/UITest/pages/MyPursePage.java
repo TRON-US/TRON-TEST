@@ -164,6 +164,7 @@ public String getBackupKeystoreInClipboard(String password){
             password_et.sendKeys(password);
             confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();
+            TimeUnit.SECONDS.sleep(2);
             return  !confirm_btn.isDisplayed();
 
         }catch (Exception e){
