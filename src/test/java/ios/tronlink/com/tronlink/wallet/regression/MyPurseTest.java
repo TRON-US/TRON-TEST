@@ -13,6 +13,23 @@ import java.util.concurrent.TimeUnit;
 public class MyPurseTest extends BaseTest {
     String password = "Test0001";
     String keystore = "";
+
+
+//    @Test(description = "changeMyPurse",alwaysRun = true)
+//    public void test001_changeMyPurse() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        walletPage.swipWalletTochangeNext();
+//         minePage =  assetPage.enterMinePage();
+//         walletPage = minePage.enterMyPursePage();
+//        walletPage.swipWalletTochangeNext();
+//    }
+
+
+
+
+
     @Test(description = "test goto MyPurse",alwaysRun = true)
     public void test001_gotoMyPurse() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
