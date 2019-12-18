@@ -86,7 +86,7 @@ public class MainNetDeposit20 extends BaseTest {
     public void test003_checkTransferInTrc10() throws Exception {
         Helper.guaranteeMainChain(DRIVER);
         TrxPage trx = enterTrxPage();
-        Assert.assertTrue(trx.transferIn_btnArray.size()>1);
+        Assert.assertTrue(trx.transferIn_btnArray.size()>0);
 
     }
 
@@ -135,7 +135,8 @@ public class MainNetDeposit20 extends BaseTest {
         TransferPage transferIn =  trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         AssetPage page = trx.enterAssetPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrx10Count()));
+        trx =  page.enterTrx20Page();
+        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
