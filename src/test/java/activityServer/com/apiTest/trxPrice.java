@@ -26,7 +26,6 @@ public class trxPrice {
     Assert.assertTrue(!trxData.getString("id").isEmpty());
     Assert.assertTrue(!trxData.getString("name").isEmpty());
     Assert.assertTrue(!trxData.getString("symbol").isEmpty());
-    Assert.assertTrue(trxData.getString("symbol") == "TRX");
     Assert.assertTrue(!trxData.getString("rank").isEmpty());
     Assert.assertTrue(!trxData.getString("price_usd").isEmpty());
     Assert.assertTrue(!trxData.getString("price_btc").isEmpty());
