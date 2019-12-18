@@ -63,13 +63,13 @@ public class MainNetDeposit20 extends Base {
         set = nodeSet.enterSettingPageChoiseMainChain();
         MinePage mine = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
-        return asset.enterTrx10Page();
+        return asset.enterTrxPage();
     }
 
 
     @Test(description = "Change Chain", alwaysRun = true)
     public void test001_changeChain() throws Exception {
-        //TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(5);
         SettingPage set = enterSettingPage();
         String nodeName = set.node_name.getText();
         NodeSetPage nodeSet = set.enterNodeSetPage();
@@ -92,8 +92,8 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-    @Test(description = "Check TransferIn Trc10 Count", alwaysRun = true)
-    public void test003_checkTransferInTrc10() throws Exception {
+    @Test(description = "Check TransferIn Trx Count", alwaysRun = true)
+    public void test003_checkTransferInTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("trx");
@@ -120,9 +120,26 @@ public class MainNetDeposit20 extends Base {
     }
 
 
+    @Test(description = "Check Available Balance", alwaysRun = true)
+    public void test006_checkAvailableBalance() throws Exception {
+        SettingPage set = enterSettingPage();
+        NodeSetPage nodeSet = set.enterNodeSetPage();
+        set = nodeSet.enterSettingPageChoiseMainChain();
+        MinePage mine = set.enterMinePage();
+        AssetPage asset = mine.enterAssetPage();
+        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+        System.out.println("trxCount = " + trxCount);
+        TrxPage trx = asset.enterTrxPage();
+        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
+        System.out.println("frozenCount = " + frozenCount);
+        TransferPage transferIn = trx.enterTransferPage();
+        int availableBalance = Integer.valueOf(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
+        System.out.println("availableBalance = " + availableBalance);
+        Assert.assertTrue(trxCount == frozenCount + availableBalance);
+    }
 
 
-    @Test(description = "TransferIn Success Checkout Available trc10", alwaysRun = true)
+    @Test(description = "TransferIn Success Checkout Available trx", alwaysRun = true)
     public void test007_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -135,32 +152,24 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-    @Test(description = "TransferIn Success Recording", alwaysRun = true)
-    public void test008_transferInSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
-        String count = random(10, 10);
-        trx = transferIn.enterTrxPageWithTransferSuccess(count);
-        int tries = 0;
-        Boolean exist = false;
-        exist = trx.getTrxVale();
-        while (exist == false && tries < 5) {
-            tries++;
-            try {
-                AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrx10Page();
-                trx.tranfer_tab.get(3).click();
-                TimeUnit.SECONDS.sleep(3);
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                if (count.equals(tranferInCount)) {
-                    exist = true;
-                    break;
-                }
-            } catch (Exception e) {
-            }
-        }
-        Assert.assertTrue(exist);
-    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -334,5 +343,3 @@ public class MainNetDeposit20 extends Base {
 //        Assert.assertTrue(exist);
 //    }
 
-
-}

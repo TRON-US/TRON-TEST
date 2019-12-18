@@ -38,7 +38,6 @@ public class DappFrozenTest extends Base {
 
     @Test(description = "enter Details of the rules", alwaysRun = true)
     public void test001_enterDetailsOfTheRules() throws Exception {
-        changeDappchain();
         AssetPage asset = new AssetPage(DRIVER);
         String trxCount = asset.getTrxCount();
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
