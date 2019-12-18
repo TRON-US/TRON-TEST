@@ -6,6 +6,8 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.AboutUsPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.VersionsPage;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,9 +21,8 @@ public class AboutUsTest extends BaseTest {
     public void test001_aboutUs() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
-        AboutUsPage aboutusPage = minePage.enterAboutUsPage();
-        VersionsPage versionsPage = aboutusPage.enterVersionsPage();
-        Assert.assertEquals(versionsPage.title.getText(),"版本日志");
+        minePage.enterAboutUsPage();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
     }
 
 
