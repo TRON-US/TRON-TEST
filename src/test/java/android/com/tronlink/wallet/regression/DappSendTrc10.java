@@ -52,8 +52,6 @@ public class DappSendTrc10 extends Base {
 
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void tsst001_sendTrc10Success() throws Exception {
-        changeDappchain();
-
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         double trc10Before = transfer.getTrc10Amount();
