@@ -41,6 +41,7 @@ public class NodeSetPage extends AbstractPage {
 
     public SettingPage enterSettingPageChoiseMainChain() throws Exception {
         node_selected.get(0).click();
+        TimeUnit.SECONDS.sleep(6);
         back_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new SettingPage(driver);

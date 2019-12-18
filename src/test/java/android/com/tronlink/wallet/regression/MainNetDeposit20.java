@@ -135,8 +135,17 @@ public class MainNetDeposit20 extends Base {
     }
 
 
+    @Test(description = "Check TransferIn Hits", alwaysRun = true)
+    public void test008_checkTransferInHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferIn = trx.enterTransferPage();
+        String info = transferIn.getTransferInfo("hits");
+        Assert.assertTrue(info.contains("智能合约") || info.contains("smart contract"));
+    }
+
+
     @Test(description = "TransferIn Success Recording", alwaysRun = true)
-    public void test008_transferInSuccessRecording() throws Exception {
+    public void test009_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String count = random(10, 10);
