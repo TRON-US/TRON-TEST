@@ -77,7 +77,7 @@ public class MainNetWithdraw20 extends Base {
         set = nodeSet.enterSettingPageChoiseDappChain();
         MinePage mine = set.enterMinePage();
         AssetPage asset = mine.enterAssetPage();
-        return asset.enterTrx10Page();
+        return asset.enterTrxPage();
     }
 
 
@@ -118,14 +118,49 @@ public class MainNetWithdraw20 extends Base {
     }
 
 
+    @Test(description = "Check Available Balance", alwaysRun = true)
+    public void test005_checkAvailableBalance() throws Exception {
+        SettingPage set = enterSettingPage();
+        NodeSetPage nodeSet = set.enterNodeSetPage();
+        set = nodeSet.enterSettingPageChoiseMainChain();
+        MinePage mine = set.enterMinePage();
+        AssetPage asset = mine.enterAssetPage();
+        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+        TrxPage trx = asset.enterTrxPage();
+        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
+        TransferPage transferOut = trx.enterTransferPage();
+        int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
+        Assert.assertTrue(trxCount == frozenCount + availableBalance);
+    }
 
 
-    @Test(description = "transferOut Success Recording", alwaysRun = true)
-    public void test007_transferOutSuccessRecording() throws Exception {
+    @Test(description = "transferOut Success Checkout Available trx", alwaysRun = true)
+    public void test006_checkAvailableBalance() throws Exception {
+        TrxPage trx = enterTrxPage();
+        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("trxCount = " + trxCount);
+        TransferPage transferOut = trx.enterTransferPage();
+        trx = transferOut.enterTrxPageWithTransferSuccess();
+        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("trxCountNow = " + trxCountNow);
+        Assert.assertTrue(trxCount >= trxCountNow);
+    }
+
+
+    @Test(description = "Check transferOut Hits", alwaysRun = true)
+    public void test007_checkTransferOutHits() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferPage();
+        String info = transferOut.getTransferInfo("hits");
+        Assert.assertTrue(info.contains("行智能合约") || info.contains("smart contract"));
+    }
+
+
+    @Test(description = "transferOut Success Recording")
+    public void test008_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
         String count = random(10, 10);
-        System.out.println("count = " + count);
         trx = transferOut.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
@@ -134,12 +169,11 @@ public class MainNetWithdraw20 extends Base {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrx10Page();
+                trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(3).click();
                 TimeUnit.SECONDS.sleep(3);
-                exist = trx.getTrxVale();
+                //todo 转出转入记录中没有最新数据
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                System.out.println("tranferInCount = " + tranferInCount);
                 if (count.equals(tranferInCount)) {
                     exist = true;
                     break;
