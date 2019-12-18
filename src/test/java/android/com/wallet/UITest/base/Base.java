@@ -34,7 +34,7 @@ public class Base {
 
     private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
-    public  int RetryAgainTimes = 4;
+    public  int RetryAgainTimes = 5;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
@@ -320,8 +320,10 @@ public class Base {
         TimeUnit.SECONDS.sleep(1);
         DRIVER.findElementsById("com.tronlink.wallet:id/iv_select").get(1).click();
         TimeUnit.SECONDS.sleep(1);
-        DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlink.wallet");
+        //DRIVER.closeApp();
+        //DRIVER.activateApp("com.tronlink.wallet");
+        DRIVER.navigate().refresh();
+        TimeUnit.SECONDS.sleep(6);
     }
 
 

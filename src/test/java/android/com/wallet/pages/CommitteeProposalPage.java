@@ -50,6 +50,36 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/iv_agree")
+    public WebElement agree_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/et_new_password")
+    public WebElement pw_input;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/bt_send")
+    public WebElement send_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/num_all_votes")
+    public WebElement approveNum_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_proposals_id")
+    public WebElement proposalId_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_proposals_state")
+    public WebElement proposals_state_btn;
+
+
+
     public void searchResult() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         search_ipt.sendKeys("com");
@@ -66,6 +96,21 @@ public class CommitteeProposalPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new CreateProposePage(driver);
     }
+
+
+//    public void approveProposal() throws Exception {
+//        agree_btn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//
+//    }
+
+
+    public ProposalDetailsPage enterpProposalDetailsPage() throws Exception {
+        proposalId_text.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new ProposalDetailsPage(driver);
+    }
+
 
 
 
