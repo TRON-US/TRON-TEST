@@ -24,9 +24,15 @@ public class AssetPage extends AbstractPage {
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
             }
-        }catch (Exception e){}
+
+        }catch (Exception e){
+           try {
+               if (adClose_btn.isDisplayed()) {
+                   adClose_btn.click();
+               }
+           }catch (Exception el){}
+        }
 //        try {
 //            // if updateview display ,close
 //            if (update_topview.isDisplayed()) {

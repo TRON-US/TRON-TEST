@@ -48,7 +48,8 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "资源")
     public WebElement assets_btn;
 
-
+    @FindBy(name = "委员会提议")
+    public  WebElement committee_btn;
 
     //enter about us Page
     public AboutUsPage enterAboutUsPage(){
@@ -60,6 +61,15 @@ public class MinePage extends AbstractPage {
         return new AboutUsPage(driver);
     }
 
+    public CommitteePage enterCommitteePage(){
+        try {
+            committee_btn.click();
+            TimeUnit.SECONDS.sleep(8);
+        }catch (Exception e){
+            new Base().log("committee_btn button not found");
+        }
+        return  new CommitteePage(driver);
+    }
 
     //enter Setting page
     public SettingPage enterSettingPage(){
