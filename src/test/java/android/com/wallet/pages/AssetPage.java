@@ -22,14 +22,14 @@ public class AssetPage extends AbstractPage {
     public AssetPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
-//        try {
-//            TimeUnit.SECONDS.sleep(1);
-//            // if page display AD , cloese the AD
-//            if (ad_pic.isDisplayed()){
-//                adClose_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            // if page display AD , cloese the AD
+            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
 
         try {
             TimeUnit.SECONDS.sleep(1);
