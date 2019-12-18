@@ -80,6 +80,17 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_my_proposals")
+    public WebElement myProposals_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_approved_proposals")
+    public WebElement myApproved_text;
+
+
+
+
     public void searchResult() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         search_ipt.sendKeys("com");
@@ -112,6 +123,12 @@ public class CommitteeProposalPage extends AbstractPage {
     }
 
 
+
+    public MyProposalsPage enterMyProposals() throws Exception {
+        myProposals_text.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new MyProposalsPage(driver);
+    }
 
 
 
