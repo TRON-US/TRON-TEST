@@ -80,7 +80,28 @@ public class Helper {
            }
        }
     }
-
+    public static boolean containElement(WebElement wl,String name) {
+        try {
+            wl.findElement(By.name(name));
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            try {
+                wl.findElement(By.id(name));
+                return  true;
+            }catch (org.openqa.selenium.NoSuchElementException eex){
+                try {
+                    WebElement btn = wl.findElement(By.className("XCUIElementTypeButton"));
+                    if(btn.getText() == name){
+                        return  true;
+                    }else {
+                        return  false;
+                    }
+                }catch (org.openqa.selenium.NoSuchElementException evex){
+                    return  false;
+                }
+            }
+        }
+    }
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
         getSignOperate(testPrivateKey);
@@ -152,33 +173,33 @@ public class Helper {
             findWebElement("接受").click();
         }catch (Exception e){
         }
-        try {
-            findWebElement("私钥导入").click();
-            DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(testPrivateKey);
-//            findWebElement("Done").click();
-            tapWhitePlace(DRIVER);
-            findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(20);
-            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys("Auto_test");
-            tapWhitePlace(DRIVER);
-//            findWebElement("Done").click();
-            findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(5);
-            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-            tapWhitePlace(DRIVER);
-//            findWebElement("Done").click();
-            findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(5);
-            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-            tapWhitePlace(DRIVER);
-//            findWebElement("Done").click();
-            findWebElement("完成").click();
-            TimeUnit.SECONDS.sleep(5);
-        }catch (Exception e){}
+
+        importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
+
 
     }
 
-
+    public void importUsePrivateKey(String privatekey,String name,String pass){
+        try {
+            findWebElement("私钥导入").click();
+            DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
+            tapWhitePlace(DRIVER);
+            findWebElement("下一步").click();
+            TimeUnit.SECONDS.sleep(20);
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
+            tapWhitePlace(DRIVER);
+            findWebElement("下一步").click();
+            TimeUnit.SECONDS.sleep(5);
+            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
+            tapWhitePlace(DRIVER);
+            findWebElement("下一步").click();
+            TimeUnit.SECONDS.sleep(5);
+            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
+            tapWhitePlace(DRIVER);
+            findWebElement("完成").click();
+            TimeUnit.SECONDS.sleep(10);
+        }catch (Exception e){}
+    }
 
     public WebElement findWebElement(String element) throws Exception {
         int tries = 0;
@@ -194,8 +215,13 @@ public class Helper {
                 TimeUnit.SECONDS.sleep(2);
             }
         }
-        el = DRIVER.findElementById(element);
-        return el;
+        if(el != null){
+            return  el;
+        }else {
+            el = DRIVER.findElementById(element);
+            return el;
+        }
+
     }
 
     // swip the screen until element is display
