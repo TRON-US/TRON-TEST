@@ -466,6 +466,7 @@ public class api {
             StringEntity entity = new StringEntity(result, Charset.forName("UTF-8"));
             response.setEntity(entity);
             JSONObject obj = JSONObject.parseObject(result);
+            System.out.println(obj.toString());
             return obj;
         } catch (Exception e) {
             e.printStackTrace();
@@ -566,6 +567,7 @@ public class api {
                 entity.setContentType("application/json");
                 httppost.setEntity(entity);
             }
+            System.out.println(httppost.toString());
             response = httpClient.execute(httppost);
         } catch (Exception e) {
             e.printStackTrace();

@@ -20,6 +20,7 @@ public class feedBack {
     response = api.feedBack(parameter);
 
     JSONObject jsonObject = api.parseResponseContent(response);
+    System.out.println(jsonObject);
     api.printJsonContent(jsonObject);
 
     Assert.assertEquals(jsonObject.getString("msg"),"success");
