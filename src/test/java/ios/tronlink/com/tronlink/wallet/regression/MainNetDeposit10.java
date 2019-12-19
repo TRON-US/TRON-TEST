@@ -27,49 +27,21 @@ public class MainNetDeposit10 extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.fastFindMainChain(asset.textArray)){
-            return asset.enterTrx10Page();
-        }else {
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            MinePage mine = set.enterMinePage();
-            asset = mine.enterAssetPage();
-            return asset.enterTrx10Page();
-        }
+        return asset.enterTrx10Page();
+
     }
 
     //enter AssetPage
     public AssetPage enterAssetPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.fastFindMainChain(asset.textArray)){
-            return asset;
-        }else{
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            MinePage mine  = set.enterMinePage();
-            asset = mine.enterAssetPage();
-            return asset;
-        }
+        return asset;
     }
 
 
-
-    @Test(description = "Change Chain DappChain",alwaysRun = true)
-    public void test001_changeChain() throws Exception {
-        SettingPage set = enterSettingPage();
-        if(Helper.contentTexts(set.textArray,"MainChain")){
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseDappChain();
-            TimeUnit.SECONDS.sleep(2);
-            Assert.assertTrue(Helper.contentTexts(set.textArray,"DAppChain"));
-        }
-
-    }
 
     @Test(description = "Change Chain MainChain",alwaysRun = true)
-    public void test0011_checkTransferInChainName() throws Exception {
+    public void test001_checkTransferInChainName() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         SettingPage set = enterSettingPage();
         if(Helper.contentTexts(set.textArray,"DAppChain")){
             NodeSetPage nodeSet = set.enterNodeSetPage();
@@ -83,7 +55,6 @@ public class MainNetDeposit10 extends BaseTest {
 
     @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
     public void test002_checkTransferInChainName() throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
         TrxPage trx = enterTrxPage();
         Assert.assertTrue(trx.transferIn_btnArray.size()>0);
 
@@ -139,15 +110,13 @@ public class MainNetDeposit10 extends BaseTest {
     public void test007_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCount" + trxCount);
         TransferPage transferIn =  trx.enterTransferPage();
         trx = transferIn.enterTrxPageWithTransferSuccess();
         AssetPage page = trx.enterAssetPage();
-        TimeUnit.SECONDS.sleep(5);
         trx = page.enterTrx10Page();
-        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCountNow" + trxCountNow);
         TimeUnit.SECONDS.sleep(3);
+        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("startCount:" + trxCount + "endCountNow:" + trxCountNow);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
 
