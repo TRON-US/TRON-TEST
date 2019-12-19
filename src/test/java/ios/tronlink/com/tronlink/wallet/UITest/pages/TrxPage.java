@@ -1,7 +1,6 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
-import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,11 +54,11 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "全部")
     public List<WebElement> tranfer_all;
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]")
-    public WebElement tranferOut_tab;
+    @FindBy(id = "transferWithdrawBtn")
+    public WebElement tranferOutBtn;
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]")
-    public WebElement tranferIn_tab;
+    @FindBy(id = "transferDepositBtn")
+    public WebElement tranferInBtn;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
@@ -120,7 +119,7 @@ public class TrxPage extends AbstractPage {
 
     public TransferPage enterTransferPage() throws Exception {
         TimeUnit.SECONDS.sleep(3);
-        tranferIn_tab.click();
+        tranferInBtn.click();
         TimeUnit.SECONDS.sleep(2);
         return new TransferPage(driver);
     }
@@ -128,13 +127,13 @@ public class TrxPage extends AbstractPage {
 //        System.out.println(transferIn_btnArray.size());
 //        transferIn_btnArray.get(1).click();
         TimeUnit.SECONDS.sleep(3);
-        tranferIn_tab.click();
+        tranferInBtn.click();
         TimeUnit.SECONDS.sleep(2);
         return new TransferPage(driver);
     }
     public TransferPage enterTransferOutPage() throws Exception {
         TimeUnit.SECONDS.sleep(3);
-        tranferOut_tab.click();
+        tranferOutBtn.click();
 //        transferOut_btnArray.get(1).click();
         TimeUnit.SECONDS.sleep(1);
         return new TransferPage(driver);
