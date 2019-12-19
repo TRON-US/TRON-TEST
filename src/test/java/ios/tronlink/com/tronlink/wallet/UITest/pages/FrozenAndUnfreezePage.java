@@ -47,7 +47,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement freeze_btn;
 
 
-    @FindBy(name = "解冻")
+//    @FindBy(name = "解冻")
+    @FindBy(id = "解冻")
     public WebElement unfreeze_btn;
 
     @FindBy(id = "timeLeftLabel")
@@ -72,22 +73,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "assets instruction")
     public WebElement detailsAndRules_btn;
 
-    @FindBy(name = "com.tronlink.wallet:id/ll_bandwidth_arrow")
-    public WebElement freezeBandwidthDetail_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_myfreeze_bandwidth")
-    public WebElement myFreezeBandwidth_btn;
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_otherfreeze_bandwidth")
-    public WebElement otherFreezeBandwidth_btn;
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_totalfreeze_bandwidth")
-    public WebElement totalFreezeBandwidth_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_voting_power")
-    public WebElement votingPower_btn;
 
 
     @FindBy(name = "expectGetTitleLabel")
@@ -196,6 +181,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public void frozenTheEnergy() {
         Helper.swipScreen(driver);
         try {
+            TimeUnit.SECONDS.sleep(2);
             getFreeze_btn().click();
             TimeUnit.SECONDS.sleep(1);
             if(Helper.isElementExist(driver,"继续")){
