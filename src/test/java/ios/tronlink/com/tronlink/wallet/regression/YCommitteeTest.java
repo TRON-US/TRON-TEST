@@ -60,6 +60,7 @@ public class YCommitteeTest extends BaseTest {
 
     @Test(description = "send proposals",alwaysRun = true)
     public void test_001SendProposals() throws Exception{
+            Helper.guaranteeMainChain(DRIVER);
              CommitteePage committeePage;
             if (!isimport){
                 committeePage = perparWallet();

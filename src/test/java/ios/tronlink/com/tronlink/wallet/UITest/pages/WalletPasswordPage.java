@@ -21,33 +21,37 @@ public class WalletPasswordPage extends AbstractPage {
         super(driver);
         this.driver = driver;
     }
-    @FindBy(name = "输入旧的钱包密码")
+//    @FindBy(name = "输入旧的钱包密码")
+    @FindBy(id = "oldPswField")
     public WebElement oldPassword_et;
 
-    @FindBy(name = "8-32个字符")
+//    @FindBy(name = "8-32个字符")
+    @FindBy(id = "newPswField")
     public WebElement newPassword_et;
 
-    @FindBy(name = "再次输入新钱包密码")
+//    @FindBy(name = "再次输入新钱包密码")
+    @FindBy(id = "confimPswField")
     public WebElement confirmPassword_et;
 
-    @FindBy(name = "完成")
+    //    @FindBy(name = "完成")
+    @FindBy(id = "doneBtn")
     public WebElement ok_btn;
 
-    //￼
-    @FindBy(name = "两次输入密码不一致")
-    public WebElement errornoEqual;
-
-    @FindBy(name = "密码错误")
-    public WebElement errorWrong;
-
-    @FindBy(name = "字符数不合法")
-    public WebElement errorinvalue;
-
-    @FindBy(name = "不少于8位字符，至少由大小写字母和数字组成")
-    public WebElement errorFromat;
+//    //￼
+//    @FindBy(name = "两次输入密码不一致")
+//    public WebElement errornoEqual;
 //
-    @FindBy(name = "新旧密码不能一致")
-    public WebElement erroroldnewEqual;
+//    @FindBy(name = "密码错误")
+//    public WebElement errorWrong;
+//
+//    @FindBy(name = "字符数不合法")
+//    public WebElement errorinvalue;
+//
+//    @FindBy(name = "不少于8位字符，至少由大小写字母和数字组成")
+//    public WebElement errorFromat;
+////
+//    @FindBy(name = "新旧密码不能一致")
+//    public WebElement erroroldnewEqual;
 
     @FindBy(className = "XCUIElementTypeStaticText")
     public List<WebElement> testarray;

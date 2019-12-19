@@ -25,7 +25,7 @@ public class DappChainWithdraw20 extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset.enterTrx20Page();
         }else{
             SettingPage set = enterSettingPage();
@@ -40,7 +40,7 @@ public class DappChainWithdraw20 extends BaseTest {
     //enter AssetPage
     public AssetPage enterAssetPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset;
         }else{
             SettingPage set = enterSettingPage();
@@ -78,6 +78,11 @@ public class DappChainWithdraw20 extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
+//        System.out.println("start");
+//
+//        System.out.println(transferOut.errTipLabel.getText());
+//        System.out.println("end");
+
         Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"转出需要执行智能合约"));
 //转出需要执行智能合约。执行智能合约同时会消耗 Energy。
     }
@@ -115,12 +120,12 @@ public class DappChainWithdraw20 extends BaseTest {
 
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCount:" + trxCount);
         TransferPage transferOut =  trx.enterTransferOutPage();
         trx = transferOut.enterTrxPageWithTransferOutSuccess();
         AssetPage page = trx.enterAssetPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrx20Count()));
-        System.out.println("trxCountNow:" + trxCountNow);
+        trx = page.enterTrx20Page();
+        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("startCount:" + trxCount + "endCountNow:" + trxCountNow);
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
