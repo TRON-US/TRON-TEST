@@ -13,7 +13,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.fastFindMainChain(asset.textArray)){
+        if(Helper.assetFindMainChain(asset)){
             return asset.enterTrxPage();
         }else{
             MinePage mine = asset.enterMinePage();
@@ -60,9 +60,11 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     }
 
     @Test(description = "Bandwidth Detail detail", alwaysRun = true)
-    public void test003_BandwidthDetail() {
+    public void test003_BandwidthDetail() throws InterruptedException {
         FrozenAndUnfreezePage frozen = interferonPage();
+        frozen.freezeEnergyDetail_btn.get(0).click();
         frozen.freezeEnergyDetail_btn.get(1).click();
+        TimeUnit.SECONDS.sleep(2);
         int myBandwidth = Integer.parseInt(removeSymbol(frozen.myFreeze_btn.get(1).getText().split(" ")[0]));
         int otherBandwidth = Integer.parseInt(removeSymbol(frozen.otherFreeze_btn.get(1).getText().split(" ")[0]));
         int totalBandwidth = Integer.parseInt(removeSymbol(frozen.totalFreeze_btn.get(1).getText().split(" ")[0]));
@@ -87,8 +89,8 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     public void test006_checkBandwidthQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getDirectionFzUfz_btn().click();
-        boolean textLabel = Helper.isElementExist(frozen.driver,"解冻") && Helper.isElementExist(frozen.driver,"冻结");
-        Assert.assertTrue(textLabel);
+        Assert.assertTrue(Helper.isElementExist(frozen.driver,"解冻"));
+
     }
 
 
@@ -131,44 +133,44 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     }
 
 
-//    //Freeze Energy with 0 trx
-//    @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
-//    public void test012_freezeEnergyZeroTrx() throws Exception {
-//        FrozenAndUnfreezePage frozen = interferonPage();
-//        frozen.inputFrozenCount("0");
-//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-//    }
+    //Freeze Energy with 0 trx
+    @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
+    public void test012_freezeEnergyZeroTrx() throws Exception {
+        FrozenAndUnfreezePage frozen = interferonPage();
+        frozen.inputFrozenCount("0");
+        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+    }
 
 
-//    //Freeze Energy with null trx
-//    @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
-//    public void test013_freezeEnergyNullTrx() throws Exception {
-//        FrozenAndUnfreezePage frozen = interferonPage();
-//        frozen.inputFrozenCount("");
-//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-//    }
+    //Freeze Energy with null trx
+    @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
+    public void test013_freezeEnergyNullTrx() throws Exception {
+        FrozenAndUnfreezePage frozen = interferonPage();
+        frozen.inputFrozenCount("");
+        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+    }
 
-//    @Test(description = "freeze Energy with Error Receiving Address", alwaysRun = true)
-//    public void test014_freezeEnergyErrorReceivingAddress() throws Exception {
-//        FrozenAndUnfreezePage frozen = interferonPage();
-//        frozen.inputFrozenCount("1");
-//        frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
-//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-////        String prompt = frozen.errorAddress_hits.getText();
-////        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
-//    }
-//
-//
-//    @Test(description = "freeze Energy with not active Receiving Address", alwaysRun = true)
-//    public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
-//        FrozenAndUnfreezePage frozen = interferonPage();
-//        frozen.inputFrozenCount("1");
-//        frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
-//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-//
-////        String prompt = frozen.errorAddress_hits.getText();
-////        Assert.assertTrue(prompt.contains("未在TRON网络上激活") || prompt.contains("has not been activated"));
-//    }
+    @Test(description = "freeze Energy with Error Receiving Address", alwaysRun = true)
+    public void test014_freezeEnergyErrorReceivingAddress() throws Exception {
+        FrozenAndUnfreezePage frozen = interferonPage();
+        frozen.inputFrozenCount("1");
+        frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
+        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+//        String prompt = frozen.errorAddress_hits.getText();
+//        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
+    }
+
+
+    @Test(description = "freeze Energy with not active Receiving Address", alwaysRun = true)
+    public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
+        FrozenAndUnfreezePage frozen = interferonPage();
+        frozen.inputFrozenCount("1");
+        frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
+        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+
+//        String prompt = frozen.errorAddress_hits.getText();
+//        Assert.assertTrue(prompt.contains("未在TRON网络上激活") || prompt.contains("has not been activated"));
+    }
 
     /**
      freeze Energy
@@ -185,19 +187,5 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
 
     }
-    /**
-     * freeze Bandwidth
-     */
-    @Test(description = "Freeze Bandwidth Success", alwaysRun = true)
-    public void test017_freezeBandwidthSuccess() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.getbandwidth_btn().click();
-        String availableTrxOld = frozen.getAvailableTrx();
-        frozen.inputFrozenCount("1");
-        Helper.tapWhitePlace(frozen.driver);
-        frozen.frozenTheEnergy(); //Freeze operating
-        TimeUnit.SECONDS.sleep(1);
-        String availableTrxNew = frozen.getAvailableTrx();
-        Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
-    }
+
 }

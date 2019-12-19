@@ -11,24 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 public class VoteTest extends BaseTest {
 
-    //enter TRXPage
-    public boolean guareeteanMainChain() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.fastFindMainChain(asset.textArray)){
-            return true;
-        }else{
-            MinePage mine = asset.enterMinePage();
-            SettingPage set = mine.enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            mine  = set.enterMinePage();
-            asset = mine.enterAssetPage();
-            TrxPage trx = asset.enterTrxPage();
-            TransferPage transferIn = trx.enterTransferInPage();
-            String chain = transferIn.chain_text.getText();
-            return chain.contains("DAppChain");
-        }
-    }
     public VotePage enterVotePage() throws InterruptedException {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -37,7 +19,7 @@ public class VoteTest extends BaseTest {
     }
     @Test(description = "Guarantee Main Chain in VoteTest Test",alwaysRun = true)
     public void test000_guaranteemainchainTest() throws Exception {
-        Assert.assertTrue(guareeteanMainChain());
+        Assert.assertTrue(Helper.guaranteeMainChain(DRIVER));
     }
 
     @Test(description = "Test into VotePage'", alwaysRun = true)
