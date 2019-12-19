@@ -26,10 +26,10 @@ public class CommitteePage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeCell")
     public  List<WebElement> proposCells;
 
-    @FindBy(id = "我发起的提议")
+    @FindBy(id = "myProposalsTitle")
     public  WebElement mysetuppropos;
 
-    @FindBy(id = "我赞成的提议")
+    @FindBy(id = "agreedProposalsTitle")
     public  WebElement myagreedpropos;
 
     @FindBy(name = "发起提议")
