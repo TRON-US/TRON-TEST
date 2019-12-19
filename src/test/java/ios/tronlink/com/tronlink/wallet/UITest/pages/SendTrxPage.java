@@ -76,8 +76,8 @@ public class SendTrxPage extends AbstractPage {
     public WebElement formatErrorHits_text;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_note")
-    public WebElement note_text;
+    @FindBy(id = "transferAddressErrorLabel")
+    public WebElement transferErrorLabel;
 
 
     @FindBy(name = "com.tronlink.wallet:id/tv_balance")
@@ -196,6 +196,8 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrx(String value) throws Exception {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.tapWhitePlace(driver);
+
         //calculate trx
         switch(value){
             case "max":
@@ -208,6 +210,8 @@ public class SendTrxPage extends AbstractPage {
                 testfieldArray.get(2).sendKeys("9999999999");
                 break;
         }
+        Helper.tapWhitePlace(driver);
+
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
