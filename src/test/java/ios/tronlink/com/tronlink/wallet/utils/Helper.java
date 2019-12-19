@@ -26,6 +26,31 @@ public class Helper {
 
     public IOSDriver DRIVER = null;
 
+    public static  boolean assetFindMainChain(AssetPage assetPage) {
+        try {
+            assetPage.driver.findElementById("chainNameLabel");
+            if(assetPage.chainNameLabel.getText().contains("MainChain")){
+                return  true;
+            }else {
+                return  false;
+            }
+
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            System.out.println("NoSuchElementSlowlyFound Chain Name");
+
+            for (int i = 0; i < assetPage.textArray.size(); i++) {
+
+                if (assetPage.textArray.get(i).getText().contains("MainChain")) {
+                    return true;
+                }
+                if (assetPage.textArray.get(i).getText().contains("DAppChain")) {
+                    return false;
+                }
+            }
+            return  true;
+        }
+    }
+
     public static  boolean fastFindMainChain(List<WebElement> list) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getText().contains("MainChain")){
@@ -123,7 +148,7 @@ public class Helper {
     }
     public static boolean guaranteeMainChain(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
-        if(fastFindMainChain(asset.textArray)){
+        if(assetFindMainChain(asset)){
             return true;
         }else{
             MinePage mine = asset.enterMinePage();

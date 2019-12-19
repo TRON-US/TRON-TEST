@@ -25,7 +25,7 @@ public class DappSendTrc10 extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset.enterTrxPage();
         }else{
             SettingPage set = enterSettingPage();
@@ -40,7 +40,7 @@ public class DappSendTrc10 extends BaseTest {
     //enter Dapp AssetPage
     public AssetPage enterAssetPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset;
         }else{
             SettingPage set = enterSettingPage();
