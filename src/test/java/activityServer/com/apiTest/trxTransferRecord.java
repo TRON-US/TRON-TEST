@@ -21,7 +21,7 @@ public class trxTransferRecord {
     public void trxTransferRecord() throws Exception {
         param.put("address","TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29");
         param.put("from","TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29");
-        param.put("limit","-1");
+        param.put("limit","50");
 
 
 
