@@ -51,9 +51,15 @@ public class PrivateKeySetNamePage extends AbstractPage {
         return new PrivateKeySetPwdPage(driver);
     }
 
-    public void setName(String name){
+    public void setName(String name) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
         name_input.sendKeys(name);
         getNext_btn().click();
+    }
+    public void setNameover(String name) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
+        name_input.sendKeys(name);
+        getComplish_btn().click();
     }
     public void goback(){
         back_btn.click();

@@ -3,6 +3,7 @@ package ios.tronlink.com.tronlink.wallet.regression;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -33,19 +34,16 @@ public class MinePageTest extends BaseTest {
 
     }
 
-
-
-
+//
     @Test(description = "test Me into FriendInvitationPage", alwaysRun = true)
 
     public void test003_enterInvetus() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         FriendInvitationPage friendPage = minePage.enterFriendInvitationPage();
-        Assert.assertEquals(friendPage.friendInvitation_title.getText(), "好友邀请");
+        Assert.assertTrue(Helper.contentTexts(friendPage.textArray,"好友邀请"));
 
     }
-
 
 
 
@@ -56,7 +54,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         AnnouncementPage announPage = minePage.enterAnnouncementPage();
-        Assert.assertEquals(announPage.announcementPage_title.getText(), "公告");
+        Assert.assertTrue(Helper.contentTexts(announPage.textArray,"公告"));
 
     }
 
@@ -66,12 +64,9 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
-        Assert.assertEquals(helpPage.title.getText(), "帮助中心");
+        Assert.assertTrue(Helper.contentTexts(helpPage.textArray,"帮助中心"));
 
     }
-
-
-
 
 
     @Test(description = "test Me into GroupPage", alwaysRun = true)
