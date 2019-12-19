@@ -35,7 +35,7 @@ public class MyPurseTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
-        Assert.assertTrue(Helper.contentTexts(walletPage.titleLabels,"钱包管理"));
+        Assert.assertTrue(Helper.contentTexts(walletPage.textArray,"钱包管理"));
     }
 
 //    @Test(description = "test have KeyStore",alwaysRun = true)

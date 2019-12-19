@@ -54,6 +54,7 @@ public class MinePage extends AbstractPage {
     //enter about us Page
     public AboutUsPage enterAboutUsPage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             aboutUs_btn.click();
         }catch (Exception e){
             new Base().log("aboutUs_btn button not found");
@@ -63,6 +64,7 @@ public class MinePage extends AbstractPage {
 
     public CommitteePage enterCommitteePage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             committee_btn.click();
             TimeUnit.SECONDS.sleep(8);
         }catch (Exception e){
@@ -74,6 +76,7 @@ public class MinePage extends AbstractPage {
     //enter Setting page
     public SettingPage enterSettingPage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             setting_btn.click();
         }catch (Exception e){
             new Base().log("setting_btn button not found");
@@ -84,6 +87,7 @@ public class MinePage extends AbstractPage {
     //enter Group page
     public GroupPage enterGroupPage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             intoGroup_btn.click();
         }catch (Exception e){
             new Base().log("intoGroup_btn button not found");
@@ -93,6 +97,7 @@ public class MinePage extends AbstractPage {
     //enter Help page
     public HelpPage enterHelpPage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             helpCenter_btn.click();
         }catch (Exception e){
             new Base().log("intoGroup_btn button not found");
@@ -102,6 +107,7 @@ public class MinePage extends AbstractPage {
     //enter FriendInvitation Page
     public FriendInvitationPage enterFriendInvitationPage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             friendInvitation_btn.click();
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
@@ -114,6 +120,7 @@ public class MinePage extends AbstractPage {
     //enter FriendInvitation Page
     public AnnouncementPage enterAnnouncementPage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             announcement_btn.click();
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
@@ -138,6 +145,7 @@ public class MinePage extends AbstractPage {
     //enter android.com.wallet page
     public MyPursePage enterMyPursePage(){
         try {
+            TimeUnit.SECONDS.sleep(1);
             myPurse_btn.click();
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
@@ -148,6 +156,7 @@ public class MinePage extends AbstractPage {
 
 
     public AssetPage enterAssetPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         assets_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new AssetPage(driver);
