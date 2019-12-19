@@ -1,5 +1,6 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
+import io.appium.java_client.TouchAction;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
@@ -29,7 +30,7 @@ public class DappChainSendTrxTest extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset.enterTrxPage();
         }else{
             SettingPage set = enterSettingPage();
@@ -44,7 +45,7 @@ public class DappChainSendTrxTest extends BaseTest {
     //enter Dapp AssetPage
     public AssetPage enterAssetPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset;
         }else{
             SettingPage set = enterSettingPage();
@@ -194,16 +195,20 @@ public class DappChainSendTrxTest extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("1");
         Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         transfer.transferNow_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         transfer.InputPasswordConfim_btn.sendKeys("Test0001");
         transfer.broadcastButtonClick();
-
+        TimeUnit.SECONDS.sleep(4);
         TrxPage tokenpage = new TrxPage(transfer.driver);
         double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         transfer.back_bt.click();//返回到首页资产页
         AssetPage assetpage = new AssetPage(DRIVER);
         tokenpage = assetpage.enterTrxPage();
+        TimeUnit.SECONDS.sleep(2);
         double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+        System.out.println("old:" + trcBefore + "\nnew:" + trcafter);
         Assert.assertTrue(trcafter + 1 == trcBefore);
     }
 
