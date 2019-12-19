@@ -26,10 +26,11 @@ public class MyPursePage extends AssetPage {
     }
 
 
-    @FindBy(name = "钱包密码")
+//    @FindBy(name = "钱包密码")
+    @FindBy(id = "钱包密码")
     public WebElement walletPassword_btn;
 
-    @FindBy(name = "钱包管理")
+    @FindBy(id = "钱包管理")
     public WebElement title;
 
     @FindBy(name = "titleLabel")

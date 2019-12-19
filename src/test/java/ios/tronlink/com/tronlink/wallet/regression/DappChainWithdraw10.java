@@ -27,7 +27,7 @@ public class DappChainWithdraw10 extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset.enterTrx10Page();
         }else{
             SettingPage set = enterSettingPage();
@@ -42,7 +42,7 @@ public class DappChainWithdraw10 extends BaseTest {
     //enter AssetPage
     public AssetPage enterAssetPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(!Helper.fastFindMainChain(asset.textArray)){
+        if(!Helper.assetFindMainChain(asset)){
             return asset;
         }else{
             SettingPage set = enterSettingPage();
@@ -111,15 +111,17 @@ public class DappChainWithdraw10 extends BaseTest {
 
 
     @Test(description = "transferOut Success Checkout Trc10 Available trx",alwaysRun = true)
-    public void test006_checkAvailableBalance() throws Exception {
+    public void test006_checktransferOutSuccessAvailableBalance() throws Exception {
 
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
         TransferPage transferOut =  trx.enterTransferOutPage();
         trx = transferOut.enterTrxPageWithTransferOutSuccess();
         AssetPage page = trx.enterAssetPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrx10Count()));
+        trx = page.enterTrx10Page();
+        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
         TimeUnit.SECONDS.sleep(3);
+        System.out.println("trxCount:" + trxCount + "trxCountNow:" + trxCountNow);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
 
