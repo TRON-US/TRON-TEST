@@ -78,12 +78,12 @@ public class MainNetDeposit extends BaseTest {
 //        }
 //    }
 
-    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
-    public void test002_checkTransferInChainName() throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
-        TrxPage trx = enterTrxPage();
-        Assert.assertTrue(trx.transferIn_btnArray.size()>0);
-    }
+//    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
+//    public void test002_checkTransferInChainName() throws Exception {
+//        Helper.guaranteeMainChain(DRIVER);
+//        TrxPage trx = enterTrxPage();
+//        Assert.assertTrue(trx.transferIn_btnArray.size()>0);
+//    }
 
 
 
