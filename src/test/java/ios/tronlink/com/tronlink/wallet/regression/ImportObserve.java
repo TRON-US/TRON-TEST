@@ -68,7 +68,7 @@ public class ImportObserve extends BaseTest {
         ObservePage importObservePage = enterImportObservePage();
         importObservePage.inputAddreseString(addressNew);
         PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
-        namePage.name_input.sendKeys("一二三四五六七超");
+        namePage.setNameover("一二三四五六七超");
         Helper.tapWhitePlace(DRIVER);
         Assert.assertTrue(namePage.toolongname.isDisplayed());
 
