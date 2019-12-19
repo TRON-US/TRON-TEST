@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ObservePage extends  AbstractPage {
     public IOSDriver<?> driver;
@@ -32,13 +33,15 @@ public class ObservePage extends  AbstractPage {
     }
 
     public void inputAddreseString(String address) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         input_content.sendKeys(address);
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         getNext_btn().click();
     }
 
-    public PrivateKeySetNamePage enterPrivateKeySetNamePage(){
-        getNext_btn().click();
+    public PrivateKeySetNamePage enterPrivateKeySetNamePage() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
         return  new PrivateKeySetNamePage(driver);
     }
 }
