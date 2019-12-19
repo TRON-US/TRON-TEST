@@ -65,6 +65,9 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/et_search")
     public WebElement search_edit_text;
 
+    @FindBy(id = "com.tronlink.wallet:id/bt_go")
+    public WebElement btgo_btn;
+
 
 
     @FindBy(xpath = "//*[@text='可用投票数不足']")

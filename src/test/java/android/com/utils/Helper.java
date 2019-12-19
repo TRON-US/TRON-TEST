@@ -115,6 +115,17 @@ public class Helper {
         }
     }
 
+
+    public void getWatchWalletSign(String address,AndroidDriver driver){
+        this.DRIVER = driver;
+        try {
+            assetsMain_btn.isDisplayed();
+        }catch (Exception e){
+            getWatchWalletSignOperate(address);
+        }
+    }
+
+
     public void changeDappchain() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -165,6 +176,26 @@ public class Helper {
             System.out.println(e);
         }
 
+    }
+
+
+
+
+
+    public void  getWatchWalletSignOperate(String address){
+        try {
+            findWebElement("com.tronlink.wallet:id/tv_import").click();
+            swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
+            findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            findWebElement("com.tronlink.wallet:id/cd_ow").click();
+            findWebElement("com.tronlink.wallet:id/et_content").sendKeys(address);
+            findWebElement("com.tronlink.wallet:id/bt_next").click();
+            findWebElement("com.tronlink.wallet:id/et_name").sendKeys("WatchWallet");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 
