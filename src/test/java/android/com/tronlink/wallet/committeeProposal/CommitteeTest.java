@@ -119,7 +119,6 @@ public class CommitteeTest extends Base {
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
-        //改至少两个地
         committeeProposalPage = createProposePage.createProposal();
         Assert.assertTrue(committeeProposalPage.title_btn.isDisplayed());
     }
