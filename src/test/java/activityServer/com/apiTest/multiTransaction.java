@@ -77,7 +77,9 @@ public class multiTransaction {
         String transaction = tronlinkSocketClient.getResonse();
         rawDataObject = JSON.parseObject(transaction);
         JSONArray transactionArray = rawDataObject.getJSONArray("data");
-        rawDataObject = transactionArray.getJSONObject(0).getJSONObject("currentTransaction").getJSONObject("raw_data");
+        if (!transactionArray.isEmpty()){
+            rawDataObject = transactionArray.getJSONObject(0).getJSONObject("currentTransaction").getJSONObject("raw_data");
+        }
 
 
 
