@@ -64,7 +64,7 @@ public class DappSendTrc20 extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "转出地址格式不正确"));
+        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "地址格式不正确"));
     }
 
     @Test(description = "input max send number", alwaysRun = true)
