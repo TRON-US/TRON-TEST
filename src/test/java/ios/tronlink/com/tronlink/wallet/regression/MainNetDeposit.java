@@ -27,69 +27,24 @@ public class MainNetDeposit extends BaseTest {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.fastFindMainChain(asset.textArray)){
-            return asset.enterTrxPage();
-        }else{
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            MinePage mine  = set.enterMinePage();
-            asset = mine.enterAssetPage();
-            return asset.enterTrxPage();
-        }
+        return asset.enterTrxPage();
+
     }
 
     //enter AssetPage
     public AssetPage enterAssetPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.fastFindMainChain(asset.textArray)){
-            return asset;
-        }else{
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            MinePage mine  = set.enterMinePage();
-            asset = mine.enterAssetPage();
-            return asset;
-        }
+        return asset;
+
     }
 
-
-//    @Test(description = "Change Chain DappChain",alwaysRun = true)
-//    public void test001_changeChain() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        if(Helper.contentTexts(set.textArray,"MainChain")){
-//            NodeSetPage nodeSet = set.enterNodeSetPage();
-//            set = nodeSet.enterSettingPageChoiseDappChain();
-//            TimeUnit.SECONDS.sleep(2);
-//            Assert.assertTrue(Helper.contentTexts(set.textArray,"DAppChain"));
-//        }
-//
-//    }
-//
-//    @Test(description = "Change Chain MainChain",alwaysRun = true)
-//    public void test0011_checkTransferInChainName() throws Exception {
-//        SettingPage set = enterSettingPage();
-//        if(Helper.contentTexts(set.textArray,"DAppChain")){
-//            NodeSetPage nodeSet = set.enterNodeSetPage();
-//            set = nodeSet.enterSettingPageChoiseMainChain();
-//            TimeUnit.SECONDS.sleep(2);
-//            Assert.assertTrue(Helper.contentTexts(set.textArray,"MainChain"));
-//        }
-//    }
-
-//    @Test(description = "Check TransferIn Chain Name",alwaysRun = true)
-//    public void test002_checkTransferInChainName() throws Exception {
-//        Helper.guaranteeMainChain(DRIVER);
-//        TrxPage trx = enterTrxPage();
-//        Assert.assertTrue(trx.transferIn_btnArray.size()>0);
-//    }
 
 
 
 
     @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
     public void test003_checkTransferInTrx() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
@@ -144,8 +99,9 @@ public class MainNetDeposit extends BaseTest {
         trx = transferIn.enterTrxPageWithTransferSuccess();
         AssetPage page = trx.enterAssetPage();
         trx =  page.enterTrxPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
         TimeUnit.SECONDS.sleep(3);
+        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println("startCount:" + trxCount + "endCountNow:" + trxCountNow);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }
 

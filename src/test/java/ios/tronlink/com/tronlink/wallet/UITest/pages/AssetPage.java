@@ -57,6 +57,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "收款")
     public WebElement receipt_btn;
 
+    @FindBy(id = "chainNameLabel")
+    public WebElement chainNameLabel;
 
     @FindBy(name="行情")
     public WebElement market_btn;
@@ -222,6 +224,7 @@ public EnergyRentPage entereneryRantage(){
 
 
     public TrxPage enterTrxPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         cellArray.get(0).click();
         TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
@@ -229,6 +232,7 @@ public EnergyRentPage entereneryRantage(){
 
 
     public TrxPage enterTrx10Page() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         cellArray.get(2).click();
         TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
