@@ -94,6 +94,7 @@ public class MutiSignatureTest extends Base {
     public void test001_MutiSignatureQuestionContentTest() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         String content = multiSignManager.questionClick();
+        TimeUnit.SECONDS.sleep(2);
         System.out.println("MutiSignature question content is : " + content);
         Assert.assertTrue(content.contains("Active"));
     }
@@ -107,7 +108,7 @@ public class MutiSignatureTest extends Base {
         delSignData(multiSignManager);
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         //Assert.assertEquals(signName,multiSignManager.permissionName_text.getText());
         Assert.assertTrue(multiSignManager.permissionName_text.isDisplayed());
     }
