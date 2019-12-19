@@ -89,11 +89,12 @@ public class DappMutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         String content = multiSignManager.questionClick();
         System.out.println("MutiSignature question content is : " + content);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(content.contains("Active"));
     }
 
 
-    @Test(description = "Add MutiSignature Test", alwaysRun = true)
+    @Test(description = "MutiSignature Test", alwaysRun = true)
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
@@ -101,7 +102,7 @@ public class DappMutiSignatureTest extends Base {
         delSignData(multiSignManager);
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         //Assert.assertEquals(signName,multiSignManager.permissionName_text.getText());
         Assert.assertTrue(multiSignManager.permissionName_text.isDisplayed());
     }
