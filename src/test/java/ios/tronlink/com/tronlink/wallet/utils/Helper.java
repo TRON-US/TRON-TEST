@@ -64,6 +64,7 @@ public class Helper {
     }
 
     public static boolean contentTexts(List<WebElement> list, String name) {
+        if (list.size() < 1) return  false;
         for (int i = 0; i < list.size(); i++) {
             System.out.println("Totalsize:" + list.size() + " itme:" + i + "name:" + list.get(i).getText());
             if (list.get(i).getText().contains(name)){
