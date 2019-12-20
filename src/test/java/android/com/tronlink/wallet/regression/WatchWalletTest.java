@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.watchWallet;
+package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
