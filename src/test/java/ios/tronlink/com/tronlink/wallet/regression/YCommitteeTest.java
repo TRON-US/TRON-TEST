@@ -58,7 +58,7 @@ public class YCommitteeTest extends BaseTest {
         return  committeePage;
     }
 
-    @Test(description = "send proposals",alwaysRun = false)
+    @Test(description = "send proposals",alwaysRun = true)
     public void test_001SendProposals() throws Exception{
             Helper.guaranteeMainChain(DRIVER);
              CommitteePage committeePage;
@@ -81,7 +81,7 @@ public class YCommitteeTest extends BaseTest {
     }
 //XCUIElementTypeButton
 
-    @Test(description = "be agreed Proposal",alwaysRun = false)
+    @Test(description = "be agreed Proposal",alwaysRun = true)
     public void test_002agreedProposal() throws Exception{
 
         CommitteePage committeePage = enterCommitteePage();
@@ -93,7 +93,7 @@ public class YCommitteeTest extends BaseTest {
 
     }
 
-    @Test(description = "be cancal agreed Proposal",alwaysRun = false)
+    @Test(description = "be cancal agreed Proposal",alwaysRun = true)
     public void test_003cancalagreedProposal() throws Exception{
 
         CommitteePage committeePage = enterCommitteePage();
@@ -105,7 +105,7 @@ public class YCommitteeTest extends BaseTest {
 
     }
 
-    @Test(description = "be delete My Proposal",alwaysRun = false)
+    @Test(description = "be delete My Proposal",alwaysRun = true)
     public void test_004cancalagreedProposal() throws Exception{
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
@@ -114,7 +114,7 @@ public class YCommitteeTest extends BaseTest {
 
     }
 
-    @Test(description = "delete Commitee Wallet",alwaysRun = false)
+    @Test(description = "delete Commitee Wallet",alwaysRun = true)
     public void test_005deletecommiteewallet() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
