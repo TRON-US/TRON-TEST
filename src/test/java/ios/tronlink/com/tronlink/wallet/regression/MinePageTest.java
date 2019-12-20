@@ -60,7 +60,7 @@ public class MinePageTest extends BaseTest {
 
     @Test(description = "test Me into HelpPage", alwaysRun = true)
 
-    public void test005_enterannoun() throws Exception {
+    public void test005_enterHelpPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
@@ -70,7 +70,7 @@ public class MinePageTest extends BaseTest {
 
 
     @Test(description = "test Me into GroupPage", alwaysRun = true)
-    public void test006_enterannoun() throws Exception {
+    public void test006_enterGroupPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         GroupPage groupPage = minePage.enterGroupPage();
@@ -82,7 +82,7 @@ public class MinePageTest extends BaseTest {
 
 
     @Test(description = "test Me into SettingPage", alwaysRun = true)
-    public void test007_enterseting() throws Exception {
+    public void test007_enterSettingPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         SettingPage setPage = minePage.enterSettingPage();
