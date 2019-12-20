@@ -64,7 +64,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
-        Assert.assertTrue(Helper.contentTexts(helpPage.textArray,"帮助中心"));
+        Assert.assertEquals(helpPage.title.getText(), "帮助中心");
 
     }
 
