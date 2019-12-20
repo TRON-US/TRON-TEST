@@ -56,6 +56,8 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(1);
             aboutUs_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+
         }catch (Exception e){
             new Base().log("aboutUs_btn button not found");
         }
@@ -78,6 +80,8 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(1);
             setting_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+
         }catch (Exception e){
             new Base().log("setting_btn button not found");
         }
@@ -89,6 +93,8 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(1);
             intoGroup_btn.click();
+            TimeUnit.SECONDS.sleep(3);
+
         }catch (Exception e){
             new Base().log("intoGroup_btn button not found");
         }
@@ -99,6 +105,8 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(1);
             helpCenter_btn.click();
+            TimeUnit.SECONDS.sleep(3);
+
         }catch (Exception e){
             new Base().log("intoGroup_btn button not found");
         }
@@ -134,6 +142,8 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(3);
             transferHistory_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+
         }catch (Exception e){
             System.out.println(e);
         }
