@@ -1,6 +1,6 @@
 # This project used to  automated testing for TRON-US product
 
-### 1. Test for Android TRON-LINK App
+### 1 . Test for Android TRON-LINK App
 
 
 Tests are written in Java, using Appium and TestNG
