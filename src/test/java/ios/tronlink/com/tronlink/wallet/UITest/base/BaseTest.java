@@ -16,13 +16,20 @@ public class BaseTest  extends Base {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() throws Exception {
-        DRIVER.closeApp();
-        DRIVER.launchApp();
+        try {
+            DRIVER.closeApp();
+            DRIVER.launchApp();
+        }catch (Exception e){}
+
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        DRIVER.quit();
+
+        try {
+            DRIVER.quit();
+        }catch (Exception e){}
+
     }
 
 }
