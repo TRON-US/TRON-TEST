@@ -35,6 +35,7 @@ public class MyPurseTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(Helper.contentTexts(walletPage.textArray,"钱包管理"));
     }
 
@@ -55,6 +56,7 @@ public class MyPurseTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();
+        TimeUnit.SECONDS.sleep(2);
         String copyed = walletPage.getBackupKeystoreInClipboard(password);
         Assert.assertTrue(copyed.contains("已复制"));
     }
@@ -75,7 +77,7 @@ public class MyPurseTest extends BaseTest {
 //        Assert.assertTrue(walletPage.deletWallet(password+"123424"));
 //    }
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test006_testDeletewalletSuccess() throws InterruptedException {
+    public void  test006_testDeletewalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         MyPursePage walletPage = minePage.enterMyPursePage();

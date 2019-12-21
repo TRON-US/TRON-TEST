@@ -200,15 +200,17 @@ public EnergyRentPage entereneryRantage(){
     return new EnergyRentPage(driver);
 }
     //enter mine page
-    public MinePage enterMinePage(){
+    public MinePage enterMinePage() throws Exception{
         mine_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         return new MinePage(driver);
     }
 
 
 
-    public SendTrxPage enterSendTrxPage() {
+    public SendTrxPage enterSendTrxPage() throws Exception{
         transfer_btn.click();
+        TimeUnit.SECONDS.sleep(1);
 //        try {assets_btn.click();
 //        }catch (Exception e){
 //            Base.log("assets_btn bton not found");

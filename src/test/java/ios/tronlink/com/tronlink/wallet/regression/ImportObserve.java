@@ -17,7 +17,9 @@ public class ImportObserve extends BaseTest {
     public ObservePage enterImportObservePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.addWallet_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         DRIVER.findElementByName("观察钱包").click();
+        TimeUnit.SECONDS.sleep(2);
         return new ObservePage(DRIVER);
     }
 
@@ -25,6 +27,7 @@ public class ImportObserve extends BaseTest {
     public void test001_importObserveFormatIncorrect() throws Exception {
         ObservePage importObservePage = enterImportObservePage();
         importObservePage.inputAddreseString("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
+        TimeUnit.SECONDS.sleep(2);
         String hits =importObservePage.getError_hits();
         Assert.assertTrue(hits.contains("格式不合法"));
     }
@@ -61,6 +64,7 @@ public class ImportObserve extends BaseTest {
         PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
         namePage.name_input.sendKeys("123456789012345");
         Helper.tapWhitePlace(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(namePage.toolongname.isDisplayed());
     }
     @Test(description = "Observe Name chinese Too Long", alwaysRun = true)
@@ -70,6 +74,7 @@ public class ImportObserve extends BaseTest {
         PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
         namePage.setNameover("一二三四五六七超");
         Helper.tapWhitePlace(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(namePage.toolongname.isDisplayed());
 
     }
@@ -80,6 +85,7 @@ public class ImportObserve extends BaseTest {
         PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
         namePage.name_input.sendKeys("Auto_test");
         Helper.tapWhitePlace(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         String hits = namePage.getError_hits();
         System.out.println(hits);
         Assert.assertTrue(hits.contains("钱包名已存在") || hits.contains("already exists"));

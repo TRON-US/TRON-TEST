@@ -50,18 +50,22 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys("10");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(5);
 
     }
     public void inputAndTapToTransferOut() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys("10");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_out_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(5);
 
     }
-    public String getvalueofBandwidthText(){
+    public String getvalueofBandwidthText() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         WebElement element = driver.findElementById("bandwidthText");
         String val = element.getText().split(" ")[0];
 
@@ -73,24 +77,30 @@ public class TransferPage extends AbstractPage {
 
 
     public TrxPage enterTrxPageWithTransferSuccess() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys("10");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_finish_btn().click();
         TimeUnit.SECONDS.sleep(8);
         return new TrxPage(driver);
     }
 
     public TrxPage enterTrxPageWithTransferSuccess(String count) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys(count);
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
         TimeUnit.SECONDS.sleep(5);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_finish_btn().click();
         TimeUnit.SECONDS.sleep(8);
         return new TrxPage(driver);
@@ -98,12 +108,15 @@ public class TransferPage extends AbstractPage {
 
 
     public TrxPage enterTrxPageWithTransferOutSuccess() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys("10");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_out_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(3);
         get_finish_btn().click();
         TimeUnit.SECONDS.sleep(8);
         return new TrxPage(driver);

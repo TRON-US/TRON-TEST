@@ -52,24 +52,24 @@ public class DappChainWithdraw20 extends BaseTest {
         }
     }
 
-    @Test(description = "Check transferOut Chain Name",alwaysRun = true)
-    public void test001_checkTransferOutChainName() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        String chain = transferOut.chain_text.getText();
-        Assert.assertTrue(chain.contains("MainChain"));
-    }
-
-
-
-
-    @Test(description = "Check transferOut Trc20 Count",alwaysRun = true)
-    public void test002_checkTransferOutTrx() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
-    }
+//    @Test(description = "Check transferOut Chain Name",alwaysRun = true)
+//    public void test001_checkTransferOutChainName() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage transferOut = trx.enterTransferOutPage();
+//        String chain = transferOut.chain_text.getText();
+//        Assert.assertTrue(chain.contains("MainChain"));
+//    }
+//
+//
+//
+//
+//    @Test(description = "Check transferOut Trc20 Count",alwaysRun = true)
+//    public void test002_checkTransferOutTrx() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage transferOut = trx.enterTransferOutPage();
+//        transferOut.inputAndTapToTransferOut();
+//        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
+//    }
 
 
 
@@ -101,17 +101,17 @@ public class DappChainWithdraw20 extends BaseTest {
 
 
 
-    @Test(description = "Check Available Trc20 Balance",alwaysRun = true)
-    public void test005_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCount:" + trxCount);
-        TransferPage transferOut = trx.enterTransferOutPage();
-        int availableBalance = Integer.parseInt(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
-        System.out.println("availableBalance:" + availableBalance);
-        Assert.assertTrue(trxCount ==  availableBalance);
-
-    }
+//    @Test(description = "Check Available Trc20 Balance",alwaysRun = true)
+//    public void test005_checkAvailableBalance() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
+//        System.out.println("trxCount:" + trxCount);
+//        TransferPage transferOut = trx.enterTransferOutPage();
+//        int availableBalance = Integer.parseInt(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
+//        System.out.println("availableBalance:" + availableBalance);
+//        Assert.assertTrue(trxCount ==  availableBalance);
+//
+//    }
 
 
 

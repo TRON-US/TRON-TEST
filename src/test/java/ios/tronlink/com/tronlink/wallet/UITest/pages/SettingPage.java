@@ -160,6 +160,7 @@ public class SettingPage extends AbstractPage {
 
 
     public NodeSetPage enterNodeSetPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         node_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new NodeSetPage(driver);
@@ -172,12 +173,14 @@ public class SettingPage extends AbstractPage {
     }
 
     public MnemonicToolsPage enternemTools_btnPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         mnemTools_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new MnemonicToolsPage(driver);
     }
 
     public MinePage enterMinePage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         back_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new MinePage(driver);
@@ -185,14 +188,22 @@ public class SettingPage extends AbstractPage {
 
 
 
-    public void switchToRelease(){
+    public void switchToRelease() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
         switchVersionBtn.click();
+        TimeUnit.SECONDS.sleep(1);
         releaseBtn.click();
+        TimeUnit.SECONDS.sleep(1);
+
     }
 
-    public void switchToDev(){
+    public void switchToDev() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
         switchVersionBtn.click();
+        TimeUnit.SECONDS.sleep(1);
         devBtn.click();
+        TimeUnit.SECONDS.sleep(1);
+
     }
 
 }

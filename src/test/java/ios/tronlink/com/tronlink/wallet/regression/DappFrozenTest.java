@@ -54,7 +54,7 @@ public class DappFrozenTest extends BaseTest {
     }
 
     @Test(description = "Bandwidth Detail detail", alwaysRun = true)
-    public void test003_BandwidthDetail() throws InterruptedException {
+    public void test003_BandwidthDetail() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.freezeEnergyDetail_btn.get(0).click();
         frozen.freezeEnergyDetail_btn.get(1).click();
@@ -80,7 +80,7 @@ public class DappFrozenTest extends BaseTest {
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("Bandwidth"));
     }
     @Test(description = "ChangeFreezeUnfreeze Test", alwaysRun = true)
-    public void test006_checkBandwidthQuestion() throws InterruptedException {
+    public void test006_checkBandwidthQuestion() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getDirectionFzUfz_btn().click();
         TimeUnit.SECONDS.sleep(2);
