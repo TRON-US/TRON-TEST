@@ -44,21 +44,24 @@ public class PrivateKeySetNamePage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'");
     }
     public PrivateKeySetPwdPage enterPrivateKeySetPwdPage(String name) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         name_input.sendKeys(name);
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         getNext_btn().click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return new PrivateKeySetPwdPage(driver);
     }
 
-    public void setName(String name) throws InterruptedException {
+    public void setName(String name) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         name_input.sendKeys(name);
         getNext_btn().click();
     }
-    public void setNameover(String name) throws InterruptedException {
+    public void setNameover(String name) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         name_input.sendKeys(name);
+        TimeUnit.SECONDS.sleep(2);
         getComplish_btn().click();
     }
     public void goback(){
