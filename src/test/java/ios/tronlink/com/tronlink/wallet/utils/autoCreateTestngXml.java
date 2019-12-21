@@ -74,7 +74,9 @@ public class autoCreateTestngXml {
         iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
         iosDeviceNameList.add("00008020-001661EE0C88003A");
         iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
-        //iosDeviceNameList.add("00008020-001E202E2288002E");
+        iosDeviceNameList.add("00008020-001E202E2288002E");
+        iosDeviceNameList.add("a64acfa6c4ce4881357b1668dba9c52f24b2b28d");
+
 /*        String udid;
         for (int i = 0; i < iosDeviceNameList.size();i++) {
             udid = iosDeviceNameList.get(i);
@@ -86,7 +88,7 @@ public class autoCreateTestngXml {
     }
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void sendCoinToTestCount() throws IOException{
         String foundationAccountKey = "7400E3D0727F8A61041A8E8BF86599FE5597CE19DE451E59AED07D60967A5E25";
         String foundationAccountAddress = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
@@ -109,8 +111,8 @@ public class autoCreateTestngXml {
         testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
         testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
         testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
-        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
+//        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
+//        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
         testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
@@ -183,8 +185,8 @@ public class autoCreateTestngXml {
         testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
         testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
         testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
-        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
+//        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
+//        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
         testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 

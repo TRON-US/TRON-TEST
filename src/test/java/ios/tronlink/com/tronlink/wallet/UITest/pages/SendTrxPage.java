@@ -189,15 +189,17 @@ public class SendTrxPage extends AbstractPage {
 
 
     public void sendKey(WebElement el,String value) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         el.sendKeys(value);
         TimeUnit.SECONDS.sleep(2);
     }
 
 
     public void sendAllTrx(String value) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
-
+        TimeUnit.SECONDS.sleep(2);
         //calculate trx
         switch(value){
             case "max":
@@ -211,16 +213,20 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
-
+        TimeUnit.SECONDS.sleep(2);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
 
     public void sendAllTrc10(String value) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         token_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         getTrc10Token().click();
+        TimeUnit.SECONDS.sleep(2);
         //calculate trx
         switch(value){
             case "max":
@@ -234,14 +240,19 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         send_btn.click();
     }
 
     public void sendAllTrc20(String value) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         token_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         getTrc20Token().click();
+        TimeUnit.SECONDS.sleep(2);
         //calculate trx
         switch(value){
             case "max":
@@ -256,6 +267,7 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         send_btn.click();
     }
 

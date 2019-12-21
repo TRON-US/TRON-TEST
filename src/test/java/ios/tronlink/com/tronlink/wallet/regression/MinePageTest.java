@@ -7,6 +7,8 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * 我的页面功能测试
@@ -54,6 +56,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         AnnouncementPage announPage = minePage.enterAnnouncementPage();
+        TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(Helper.contentTexts(announPage.textArray,"公告"));
 
     }
@@ -64,6 +67,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertEquals(helpPage.title.getText(), "帮助中心");
 
     }
@@ -74,6 +78,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         GroupPage groupPage = minePage.enterGroupPage();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertEquals(groupPage.groupInto_title.getText(), "加入社群");
 
     }
@@ -86,6 +91,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         SettingPage setPage = minePage.enterSettingPage();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertEquals(setPage.title.getText(), "设置");
 
     }
@@ -98,6 +104,7 @@ public class MinePageTest extends BaseTest {
     public void test008_enterrecoder() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
+        TimeUnit.SECONDS.sleep(2);
         TransactionRecordPage recordPage = minePage.enterTransactionRecordPage();
 //        Assert.assertTrue(recordPage.icNav_Icon.isDisplayed());
     }
