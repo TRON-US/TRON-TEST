@@ -35,22 +35,26 @@ public class ImportPrivateKeyPage extends AbstractPage {
     }
 
     //XCUIElementTypeButton
-    public WebElement getError_hits_btn(){
+    public WebElement getError_hits_btn()  throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         return error_hits.get(2);
 
     }
     public String checkPrivateKey(String key) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         content_text.sendKeys(key);
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         String hits = getError_hits_btn().getText();
         return hits;
     }
 
 
     public PrivateKeySetNamePage enterPrivateKeySetNamePage(String key) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         content_text.sendKeys(key);
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(5);
         getNext_btn().click();
         TimeUnit.SECONDS.sleep(2);
         return new PrivateKeySetNamePage(driver);
@@ -59,8 +63,10 @@ public class ImportPrivateKeyPage extends AbstractPage {
 
 
     public String inputErrorKeyGetHits(String key) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         content_text.sendKeys(key);
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         getNext_btn().click();
         TimeUnit.SECONDS.sleep(2);
         return getError_hits_btn().getText();

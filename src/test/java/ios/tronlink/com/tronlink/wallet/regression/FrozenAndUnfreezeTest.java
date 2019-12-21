@@ -60,7 +60,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     }
 
     @Test(description = "Bandwidth Detail detail", alwaysRun = true)
-    public void test003_BandwidthDetail() throws InterruptedException {
+    public void test003_BandwidthDetail() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.freezeEnergyDetail_btn.get(0).click();
         frozen.freezeEnergyDetail_btn.get(1).click();
