@@ -96,13 +96,26 @@ public class Helper {
     public static boolean isElementExist(IOSDriver driver,String name) {
        try {
            driver.findElementByName(name);
+           System.out.println("findByName");
            return  true;
        }catch (org.openqa.selenium.NoSuchElementException ex){
            try {
                driver.findElementById(name);
+               System.out.println("findById");
+
                return  true;
            }catch (org.openqa.selenium.NoSuchElementException eex){
-               return  false;
+               try {
+                   if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
+                       System.out.println("findByBtn");
+                       return  true;
+                   }else {
+                       return  false;
+                   }
+               }catch (org.openqa.selenium.NoSuchElementException e){
+                   System.out.println("NotFound");
+                   return  false;
+               }
            }
        }
     }

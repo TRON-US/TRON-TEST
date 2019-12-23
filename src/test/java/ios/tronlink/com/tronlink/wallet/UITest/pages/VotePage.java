@@ -163,7 +163,9 @@ public WebElement vote_title;
         return new VoteConfirmPage(driver);
     }
     public boolean  VoteDetail() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         voteDetailBtn.click();
+        TimeUnit.SECONDS.sleep(2);
         return  Helper.isElementExist(driver,"投票细则");
     }
     public boolean  VoteTextRightTest() throws Exception {

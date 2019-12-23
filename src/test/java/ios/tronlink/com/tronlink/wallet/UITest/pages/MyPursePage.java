@@ -124,17 +124,19 @@ public String getBackupKeystoreInClipboard(String password){
     String keystore = "";
     try {
         Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(2);
         backkeystore_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         password_et.sendKeys(password);
+        TimeUnit.SECONDS.sleep(2);
         WebElement  confirm_btn;
         confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
         confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         WebElement clipboard = driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '复制'");
         clipboard.click();
+        TimeUnit.SECONDS.sleep(2);
         keystore =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '已复制'").getText();
-//        keystore = driver.getClipboard(ClipboardContentType.PLAINTEXT); // get plaintext  //由于方法不可拿到结果，曲线得到已复制文字
         done_btn.click();
     }catch (Exception e){
         System.out.println(e);
@@ -149,8 +151,9 @@ public String getBackupKeystoreInClipboard(String password){
             Helper.swipScreen(driver);
             TimeUnit.SECONDS.sleep(1);
             deletewallet_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             password_et.sendKeys(password);
+            TimeUnit.SECONDS.sleep(2);
             confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '取消'");
             confirm_btn.click();
             return  !confirm_btn.isDisplayed();
@@ -169,6 +172,7 @@ public String getBackupKeystoreInClipboard(String password){
             deletewallet_btn.click();
             TimeUnit.SECONDS.sleep(2);
             password_et.sendKeys(password);
+            TimeUnit.SECONDS.sleep(2);
             confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(2);
@@ -210,7 +214,7 @@ public String getBackupKeystoreInClipboard(String password){
         return new AssetPage(driver);
     }
 
-    public void swipWalletTochangeNext() throws InterruptedException {
+    public void swipWalletTochangeNext() throws Exception {
         WebElement wl = driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]");
         List<WebElement> lwl = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Helper.contentTexts(lwl,"2222222");
@@ -231,7 +235,7 @@ public String getBackupKeystoreInClipboard(String password){
 
     }
 
-    public void swipWalletTochangeBefore() throws InterruptedException {
+    public void swipWalletTochangeBefore() throws Exception {
         WebElement wl = driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]");
         int topY = wl.getLocation().y + 10;
         int botY = wl.getLocation().y + wl.getSize().height - 50;

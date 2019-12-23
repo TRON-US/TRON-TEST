@@ -227,13 +227,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     public void inputFrozenCount(String count) throws Exception {
         Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(2);
         freezeCount_input.get(0).click();
         TimeUnit.SECONDS.sleep(3);
         freezeCount_input.get(0).sendKeys(count);
-
-
         Helper.tapWhitePlace(driver);
-;
+        TimeUnit.SECONDS.sleep(2);
+
+        ;
     }
 
 
@@ -241,13 +242,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public void inputReceivingAddress(String address) throws Exception {
         //Helper.swipScreen(driver);
         Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         freezeCount_input.get(0).sendKeys("1");
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(2);
         freezeCount_input.get(1).sendKeys("");
         freezeCount_input.get(1).sendKeys(address);
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
 
     }
 

@@ -36,11 +36,12 @@ public class ObservePage extends  AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         input_content.sendKeys(address);
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         getNext_btn().click();
+        TimeUnit.SECONDS.sleep(2);
     }
 
-    public PrivateKeySetNamePage enterPrivateKeySetNamePage() throws InterruptedException {
+    public PrivateKeySetNamePage enterPrivateKeySetNamePage() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         return  new PrivateKeySetNamePage(driver);
     }

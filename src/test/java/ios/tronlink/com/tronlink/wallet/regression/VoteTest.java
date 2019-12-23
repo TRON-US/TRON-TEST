@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class VoteTest extends BaseTest {
 
-    public VotePage enterVotePage() throws InterruptedException {
+    public VotePage enterVotePage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(1);
@@ -25,6 +25,7 @@ public class VoteTest extends BaseTest {
     @Test(description = "Test into VotePage'", alwaysRun = true)
     public void test001_checkPopularSearch() throws Exception {
         VotePage vote = enterVotePage();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(Helper.isElementExist(vote.driver,"投票"));
     }
     @Test(description = "Test into VotePage'", alwaysRun = true)

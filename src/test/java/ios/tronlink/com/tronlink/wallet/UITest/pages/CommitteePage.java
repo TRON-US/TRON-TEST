@@ -75,30 +75,30 @@ public class CommitteePage extends AbstractPage {
         }
     }
 
-    public WebElement findFirstproposalWl( ) throws InterruptedException {
+    public WebElement findFirstproposalWl( ) throws Exception {
          TimeUnit.SECONDS.sleep(5);
             enterMyProposal();
             List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
             return wls.get(0);
     }
-    public WebElement findFirstAgreedroposalWl( ) throws InterruptedException {
+    public WebElement findFirstAgreedroposalWl( ) throws Exception {
         TimeUnit.SECONDS.sleep(5);
         enterMyAgreedProposal();
         List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
         return wls.get(0);
     }
 
-    public void enterMyProposal() throws InterruptedException {
+    public void enterMyProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         mysetuppropos.click();
     }
 
-    public void enterMyAgreedProposal() throws InterruptedException {
+    public void enterMyAgreedProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         myagreedpropos.click();
     }
 
-    public void agreeAction() throws InterruptedException {
+    public void agreeAction() throws Exception {
         enterMyProposal();
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(4);
@@ -110,7 +110,7 @@ public class CommitteePage extends AbstractPage {
         backBtn.click();
     }
 
-    public void disagreeAction() throws InterruptedException {
+    public void disagreeAction() throws Exception {
         enterMyAgreedProposal();
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(4);
@@ -122,7 +122,7 @@ public class CommitteePage extends AbstractPage {
         backBtn.click();
     }
 
-    public void deleteAction() throws InterruptedException {
+    public void deleteAction() throws Exception {
         enterMyProposal();
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(4);
