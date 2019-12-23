@@ -25,7 +25,7 @@ public class getAssetList {
         JSONObject assetInformation = api.parseResponseContent(response).getJSONObject("data");
         api.printJsonContent(assetInformation);
 
-        Assert.assertTrue(assetInformation.getFloat("totalTRX") > 0);
+        Assert.assertTrue(assetInformation.getFloat("totalTRX") >= 0);
         Assert.assertTrue(assetInformation.getJSONObject("price").getDouble("priceUSD") > 0);
         Assert.assertTrue(assetInformation.getJSONObject("price").getDouble("priceCny") > 0);
 
