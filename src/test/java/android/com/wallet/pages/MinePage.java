@@ -1,5 +1,6 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 
 import org.openqa.selenium.WebElement;
@@ -82,6 +83,7 @@ public class MinePage extends AbstractPage {
 
     //enter Setting page
     public SettingPage enterSettingPage(){
+        Helper.swipScreen(driver);
         try {
             setting_btn.click();
         }catch (Exception e){
