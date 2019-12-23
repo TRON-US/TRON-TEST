@@ -149,14 +149,14 @@ public class Helper {
 
 
     public void getSignOperate(String testPrivateKey) throws Exception{
-        System.out.println("0000000");
+        System.out.println("setupbefore");
         try {
-            System.out.println("111111");
-
+            System.out.println("try to import");
             findWebElement("导入钱包").click();
             getSignStep(testPrivateKey);
+            System.out.println("imported");
         }catch (Exception e){
-            System.out.println("33333");
+            System.out.println("haved imported");
 
         }
     }
@@ -245,6 +245,7 @@ public class Helper {
         Boolean Element_is_exist = false;
         WebElement el = null;
         while (!Element_is_exist && tries < 5) {
+            System.out.println("findWElementTimes:" + tries);
             tries++;
             try {
                 el = DRIVER.findElementByName(element);
