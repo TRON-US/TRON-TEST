@@ -66,7 +66,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"address"})
-    @Test(description = "Developer options Test", alwaysRun = true)
+    @Test(description = "Developer options Test", alwaysRun = true, enabled = false)
     public void test001_multSignOptions() throws Exception {
 //        AssetPage asset = importTwoPrivateKay();
 //        MyPursePage myPurse = asset.enterMyPursePage();
