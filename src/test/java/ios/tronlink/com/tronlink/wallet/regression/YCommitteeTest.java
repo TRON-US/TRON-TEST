@@ -4,12 +4,12 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.CommitteePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.MyPursePage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -79,7 +79,6 @@ public class YCommitteeTest extends BaseTest {
             Assert.assertTrue(Helper.contentTexts(textarray,myChangeCount));
 
     }
-//XCUIElementTypeButton
 
     @Test(description = "be agreed Proposal",alwaysRun = true)
     public void test_002agreedProposal() throws Exception{
@@ -114,14 +113,7 @@ public class YCommitteeTest extends BaseTest {
 
     }
 
-    @Test(description = "delete Commitee Wallet",alwaysRun = true)
-    public void test_005deletecommiteewallet() throws Exception{
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
-        MyPursePage myPursePage = minePage.enterMyPursePage();
-        Assert.assertTrue(myPursePage.deletWallet("Test0001"));
 
-    }
 
     public WebElement findWebElement(String element) throws Exception {
         int tries = 0;
@@ -146,5 +138,13 @@ public class YCommitteeTest extends BaseTest {
 
     }
 
+    @AfterClass(alwaysRun = true)
+    public void tearDownAfterClass() {
+
+        try {
+            DRIVER.removeApp("com.tronlink.hdwallet");
+        }catch (Exception e){}
+
+    }
 
 }

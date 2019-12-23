@@ -76,11 +76,11 @@ public class MyPurseTest extends BaseTest {
 //        MyPursePage walletPage = minePage.enterMyPursePage();
 //        Assert.assertTrue(walletPage.deletWallet(password+"123424"));
 //    }
-    @Test(description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test006_testDeletewalletSuccess() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        Assert.assertTrue(walletPage.deletWallet(password));
-    }
+//    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+//    public void  test006_testDeletewalletSuccess() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        Assert.assertTrue(walletPage.deletWallet(password));
+//    }
 }
