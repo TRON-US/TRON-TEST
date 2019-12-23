@@ -4,13 +4,14 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.w3c.dom.html.HTMLInputElement;
 
-import java.sql.Time;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
+
 public class AssetPage extends AbstractPage {
+
 
 
     public IOSDriver<?> driver;
@@ -194,6 +195,7 @@ public class AssetPage extends AbstractPage {
         return new AddAssertPage(driver);
     }
 
+
 //    EnergyRentPage
 public EnergyRentPage entereneryRantage(){
     eneryRant_btn.click();
@@ -288,5 +290,29 @@ public EnergyRentPage entereneryRantage(){
 
         receipt_btn.click();
         return new ReceiptPage(driver);
+    }
+
+    public MultiSupportPage enterMultiSupportPage(){
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            driver.findElementByName("Auto_test").click();
+            MultiSupportPage wl = new  MultiSupportPage(driver);
+            wl.walletName =  MultiSupportPage.multiWallet.Auto_test;
+            TimeUnit.SECONDS.sleep(2);
+            return  wl;
+
+        }catch (Exception e){
+            try{
+                TimeUnit.SECONDS.sleep(2);
+                driver.findElementByName("multiWallet").click();
+                MultiSupportPage wl = new  MultiSupportPage(driver);
+                wl.walletName =  MultiSupportPage.multiWallet.multiWallet;
+                TimeUnit.SECONDS.sleep(2);
+                return  wl;
+            }catch (Exception er){}
+
+        }
+
+        return new MultiSupportPage(driver);
     }
 }
