@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SendTrc10 extends BaseTest {
 
-  public SendTrxPage enterToSendTrxPage(){
+  public SendTrxPage enterToSendTrxPage() throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     SendTrxPage transfer = asset.enterSendTrxPage();
     return transfer;
