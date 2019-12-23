@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class DappSendTrc10 extends BaseTest {
 
-    public SendTrxPage enterToSendTrxPage(){
+    public SendTrxPage enterToSendTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
