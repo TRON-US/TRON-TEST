@@ -4,6 +4,7 @@ import activityServer.com.utils.api;
 import com.alibaba.fastjson.JSONObject;
 import java.util.HashMap;
 import org.apache.http.HttpResponse;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class invite_list {
@@ -20,6 +21,7 @@ public class invite_list {
     JSONObject inviteListInfo = api.parseResponseContent(response);
     api.printJsonContent(inviteListInfo);
 
+    Assert.assertEquals(inviteListInfo.getString("message"),"OK");
     JSONObject inviteList = inviteListInfo.getJSONObject("data");
     api.printJsonContent(inviteList);
   }
