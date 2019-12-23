@@ -6,6 +6,7 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -164,24 +165,29 @@ public String getBackupKeystoreInClipboard(String password){
         }
     }
 
-    public boolean deletWallet (String password){
+    public boolean deletWallet (String password) throws Exception{
         WebElement  confirm_btn;
-        try {
+//        try {
             Helper.swipScreen(driver);
-            TimeUnit.SECONDS.sleep(1);
-            deletewallet_btn.click();
+            TimeUnit.SECONDS.sleep(5);
+
+            findWebElement("删除钱包").click();
+//            deletewallet_btn.click();
+            System.out.println("deletewallet_btn");
             TimeUnit.SECONDS.sleep(2);
             password_et.sendKeys(password);
             TimeUnit.SECONDS.sleep(2);
             confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(2);
+            System.out.println("isDisplayed");
+
             return  !confirm_btn.isDisplayed();
 
-        }catch (Exception e){
-            System.out.println(e);
-            return false;
-        }
+//        }catch (Exception e){
+//            System.out.println(e);
+//            return false;
+//        }
     }
     public boolean deleteObserveWallet(){
         WebElement  confirm_btn;
@@ -251,5 +257,30 @@ public String getBackupKeystoreInClipboard(String password){
         TimeUnit.SECONDS.sleep(2);
         action.tap(PointOption.point(120,botY)).perform();
         TimeUnit.SECONDS.sleep(2);
+    }
+
+
+    public WebElement findWebElement(String element) throws Exception {
+        int tries = 0;
+        Boolean Element_is_exist = false;
+        WebElement el = null;
+        while (!Element_is_exist && tries < 5) {
+            System.out.println("findWElementTimes:" + tries);
+            tries++;
+            try {
+                el = driver.findElementById(element);
+                Element_is_exist = true;
+            }catch (NoSuchElementException e){
+                //Element_is_exist = false;
+                TimeUnit.SECONDS.sleep(2);
+            }
+        }
+        if(el != null){
+            return  el;
+        }else {
+            el = driver.findElementByName(element);
+            return el;
+        }
+
     }
 }
