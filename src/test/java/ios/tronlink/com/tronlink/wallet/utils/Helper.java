@@ -149,14 +149,13 @@ public class Helper {
 
 
     public void getSignOperate(String testPrivateKey) throws Exception{
-        System.out.println("0000000");
+        System.out.println("setupbefore");
         try {
-            System.out.println("111111");
-
+            System.out.println("need to import");
             findWebElement("导入钱包").click();
             getSignStep(testPrivateKey);
         }catch (Exception e){
-            System.out.println("33333");
+            System.out.println("imported");
 
         }
     }
