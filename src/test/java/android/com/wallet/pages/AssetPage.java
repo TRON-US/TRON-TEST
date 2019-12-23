@@ -154,11 +154,21 @@ public class AssetPage extends AbstractPage {
     public WebElement currChain_name;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_walletname")
+    public WebElement walletName_text;
+
+
+
 
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
         return new SendTrxPage(driver);
     }
+
+
+
+
+
 
     public VotePage enterVotePage(){
         try {
@@ -270,6 +280,14 @@ public class AssetPage extends AbstractPage {
         trx20_btn.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
+    }
+
+
+
+    public MyPursePage enterMyPursePage() throws Exception {
+        walletName_text.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new MyPursePage(driver);
     }
 
 
