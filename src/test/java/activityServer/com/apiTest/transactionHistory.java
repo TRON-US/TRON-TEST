@@ -48,7 +48,7 @@ public class transactionHistory {
       Assert.assertTrue(!history.getString("hash").isEmpty());
       Assert.assertTrue(!history.getString("timestamp").isEmpty());
       Assert.assertTrue(!history.getString("ownerAddress").isEmpty());
-      Assert.assertTrue(!history.getString("toAddress").isEmpty());
+//      Assert.assertTrue(!history.getString("toAddress").isEmpty());
       Assert.assertTrue(!history.getString("contractType").isEmpty());
       Assert.assertEquals(history.getString("ownerAddress"), "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of");
     }
@@ -69,7 +69,7 @@ public class transactionHistory {
       Assert.assertTrue(!history.getString("hash").isEmpty());
       Assert.assertTrue(!history.getString("timestamp").isEmpty());
       Assert.assertTrue(!history.getString("ownerAddress").isEmpty());
-      Assert.assertTrue(!history.getString("toAddress").isEmpty());
+//      Assert.assertTrue(!history.getString("toAddress").isEmpty());
       Assert.assertTrue(!history.getString("contractType").isEmpty());
     }
 
