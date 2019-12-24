@@ -23,8 +23,8 @@ public class getNodeInfo {
 
     JSONArray data = nodeInfo.getJSONArray("data");
 
-    JSONObject mainNodeInfoJson = data.getJSONObject(0);
-    JSONObject dappNodeInfoJson = data.getJSONObject(1);
+    JSONObject mainNodeInfoJson = data.getJSONObject(1);
+    JSONObject dappNodeInfoJson = data.getJSONObject(0);
 
     JSONArray fullNodeArray = mainNodeInfoJson.getJSONArray("fullNode");
     JSONArray solidityNodeArray = mainNodeInfoJson.getJSONArray("solidityNode");

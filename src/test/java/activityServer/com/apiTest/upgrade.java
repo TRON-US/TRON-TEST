@@ -34,10 +34,11 @@ public class upgrade {
 
         JSONObject data = responseContent.getJSONObject("data");
 
-        Assert.assertTrue(!data.getString("internal_update_url").isEmpty());
-        Assert.assertTrue(!data.getString("google_apk_url").isEmpty());
+//        Assert.assertTrue(!data.getString("internal_update_url").isEmpty());
+//        Assert.assertTrue(!data.getString("google_apk_url").isEmpty());
         Assert.assertTrue(!data.getString("version").isEmpty());
-        Assert.assertTrue(!data.getString("url").isEmpty());
+        Assert.assertTrue(!data.getString("strategy").isEmpty());
+//        Assert.assertTrue(!data.getString("url").isEmpty());
 
     }
 }
