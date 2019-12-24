@@ -77,19 +77,19 @@ public class ChangeWalletPasswordTest extends BaseTest {
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(contentTexts(walletPasswordPage.testarray,"新旧密码不能一致"));
     }
-    @Test(description = "input correct password",alwaysRun = true)
-    public void test0006InputorrectPassword() throws Exception{
-        WalletPasswordPage walletPasswordPage = walletPasswordPage();
-        walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
-
-    }
-
-    @Test(description = "input correct password",alwaysRun = true)
-    public void test0007InputCorrectPassword() throws Exception{
-        WalletPasswordPage walletPasswordPage = walletPasswordPage();
-        walletPasswordPage.changePassword(newPassword,oldPassword,oldPassword);
-
-    }
+//    @Test(description = "input correct password",alwaysRun = true)
+//    public void test0006InputorrectPassword() throws Exception{
+//        WalletPasswordPage walletPasswordPage = walletPasswordPage();
+//        walletPasswordPage.changePassword(oldPassword,newPassword,newPassword);
+//
+//    }
+//
+//    @Test(description = "input correct password",alwaysRun = true)
+//    public void test0007InputCorrectPassword() throws Exception{
+//        WalletPasswordPage walletPasswordPage = walletPasswordPage();
+//        walletPasswordPage.changePassword(newPassword,oldPassword,oldPassword);
+//
+//    }
 
 
 
