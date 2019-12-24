@@ -21,7 +21,7 @@ public class multiTrxRecord {
 
     @Test(enabled = true, description = "Api upgrade test")
     public void multiTrxRecord() throws Exception {
-        param.put("address","TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb");
+        param.put("address","TRqgwhHbfscXq3Ym3FJSFwxprpto1S4nSW");
         param.put("start","0");
         param.put("limit","39");
         param.put("state","1");
