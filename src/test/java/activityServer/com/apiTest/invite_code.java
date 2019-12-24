@@ -22,6 +22,6 @@ public class invite_code {
 
     JSONObject inviteCodeinfo = api.parseResponseContent(response);
     api.printJsonContent(inviteCodeinfo);
-    Assert.assertEquals(inviteCodeinfo.getString("message"),"User has been invited");
+    Assert.assertEquals(inviteCodeinfo.getString("message"),"Invited code is err");
   }
 }
