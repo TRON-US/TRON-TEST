@@ -21,9 +21,9 @@ public class multiTrxRecord {
 
     @Test(enabled = true, description = "Api upgrade test")
     public void multiTrxRecord() throws Exception {
-        param.put("address","TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb");
+        param.put("address","TRqgwhHbfscXq3Ym3FJSFwxprpto1S4nSW");
         param.put("start","0");
-        param.put("limit","39");
+        param.put("limit","10");
         param.put("state","1");
         param.put("netType","main_net");
         response = api.multiTrxReword(param);
@@ -34,11 +34,18 @@ public class multiTrxRecord {
         Assert.assertTrue(responseContent.getString("message").equals("OK"));
 
         JSONArray array = responseContent.getJSONObject("data").getJSONArray("data");
-        array.contains("signatureProgress");
-        for (int i = 0; i < array.size();i++) {
-            System.out.println(array.get(i));
-            System.out.println("-----------------------");
-        }
+        for (Object signatureProgress:array) {
+            JSONObject info = (JSONObject) signatureProgress;
+            Assert.assertEquals(info.getString("state"),"1");
+            Assert.assertTrue(!info.getString("originatorAddress").isEmpty());
+            Assert.assertTrue(!info.getString("currentWeight").isEmpty());
+            Assert.assertTrue(!info.getString("contractType").isEmpty());
+            Assert.assertTrue(!info.getString("threshold").isEmpty());
+            Assert.assertTrue(!info.getString("isSign").isEmpty());
+            Assert.assertTrue(!info.getString("state").isEmpty());
+            Assert.assertTrue(!info.getString("hash").isEmpty());
 
+
+        }
     }
 }
