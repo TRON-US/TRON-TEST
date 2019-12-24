@@ -152,7 +152,6 @@ public class MainNetDeposit10 extends Base {
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         int tries = 0;
         Boolean exist = false;
-        exist = trx.getTrxVale();
         while (exist == false && tries < 5) {
             tries++;
             try {
