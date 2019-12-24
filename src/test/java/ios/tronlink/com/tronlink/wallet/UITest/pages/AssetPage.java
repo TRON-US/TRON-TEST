@@ -16,23 +16,29 @@ public class AssetPage extends AbstractPage {
 
     public IOSDriver<?> driver;
 
+//    public static boolean closedADView = true;//调试用
+    public static boolean closedADView = false;//正式用
 
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
-        try {
-//            TimeUnit.SECONDS.sleep(1);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-            }
+        System.out.println("closedADView:"+closedADView);
+        if(!closedADView){
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                if (ad_pic.isDisplayed()){
+                    adClose_btn.click();
+                    closedADView = true;
+                }
 
-        }catch (Exception e){
-           try {
-               if (adClose_btn.isDisplayed()) {
-                   adClose_btn.click();
-               }
-           }catch (Exception el){}
+            }catch (Exception e){
+                try {
+                    if (adClose_btn.isDisplayed()) {
+                        adClose_btn.click();
+                        closedADView = true;
+                    }
+                }catch (Exception el){}
+            }
         }
 //        try {
 //            // if updateview display ,close
