@@ -85,6 +85,7 @@ public class MinePage extends AbstractPage {
     public SettingPage enterSettingPage(){
         Helper.swipScreen(driver);
         try {
+            Helper.swipScreen(driver);
             setting_btn.click();
         }catch (Exception e){
             new Base().log("setting_btn button not found");
