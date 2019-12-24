@@ -49,7 +49,7 @@ public class multiTrxRecord {
         }
     }
 
-    @Test(enabled = true, description = "Api multiTrxReword test")
+    @Test(enabled = true, description = "Api multiTrxReword test success")
     public void multiTrxRecord1() throws Exception {
         param.put("address","TRqgwhHbfscXq3Ym3FJSFwxprpto1S4nSW");
         param.put("start","0");
@@ -79,7 +79,7 @@ public class multiTrxRecord {
         }
     }
 
-    @Test(enabled = true, description = "Api multiTrxReword test")
+    @Test(enabled = true, description = "Api multiTrxReword test fail")
     public void multiTrxRecord2() throws Exception {
         param.put("address","TRqgwhHbfscXq3Ym3FJSFwxprpto1S4nSW");
         param.put("start","0");
