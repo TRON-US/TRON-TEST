@@ -37,12 +37,13 @@ public class multiTransaction {
     private String fullnodeHttpServer = "47.252.85.177:8090";
     private String base58MutiAddress = "TNt9sTSLrjdFJmyeQGYSMGu5sVat1Ew3Tz";
     private JSONObject rawDataObject;
+    private JSONArray signatureArray;
     private JSONArray signature;
     private String signatureString;
     private String foundationAccountKey = "fb4bd20d2af1bfad551f917f6110cdc8948cb41cbf5e6e3dbd26acb0f20eecef";
     private String foundationAccountAddress = "TFoPyG82ixipCTVqzkmLa9ivftHcsrXVrp";
     private String foundationBase58Address = "413ff5c065bdcdf7c3da16823ad0f6d3dff611122e";
-    private String signString;
+    private String hash;
 
     @Test(enabled = false, description = "Api first persion multi transaction")
     public void test001FirstOneMultiTransaction() throws Exception {
@@ -65,7 +66,7 @@ public class multiTransaction {
     }
     @Test(enabled = true, description = "Api multi transaction")
     public void test002FirstOneMultiTransaction() throws Exception {
-        String url = "wss://testlist.tronlink.org/api/wallet/multi/socket?address=" + base58MutiAddress + "&netType=main_net";
+        String url = "wss://list.tronlink.org/api/wallet/multi/socket?address=" + base58MutiAddress + "&netType=main_net";
         tronlinkSocketClient mWs = new tronlinkSocketClient(url);
         mWs.connect();
         int i = 0;
@@ -79,47 +80,58 @@ public class multiTransaction {
         String transaction = tronlinkSocketClient.getResonse();
         rawDataObject = JSON.parseObject(transaction);
         JSONArray transactionArray = rawDataObject.getJSONArray("data");
+
         if (!transactionArray.isEmpty()){
+            hash = transactionArray.getJSONObject(0).getString("hash");
             rawDataObject = transactionArray.getJSONObject(0).getJSONObject("currentTransaction").getJSONObject("raw_data");
+            signatureArray = transactionArray.getJSONObject(0).getJSONObject("currentTransaction").getJSONArray("signature");
             //signature = transactionArray.getJSONObject(0).getJSONObject("currentTransaction").getJSONArray("signature");
         }
 
         System.out.println("rawDataObject:" + rawDataObject);
-
-
-
-
-
-
     }
 
+//    @Test(enabled = true, description = "Api multi transaction when this transaction not create from tronlink,")
+//    public void test003getTransaction() throws Exception {
+//
+//        String[] keyArray = new String[2];
+//        keyArray[0] = foundationAccountKey;
+//        //keyArray[1] = foundationAccountKey;
+//        String signString = api.gettransactionsign(fullnodeHttpServer,rawDataObject.toString(),foundationAccountKey);
+//        System.out.println(signString);
+//        JsonObject jsonObject = new JsonParser().parse(signString).getAsJsonObject();
+//        JsonObject rawdataObject = new JsonParser().parse(rawDataObject.toString()).getAsJsonObject();
+//
+//        JsonObject transaction = new JsonObject();
+//        transaction.addProperty("address",base58MutiAddress);
+//        transaction.addProperty("netType","main_net");
+///*        jsonObject.remove("raw_data_hex");
+//        jsonObject.remove("txID");
+//        jsonObject.remove("visible");
+//        jsonObject.remove("raw_data");*/
+//        jsonObject.add("raw_data",rawdataObject);
+//        transaction.add("transaction",jsonObject);
+//        System.out.println("transaction:" + transaction);
+//        response = api.multiTransaction(transaction);
+//        api.printJsonContent(api.parseResponseContent(response));
+//    }
     @Test(enabled = true, description = "Api multi transaction when this transaction not create from tronlink,")
     public void test003getTransaction() throws Exception {
-
-        String[] keyArray = new String[2];
-        keyArray[0] = foundationAccountKey;
-        //keyArray[1] = foundationAccountKey;
-        String signString = api.gettransactionsign(fullnodeHttpServer,rawDataObject.toString(),foundationAccountKey);
-        System.out.println(signString);
-        JsonObject jsonObject = new JsonParser().parse(signString).getAsJsonObject();
-        JsonObject rawdataObject = new JsonParser().parse(rawDataObject.toString()).getAsJsonObject();
-
-        JsonObject transaction = new JsonObject();
-        transaction.addProperty("address",base58MutiAddress);
-        transaction.addProperty("netType","main_net");
-/*        jsonObject.remove("raw_data_hex");
-        jsonObject.remove("txID");
-        jsonObject.remove("visible");
-        jsonObject.remove("raw_data");*/
-        jsonObject.add("raw_data",rawdataObject);
-        transaction.add("transaction",jsonObject);
-        System.out.println("transaction:" + transaction);
-        response = api.multiTransaction(transaction);
-        api.printJsonContent(api.parseResponseContent(response));
-
+        if (!hash.isEmpty()){
+            JSONObject transaction = new JSONObject();
+            transaction.put("address",base58MutiAddress);
+            transaction.put("netType","main_net");
+            JSONObject raw = new JSONObject();
+            signatureArray.add(api.getSignature(hash,multiKey));
+            raw.put("signature",signatureArray);
+            raw.put("raw_data",rawDataObject);
+            transaction.put("transaction",raw);
+            System.out.println(transaction);
+            response = api.multiTransaction(transaction);
+            JSONObject jsonObject = api.parseResponseContent(response);
+            api.printJsonContent(api.parseResponseContent(response));
+            Assert.assertEquals(jsonObject.getString("message"),"OK");
+        }
 
     }
-
-
-
 }
