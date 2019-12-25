@@ -89,7 +89,6 @@ public class multiTransaction {
         }
 
         System.out.println("rawDataObject:" + rawDataObject);
-
     }
 
 //    @Test(enabled = true, description = "Api multi transaction when this transaction not create from tronlink,")
@@ -133,5 +132,6 @@ public class multiTransaction {
             api.printJsonContent(api.parseResponseContent(response));
             Assert.assertEquals(jsonObject.getString("message"),"OK");
         }
+
     }
 }
