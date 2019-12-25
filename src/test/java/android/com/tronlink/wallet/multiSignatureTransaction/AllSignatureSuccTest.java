@@ -70,13 +70,21 @@ public class AllSignatureSuccTest extends Base {
     public void test001_multSignOptions() throws Exception {
 //        AssetPage asset = importTwoPrivateKay();
 //        MyPursePage myPurse = asset.enterMyPursePage();
-//        myPurse.swipToChangeWallet("SignAccount");
+//        myPurse.changeWalletAccount("SignAccount");
 
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPurse = asset.enterMyPursePage();
-        //myPurse.swipToChangeWallet("FromAccount");
-        //myPurse.changeWalletAccount("SignAccount");
         myPurse.changeWalletAccount("FromAccount");
+        SendTrxPage SendTrx = asset.enterSendTrxPage();
+        asset = SendTrx.sendRamonTrxSuccess();
+        asset = myPurse.changeWalletAccount("SignAccount");
+        asset.enterMinePage();
+
+
+
+
+
+
 
 //        AssetPage asset = new AssetPage(DRIVER);
 //        MyPursePage myPurse = asset.enterMyPursePage();
