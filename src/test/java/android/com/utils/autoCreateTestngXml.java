@@ -59,6 +59,7 @@ public class autoCreateTestngXml {
     public void beforeClass() throws IOException{
         try {
             singleTestPackagesNameList.add("<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>");
+            singleTestPackagesNameList.add("<package name=\"android.com.tronlink.wallet.multiSignatureTransaction.*\"></package>");
             deviceNameList = AppiumTestCase.getDeviceList(adb + " devices");
         } catch (Exception e) {
             adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
