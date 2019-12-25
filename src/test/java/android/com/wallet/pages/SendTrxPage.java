@@ -2,6 +2,9 @@ package android.com.wallet.pages;
 
 import android.com.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
+
+import java.text.DecimalFormat;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.openqa.selenium.WebElement;
@@ -84,6 +87,11 @@ public class SendTrxPage extends AbstractPage {
     public void swip(){
         Helper.swipScreen(driver);
     }
+
+
+    @FindBy(id = "com.tronlink.wallet:id/rl_bottom_next")
+    public WebElement next_btn;
+
 
 
 
@@ -242,6 +250,28 @@ public class SendTrxPage extends AbstractPage {
         Helper.swipScreen(driver);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
+    }
+
+
+
+    public AssetPage sendRamonTrxSuccess() throws Exception {
+        receiveAddress_text.sendKeys("TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v");
+        Random random = new Random();
+        float count = random.nextFloat();
+        DecimalFormat df = new DecimalFormat( "0.00" );
+        String str = df.format(count);
+        tranferCount_text.sendKeys(str);
+        swip();
+        send_btn.click();
+        transferNow_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        next_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        back_bt.click();
+        back_bt.click();
+        return new AssetPage(driver);
     }
 
 
