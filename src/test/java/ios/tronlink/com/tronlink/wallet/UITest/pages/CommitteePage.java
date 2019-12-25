@@ -2,6 +2,7 @@ package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -55,6 +56,23 @@ public class CommitteePage extends AbstractPage {
     @FindBy(id = "black path")
     public WebElement backBtn;
 
+    @FindBy(id = "nodeNameLabel")
+    public WebElement nodeNameLabel;
+
+    @FindBy(id = "stateLabel")
+    public WebElement stateLabel;
+
+
+    @FindBy(id = "createTimeValue")
+    public WebElement createTimeValue;
+
+    @FindBy(id = "deadlineTimeValue")
+    public WebElement deadlineTimeValue;
+
+    @FindBy(id = "totalVoteValue")
+    public WebElement totalVoteValue;
+
+
     public void change1proposal(String pro){
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -74,6 +92,23 @@ public class CommitteePage extends AbstractPage {
 
         }
     }
+    public String getNameofproposal() throws Exception {
+        enterProposalDetail();
+        return nodeNameLabel.getText();
+    }
+    public String getStateofproposal() throws Exception {
+        enterProposalDetail();
+        return stateLabel.getText();
+    }
+    public boolean cheacktimeorderofproposal() throws Exception{
+        enterProposalDetail();
+        if(deadlineTimeValue.getText().compareTo(createTimeValue.getText()) > 0){
+            return  true;
+        }else {
+            return  false;
+        }
+    }
+
 
     public WebElement findFirstproposalWl( ) throws Exception {
          TimeUnit.SECONDS.sleep(5);
@@ -88,9 +123,43 @@ public class CommitteePage extends AbstractPage {
         return wls.get(0);
     }
 
+    public int findvoteNumbers() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        findFirstAgreedroposalWl().click();
+        TimeUnit.SECONDS.sleep(3);
+        return  Integer.parseInt(totalVoteValue.getText());
+    }
+    public int findvoteafterNumbers() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        findFirstproposalWl().click();
+        TimeUnit.SECONDS.sleep(3);
+        return  Integer.parseInt(totalVoteValue.getText());
+    }
+    public boolean getagreedStateofproposal() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        findFirstAgreedroposalWl().click();
+        TimeUnit.SECONDS.sleep(3);
+        return disagreeBtn.isDisplayed();
+    }
+
+    public boolean getdisagreedStateofproposal() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        findFirstproposalWl().click();
+        TimeUnit.SECONDS.sleep(3);
+        return agreeBtn.isDisplayed();
+    }
+
+    public void enterProposalDetail() throws Exception {
+        WebElement wl = findFirstproposalWl();
+        wl.click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+
     public void enterMyProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         mysetuppropos.click();
+        TimeUnit.SECONDS.sleep(2);
     }
 
     public void enterMyAgreedProposal() throws Exception {
