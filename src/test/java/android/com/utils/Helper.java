@@ -33,6 +33,20 @@ public class Helper {
     }
 
 
+    public static void swipToChangeMyPaurse(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.println("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*2/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*1/5))
+                .release().perform();
+    }
+
+
     public static void swipScreenToTop(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
