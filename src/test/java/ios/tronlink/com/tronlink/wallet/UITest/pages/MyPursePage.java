@@ -31,6 +31,9 @@ public class MyPursePage extends AssetPage {
     @FindBy(id = "钱包密码")
     public WebElement walletPassword_btn;
 
+    @FindBy(name = "******")
+    public WebElement walletPasswordSec_btn;
+
     @FindBy(id = "钱包管理")
     public WebElement title;
 
@@ -93,9 +96,41 @@ public class MyPursePage extends AssetPage {
         return new AddwalletPage(driver);
     }
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
+        Helper.swipRefreshScreen(driver);
         TimeUnit.SECONDS.sleep(1);
-        walletPassword_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        try{
+            walletPassword_btn.click();
+            System.out.println("walletPassword_btn");
+        }catch (Exception e){
+            try{
+                walletPasswordSec_btn.click();
+                System.out.println("walletPasswordSec_btn");
+            }catch (Exception el){
+                Helper.swipRefreshScreen(driver);
+                try{
+                    walletPassword_btn.click();
+                    System.out.println("walletPassword2_btn");
+                }catch (Exception ee){
+                    try{
+                        walletPasswordSec_btn.click();
+                        System.out.println("walletPasswordSec2_btn");
+                    }catch (Exception le){
+                        Helper.swipRefreshScreen(driver);
+                        TimeUnit.SECONDS.sleep(1);
+                        try {
+                            walletPassword_btn.click();
+                            System.out.println("walletPassword3_btn");
+                        }catch (Exception lls){
+                            walletPasswordSec_btn.click();
+                            System.out.println("walletPasswordSec3_btn");
+                        }
+                    }
+
+                }
+            }
+        }
+
+        TimeUnit.SECONDS.sleep(2);
         return new WalletPasswordPage(driver);
     }
 
@@ -105,7 +140,18 @@ public class MyPursePage extends AssetPage {
         String keystore = "";
         try {
             Helper.swipScreen(driver);
-            backkeystore_btn.click();
+            try{
+                backkeystore_btn.click();
+            }catch (Exception e){
+                Helper.swipScreen(driver);
+                try{
+                    backkeystore_btn.click();
+                }catch (Exception el){
+                    Helper.swipRefreshScreen(driver);
+                    backkeystore_btn.click();
+                }
+
+            }
             TimeUnit.SECONDS.sleep(1);
             password_et.sendKeys(password);
             WebElement  confirm_btn;
