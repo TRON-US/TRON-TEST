@@ -3,6 +3,7 @@ package android.com.tronlink.wallet.multiSignatureTransaction;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
@@ -66,7 +67,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"address"})
-    @Test(description = "Developer options Test", alwaysRun = true, enabled = false)
+    @Test(description = "Developer options Test", alwaysRun = true)
     public void test001_multSignOptions() throws Exception {
 //        AssetPage asset = importTwoPrivateKay();
 //        MyPursePage myPurse = asset.enterMyPursePage();
@@ -77,12 +78,25 @@ public class AllSignatureSuccTest extends Base {
         myPurse.changeWalletAccount("FromAccount");
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         asset = SendTrx.sendRamonTrxSuccess();
+        myPurse = asset.enterMyPursePage();
         asset = myPurse.changeWalletAccount("SignAccount");
-        asset.enterMinePage();
-
-
-
-
+        MinePage minePage = asset.enterMinePage();
+        myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        multiSignTransactionPage.sign();
+        myPurse = multiSignTransactionPage.enterMyPursePage();
+        minePage = myPurse.enterMinePage();
+        asset = minePage.enterAssetPage();
+        myPurse = asset.enterMyPursePage();
+        myPurse.changeWalletAccount("FromAccount");
+        minePage = asset.enterMinePage();
+        myPurse = minePage.enterMyPursePage();
+        multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        multiSignTransactionPage.signSuccess_tab.click();
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(multiSignTransactionPage.trans_text.isDisplayed());
+        System.out.println("transContent_text = " + multiSignTransactionPage.transContent_text.getText());
+        System.out.println("asset = " + SendTrx.getTrxCount());
 
 
 
