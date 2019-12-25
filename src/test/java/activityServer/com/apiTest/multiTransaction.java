@@ -134,4 +134,23 @@ public class multiTransaction {
             Assert.assertEquals(jsonObject.getString("message"),"OK");
         }
     }
+
+    @Test(enabled = true, description = "Api multi transaction when this transaction not create from tronlink,")
+    public void test004signTransactionOld() throws Exception {
+        if (!hash.isEmpty()){
+            JSONObject transaction = new JSONObject();
+            transaction.put("address",base58MutiAddress);
+            transaction.put("netType","main_net");
+            JSONObject raw = new JSONObject();
+            signatureArray.add(api.getSignature(hash,multiKey));
+            raw.put("signature",signatureArray);
+            raw.put("raw_data",rawDataObject);
+            transaction.put("transaction",raw);
+            System.out.println(transaction);
+            response = api.multiTransaction(transaction);
+            JSONObject jsonObject = api.parseResponseContent(response);
+            api.printJsonContent(api.parseResponseContent(response));
+            Assert.assertEquals(jsonObject.getString("message"),"OK");
+        }
+    }
 }
