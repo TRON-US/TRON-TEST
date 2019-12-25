@@ -69,12 +69,10 @@ public class AllSignatureSuccTest extends Base {
     @Parameters({"address"})
     @Test(description = "Developer options Test", alwaysRun = true)
     public void test001_multSignOptions() throws Exception {
-//        AssetPage asset = importTwoPrivateKay();
-//        MyPursePage myPurse = asset.enterMyPursePage();
-//        myPurse.changeWalletAccount("SignAccount");
-
-        AssetPage asset = new AssetPage(DRIVER);
+        AssetPage asset = importTwoPrivateKay();
         MyPursePage myPurse = asset.enterMyPursePage();
+        //AssetPage asset = new AssetPage(DRIVER);
+        //MyPursePage myPurse = asset.enterMyPursePage();
         myPurse.changeWalletAccount("FromAccount");
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         asset = SendTrx.sendRamonTrxSuccess();
