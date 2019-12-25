@@ -14,7 +14,11 @@ import io.appium.java_client.android.AndroidDriver;
  */
 public class MyPursePage extends AbstractPage {
 
+
+
     public AndroidDriver<?> driver;
+
+
 
     public MyPursePage(AndroidDriver<?> driver) {
         super(driver);
@@ -22,37 +26,67 @@ public class MyPursePage extends AbstractPage {
     }
 
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/rl_sign_manager")
     public WebElement multSignManager_btn;
+
+
 
     @FindBy(id = "com.tronlink.wallet:id/tv_address")
     public WebElement address_text;
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/tv_name")
     public WebElement walletname_text;
+
+
 
     @FindBy(id = "com.tronlink.wallet:id/rl_password")
     public WebElement walletPassword_btn;
 
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/tv_create")
     public WebElement newCreate_btn;
+
+
 
     @FindBy(id = "com.tronlink.wallet:id/rl_keystore2")
     public WebElement backupKeystore_btn;
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/et_password")
     public WebElement password_et;
+
+
 
     @FindBy(id = "com.tronlink.wallet:id/tv_ok")
     public WebElement confirm_btn;
 
+
+
     @FindBy(id = "com.tronlink.wallet:id/tv_keystore")
     public WebElement keystore_text;
 
+
+
+
     @FindBy(id = "com.tronlink.wallet:id/backup")
     public WebElement done_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    public WebElement walletAddress_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_chain_name")
+    public WebElement chainName_btn;
 
 
 
@@ -62,11 +96,13 @@ public class MyPursePage extends AbstractPage {
             multSignManager_btn.click();
             TimeUnit.SECONDS.sleep(1);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return new MultiSignManagerPage(driver);
     }
+
+
 
 
     public AddwalletPage enterAddwalletPage() throws Exception {
@@ -76,6 +112,7 @@ public class MyPursePage extends AbstractPage {
     }
 
 
+
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
         walletPassword_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -83,13 +120,15 @@ public class MyPursePage extends AbstractPage {
     }
 
 
-    public boolean getExitst(){
+
+    public boolean getExitst() {
         boolean eitst = true;
         return eitst;
     }
 
 
-    public String getBackupKeystore(String password){
+
+    public String getBackupKeystore(String password) {
         String keystore = "";
         try {
             Helper.swipScreen(driver);
@@ -100,22 +139,83 @@ public class MyPursePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(1);
             keystore = keystore_text.getText();
             done_btn.click();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return keystore;
     }
 
-    public String getAddress(){
+
+
+
+    public String getAddress() {
         String address = "";
         try {
             address = address_text.getText();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return address;
     }
 
+
+    public AssetPage changeWalletAccount(String walletName) throws Exception {
+        switch (walletName){
+            case "FromAccount":
+                swipToChangeWallet("TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS");
+                break;
+            case "SignAccount":
+                swipToChangeWallet("TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v");
+                break;
+            case "other":
+                swipToDefaultWallet();
+                break;
+        }
+        return new AssetPage(driver);
     }
+
+
+
+    public void swipToChangeWallet(String accountAddress) throws Exception {
+        int count = 0;
+        while (!walletAddress_text.getText().equals(accountAddress)){
+            System.out.println("current walletAddress is = " + walletAddress_text.getText());
+            System.out.println("xiangdneg");
+            count++;
+            Helper.swipToChangeMyPaurse(driver);
+            TimeUnit.SECONDS.sleep(1);
+            if (count >=7){
+                System.out.println("cannot find the wallet Address …… break");
+                break;
+            }
+        }
+        chainName_btn.click();
+    }
+
+
+
+    public void swipToDefaultWallet() throws Exception {
+        int count = 0;
+        while (walletAddress_text.getText().equals("TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS") || walletAddress_text.getText().equals("TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v")){
+            System.out.println("current walletAddress is = " + walletAddress_text.getText());
+            count++;
+            Helper.swipToChangeMyPaurse(driver);
+            TimeUnit.SECONDS.sleep(1);
+            if (count >=7){
+                System.out.println("cannot find the [default] wallet Address …… break");
+                break;
+            }
+        }
+        chainName_btn.click();
+    }
+
+
+
+
+
+
+
+}
+
 
 

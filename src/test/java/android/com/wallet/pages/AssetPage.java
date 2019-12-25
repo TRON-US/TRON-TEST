@@ -22,32 +22,32 @@ public class AssetPage extends AbstractPage {
     public AssetPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
-
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            // if updateview display ,close
-            if (update_topview.isDisplayed()) {
-                update_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
-
 //        try {
 //            TimeUnit.SECONDS.sleep(1);
-//            // if mutisignview display ,close
-//            if (mutisign_tipview.isDisplayed()) {
-//                mutisign_closebtn.click();
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
 //                TimeUnit.SECONDS.sleep(1);
 //            }
 //        }catch (Exception e){}
+//
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//            // if updateview display ,close
+//            if (update_topview.isDisplayed()) {
+//                update_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            // if mutisignview display ,close
+            if (mutisign_tipview.isDisplayed()) {
+                mutisign_closebtn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
     }
 
 
@@ -154,11 +154,21 @@ public class AssetPage extends AbstractPage {
     public WebElement currChain_name;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_walletname")
+    public WebElement walletName_text;
+
+
+
 
     public SendTrxPage enterSendTrxPage() {
         assets_btn.click();
         return new SendTrxPage(driver);
     }
+
+
+
+
+
 
     public VotePage enterVotePage(){
         try {
@@ -270,6 +280,14 @@ public class AssetPage extends AbstractPage {
         trx20_btn.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
+    }
+
+
+
+    public MyPursePage enterMyPursePage() throws Exception {
+        walletName_text.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new MyPursePage(driver);
     }
 
 

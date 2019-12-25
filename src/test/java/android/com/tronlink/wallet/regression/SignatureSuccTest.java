@@ -15,8 +15,8 @@ public class SignatureSuccTest extends Base {
     public String sourceWallet = "";
     public String fromAccountPrivateKey1 = "dad5b1d416822eb02e79bb818c35411e58b88db85562bcc8e71cac2c1ffa441c";
     //public String fromAccountAddress = "TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS";
-    public String signatureAccountPrivateKey2 = "7400E3D0727F8A61041A8E8BF86599FE5597CE19DE451E59AED07D60967A5E25";
-    public String signatureAccountAddress = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
+    public String signatureAccountPrivateKey2 = "451a602d36e0158b5d642daca47e01ec5abdc96ec67a9f88dbc165c7dbb2a08a";
+    public String signatureAccountAddress = "TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v";
 
 
     @Parameters({"privateKey"})
