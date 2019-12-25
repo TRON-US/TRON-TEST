@@ -84,13 +84,17 @@ public class YCommitteeTest extends BaseTest {
                 break;
             }
             TimeUnit.SECONDS.sleep(5);
+            Helper.swipRefreshScreen(DRIVER);
         }
+
+        Helper.swipRefreshScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+
         SimpleDateFormat formart = new SimpleDateFormat();// 格式化时间
         formart.applyPattern("HH:mm:ss");
         Date date = new Date();
         System.out.println("开始执行于:" + formart.format(date));
 
-        TimeUnit.SECONDS.sleep(2);
         committeePage.Setuppropos.click();
         String count = String.format("%.0f", Math.random() * 100000);
         myChangeCount = count;
