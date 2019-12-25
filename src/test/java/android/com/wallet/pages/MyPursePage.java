@@ -90,6 +90,16 @@ public class MyPursePage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    public WebElement back_btn;
+
+
+
+
+    @FindBy(xpath = "//*[@text='多重签名交易']")
+    public WebElement mulSignTranfer_btn;
+
+
 
     public MultiSignManagerPage enterMultiSignManagerPage() {
         try {
@@ -210,6 +220,18 @@ public class MyPursePage extends AbstractPage {
     }
 
 
+    public MultiSignTransactionPage enterMultiSignTransactionPage() throws Exception {
+        mulSignTranfer_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new MultiSignTransactionPage(driver);
+    }
+
+
+
+    public MinePage enterMinePage() throws Exception {
+        back_btn.click();
+        return new MinePage(driver);
+    }
 
 
 
