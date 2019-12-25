@@ -12,7 +12,7 @@ public class lotteryRecord {
   private HttpResponse response;
   private HashMap<String,String> parameter = new HashMap();
 
-  @Test(enabled = true, description = "Api GET /api/wallet/lottery/record test")
+  @Test(enabled = false, description = "Api GET /api/wallet/lottery/record test")
   public void test001LotteryRecord() throws Exception {
 //    parameter.put("address", api.testAddressBase64);
     response = api.lotteryRecord(parameter);
