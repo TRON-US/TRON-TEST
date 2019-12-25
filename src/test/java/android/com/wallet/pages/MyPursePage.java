@@ -159,7 +159,7 @@ public class MyPursePage extends AbstractPage {
     }
 
 
-    public void changeWalletAccount(String walletName) throws Exception {
+    public AssetPage changeWalletAccount(String walletName) throws Exception {
         switch (walletName){
             case "FromAccount":
                 swipToChangeWallet("TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS");
@@ -171,6 +171,7 @@ public class MyPursePage extends AbstractPage {
                 swipToDefaultWallet();
                 break;
         }
+        return new AssetPage(driver);
     }
 
 
