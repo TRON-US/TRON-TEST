@@ -101,6 +101,10 @@ public class SendTrxPage extends AbstractPage {
     }
 
 
+    public String trxCount = "";
+
+
+
     public SendTrxSuccessPage normalSendTrx() throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         tranferCount_text.sendKeys("1");
@@ -260,6 +264,7 @@ public class SendTrxPage extends AbstractPage {
         float count = random.nextFloat();
         DecimalFormat df = new DecimalFormat( "0.00" );
         String str = df.format(count);
+        trxCount = str;
         tranferCount_text.sendKeys(str);
         swip();
         send_btn.click();
@@ -275,6 +280,9 @@ public class SendTrxPage extends AbstractPage {
     }
 
 
+    public String getTrxCount() {
+        return trxCount;
+    }
 
 
 
