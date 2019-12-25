@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
+import com.google.protobuf.ByteString;
 import java.io.FileReader;
 import java.io.StringReader;
 import java.net.URI;
@@ -35,6 +36,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import org.tron.common.crypto.ECKey;
+import org.tron.common.crypto.ECKey.ECDSASignature;
+import org.tron.common.utils.ByteArray;
 
 public class api {
     public static String HOME_HOST = "https://list.tronlink.org";//host
@@ -95,6 +99,11 @@ public class api {
 
 
     public static HttpResponse multiTransaction(JsonObject transaction) throws Exception {
+        final String requestUrl = HttpNode + "/api/wallet/multi/transaction";
+        response = createConnect(requestUrl, transaction);
+        return response;
+    }
+    public static HttpResponse multiTransaction(JSONObject transaction) throws Exception {
         final String requestUrl = HttpNode + "/api/wallet/multi/transaction";
         response = createConnect(requestUrl, transaction);
         return response;
@@ -487,6 +496,7 @@ public class api {
                                             String privateKey) {
         try {
             String requestUrl = "http://" + fullnodeNode + "/wallet/gettransactionsign";
+            System.out.println(requestUrl);
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("transaction", transactionString);
             userBaseObj2.addProperty("privateKey", privateKey);
@@ -626,7 +636,27 @@ public class api {
         return response;
     }
 
+    public static byte[] toBytes(String str) {
+        if (str == null || str.trim().equals("")) {
+            return new byte[0];
+        }
 
+        byte[] bytes = new byte[str.length() / 2];
+        for (int i = 0; i < str.length() / 2; i++) {
+            String subStr = str.substring(i * 2, i * 2 + 2);
+            bytes[i] = (byte) Integer.parseInt(subStr, 16);
+        }
 
+        return bytes;
+    }
 
+    public static String getSignature(String hashstring,String privateStr) {
+        byte[] privateByte = ByteArray.fromHexString(privateStr);
+        org.tron.common.crypto.ECKey ecKey = ECKey.fromPrivate(privateByte);
+        byte[] hash = toBytes(hashstring);
+        ECDSASignature signature = ecKey.sign(hash);
+        System.out.println(signature.toHex());
+        ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
+        return signature.toHex();
+    }
 }
