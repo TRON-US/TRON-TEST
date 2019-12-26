@@ -27,7 +27,7 @@ public class multiTransactionError {
     private String foundationAccountKey = "fb4bd20d2af1bfad551f917f6110cdc8948cb41cbf5e6e3dbd26acb0f20eecef";
     private String foundationAccountAddress = "TFoPyG82ixipCTVqzkmLa9ivftHcsrXVrp";
     private String foundationBase58Address = "413ff5c065bdcdf7c3da16823ad0f6d3dff611122e";
-    private String hash;
+    private String hash = "";
 
     private String testKey = "de164ddc64b1783c3ebced73b32c479b3daa203cf323bd738a9ecfc4674d6017";
     private String testAddress = "TN2jfdYCX9vvozqjwVvPjMd7vRj8HKyxUe";
@@ -65,8 +65,8 @@ public class multiTransactionError {
       String transaction = tronlinkSocketClient.getResonse();
       rawDataObject = JSON.parseObject(transaction);
       transactionArray = rawDataObject.getJSONArray("data");
-      JSONObject contractData = transactionArray.getJSONObject(0).getJSONObject("contractData");
-      System.out.println(contractData);
+//      JSONObject contractData = transactionArray.getJSONObject(0).getJSONObject("contractData");
+//      System.out.println(contractData);
 
       if (!transactionArray.isEmpty()){
         hash = transactionArray.getJSONObject(0).getString("hash");
@@ -141,6 +141,5 @@ public class multiTransactionError {
       Assert.assertEquals(result.getString("code"), "20320");
     }
   }
-
-    }
+}
 
