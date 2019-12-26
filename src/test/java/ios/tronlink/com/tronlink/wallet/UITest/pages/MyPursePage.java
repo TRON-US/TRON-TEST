@@ -45,6 +45,8 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "删除钱包")
     public WebElement deletewallet_btn;
 
+    @FindBy(id = "多重签名管理")
+    public WebElement multiManageDoor;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_address")
     public WebElement address_text;
@@ -75,16 +77,41 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "备份完成")
     public WebElement done_btn;
 
-    @FindBy(name = "com.tronlink.wallet:id/rl_sign_manager")
-    public WebElement multSignManager_btn;
+
+
 
     public MultiSignManagerPage enterMultiSignManagerPage() {
         try {
-            multSignManager_btn.click();
-            TimeUnit.SECONDS.sleep(1);
-
+            System.out.println("1 times finde multiManage");
+            TimeUnit.SECONDS.sleep(2);
+            multiManageDoor.click();
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
-            System.out.println(e);
+            try {
+                System.out.println("2 times finde multiManage");
+                Helper.swipRefreshScreen(driver);
+                TimeUnit.SECONDS.sleep(1);
+                multiManageDoor.click();
+                TimeUnit.SECONDS.sleep(3);
+            }catch (Exception ed){
+                try {
+                    System.out.println("3 times finde multiManage");
+                    Helper.swipRefreshScreen(driver);
+                    TimeUnit.SECONDS.sleep(1);
+                    multiManageDoor.click();
+                    TimeUnit.SECONDS.sleep(3);
+                }catch (Exception edd){
+                    try {
+                        System.out.println("4 times finde multiManage");
+                        Helper.swipRefreshScreen(driver);
+                        TimeUnit.SECONDS.sleep(1);
+                        multiManageDoor.click();
+                        TimeUnit.SECONDS.sleep(3);
+                    }catch (Exception eddd){
+                        System.out.println(eddd);
+                    }
+                }
+            }
         }
         return new MultiSignManagerPage(driver);
     }
