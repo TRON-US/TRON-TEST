@@ -108,9 +108,34 @@ public class MultiSignActiveTest extends BaseTest {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         Assert.assertTrue(multiSignManagerPage.ThrHoldErrWith("0").contains("阈值须≤100"));
     }
-//    @Test(description = "signature with error Adress", alwaysRun = true)
-//    public void test012_errorAdress() throws Exception {
-//
-//    }
 
+
+    @Test(description = "signature with error Adress", alwaysRun = true)
+    public void test011_errorAdress() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.addressErrWith("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE").contains("请填写正确的地址"));
+    }
+
+    @Test(description = "Adress Is Null", alwaysRun = true)
+    public void test012_AdressIsNull() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.addressErrWith("").contains("请填写正确的地址"));
+    }
+    @Test(description = "two Adress is equals", alwaysRun = true)
+    public void test013_adressIsEquals() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.makedouleAddressErr().contains("重复地址"));
+    }
+
+    @Test(description = "password is wrong", alwaysRun = true)
+    public void test014_passwordIsWrong() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.inputPassword("wrongPassword"));
+    }
+
+    @Test(description = "password is null", alwaysRun = true)
+    public void test015_passwordIsNull() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertFalse(multiSignManagerPage.inputEmptyPassword());
+    }
 }
