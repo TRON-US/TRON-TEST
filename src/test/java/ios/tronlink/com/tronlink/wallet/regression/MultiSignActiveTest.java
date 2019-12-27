@@ -45,35 +45,32 @@ public class MultiSignActiveTest extends BaseTest {
 
 
     }
-//    @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
-//    public void test001_MultiSignatureQuestionContentTest() throws Exception {
-//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-//        Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
-//    }
-//
-//    @Test(description = "Add MultiSignature Test", alwaysRun = true)
-//    public void test002_multiSignature() throws Exception {
-//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-//        multiSignManagerPage.delSignData();
-//        multiSignManagerPage.addPermission(signName);
-//        Helper.refreshWalletScreen(DRIVER);
-//        TimeUnit.SECONDS.sleep(3);
-//        System.out.println("multiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
-//        Assert.assertTrue(multiSignManagerPage.havedaddActive());
-//    }
-//
-//    @Test(description = "Modify signature Test", alwaysRun = true)
-//    public void test003_modifySignature() throws Exception {
-//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-//        multiSignManagerPage.modifyPermission();
-//        Assert.assertTrue(multiSignManagerPage.havedaddfreezeAssetPower());
-//    }
+    @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
+    public void test001_MultiSignatureQuestionContentTest() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
+    }
+
+    @Test(description = "Add MultiSignature Test", alwaysRun = true)
+    public void test002_multiSignature() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        multiSignManagerPage.delSignData();
+        multiSignManagerPage.addPermission(signName);
+        System.out.println("multiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
+        Assert.assertTrue(multiSignManagerPage.havedaddActive());
+    }
+
+    @Test(description = "Modify signature Test", alwaysRun = true)
+    public void test003_modifySignature() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        multiSignManagerPage.modifyPermission();
+        Assert.assertTrue(multiSignManagerPage.havedaddfreezeAssetPower());
+    }
 
     @Test(description = "signature is exist", alwaysRun = true)
     public void test004_signatureIsExist() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         Helper.swipScreen(multiSignManagerPage.driver);
-        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(multiSignManagerPage.havedaddActive());
     }
 
@@ -82,7 +79,6 @@ public class MultiSignActiveTest extends BaseTest {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
         Helper.swipRefreshScreen(multiSignManagerPage.driver);
-        TimeUnit.SECONDS.sleep(3);
         Assert.assertFalse(multiSignManagerPage.havedaddActive());
     }
 
