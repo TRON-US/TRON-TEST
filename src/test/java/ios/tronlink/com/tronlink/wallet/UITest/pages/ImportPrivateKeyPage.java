@@ -54,9 +54,9 @@ public class ImportPrivateKeyPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         content_text.sendKeys(key);
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(1);
         getNext_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         return new PrivateKeySetNamePage(driver);
     }
 

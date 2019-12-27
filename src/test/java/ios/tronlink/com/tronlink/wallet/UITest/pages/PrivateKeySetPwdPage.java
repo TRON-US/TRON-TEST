@@ -36,6 +36,7 @@ public class PrivateKeySetPwdPage extends AbstractPage {
     public PrivateKeySetPwdAgainPage enterPrivateKeySetPwdAgainPage(String pwd) throws Exception {
         pwd_input.sendKeys(pwd);
         Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(1);
         getNext_btn().click();
         TimeUnit.SECONDS.sleep(1);
         return new PrivateKeySetPwdAgainPage(driver);
