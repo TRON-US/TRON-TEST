@@ -19,14 +19,14 @@ public class MultiSignActiveTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         MyPursePage pursePage = minePage.enterMyPursePage();
-        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPage();
+        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
         try {
             if (managerPage.instructionBtn.isDisplayed()){
                 System.out.println("成功进入MutisignManag");
                 return managerPage;
             }else {
                 System.out.println("1 times fails 进入MutisignManag");
-                managerPage = pursePage.enterMultiSignManagerPage();
+                managerPage = pursePage.enterMultiSignManagerPageNew();
                 if(managerPage.instructionBtn.isDisplayed()){
                     System.out.println("1 times success 进入MutisignManag");
                 }
@@ -34,7 +34,7 @@ public class MultiSignActiveTest extends BaseTest {
             }
         }catch (Exception e){
             System.out.println("1 times fails 进入MutisignManag Exception");
-            managerPage = pursePage.enterMultiSignManagerPage();
+            managerPage = pursePage.enterMultiSignManagerPageNew();
             if(managerPage.instructionBtn.isDisplayed()){
                 System.out.println("1 times success 进入MutisignManag Exception");
             }
@@ -54,6 +54,9 @@ public class MultiSignActiveTest extends BaseTest {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
         multiSignManagerPage.addPermission(signName);
+        Helper.refreshWalletScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println("multiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
         Assert.assertTrue(multiSignManagerPage.havedaddActive());
     }
 
@@ -76,6 +79,8 @@ public class MultiSignActiveTest extends BaseTest {
     public void test005_delSignature() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
+        Helper.swipRefreshScreen(multiSignManagerPage.driver);
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertFalse(multiSignManagerPage.havedaddActive());
     }
 
@@ -108,9 +113,7 @@ public class MultiSignActiveTest extends BaseTest {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         Assert.assertTrue(multiSignManagerPage.ThrHoldErrWith("0").contains("阈值须≤100"));
     }
-//    @Test(description = "signature with error Adress", alwaysRun = true)
-//    public void test012_errorAdress() throws Exception {
-//
-//    }
+
+
 
 }
