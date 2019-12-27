@@ -121,27 +121,27 @@ public class MyPursePage extends AssetPage {
 
     public MultiSignManagerPage enterMultiSignManagerPageNew() {
         try {
-            System.out.println("\n1 times finde multiManage");
+            System.out.println("\n1 times find multiManage");
             TimeUnit.SECONDS.sleep(2);
             ManageViewCells.get(0).click();
             TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
             try {
-                System.out.println("\n2 times finde multiManage");
+                System.out.println("\n2 times find multiManage");
                 Helper.refreshWalletScreen(driver);
                 TimeUnit.SECONDS.sleep(1);
                 multiManageDoor.click();
                 TimeUnit.SECONDS.sleep(3);
             }catch (Exception ed){
                 try {
-                    System.out.println("\n3 times finde multiManage");
+                    System.out.println("\n3 times find multiManage");
                     Helper.refreshWalletScreen(driver);
                     TimeUnit.SECONDS.sleep(1);
                     ManageViewCells.get(0).click();
                     TimeUnit.SECONDS.sleep(3);
                 }catch (Exception edd){
                     try {
-                        System.out.println("\n4 times finde multiManage");
+                        System.out.println("\n4 times find multiManage");
                         Helper.refreshWalletScreen(driver);
                         TimeUnit.SECONDS.sleep(1);
                         multiManageDoor.click();
