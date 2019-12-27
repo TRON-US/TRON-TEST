@@ -29,6 +29,10 @@ public class AddwalletPage extends AbstractPage {
     public WebElement keystore_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
+    public WebElement back_btn;
+
+
 
     public ImportPrivateKeyPage enterImportPrivateKeyPage() throws Exception{
         try {
