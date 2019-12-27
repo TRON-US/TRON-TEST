@@ -4,6 +4,7 @@ import android.com.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -91,6 +92,18 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/rl_bottom_next")
     public WebElement next_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
+    public WebElement enableTime_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    public List<WebElement> signAddress_text;
+
+
 
 
 
@@ -273,8 +286,9 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         back_bt.click();
+        TimeUnit.SECONDS.sleep(2);
         back_bt.click();
         return new AssetPage(driver);
     }
