@@ -159,6 +159,7 @@ public class MinePage extends AbstractPage {
             myPurse_btn.click();
             TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){
+            myPurse_btn.click();
             System.out.println(e);
         }
         return new MyPursePage(driver);
