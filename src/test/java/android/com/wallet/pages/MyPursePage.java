@@ -181,6 +181,7 @@ public class MyPursePage extends AbstractPage {
                 swipToDefaultWallet();
                 break;
         }
+        TimeUnit.SECONDS.sleep(4);
         return new AssetPage(driver);
     }
 
@@ -190,7 +191,7 @@ public class MyPursePage extends AbstractPage {
         int count = 0;
         while (!walletAddress_text.getText().equals(accountAddress)){
             System.out.println("current walletAddress is = " + walletAddress_text.getText());
-            System.out.println("xiangdneg");
+            TimeUnit.SECONDS.sleep(1);
             count++;
             Helper.swipToChangeMyPaurse(driver);
             TimeUnit.SECONDS.sleep(1);
@@ -200,6 +201,22 @@ public class MyPursePage extends AbstractPage {
             }
         }
         chainName_btn.click();
+    }
+
+
+
+    public void swipToChangeAddress(String accountAddress) throws Exception {
+        int count = 0;
+        while (!walletAddress_text.getText().equals(accountAddress)){
+            System.out.println("current walletAddress is = " + walletAddress_text.getText());
+            count++;
+            Helper.swipToChangeMyPaurse(driver);
+            TimeUnit.SECONDS.sleep(1);
+            if (count >=7){
+                System.out.println("cannot find the wallet Address …… break");
+                break;
+            }
+        }
     }
 
 

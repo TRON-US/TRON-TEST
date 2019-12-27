@@ -31,6 +31,14 @@ public class ImportPrivateKeyPage extends AbstractPage {
     public WebElement error_hits;
 
 
+
+    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
+    public WebElement back_btn;
+
+
+
+
+
     public String checkPrivateKey(String key) throws Exception {
         content_text.sendKeys(key);
         next_btn.click();
