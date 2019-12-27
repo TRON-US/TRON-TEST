@@ -34,6 +34,13 @@ public class PrivateKeySetPwdPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_error")
+    public WebElement error_hits;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    public WebElement back_btn;
+
 
 
     public PrivateKeySetPwdAgainPage enterPrivateKeySetPwdAgainPage(String pwd) throws Exception {
