@@ -2,6 +2,8 @@ package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,6 +50,11 @@ public class MultiSignManagerPage extends AbstractPage {
 
     @FindBy(id = "addauthorBtn")
     public WebElement addauthorBtn;
+
+
+
+
+
 
 
     public String getInstructionString() {
@@ -106,7 +113,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         thresholdTextField.sendKeys(amount);
-        Helper.tapWhitePlace(driver);
+        Helper.closeKeyBoard(driver); 
         System.out.println("总threahold clicked");
         TimeUnit.SECONDS.sleep(1);
         return getAllerrors();
@@ -119,7 +126,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         activeNameTF.sendKeys("TXtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
         System.out.println("添加权限名称 clicked");
-        Helper.tapWhitePlace(driver);
+        Helper.closeKeyBoard(driver);
         TimeUnit.SECONDS.sleep(2);
 
         return getAllerrors();
@@ -127,10 +134,18 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
     public void delSignData() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println("delSignData()");
         if (havedaddActive()) {
             System.out.println("need to del...");
-            TimeUnit.SECONDS.sleep(1);
-            havedActive.click();
+            Helper.swipScreen(driver);
+            haveActivedClickFunc();
+//            TimeUnit.SECONDS.sleep(3);
+//            System.out.println("Location:\n" + havedActive.getLocation()+"\nLocation\n Rect IS:\n" + havedActive.getRect() + "\nRect");
+//            IOSTouchAction action = new IOSTouchAction(driver);
+//            action.tap(PointOption.point(havedActive.getLocation().x+ 10,havedActive.getLocation().y + 20)).perform();
+//            TimeUnit.SECONDS.sleep(3);
+            System.out.println("Entered Active detailPage..");
             Helper.swipScreen(driver);
             TimeUnit.SECONDS.sleep(3);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
@@ -146,13 +161,13 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
     public boolean havedaddActive() {
+
         try {
-            if (havedActive.isDisplayed()) {
-                return true;
-            } else {
-                return false;
-            }
+            System.out.println("havedActive:print:\n" + havedActive.getText());
+            return true;
+
         } catch (Exception e) {
+            System.out.println("Exception havedActive is not find");
             return false;
         }
     }
@@ -160,7 +175,8 @@ public class MultiSignManagerPage extends AbstractPage {
     public boolean havedaddfreezeAssetPower() {
         try {
             TimeUnit.SECONDS.sleep(1);
-            havedActive.click();
+            haveActivedClickFunc();
+//            havedActive.click();
             TimeUnit.SECONDS.sleep(1);
 
             if (freezeAssetPower.isDisplayed()) {
@@ -182,7 +198,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         activeNameTF.sendKeys(name);
         System.out.println("添加权限名称 clicked");
-        Helper.tapWhitePlace(driver);
+        Helper.closeKeyBoard(driver);
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(2);
         activeContentEditBtn.click();
@@ -196,14 +212,14 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
-        Helper.tapWhitePlace(driver);
+        Helper.closeKeyBoard(driver);
         TimeUnit.SECONDS.sleep(1);
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应阈值 clicked");
-        Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
+        Helper.closeKeyBoard(driver);//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(1);
@@ -218,10 +234,10 @@ public class MultiSignManagerPage extends AbstractPage {
     public void modifyPermission() throws Exception {
         System.out.println("into modifyPermission");
         TimeUnit.SECONDS.sleep(1);
-        havedActive.click();
+        haveActivedClickFunc();
         System.out.println("添加权限 clicked");
         TimeUnit.SECONDS.sleep(1);
-        Helper.tapWhitePlace(driver);
+        Helper.closeKeyBoard(driver);
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(2);
         activeContentEditBtn.click();
@@ -242,5 +258,13 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
         TimeUnit.SECONDS.sleep(4);
+    }
+
+    public void haveActivedClickFunc() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println("Location:\n" + havedActive.getLocation()+"\nLocation\n Rect IS:\n" + havedActive.getRect() + "\nRect");
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.tap(PointOption.point(havedActive.getLocation().x+ 10,havedActive.getLocation().y + 20)).perform();
+        TimeUnit.SECONDS.sleep(3);
     }
 }
