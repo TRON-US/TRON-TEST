@@ -5,6 +5,7 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +34,13 @@ public class PrivateKeySetNamePage extends AbstractPage {
     public List<WebElement> error_hits;
 
     public String  getError_hits(){
-        return error_hits.get(0).getText() + error_hits.get(1).getText() + error_hits.get(2).getText();
+        String temper = new String();
+        for (WebElement e: error_hits
+             ) {
+            temper += e.getText();
+        }
+        return  temper;
+//        return error_hits.get(0).getText() + error_hits.get(1).getText() + error_hits.get(2).getText();
     }
 
     public WebElement getNext_btn(){
