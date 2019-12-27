@@ -8,7 +8,11 @@ import java.util.concurrent.TimeUnit;
 
 public class MultiSignTransactionPage extends AbstractPage {
 
+
+
     public AndroidDriver<?> driver;
+
+
 
     public MultiSignTransactionPage(AndroidDriver<?> driver) {
         super(driver);
@@ -20,6 +24,7 @@ public class MultiSignTransactionPage extends AbstractPage {
     public WebElement sign_btn;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/et_new_password")
     public WebElement password_input;
 
@@ -28,8 +33,10 @@ public class MultiSignTransactionPage extends AbstractPage {
     public WebElement send_btn;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
     public WebElement back_btn;
+
 
 
 
@@ -37,12 +44,28 @@ public class MultiSignTransactionPage extends AbstractPage {
     public WebElement signSuccess_tab;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/tv_trans_type")
     public WebElement trans_text;
 
 
+
     @FindBy(id = "com.tronlink.wallet:id/tv_trans_content")
     public WebElement transContent_text;
+
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/transaction_from")
+    public WebElement transactionFrom_text;
+
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/transaction_to")
+    public WebElement transactionTo_text;
+
+
 
     public void sign() throws Exception {
         TimeUnit.SECONDS.sleep(1);
