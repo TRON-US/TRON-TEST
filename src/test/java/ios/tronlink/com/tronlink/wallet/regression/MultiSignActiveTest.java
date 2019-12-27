@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MultiSignActiveTest extends BaseTest {
 
-    public  String signName = "MutiSignActive";
+    public  String signName = "MultiSignActive";
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -22,50 +22,52 @@ public class MultiSignActiveTest extends BaseTest {
         MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
         try {
             if (managerPage.instructionBtn.isDisplayed()){
-                System.out.println("成功进入MutisignManag");
+                System.out.println("\n1 times success 成功进入MultiSignMange");
                 return managerPage;
             }else {
-                System.out.println("1 times fails 进入MutisignManag");
+                System.out.println("\n1 times fails 进入MultiSignMange");
+                System.out.println("\n2 times Try 进入MultiSignMange");
                 managerPage = pursePage.enterMultiSignManagerPageNew();
                 if(managerPage.instructionBtn.isDisplayed()){
-                    System.out.println("1 times success 进入MutisignManag");
+                    System.out.println("\n2 times success 进入MultiSignMange");
                 }
                 return managerPage;
             }
         }catch (Exception e){
-            System.out.println("1 times fails 进入MutisignManag Exception");
+            System.out.println("\n1 times fails 进入MultiSignMange Exception");
+            System.out.println("\n2 times Try 进入MultiSignMange");
             managerPage = pursePage.enterMultiSignManagerPageNew();
             if(managerPage.instructionBtn.isDisplayed()){
-                System.out.println("1 times success 进入MutisignManag Exception");
+                System.out.println("\n2 times success  进入MultiSignMange");
             }
             return managerPage;
         }
 
 
     }
-    @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
-    public void test001_MultiSignatureQuestionContentTest() throws Exception {
-        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
-    }
-
-    @Test(description = "Add MutiSignature Test", alwaysRun = true)
-    public void test002_multiSignature() throws Exception {
-        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        multiSignManagerPage.delSignData();
-        multiSignManagerPage.addPermission(signName);
-        Helper.refreshWalletScreen(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
-        System.out.println("multiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
-        Assert.assertTrue(multiSignManagerPage.havedaddActive());
-    }
-
-    @Test(description = "Modify signature Test", alwaysRun = true)
-    public void test003_modifySignature() throws Exception {
-        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        multiSignManagerPage.modifyPermission();
-        Assert.assertTrue(multiSignManagerPage.havedaddfreezeAssetPower());
-    }
+//    @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
+//    public void test001_MultiSignatureQuestionContentTest() throws Exception {
+//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+//        Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
+//    }
+//
+//    @Test(description = "Add MultiSignature Test", alwaysRun = true)
+//    public void test002_multiSignature() throws Exception {
+//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+//        multiSignManagerPage.delSignData();
+//        multiSignManagerPage.addPermission(signName);
+//        Helper.refreshWalletScreen(DRIVER);
+//        TimeUnit.SECONDS.sleep(3);
+//        System.out.println("multiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
+//        Assert.assertTrue(multiSignManagerPage.havedaddActive());
+//    }
+//
+//    @Test(description = "Modify signature Test", alwaysRun = true)
+//    public void test003_modifySignature() throws Exception {
+//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+//        multiSignManagerPage.modifyPermission();
+//        Assert.assertTrue(multiSignManagerPage.havedaddfreezeAssetPower());
+//    }
 
     @Test(description = "signature is exist", alwaysRun = true)
     public void test004_signatureIsExist() throws Exception {
@@ -115,5 +117,32 @@ public class MultiSignActiveTest extends BaseTest {
     }
 
 
+    @Test(description = "signature with error Adress", alwaysRun = true)
+    public void test011_errorAdress() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.addressErrWith("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE").contains("请填写正确的地址"));
+    }
 
+    @Test(description = "Adress Is Null", alwaysRun = true)
+    public void test012_AdressIsNull() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.addressErrWith("").contains("请填写正确的地址"));
+    }
+    @Test(description = "two Adress is equals", alwaysRun = true)
+    public void test013_adressIsEquals() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.makedouleAddressErr().contains("重复地址"));
+    }
+
+    @Test(description = "password is wrong", alwaysRun = true)
+    public void test014_passwordIsWrong() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.inputPassword("wrongPassword"));
+    }
+
+    @Test(description = "password is null", alwaysRun = true)
+    public void test015_passwordIsNull() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertFalse(multiSignManagerPage.inputEmptyPassword());
+    }
 }
