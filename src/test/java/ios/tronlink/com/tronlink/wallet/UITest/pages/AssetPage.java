@@ -57,6 +57,8 @@ public class AssetPage extends AbstractPage {
         }catch (Exception e){
         }
     }
+    @FindBy(id = "nameLabel")
+    public List<WebElement> nameLabels;
 
     @FindBy(name = "转账")
     public WebElement transfer_btn;
@@ -243,6 +245,9 @@ public EnergyRentPage entereneryRantage(){
 
     public TrxPage enterTrx10Page() throws Exception {
         TimeUnit.SECONDS.sleep(1);
+        if(nameLabels.get(2).getText().contains("tronlink_token")){
+            System.out.println("点击了10币种tronlink_token");
+        }
         cellArray.get(2).click();
         TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
@@ -251,6 +256,9 @@ public EnergyRentPage entereneryRantage(){
 
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
+        if(nameLabels.get(1).getText().contains("TRX")){
+            System.out.println("点击了20币种TRX");
+        }
         cellArray.get(1).click();
         TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
