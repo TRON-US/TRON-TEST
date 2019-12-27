@@ -48,6 +48,9 @@ public class MyPursePage extends AssetPage {
     @FindBy(id = "多重签名管理")
     public WebElement multiManageDoor;
 
+    @FindBy(id = "ManageViewCell")
+    public List<WebElement> ManageViewCells;
+
     @FindBy(name = "com.tronlink.wallet:id/tv_address")
     public WebElement address_text;
 
@@ -89,21 +92,21 @@ public class MyPursePage extends AssetPage {
         }catch (Exception e){
             try {
                 System.out.println("2 times finde multiManage");
-                Helper.swipRefreshScreen(driver);
+                Helper.refreshWalletScreen(driver);
                 TimeUnit.SECONDS.sleep(1);
                 multiManageDoor.click();
                 TimeUnit.SECONDS.sleep(3);
             }catch (Exception ed){
                 try {
                     System.out.println("3 times finde multiManage");
-                    Helper.swipRefreshScreen(driver);
+                    Helper.refreshWalletScreen(driver);
                     TimeUnit.SECONDS.sleep(1);
                     multiManageDoor.click();
                     TimeUnit.SECONDS.sleep(3);
                 }catch (Exception edd){
                     try {
                         System.out.println("4 times finde multiManage");
-                        Helper.swipRefreshScreen(driver);
+                        Helper.refreshWalletScreen(driver);
                         TimeUnit.SECONDS.sleep(1);
                         multiManageDoor.click();
                         TimeUnit.SECONDS.sleep(3);
@@ -116,7 +119,41 @@ public class MyPursePage extends AssetPage {
         return new MultiSignManagerPage(driver);
     }
 
-
+    public MultiSignManagerPage enterMultiSignManagerPageNew() {
+        try {
+            System.out.println("\n1 times finde multiManage");
+            TimeUnit.SECONDS.sleep(2);
+            ManageViewCells.get(0).click();
+            TimeUnit.SECONDS.sleep(3);
+        }catch (Exception e){
+            try {
+                System.out.println("\n2 times finde multiManage");
+                Helper.refreshWalletScreen(driver);
+                TimeUnit.SECONDS.sleep(1);
+                multiManageDoor.click();
+                TimeUnit.SECONDS.sleep(3);
+            }catch (Exception ed){
+                try {
+                    System.out.println("\n3 times finde multiManage");
+                    Helper.refreshWalletScreen(driver);
+                    TimeUnit.SECONDS.sleep(1);
+                    ManageViewCells.get(0).click();
+                    TimeUnit.SECONDS.sleep(3);
+                }catch (Exception edd){
+                    try {
+                        System.out.println("\n4 times finde multiManage");
+                        Helper.refreshWalletScreen(driver);
+                        TimeUnit.SECONDS.sleep(1);
+                        multiManageDoor.click();
+                        TimeUnit.SECONDS.sleep(3);
+                    }catch (Exception eddd){
+                        System.out.println(eddd);
+                    }
+                }
+            }
+        }
+        return new MultiSignManagerPage(driver);
+    }
     public AddwalletPage enterAddwalletPage() throws Exception {
         newCreate_btn.click();
         TimeUnit.SECONDS.sleep(1);

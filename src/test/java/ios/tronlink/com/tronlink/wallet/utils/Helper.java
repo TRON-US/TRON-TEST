@@ -88,6 +88,16 @@ public class Helper {
         PointOption whiteplace = PointOption.point(10,130);
         action.tap(whiteplace).perform().release();
     }
+    public static void closeKeyBoard(IOSDriver driver)  throws Exception{
+        try {
+            driver.findElementById("完成").click();
+        }catch (Exception e){}
+
+        TouchAction action = new TouchAction(driver);
+        PointOption whiteplace = PointOption.point(6,130);
+        action.tap(whiteplace).perform().release();
+    }
+
     public static String getPrettyNumber(String number) {
         return BigDecimal.valueOf(Double.parseDouble(number))
                 .stripTrailingZeros().toPlainString();
@@ -310,7 +320,18 @@ public class Helper {
                 .moveTo(PointOption.point(width/2, height*4/5))
                 .release().perform();
     }
-
+    public static void refreshWalletScreen(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height/2))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/4))
+                .release().perform();
+    }
     public void swipUntilElementEnable(String id,IOSDriver<?> driver) throws Exception{
         TimeUnit.SECONDS.sleep(1);
         //while (findWebElement(id).isEnabled() == false) {
