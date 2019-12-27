@@ -45,8 +45,11 @@ public class multiTransaction {
     private String foundationBase58Address = "413ff5c065bdcdf7c3da16823ad0f6d3dff611122e";
     private String hash;
 
+    private String testKey = "de164ddc64b1783c3ebced73b32c479b3daa203cf323bd738a9ecfc4674d6017";
+    private String testAddress = "TN2jfdYCX9vvozqjwVvPjMd7vRj8HKyxUe";
+
     @Test(enabled = false, description = "Api first persion multi transaction")
-    public void test001FirstOneMultiTransaction() throws Exception {
+    public void test000FirstOneMultiTransaction() throws Exception {
         String signString = api.getTransactionSignStringFromFullnode(fullnodeHttpServer,multiAddress,foundationAccountAddress,10L,3,foundationAccountKey);
         JsonObject jsonObject = new JsonParser().parse(signString).getAsJsonObject();
         jsonObject.remove("raw_data_hex");
@@ -65,8 +68,8 @@ public class multiTransaction {
 
     }
     @Test(enabled = true, description = "Api multi transaction")
-    public void test002FirstOneMultiTransaction() throws Exception {
-        String url = "wss://list.tronlink.org/api/wallet/multi/socket?address=" + base58MutiAddress + "&netType=main_net";
+    public void test001FirstOneMultiTransaction() throws Exception {
+        String url = "wss://testlist.tronlink.org/api/wallet/multi/socket?address=" + base58MutiAddress + "&netType=main_net";
         tronlinkSocketClient mWs = new tronlinkSocketClient(url);
         mWs.connect();
         int i = 0;
@@ -132,6 +135,17 @@ public class multiTransaction {
             api.printJsonContent(api.parseResponseContent(response));
             Assert.assertEquals(jsonObject.getString("message"),"OK");
         }
-
     }
+
+    @Test(enabled = true, description = "SignOldTransactionERROR")
+    public void test003signError() throws Exception {
+        String oldTransaction = "{\"address\":\"TN2jfdYCX9vvozqjwVvPjMd7vRj8HKyxUe\",\"netType\":\"main_net\",\"transaction\":{\"signature\":[\"e885f6bba7832989a9ab9bad653919705b874c7f061e0c62fff2766e02b83126e2218e81ea8749f186110791b251dc6b3559845152d700a0565614cc648852f900\",\"9fd630a6c150dbc201c1474a9f5267bf264dc05c02edb64af5c27de658c4e4431c8893d82e2b98e4c81fbc274b61eddfd0579f2c450844eb17f5715bc7820d1600\"],\"raw_data\":{\"contract\":[{\"parameter\":{\"value\":\"0A1541844C5AEC5EFC5C533AF5E7ACAD9393CB2B41CD3C121541FE0F564CFC6B04E53EAFF09B8C1B6C1A5F8779C618904E\",\"type_url\":\"type.googleapis.com/protocol.TransferContract\"},\"type\":\"TransferContract\",\"Permission_id\":2}],\"ref_block_bytes\":\"6de0\",\"ref_block_hash\":\"8306900920a4a871\",\"expiration\":1577414772000,\"timestamp\":1577328372971}}}\n";
+        JSONObject transaction = JSONObject.parseObject(oldTransaction);
+        response = api.multiTransaction(transaction);
+        JSONObject jsonObject = api.parseResponseContent(response);
+        api.printJsonContent(api.parseResponseContent(response));
+        Assert.assertEquals(jsonObject.getString("message"),"Sign old transaction");
+        Assert.assertEquals(jsonObject.getString("code"),"20305");
+    }
+
 }
