@@ -36,9 +36,15 @@ public class MultiSignActiveTest extends BaseTest {
         }catch (Exception e){
             System.out.println("\n1 times fails 进入MultiSignMange Exception");
             System.out.println("\n2 times Try 进入MultiSignMange");
-            managerPage = pursePage.enterMultiSignManagerPageNew();
+            managerPage = pursePage.enterMultiSignManagerPage();
             if(managerPage.instructionBtn.isDisplayed()){
                 System.out.println("\n2 times success  进入MultiSignMange");
+            }else {
+                System.out.println("\n last try 进入MultiSignMange");
+                managerPage = pursePage.enterMultiSignManagerPageNew();
+                if(managerPage.instructionBtn.isDisplayed()){
+                    System.out.println("\n last times success 进入MultiSignMange");
+                }
             }
             return managerPage;
         }
