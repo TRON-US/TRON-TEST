@@ -27,7 +27,6 @@
         <parameter name="witnessAddress" value="TUVh41otFahZVe8o8FSp8ARBWZ9Uxeg9f1"/>
         <parameter name="witnessUrl" value="IOS-UI-Witness-001"/>
         <classes>
-            <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.AboutUsTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.AddAssetsTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.AssetsPageTest"></class>
@@ -49,6 +48,7 @@
             <class name="ios.tronlink.com.tronlink.wallet.regression.MainNetDeposit20"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.MinePageTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignActiveTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.MyPurseTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrc10"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrc20"></class>
