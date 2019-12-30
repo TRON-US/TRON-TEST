@@ -71,14 +71,15 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "search", alwaysRun = true)
-    public void test002_search() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        committeeProposalPage.searchResult();
-        Assert.assertTrue(committeeProposalPage.data_url_text.get(1).isDisplayed());
-    }
+//    @Test(description = "search", alwaysRun = true)
+//    public void test002_search() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage mine = asset.enterMinePage();
+//        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+//        TimeUnit.SECONDS.sleep(2);
+//        committeeProposalPage.searchResult();
+//        Assert.assertTrue(committeeProposalPage.data_url_text.get(1).isDisplayed());
+//    }
 
 
 
