@@ -62,6 +62,15 @@ public class MultiSignTransactionPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_sign_success")
+    public WebElement transactionSuc_text;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_sign_already")
+    public WebElement transactionAlreadySign_text;
+
+
+
     @FindBy(id = "com.tronlink.wallet:id/transaction_to")
     public WebElement transactionTo_text;
 
