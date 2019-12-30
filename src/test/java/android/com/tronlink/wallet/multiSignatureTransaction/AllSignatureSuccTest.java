@@ -96,7 +96,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "send trx sign options Test", alwaysRun = true)
+    @Test(description = "send trx sign options Test", alwaysRun = true,enabled = false)
     public void test001_sendTrxMultSignOptions() throws Exception {
         AssetPage asset = importTwoPrivateKay();
 //        AssetPage asset = new AssetPage(DRIVER);
@@ -133,7 +133,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "change account", alwaysRun = true)
+    @Test(description = "change account", alwaysRun = true,enabled = false)
     public void test002_swipChangeAccountSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPursePage = asset.enterMyPursePage();
@@ -143,7 +143,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "swip account address is change", alwaysRun = true)
+    @Test(description = "swip account address is change", alwaysRun = true,enabled = false)
     public void test003_swipAccountAddressChange() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPursePage = asset.enterMyPursePage();
@@ -153,7 +153,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "change account", alwaysRun = true)
+    @Test(description = "change account", alwaysRun = true,enabled = false)
     public void test004_swipChangeAccountOtherSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPursePage = asset.enterMyPursePage();
@@ -163,7 +163,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "send trx account check", alwaysRun = true)
+    @Test(description = "send trx account check", alwaysRun = true,enabled = false)
     public void test005_sendTrxAccountCheck() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPursePage = asset.enterMyPursePage();
@@ -185,7 +185,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "send trx account check address", alwaysRun = true)
+    @Test(description = "send trx account check address", alwaysRun = true,enabled = false)
     public void test006_sendTrxAccountCheckAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPursePage = asset.enterMyPursePage();
@@ -206,7 +206,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "send trx account check transaction address", alwaysRun = true)
+    @Test(description = "send trx account check transaction address", alwaysRun = true,enabled = false)
     public void test007_checktransactionFromAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPurse = asset.enterMyPursePage();
@@ -222,7 +222,7 @@ public class AllSignatureSuccTest extends Base {
 
 
 
-    @Test(description = "send trx account check transaction address", alwaysRun = true)
+    @Test(description = "send trx account check transaction address", alwaysRun = true,enabled = false)
     public void test008_checktransactionToAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage myPurse = asset.enterMyPursePage();
