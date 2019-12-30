@@ -45,7 +45,10 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
-
+    private String httpnode = Configuration.getByPath("testng.conf").getString("tronex.httpnode");
+    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("tronex.dappChainHttpNode");
+    private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
+    private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
         pccm.setDefaultMaxPerRoute(20);
@@ -71,12 +74,6 @@ public class autoCreateTestngXml {
 
     @Test(enabled = true)
     public void sendCoinToTestCount() throws IOException{
-        String foundationAccountKey = "7400E3D0727F8A61041A8E8BF86599FE5597CE19DE451E59AED07D60967A5E25";
-        String foundationAccountAddress = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
-        String httpnode = "47.252.85.177:8090";
-        String dappChainHttpNode = "47.252.80.185:8090";
-        //niluohe
-        //String httpnode = "47.90.214.183:50051";
         HashMap<String,String> testAccountList = new HashMap<>();
         testAccountList.put("TR8CyAPJFMjCvphCVuWeeVxBh5iTG7VWxe","cfd889566341aea937737ecf4bc35f9be7c5b43f594c9a230a0348183472245e");
         testAccountList.put("TMhGDU7NiXwckCW64PqAvWFuC2kR1WSF5J","11c7013416aac83fd6070abb8ffceb0ad102d9f87dfc9c98308b0fd47e8c3a1a");
