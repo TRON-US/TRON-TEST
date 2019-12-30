@@ -51,6 +51,7 @@ public class MultiSignActiveTest extends BaseTest {
 
 
     }
+
     @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
     public void test001_MultiSignatureQuestionContentTest() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();

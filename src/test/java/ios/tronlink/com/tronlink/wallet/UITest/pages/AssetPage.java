@@ -144,6 +144,9 @@ public class AssetPage extends AbstractPage {
     @FindBy(name ="nameLabel")
     public List<WebElement> cellArray;
 
+    @FindBy(id = "walletName")
+    public WebElement walletNameBtn;
+
     public VotePage enterVotePage(){
         try {
             vote_btn.click();
@@ -154,6 +157,16 @@ public class AssetPage extends AbstractPage {
         return new VotePage(driver);
     }
 
+    //enter MyPurse Page
+    public MyPursePage enterMyPursePage(){
+        try {
+            walletNameBtn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new MyPursePage(driver);
+    }
 
     //enter transfer Page
     public TransferPage enterTransportPage(){
