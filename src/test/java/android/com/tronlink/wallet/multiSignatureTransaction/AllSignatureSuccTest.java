@@ -214,9 +214,9 @@ public class AllSignatureSuccTest extends Base {
         MinePage minePage = asset.enterMinePage();
         myPurse = minePage.enterMyPursePage();
         MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-        //multiSignTransactionPage.signSuccess_tab.click();
+        multiSignTransactionPage.signSuccess_tab.click();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(multiSignTransactionPage.transactionFrom_text.isDisplayed());
+        Assert.assertTrue(multiSignTransactionPage.transactionSuc_text.isDisplayed());
     }
 
 
@@ -230,9 +230,9 @@ public class AllSignatureSuccTest extends Base {
         MinePage minePage = asset.enterMinePage();
         myPurse = minePage.enterMyPursePage();
         MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-        //multiSignTransactionPage.signSuccess_tab.click();
+        multiSignTransactionPage.signSuccess_tab.click();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(multiSignTransactionPage.transactionTo_text.isDisplayed());
+        Assert.assertTrue(multiSignTransactionPage.transactionAlreadySign_text.isDisplayed());
     }
 
 
