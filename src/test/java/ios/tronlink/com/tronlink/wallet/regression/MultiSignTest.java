@@ -15,6 +15,7 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerPrivateKey","udid"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey,String udid) throws Exception {
+//        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
         DRIVER.closeApp();
         log("开始移除app");
         AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
@@ -23,6 +24,7 @@ public class MultiSignTest extends Base {
         log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
+        AssetPage.closedADView = false;
         new Helper().getSign(ownerPrivateKey,DRIVER);
     }
 
@@ -43,12 +45,14 @@ public class MultiSignTest extends Base {
             AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
             System.out.println("开始安装app");
             AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+            AssetPage.closedADView = false;
             DRIVER.quit();
         }catch (Exception e){}
 
     }
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception{
+
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         MyPursePage pursePage = minePage.enterMyPursePage();
@@ -82,17 +86,31 @@ public class MultiSignTest extends Base {
             return managerPage;
         }
 
-
     }
 
+//    @Parameters({"ownerPrivateKey","udid"})
+//    @Test(description = "wallet deals",alwaysRun = true)
+//    public void test000_ValueSignAddressIsRight(String ownerPrivateKey,String udid) throws Exception{
+//        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
+//        DRIVER.closeApp();
+//        log("开始移除app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//        log("开始安装app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//        log("开始导入ownerPrivatekey");
+//        DRIVER.closeApp();
+//
+//        DRIVER.launchApp();
+//    }
 
     @Parameters({"multiSignAddress"})
     @Test(description = "valued sign address is right",alwaysRun = true)
-    public void test_001ValueSignAddressIsRight(String multiSignAddress) throws Exception{
+    public void test001_ValueSignAddressIsRight(String multiSignAddress) throws Exception{
         System.out.println("test_001ValueSignAddressIsRight:");
         MultiSignManagerPage managerPage = enterMultiSignManagerPage();
         Assert.assertTrue(managerPage.ownerAllkeys().contains(multiSignAddress));
     }
+
 
     @Parameters({"multiSignPrivateKey"})
     @Test(description = "add sign account", alwaysRun = true)
@@ -120,6 +138,7 @@ public class MultiSignTest extends Base {
     @Test(description = "change account", alwaysRun = true)
     public void test003_swipChangeAccountSuccess() throws Exception {
             AssetPage assetPage = new AssetPage(DRIVER);
+            TimeUnit.SECONDS.sleep(3);
             String oldName = assetPage.walletNameBtn.getText();
             log("\nfrom Wallet: " + oldName );
             MyPursePage myPursePage = assetPage.enterMyPursePage();
@@ -131,6 +150,7 @@ public class MultiSignTest extends Base {
     @Test(description = "swip account address is change", alwaysRun = true)
     public void test004_swipAccountAddressChange() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
         String oldName = assetPage.walletNameBtn.getText();
         MyPursePage myPursePage = assetPage.enterMyPursePage();
         myPursePage.swipWalletTochangeNext();
@@ -139,8 +159,9 @@ public class MultiSignTest extends Base {
     }
 
     @Test(description = "make account address to Signed", alwaysRun = true)
-    public void test001_makeAccountToSigned() throws Exception{
+    public void test005_makeAccountToSigned() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
         String oldName = assetPage.walletNameBtn.getText();
         if (oldName.contains("Signed")){
             Assert.assertTrue(true);

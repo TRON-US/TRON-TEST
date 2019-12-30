@@ -307,10 +307,25 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public void ownerClickFunc() throws Exception{
         TimeUnit.SECONDS.sleep(3);
-        System.out.println("Location:\n" + owner.getLocation()+"\nLocation\n Rect IS:\n" + owner.getRect() + "\nRect");
-        IOSTouchAction action = new IOSTouchAction(driver);
-        action.tap(PointOption.point(owner.getLocation().x+ 10,owner.getLocation().y + 20)).perform();
-        TimeUnit.SECONDS.sleep(3);
+        try {
+            System.out.println("Location:\n" + owner.getLocation()+"\nLocation\n Rect IS:\n" + owner.getRect() + "\nRect");
+            IOSTouchAction action = new IOSTouchAction(driver);
+            action.tap(PointOption.point(owner.getLocation().x+ 10,owner.getLocation().y + 20)).perform();
+            TimeUnit.SECONDS.sleep(3);
+            System.out.println("1次点击进入");
+        }catch (Exception e){
+            System.out.println("1次失败 ");
+
+            Helper.swipRefreshScreen(driver);
+            TimeUnit.SECONDS.sleep(3);
+            System.out.println("Location:\n" + owner.getLocation()+"\nLocation\n Rect IS:\n" + owner.getRect() + "\nRect");
+            IOSTouchAction action = new IOSTouchAction(driver);
+            action.tap(PointOption.point(owner.getLocation().x+ 10,owner.getLocation().y + 20)).perform();
+            TimeUnit.SECONDS.sleep(3);
+            System.out.println("2次点击进入");
+
+        }
+
     }
 
     public String ownerAllkeys()  throws Exception{
