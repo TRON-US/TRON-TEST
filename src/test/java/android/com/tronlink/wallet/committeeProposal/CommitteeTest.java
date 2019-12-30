@@ -21,13 +21,13 @@ public class CommitteeTest extends Base {
 //    }
 
 
-    @Parameters({"privateKey"})
+    @Parameters({"witnessKey"})
     @BeforeClass(alwaysRun = true)
-    public void setUpBefore(String privateKey) throws Exception {
+    public void setUpBefore(String witnessKey) throws Exception {
         //TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe
         //b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647
         //new Helper().getSign("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647", DRIVER);
-        new Helper().getSign(privateKey, DRIVER);
+        new Helper().getSign(witnessKey, DRIVER);
     }
 
 
