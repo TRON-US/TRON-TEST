@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.multiSignatureTransaction;
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
@@ -18,6 +19,7 @@ public class AllSignatureSuccTest extends Base {
     //public String fromAccountAddress = "TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS";
     public String signatureAccountPrivateKey2 = "451a602d36e0158b5d642daca47e01ec5abdc96ec67a9f88dbc165c7dbb2a08a";
     public String signatureAccountAddress = "TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v";
+
 
 
     @Parameters({"privateKey"})
