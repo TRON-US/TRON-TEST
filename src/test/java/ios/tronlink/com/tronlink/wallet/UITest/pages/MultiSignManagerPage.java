@@ -55,7 +55,8 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement addAddrHoldBtn;
 
 
-
+    @FindBy(id = "owner")
+    public WebElement owner;
 
 
 
@@ -302,6 +303,21 @@ public class MultiSignManagerPage extends AbstractPage {
         IOSTouchAction action = new IOSTouchAction(driver);
         action.tap(PointOption.point(havedActive.getLocation().x+ 10,havedActive.getLocation().y + 20)).perform();
         TimeUnit.SECONDS.sleep(3);
+    }
+
+    public void ownerClickFunc() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println("Location:\n" + owner.getLocation()+"\nLocation\n Rect IS:\n" + owner.getRect() + "\nRect");
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.tap(PointOption.point(owner.getLocation().x+ 10,owner.getLocation().y + 20)).perform();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+    public String ownerAllkeys()  throws Exception{
+        ownerClickFunc();
+        String getString =  driver.findElementsById("addressInputTF").get(0).getText() + " " + driver.findElementsById("addressInputTF").get(1).getText();
+        System.out.println("getStringa:" + getString);
+        return getString;
     }
 
     public boolean inputPassword(String pass) throws Exception {
