@@ -129,8 +129,7 @@ public class MyPursePage extends AssetPage {
         try {
             System.out.println("\n1 times find multiManage");
             TimeUnit.SECONDS.sleep(2);
-            ManageViewCells.get(0).click();
-            System.out.println("\n对应0位置的text: " + ManageViewCells.get(0).getText() +"  对应1位置的text: " + ManageViewCells.get(1).getText());
+            multiManageDoor.click();
             TimeUnit.SECONDS.sleep(3);
             int i = 2;
             while (i<6){
@@ -151,7 +150,7 @@ public class MyPursePage extends AssetPage {
                 System.out.println("\n after Exception 2 times find multiManage");
                 Helper.refreshWalletScreen(driver);
                 TimeUnit.SECONDS.sleep(1);
-                ManageViewCells.get(0).click();
+                multiManageDoor.click();
                 TimeUnit.SECONDS.sleep(3);
                 int i = 2;
                 while (i<5){
@@ -204,7 +203,7 @@ public class MyPursePage extends AssetPage {
 
     public boolean isEnterMultiSingManagePage(){
         try{
-            System.out.println("FIND:"+driver.findElementById("multiSig instruction").getLocation());
+            System.out.println(" FIND:"+driver.findElementById("multiSig instruction").getLocation());
             return  true;
         }catch (Exception e){
             return false;

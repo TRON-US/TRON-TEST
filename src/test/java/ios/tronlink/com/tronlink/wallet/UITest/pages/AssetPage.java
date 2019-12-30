@@ -224,6 +224,7 @@ public EnergyRentPage entereneryRantage(){
 }
     //enter mine page
     public MinePage enterMinePage() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
         mine_btn.click();
         TimeUnit.SECONDS.sleep(2);
         return new MinePage(driver);
