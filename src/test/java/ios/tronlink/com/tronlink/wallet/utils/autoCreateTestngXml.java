@@ -218,8 +218,8 @@ public class autoCreateTestngXml {
 
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
-        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
-        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
+//        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
+//        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
