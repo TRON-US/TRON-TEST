@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -61,6 +62,7 @@ public class autoCreateTestngXml {
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("tronex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
+    public static AtomicInteger multiSignIndex = new AtomicInteger(1);
 
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
@@ -76,6 +78,7 @@ public class autoCreateTestngXml {
         //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
         //singleClassNameList.add("");
         dirList.add("regression");
+        dirList.add("multiSign");
         iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
         iosDeviceNameList.add("00008020-001661EE0C88003A");
         iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
@@ -195,7 +198,10 @@ public class autoCreateTestngXml {
 
         String deviceList = AppiumTestCase.cmdReturn("idevice_id -l");
 
+/*
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
+        taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
+        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
 
         String extendSingleClassContent = "";
@@ -204,6 +210,16 @@ public class autoCreateTestngXml {
         }
 
         taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
+        String classContent = "";
+        for (int i = 0; i < taskClassNameList.size();i++) {
+            classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
+        }
+*/
+
+        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
+        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
+        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
+        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
@@ -257,14 +273,43 @@ public class autoCreateTestngXml {
                 sb.append(
                         "        <parameter name=\"address\"  value=\"" + entry.getKey()
                                 + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"ownerPrivateKey\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
+                    + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"ownerAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "Address")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"multiSignPrivateKey\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"multiSignAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"witnessKey\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Key")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"witnessAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Address")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"witnessUrl\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
+                        + "\"/>\n");
+                multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
-                if (!singleClassHasSetToSingleDevice) {
+/*                if (!singleClassHasSetToSingleDevice) {
                     singleClassHasSetToSingleDevice = true;
                     sb.append(extendSingleClassContent);
                 } else {
                     sb.append(classContent);
-                }
-
+                }*/
+                sb.append(classContent);
                 sb.append("        </classes>\n");
                 sb.append("    </test>\n");
                 it.remove();
