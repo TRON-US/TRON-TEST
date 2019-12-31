@@ -117,7 +117,7 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(1);
             friendInvitation_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -159,6 +159,7 @@ public class MinePage extends AbstractPage {
             myPurse_btn.click();
             TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){
+            myPurse_btn.click();
             System.out.println(e);
         }
         return new MyPursePage(driver);

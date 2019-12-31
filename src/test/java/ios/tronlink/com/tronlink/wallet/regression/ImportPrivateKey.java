@@ -23,27 +23,27 @@ public class ImportPrivateKey extends BaseTest {
         return new ImportPrivateKeyPage(DRIVER);
     }
 
-//    @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
-//    public void test001_importPrivateKeyFormatIncorrect() throws Exception {
-//        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-//        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
-//        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("格式错误"));
-//    }
+    @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
+    public void test001_importPrivateKeyFormatIncorrect() throws Exception {
+        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
+        System.out.println("/nError is:" + hits);
+        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("格式错误"));
+    }
 //
+    @Test(description = "Import PrivateKey Is NULL", alwaysRun = true)
+    public void test002_importPrivateKeyIsNull() throws Exception {
+        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        Assert.assertFalse(importPrivateKey.getNext_btn().isEnabled());
+    }
 //
-//    @Test(description = "Import PrivateKey Is NULL", alwaysRun = true)
-//    public void test002_importPrivateKeyIsNull() throws Exception {
-//        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-//        Assert.assertFalse(importPrivateKey.getNext_btn().isEnabled());
-//    }
-//
-//
-//    @Test(description = "Import PrivateKey Is Too Large", alwaysRun = true)
-//    public void test003_importPrivateKeyIsTooLarge() throws Exception {
-//        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-//        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab");
-//        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("格式错误"));
-//    }
+    @Test(description = "Import PrivateKey Is Too Large", alwaysRun = true)
+    public void test003_importPrivateKeyIsTooLarge() throws Exception {
+        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab");
+        System.out.println("/nError is:" + hits);
+        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("格式错误"));
+    }
 
 
     @Test(description = "PrivateKey Name Too Long", alwaysRun = true)

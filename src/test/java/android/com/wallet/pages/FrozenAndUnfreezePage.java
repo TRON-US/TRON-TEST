@@ -119,6 +119,24 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/error_address")
     public WebElement errorAddress_hits;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_current_type")
+    public WebElement currentType_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_me")
+    public WebElement unfreezeType_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_all")
+    public WebElement freezeType_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_unfreeze")
+    public WebElement unfreezeTargetAddress_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_ok")
+    public WebElement unfreezeInfoConfirm_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/unfreeze")
+    public WebElement unfreeze_btn;
+
 
 
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
