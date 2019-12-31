@@ -94,6 +94,16 @@ public class MyPursePage extends AssetPage {
             System.out.println("\nold 1 times finde multiManage");
             TimeUnit.SECONDS.sleep(2);
             multiManageDoor.click();
+
+            System.out.println("is password view show: ??\n ");
+            if (!isunEnterchangePassword()){
+                System.out.println("showed,and closed ");
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                multiManageDoor.click();
+            }else {
+                System.out.println(" not show ");
+            }
+
             TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
             try {
@@ -101,6 +111,14 @@ public class MyPursePage extends AssetPage {
                 Helper.refreshWalletScreen(driver);
                 TimeUnit.SECONDS.sleep(1);
                 multiManageDoor.click();
+                System.out.println("is password view show: ??\n ");
+                if (!isunEnterchangePassword()){
+                    System.out.println("showed,and closed ");
+                    driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                    multiManageDoor.click();
+                }else {
+                    System.out.println(" not show ");
+                }
                 TimeUnit.SECONDS.sleep(3);
             }catch (Exception ed){
                 try {
@@ -108,6 +126,14 @@ public class MyPursePage extends AssetPage {
                     Helper.refreshWalletScreen(driver);
                     TimeUnit.SECONDS.sleep(1);
                     multiManageDoor.click();
+                    System.out.println("is password show: ??\n ");
+                    if (!isunEnterchangePassword()){
+                        System.out.println("showed,and closed ");
+                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                        multiManageDoor.click();
+                    }else {
+                        System.out.println(" not show ");
+                    }
                     TimeUnit.SECONDS.sleep(3);
                 }catch (Exception edd){
                     try {
@@ -134,6 +160,14 @@ public class MyPursePage extends AssetPage {
             int i = 2;
             while (i<6){
                 if (!isEnterMultiSingManagePage()){
+                    System.out.println("is password view show: ??\n ");
+                    if (!isunEnterchangePassword()){
+                        System.out.println("showed,and closed ");
+                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                    }else {
+                        System.out.println(" not show ");
+                    }
+
                     System.out.println("\n after 1find to try"+i+" times find multiManage");
                     Helper.refreshWalletScreen(driver);
                     TimeUnit.SECONDS.sleep(1);
@@ -155,6 +189,14 @@ public class MyPursePage extends AssetPage {
                 int i = 2;
                 while (i<5){
                     if (!isEnterMultiSingManagePage()){
+                        System.out.println("is password show: ??\n ");
+                        if (!isunEnterchangePassword()){
+                            System.out.println("showed,and closed ");
+                            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                        }else {
+                            System.out.println(" not show ");
+                        }
+
                         System.out.println("\nIN Exception "+i+" times find multiManage");
                         Helper.refreshWalletScreen(driver);
                         TimeUnit.SECONDS.sleep(1);
@@ -214,6 +256,7 @@ public class MyPursePage extends AssetPage {
         TimeUnit.SECONDS.sleep(1);
         return new AddwalletPage(driver);
     }
+
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
         System.out.println("开始尝试进入修改页面：");
         Helper.refreshWalletScreen(driver);
@@ -221,15 +264,30 @@ public class MyPursePage extends AssetPage {
         try{
             walletPassword_btn.click();
             walletPasswordSec_btn.click();
-            System.out.println("walletPassword_btn  1 ");
-            if (!isunEnterchangePassword()){
-                System.out.println("not enter:   ");
-                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
-                walletPasswordSec_btn.click();
-                walletPassword_btn.click();
-            }else {
-                System.out.println("entered ");
+
+            int i = 2;
+            while (i<6){
+                if (!isEnterMultiSingManagePage()){
+                    System.out.println("is password view show: ??\n ");
+                    if (!isunEnterchangePassword()){
+                        System.out.println("showed,and closed ");
+                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                    }else {
+                        System.out.println(" not show ");
+                    }
+
+                    System.out.println("\n after 1 find to try"+i+" times find walletPassword");
+                    Helper.refreshWalletScreen(driver);
+                    TimeUnit.SECONDS.sleep(2);
+                    walletPasswordSec_btn.click();
+                    walletPassword_btn.click();
+                    TimeUnit.SECONDS.sleep(1);
+                }else {
+                    break;
+                }
+                i++;
             }
+
         }catch (Exception e){
             try{
                 walletPasswordSec_btn.click();
