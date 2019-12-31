@@ -11,7 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +23,7 @@ public class AbstractPage {
     public List<WebElement> textArray;
 
     public IOSDriver<?> driver;
+    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 
 
     public AbstractPage(IOSDriver<?> driver) {
@@ -45,6 +48,12 @@ public class AbstractPage {
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(260, 100))
                 .release().perform();
+    }
+
+
+    public void log(String log) {
+        String time = timeStamp.format(new Date()).toString();
+        System.out.println(time + ": " + log);
     }
 
 

@@ -26,8 +26,14 @@ public class MyPursePage extends AssetPage {
         this.driver = driver;
     }
 
+    //expendBtn 展开或者关闭按钮
 
-//    @FindBy(name = "钱包密码")
+    //WalletManageMenuView  menu 的UICollectionView  里面的内容对应的id 为 ManageViewCell
+
+
+    @FindBy(id = "carouselView")
+    public  WebElement carouselView;
+
     @FindBy(id = "钱包密码")
     public WebElement walletPassword_btn;
 
@@ -45,6 +51,11 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "删除钱包")
     public WebElement deletewallet_btn;
 
+    @FindBy(id = "多重签名管理")
+    public WebElement multiManageDoor;
+
+    @FindBy(id = "ManageViewCell")
+    public List<WebElement> ManageViewCells;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_address")
     public WebElement address_text;
@@ -75,65 +86,249 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "备份完成")
     public WebElement done_btn;
 
-    @FindBy(name = "com.tronlink.wallet:id/rl_sign_manager")
-    public WebElement multSignManager_btn;
+
+
 
     public MultiSignManagerPage enterMultiSignManagerPage() {
         try {
-            multSignManager_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            System.out.println("\nold 1 times finde multiManage");
+            TimeUnit.SECONDS.sleep(2);
+            multiManageDoor.click();
 
+            System.out.println("is password view show: ??\n ");
+            if (!isunEnterchangePassword()){
+                System.out.println("showed,and closed ");
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                multiManageDoor.click();
+            }else {
+                System.out.println(" not show ");
+            }
+
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
-            System.out.println(e);
+            try {
+                System.out.println("\nold 2 times finde multiManage");
+                Helper.refreshWalletScreen(driver);
+                TimeUnit.SECONDS.sleep(1);
+                multiManageDoor.click();
+                System.out.println("is password view show: ??\n ");
+                if (!isunEnterchangePassword()){
+                    System.out.println("showed,and closed ");
+                    driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                    multiManageDoor.click();
+                }else {
+                    System.out.println(" not show ");
+                }
+                TimeUnit.SECONDS.sleep(3);
+            }catch (Exception ed){
+                try {
+                    System.out.println("\nold 3 times finde multiManage");
+                    Helper.refreshWalletScreen(driver);
+                    TimeUnit.SECONDS.sleep(1);
+                    multiManageDoor.click();
+                    System.out.println("is password show: ??\n ");
+                    if (!isunEnterchangePassword()){
+                        System.out.println("showed,and closed ");
+                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                        multiManageDoor.click();
+                    }else {
+                        System.out.println(" not show ");
+                    }
+                    TimeUnit.SECONDS.sleep(3);
+                }catch (Exception edd){
+                    try {
+                        System.out.println("\nold 4 times finde multiManage");
+                        Helper.refreshWalletScreen(driver);
+                        TimeUnit.SECONDS.sleep(1);
+                        multiManageDoor.click();
+                        TimeUnit.SECONDS.sleep(3);
+                    }catch (Exception eddd){
+                        System.out.println(eddd);
+                    }
+                }
+            }
         }
         return new MultiSignManagerPage(driver);
     }
 
+    public MultiSignManagerPage enterMultiSignManagerPageNew() {
+        try {
+            System.out.println("\n1 times find multiManage");
+            TimeUnit.SECONDS.sleep(2);
+            multiManageDoor.click();
+            TimeUnit.SECONDS.sleep(3);
+            int i = 2;
+            while (i<6){
+                if (!isEnterMultiSingManagePage()){
+                    System.out.println("is password view show: ??\n ");
+                    if (!isunEnterchangePassword()){
+                        System.out.println("showed,and closed ");
+                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                    }else {
+                        System.out.println(" not show ");
+                    }
 
+                    System.out.println("\n after 1find to try"+i+" times find multiManage");
+                    Helper.refreshWalletScreen(driver);
+                    TimeUnit.SECONDS.sleep(1);
+                    multiManageDoor.click();
+                    TimeUnit.SECONDS.sleep(3);
+                }else {
+                    break;
+                }
+                i++;
+            }
+
+        }catch (Exception e){
+            try {
+                System.out.println("\n after Exception 2 times find multiManage");
+                Helper.refreshWalletScreen(driver);
+                TimeUnit.SECONDS.sleep(1);
+                multiManageDoor.click();
+                TimeUnit.SECONDS.sleep(3);
+                int i = 2;
+                while (i<5){
+                    if (!isEnterMultiSingManagePage()){
+                        System.out.println("is password show: ??\n ");
+                        if (!isunEnterchangePassword()){
+                            System.out.println("showed,and closed ");
+                            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                        }else {
+                            System.out.println(" not show ");
+                        }
+
+                        System.out.println("\nIN Exception "+i+" times find multiManage");
+                        Helper.refreshWalletScreen(driver);
+                        TimeUnit.SECONDS.sleep(1);
+                        multiManageDoor.click();
+                        TimeUnit.SECONDS.sleep(3);
+                    }else {
+                        break;
+                    }
+                    i++;
+                }
+            }catch (Exception ed){
+                try {
+                    System.out.println("\nafter Exception 3 times find multiManage");
+                    Helper.refreshWalletScreen(driver);
+                    TimeUnit.SECONDS.sleep(1);
+                    ManageViewCells.get(0).click();
+                    TimeUnit.SECONDS.sleep(3);
+                    int i = 2;
+                    while (i<5){
+                        if (!isEnterMultiSingManagePage()){
+                            System.out.println("\nIN 2Exception"+i+" times find multiManage");
+                            Helper.refreshWalletScreen(driver);
+                            TimeUnit.SECONDS.sleep(1);
+                            multiManageDoor.click();
+                            TimeUnit.SECONDS.sleep(3);
+                        }else {
+                            break;
+                        }
+                        i++;
+                    }
+                }catch (Exception edd){
+                    try {
+                        System.out.println("\n4 times find multiManage");
+                        Helper.refreshWalletScreen(driver);
+                        TimeUnit.SECONDS.sleep(1);
+                        multiManageDoor.click();
+                        TimeUnit.SECONDS.sleep(3);
+                    }catch (Exception eddd){
+                        System.out.println(eddd);
+                    }
+                }
+            }
+        }
+        return new MultiSignManagerPage(driver);
+    }
+
+    public boolean isEnterMultiSingManagePage(){
+        try{
+            System.out.println(" FIND:"+driver.findElementById("multiSig instruction").getLocation());
+            return  true;
+        }catch (Exception e){
+            return false;
+        }
+    }
     public AddwalletPage enterAddwalletPage() throws Exception {
         newCreate_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new AddwalletPage(driver);
     }
+
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
-        Helper.swipRefreshScreen(driver);
-        TimeUnit.SECONDS.sleep(1);
+        System.out.println("开始尝试进入修改页面：");
+        Helper.refreshWalletScreen(driver);
+        TimeUnit.SECONDS.sleep(5);
         try{
             walletPassword_btn.click();
-            System.out.println("walletPassword_btn");
+            walletPasswordSec_btn.click();
+
+            int i = 2;
+            while (i<6){
+                if (!isEnterMultiSingManagePage()){
+                    System.out.println("is password view show: ??\n ");
+                    if (!isunEnterchangePassword()){
+                        System.out.println("showed,and closed ");
+                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                    }else {
+                        System.out.println(" not show ");
+                    }
+
+                    System.out.println("\n after 1 find to try"+i+" times find walletPassword");
+                    Helper.refreshWalletScreen(driver);
+                    TimeUnit.SECONDS.sleep(2);
+                    walletPasswordSec_btn.click();
+                    walletPassword_btn.click();
+                    TimeUnit.SECONDS.sleep(1);
+                }else {
+                    break;
+                }
+                i++;
+            }
+
         }catch (Exception e){
             try{
                 walletPasswordSec_btn.click();
-                System.out.println("walletPasswordSec_btn");
+                System.out.println("walletPasswordSec_btn  2 ");
             }catch (Exception el){
-                Helper.swipRefreshScreen(driver);
+                Helper.refreshWalletScreen(driver);
                 try{
                     walletPassword_btn.click();
-                    System.out.println("walletPassword2_btn");
+                    System.out.println("walletPassword2_btn  3");
                 }catch (Exception ee){
                     try{
                         walletPasswordSec_btn.click();
-                        System.out.println("walletPasswordSec2_btn");
+                        System.out.println("walletPasswordSec2_btn  4");
                     }catch (Exception le){
-                        Helper.swipRefreshScreen(driver);
-                        TimeUnit.SECONDS.sleep(1);
+                        Helper.refreshWalletScreen(driver);
+                        TimeUnit.SECONDS.sleep(4);
                         try {
                             walletPassword_btn.click();
-                            System.out.println("walletPassword3_btn");
+                            System.out.println("walletPassword3_btn  5");
                         }catch (Exception lls){
                             walletPasswordSec_btn.click();
-                            System.out.println("walletPasswordSec3_btn");
+                            System.out.println("walletPasswordSec3_btn  6");
                         }
                     }
 
                 }
             }
         }
-
-        TimeUnit.SECONDS.sleep(2);
+        System.out.println("进入钱包修改页面 ");
+        TimeUnit.SECONDS.sleep(1);
         return new WalletPasswordPage(driver);
     }
 
+    public boolean isunEnterchangePassword(){
+        try{
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确定'").getText();
+            return  false;
+        }catch (Exception e){
+            return true;
+        }
+    }
 
 
     public String getBackupKeystore(String password){
@@ -261,17 +456,23 @@ public String getBackupKeystoreInClipboard(String password){
         return address;
     }
 
-    public AssetPage enterAssetPage(){
-        asset_btn.click();
-        return new AssetPage(driver);
-    }
+//    public AssetPage enterAssetPage(){
+//        asset_btn.click();
+//        return new AssetPage(driver);
+//    }
 
+//    public AssetPage backtoAssetPage() throws Exception{
+//        backbtn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        return new AssetPage(driver);
+//    }
     public void swipWalletTochangeNext() throws Exception {
-        WebElement wl = driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]");
+        WebElement wl = carouselView; //driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]");
         List<WebElement> lwl = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Helper.contentTexts(lwl,"2222222");
+        Helper.contentTexts(lwl,"Signed");
         int topY = wl.getLocation().y + 10;
         int botY = wl.getLocation().y + wl.getSize().height - 50;
+        System.out.println("\n topY: " + topY + " botY: " + botY );
         IOSTouchAction action = new IOSTouchAction(driver);
         Duration duration = Duration.ofMillis(200);
         System.out.println("start");
