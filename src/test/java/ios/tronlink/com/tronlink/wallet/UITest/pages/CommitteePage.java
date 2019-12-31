@@ -1,11 +1,15 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -73,10 +77,11 @@ public class CommitteePage extends AbstractPage {
     public WebElement totalVoteValue;
 
 
-    public void change1proposal(String pro){
-        try {
+    public void change1proposal(String pro) throws Exception{
             TimeUnit.SECONDS.sleep(2);
             textfieldList.get(1).clear();
+            textfieldList.get(1).clear();
+            textfieldList.get(1).sendKeys("");
             textfieldList.get(1).sendKeys(pro);
             Helper.tapWhitePlace(driver);
             TimeUnit.SECONDS.sleep(1);
@@ -88,9 +93,6 @@ public class CommitteePage extends AbstractPage {
             //XCUIElementTypeButton name
             //XCUIElementTypeStaticText
 
-        }catch (Exception e){
-
-        }
     }
     public String getNameofproposal() throws Exception {
         enterProposalDetail();
@@ -111,8 +113,10 @@ public class CommitteePage extends AbstractPage {
 
 
     public WebElement findFirstproposalWl( ) throws Exception {
-         TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(5);
+            log("try 进入我发起的提议");
             enterMyProposal();
+            log("success 进入我发起的提议");
             List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
             return wls.get(0);
     }
@@ -158,13 +162,28 @@ public class CommitteePage extends AbstractPage {
 
     public void enterMyProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        mysetuppropos.click();
+        int topX = mysetuppropos.getLocation().x + 10;
+        int topY = mysetuppropos.getLocation().y + 10;
+        log("\n topY: " + topX + " botY: " + topY );
+        IOSTouchAction action = new IOSTouchAction(driver);
+        System.out.println("start");
+        action.tap(PointOption.point(topX,topY)).perform();
+        System.out.println("end");
+//        mysetuppropos.click();
         TimeUnit.SECONDS.sleep(2);
     }
 
     public void enterMyAgreedProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        myagreedpropos.click();
+        int topX = myagreedpropos.getLocation().x + 10;
+        int topY = myagreedpropos.getLocation().y + 10;
+        log("\n topY: " + topX + " botY: " + topY );
+        IOSTouchAction action = new IOSTouchAction(driver);
+        System.out.println("start");
+        action.tap(PointOption.point(topX,topY)).perform();
+        System.out.println("end");
+        TimeUnit.SECONDS.sleep(2);
+
     }
 
     public void agreeAction() throws Exception {

@@ -25,9 +25,19 @@ public class YCommitteeTest extends BaseTest {
     public boolean isimport = false;
 
     public CommitteePage perparWallet() throws Exception {
+        log("导入钱包");
         AssetPage assetPage = new AssetPage(DRIVER);
+        if(assetPage.getWalletName().contains("Committee"))
+        {
+            log("有这个钱包没有进入导入流程：");
+            MinePage minePage = assetPage.enterMinePage();
+            CommitteePage committeePage = minePage.enterCommitteePage();
+            return committeePage;
+        }
+        log("无这个钱包开始进入导入流程：");
         TimeUnit.SECONDS.sleep(2);
         assetPage.addWallet_btn.click();
+        log("进入添加钱包页面");
         TimeUnit.SECONDS.sleep(2);
         System.out.println("importUsePrivateKey0");
         findWebElement("私钥导入").click();
@@ -67,7 +77,7 @@ public class YCommitteeTest extends BaseTest {
         Helper.guaranteeMainChain(DRIVER);
         CommitteePage committeePage;
         System.out.println("isimport:" + isimport);
-        if (!isimport) {
+        if (!isimport ) {
             committeePage = perparWallet();
             isimport = true;
         } else {
@@ -87,13 +97,10 @@ public class YCommitteeTest extends BaseTest {
             Helper.swipRefreshScreen(DRIVER);
         }
 
-        Helper.swipRefreshScreen(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
-
         SimpleDateFormat formart = new SimpleDateFormat();// 格式化时间
         formart.applyPattern("HH:mm:ss");
         Date date = new Date();
-        System.out.println("开始执行于:" + formart.format(date));
+        System.out.println(" 开始执行于: " + formart.format(date));
 
         committeePage.Setuppropos.click();
         String count = String.format("%.0f", Math.random() * 100000);
@@ -101,6 +108,7 @@ public class YCommitteeTest extends BaseTest {
         System.out.println(count);
         committeePage.change1proposal(count);
         WebElement wl = committeePage.findFirstproposalWl();
+        log("进入我发起的投票并获取到第一个元素");
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
     }
