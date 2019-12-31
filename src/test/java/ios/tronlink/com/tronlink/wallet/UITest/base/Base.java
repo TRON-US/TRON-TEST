@@ -32,9 +32,9 @@ public class Base {
 
     public  IOSDriver<?> DRIVER;
 
-    private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
+    private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 
-    public  int RetryAgainTimes = 3;
+    public  int RetryAgainTimes = 4;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 

@@ -51,15 +51,15 @@ public class MyPurseTest extends BaseTest {
 //    }
 
 
-    @Test(description = "test Clipboard have KeyStore",alwaysRun = true)
-    public void test003_Clipboard_haveKeyStore() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage =  assetPage.enterMinePage();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        TimeUnit.SECONDS.sleep(2);
-        String copyed = walletPage.getBackupKeystoreInClipboard(password);
-        Assert.assertTrue(copyed.contains("已复制"));
-    }
+//    @Test(description = "test Clipboard have KeyStore",alwaysRun = true)
+//    public void test003_Clipboard_haveKeyStore() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MinePage minePage =  assetPage.enterMinePage();
+//        MyPursePage walletPage = minePage.enterMyPursePage();
+//        TimeUnit.SECONDS.sleep(2);
+//        String copyed = walletPage.getBackupKeystoreInClipboard(password);
+//        Assert.assertTrue(copyed.contains("已复制"));
+//    }
 
 //    @Test(description = "test Delete Wallet Cancal",alwaysRun = true)
 //    public void  test004_testDeletewalletCancal(){
