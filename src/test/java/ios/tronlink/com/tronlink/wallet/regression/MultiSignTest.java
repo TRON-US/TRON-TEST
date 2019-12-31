@@ -18,7 +18,7 @@ public class MultiSignTest extends Base {
 //        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
         DRIVER.closeApp();
         log("开始移除app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
         log("开始安装app");
         AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
         log("开始导入ownerPrivatekey");
@@ -88,20 +88,7 @@ public class MultiSignTest extends Base {
 
     }
 
-//    @Parameters({"ownerPrivateKey","udid"})
-//    @Test(description = "wallet deals",alwaysRun = true)
-//    public void test000_ValueSignAddressIsRight(String ownerPrivateKey,String udid) throws Exception{
-//        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
-//        DRIVER.closeApp();
-//        log("开始移除app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//        log("开始安装app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//        log("开始导入ownerPrivatekey");
-//        DRIVER.closeApp();
-//
-//        DRIVER.launchApp();
-//    }
+
 
     @Parameters({"multiSignAddress"})
     @Test(description = "valued sign address is right",alwaysRun = true)
