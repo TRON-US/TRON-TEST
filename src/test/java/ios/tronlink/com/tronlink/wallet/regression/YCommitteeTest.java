@@ -201,6 +201,7 @@ public class YCommitteeTest extends BaseTest {
     public void tearDownAfterClass() {
 
         try {
+            AssetPage.closedADView = false;
             DRIVER.removeApp("com.tronlink.hdwallet");
         } catch (Exception e) {
         }
