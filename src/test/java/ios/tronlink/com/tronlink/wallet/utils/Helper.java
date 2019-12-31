@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.utils;
 
 
+import android.com.utils.AppiumTestCase;
 import io.appium.java_client.TouchAction;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -12,6 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -151,6 +153,7 @@ public class Helper {
             }
         }
     }
+
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
         getSignOperate(testPrivateKey);
@@ -159,6 +162,7 @@ public class Helper {
 
 
     public void getSignOperate(String testPrivateKey) throws Exception{
+
         System.out.println("setupbefore");
         try {
             System.out.println("try to import");

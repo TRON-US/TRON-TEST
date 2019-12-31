@@ -26,8 +26,14 @@ public class MyPursePage extends AssetPage {
         this.driver = driver;
     }
 
+    //expendBtn 展开或者关闭按钮
 
-//    @FindBy(name = "钱包密码")
+    //WalletManageMenuView  menu 的UICollectionView  里面的内容对应的id 为 ManageViewCell
+
+
+    @FindBy(id = "carouselView")
+    public  WebElement carouselView;
+
     @FindBy(id = "钱包密码")
     public WebElement walletPassword_btn;
 
@@ -123,7 +129,7 @@ public class MyPursePage extends AssetPage {
         try {
             System.out.println("\n1 times find multiManage");
             TimeUnit.SECONDS.sleep(2);
-            ManageViewCells.get(0).click();
+            multiManageDoor.click();
             TimeUnit.SECONDS.sleep(3);
             int i = 2;
             while (i<6){
@@ -144,7 +150,7 @@ public class MyPursePage extends AssetPage {
                 System.out.println("\n after Exception 2 times find multiManage");
                 Helper.refreshWalletScreen(driver);
                 TimeUnit.SECONDS.sleep(1);
-                ManageViewCells.get(0).click();
+                multiManageDoor.click();
                 TimeUnit.SECONDS.sleep(3);
                 int i = 2;
                 while (i<5){
@@ -197,7 +203,7 @@ public class MyPursePage extends AssetPage {
 
     public boolean isEnterMultiSingManagePage(){
         try{
-            System.out.println("FIND:"+driver.findElementById("multiSig instruction").getLocation());
+            System.out.println(" FIND:"+driver.findElementById("multiSig instruction").getLocation());
             return  true;
         }catch (Exception e){
             return false;
@@ -374,17 +380,23 @@ public String getBackupKeystoreInClipboard(String password){
         return address;
     }
 
-    public AssetPage enterAssetPage(){
-        asset_btn.click();
-        return new AssetPage(driver);
-    }
+//    public AssetPage enterAssetPage(){
+//        asset_btn.click();
+//        return new AssetPage(driver);
+//    }
 
+//    public AssetPage backtoAssetPage() throws Exception{
+//        backbtn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        return new AssetPage(driver);
+//    }
     public void swipWalletTochangeNext() throws Exception {
-        WebElement wl = driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]");
+        WebElement wl = carouselView; //driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]");
         List<WebElement> lwl = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Helper.contentTexts(lwl,"2222222");
+        Helper.contentTexts(lwl,"Signed");
         int topY = wl.getLocation().y + 10;
         int botY = wl.getLocation().y + wl.getSize().height - 50;
+        System.out.println("\n topY: " + topY + " botY: " + botY );
         IOSTouchAction action = new IOSTouchAction(driver);
         Duration duration = Duration.ofMillis(200);
         System.out.println("start");
