@@ -22,8 +22,8 @@ public class AssetPage extends AbstractPage {
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
-        System.out.println("closedADView:"+closedADView);
-        if(!closedADView){
+//        System.out.println("closedADView:"+closedADView);
+//        if(!closedADView){
             try {
                 TimeUnit.SECONDS.sleep(1);
                 if (ad_pic.isDisplayed()){
@@ -39,7 +39,7 @@ public class AssetPage extends AbstractPage {
                     }
                 }catch (Exception el){}
             }
-        }
+//        }
 //        try {
 //            // if updateview display ,close
 //            if (update_topview.isDisplayed()) {
@@ -49,10 +49,8 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 //
         try {
-            // if mutisignview display ,close
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
-//                TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){
         }
@@ -244,7 +242,7 @@ public EnergyRentPage entereneryRantage(){
 }
     //enter mine page
     public MinePage enterMinePage() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         mine_btn.click();
         mine_btn.click();
         TimeUnit.SECONDS.sleep(2);
