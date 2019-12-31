@@ -85,6 +85,16 @@ public class SendTrxPage extends AbstractPage {
 
 
 
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
+    public WebElement invalidTime_input;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    public List<WebElement> signAddress_input;
+
+
+
     public void swip(){
         Helper.swipScreen(driver);
     }
@@ -106,6 +116,8 @@ public class SendTrxPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_selected_name")
+    public WebElement selectSignName_text;
 
 
     public SendTrxSuccessPage enterSendTrxSuccessPage(){
@@ -271,8 +283,8 @@ public class SendTrxPage extends AbstractPage {
 
 
 
-    public AssetPage sendRamonTrxSuccess() throws Exception {
-        receiveAddress_text.sendKeys("TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v");
+    public AssetPage sendRamonTrxSuccess(String revAddress) throws Exception {
+        receiveAddress_text.sendKeys(revAddress);
         Random random = new Random();
         float count = random.nextFloat();
         DecimalFormat df = new DecimalFormat( "0.00" );
