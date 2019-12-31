@@ -159,13 +159,33 @@ public class AssetPage extends AbstractPage {
 
     //enter MyPurse Page
     public MyPursePage enterMyPursePage(){
+        System.out.println("准备进入钱包管理页面");
         try {
             walletNameBtn.click();
             TimeUnit.SECONDS.sleep(2);
+            System.out.println("成功进入钱包管理页面");
+
         }catch (Exception e) {
+            System.out.println("失败进入钱包管理页面");
+
             e.printStackTrace();
         }
         return new MyPursePage(driver);
+    }
+
+    //enter MyPurse Page
+    public String getWalletName(){
+        try {
+            String name = walletNameBtn.getText();
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("成功得到名称");
+            return  name;
+        }catch (Exception e) {
+            System.out.println("失败进得到名称");
+
+            e.printStackTrace();
+        }
+        return "";
     }
 
     //enter transfer Page
@@ -225,6 +245,7 @@ public EnergyRentPage entereneryRantage(){
     //enter mine page
     public MinePage enterMinePage() throws Exception{
         TimeUnit.SECONDS.sleep(3);
+        mine_btn.click();
         mine_btn.click();
         TimeUnit.SECONDS.sleep(2);
         return new MinePage(driver);
