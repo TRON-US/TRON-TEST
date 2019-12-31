@@ -10,6 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.text.SimpleDateFormat;
@@ -20,11 +21,12 @@ import java.util.concurrent.TimeUnit;
 
 public class YCommitteeTest extends BaseTest {
 
-    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
+//    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
     public String myChangeCount;
     public boolean isimport = false;
 
-    public CommitteePage perparWallet() throws Exception {
+
+    public CommitteePage perparWallet(String privateKey) throws Exception {
         log("导入钱包");
         AssetPage assetPage = new AssetPage(DRIVER);
         if(assetPage.getWalletName().contains("Committee"))
@@ -72,13 +74,14 @@ public class YCommitteeTest extends BaseTest {
         return committeePage;
     }
 
+    @Parameters({"witnessKey"})
     @Test(description = "send proposals", alwaysRun = true)
-    public void test_001SendProposals() throws Exception {
+    public void test_001SendProposals(String witnessKey) throws Exception {
         Helper.guaranteeMainChain(DRIVER);
         CommitteePage committeePage;
         System.out.println("isimport:" + isimport);
         if (!isimport ) {
-            committeePage = perparWallet();
+            committeePage = perparWallet(witnessKey);
             isimport = true;
         } else {
             committeePage = enterCommitteePage();
@@ -89,7 +92,7 @@ public class YCommitteeTest extends BaseTest {
             min.applyPattern("mm");// a为am/pm的标记
             Date date = new Date();// 获取当前时间
             System.out.println( "分钟数:" + min.format(date));
-            if(Integer.parseInt( min.format(date))%10 == 0)
+            if(Integer.parseInt( min.format(date))%10 == 9)
             {
                 break;
             }
@@ -97,12 +100,9 @@ public class YCommitteeTest extends BaseTest {
             Helper.swipRefreshScreen(DRIVER);
         }
 
-        SimpleDateFormat formart = new SimpleDateFormat();// 格式化时间
-        formart.applyPattern("HH:mm:ss");
-        Date date = new Date();
-        System.out.println(" 开始执行于: " + formart.format(date));
-
         committeePage.Setuppropos.click();
+
+        log("开始执行时间");
         String count = String.format("%.0f", Math.random() * 100000);
         myChangeCount = count;
         System.out.println(count);
@@ -113,14 +113,7 @@ public class YCommitteeTest extends BaseTest {
         Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
     }
 
-    //3个状态
-    @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_002cheackProposalName() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        String names = committeePage.getNameofproposal();
-        System.out.println(names);
-        Assert.assertTrue(names.contains("testgroup-witness-for-ios-autotest"));
-    }
+
 
     @Test(description = "cheack state proposal", alwaysRun = true)
     public void test_003cheackProposalState() throws Exception {
@@ -130,14 +123,7 @@ public class YCommitteeTest extends BaseTest {
         Assert.assertTrue(states.contains("投票中"));
     }
 
-    @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_004cheackProposalTime() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        boolean states = committeePage.cheacktimeorderofproposal();
-        System.out.println(states);
-        Assert.assertTrue(states);
 
-    }
 
     @Test(description = "be agreed Proposal", alwaysRun = true)
     public void test_005agreedProposal() throws Exception {
@@ -171,7 +157,7 @@ public class YCommitteeTest extends BaseTest {
         Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
     }
 
-    //有没有赞成者
+
     @Test(description = "be delete My Proposal", alwaysRun = true)
     public void test_009cancalagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
@@ -180,6 +166,25 @@ public class YCommitteeTest extends BaseTest {
         Assert.assertTrue(states.contains("已取消"));
 
     }
+
+    @Parameters({"witnessUrl"})
+    @Test(description = "cheack proposals name", alwaysRun = true)
+    public void test_010cheackProposalName(String witnessUrl) throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
+        String names = committeePage.getNameofproposal();
+        System.out.println(names);
+        Assert.assertTrue(names.contains(witnessUrl));
+    }
+
+    @Test(description = "cheack time order proposal", alwaysRun = true)
+    public void test_011cheackProposalTime() throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
+        boolean states = committeePage.cheacktimeorderofproposal();
+        System.out.println(states);
+        Assert.assertTrue(states);
+
+    }
+
 //状态验证
 
     public WebElement findWebElement(String element) throws Exception {
@@ -210,6 +215,7 @@ public class YCommitteeTest extends BaseTest {
 
         try {
             AssetPage.closedADView = false;
+            DRIVER.quit();
             DRIVER.removeApp("com.tronlink.hdwallet");
         } catch (Exception e) {
         }

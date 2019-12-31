@@ -113,7 +113,7 @@ public class CommitteePage extends AbstractPage {
 
 
     public WebElement findFirstproposalWl( ) throws Exception {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(3);
             log("try 进入我发起的提议");
             enterMyProposal();
             log("success 进入我发起的提议");
@@ -121,7 +121,7 @@ public class CommitteePage extends AbstractPage {
             return wls.get(0);
     }
     public WebElement findFirstAgreedroposalWl( ) throws Exception {
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(3);
         enterMyAgreedProposal();
         List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
         return wls.get(0);
