@@ -215,44 +215,62 @@ public class MyPursePage extends AssetPage {
         return new AddwalletPage(driver);
     }
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
-        Helper.swipRefreshScreen(driver);
-        TimeUnit.SECONDS.sleep(1);
+        System.out.println("开始尝试进入修改页面：");
+        Helper.refreshWalletScreen(driver);
+        TimeUnit.SECONDS.sleep(5);
         try{
             walletPassword_btn.click();
-            System.out.println("walletPassword_btn");
+            walletPasswordSec_btn.click();
+            System.out.println("walletPassword_btn  1 ");
+            if (!isunEnterchangePassword()){
+                System.out.println("not enter:   ");
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                walletPasswordSec_btn.click();
+                walletPassword_btn.click();
+            }else {
+                System.out.println("entered ");
+            }
         }catch (Exception e){
             try{
                 walletPasswordSec_btn.click();
-                System.out.println("walletPasswordSec_btn");
+                System.out.println("walletPasswordSec_btn  2 ");
             }catch (Exception el){
-                Helper.swipRefreshScreen(driver);
+                Helper.refreshWalletScreen(driver);
                 try{
                     walletPassword_btn.click();
-                    System.out.println("walletPassword2_btn");
+                    System.out.println("walletPassword2_btn  3");
                 }catch (Exception ee){
                     try{
                         walletPasswordSec_btn.click();
-                        System.out.println("walletPasswordSec2_btn");
+                        System.out.println("walletPasswordSec2_btn  4");
                     }catch (Exception le){
-                        Helper.swipRefreshScreen(driver);
-                        TimeUnit.SECONDS.sleep(1);
+                        Helper.refreshWalletScreen(driver);
+                        TimeUnit.SECONDS.sleep(4);
                         try {
                             walletPassword_btn.click();
-                            System.out.println("walletPassword3_btn");
+                            System.out.println("walletPassword3_btn  5");
                         }catch (Exception lls){
                             walletPasswordSec_btn.click();
-                            System.out.println("walletPasswordSec3_btn");
+                            System.out.println("walletPasswordSec3_btn  6");
                         }
                     }
 
                 }
             }
         }
-
-        TimeUnit.SECONDS.sleep(2);
+        System.out.println("进入钱包修改页面 ");
+        TimeUnit.SECONDS.sleep(1);
         return new WalletPasswordPage(driver);
     }
 
+    public boolean isunEnterchangePassword(){
+        try{
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确定'").getText();
+            return  false;
+        }catch (Exception e){
+            return true;
+        }
+    }
 
 
     public String getBackupKeystore(String password){
