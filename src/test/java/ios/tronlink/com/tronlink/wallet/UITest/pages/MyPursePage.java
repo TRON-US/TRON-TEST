@@ -251,6 +251,15 @@ public class MyPursePage extends AssetPage {
             return false;
         }
     }
+
+    public boolean isPaswordChangePage(){
+        try{
+            System.out.println(" FIND:"+driver.findElementById("oldPswField").getLocation());
+            return  true;
+        }catch (Exception e){
+            return false;
+        }
+    }
     public AddwalletPage enterAddwalletPage() throws Exception {
         newCreate_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -263,11 +272,9 @@ public class MyPursePage extends AssetPage {
         TimeUnit.SECONDS.sleep(5);
         try{
             walletPassword_btn.click();
-            walletPasswordSec_btn.click();
-
             int i = 2;
             while (i<6){
-                if (!isEnterMultiSingManagePage()){
+                if (!isPaswordChangePage()){
                     System.out.println("is password view show: ??\n ");
                     if (!isunEnterchangePassword()){
                         System.out.println("showed,and closed ");
@@ -279,7 +286,6 @@ public class MyPursePage extends AssetPage {
                     System.out.println("\n after 1 find to try"+i+" times find walletPassword");
                     Helper.refreshWalletScreen(driver);
                     TimeUnit.SECONDS.sleep(2);
-                    walletPasswordSec_btn.click();
                     walletPassword_btn.click();
                     TimeUnit.SECONDS.sleep(1);
                 }else {
@@ -290,7 +296,7 @@ public class MyPursePage extends AssetPage {
 
         }catch (Exception e){
             try{
-                walletPasswordSec_btn.click();
+                walletPassword_btn.click();
                 System.out.println("walletPasswordSec_btn  2 ");
             }catch (Exception el){
                 Helper.refreshWalletScreen(driver);
@@ -299,7 +305,7 @@ public class MyPursePage extends AssetPage {
                     System.out.println("walletPassword2_btn  3");
                 }catch (Exception ee){
                     try{
-                        walletPasswordSec_btn.click();
+                        walletPassword_btn.click();
                         System.out.println("walletPasswordSec2_btn  4");
                     }catch (Exception le){
                         Helper.refreshWalletScreen(driver);
@@ -308,7 +314,7 @@ public class MyPursePage extends AssetPage {
                             walletPassword_btn.click();
                             System.out.println("walletPassword3_btn  5");
                         }catch (Exception lls){
-                            walletPasswordSec_btn.click();
+                            walletPassword_btn.click();
                             System.out.println("walletPasswordSec3_btn  6");
                         }
                     }
