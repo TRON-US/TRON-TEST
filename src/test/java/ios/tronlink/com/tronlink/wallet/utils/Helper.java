@@ -258,7 +258,7 @@ public class Helper {
         int tries = 0;
         Boolean Element_is_exist = false;
         WebElement el = null;
-        while (!Element_is_exist && tries < 4) {
+        while (!Element_is_exist && tries < 3) {
             System.out.println("findWElementTimes:" + tries);
             tries++;
             try {

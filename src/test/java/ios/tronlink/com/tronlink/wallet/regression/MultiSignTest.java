@@ -2,7 +2,6 @@ package ios.tronlink.com.tronlink.wallet.regression;
 
 import android.com.utils.AppiumTestCase;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
-import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
@@ -212,4 +211,108 @@ public class MultiSignTest extends Base {
         Assert.assertTrue(assetPage.isMultiSignViewShow());
     }
 
+    @Test(description = " multiSign Title Test", alwaysRun = true)
+    public void test012_multiSignTitleTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        Assert.assertTrue(multiSignRecodPage.typeLabels.get(0).getText().contains("TRX转账"));
+
+    }
+
+    @Test(description = " multiSign Deal numbers Test", alwaysRun = true)
+    public void test013_multiSignDealNumbersTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        Assert.assertTrue(multiSignRecodPage.getwaitingCellsCount() >= 2);
+    }
+
+    @Test(description = " multiSign Wrong Password Test", alwaysRun = true)
+    public void test014_multiSignWrongPasswordTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        Assert.assertTrue(multiSignRecodPage.signWrongPass());
+
+    }
+
+    @Test(description = " multiSign sign Owner success Test", alwaysRun = true)
+    public void test015_multiSignSuccessTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        int beforeNumber = multiSignRecodPage.getwaitingCellsCount();
+        log("beforeNumber:"+ beforeNumber);
+        multiSignRecodPage.signSuccess();
+        int afterNumber = multiSignRecodPage.getwaitingCellsCount();
+        log("afterNumber:"+ afterNumber);
+        Assert.assertTrue(beforeNumber > afterNumber);
+    }
+
+    @Test(description = " multiSign sign Active success Test", alwaysRun = true)
+    public void test016_multiSignSuccessTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        int beforeNumber = multiSignRecodPage.getwaitingCellsCount();
+        log("beforeNumber:"+ beforeNumber);
+        multiSignRecodPage.signSuccess();
+        int afterNumber = multiSignRecodPage.getwaitingCellsCount();
+        log("afterNumber:"+ afterNumber);
+        Assert.assertTrue(beforeNumber > afterNumber);
+    }
+
+    @Test(description = "make account address to Signed", alwaysRun = true)
+    public void test017_makeAccountToSigned() throws Exception{
+        AssetPage assetPage = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        String oldName = assetPage.walletNameBtn.getText();
+        if (oldName.contains("Signed")){
+            Assert.assertTrue(true);
+        }else {
+            MyPursePage myPursePage = assetPage.enterMyPursePage();
+            myPursePage.swipWalletTochangeNext();
+            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
+        }
+    }
+
+    @Test(description = "frozenPage have MultiSigned", alwaysRun = true)
+    public void test018_frozenPagehaveMultiSignedTest() {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
+        Assert.assertTrue(frozenAndUnfreezePage.multiSignBtnIsShow());
+    }
+
+    @Parameters({"ownerAddress"})
+    @Test(description = "frozenPage have MultiSigned", alwaysRun = true)
+    public void test019_frozenPagehaveMultiSignedTest(String ownerAddress) throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
+        MultiSignRecodPage recodPage = frozenAndUnfreezePage.FrozenMutiSignWith(ownerAddress);
+        Assert.assertTrue(recodPage.isHaveMultiSingTrans());
+    }
+
+    @Test(description = "make account address to Owner", alwaysRun = true)
+    public void test020_makeAccountToOwner() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        String oldName = assetPage.walletNameBtn.getText();
+        if (oldName.contains("Auto_test")) {
+            Assert.assertTrue(true);
+        } else {
+            MyPursePage myPursePage = assetPage.enterMyPursePage();
+            myPursePage.swipWalletTochangeNext();
+            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
+        }
+    }
+
+    @Test(description = " multiSign  is Frozen Test", alwaysRun = true)
+    public void test021_multiSignTitleTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        Assert.assertTrue(multiSignRecodPage.typeLabels.get(0).getText().contains("冻结资产"));
+
+    }
 }
