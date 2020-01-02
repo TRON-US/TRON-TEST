@@ -46,6 +46,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement back_bt;
 
+    @FindBy(id = "gotoDetailBtn")
+    public WebElement gotoDetailBtn;
+
 
 
     @FindBy(name = "com.tronlink.wallet:id/tv_common_title")
@@ -273,6 +276,94 @@ public class SendTrxPage extends AbstractPage {
 
 
 
+    public void enterSendTextField(String addr) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        testfieldArray.get(0).clear();
+        testfieldArray.get(0).clear();
+        testfieldArray.get(0).sendKeys(addr);
+        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(4);
+    }
+
+    public void enterGetTextField(String addr) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        testfieldArray.get(1).clear();
+        testfieldArray.get(1).clear();
+        testfieldArray.get(1).sendKeys(addr);
+        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(4);
+    }
+    public void enterAmountTextField(String amount) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        testfieldArray.get(2).clear();
+        testfieldArray.get(2).clear();
+        testfieldArray.get(2).sendKeys(amount);
+        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(1);
+    }
+    public boolean overstepAuthority(String addr) throws Exception{
+        enterSendTextField(addr);
+        try{
+            driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").getText();
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+    }
+
+    public boolean multiSignUIChanged(String addr) throws Exception{
+        enterSendTextField(addr);
+
+        try{
+            log(driver.findElementById("权限").getText());
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+    }
+    public boolean multiSignOwnerSend(String addr) throws Exception{
+        enterSendTextField(addr);
+        enterGetTextField("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        enterAmountTextField("1.1");
+        TimeUnit.SECONDS.sleep(2);
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
+        TimeUnit.SECONDS.sleep(3);
+
+        try{
+            send_btn.getText();
+            return false;
+        }catch (Exception e){
+            return  true;
+        }
+    }
+    public boolean multiSignActiveSend(String addr) throws Exception{
+        enterSendTextField(addr);
+        enterGetTextField("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        enterAmountTextField("1.2");
+        TimeUnit.SECONDS.sleep(1);
+        Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(3);
+        driver.findElementsById("ic arrow drop").get(1).click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementById("active").click();
+        TimeUnit.SECONDS.sleep(1);
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
+        TimeUnit.SECONDS.sleep(3);
+        try{
+            send_btn.getText();
+            return false;
+        }catch (Exception e){
+            return  true;
+        }
+    }
 
 
 }
