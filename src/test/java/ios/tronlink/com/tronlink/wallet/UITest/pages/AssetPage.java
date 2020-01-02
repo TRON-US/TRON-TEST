@@ -70,6 +70,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(name="行情")
     public WebElement market_btn;
 
+    @FindBy(id = "contentLabel")
+    public WebElement contentLabel;
     //ad
     @FindBy(xpath = "//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeImage")
     public WebElement ad_pic;
@@ -87,11 +89,14 @@ public class AssetPage extends AbstractPage {
     public WebElement adClose_btn;
 
 
+    //gotoDetailBtn
+    //contentLabel
 
     @FindBy(name = "投票")
     public WebElement vote_btn;
 
-
+    @FindBy(name = "资源")
+    public WebElement asset_btn;
 
     @FindBy(name = "冻结/解冻")
     public WebElement frozen_btn;
@@ -254,10 +259,6 @@ public EnergyRentPage entereneryRantage(){
     public SendTrxPage enterSendTrxPage() throws Exception{
         transfer_btn.click();
         TimeUnit.SECONDS.sleep(1);
-//        try {assets_btn.click();
-//        }catch (Exception e){
-//            Base.log("assets_btn bton not found");
-//        }
         return new SendTrxPage(driver);
     }
 
@@ -361,5 +362,23 @@ public EnergyRentPage entereneryRantage(){
         }
 
         return new MultiSupportPage(driver);
+    }
+
+    public void goBackAndSeeMultiTips() throws Exception{
+        mine_btn.click();
+        asset_btn.click();
+        mine_btn.click();
+        asset_btn.click();
+        TimeUnit.SECONDS.sleep(4);
+    }
+
+    public boolean isMultiSignViewShow(){
+        try{
+            log(contentLabel.getText());
+            return  true;
+        }catch (Exception e){
+            return false;
+        }
+
     }
 }
