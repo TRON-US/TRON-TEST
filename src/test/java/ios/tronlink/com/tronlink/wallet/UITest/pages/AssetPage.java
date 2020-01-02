@@ -16,24 +16,30 @@ public class AssetPage extends AbstractPage {
 
     public IOSDriver<?> driver;
 
+//    public static boolean closedADView = true;//调试用
+    public static boolean closedADView = false;//正式用
 
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
-        try {
-//            TimeUnit.SECONDS.sleep(1);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-            }
+//        System.out.println("closedADView:"+closedADView);
+//        if(!closedADView){
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                if (ad_pic.isDisplayed()){
+                    adClose_btn.click();
+                    closedADView = true;
+                }
 
-        }catch (Exception e){
-           try {
-               if (adClose_btn.isDisplayed()) {
-                   adClose_btn.click();
-               }
-           }catch (Exception el){}
-        }
+            }catch (Exception e){
+                try {
+                    if (adClose_btn.isDisplayed()) {
+                        adClose_btn.click();
+                        closedADView = true;
+                    }
+                }catch (Exception el){}
+            }
+//        }
 //        try {
 //            // if updateview display ,close
 //            if (update_topview.isDisplayed()) {
@@ -43,14 +49,14 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 //
         try {
-            // if mutisignview display ,close
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
-//                TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){
         }
     }
+    @FindBy(id = "nameLabel")
+    public List<WebElement> nameLabels;
 
     @FindBy(name = "转账")
     public WebElement transfer_btn;
@@ -136,6 +142,9 @@ public class AssetPage extends AbstractPage {
     @FindBy(name ="nameLabel")
     public List<WebElement> cellArray;
 
+    @FindBy(id = "walletName")
+    public WebElement walletNameBtn;
+
     public VotePage enterVotePage(){
         try {
             vote_btn.click();
@@ -146,6 +155,36 @@ public class AssetPage extends AbstractPage {
         return new VotePage(driver);
     }
 
+    //enter MyPurse Page
+    public MyPursePage enterMyPursePage(){
+        System.out.println("准备进入钱包管理页面");
+        try {
+            walletNameBtn.click();
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("成功进入钱包管理页面");
+
+        }catch (Exception e) {
+            System.out.println("失败进入钱包管理页面");
+
+            e.printStackTrace();
+        }
+        return new MyPursePage(driver);
+    }
+
+    //enter MyPurse Page
+    public String getWalletName(){
+        try {
+            String name = walletNameBtn.getText();
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("成功得到名称");
+            return  name;
+        }catch (Exception e) {
+            System.out.println("失败进得到名称");
+
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     //enter transfer Page
     public TransferPage enterTransportPage(){
@@ -203,6 +242,8 @@ public EnergyRentPage entereneryRantage(){
 }
     //enter mine page
     public MinePage enterMinePage() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        mine_btn.click();
         mine_btn.click();
         TimeUnit.SECONDS.sleep(2);
         return new MinePage(driver);
@@ -237,6 +278,9 @@ public EnergyRentPage entereneryRantage(){
 
     public TrxPage enterTrx10Page() throws Exception {
         TimeUnit.SECONDS.sleep(1);
+        if(nameLabels.get(2).getText().contains("tronlink_token")){
+            System.out.println("点击了10币种tronlink_token");
+        }
         cellArray.get(2).click();
         TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
@@ -245,6 +289,9 @@ public EnergyRentPage entereneryRantage(){
 
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
+        if(nameLabels.get(1).getText().contains("TRX")){
+            System.out.println("点击了20币种TRX");
+        }
         cellArray.get(1).click();
         TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
