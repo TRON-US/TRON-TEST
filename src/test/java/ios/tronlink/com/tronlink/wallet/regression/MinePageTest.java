@@ -24,9 +24,6 @@ public class MinePageTest extends BaseTest {
 
     }
 
-
-
-
     @Test(description = "test Me into wallet", alwaysRun = true)
     public void test002_enterwallet() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -43,6 +40,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         FriendInvitationPage friendPage = minePage.enterFriendInvitationPage();
+        TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(Helper.contentTexts(friendPage.textArray,"好友邀请"));
 
     }
@@ -67,7 +65,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         Assert.assertEquals(helpPage.title.getText(), "帮助中心");
 
     }
