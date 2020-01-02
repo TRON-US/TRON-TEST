@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.utils;
 
 
+import android.com.utils.AppiumTestCase;
 import io.appium.java_client.TouchAction;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -12,6 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -88,6 +90,16 @@ public class Helper {
         PointOption whiteplace = PointOption.point(10,130);
         action.tap(whiteplace).perform().release();
     }
+    public static void closeKeyBoard(IOSDriver driver)  throws Exception{
+        try {
+            driver.findElementById("完成").click();
+        }catch (Exception e){}
+
+        TouchAction action = new TouchAction(driver);
+        PointOption whiteplace = PointOption.point(6,130);
+        action.tap(whiteplace).perform().release();
+    }
+
     public static String getPrettyNumber(String number) {
         return BigDecimal.valueOf(Double.parseDouble(number))
                 .stripTrailingZeros().toPlainString();
@@ -141,6 +153,7 @@ public class Helper {
             }
         }
     }
+
     public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
         getSignOperate(testPrivateKey);
@@ -149,6 +162,7 @@ public class Helper {
 
 
     public void getSignOperate(String testPrivateKey) throws Exception{
+
         System.out.println("setupbefore");
         try {
             System.out.println("try to import");
@@ -244,7 +258,7 @@ public class Helper {
         int tries = 0;
         Boolean Element_is_exist = false;
         WebElement el = null;
-        while (!Element_is_exist && tries < 5) {
+        while (!Element_is_exist && tries < 4) {
             System.out.println("findWElementTimes:" + tries);
             tries++;
             try {
@@ -310,7 +324,18 @@ public class Helper {
                 .moveTo(PointOption.point(width/2, height*4/5))
                 .release().perform();
     }
-
+    public static void refreshWalletScreen(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height/2))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/4))
+                .release().perform();
+    }
     public void swipUntilElementEnable(String id,IOSDriver<?> driver) throws Exception{
         TimeUnit.SECONDS.sleep(1);
         //while (findWebElement(id).isEnabled() == false) {
