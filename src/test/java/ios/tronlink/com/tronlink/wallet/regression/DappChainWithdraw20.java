@@ -125,7 +125,7 @@ public class DappChainWithdraw20 extends BaseTest {
         AssetPage page = trx.enterAssetPage();
         trx = page.enterTrx20Page();
         int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("startCount:" + trxCount + "endCountNow:" + trxCountNow);
+        System.out.println("startCount: " + trxCount + "  endCountNow: " + trxCountNow);
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(trxCount >= trxCountNow + 10);
     }

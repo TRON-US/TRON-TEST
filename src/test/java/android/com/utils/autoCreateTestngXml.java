@@ -3,6 +3,7 @@ package android.com.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.google.gson.JsonObject;
 import com.alibaba.fastjson.JSONObject;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -28,8 +29,7 @@ public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
     //private String adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
     private String adb = "adb";
-    private String packagesName = "<package name=\"android.com.tronlink.wallet.regression.*\"></package>";
-    private List<String> singleTestPackagesNameList = new ArrayList<>();
+    private List<String> packagesNameList = new ArrayList<>();
     private String platformName = "Android";
     private Boolean noReset = false;
     private Integer systemPort = 8200;
@@ -45,7 +45,11 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
-
+    private String httpnode = Configuration.getByPath("testng.conf").getString("tronex.httpnode");
+    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("tronex.dappChainHttpNode");
+    private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
+    private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
+    public static AtomicInteger multiSignIndex = new AtomicInteger(1);
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
         pccm.setDefaultMaxPerRoute(20);
@@ -58,8 +62,9 @@ public class autoCreateTestngXml {
     @BeforeClass
     public void beforeClass() throws IOException{
         try {
-            singleTestPackagesNameList.add("<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>");
-            singleTestPackagesNameList.add("<package name=\"android.com.tronlink.wallet.multiSignatureTransaction.*\"></package>");
+            packagesNameList.add("<package name=\"android.com.tronlink.wallet.regression.*\"></package>");
+            packagesNameList.add("<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>");
+            packagesNameList.add("<package name=\"android.com.tronlink.wallet.multiSignatureTransaction.*\"></package>");
             deviceNameList = AppiumTestCase.getDeviceList(adb + " devices");
         } catch (Exception e) {
             adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
@@ -71,12 +76,6 @@ public class autoCreateTestngXml {
 
     @Test(enabled = true)
     public void sendCoinToTestCount() throws IOException{
-        String foundationAccountKey = "7400E3D0727F8A61041A8E8BF86599FE5597CE19DE451E59AED07D60967A5E25";
-        String foundationAccountAddress = "TKpJUP4CCymphdug1XmGzDGDmGXZjLyf29";
-        String httpnode = "47.252.85.177:8090";
-        String dappChainHttpNode = "47.252.80.185:8090";
-        //niluohe
-        //String httpnode = "47.90.214.183:50051";
         HashMap<String,String> testAccountList = new HashMap<>();
         testAccountList.put("TR8CyAPJFMjCvphCVuWeeVxBh5iTG7VWxe","cfd889566341aea937737ecf4bc35f9be7c5b43f594c9a230a0348183472245e");
         testAccountList.put("TMhGDU7NiXwckCW64PqAvWFuC2kR1WSF5J","11c7013416aac83fd6070abb8ffceb0ad102d9f87dfc9c98308b0fd47e8c3a1a");
@@ -212,13 +211,38 @@ public class autoCreateTestngXml {
                 sb.append(
                     "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
                         + "\"/>\n");
-                sb.append("        <packages>\n" +
-                    "            " + packagesName + "\n");
-                if (singleTestPackageIndex++ == 0) {
-                    for (int i = 0; i < singleTestPackagesNameList.size();i++) {
-                        sb.append("            " + singleTestPackagesNameList.get(i) + "\n");
-                    }
-
+                sb.append(
+                    "        <parameter name=\"ownerPrivateKey\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"ownerAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.owner" + multiSignIndex.get() + "Address")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"multiSignPrivateKey\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"multiSignAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"witnessKey\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Key")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"witnessAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Address")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"witnessUrl\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Url")
+                        + "\"/>\n");
+                multiSignIndex.addAndGet(1);
+                sb.append("        <packages>\n");
+                for (int i = 0; i < packagesNameList.size();i++) {
+                    sb.append("            " + packagesNameList.get(i) + "\n");
                 }
                 sb.append("        </packages>\n");
                 sb.append("    </test>\n");
