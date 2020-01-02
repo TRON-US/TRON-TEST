@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit;
 
 public class MultiSignTest extends Base {
 
-    @Parameters({"ownerPrivateKey","udid"})
+    @Parameters({"ownerPrivateKey", "udid"})
     @BeforeClass(alwaysRun = true)
-    public void setUpBefore(String ownerPrivateKey,String udid) throws Exception {
-//        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
+    public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
+        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
         DRIVER.closeApp();
         log("开始移除app");
         AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
@@ -25,7 +25,7 @@ public class MultiSignTest extends Base {
         DRIVER.closeApp();
         DRIVER.launchApp();
         AssetPage.closedADView = false;
-        new Helper().getSign(ownerPrivateKey,DRIVER);
+        new Helper().getSign(ownerPrivateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -33,9 +33,11 @@ public class MultiSignTest extends Base {
         try {
             DRIVER.closeApp();
             DRIVER.launchApp();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
+
     @Parameters({"udid"})
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass(String udid) {
@@ -47,39 +49,40 @@ public class MultiSignTest extends Base {
             AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             AssetPage.closedADView = false;
             DRIVER.quit();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
 
-    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception{
+    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
 
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         MyPursePage pursePage = minePage.enterMyPursePage();
         MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
         try {
-            if (managerPage.instructionBtn.isDisplayed()){
+            if (managerPage.instructionBtn.isDisplayed()) {
                 System.out.println("\n1 times success 成功进入MultiSignMange");
                 return managerPage;
-            }else {
+            } else {
                 System.out.println("\n1 times fails 进入MultiSignMange");
                 System.out.println("\n2 times Try 进入MultiSignMange");
                 managerPage = pursePage.enterMultiSignManagerPageNew();
-                if(managerPage.instructionBtn.isDisplayed()){
+                if (managerPage.instructionBtn.isDisplayed()) {
                     System.out.println("\n2 times success 进入MultiSignMange");
                 }
                 return managerPage;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("\n1 times fails 进入MultiSignMange Exception");
             System.out.println("\n2 times Try 进入MultiSignMange");
             managerPage = pursePage.enterMultiSignManagerPage();
-            if(managerPage.instructionBtn.isDisplayed()){
+            if (managerPage.instructionBtn.isDisplayed()) {
                 System.out.println("\n2 times success  进入MultiSignMange");
-            }else {
+            } else {
                 System.out.println("\n last try 进入MultiSignMange");
                 managerPage = pursePage.enterMultiSignManagerPageNew();
-                if(managerPage.instructionBtn.isDisplayed()){
+                if (managerPage.instructionBtn.isDisplayed()) {
                     System.out.println("\n last times success 进入MultiSignMange");
                 }
             }
@@ -87,7 +90,6 @@ public class MultiSignTest extends Base {
         }
 
     }
-
 
 
     @Parameters({"multiSignAddress"})
@@ -157,6 +159,57 @@ public class MultiSignTest extends Base {
             myPursePage.swipWalletTochangeNext();
             Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
         }
+    }
+
+    @Test(description = "send trx overstep one’s authority Test", alwaysRun = true)
+    public void test006_sendTrxOptions() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
+        Assert.assertTrue(sendTrxPage.overstepAuthority("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp"));
+    }
+    @Parameters({"ownerAddress"})
+    @Test(description = "send mutisign addr change UI Test", alwaysRun = true)
+    public void test007_sendmutisignAddrChangeUISuccess(String ownerAddress) throws Exception{
+        AssetPage assetPage = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
+        Assert.assertTrue(sendTrxPage.multiSignUIChanged(ownerAddress));
+
+    }
+    @Parameters({"ownerAddress"})
+    @Test(description = "send trx sign success use owner authority Test", alwaysRun = true)
+    public void test008_sendtrxSignSuccessUseOwnerAuthoritySuccess(String ownerAddress) throws Exception{
+        AssetPage assetPage = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
+        Assert.assertTrue(sendTrxPage.multiSignOwnerSend(ownerAddress));
+
+    }
+    @Parameters({"ownerAddress"})
+    @Test(description = "send trx sign success use active authority Test", alwaysRun = true)
+    public void test009_sendSignSuccessUseOwnerActiveSuccess(String ownerAddress) throws Exception{
+        AssetPage assetPage = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
+        Assert.assertTrue(sendTrxPage.multiSignActiveSend(ownerAddress));
+    }
+
+    @Test(description = "make account address to Owner", alwaysRun = true)
+    public void test010_makeAccountToOwner() throws Exception{
+        AssetPage assetPage = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        String oldName = assetPage.walletNameBtn.getText();
+        if (oldName.contains("Auto_test")){
+            Assert.assertTrue(true);
+        }else {
+            MyPursePage myPursePage = assetPage.enterMyPursePage();
+            myPursePage.swipWalletTochangeNext();
+            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
+        }
+    }
+
+    @Test(description = "show multiSign Tips Test", alwaysRun = true)
+    public void test011_showMultiSignTipsTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        Assert.assertTrue(assetPage.isMultiSignViewShow());
     }
 
 }
