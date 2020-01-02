@@ -92,7 +92,7 @@ public class YCommitteeTest extends BaseTest {
             min.applyPattern("mm");// a为am/pm的标记
             Date date = new Date();// 获取当前时间
             System.out.println( "分钟数:" + min.format(date));
-            if(Integer.parseInt( min.format(date))%10 == 9)
+            if(Integer.parseInt( min.format(date))%10 == 0)
             {
                 break;
             }
