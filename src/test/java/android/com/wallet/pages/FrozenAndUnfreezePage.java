@@ -3,6 +3,7 @@ package android.com.wallet.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import android.com.utils.Helper;
@@ -121,6 +122,25 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_bottom_next")
+    public WebElement signNext_btn;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
+    public WebElement invalidTime_input;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    public List<WebElement> signAddress_input;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_selected_name")
+    public WebElement selectSignName_text;
+
+
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
         try {
             detailsAndRules_btn.click();
@@ -130,6 +150,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         }
         return new DetailsAndRulesPage(driver);
     }
+
+
 
     public void questionClick() {
         try {
@@ -144,11 +166,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     }
 
+
+
     public String getCurrentCanUseTrx() {
         String currentCanUseTrx = (currentCanUse_btn.getText().split(" ")[1]);
         currentCanUseTrx = currentCanUseTrx.substring(0,currentCanUseTrx.length()-3);
         return currentCanUseTrx;
     }
+
 
 
     public void frozenTheEnergy() {
@@ -168,10 +193,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
 
+
     public AssetPage enterAssetPage() {
         back_btn.click();
         return new AssetPage(driver);
     }
+
 
 
     public void inputFrozenCount(String count) throws Exception {
@@ -182,6 +209,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         freeze_btn.click();
         TimeUnit.SECONDS.sleep(2);
     }
+
+
 
     public AssetPage forzenSuccessEnterAssetPage(String count) throws Exception {
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
@@ -199,6 +228,25 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return new AssetPage(driver);
     }
 
+
+    public void forzenSign(String count) throws Exception {
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.sendKeys(count);
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        freezeNow_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        signNext_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        checkPasswotd_input.sendKeys("Test0001");
+        TimeUnit.SECONDS.sleep(1);
+        confirm_btn.click();
+    }
+
+
+
+
     public void inputReceivingAddress(String address) throws Exception {
         //Helper.swipScreen(driver);
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
@@ -210,12 +258,16 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
     }
 
+
+
     public String getAvailableTrx() {
         String availableTrx = availableTrx_text.getText();
         availableTrx = availableTrx.split(" ")[1];
         availableTrx = availableTrx.substring(0,availableTrx.length()-3);
         return availableTrx;
     }
+
+
 
     public void inputFrozenCount1() throws Exception{
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
@@ -232,6 +284,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
 
     }
+
+
+
 
 
 
