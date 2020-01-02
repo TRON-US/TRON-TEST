@@ -51,6 +51,7 @@ public class AssetPage extends AbstractPage {
         try {
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
+                System.out.println("启动后,关闭多签提示view");
             }
         }catch (Exception e){
         }
@@ -88,6 +89,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "home pop close")
     public WebElement adClose_btn;
 
+    @FindBy(id = "gotoDetailBtn")
+    public WebElement gotoDetailBtn;
 
     //gotoDetailBtn
     //contentLabel
@@ -380,5 +383,11 @@ public EnergyRentPage entereneryRantage(){
             return false;
         }
 
+    }
+
+    public MultiSignRecodPage enterMultiSignRecordView()  throws Exception{
+        gotoDetailBtn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new MultiSignRecodPage(driver);
     }
 }
