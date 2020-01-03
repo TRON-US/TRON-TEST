@@ -161,6 +161,37 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return new DetailsAndRulesPage(driver);
     }
 
+    public boolean multiSignBtnIsShow(){
+        try {
+            driver.findElementById("多重签名");
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public MultiSignRecodPage FrozenMutiSignWith(String addr) throws Exception{
+        driver.findElementById("多重签名").click();
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByClassName("XCUIElementTypeTextField").clear();
+        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(addr);
+        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
+        TimeUnit.SECONDS.sleep(1);
+        freezeCount_input.get(0).sendKeys("20");
+        Helper.tapWhitePlace(driver);
+        Helper.swipScreen(driver);
+        getFreeze_btn().click();
+        TimeUnit.SECONDS.sleep(5);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '下一步'").click();
+        TimeUnit.SECONDS.sleep(1);
+        checkPasswotd_input.sendKeys("Test0001");
+        TimeUnit.SECONDS.sleep(1);
+        getConfirm_btn().click();
+        TimeUnit.SECONDS.sleep(3);
+        return new  MultiSignRecodPage(driver);
+    }
+
     public AssetPage forzenSuccessEnterAssetPage(String count) throws Exception {
         Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
         TimeUnit.SECONDS.sleep(1);
