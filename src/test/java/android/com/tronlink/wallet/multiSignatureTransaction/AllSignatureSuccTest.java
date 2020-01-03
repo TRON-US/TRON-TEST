@@ -227,8 +227,9 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test", alwaysRun = true,enabled = false)
+    @Test(description = "sign options Test", alwaysRun = true)
     public void test007_signOptions(String multiSignPrivateKey) throws Exception {
+        DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
         //MyPursePage myPurse = asset.enterMyPursePage();
@@ -239,6 +240,70 @@ public class AllSignatureSuccTest extends Base {
         multiSignTransactionPage.sign();
         TimeUnit.SECONDS.sleep(5);
     }
+
+
+
+    @Parameters({"multiSignPrivateKey"})
+    @Test(description = "sign options Test check TRX", alwaysRun = true)
+    public void test008_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(multiSignPrivateKey, DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        MyPursePage myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        //multiSignTransactionPage.sign();
+        Assert.assertTrue(multiSignTransactionPage.transConten_text.getText() != null);
+    }
+
+
+
+
+    @Parameters({"multiSignPrivateKey"})
+    @Test(description = "sign options Test check TransFrom", alwaysRun = true)
+    public void test009_signPageCheckTransFrom(String multiSignPrivateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(multiSignPrivateKey, DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        MyPursePage myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        //multiSignTransactionPage.sign();
+        Assert.assertTrue(multiSignTransactionPage.transFrom_text.getText().length() == 34);
+    }
+
+
+
+    @Parameters({"multiSignPrivateKey"})
+    @Test(description = "sign options Test check TransTo", alwaysRun = true)
+    public void test010_signPageCheckTransTo(String multiSignPrivateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(multiSignPrivateKey, DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        MyPursePage myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        //multiSignTransactionPage.sign();
+        Assert.assertTrue(multiSignTransactionPage.transTo_text.getText().length() == 34);
+    }
+
+
+
+    @Parameters({"multiSignPrivateKey"})
+    @Test(description = "sign options Test check InvaTime", alwaysRun = true)
+    public void test011_signPageCheckInvaTime(String multiSignPrivateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(multiSignPrivateKey, DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        MyPursePage myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        //multiSignTransactionPage.sign();
+        Assert.assertTrue(multiSignTransactionPage.invaTime_text.isDisplayed());
+    }
+
+
+
 
 
 
