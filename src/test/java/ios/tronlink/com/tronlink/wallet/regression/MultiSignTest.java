@@ -285,7 +285,7 @@ public class MultiSignTest extends Base {
     }
 
     @Parameters({"ownerAddress"})
-    @Test(description = "frozenPage have MultiSigned", alwaysRun = true)
+    @Test(description = "frozenPage setup MultiSigned thing", alwaysRun = true)
     public void test019_frozenPagehaveMultiSignedTest(String ownerAddress) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
@@ -312,7 +312,19 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
-        Assert.assertTrue(multiSignRecodPage.typeLabels.get(0).getText().contains("冻结资产"));
+        Assert.assertTrue(multiSignRecodPage.getListString(multiSignRecodPage.typeLabels).contains("冻结资产"));
+    }
 
+    @Test(description = " multiSign sign Frozen  Test", alwaysRun = true)
+    public void test022_multiSignFrozenSuccessTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.goBackAndSeeMultiTips();
+        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
+        int beforeNumber = multiSignRecodPage.getwaitingCellsCount();
+        log("beforeNumber:"+ beforeNumber);
+        multiSignRecodPage.signSuccess();
+        int afterNumber = multiSignRecodPage.getwaitingCellsCount();
+        log("afterNumber:"+ afterNumber);
+        Assert.assertTrue(beforeNumber > afterNumber);
     }
 }
