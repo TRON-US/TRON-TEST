@@ -4,6 +4,7 @@ import android.com.utils.Helper;
 
 import java.util.concurrent.TimeUnit;
 
+import android.com.wallet.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -11,9 +12,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AddAssertPage;
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.SearchAssertPage;
 
 public class DappAddAssetsTest extends Base {
 
@@ -45,6 +43,14 @@ public class DappAddAssetsTest extends Base {
     @Test(description = "test add assert", alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        ///////////////////////////////////////////
+        MinePage mine = asset.enterMinePage();
+        SettingPage settingPage = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+        mine = settingPage.enterMinePage();
+        asset = mine.enterAssetPage();
+        ////////////////////////////////////////////
         AddAssertPage addAssert = asset.enterAddAssertPage();
         SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
         searchAssert.addAssert_input.sendKeys("1000029");
