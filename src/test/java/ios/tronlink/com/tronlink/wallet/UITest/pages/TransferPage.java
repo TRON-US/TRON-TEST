@@ -52,7 +52,7 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(8);
 
     }
     public void inputAndTapToTransferOut() throws Exception {
@@ -61,7 +61,7 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_out_btn().click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(8);
 
     }
     public String getvalueofBandwidthText() throws Exception{
@@ -82,7 +82,7 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(8);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
@@ -97,7 +97,7 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(8);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
@@ -113,7 +113,7 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_out_btn().click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(8);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
@@ -121,7 +121,6 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(8);
         return new TrxPage(driver);
     }
-
 
 
 
