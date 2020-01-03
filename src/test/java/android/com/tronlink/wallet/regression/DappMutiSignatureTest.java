@@ -2,12 +2,7 @@ package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AddPermissionPage;
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.MinePage;
-import android.com.wallet.pages.ModifyPermissionPage;
-import android.com.wallet.pages.MultiSignManagerPage;
-import android.com.wallet.pages.MyPursePage;
+import android.com.wallet.pages.*;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -74,10 +69,34 @@ public class DappMutiSignatureTest extends Base {
 //        }
     }
 
+
+    public MultiSignManagerPage enterMultiSignManagerPageWithDappChain() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        ////////////////////////////////////////////
+        SettingPage settingPage = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+        mine = settingPage.enterMinePage();
+        ////////////////////////////////////////////
+        MyPursePage myPursePage = mine.enterMyPursePage();
+        MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
+        return MultiSignManager;
+    }
+
+
+
+
     //public method. enter the MultiSignManagerPage
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
+        ////////////////////////////////////////////
+//        SettingPage settingPage = mine.enterSettingPage();
+//        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+//        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+//        mine = settingPage.enterMinePage();
+        ////////////////////////////////////////////
         MyPursePage myPursePage = mine.enterMyPursePage();
         MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
         return MultiSignManager;
@@ -86,7 +105,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(description = "MutiSignature Question Content Test", alwaysRun = true)
     public void test001_MutiSignatureQuestionContentTest() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         String content = multiSignManager.questionClick();
         System.out.println("MutiSignature question content is : " + content);
         TimeUnit.SECONDS.sleep(2);
