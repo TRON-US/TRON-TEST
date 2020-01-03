@@ -41,14 +41,8 @@ public class MainNetDeposit10 extends BaseTest {
 
     @Test(description = "Change Chain MainChain",alwaysRun = true)
     public void test001_checkTransferInChainName() throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
-        SettingPage set = enterSettingPage();
-        if(Helper.contentTexts(set.textArray,"DAppChain")){
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            TimeUnit.SECONDS.sleep(2);
-            Assert.assertTrue(Helper.contentTexts(set.textArray,"MainChain"));
-        }
+
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
     }
 
 
