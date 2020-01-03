@@ -282,6 +282,8 @@ public EnergyRentPage entereneryRantage(){
 
     public TrxPage enterTrx10Page() throws Exception {
         TimeUnit.SECONDS.sleep(1);
+        Helper.swipRefreshScreen(driver);
+        TimeUnit.SECONDS.sleep(3);
         if(nameLabels.get(2).getText().contains("tronlink_token")){
             System.out.println("点击了10币种tronlink_token");
         }

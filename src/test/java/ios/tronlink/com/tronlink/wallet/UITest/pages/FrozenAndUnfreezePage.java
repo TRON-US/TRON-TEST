@@ -182,6 +182,13 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         Helper.swipScreen(driver);
         getFreeze_btn().click();
+        TimeUnit.SECONDS.sleep(1);
+        try{
+            driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '继续'").click();
+            log("click go on button");
+        }catch (Exception e){
+            log("not show go on button");
+        }
         TimeUnit.SECONDS.sleep(5);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '下一步'").click();
         TimeUnit.SECONDS.sleep(1);
