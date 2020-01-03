@@ -1,6 +1,7 @@
 package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
+import android.com.wallet.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -8,9 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.DetailsAndRulesPage;
-import android.com.wallet.pages.FrozenAndUnfreezePage;
 
 public class DappFrozenTest extends Base {
     @Parameters({"privateKey"})
@@ -40,6 +38,14 @@ public class DappFrozenTest extends Base {
     public void test001_enterDetailsOfTheRules() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         String trxCount = asset.getTrxCount();
+        ///////////////////////////////////////////
+        MinePage mine = asset.enterMinePage();
+        SettingPage settingPage = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+        mine = settingPage.enterMinePage();
+        asset = mine.enterAssetPage();
+        ////////////////////////////////////////////
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
         Assert.assertTrue(detailsAndRules.detailsAndRules_title.isDisplayed());

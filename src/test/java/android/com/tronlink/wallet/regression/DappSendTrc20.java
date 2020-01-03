@@ -1,9 +1,7 @@
 package android.com.tronlink.wallet.regression;
 
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.SendTrxPage;
-import android.com.wallet.pages.SendTrxSuccessPage;
+import android.com.wallet.pages.*;
 import android.com.utils.Helper;
 
 import java.util.concurrent.TimeUnit;
@@ -53,6 +51,14 @@ public class DappSendTrc20 extends Base {
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void tsst001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        ///////////////////////////////////////////
+        MinePage mine = asset.enterMinePage();
+        SettingPage settingPage = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+        mine = settingPage.enterMinePage();
+        asset = mine.enterAssetPage();
+        ////////////////////////////////////////////
         SendTrxPage transfer = asset.enterSendTrxPage();
         double trc10Before = transfer.getTrc10Amount();
         String trc10SendAmount = "1";
