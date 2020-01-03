@@ -76,6 +76,27 @@ public class MultiSignTransactionPage extends AbstractPage {
 
 
 
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_trans_content")
+    public WebElement transConten_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/transaction_from")
+    public WebElement transFrom_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/transaction_to")
+    public WebElement transTo_text;
+
+
+
+    @FindBy(id = "com.tronlink.wallet:id/cv_countdownView")
+    public WebElement invaTime_text;
+
+
+
     public void sign() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         sign_btn.click();

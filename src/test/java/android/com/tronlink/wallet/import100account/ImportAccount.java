@@ -45,7 +45,7 @@ public class ImportAccount extends Base {
         findWebElement("com.tronlink.wallet:id/cd_pk").click();
         findWebElement("com.tronlink.wallet:id/et_content").sendKeys("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647");
         findWebElement("com.tronlink.wallet:id/bt_next").click();
-        findWebElement("com.tronlink.wallet:id/et_name").sendKeys("1");
+        findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Automation_1");
         findWebElement("com.tronlink.wallet:id/creat").click();
         findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
         findWebElement("com.tronlink.wallet:id/creat").click();
@@ -53,7 +53,7 @@ public class ImportAccount extends Base {
         findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
         findWebElement("com.tronlink.wallet:id/creat").click();
         System.out.println("点击完创建按钮1111");
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
 //        findWebElement("com.tronlink.wallet:id/tv_walletname").click();
 //        System.out.println("点击完我的钱包名称222222222");
 //        findWebElement("com.tronlink.wallet:id/tv_create").click();
@@ -65,7 +65,7 @@ public class ImportAccount extends Base {
             //findWebElement("com.tronlink.wallet:id/et_content").sendKeys("a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
             findWebElement("com.tronlink.wallet:id/et_content").sendKeys(addressList[i]);
             findWebElement("com.tronlink.wallet:id/bt_next").click();
-            findWebElement("com.tronlink.wallet:id/et_name").sendKeys((i+2)+"");
+            findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Automation_"+(i+2));
             findWebElement("com.tronlink.wallet:id/creat").click();
             findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
             findWebElement("com.tronlink.wallet:id/creat").click();
