@@ -251,7 +251,7 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "disapprove proposal", alwaysRun = true)
+    @Test(description = "disapprove proposal", alwaysRun = false)
     public void test014_disApproveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
