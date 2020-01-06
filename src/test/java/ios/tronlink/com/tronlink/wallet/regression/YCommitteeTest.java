@@ -168,7 +168,7 @@ public class YCommitteeTest extends BaseTest {
         myChangeCount = count;
         System.out.println(count);
         CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         committeePage.Setuppropos.click();
 
         committeePage.change1proposal(count);
