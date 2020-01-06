@@ -17,6 +17,11 @@ public class ImportKeystore extends BaseTest {
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
     }
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
+
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
     public void test001_gotoimportFromeKeyStroe() throws Exception {
 

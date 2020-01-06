@@ -4,6 +4,8 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
 import java.util.concurrent.TimeUnit;
 
 public class MinePage extends AbstractPage {
@@ -78,7 +80,8 @@ public class MinePage extends AbstractPage {
     //enter Setting page
     public SettingPage enterSettingPage(){
         try {
-            TimeUnit.SECONDS.sleep(1);
+            Helper.swipScreen(driver);
+            TimeUnit.SECONDS.sleep(3);
             setting_btn.click();
             TimeUnit.SECONDS.sleep(1);
 
