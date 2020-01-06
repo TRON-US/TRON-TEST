@@ -20,6 +20,12 @@ public class SendTrc10 extends BaseTest {
     return transfer;
   }
 
+  @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+  public void test000_GuaranteeChainName() throws Exception {
+    Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+  }
+
+
   @Test(description = "ssendaddressChanged test",alwaysRun = true)
   public void tsst001_sendaddressChanged() throws Exception {
     Helper.guaranteeMainChain(DRIVER);

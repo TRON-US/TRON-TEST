@@ -140,26 +140,40 @@ public class YCommitteeTest extends BaseTest {
         Assert.assertTrue(committeePage.findvoteNumbers() > 0);
     }
 
+    @Test(description = "newProposal",alwaysRun = true)
+    public void test_007makeNewProposal() throws  Exception{
+        log("new proposal 开始执行时间");
+        String count = String.format("%.0f", Math.random() * 100000);
+        myChangeCount = count;
+        System.out.println(count);
+        CommitteePage committeePage = enterCommitteePage();
+        committeePage.change1proposal(count);
+        WebElement wl = committeePage.findFirstproposalWl();
+        log("进入new我发起的投票并获取到第一个元素");
+        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
+        Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
+    }
     //有没有攥成着
     @Test(description = "be cancal agreed Proposal", alwaysRun = true)
-    public void test_007disagreedProposal() throws Exception {
+    public void test_008disagreedProposal() throws Exception {
 
         CommitteePage committeePage = enterCommitteePage();
         committeePage.disagreeAction();
         Assert.assertTrue(committeePage.getdisagreedStateofproposal());
+        log("dis agreed proposal 时间");
+
     }
 
     //1个状态
     @Test(description = "be disagreed value Proposal", alwaysRun = true)
-    public void test_008disagreedValueProposal() throws Exception {
-
+    public void test_009disagreedValueProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
     }
 
 
     @Test(description = "be delete My Proposal", alwaysRun = true)
-    public void test_009cancalagreedProposal() throws Exception {
+    public void test_010cancalagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
         String states = committeePage.getStateofproposal();
@@ -169,7 +183,7 @@ public class YCommitteeTest extends BaseTest {
 
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_010cheackProposalName(String witnessUrl) throws Exception {
+    public void test_011cheackProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -177,7 +191,7 @@ public class YCommitteeTest extends BaseTest {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_011cheackProposalTime() throws Exception {
+    public void test_012cheackProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
