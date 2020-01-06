@@ -1,7 +1,7 @@
 package android.com.tronlink.wallet.regression;
 
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.SendTrxSuccessPage;
+import android.com.wallet.pages.*;
 import android.com.utils.Helper;
 
 import java.util.concurrent.TimeUnit;
@@ -12,9 +12,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.SendTrxPage;
 
 public class DappSendTrc10 extends Base {
     @Parameters({"privateKey"})
@@ -53,6 +50,14 @@ public class DappSendTrc10 extends Base {
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void tsst001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        ///////////////////////////////////////////
+        MinePage mine = asset.enterMinePage();
+        SettingPage settingPage = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+        mine = settingPage.enterMinePage();
+        asset = mine.enterAssetPage();
+        ////////////////////////////////////////////
         SendTrxPage transfer = asset.enterSendTrxPage();
         double trc10Before = transfer.getTrc10Amount();
         String trc10SendAmount = "1";
@@ -88,5 +93,18 @@ public class DappSendTrc10 extends Base {
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
+
+
+    @Test(description = "trc10 check 10name", alwaysRun = true)
+    public void tsst005_check10Name() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trxPage = asset.enterTrx10Page();
+        SendTrxPage sendTrxPage = trxPage.enterSendTrc10Page();
+        //TransferPage transferPage = trxPage.enterTransferPage();
+        Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
+    }
+
+
+
 
 }
