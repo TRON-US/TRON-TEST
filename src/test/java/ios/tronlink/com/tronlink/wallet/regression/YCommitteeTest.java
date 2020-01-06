@@ -140,22 +140,11 @@ public class YCommitteeTest extends BaseTest {
         Assert.assertTrue(committeePage.findvoteNumbers() > 0);
     }
 
-    @Test(description = "newProposal",alwaysRun = true)
-    public void test_007makeNewProposal() throws  Exception{
-        log("new proposal 开始执行时间");
-        String count = String.format("%.0f", Math.random() * 100000);
-        myChangeCount = count;
-        System.out.println(count);
-        CommitteePage committeePage = enterCommitteePage();
-        committeePage.change1proposal(count);
-        WebElement wl = committeePage.findFirstproposalWl();
-        log("进入new我发起的投票并获取到第一个元素");
-        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
-    }
+
+
     //有没有攥成着
     @Test(description = "be cancal agreed Proposal", alwaysRun = true)
-    public void test_008disagreedProposal() throws Exception {
+    public void test_007disagreedProposal() throws Exception {
 
         CommitteePage committeePage = enterCommitteePage();
         committeePage.disagreeAction();
@@ -166,11 +155,28 @@ public class YCommitteeTest extends BaseTest {
 
     //1个状态
     @Test(description = "be disagreed value Proposal", alwaysRun = true)
-    public void test_009disagreedValueProposal() throws Exception {
+    public void test_008disagreedValueProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
     }
 
+    @Test(description = "newProposal",alwaysRun = true)
+    public void test_009makeNewProposal() throws  Exception{
+
+        log("new proposal 开始执行时间");
+        String count = String.format("%.0f", Math.random() * 100000);
+        myChangeCount = count;
+        System.out.println(count);
+        CommitteePage committeePage = enterCommitteePage();
+        TimeUnit.SECONDS.sleep(2);
+        committeePage.Setuppropos.click();
+
+        committeePage.change1proposal(count);
+        WebElement wl = committeePage.findFirstproposalWl();
+        log("进入new我发起的投票并获取到第一个元素");
+        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
+        Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
+    }
 
     @Test(description = "be delete My Proposal", alwaysRun = true)
     public void test_010cancalagreedProposal() throws Exception {
