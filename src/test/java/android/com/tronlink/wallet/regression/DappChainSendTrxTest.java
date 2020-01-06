@@ -1,6 +1,7 @@
 package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
+import android.com.wallet.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -8,9 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.SendTrxPage;
-import android.com.wallet.pages.SendTrxSuccessPage;
 
 public class DappChainSendTrxTest extends Base {
     @Parameters({"privateKey"})
@@ -50,6 +48,14 @@ public class DappChainSendTrxTest extends Base {
     @Test(description = "input Privatekey to Receiving address", alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        ///////////////////////////////////////////
+        MinePage mine = asset.enterMinePage();
+        SettingPage settingPage = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
+        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
+        mine = settingPage.enterMinePage();
+        asset = mine.enterAssetPage();
+        ////////////////////////////////////////////
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         String hits = transfer.formatErrorHits_text.getText();

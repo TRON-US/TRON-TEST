@@ -120,6 +120,12 @@ public class SendTrxPage extends AbstractPage {
     public WebElement selectSignName_text;
 
 
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    public WebElement tvName_text;
+
+
+
     public SendTrxSuccessPage enterSendTrxSuccessPage(){
         confirm_btn.click();
         return new SendTrxSuccessPage(driver);
