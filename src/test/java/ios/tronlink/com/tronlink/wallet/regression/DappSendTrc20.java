@@ -6,6 +6,8 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class DappSendTrc20 extends BaseTest {
     public SendTrxPage enterToSendTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -94,13 +96,18 @@ public class DappSendTrc20 extends BaseTest {
 
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(transfer.driver);
+        TimeUnit.SECONDS.sleep(1);
         transfer.token_btn.click();
         transfer.getTrc20Token().click();
         transfer.testfieldArray.get(2).sendKeys("1");
         Helper.tapWhitePlace(transfer.driver);
+        TimeUnit.SECONDS.sleep(1);
         transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         transfer.transferNow_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         transfer.InputPasswordConfim_btn.sendKeys("Test0001");
+        TimeUnit.SECONDS.sleep(1);
         transfer.broadcastButtonClick();
         TrxPage tokenpage = new TrxPage(transfer.driver);
         double trc20Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
