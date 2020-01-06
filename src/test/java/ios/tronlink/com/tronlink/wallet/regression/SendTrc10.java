@@ -20,6 +20,12 @@ public class SendTrc10 extends BaseTest {
     return transfer;
   }
 
+  @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+  public void test000_GuaranteeChainName() throws Exception {
+    Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+  }
+
+
   @Test(description = "ssendaddressChanged test",alwaysRun = true)
   public void tsst001_sendaddressChanged() throws Exception {
     Helper.guaranteeMainChain(DRIVER);
@@ -61,13 +67,18 @@ public class SendTrc10 extends BaseTest {
     SendTrxPage transfer = enterToSendTrxPage();
     transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
     Helper.tapWhitePlace(transfer.driver);
+    TimeUnit.SECONDS.sleep(1);
     transfer.token_btn.click();
     transfer.getTrc10Token().click();
     transfer.testfieldArray.get(2).sendKeys("1");
     Helper.tapWhitePlace(transfer.driver);
+    TimeUnit.SECONDS.sleep(1);
     transfer.send_btn.click();
+    TimeUnit.SECONDS.sleep(1);
     transfer.transferNow_btn.click();
+    TimeUnit.SECONDS.sleep(1);
     transfer.InputPasswordConfim_btn.sendKeys("Test0001");
+    TimeUnit.SECONDS.sleep(1);
     transfer.broadcastButtonClick();
     TrxPage tokenpage = new TrxPage(transfer.driver);
     double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
