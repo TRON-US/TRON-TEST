@@ -94,4 +94,17 @@ public class DappSendTrc10 extends Base {
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
 
+
+    @Test(description = "trc10 check 10name", alwaysRun = true)
+    public void tsst005_check10Name() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trxPage = asset.enterTrx10Page();
+        SendTrxPage sendTrxPage = trxPage.enterSendTrc10Page();
+        //TransferPage transferPage = trxPage.enterTransferPage();
+        Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
+    }
+
+
+
+
 }

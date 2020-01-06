@@ -1,7 +1,7 @@
 package android.com.tronlink.wallet.regression;
 
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.SendTrxSuccessPage;
+import android.com.wallet.pages.*;
 import android.com.utils.Helper;
 
 import java.util.concurrent.TimeUnit;
@@ -12,9 +12,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.SendTrxPage;
 
 public class SendTrc10 extends Base {
     @Parameters({"privateKey"})
@@ -87,6 +84,20 @@ public class SendTrc10 extends Base {
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
+
+
+
+    @Test(description = "trc10 check 10name", alwaysRun = true)
+    public void tsst005_check10Name() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trxPage = asset.enterTrx10Page();
+        SendTrxPage sendTrxPage = trxPage.enterSendTrc10Page();
+        //TransferPage transferPage = trxPage.enterTransferPage();
+        Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
+    }
+
+
+
 
 
 }
