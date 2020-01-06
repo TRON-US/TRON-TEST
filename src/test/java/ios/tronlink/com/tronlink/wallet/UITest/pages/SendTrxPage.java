@@ -93,11 +93,13 @@ public class SendTrxPage extends AbstractPage {
 
 
 
-    public WebElement getTrc20Token(){
+    public WebElement getTrc20Token() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
         List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
         return  cells.get(1);
     }
-    public WebElement getTrc10Token(){
+    public WebElement getTrc10Token() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
         List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
         return  cells.get(2);
     }

@@ -51,17 +51,11 @@ public class DappChainWithdraw20 extends BaseTest {
             return asset;
         }
     }
+    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
+    }
 
-//    @Test(description = "Check transferOut Chain Name",alwaysRun = true)
-//    public void test001_checkTransferOutChainName() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferOutPage();
-//        String chain = transferOut.chain_text.getText();
-//        Assert.assertTrue(chain.contains("MainChain"));
-//    }
-//
-//
-//
 //
 //    @Test(description = "Check transferOut Trc20 Count",alwaysRun = true)
 //    public void test002_checkTransferOutTrx() throws Exception {

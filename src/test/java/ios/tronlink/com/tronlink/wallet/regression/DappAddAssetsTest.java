@@ -48,15 +48,11 @@ public class DappAddAssetsTest extends BaseTest {
             return asset;
         }
     }
+    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
+    }
 
-
-//    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-//    public void test000_GuaranteeChainName() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferOutPage();
-//        String chain = transferOut.chain_text.getText();
-//        assertTrue(chain.contains("MainChain"));
-//    }
 //    @Test(description = "test add assert",alwaysRun = true)
 //    public void test002_addAsset() throws Exception {
 //        AssetPage assetPage = new AssetPage(DRIVER);
