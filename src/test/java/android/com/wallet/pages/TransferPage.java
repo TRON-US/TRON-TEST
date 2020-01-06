@@ -75,7 +75,8 @@ public class TransferPage extends AbstractPage {
     public WebElement time_text;
 
 
-
+    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    public WebElement tvName_text;
 
 
 
