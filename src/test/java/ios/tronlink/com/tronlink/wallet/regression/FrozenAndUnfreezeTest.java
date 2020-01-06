@@ -33,10 +33,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
 
     @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
     public void test000_GuaranteeChainName() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferInPage();
-        String chain = transferIn.chain_text.getText();
-        Assert.assertTrue(chain.contains("DAppChain"));
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
     }
 
 
