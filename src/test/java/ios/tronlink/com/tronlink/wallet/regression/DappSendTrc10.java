@@ -55,10 +55,8 @@ public class DappSendTrc10 extends BaseTest {
 
     @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
     public void test000_GuaranteeChainName() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        String chain = transferOut.chain_text.getText();
-        Assert.assertTrue(chain.contains("MainChain"));
+        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
+
     }
 
 
