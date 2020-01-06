@@ -61,6 +61,7 @@ public class SendTrx extends Base {
     }
 
 
+
     @Test(description = "input Privatekey to Receiving address", alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -185,6 +186,17 @@ public class SendTrx extends Base {
 //        int trxValueNewest = Integer.valueOf(removeSymbol(asset.getTrxCount()));
 //        Assert.assertEquals(trxValue - 1, trxValueNewest);
 //    }
+
+
+
+    @Test(description = "check trx name", alwaysRun = true)
+    public void tsst012_sendTrxCheckName() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        Assert.assertTrue(transfer.tvName_text.getText().contains("TRX"));
+    }
+
+
+
 
 
 }
