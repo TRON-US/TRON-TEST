@@ -90,6 +90,9 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_my_proposals")
+    public WebElement myProposal_btn;
+
 
     public void searchResult() throws Exception {
         TimeUnit.SECONDS.sleep(2);
@@ -126,6 +129,14 @@ public class CommitteeProposalPage extends AbstractPage {
 
     public MyProposalsPage enterMyProposals() throws Exception {
         myProposals_text.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new MyProposalsPage(driver);
+    }
+
+
+
+    public MyProposalsPage enterMyProposalsPage() throws Exception {
+        myProposal_btn.click();
         TimeUnit.SECONDS.sleep(2);
         return new MyProposalsPage(driver);
     }
