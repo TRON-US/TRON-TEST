@@ -329,9 +329,9 @@ public class SendTrxPage extends AbstractPage {
         enterAmountTextField("1.1");
         TimeUnit.SECONDS.sleep(2);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         InputPasswordConfim_btn.sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(3);
 
@@ -354,9 +354,9 @@ public class SendTrxPage extends AbstractPage {
         driver.findElementById("active").click();
         TimeUnit.SECONDS.sleep(1);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         InputPasswordConfim_btn.sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(3);
         try{

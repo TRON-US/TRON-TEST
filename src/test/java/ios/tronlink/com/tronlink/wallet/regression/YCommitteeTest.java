@@ -1,71 +1,69 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
+import android.com.utils.AppiumTestCase;
+import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.CommitteePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-public class YCommitteeTest extends BaseTest {
+public class YCommitteeTest extends Base {
 
-//    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
-    public String myChangeCount;
-    public boolean isimport = false;
+    //    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
 
-
-    public CommitteePage perparWallet(String privateKey) throws Exception {
-        log("导入钱包");
-        AssetPage assetPage = new AssetPage(DRIVER);
-        if(assetPage.getWalletName().contains("Committee"))
-        {
-            log("有这个钱包没有进入导入流程：");
-            MinePage minePage = assetPage.enterMinePage();
-            CommitteePage committeePage = minePage.enterCommitteePage();
-            return committeePage;
-        }
-        log("无这个钱包开始进入导入流程：");
-        TimeUnit.SECONDS.sleep(2);
-        assetPage.addWallet_btn.click();
-        log("进入添加钱包页面");
-        TimeUnit.SECONDS.sleep(2);
-        System.out.println("importUsePrivateKey0");
-        findWebElement("私钥导入").click();
-        DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privateKey);
-        Helper.tapWhitePlace(DRIVER);
-        findWebElement("下一步").click();
-        TimeUnit.SECONDS.sleep(10);
-        DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys("Committee");
-        Helper.tapWhitePlace(DRIVER);
-        findWebElement("下一步").click();
-        TimeUnit.SECONDS.sleep(3);
-        DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-        Helper.tapWhitePlace(DRIVER);
-        findWebElement("下一步").click();
-        TimeUnit.SECONDS.sleep(3);
-        DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-        Helper.tapWhitePlace(DRIVER);
-        findWebElement("完成").click();
-        TimeUnit.SECONDS.sleep(10);
-
-        System.out.println("importUsePrivateKey1");
-        TimeUnit.SECONDS.sleep(3);
-        MinePage minePage = assetPage.enterMinePage();
-        CommitteePage committeePage = minePage.enterCommitteePage();
-        return committeePage;
+    @Parameters({"witnessKey", "udid"})
+    @BeforeClass(alwaysRun = true)
+    public void setUpBefore(String witnessKey, String udid) throws Exception {
+        System.out.println("pk: " + witnessKey + " udid: " + udid);
+        DRIVER.closeApp();
+        log("开始移除app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+        log("开始安装app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+        log("开始导入ownerPrivatekey");
+        DRIVER.closeApp();
+        DRIVER.launchApp();
+        new Helper().getSign(witnessKey, DRIVER);
     }
+
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(Method methed) throws Exception {
+        try {
+            String name = this.getClass().getSimpleName() + "." +
+                    methed.getName();
+            screenshotAction(name);
+            DRIVER.closeApp();
+            DRIVER.launchApp();
+        } catch (Exception e) {
+        }
+
+    }
+
+    @Parameters({"udid"})
+    @AfterClass(alwaysRun = true)
+    public void tearDownAfterClass(String udid) {
+        try {
+            DRIVER.closeApp();
+            System.out.println("开始移除app");
+            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+            System.out.println("开始安装app");
+            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
+
+    }
+
+
 
     public CommitteePage enterCommitteePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -74,57 +72,59 @@ public class YCommitteeTest extends BaseTest {
         return committeePage;
     }
 
-    @Parameters({"witnessKey"})
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
+
     @Test(description = "send proposals", alwaysRun = true)
-    public void test_001SendProposals(String witnessKey) throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
-        CommitteePage committeePage;
-        System.out.println("isimport:" + isimport);
-        if (!isimport ) {
-            committeePage = perparWallet(witnessKey);
-            isimport = true;
-        } else {
-            committeePage = enterCommitteePage();
-        }
+    public void test_001SendProposals() throws Exception {
 
-        while (true){
-            SimpleDateFormat min = new SimpleDateFormat();// 格式化时间
-            min.applyPattern("mm");// a为am/pm的标记
-            Date date = new Date();// 获取当前时间
-            System.out.println( "分钟数:" + min.format(date));
-            if(Integer.parseInt( min.format(date))%10 == 0)
-            {
-                break;
-            }
-            TimeUnit.SECONDS.sleep(5);
-            Helper.swipRefreshScreen(DRIVER);
-        }
-
+        CommitteePage   committeePage = enterCommitteePage();
+        TimeUnit.SECONDS.sleep(6);
         committeePage.Setuppropos.click();
-
-        log("开始执行时间");
+        TimeUnit.SECONDS.sleep(9);
         String count = String.format("%.0f", Math.random() * 100000);
-        myChangeCount = count;
         System.out.println(count);
+        log("开始执行时间");
         committeePage.change1proposal(count);
         WebElement wl = committeePage.findFirstproposalWl();
-        log("进入我发起的投票并获取到第一个元素");
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
+        Assert.assertTrue(Helper.contentTexts(textarray, count));
     }
 
 
 
     @Test(description = "cheack state proposal", alwaysRun = true)
-    public void test_003cheackProposalState() throws Exception {
+    public void test_002cheackProposalState() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String states = committeePage.getStateofproposal();
         System.out.println(states);
         Assert.assertTrue(states.contains("投票中"));
     }
 
+    @Test(description = "be delete My first Proposal", alwaysRun = true)
+    public void test_003cancalagreedProposal() throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
+        committeePage.deleteAction();
+        String states = committeePage.getStateofproposal();
+        Assert.assertTrue(states.contains("已取消"));
+    }
+    @Test(description = "secendnewProposal",alwaysRun = true)
+    public void test_004makeecendNewProposal() throws  Exception{
 
-
+        log("second 开始执行时间");
+        String count = String.format("%.0f", Math.random() * 100000);
+        System.out.println(count);
+        CommitteePage committeePage = enterCommitteePage();
+        TimeUnit.SECONDS.sleep(6 );
+        committeePage.Setuppropos.click();
+        TimeUnit.SECONDS.sleep(9);
+        committeePage.change0proposal("0.12345");
+        WebElement wl = committeePage.findFirstproposalWl();
+        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
+        Assert.assertTrue(Helper.contentTexts(textarray, "0.12345"));
+    }
     @Test(description = "be agreed Proposal", alwaysRun = true)
     public void test_005agreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
@@ -135,61 +135,63 @@ public class YCommitteeTest extends BaseTest {
     //1个数值
     @Test(description = "be agreed value Proposal", alwaysRun = true)
     public void test_006agreedValueProposal() throws Exception {
-
         CommitteePage committeePage = enterCommitteePage();
         Assert.assertTrue(committeePage.findvoteNumbers() > 0);
     }
 
-
-
-    //有没有攥成着
-    @Test(description = "be cancal agreed Proposal", alwaysRun = true)
-    public void test_007disagreedProposal() throws Exception {
-
-        CommitteePage committeePage = enterCommitteePage();
-        committeePage.disagreeAction();
-        Assert.assertTrue(committeePage.getdisagreedStateofproposal());
-        log("dis agreed proposal 时间");
-
-    }
-
-    //1个状态
-    @Test(description = "be disagreed value Proposal", alwaysRun = true)
-    public void test_008disagreedValueProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
-    }
-
-    @Test(description = "newProposal",alwaysRun = true)
-    public void test_009makeNewProposal() throws  Exception{
-
-        log("new proposal 开始执行时间");
-        String count = String.format("%.0f", Math.random() * 100000);
-        myChangeCount = count;
-        System.out.println(count);
-        CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(3);
-        committeePage.Setuppropos.click();
-
-        committeePage.change1proposal(count);
-        WebElement wl = committeePage.findFirstproposalWl();
-        log("进入new我发起的投票并获取到第一个元素");
-        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, myChangeCount));
-    }
-
-    @Test(description = "be delete My Proposal", alwaysRun = true)
-    public void test_010cancalagreedProposal() throws Exception {
+    @Test(description = "be delete three My Proposal", alwaysRun = true)
+    public void test_007deleteagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
         String states = committeePage.getStateofproposal();
+        log("second 结束执行时间");
         Assert.assertTrue(states.contains("已取消"));
 
     }
 
+    @Test(description = "newProposal",alwaysRun = true)
+    public void test_008makeNewProposal() throws  Exception{
+
+        log("three 开始执行时间");
+        CommitteePage committeePage = enterCommitteePage();
+        TimeUnit.SECONDS.sleep(6);
+        committeePage.Setuppropos.click();
+        TimeUnit.SECONDS.sleep(9);
+        committeePage.change2proposal("0.2");
+        WebElement wl = committeePage.findFirstproposalWl();
+        log("进入new我发起的投票并获取到第一个元素");
+        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
+        Assert.assertTrue(Helper.contentTexts(textarray, "0.2"));
+    }
+
+    @Test(description = "be agreed Proposal", alwaysRun = true)
+    public void test_009agreedProposal() throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
+        committeePage.agreeAction();
+        Assert.assertTrue(committeePage.getagreedStateofproposal());
+    }
+
+    //有没有攥成着
+    @Test(description = "be dis agreed Proposal", alwaysRun = true)
+    public void test_010disagreedProposal() throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
+        committeePage.disagreeAction();
+        Assert.assertTrue(committeePage.getdisagreedStateofproposal());
+        log("dis agreed时间");
+    }
+
+    //1个状态
+    @Test(description = "be disagreed value Proposal", alwaysRun = true)
+    public void test_011disagreedValueProposal() throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
+        log("three 结束执行时间");
+        Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
+    }
+
+
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_011cheackProposalName(String witnessUrl) throws Exception {
+    public void test_012cheackProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -197,7 +199,7 @@ public class YCommitteeTest extends BaseTest {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_012cheackProposalTime() throws Exception {
+    public void test_013cheackProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
@@ -205,41 +207,5 @@ public class YCommitteeTest extends BaseTest {
 
     }
 
-//状态验证
-
-    public WebElement findWebElement(String element) throws Exception {
-        int tries = 0;
-        Boolean Element_is_exist = false;
-        WebElement el = null;
-        while (!Element_is_exist && tries < 5) {
-            tries++;
-            try {
-                el = DRIVER.findElementByName(element);
-                Element_is_exist = true;
-            } catch (NoSuchElementException e) {
-                //Element_is_exist = false;
-                TimeUnit.SECONDS.sleep(2);
-            }
-        }
-        if (el != null) {
-            return el;
-        } else {
-            el = DRIVER.findElementById(element);
-            return el;
-        }
-
-    }
-//            DRIVER.installApp("Tronlink.ipa");
-    @AfterClass(alwaysRun = true)
-    public void tearDownAfterClass() {
-
-        try {
-            AssetPage.closedADView = false;
-            DRIVER.quit();
-            DRIVER.removeApp("com.tronlink.hdwallet");
-        } catch (Exception e) {
-        }
-
-    }
 
 }
