@@ -37,11 +37,13 @@ public class MainNetDeposit20 extends BaseTest {
     }
 
 
-
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test001_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
 
     @Test(description = "Check TransferIn Trc20 Count",alwaysRun = true)
     public void test003_checkTransferInTrc10() throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
         TrxPage trx = enterTrxPage();
         Assert.assertTrue(trx.transferIn_btnArray.size()>0);
 

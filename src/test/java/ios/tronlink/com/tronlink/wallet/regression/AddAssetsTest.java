@@ -5,6 +5,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.AddAssertPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SearchAssertPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,11 @@ import static org.testng.Assert.assertTrue;
 public class AddAssetsTest extends BaseTest {
 
 
-//
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
+
 //    @Test(description = "test add assert",alwaysRun = true)
 //    public void test002_addAsset() throws Exception {
 //        Helper.switchToReleaseNet(DRIVER);

@@ -23,8 +23,6 @@ public class BaseTest extends Base {
 
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
-
-            log(name);
             screenshotAction(name);
             DRIVER.closeApp();
             DRIVER.launchApp();
