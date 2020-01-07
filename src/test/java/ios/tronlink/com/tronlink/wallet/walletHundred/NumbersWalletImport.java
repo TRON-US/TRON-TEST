@@ -27,19 +27,18 @@ public class NumbersWalletImport extends BaseTest {
         //remarkField 备注
 
         //rightLabel 保存
-        List<String> array = readFile("src/test/resources/100privatekeyios.txt");
+        List<String> array = readFile("src/test/resources/100address.txt");
+
         for (int i = 0; i < array.size(); i++) {
             minePage.driver.findElementById("addressBook add").click();
             TimeUnit.SECONDS.sleep(1);
-            minePage.driver.findElementById("nameField").sendKeys("Auto_add_" + i);
+            minePage.driver.findElementById("nameField").sendKeys("Auto_add_" + (i+1));
             Helper.closeKeyBoard(minePage.driver);
-            TimeUnit.SECONDS.sleep(1);
             minePage.driver.findElementById("addressField").sendKeys(array.get(i));
             Helper.closeKeyBoard(minePage.driver);
-            TimeUnit.SECONDS.sleep(1);
             minePage.driver.findElementById("rightLabel").click();
             TimeUnit.SECONDS.sleep(3);
-            log("导入了 " + i + "个地址");
+            log("导入了 " + (i+1) + "个地址");
 
         }
 
@@ -55,10 +54,10 @@ public class NumbersWalletImport extends BaseTest {
         return new ImportPrivateKeyPage(DRIVER);
     }
 
-    @Test(description = "Import 100 wallet in wallet", alwaysRun = true)
+    @Test(description = "Import 100 wallet in wallet", alwaysRun = false)
     public void test001_Import100Wallet() throws Exception {
-
         List<String> array = readFile("src/test/resources/100privatekeyios.txt");
+
         for (int i = 0; i < array.size(); i++) {
             ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
             PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(array.get(i));
