@@ -24,6 +24,10 @@ public class SendTrx extends BaseTest {
     }
 
 
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
 
     @Test(description = "input Privatekey to Receiving address",alwaysRun = true)
     public void tsst001_inputPrivatekey() throws Exception {

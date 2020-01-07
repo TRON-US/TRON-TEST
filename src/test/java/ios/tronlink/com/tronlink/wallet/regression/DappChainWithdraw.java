@@ -57,10 +57,7 @@ public class DappChainWithdraw extends BaseTest {
 
     @Test(description = "Check transferOut Chain Name",alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        String chain = transferOut.chain_text.getText();
-        Assert.assertTrue(chain.contains("MainChain"));
+        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
     }
 
 
