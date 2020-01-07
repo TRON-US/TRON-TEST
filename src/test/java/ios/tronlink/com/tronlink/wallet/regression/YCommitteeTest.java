@@ -74,10 +74,14 @@ public class YCommitteeTest extends BaseTest {
         return committeePage;
     }
 
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
+
     @Parameters({"witnessKey"})
     @Test(description = "send proposals", alwaysRun = true)
     public void test_001SendProposals(String witnessKey) throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
         CommitteePage committeePage;
         System.out.println("isimport:" + isimport);
         if (!isimport ) {
@@ -101,6 +105,7 @@ public class YCommitteeTest extends BaseTest {
         }
 
         committeePage.Setuppropos.click();
+        TimeUnit.SECONDS.sleep(6);
 
         log("开始执行时间");
         String count = String.format("%.0f", Math.random() * 100000);

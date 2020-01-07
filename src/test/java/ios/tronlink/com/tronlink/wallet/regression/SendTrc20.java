@@ -28,7 +28,6 @@ public class SendTrc20 extends BaseTest {
 
     @Test(description = "ssendaddressChanged test", alwaysRun = true)
     public void tsst001_sendaddressChanged() throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
