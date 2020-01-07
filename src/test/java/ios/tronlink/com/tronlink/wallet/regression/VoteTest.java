@@ -34,15 +34,5 @@ public class VoteTest extends BaseTest {
         Assert.assertTrue(vote.VoteDetail());
     }
 
-//    @Test(description = "enter a number that is right in confirm", alwaysRun = true)
-//    public void test002_vote01() throws Exception {
-//        VotePage vote = enterVotePage();
-//        Assert.assertTrue(vote.VoteTextRightTest());
-//    }
-//    @Test(description = "vote Success", alwaysRun = true)
-//    public void test003_vote01() throws Exception {
-//        VotePage vote = enterVotePage();
-//        Assert.assertTrue(vote.VoteRightTest().length()>0);
-//    }
 
 }
