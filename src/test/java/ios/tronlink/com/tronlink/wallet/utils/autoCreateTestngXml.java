@@ -97,7 +97,7 @@ public class autoCreateTestngXml {
     }
 
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void sendCoinToTestCount() throws IOException{
         HashMap<String,String> testAccountList = new HashMap<>();
 
