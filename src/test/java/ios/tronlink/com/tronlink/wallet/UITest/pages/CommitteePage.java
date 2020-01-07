@@ -86,12 +86,46 @@ public class CommitteePage extends AbstractPage {
             Helper.tapWhitePlace(driver);
             TimeUnit.SECONDS.sleep(1);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(6);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
             TimeUnit.SECONDS.sleep(3);
             //XCUIElementTypeButton name
             //XCUIElementTypeStaticText
+
+    }
+    public void change2proposal(String pro) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        textfieldList.get(2).clear();
+        textfieldList.get(2).clear();
+        textfieldList.get(2).sendKeys("");
+        textfieldList.get(2).sendKeys(pro);
+        Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        TimeUnit.SECONDS.sleep(6);
+        passwordTF.sendKeys("Test0001");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(3);
+        //XCUIElementTypeButton name
+        //XCUIElementTypeStaticText
+
+    }
+    public void change0proposal(String pro) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        textfieldList.get(0).clear();
+        textfieldList.get(0).clear();
+        textfieldList.get(0).sendKeys("");
+        textfieldList.get(0).sendKeys(pro);
+        Helper.tapWhitePlace(driver);
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        TimeUnit.SECONDS.sleep(6);
+        passwordTF.sendKeys("Test0001");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(3);
+        //XCUIElementTypeButton name
+        //XCUIElementTypeStaticText
 
     }
     public String getNameofproposal() throws Exception {
@@ -142,21 +176,21 @@ public class CommitteePage extends AbstractPage {
     public boolean getagreedStateofproposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         findFirstAgreedroposalWl().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         return disagreeBtn.isDisplayed();
     }
 
     public boolean getdisagreedStateofproposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         findFirstproposalWl().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         return agreeBtn.isDisplayed();
     }
 
     public void enterProposalDetail() throws Exception {
         WebElement wl = findFirstproposalWl();
         wl.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
     }
 
 
@@ -170,7 +204,7 @@ public class CommitteePage extends AbstractPage {
         action.tap(PointOption.point(topX,topY)).perform();
         System.out.println("end");
 //        mysetuppropos.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
     }
 
     public void enterMyAgreedProposal() throws Exception {
@@ -182,7 +216,7 @@ public class CommitteePage extends AbstractPage {
         System.out.println("start");
         action.tap(PointOption.point(topX,topY)).perform();
         System.out.println("end");
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
 
     }
 
@@ -191,7 +225,7 @@ public class CommitteePage extends AbstractPage {
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(4);
         agreeBtn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(3);
@@ -203,7 +237,7 @@ public class CommitteePage extends AbstractPage {
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(4);
         disagreeBtn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(3);
@@ -217,7 +251,7 @@ public class CommitteePage extends AbstractPage {
         deleteBtn.click();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(3);
