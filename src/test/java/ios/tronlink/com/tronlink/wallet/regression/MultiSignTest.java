@@ -7,6 +7,7 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class MultiSignTest extends Base {
@@ -23,13 +24,15 @@ public class MultiSignTest extends Base {
         log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
-        AssetPage.closedADView = false;
         new Helper().getSign(ownerPrivateKey, DRIVER);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod() throws Exception {
+    public void afterMethod(Method methed) throws Exception {
         try {
+            String name = this.getClass().getSimpleName() + "." +
+                    methed.getName();
+            screenshotAction(name);
             DRIVER.closeApp();
             DRIVER.launchApp();
         } catch (Exception e) {
@@ -46,7 +49,6 @@ public class MultiSignTest extends Base {
             AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
             System.out.println("开始安装app");
             AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-            AssetPage.closedADView = false;
             DRIVER.quit();
         } catch (Exception e) {
         }
