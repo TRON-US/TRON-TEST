@@ -90,6 +90,10 @@ public class MultiSignTest extends Base {
 
     }
 
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
 
     @Parameters({"multiSignAddress"})
     @Test(description = "valued sign address is right",alwaysRun = true)

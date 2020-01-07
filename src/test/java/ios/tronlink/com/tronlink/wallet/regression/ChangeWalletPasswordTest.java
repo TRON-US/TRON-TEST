@@ -5,6 +5,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MyPursePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.WalletPasswordPage;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -39,6 +40,10 @@ public class ChangeWalletPasswordTest extends BaseTest {
     }
 //
 
+    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    public void test000_GuaranteeChainName() throws Exception {
+        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+    }
 
     @Test(description = "Input dont match password",alwaysRun = true)
     public void test0001InputIncorrectPassword() throws Exception{
