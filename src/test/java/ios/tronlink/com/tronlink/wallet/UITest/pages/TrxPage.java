@@ -60,6 +60,13 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "transferDepositBtn")
     public WebElement tranferInBtn;
 
+    @FindBy(id = "tokenPageSendBtn")
+    public WebElement sendBtn;
+
+    @FindBy(id = "tokenPageReceiveBtn")
+    public WebElement receiveBtn;
+
+
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 

@@ -224,7 +224,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(1);
             if(Helper.isElementExist(driver,"继续")){
                 getConfirmGo_btn().click();
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(3);
             }
             getfreezeNow_btn().click();
             TimeUnit.SECONDS.sleep(1);
@@ -269,10 +269,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         freezeCount_input.get(0).click();
         TimeUnit.SECONDS.sleep(3);
         freezeCount_input.get(0).sendKeys(count);
-        Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        Helper.closeKeyBoard(driver);
 
-        ;
     }
 
 
