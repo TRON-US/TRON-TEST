@@ -189,6 +189,23 @@ public class Helper {
             return  ismain;
         }
     }
+    public static boolean guaranteeDappChain(IOSDriver driver) throws Exception {
+        AssetPage asset = new AssetPage(driver);
+        if(assetFindMainChain(asset)){
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            SettingPage settingPage = nodeSet.enterSettingPageChoiseDappChain();
+            boolean isdapp = !fastFindMainChain(settingPage.textArray);
+            mine = settingPage.enterMinePage();
+            mine.enterAssetPage();
+            return  isdapp;
+
+        }else{
+            return true;
+
+        }
+    }
     public static void switchToReleaseNet(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
         MinePage minePage = asset.enterMinePage();

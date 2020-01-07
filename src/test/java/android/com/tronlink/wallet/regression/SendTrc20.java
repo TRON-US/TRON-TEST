@@ -4,6 +4,7 @@ import android.com.utils.Helper;
 
 import java.util.concurrent.TimeUnit;
 
+import android.com.wallet.pages.TrxPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -50,6 +51,9 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
+
+
+
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void tsst001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -64,12 +68,18 @@ public class SendTrc20 extends Base {
         Assert.assertEquals(trc10Before, trc10After + Double.valueOf(trc10SendAmount));
     }
 
+
+
+
     @Test(description = "input max send number", alwaysRun = true)
     public void tsst002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("max");
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
+
+
+
 
 
     @Test(description = "input mix send number", alwaysRun = true)
@@ -81,6 +91,9 @@ public class SendTrc20 extends Base {
     }
 
 
+
+
+
     @Test(description = "input too Much trc10 send number", alwaysRun = true)
     public void tsst004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
@@ -88,6 +101,56 @@ public class SendTrc20 extends Base {
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
+
+
+
+
+
+    @Test(description = "trc10 check 10name", alwaysRun = true)
+    public void tsst005_check10Name() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trxPage = asset.enterTrx10Page();
+        SendTrxPage sendTrxPage = trxPage.enterSendTrc10Page();
+        //TransferPage transferPage = trxPage.enterTransferPage();
+        Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

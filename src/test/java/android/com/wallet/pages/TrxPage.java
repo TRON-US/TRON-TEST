@@ -58,6 +58,11 @@ public class TrxPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
+    public WebElement tranfer10_btn;
+
+
+
     public TransferPage enterTransferPage() throws Exception {
         transferIn_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -76,6 +81,13 @@ public class TrxPage extends AbstractPage {
 
     public boolean getTrxVale(){
         return true;
+    }
+
+
+
+    public SendTrxPage enterSendTrc10Page() {
+        tranfer10_btn.click();
+        return new SendTrxPage(driver);
     }
 
 
