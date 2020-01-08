@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
@@ -27,8 +28,6 @@ import java.util.concurrent.TimeUnit;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 
-//@Listeners(RetryListener.class)
-
 
 public class Base {
 
@@ -36,7 +35,7 @@ public class Base {
 
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 
-    public int RetryAgainTimes = 4;
+    public int RetryAgainTimes = 5;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
@@ -86,6 +85,7 @@ public class Base {
             e.printStackTrace();
         }
     }
+
 
 
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort", "automationName"})

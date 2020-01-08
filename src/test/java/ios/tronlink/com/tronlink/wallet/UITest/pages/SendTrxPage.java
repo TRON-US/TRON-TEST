@@ -333,7 +333,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(4);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
 
         try{
             send_btn.getText();
@@ -358,7 +358,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(4);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(7);
         try{
             send_btn.getText();
             return false;
