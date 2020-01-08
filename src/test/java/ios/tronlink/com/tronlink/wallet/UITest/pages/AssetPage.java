@@ -270,20 +270,19 @@ public EnergyRentPage entereneryRantage(){
     public TrxPage enterTrxPage() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         cellArray.get(0).click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
     }
 
 
     public TrxPage enterTrx10Page() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
         Helper.swipRefreshScreen(driver);
         TimeUnit.SECONDS.sleep(3);
         if(nameLabels.get(2).getText().contains("tronlink_token")){
             System.out.println("点击了10币种tronlink_token");
         }
         cellArray.get(2).click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
     }
 
@@ -294,7 +293,7 @@ public EnergyRentPage entereneryRantage(){
             System.out.println("点击了20币种TRX");
         }
         cellArray.get(1).click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
     }
 
@@ -386,5 +385,21 @@ public EnergyRentPage entereneryRantage(){
         gotoDetailBtn.click();
         TimeUnit.SECONDS.sleep(3);
         return new MultiSignRecodPage(driver);
+    }
+
+    public void importWatchWallet() throws Exception{
+        addWallet_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementById("观察钱包").click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
+        Helper.closeKeyBoard(driver);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys("WatchWallet");
+        Helper.closeKeyBoard(driver);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(2);
+
     }
 }
