@@ -3,18 +3,32 @@ package ios.tronlink.com.tronlink.wallet.walletHundred;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class NumbersWalletImport extends BaseTest {
 
+
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(Method methed) throws Exception {
+        try {
+
+            DRIVER.closeApp();
+            DRIVER.launchApp();
+        } catch (Exception e) {
+        }
+
+    }
     @Test(description = "Import 100 wallet in addressBook", alwaysRun = true)
     public void test000_Import100Walletbook() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -25,23 +39,27 @@ public class NumbersWalletImport extends BaseTest {
         //nameField 名称
         //addressField 地址
         //remarkField 备注
-
         //rightLabel 保存
         List<String> array = readFile("src/test/resources/100address.txt");
 
         for (int i = 0; i < array.size(); i++) {
+            log(array.get(i));
             minePage.driver.findElementById("addressBook add").click();
             TimeUnit.SECONDS.sleep(1);
             minePage.driver.findElementById("nameField").sendKeys("Auto_add_" + (i+1));
             Helper.closeKeyBoard(minePage.driver);
             minePage.driver.findElementById("addressField").sendKeys(array.get(i));
             Helper.closeKeyBoard(minePage.driver);
+            try {
+                System.out.println(minePage.driver.findElementById("rightLabel").getLocation());
+                log("have");
+            }catch (Exception e){
+                log("no");
+            }
             minePage.driver.findElementById("rightLabel").click();
-            TimeUnit.SECONDS.sleep(3);
             log("导入了 " + (i+1) + "个地址");
 
         }
-
 
     }
 
