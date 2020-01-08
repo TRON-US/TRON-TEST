@@ -69,7 +69,9 @@ public class createNumbersWalletsTestngXml {
     public void beforeClass() throws IOException{
         //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
         //singleClassNameList.add("");
-        dirList.add("regression");
+        dirList.add("walletHundred");
+        iosDeviceNameList.add("38afae054a2740c4f3e7835564b82cb1bdec6cc8");
+        iosDeviceNameList.add("1fb216ca798cf08a2d01fbdc78e2cdbb05321e24");
         iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
         iosDeviceNameList.add("00008020-001661EE0C88003A");
         iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
