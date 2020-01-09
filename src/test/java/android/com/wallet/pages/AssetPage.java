@@ -139,7 +139,10 @@ public class AssetPage extends AbstractPage {
     public WebElement trx_btn;
 
 
-    @FindBy(xpath = "//*[@text='TRX']")
+/*    @FindBy(xpath = "//*[@text='TRX']")
+    public List<WebElement> trx20_btn;*/
+
+    @FindBy(id = "com.tronlink.wallet:id/assets_name")
     public List<WebElement> trx20_btn;
 
 
@@ -156,6 +159,9 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/tv_walletname")
     public WebElement walletName_text;
+
+    @FindBy(className = "com.tronlink.wallet:id/tv_walletname")
+    public WebElement assetList_class;
 
 
 
@@ -261,7 +267,7 @@ public class AssetPage extends AbstractPage {
     public TrxPage enterTrxPage() throws Exception {
         Helper.scrollToElementUntilVisible(driver,trx_btn);
         trx_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
     }
 
@@ -270,15 +276,16 @@ public class AssetPage extends AbstractPage {
         //Helper.scrollToElementUntilVisible(driver,trx10_btn);
         Helper.swipScreen(driver);
         trx10_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
     }
 
 
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
-        trx20_btn.get(1).click();
-        TimeUnit.SECONDS.sleep(3);
+        trx20_btn.get(2).click();
+        //TimeUnit.SECONDS.sleep(2);
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         return new TrxPage(driver);
     }
 
