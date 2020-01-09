@@ -108,7 +108,7 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(1);
             helpCenter_btn.click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(5);
 
         }catch (Exception e){
             new Base().log("intoGroup_btn button not found");
@@ -131,9 +131,8 @@ public class MinePage extends AbstractPage {
     //enter FriendInvitation Page
     public AnnouncementPage enterAnnouncementPage(){
         try {
-            TimeUnit.SECONDS.sleep(1);
             announcement_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -145,7 +144,7 @@ public class MinePage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(3);
             transferHistory_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(3);
 
         }catch (Exception e){
             System.out.println(e);
