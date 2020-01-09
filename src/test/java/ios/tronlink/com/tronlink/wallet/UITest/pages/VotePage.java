@@ -19,10 +19,10 @@ public class VotePage extends AbstractPage {
         this.driver = driver;
     }
 
-//    @FindBy(xpath = "(//XCUIElementTypeButton[@name='投票'])[3]")
+    //    @FindBy(xpath = "(//XCUIElementTypeButton[@name='投票'])[3]")
 //    public WebElement voteTitle_btn;
-@FindBy(xpath = "(//XCUIElementTypeButton[@name='投票'])[1]")
-public WebElement vote_title;
+    @FindBy(xpath = "(//XCUIElementTypeButton[@name='投票'])[1]")
+    public WebElement vote_title;
 
     @FindBy(name = "重置")
     public WebElement reset_btn;
@@ -43,8 +43,11 @@ public WebElement vote_title;
     @FindBy(name = "com.tronlink.wallet:id/ll_vote_select")
     public WebElement vote_list;
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_all")
-    public WebElement all_witness_item;
+    @FindBy(name = "addressValueLabel")
+    public List<WebElement> addressList;
+
+    @FindBy(name = "addressValueLabel")
+    public WebElement addressfirst;
 
     @FindBy(name = "com.tronlink.wallet:id/tv_me")
     public WebElement my_voted_item;
@@ -70,6 +73,21 @@ public WebElement vote_title;
     @FindBy(id = "assets instruction")
     public WebElement voteDetailBtn;
 
+    @FindBy(id = "voteViewNumberLabel")
+    public WebElement myvoteNumberLabel;
+
+    @FindBy(id = "awards")
+    public WebElement awardsLabel;
+
+
+    @FindBy(id = "votingRewardNumberLabel")
+    public WebElement votingRewardNumberLabel;
+
+    @FindBy(id = "voteField")
+    public WebElement voteField;
+
+    @FindBy(id = "voteactionBtn")
+    public WebElement voteactionBtn;
 
     @FindBy(xpath = "//*[@text='可用投票数不足']")
     public WebElement availableVote_toast;
@@ -83,11 +101,11 @@ public WebElement vote_title;
     @FindBy(xpath = "//*[@text='0 vote']")
     public WebElement english_availableVote_toast_null;
 
-    public boolean getHits(){
+    public boolean getHits() {
         boolean hits = false;
         try {
             TimeUnit.SECONDS.sleep(2);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -95,6 +113,64 @@ public WebElement vote_title;
             hits = true;
         }
         return hits;
+    }
+
+    public boolean seccondPageClear() throws Exception {
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '清空'").click();
+        TimeUnit.SECONDS.sleep(2);
+        try {
+            driver.findElementById("titleLabel").getText();
+            return false;
+        }catch (Exception e){
+            return true;
+        }
+
+    }
+    public void  getReward() throws Exception{
+        awardsLabel.click();
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(8);
+        try {
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'").click();
+        }catch (Exception e){}
+        TimeUnit.SECONDS.sleep(5);
+
+
+    }
+    public void inputVoteNumber(int num) throws Exception {
+        reset_btn.click();
+        log("will input num:" + intToString(num));
+        driver.findElementById("voteField").click();
+        driver.findElementById("voteField").sendKeys(intToString(num));
+        Helper.closeKeyBoard(driver);
+        voteactionBtn.click();
+    }
+
+    public void voteSecondStep() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即投票'").click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(8);
+        try {
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'").click();
+        }catch (Exception e){}
+        TimeUnit.SECONDS.sleep(5);
+    }
+
+    public boolean inInVotePage () throws Exception {
+        try {
+            voteactionBtn.getText();
+            return  true;
+        }catch (Exception e) {
+            return false;
+        }
+
     }
 
     public boolean getTostInfo() {
@@ -106,7 +182,7 @@ public WebElement vote_title;
         return tostInfo;
     }
 
-    public void unusualVoteOperate() throws Exception{
+    public void unusualVoteOperate() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
 //        reset_btn.click();
@@ -116,7 +192,7 @@ public WebElement vote_title;
         vote_btn.click();
     }
 
-    public VoteConfirmPage enterVoteConfirmPage(){
+    public VoteConfirmPage enterVoteConfirmPage() {
         reset_btn.click();
         et_input.sendKeys("1");
         vote_btn.click();
@@ -148,7 +224,7 @@ public WebElement vote_title;
         }
     }
 
-    public VoteConfirmPage setrVotePremise() throws Exception{
+    public VoteConfirmPage setrVotePremise() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         reset_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -162,13 +238,15 @@ public WebElement vote_title;
     public VoteConfirmPage confirmVote() {
         return new VoteConfirmPage(driver);
     }
-    public boolean  VoteDetail() throws Exception {
+
+    public boolean VoteDetail() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         voteDetailBtn.click();
         TimeUnit.SECONDS.sleep(2);
-        return  Helper.isElementExist(driver,"投票细则");
+        return Helper.isElementExist(driver, "投票细则");
     }
-    public boolean  VoteTextRightTest() throws Exception {
+
+    public boolean VoteTextRightTest() throws Exception {
         Thread.sleep(3);
         driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
         Thread.sleep(3);
@@ -181,7 +259,7 @@ public WebElement vote_title;
     }
 
 
-    public String    VoteRightTest() throws Exception {
+    public String VoteRightTest() throws Exception {
         Thread.sleep(3);
         driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
         Thread.sleep(3);
