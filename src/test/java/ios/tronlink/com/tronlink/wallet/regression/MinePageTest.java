@@ -59,7 +59,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         AnnouncementPage announPage = minePage.enterAnnouncementPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         Assert.assertTrue(Helper.contentTexts(announPage.textArray,"公告"));
 
     }
@@ -70,7 +70,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         Assert.assertEquals(helpPage.title.getText(), "帮助中心");
 
     }
