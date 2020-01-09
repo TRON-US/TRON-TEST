@@ -6,8 +6,10 @@ import android.com.wallet.pages.AddAssertPage;
 import android.com.wallet.pages.AddressBookPage;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.FriendInvitationPage;
+import android.com.wallet.pages.FrozenAndUnfreezePage;
 import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.SearchAssertPage;
+import android.com.wallet.pages.SendTrxPage;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
@@ -49,7 +51,7 @@ public class AddressBookTest extends Base {
         }
     }
 
-    @Test(enabled = false,description = "Address book page test", alwaysRun = true)
+    @Test(enabled = true,description = "Address book page test", alwaysRun = true)
     public void test001_enterAddressBookPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
@@ -59,7 +61,7 @@ public class AddressBookTest extends Base {
         Assert.assertTrue(addressBookPage.addAddressBook_btn.isEnabled());
     }
 
-    @Test(enabled = false,description = "Add address book test", alwaysRun = true)
+    @Test(enabled = true,description = "Add address book test", alwaysRun = true)
     public void test002_addAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
@@ -87,14 +89,65 @@ public class AddressBookTest extends Base {
         addressBookPage.save_btn.click();
     }
 
-    @Test(enabled = false,description = "Address information test", alwaysRun = true)
+    @Test(enabled = true,description = "Address information test", alwaysRun = true)
     public void test003_checkAddressInformation() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         AddressBookPage addressBookPage = minePage.enterAddressBookPage();
-        addressBookPage.name_display.getText().equals(addressName);
-        addressBookPage.address_display.getText().equals(addressString);
-        addressBookPage.note_display.getText().equals(addressString);
+        Assert.assertTrue(addressBookPage.name_display.getText().equals(addressName));
+        Assert.assertTrue(addressBookPage.address_display.getText().equals(addressString));
+        Assert.assertTrue(addressBookPage.note_display.getText().equals(addressString));
+        Assert.assertTrue(addressBookPage.edit_btn.isEnabled());
+        Assert.assertTrue(addressBookPage.copy_btn.isEnabled());
+    }
+
+    @Test(enabled = true,description = "Send coin use address book test", alwaysRun = true)
+    public void test004_sendCoinUseAddressBook() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.addressBook_btn.click();
+        transfer.addressName_display.click();
+        Assert.assertTrue(transfer.receiveAddress_text.getText().equals(addressString));
+    }
+
+    @Test(enabled = true,description = "Freeze use address book test", alwaysRun = true)
+    public void test005_FreezeUseAddressBook() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        frozen.scrollToBottom();
+        frozen.addressBook_btn.click();
+        frozen.addressName_display.click();
+        Assert.assertTrue(frozen.freezeAddress_input.getText().equals(addressString));
+    }
+
+
+    @Test(enabled = true,description = "Delete address book test", alwaysRun = true)
+    public void test006_DeleteAddressBook() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
+        addressBookPage.name_display.click();
+        addressBookPage.deleteAddress_btn.click();
+        Assert.assertTrue(!addressBookPage.addAddress_input.getText().equals(addressString));
+        Assert.assertTrue(addressBookPage.scan_btn.isEnabled());
+
+        addressBookPage.deleteBook_btn.click();
+        Assert.assertTrue(addressBookPage.deleteConfirm_btn.isEnabled());
+        Assert.assertTrue(addressBookPage.deleteCancle_btn.isEnabled());
+        addressBookPage.deleteCancle_btn.click();
+        Assert.assertTrue(addressBookPage.save_btn.isEnabled());
+
+        addressBookPage.deleteBook_btn.click();
+        addressBookPage.deleteConfirm_btn.click();
+        Assert.assertTrue(addressBookPage.dataInfo_display.getText().equals("暂无数据")
+        || addressBookPage.dataInfo_display.getText().equalsIgnoreCase("No data"));
+    }
+
+
+    public SendTrxPage enterToSendTrxPage() {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
+        return transfer;
     }
 
 

@@ -68,4 +68,7 @@ public class AddressBookPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_address_error")
     public WebElement addressError_info;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_msg")
+    public WebElement dataInfo_display;
+
 }
