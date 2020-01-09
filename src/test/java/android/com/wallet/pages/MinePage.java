@@ -48,6 +48,8 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_friend_invitation")
     public WebElement friendInvitation_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/address_book")
+    public WebElement addressBook_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/announcement")
     public WebElement announcement_btn;
@@ -103,6 +105,17 @@ public class MinePage extends AbstractPage {
             System.out.println(e);
         }
         return new FriendInvitationPage(driver);
+    }
+
+    //enter AddressBook Page
+    public AddressBookPage enterAddressBookPage(){
+        try {
+            addressBook_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new AddressBookPage(driver);
     }
 
 
