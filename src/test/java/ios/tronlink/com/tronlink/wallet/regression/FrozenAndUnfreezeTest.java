@@ -176,7 +176,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     public void test016_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         String availableTrxOld = frozen.getAvailableTrx();
-        frozen.inputFrozenCount("1");
+        frozen.inputFrozenCount("10");
         Helper.tapWhitePlace(frozen.driver);
         frozen.frozenTheEnergy(); //Freeze operating
         TimeUnit.SECONDS.sleep(1);
