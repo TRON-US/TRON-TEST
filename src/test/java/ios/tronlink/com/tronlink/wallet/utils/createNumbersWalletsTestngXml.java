@@ -27,7 +27,6 @@ import java.util.*;
 public class createNumbersWalletsTestngXml {
     private String reportPath = "src/test/resources/tronlink-ios.xml";
     private String adb = "adb";
-    private String packagesName = "<package name=\"ios.tronlink.com.tronlink.wallet.regression.*\"></package>";
     private String preClass = "<class name=\"ios.tronlink.com.tronlink.wallet.";
     private String afterClass = "\"></class>";
     private List<String> dirList = new ArrayList<>();
@@ -46,8 +45,6 @@ public class createNumbersWalletsTestngXml {
     static String transactionString;
     static String transactionSignString;
     static JSONObject responseContent;
-    static JSONObject signResponseContent;
-    static JSONObject transactionApprovedListContent;
     static List<String> taskClassNameList = new ArrayList<>();
     static List<String> taskSingleClassNameList = new ArrayList<>();
     static List<String> singleClassNameList = new ArrayList<>();
@@ -70,9 +67,9 @@ public class createNumbersWalletsTestngXml {
         //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
         //singleClassNameList.add("");
         dirList.add("walletHundred");
+        iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
         iosDeviceNameList.add("38afae054a2740c4f3e7835564b82cb1bdec6cc8");
         iosDeviceNameList.add("1fb216ca798cf08a2d01fbdc78e2cdbb05321e24");
-        iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
         iosDeviceNameList.add("00008020-001661EE0C88003A");
         iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
         iosDeviceNameList.add("00008020-001E202E2288002E");
@@ -167,6 +164,13 @@ public class createNumbersWalletsTestngXml {
     public void createXml() throws IOException {
         HashMap<String,String> testAccountList = new HashMap<>();
         testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
+        testAccountList.put("TKcupyGKvdfK6mzUVdKKNCWpfVeVJtRTJa","0824df1251b58b14df418b08803ab71d0716530f5f0935cd8f94ac09704da675");
 
 
         StringBuilder sb = new StringBuilder();
@@ -177,16 +181,23 @@ public class createNumbersWalletsTestngXml {
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
 
         String extendSingleClassContent = "";
+
+        System.out.println("++++++++++++++++++==11111111111111\n" + taskSingleClassNameList.size());
+
         for (int i = 0; i < taskSingleClassNameList.size();i++) {
             extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
         }
+        System.out.println("++++++++++++++++++==11111111111111\n" +extendSingleClassContent);
 
         taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
+        System.out.println("++++++++++++++++++==11111111111111\n" +taskClassNameList);
+
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
         }
 
+        System.out.println("++++++++++++++++++==11111111111111\n" +classContent);
 
         boolean singleClassHasSetToSingleDevice = false;
 
@@ -196,8 +207,12 @@ public class createNumbersWalletsTestngXml {
                 HashMap.Entry<String, String> entry = entries.next();
                 String udid = it.next();
                 if (!deviceList.contains(udid)){
+                    System.out.println("++++++++++++++++++==11111111111111\n" +udid);
+
                     continue;
                 }
+                System.out.println("++++++++++++++++++==11111111111111\n" +"action");
+
                 AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
                 System.out.print("Uninstall tronlink from " + udid + " succesfully\n");
                 //install app
