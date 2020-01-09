@@ -55,6 +55,10 @@ public class AbstractPage {
         String time = timeStamp.format(new Date()).toString();
         System.out.println(time + ": " + log);
     }
-
+    public  String intToString(int value)
+    {
+        Integer integer = new Integer(value);
+        return integer.toString();
+    }
 
 }
