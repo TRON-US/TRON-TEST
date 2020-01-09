@@ -218,9 +218,9 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
     }
 
     public void sendAllTrc10(String value) throws Exception {
@@ -245,8 +245,10 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
     }
 
     public void sendAllTrc20(String value) throws Exception {
@@ -272,8 +274,10 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
     }
 
 
