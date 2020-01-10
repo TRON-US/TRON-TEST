@@ -81,11 +81,10 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         GroupPage groupPage = minePage.enterGroupPage();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         Assert.assertEquals(groupPage.groupInto_title.getText(), "加入社群");
 
     }
-
 
 
 
@@ -110,5 +109,16 @@ public class MinePageTest extends BaseTest {
         TimeUnit.SECONDS.sleep(2);
         TransactionRecordPage recordPage = minePage.enterTransactionRecordPage();
 //        Assert.assertTrue(recordPage.icNav_Icon.isDisplayed());
+    }
+
+    //
+    @Test(description = "test TronLending enery rant", alwaysRun = true)
+    public void test009_onLendingEneryEant() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        EnergyRentPage rentPage = assetPage.entereneryRantage();
+        TimeUnit.SECONDS.sleep(4);
+        Assert.assertTrue(Helper.contentTexts(rentPage.textArray,"TronLending"));
+
+
     }
 }
