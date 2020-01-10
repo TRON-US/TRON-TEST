@@ -34,14 +34,14 @@ public class NodeSetPage extends AbstractPage {
     public SettingPage enterSettingPageChoiseDappChain() throws Exception {
         node_selected.get(1).click();
         back_btn.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(3);
         return new SettingPage(driver);
     }
 
 
     public SettingPage enterSettingPageChoiseMainChain() throws Exception {
         node_selected.get(0).click();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(3);
         back_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new SettingPage(driver);

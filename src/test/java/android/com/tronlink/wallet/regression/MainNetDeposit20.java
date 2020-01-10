@@ -39,7 +39,36 @@ public class MainNetDeposit20 extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
+        System.out.println("执行setUpBefore");
+        boolean trc20IsExist = false;
         new Helper().getSign(privateKey, DRIVER);
+        try {
+            AssetPage asset = new AssetPage(DRIVER);
+            asset.trx20_btn.get(2).isDisplayed();
+            trc20IsExist = true;
+        } catch (Exception e ) {
+            try {
+                DRIVER.closeApp();
+                DRIVER.activateApp("com.tronlink.wallet");
+            } catch (Exception e1) {
+            }
+        }
+
+        if (!trc20IsExist) {
+            try {
+                AssetPage asset = new AssetPage(DRIVER);
+                asset.trx20_btn.get(2).isDisplayed();
+            } catch (Exception e ) {
+                try {
+                    DRIVER.closeApp();
+                    DRIVER.activateApp("com.tronlink.wallet");
+                } catch (Exception e1) {
+                }
+            }
+
+        }
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.trx20_btn.get(2).isDisplayed();
     }
 
 
@@ -62,16 +91,12 @@ public class MainNetDeposit20 extends Base {
 
     //enter TRXPage
     public TrxPage enterTrc20Page() throws Exception {
-        //SettingPage set = enterSettingPage();
-        //NodeSetPage nodeSet = set.enterNodeSetPage();
-        //set = nodeSet.enterSettingPageChoiseMainChain();
-        //MinePage mine = set.enterMinePage();
         AssetPage asset = new AssetPage(DRIVER);
         return asset.enterTrx20Page();
     }
 
 
-    @Test(enabled = false,description = "Check TransferIn Hits", alwaysRun = true)
+    @Test(enabled = true,description = "Check TransferIn Hits")
     public void test001_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrc20Page();
         TransferPage transferIn = trx.enterTransferPage();
@@ -81,7 +106,7 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-    @Test(enabled = false,description = "Check TransferIn Fee", alwaysRun = true)
+    @Test(enabled = true,description = "Check TransferIn Fee")
     public void test002_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrc20Page();
         TransferPage transferIn = trx.enterTransferPage();
@@ -104,7 +129,7 @@ public class MainNetDeposit20 extends Base {
     }
 
 
-    @Test(enabled = true,description = "Trc20 deposit success recording", alwaysRun = true)
+    @Test(enabled = true,description = "Trc20 deposit success recording")
     public void test004_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrc20Page();
         int tries = 0;
