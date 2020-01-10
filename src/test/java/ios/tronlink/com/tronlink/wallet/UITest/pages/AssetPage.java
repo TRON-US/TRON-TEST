@@ -239,8 +239,9 @@ public class AssetPage extends AbstractPage {
 
 
 //    EnergyRentPage
-public EnergyRentPage entereneryRantage(){
+public EnergyRentPage entereneryRantage()throws Exception {
     eneryRant_btn.click();
+    TimeUnit.SECONDS.sleep(3);
     return new EnergyRentPage(driver);
 }
     //enter mine page
