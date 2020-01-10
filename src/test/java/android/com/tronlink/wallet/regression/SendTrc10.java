@@ -4,6 +4,7 @@ import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
 import android.com.utils.Helper;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
@@ -14,6 +15,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class SendTrc10 extends Base {
+    Random rand = new Random();
+    float sendTrxAmount;
+    int beforeSendBalance;
+    int afterSendBalance;
+
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -46,22 +52,18 @@ public class SendTrc10 extends Base {
         return transfer;
     }
 
+
     @Test(description = "SendTrc10 success test", alwaysRun = true)
-    public void tsst001_sendTrc10Success() throws Exception {
+    public void test001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        Double trc10Before = transfer.getTrc10Amount();
-        String trc10SendAmount = "1";
-        SendTrxSuccessPage stsp = transfer.normalSendTrc10(trc10SendAmount);
-        TimeUnit.SECONDS.sleep(3);
-        transfer = asset.enterSendTrxPage();
-        double trc10After = transfer.getTrc10Amount();
-        System.out.println(trc10After);
-        Assert.assertEquals(trc10Before, trc10After + Double.valueOf(trc10SendAmount));
+        SendTrxPage transfer = asset.enterSendTrc10Page();
+        beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        sendTrxAmount = rand.nextFloat() + 1;
+        transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
 
-    @Test(description = "input max send number", alwaysRun = true)
-    public void tsst002_inputMaxSendNumber() throws Exception {
+    @Test(enabled = false,description = "input max send number", alwaysRun = true)
+    public void test002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("max");
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
@@ -69,7 +71,7 @@ public class SendTrc10 extends Base {
 
 
     @Test(description = "input mix send number", alwaysRun = true)
-    public void tsst003_inputMixSendNumber() throws Exception {
+    public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("mix");
         String centent = transfer.formatErrorHits_text.getText();
@@ -78,7 +80,7 @@ public class SendTrc10 extends Base {
 
 
     @Test(description = "input too Much trc10 send number", alwaysRun = true)
-    public void tsst004_inputTooMuchSendNumber() throws Exception {
+    public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("tooMuch");
         String centent = transfer.formatErrorHits_text.getText();
@@ -88,7 +90,7 @@ public class SendTrc10 extends Base {
 
 
     @Test(description = "trc10 check 10name", alwaysRun = true)
-    public void tsst005_check10Name() throws Exception {
+    public void test005_check10Name() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrx10Page();
         SendTrxPage sendTrxPage = trxPage.enterSendTrc10Page();
@@ -96,6 +98,48 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
     }
 
+
+
+    @Test(enabled = true,description = "Trc10 transfer success recording")
+    public void test006_trc10TransferInSuccessRecording() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trx = asset.enterTrx10Page();
+        int tries = 0;
+        Boolean exist = false;
+        while (exist == false && tries < 7) {
+            tries++;
+            try {
+                AssetPage arret = trx.enterAssetPage();
+                trx = arret.enterTrx10Page();
+                trx.tranfer_tab.get(1).click();
+                System.out.println(trx.tranferIncount_text.get(1).getText());
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                System.out.println("tranferInCount = " + tranferInCount);
+                System.out.println("sendTrxAmount = " + sendTrxAmount);
+                if (Float.toString(sendTrxAmount).substring(0,5).equals(tranferInCount.substring(0,5))) {
+                    exist = true;
+                    break;
+                }
+                TimeUnit.SECONDS.sleep(3);
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        Assert.assertTrue(exist);
+
+
+    }
+
+    @Test(enabled = true,description = "Trc10 transfer balance decrease check")
+    public void test007_trc10BalanceReduceAfterSendCoin() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrc10Page();
+        afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        System.out.println("beforeSendBalance:" + beforeSendBalance);
+        System.out.println("afterSendBalance:" + afterSendBalance);
+        Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);
+    }
 
 
 
