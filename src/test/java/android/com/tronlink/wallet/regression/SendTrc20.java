@@ -20,7 +20,35 @@ public class SendTrc20 extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         System.out.println("执行setUpBefore");
+        boolean trc20IsExist = false;
         new Helper().getSign(privateKey, DRIVER);
+        try {
+            AssetPage asset = new AssetPage(DRIVER);
+            asset.trx20_btn.get(2).isDisplayed();
+            trc20IsExist = true;
+        } catch (Exception e ) {
+            try {
+                DRIVER.closeApp();
+                DRIVER.activateApp("com.tronlink.wallet");
+            } catch (Exception e1) {
+            }
+        }
+
+        if (!trc20IsExist) {
+            try {
+                AssetPage asset = new AssetPage(DRIVER);
+                asset.trx20_btn.get(2).isDisplayed();
+            } catch (Exception e ) {
+                try {
+                    DRIVER.closeApp();
+                    DRIVER.activateApp("com.tronlink.wallet");
+                } catch (Exception e1) {
+                }
+            }
+
+        }
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.trx20_btn.get(2).isDisplayed();
     }
 
 
@@ -48,7 +76,7 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(description = "SendTrc20 success test", alwaysRun = true)
+    @Test(description = "SendTrc20 success test")
     public void tsst001_sendTrc20Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -62,7 +90,7 @@ public class SendTrc20 extends Base {
         Assert.assertEquals(trc20Before, trc20After + Double.valueOf(trc20SendAmount));
     }
 
-    @Test(description = "input max send number", alwaysRun = true)
+    @Test(description = "input max send number")
     public void tsst002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
@@ -70,7 +98,7 @@ public class SendTrc20 extends Base {
     }
 
 
-    @Test(description = "input mix send number", alwaysRun = true)
+    @Test(description = "input mix send number")
     public void tsst003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");

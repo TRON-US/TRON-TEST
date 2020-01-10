@@ -5,6 +5,7 @@ import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
 
+import java.util.List;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -119,6 +120,9 @@ public class Helper {
     @FindBy(id = "com.tronlink.wallet:id/assets")
     public WebElement assetsMain_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/assets_name")
+    public List<WebElement> asset_list;
+
 
     public void getSign(String testPrivateKey,AndroidDriver driver){
         this.DRIVER = driver;
@@ -128,7 +132,6 @@ public class Helper {
             getSignOperate(testPrivateKey);
         }
     }
-
 
     public void getWatchWalletSign(String address,AndroidDriver driver){
         this.DRIVER = driver;
@@ -155,19 +158,6 @@ public class Helper {
         try {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
             swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
-//            TimeUnit.SECONDS.sleep(3);
-//            while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
-//                AndroidTouchAction action = new AndroidTouchAction(DRIVER);
-//                int width = DRIVER.manage().window().getSize().width;
-//                int height = DRIVER.manage().window().getSize().height;
-//                //System.out.print("   " + width + "   " + height);
-//                Duration duration = Duration.ofMillis(200);
-//                action.press(
-//                        PointOption.point(width/2, height*4/5))
-//                        .waitAction(WaitOptions.waitOptions(duration))
-//                        .moveTo(PointOption.point(width/2, height/5))
-//                        .release().perform();
-//            }
             findWebElement("com.tronlink.wallet:id/bt_accept").click();
             findWebElement("com.tronlink.wallet:id/cd_pk").click();
             findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
@@ -179,13 +169,8 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/creat").click();
             findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
             findWebElement("com.tronlink.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(2);
-//            AssetPage asset = new AssetPage(DRIVER);
-//            MinePage mine = asset.enterMinePage();
-//            SettingPage setting = mine.enterSettingPage();
-//            setting.enterVersionSetPage();
-//            findWebElement("com.tronlink.wallet:id/rl_test").click();
-//            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(1);
+            findWebElement("com.tronlink.wallet:id/assets_name");
         }catch (Exception e){
             System.out.println(e);
         }
