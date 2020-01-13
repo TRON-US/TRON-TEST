@@ -138,8 +138,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/unfreeze")
     public WebElement unfreeze_btn;
 
-
-
     @FindBy(id = "com.tronlink.wallet:id/rl_bottom_next")
     public WebElement signNext_btn;
 
@@ -149,7 +147,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement invalidTime_input;
 
 
-
     @FindBy(id = "com.tronlink.wallet:id/tv_address")
     public List<WebElement> signAddress_input;
 
@@ -157,6 +154,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/tv_selected_name")
     public WebElement selectSignName_text;
+
+    @FindBy(id = "com.tronlink.wallet:id/rl_address_book")
+    public WebElement addressBook_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_address_name")
+    public WebElement addressName_display;
 
 
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
@@ -261,6 +264,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         confirm_btn.click();
     }
+
+
+    public void scrollToBottom() throws Exception {
+        //Helper.swipScreen(driver);
+        Helper.scrollToElementUntilVisible(driver,freeze_btn);
+        TimeUnit.SECONDS.sleep(1);
+    }
+
 
 
 
