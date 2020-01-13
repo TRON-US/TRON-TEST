@@ -5,6 +5,7 @@ import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 
+import java.util.Random;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -19,8 +20,9 @@ import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.SettingPage;
 
-public class MainNetWithdraw10 extends Base {
-
+public class DappNetWithdraw10 extends Base {
+  Random rand = new Random();
+  float withdrawTrc10Amount;
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
@@ -81,7 +83,7 @@ public class MainNetWithdraw10 extends Base {
     }
 
 
-    @Test(description = "Check transferOut Chain Name", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Chain Name", alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -90,7 +92,7 @@ public class MainNetWithdraw10 extends Base {
     }
 
 
-    @Test(description = "Check transferOut Trx Count", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Trx Count", alwaysRun = true)
     public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -99,7 +101,7 @@ public class MainNetWithdraw10 extends Base {
     }
 
 
-    @Test(description = "Check transferOut Hits", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Hits", alwaysRun = true)
     public void test003_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -108,7 +110,7 @@ public class MainNetWithdraw10 extends Base {
     }
 
 
-    @Test(description = "Check transferOut Fee", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Fee", alwaysRun = true)
     public void test004_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -120,30 +122,28 @@ public class MainNetWithdraw10 extends Base {
 
 
 
-    @Test(description = "transferOut Success Recording", alwaysRun = true)
+    @Test(enabled = true,description = "Withdraw from dappChain of Trc10 Success Recording", alwaysRun = true)
     public void test007_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
-        String count = random(10, 10);
-        System.out.println("count = " + count);
-        trx = transferOut.enterTrxPageWithTransferSuccess(count);
+        withdrawTrc10Amount = rand.nextFloat() + 1;
+        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc10Amount));
         int tries = 0;
         Boolean exist = false;
-        exist = trx.getTrxVale();
-        while (exist == false && tries < 5) {
+        while (exist == false && tries++ < 5) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrx10Page();
                 trx.tranfer_tab.get(3).click();
-                TimeUnit.SECONDS.sleep(3);
-                exist = trx.getTrxVale();
+                trx.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
                 System.out.println("tranferInCount = " + tranferInCount);
-                if (count.equals(tranferInCount)) {
-                    exist = true;
-                    break;
-                }
+              if (Float.toString(withdrawTrc10Amount).substring(0, 5)
+                  .equals(tranferInCount.substring(0, 5))) {
+                exist = true;
+                break;
+              }
             } catch (Exception e) {
                 System.out.println(e);
             }
