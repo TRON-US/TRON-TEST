@@ -74,7 +74,7 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "Frozen Energy QRCode", alwaysRun = true)
     public void test002_frozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         Helper.swipScreen(DRIVER);
         frozen.freezeCount_input.sendKeys("1");
         Helper.swipScreen(DRIVER);
@@ -91,7 +91,7 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "Frozen Bandwidth QRCode", alwaysRun = true)
     public void test003_frozenBandwidthQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         Helper.swipScreen(DRIVER);
         frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
@@ -200,7 +200,7 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
     public void test011_UnfreezeQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
         frozen.unfreezeType_btn.click();
         frozen.unfreezeTargetAddress_btn.click();

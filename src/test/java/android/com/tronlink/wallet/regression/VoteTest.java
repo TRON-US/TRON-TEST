@@ -55,7 +55,7 @@ public class VoteTest extends Base {
 
     public AssetPage forzenTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndThawingPage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndThawingPage = asset.enterFrozenAndUnfreezePage();
         //FrozenAndUnfreezePage frozenAndThawingPage =new FrozenAndUnfreezePage(DRIVER);
         asset = frozenAndThawingPage.forzenSuccessEnterAssetPage("10");
         return asset;

@@ -46,7 +46,7 @@ public class DappFrozenTest extends Base {
         mine = settingPage.enterMinePage();
         asset = mine.enterAssetPage();
         ////////////////////////////////////////////
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
         Assert.assertTrue(detailsAndRules.detailsAndRules_title.isDisplayed());
     }
@@ -55,7 +55,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze energy detail", alwaysRun = true)
     public void test002_FreezeEnergyDetail() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.freezeEnergyDetail_btn.click();
         int myFreeze = Integer.valueOf(removeSymbol(frozen.myFreeze_btn.getText()));
         int otherFreeze = Integer.valueOf(removeSymbol(frozen.otherFreeze_btn.getText()));
@@ -67,7 +67,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Bandwidth Detail detail", alwaysRun = true)
     public void test003_BandwidthDetail() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.freezeBandwidthDetail_btn.click();
         int myBandwidth = Integer.valueOf(removeSymbol(frozen.myFreezeBandwidth_btn.getText()));
         int otherBandwidth = Integer.valueOf(removeSymbol(frozen.otherFreezeBandwidth_btn.getText()));
@@ -79,7 +79,7 @@ public class DappFrozenTest extends Base {
 //  @Test(description = "Vote power Test")
 //  public void test004_checkVotingPower() {
 //    AssetPage asset = new AssetPage(DRIVER);
-//    FrozenAndThawingPage frozen = asset.enterFrozenAndThawingPage();
+//    FrozenAndThawingPage frozen = asset.enterFrozenAndUnfreezePage();
 //    frozen.freezeEnergyDetail_btn.click();
 //    frozen.freezeBandwidthDetail_btn.click();
 //    int myFreeze = Integer.valueOf(removeSymbol(frozen.myFreeze_btn.getText()));
@@ -92,7 +92,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Energy Question Test", alwaysRun = true)
     public void test005_checkEnergyQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("Energy"));
     }
@@ -101,7 +101,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
     public void test006_checkBandwidthQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.bandwidth_btn.click();
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("Bandwidth"));
@@ -111,7 +111,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
     public void test007_checkBandwidthQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.bandwidth_btn.click();
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("Bandwidth"));
@@ -124,12 +124,12 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze Energy Scuuess", alwaysRun = true)
     public void test009_freezeEnergySuccess() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
 //    int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
-        frozen = asset.enterFrozenAndThawingPage();
+        frozen = asset.enterFrozenAndUnfreezePage();
 //    int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
 //    Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
@@ -139,7 +139,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze Energy more than trx", alwaysRun = true)
     public void test010_freezeEnergyMoreThanTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputFrozenCount("99999999");
         String prompt = frozen.error_hits.getText();
         Assert.assertTrue(prompt.equals("可用TRX不足") || prompt.equals("Insufficient TRX"));
@@ -150,7 +150,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze Energy more than trx", alwaysRun = true)
     public void test011_freezeEnergyMoreThanTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         String availableTrx = frozen.getAvailableTrx();
         frozen.inputFrozenCount(removeSymbol(availableTrx));
         Assert.assertTrue(frozen.freezeNow_btn.isDisplayed());
@@ -161,7 +161,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
     public void test012_freezeEnergyZeroTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputFrozenCount("0");
         String prompt = frozen.error_hits.getText();
         Assert.assertTrue(prompt.contains("最小冻结数量为") || prompt.contains("Minimum freeze is"));
@@ -172,7 +172,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
     public void test013_freezeEnergyNullTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputFrozenCount("");
         String prompt = frozen.error_hits.getText();
         Assert.assertTrue(prompt.contains("最小冻结数量为") || prompt.contains("Minimum freeze is"));
@@ -182,7 +182,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "freeze Energy with Error Receiving Address", alwaysRun = true)
     public void test014_freezeEnergyErrorReceivingAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
         String prompt = frozen.errorAddress_hits.getText();
         Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
@@ -192,7 +192,7 @@ public class DappFrozenTest extends Base {
     @Test(description = "freeze Energy with not active Receiving Address", alwaysRun = true)
     public void test015_freezeEnergyNotActiveReceivingAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
         String prompt = frozen.errorAddress_hits.getText();
         Assert.assertTrue(prompt.contains("请重新填写接收地址") || prompt.contains("has not been activated"));
@@ -205,13 +205,13 @@ public class DappFrozenTest extends Base {
     @Test(description = "Freeze Bandwidth Success", alwaysRun = true)
     public void test016_freezeBandwidthSuccess() {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
 //    int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
-        frozen = asset.enterFrozenAndThawingPage();
+        frozen = asset.enterFrozenAndUnfreezePage();
 //    int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
 //    Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }

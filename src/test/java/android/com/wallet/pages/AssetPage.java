@@ -259,7 +259,7 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
+    public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
         try {
             freeze_btn.click();
             driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);

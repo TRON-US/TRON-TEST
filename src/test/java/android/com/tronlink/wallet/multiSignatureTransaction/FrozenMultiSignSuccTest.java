@@ -49,7 +49,7 @@ public class FrozenMultiSignSuccTest extends Base {
     @Test(description = "Invalid Time is exist", alwaysRun = true)
     public void test001_invalidTimeIsExists(String multiSignAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
         Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
@@ -67,7 +67,7 @@ public class FrozenMultiSignSuccTest extends Base {
     public void test002_signAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
         Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
@@ -86,7 +86,7 @@ public class FrozenMultiSignSuccTest extends Base {
     public void test003_waitSignAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
         Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
@@ -104,7 +104,7 @@ public class FrozenMultiSignSuccTest extends Base {
     @Test(description = "WaitSign Address Is Exists", alwaysRun = true)
     public void test004_signNameCheck(String ownerPrivateKey,String multiSignAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
         Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
@@ -123,7 +123,7 @@ public class FrozenMultiSignSuccTest extends Base {
     public void test005_sendTrxOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
         frozenAndUnfreezePage.forzenSign("5");
         TimeUnit.SECONDS.sleep(3);
     }
@@ -136,7 +136,7 @@ public class FrozenMultiSignSuccTest extends Base {
     public void test006_sendTrxTwoTimesOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
         frozenAndUnfreezePage.forzenSign("5");
         TimeUnit.SECONDS.sleep(3);
     }
