@@ -109,7 +109,7 @@ public class TransferPage extends AbstractPage {
         driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         password_input.sendKeys("Test0001");
         finish_btn.click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
 
@@ -120,7 +120,7 @@ public class TransferPage extends AbstractPage {
         driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         password_input.sendKeys("Test0001");
         finish_btn.click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }
 

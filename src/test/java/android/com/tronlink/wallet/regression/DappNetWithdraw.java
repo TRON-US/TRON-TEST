@@ -166,7 +166,6 @@ public class DappNetWithdraw extends Base {
         int tries = 0;
         Boolean exist = false;
         while (exist == false && tries++ < 5) {
-            tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrxPage();
