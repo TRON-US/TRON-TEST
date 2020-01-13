@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import android.com.utils.Helper;
 
-public class MainNetWithdraw20 extends Base {
+public class DappNetWithdraw20 extends Base {
     Random rand = new Random();
     float withdrawTrc20Amount;
 
@@ -38,38 +38,8 @@ public class MainNetWithdraw20 extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        System.out.println("执行setUpBefore");
-        boolean trc20IsExist = false;
         new Helper().getSign(privateKey, DRIVER);
-        try {
-            AssetPage asset = new AssetPage(DRIVER);
-            asset.trx20_btn.get(2).isDisplayed();
-            trc20IsExist = true;
-        } catch (Exception e ) {
-            try {
-                DRIVER.closeApp();
-                DRIVER.activateApp("com.tronlink.wallet");
-            } catch (Exception e1) {
-            }
-        }
-
-        if (!trc20IsExist) {
-            try {
-                AssetPage asset = new AssetPage(DRIVER);
-                asset.trx20_btn.get(2).isDisplayed();
-            } catch (Exception e ) {
-                try {
-                    DRIVER.closeApp();
-                    DRIVER.activateApp("com.tronlink.wallet");
-                } catch (Exception e1) {
-                }
-            }
-
-        }
-        AssetPage asset = new AssetPage(DRIVER);
-        asset.trx20_btn.get(2).isDisplayed();
     }
-
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
@@ -112,7 +82,7 @@ public class MainNetWithdraw20 extends Base {
     }
 
 
-    @Test(enabled = false,description = "Check withdraw from dapp chain information", alwaysRun = true)
+    @Test(enabled = true,description = "Check withdraw from dapp chain information", alwaysRun = true)
     public void test001_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrc20Page();
         TransferPage transferOut = trx.enterTransferPage();
@@ -121,7 +91,7 @@ public class MainNetWithdraw20 extends Base {
     }
 
 
-    @Test(enabled = false,description = "Check withdraw from dapp chain fee", alwaysRun = true)
+    @Test(enabled = true,description = "Check withdraw from dapp chain fee", alwaysRun = true)
     public void test002_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrc20Page();
         TransferPage transferOut = trx.enterTransferPage();
@@ -131,7 +101,7 @@ public class MainNetWithdraw20 extends Base {
     }
 
 
-    @Test(enabled = false,description = "Check Available Balance", alwaysRun = true)
+    @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
     public void test003_checkAvailableBalance() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
@@ -147,7 +117,7 @@ public class MainNetWithdraw20 extends Base {
     }
 
 
-    @Test(enabled = false,description = "Withdraw from dapp chain success and checkout available trx", alwaysRun = true)
+    @Test(enabled = true,description = "Withdraw from dapp chain success and checkout available trx", alwaysRun = true)
     public void test004_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrc20Page();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -161,12 +131,12 @@ public class MainNetWithdraw20 extends Base {
     }
 
 
-    @Test(enabled = false,description = "Withdraw from dapp chain Recording")
+    @Test(enabled = true,description = "Withdraw trc20 from dapp chain Recording")
     public void test005_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrc20Page();
         int tries = 0;
         Boolean exist = false;
-        while (exist == false && tries < 10) {
+        while (exist == false && tries++ < 5) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
@@ -179,7 +149,6 @@ public class MainNetWithdraw20 extends Base {
                     exist = true;
                     break;
                 }
-                TimeUnit.SECONDS.sleep(3);
             } catch (Exception e) {
                 System.out.println(e);
             }

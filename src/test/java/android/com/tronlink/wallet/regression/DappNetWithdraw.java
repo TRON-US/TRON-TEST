@@ -9,6 +9,7 @@ import android.com.wallet.pages.SettingPage;
 import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 
+import java.util.Random;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -18,8 +19,9 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainNetWithdraw extends Base {
-
+public class DappNetWithdraw extends Base {
+    Random rand = new Random();
+    float withdrawTrxAmount;
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
@@ -80,7 +82,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "Check transferOut Chain Name", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Chain Name", alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -89,7 +91,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "Check transferOut Trx Count", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Trx Count", alwaysRun = true)
     public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -98,7 +100,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "Check transferOut Hits", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Hits", alwaysRun = true)
     public void test003_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -107,7 +109,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "Check transferOut Fee", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Fee", alwaysRun = true)
     public void test004_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -117,7 +119,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "Check Available Balance", alwaysRun = true)
+    @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
@@ -133,7 +135,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "transferOut Success Checkout Available trx", alwaysRun = true)
+    @Test(enabled = true,description = "transferOut Success Checkout Available trx", alwaysRun = true)
     public void test006_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -146,7 +148,7 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "Check transferOut Hits", alwaysRun = true)
+    @Test(enabled = true,description = "Check transferOut Hits", alwaysRun = true)
     public void test007_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
@@ -155,25 +157,24 @@ public class MainNetWithdraw extends Base {
     }
 
 
-    @Test(description = "transferOut Success Recording")
+    @Test(enabled = true,description = "transferOut Success Recording")
     public void test008_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
-        String count = random(10, 10);
-        trx = transferOut.enterTrxPageWithTransferSuccess(count);
+        withdrawTrxAmount = rand.nextFloat() + 10;
+        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrxAmount));
         int tries = 0;
         Boolean exist = false;
-        exist = trx.getTrxVale();
-        while (exist == false && tries < 5) {
+        while (exist == false && tries++ < 5) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(3).click();
-                TimeUnit.SECONDS.sleep(3);
                 //todo 转出转入记录中没有最新数据
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                if (count.equals(tranferInCount)) {
+                if (Float.toString(withdrawTrxAmount).substring(0, 5)
+                    .equals(tranferInCount.substring(0, 5))) {
                     exist = true;
                     break;
                 }

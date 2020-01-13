@@ -18,36 +18,7 @@ public class DappSendTrc20 extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        System.out.println("执行setUpBefore");
-        boolean trc20IsExist = false;
         new Helper().getSign(privateKey, DRIVER);
-        try {
-            AssetPage asset = new AssetPage(DRIVER);
-            asset.trx20_btn.get(2).isDisplayed();
-            trc20IsExist = true;
-        } catch (Exception e ) {
-            try {
-                DRIVER.closeApp();
-                DRIVER.activateApp("com.tronlink.wallet");
-            } catch (Exception e1) {
-            }
-        }
-
-        if (!trc20IsExist) {
-            try {
-                AssetPage asset = new AssetPage(DRIVER);
-                asset.trx20_btn.get(2).isDisplayed();
-            } catch (Exception e ) {
-                try {
-                    DRIVER.closeApp();
-                    DRIVER.activateApp("com.tronlink.wallet");
-                } catch (Exception e1) {
-                }
-            }
-
-        }
-        AssetPage asset = new AssetPage(DRIVER);
-        asset.trx20_btn.get(2).isDisplayed();
     }
 
     @AfterMethod(alwaysRun = true)
