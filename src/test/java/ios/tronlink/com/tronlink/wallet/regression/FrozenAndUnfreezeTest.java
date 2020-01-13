@@ -181,7 +181,8 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.frozenTheEnergy(); //Freeze operating
         TimeUnit.SECONDS.sleep(1);
         String availableTrxNew = frozen.getAvailableTrx();
-        Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
+        log("availableTrxOld: "+availableTrxOld + "availableTrxNew: " + availableTrxNew);
+        Assert.assertTrue(Double.parseDouble(availableTrxNew) + 10 == Double.parseDouble(availableTrxOld));
 
     }
 
