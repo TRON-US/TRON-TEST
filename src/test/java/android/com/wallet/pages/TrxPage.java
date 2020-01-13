@@ -61,6 +61,9 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
     public WebElement tranfer10_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_balance")
+    public WebElement balance_text;
+
 
 
     public TransferPage enterTransferPage() throws Exception {
