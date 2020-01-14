@@ -31,10 +31,16 @@ public class TransactionRecordPage extends AbstractPage {
     public List<WebElement> transactionRecords;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_contract_title")
+    public List<WebElement> transactionTypeList;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_contract_title")
     public WebElement transactionType;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_two")
     public WebElement freezeDetail;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_one")
+    public List<WebElement> voteDetailList;
 
 
 }

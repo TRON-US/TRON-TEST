@@ -9,6 +9,7 @@ import android.com.wallet.pages.ModifyPermissionPage;
 import android.com.wallet.pages.MultiSignManagerPage;
 import android.com.wallet.pages.MyPursePage;
 
+import android.com.wallet.pages.TransactionRecordPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -19,15 +20,6 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class MutiSignatureTest extends Base {
-
-//    @Parameters({"privateKey"})
-////    @BeforeMethod()
-////    public void setUpBefore(String privateKey) throws Exception{
-////        DRIVER.closeApp();
-////        DRIVER.launchApp();
-////        getSign(privateKey);
-////    }
-
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -45,7 +37,6 @@ public class MutiSignatureTest extends Base {
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        //Base.tearDownAfterClass();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -263,6 +254,17 @@ public class MutiSignatureTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(add.inputPassword_title.isDisplayed());
     }
+
+    @Test(enabled = true, description = "Mutisign history record test", alwaysRun = true)
+    public void test017_transactionRecord() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        String transactionType = transaction.transactionTypeList.get(0).getText();
+        System.out.println(transactionType);
+        Assert.assertTrue(transactionType.equals("更新账号权限") || transactionType.contains("Update"));
+    }
+
 
 
 }
