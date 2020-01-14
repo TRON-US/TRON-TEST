@@ -285,7 +285,7 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrc10(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         trc10_btn.click();
         //calculate trx
         switch(value){
@@ -311,7 +311,7 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrc20(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         trc20_btn.click();
         //calculate trx
         switch(value){

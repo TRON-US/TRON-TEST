@@ -83,7 +83,7 @@ public class TransferPage extends AbstractPage {
     public String getTransferInfo(String info) throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
-        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(3);
         String value = "";
         switch (info){
             case "trx":
