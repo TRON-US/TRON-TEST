@@ -39,6 +39,9 @@ public class DappNetWithdraw20 extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        changeToDappChain();
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
     }
 
     @AfterMethod(alwaysRun = true)
@@ -59,7 +62,16 @@ public class DappNetWithdraw20 extends Base {
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
         }
+    }
 
+    public void changeToDappChain() {
+        try {
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            nodeSet.enterSettingPageChoiseDappChain();
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+        }
     }
 
 
@@ -73,11 +85,7 @@ public class DappNetWithdraw20 extends Base {
 
     //enter TRXPage
     public TrxPage enterTrc20Page() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseDappChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = new AssetPage(DRIVER);
         return asset.enterTrx20Page();
     }
 

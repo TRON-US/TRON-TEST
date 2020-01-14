@@ -2,6 +2,8 @@ package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
 
+import android.com.wallet.pages.MinePage;
+import android.com.wallet.pages.TransactionRecordPage;
 import android.com.wallet.pages.TrxPage;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -122,8 +124,18 @@ public class SendTrc20 extends Base {
         }
       }
       Assert.assertTrue(exist);
-
-
   }
+
+
+    @Test(enabled = true, description = "TRC20 transfer history record test", alwaysRun = true)
+    public void test006_trc20TransactionHistory() throws Exception {
+      AssetPage asset = new AssetPage(DRIVER);
+      MinePage mine = asset.enterMinePage();
+      TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+      String transactionType = transaction.transactionTypeList.get(0).getText();
+      System.out.println(transactionType);
+      Assert.assertTrue(transactionType.equals("触发智能合约") || transactionType.equals("Trigger Smart Contract"));
+  }
+
 
 }

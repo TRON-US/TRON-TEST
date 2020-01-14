@@ -4,9 +4,12 @@ import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.FrozenAndUnfreezePage;
+import android.com.wallet.pages.MinePage;
+import android.com.wallet.pages.TransactionRecordPage;
 import android.com.wallet.pages.VoteConfirmPage;
 import android.com.wallet.pages.VotePage;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -57,14 +60,28 @@ public class VoteTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozenAndThawingPage = asset.enterFrozenAndUnfreezePage();
         //FrozenAndUnfreezePage frozenAndThawingPage =new FrozenAndUnfreezePage(DRIVER);
-        asset = frozenAndThawingPage.forzenSuccessEnterAssetPage("10");
+        asset = frozenAndThawingPage.forzenSuccessEnterAssetPage("2");
         return asset;
     }
 
 
+    @Test(enabled = true,description = "Gets the address of the second candidate", alwaysRun = true)
+    public void test001_searchVoteInfo() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        VoteConfirmPage voteConfirmPage = vote.setrVotePremise();
+        voteConfirmPage.voteOperate();
+        vote.checkTheSecondInfoOfVoted();
+        //String address = vote.voted_address.get(1).getText();
+        //vote.checkTheSecondInfoOfVoted01();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(vote.getExist());
+    }
 
-    @Test(description = "enter a number that great than the number of votes available", alwaysRun = true)
-    public void test003_vote01() throws Exception {
+
+
+    @Test(enabled = true,description = "enter a number that great than the number of votes available", alwaysRun = true)
+    public void test002_vote01() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.unusualVoteOperate();
@@ -72,8 +89,8 @@ public class VoteTest extends Base {
     }
 
 
-    @Test(description = "Enter a vote of 0,prompt 'vote number null'", alwaysRun = true)
-    public void test004_vote02() throws Exception {
+    @Test(enabled = true,description = "Enter a vote of 0,prompt 'vote number null'", alwaysRun = true)
+    public void test003_vote02() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.reset_btn.click();
@@ -84,8 +101,8 @@ public class VoteTest extends Base {
     }
 
 
-    @Test(description = "The number of votes entered is empty,prompt 'vote number null'", alwaysRun = true)
-    public void test005_vote03() throws Exception {
+    @Test(enabled = true,description = "The number of votes entered is empty,prompt 'vote number null'", alwaysRun = true)
+    public void test004_vote03() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.reset_btn.click();
@@ -94,19 +111,17 @@ public class VoteTest extends Base {
         Assert.assertTrue(vote.getTostInfo());
     }
 
-
-    @Test(description = "Gets the address of the second candidate", alwaysRun = true)
-    public void test006_searchVoteInfo() throws Exception {
-        AssetPage asset = forzenTrx();
-        VotePage vote = asset.enterVotePage();
-        VoteConfirmPage voteConfirmPage = vote.setrVotePremise();
-        voteConfirmPage.voteOperate();
-        vote.checkTheSecondInfoOfVoted();
-        //String address = vote.voted_address.get(1).getText();
-        //vote.checkTheSecondInfoOfVoted01();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(vote.getExist());
-
+    @Test(enabled = true, description = "Vote transaction record test", alwaysRun = true)
+    public void test005_transactionRecord() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        String transactionType = transaction.transactionTypeList.get(0).getText();
+        String voteInfo = transaction.voteDetailList.get(0).getText();
+        System.out.println(transactionType);
+        System.out.println(voteInfo);
+        Assert.assertTrue(transactionType.equals("投票") || transactionType.equals("Vote"));
+        Assert.assertTrue(voteInfo.contains("总票数") || voteInfo.contains("Total votes"));
     }
 
 
