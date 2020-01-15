@@ -79,7 +79,7 @@ public class ImportPrivateKey extends BaseTest {
         setName.name_input.sendKeys("Auto_test");
         Helper.tapWhitePlace(DRIVER);
         String hits = setName.getError_hits();
-        Assert.assertTrue(hits.contains("钱包名已存在") || hits.contains("already exists"));
+        Assert.assertTrue(hits.contains("钱包名称已存在") || hits.contains("already exists"));
     }
 
     @Test(description = "Wallet The same name but different capitalization", alwaysRun = true)

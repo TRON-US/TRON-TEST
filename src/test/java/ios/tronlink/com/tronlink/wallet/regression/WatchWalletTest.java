@@ -90,12 +90,12 @@ public class WatchWalletTest extends BaseTest {
         helpPage.maketransferIn();
         Assert.assertTrue(helpPage.isEnterColdPage());
     }
-    @Test(enabled = true, description = "transferIn 10Token QRCode", alwaysRun = true)
-    public void test009_transferIn10TokenQRCode() throws Exception {
-        WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
-        helpPage.maketransferIn10Token();
-        Assert.assertTrue(helpPage.isEnterColdPage());
-    }
+//    @Test(enabled = true, description = "transferIn 10Token QRCode", alwaysRun = true)
+//    public void test009_transferIn10TokenQRCode() throws Exception {
+//        WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
+//        helpPage.maketransferIn10Token();
+//        Assert.assertTrue(helpPage.isEnterColdPage());
+//    }
     @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
     public void test010_GuaranteeChainName() throws Exception {
         Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
