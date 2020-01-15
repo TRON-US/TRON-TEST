@@ -207,7 +207,23 @@ public class FrozenAndUnfreezePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
             confirm_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(5);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void frozenTheBandwidth() {
+        //swipToFrozenBtnDisplay();
+        Helper.swipScreen(driver);
+        try {
+            freeze_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+            freezeNow_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+            checkPasswotd_input.sendKeys("Test0001");
+            confirm_btn.click();
+            TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
         }

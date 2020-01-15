@@ -61,11 +61,14 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
     public WebElement tranfer10_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_balance")
+    public WebElement balance_text;
+
 
 
     public TransferPage enterTransferPage() throws Exception {
         transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new TransferPage(driver);
     }
 
@@ -74,7 +77,7 @@ public class TrxPage extends AbstractPage {
 
     public AssetPage enterAssetPage() throws Exception {
         back_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new AssetPage(driver);
     }
 
