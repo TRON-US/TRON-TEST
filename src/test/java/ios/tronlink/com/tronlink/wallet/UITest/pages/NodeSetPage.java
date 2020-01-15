@@ -1,6 +1,8 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -40,7 +42,13 @@ public class NodeSetPage extends AbstractPage {
     }
 
     public NodeSetDetailPage enterSettingPageMainChain() throws Exception {
-        MainChain_btn.click();
+//        MainChain_btn.click();
+        int topX = MainChain_btn.getLocation().x + 10;
+        int topY = MainChain_btn.getLocation().y + 10;
+        log("\n topY: " + topX + " botY: " + topY );
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.tap(PointOption.point(topX,topY)).perform();
+
         return new NodeSetDetailPage(driver);
     }
 
