@@ -39,7 +39,7 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "MutiSig edit permission edit")
     public WebElement activeContentEditBtn;
 
-    @FindBy(id = "TRX转账")
+    @FindBy(id = "TRX 转账")
     public WebElement trxTranPower;
 
     @FindBy(id = "冻结资产")
