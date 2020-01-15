@@ -42,6 +42,7 @@ task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
     }
 }
 
+
 task ios(type: Test,dependsOn: 'autoCreateIosTestngXml') {
     useTestNG {
         suites(file('src/test/resources/tronlink-ios.xml'))
@@ -56,6 +57,7 @@ task iost(type: Test) {
         threadCount 10
     }
 }
+
 task hundredios(type: Test,dependsOn: 'createNumbersWalletsTestngXml') {
     useTestNG {
         suites(file('src/test/resources/tronlink-ios.xml'))
