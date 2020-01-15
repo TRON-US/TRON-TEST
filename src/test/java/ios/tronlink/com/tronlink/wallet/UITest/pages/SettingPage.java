@@ -41,7 +41,7 @@ public class SettingPage extends AbstractPage {
     @FindBy(name = "连接")
     public WebElement connect_btn;
 
-    @FindBy(name = "已选择shasta网络")
+    @FindBy(name = "已选择 Shasta 网络")
     public WebElement connected_title;
 
     @FindBy(name = "未选择")

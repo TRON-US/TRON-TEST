@@ -43,7 +43,7 @@ public class DappFrozenTest extends BaseTest {
     public void test001_enterDetailsOfTheRules() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
-        Assert.assertTrue(Helper.isElementExist(detailsAndRules.driver,"冻结解冻细则"));
+        Assert.assertTrue(Helper.contentTexts(detailsAndRules.textArray,"冻结解冻细则"));
     }
 
     @Test(description = "Freeze energy detail", alwaysRun = true)
