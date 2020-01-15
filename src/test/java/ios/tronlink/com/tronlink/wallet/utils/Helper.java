@@ -93,11 +93,12 @@ public class Helper {
     public static void closeKeyBoard(IOSDriver driver)  throws Exception{
         try {
             driver.findElementById("完成").click();
-        }catch (Exception e){}
+        }catch (Exception e){
+            TouchAction action = new TouchAction(driver);
+            PointOption whiteplace = PointOption.point(6,130);
+            action.tap(whiteplace).perform().release();
+        }
 
-        TouchAction action = new TouchAction(driver);
-        PointOption whiteplace = PointOption.point(6,130);
-        action.tap(whiteplace).perform().release();
     }
 
     public static String getPrettyNumber(String number) {
