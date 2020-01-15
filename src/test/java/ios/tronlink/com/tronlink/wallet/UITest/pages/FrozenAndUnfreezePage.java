@@ -264,10 +264,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
     public void inputFrozenCount(String count) throws Exception {
+        count = count.replace(" ","");
+        log("count:" + count + "  size:" + count.length());
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(2);
         freezeCount_input.get(0).click();
-        TimeUnit.SECONDS.sleep(3);
         freezeCount_input.get(0).sendKeys(count);
         Helper.closeKeyBoard(driver);
 
