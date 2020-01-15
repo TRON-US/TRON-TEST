@@ -68,7 +68,7 @@ public class TrxPage extends AbstractPage {
 
     public TransferPage enterTransferPage() throws Exception {
         transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new TransferPage(driver);
     }
 
@@ -77,7 +77,7 @@ public class TrxPage extends AbstractPage {
 
     public AssetPage enterAssetPage() throws Exception {
         back_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new AssetPage(driver);
     }
 

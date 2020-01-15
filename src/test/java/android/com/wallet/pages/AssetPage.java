@@ -185,6 +185,14 @@ public class AssetPage extends AbstractPage {
         return new SendTrxPage(driver);
     }
 
+  public SendTrxPage enterSendTrc20Page() {
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        trx20_btn.get(2).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        trc10Page_transfer_btn.click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        return new SendTrxPage(driver);
+  }
 
 
 
@@ -193,7 +201,9 @@ public class AssetPage extends AbstractPage {
 
 
 
-    public VotePage enterVotePage(){
+
+
+  public VotePage enterVotePage(){
         try {
             vote_btn.click();
             driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
@@ -249,7 +259,7 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
+    public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
         try {
             freeze_btn.click();
             driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
@@ -269,6 +279,7 @@ public class AssetPage extends AbstractPage {
 //                TimeUnit.SECONDS.sleep(1);
 //            }
 //        }catch (Exception e){}
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         mine_btn.click();
         return new MinePage(driver);
     }

@@ -73,7 +73,7 @@ public class ChangeWalletPasswordTest extends BaseTest {
     public void test0004InputCorrectPassword() throws Exception{
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
         walletPasswordPage.changePassword(oldPassword,"1",newPassword);
-        Assert.assertTrue(contentTexts(walletPasswordPage.testarray,"不少于8位字符，至少由大小写字母和数字组成"));
+        Assert.assertTrue(contentTexts(walletPasswordPage.testarray,"至少由大小写字母和数字组成"));
 
     }
     @Test(description = "Input uncorrect password",alwaysRun = true)

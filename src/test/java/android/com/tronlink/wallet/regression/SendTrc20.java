@@ -2,6 +2,10 @@ package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
 
+import android.com.wallet.pages.MinePage;
+import android.com.wallet.pages.TransactionRecordPage;
+import android.com.wallet.pages.TrxPage;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
@@ -16,39 +20,15 @@ import android.com.wallet.pages.SendTrxPage;
 import android.com.wallet.pages.SendTrxSuccessPage;
 
 public class SendTrc20 extends Base {
+    Random rand = new Random();
+    float sendTrc20Amount;
+    int beforeSendBalance;
+    int afterSendBalance;
+  
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        System.out.println("执行setUpBefore");
-        boolean trc20IsExist = false;
         new Helper().getSign(privateKey, DRIVER);
-        try {
-            AssetPage asset = new AssetPage(DRIVER);
-            asset.trx20_btn.get(2).isDisplayed();
-            trc20IsExist = true;
-        } catch (Exception e ) {
-            try {
-                DRIVER.closeApp();
-                DRIVER.activateApp("com.tronlink.wallet");
-            } catch (Exception e1) {
-            }
-        }
-
-        if (!trc20IsExist) {
-            try {
-                AssetPage asset = new AssetPage(DRIVER);
-                asset.trx20_btn.get(2).isDisplayed();
-            } catch (Exception e ) {
-                try {
-                    DRIVER.closeApp();
-                    DRIVER.activateApp("com.tronlink.wallet");
-                } catch (Exception e1) {
-                }
-            }
-
-        }
-        AssetPage asset = new AssetPage(DRIVER);
-        asset.trx20_btn.get(2).isDisplayed();
     }
 
 
@@ -57,7 +37,9 @@ public class SendTrc20 extends Base {
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlink.wallet");
-        }catch (Exception e){}
+        } catch (Exception e){
+
+        }
     }
 
 
@@ -76,30 +58,32 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(description = "SendTrc20 success test")
-    public void tsst001_sendTrc20Success() throws Exception {
+    @Test(enabled = true,description = "SendTrc20 success test")
+    public void test001_sendTrc20Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         double trc20Before = transfer.getTrc20Amount();
-        String trc20SendAmount = "1";
+        sendTrc20Amount = rand.nextFloat() + 1;
+        String trc20SendAmount = Float.toString(sendTrc20Amount);
         SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
-        TimeUnit.SECONDS.sleep(3);
+        stsp.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         transfer = asset.enterSendTrxPage();
         double trc20After = transfer.getTrc20Amount();
         System.out.println(trc20After);
-        Assert.assertEquals(trc20Before, trc20After + Double.valueOf(trc20SendAmount));
+        Double min = trc20After + Double.valueOf(trc20SendAmount) - trc20Before;
+        Assert.assertTrue(min < 1 && min > -1);
     }
 
-    @Test(description = "input max send number")
-    public void tsst002_inputMaxSendNumber() throws Exception {
+    @Test(enabled = true,description = "input max send number")
+    public void test002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
 
 
-    @Test(description = "input mix send number")
-    public void tsst003_inputMixSendNumber() throws Exception {
+    @Test(enabled = true,description = "input mix send number")
+    public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
         String centent = transfer.formatErrorHits_text.getText();
@@ -107,12 +91,51 @@ public class SendTrc20 extends Base {
     }
 
 
-    @Test(description = "input too Much trc20 send number", alwaysRun = true)
-    public void tsst004_inputTooMuchSendNumber() throws Exception {
+    @Test(enabled = true,description = "input too Much trc20 send number", alwaysRun = true)
+    public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("tooMuch");
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
+
+    @Test(enabled = true,description = "Trc20 transfer success recording")
+    public void test005_trc20TransferInSuccessRecording() throws Exception {
+      AssetPage asset = new AssetPage(DRIVER);
+      TrxPage trx = asset.enterTrx20Page();
+      int tries = 0;
+      Boolean exist = false;
+      while (exist == false && tries++ < 5) {
+        tries++;
+        try {
+          AssetPage arret = trx.enterAssetPage();
+          trx = arret.enterTrx20Page();
+          trx.tranfer_tab.get(1).click();
+          System.out.println(trx.tranferIncount_text.get(1).getText());
+          String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+          System.out.println("tranferInCount = " + tranferInCount);
+          System.out.println("sendTrxAmount = " + sendTrc20Amount);
+          if (Float.toString(sendTrc20Amount).substring(0,5).equals(tranferInCount.substring(0,5))) {
+            exist = true;
+            break;
+          }
+        } catch (Exception e) {
+          System.out.println(e);
+        }
+      }
+      Assert.assertTrue(exist);
+  }
+
+
+    @Test(enabled = true, description = "TRC20 transfer history record test", alwaysRun = true)
+    public void test006_trc20TransactionHistory() throws Exception {
+      AssetPage asset = new AssetPage(DRIVER);
+      MinePage mine = asset.enterMinePage();
+      TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+      String transactionType = transaction.transactionTypeList.get(0).getText();
+      System.out.println(transactionType);
+      Assert.assertTrue(transactionType.equals("触发智能合约") || transactionType.equals("Trigger Smart Contract"));
+  }
+
 
 }
