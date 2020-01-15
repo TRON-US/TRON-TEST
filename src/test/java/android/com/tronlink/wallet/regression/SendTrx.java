@@ -4,9 +4,11 @@ package android.com.tronlink.wallet.regression;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
+import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.SendTrxPage;
 import android.com.wallet.pages.SendTrxSuccessPage;
 
+import android.com.wallet.pages.TransactionRecordPage;
 import android.com.wallet.pages.TrxPage;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -189,7 +191,7 @@ public class SendTrx extends Base {
         TrxPage trx = asset.enterTrxPage();
         int tries = 0;
         Boolean exist = false;
-        while (exist == false && tries < 7) {
+        while (exist == false && tries < 5) {
             tries++;
             try {
                 AssetPage arret = trx.enterAssetPage();
@@ -203,7 +205,6 @@ public class SendTrx extends Base {
                     exist = true;
                     break;
                 }
-                TimeUnit.SECONDS.sleep(3);
 
             } catch (Exception e) {
                 System.out.println(e);
@@ -222,6 +223,16 @@ public class SendTrx extends Base {
         System.out.println("beforeSendBalance:" + beforeSendBalance);
         System.out.println("afterSendBalance:" + afterSendBalance);
         Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);
+    }
+
+    @Test(enabled = true, description = "Trx transfer history record test", alwaysRun = true)
+    public void test016_transactionRecord() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        String transactionType = transaction.transactionTypeList.get(0).getText();
+        System.out.println(transactionType);
+        Assert.assertTrue(transactionType.equals("转账Trx") || transactionType.equals("Send Trx"));
     }
 
 

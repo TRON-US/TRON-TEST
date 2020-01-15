@@ -83,7 +83,7 @@ public class TransferPage extends AbstractPage {
     public String getTransferInfo(String info) throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         String value = "";
         switch (info){
             case "trx":
@@ -106,7 +106,7 @@ public class TransferPage extends AbstractPage {
     public TrxPage enterTrxPageWithTransferSuccess() throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         password_input.sendKeys("Test0001");
         finish_btn.click();
         TimeUnit.SECONDS.sleep(3);
@@ -117,7 +117,7 @@ public class TransferPage extends AbstractPage {
     public TrxPage enterTrxPageWithTransferSuccess(String count) throws Exception {
         count_text.sendKeys(count);
         transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         password_input.sendKeys("Test0001");
         finish_btn.click();
         TimeUnit.SECONDS.sleep(3);

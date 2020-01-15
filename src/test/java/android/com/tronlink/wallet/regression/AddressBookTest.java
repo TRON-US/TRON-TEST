@@ -113,7 +113,7 @@ public class AddressBookTest extends Base {
     @Test(enabled = true,description = "Freeze use address book test", alwaysRun = true)
     public void test005_FreezeUseAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.scrollToBottom();
         frozen.addressBook_btn.click();
         frozen.addressName_display.click();

@@ -53,7 +53,7 @@ public class SendTrc10 extends Base {
     }
 
 
-    @Test(description = "SendTrc10 success test", alwaysRun = true)
+    @Test(enabled = true,description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrc10Page();
@@ -62,15 +62,15 @@ public class SendTrc10 extends Base {
         transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
 
-    @Test(enabled = false,description = "input max send number", alwaysRun = true)
+    @Test(enabled = true,description = "input max send number", alwaysRun = true)
     public void test002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("max");
-        Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
+        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
     }
 
 
-    @Test(description = "input mix send number", alwaysRun = true)
+    @Test(enabled = true,description = "input mix send number", alwaysRun = true)
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("mix");
@@ -79,7 +79,7 @@ public class SendTrc10 extends Base {
     }
 
 
-    @Test(description = "input too Much trc10 send number", alwaysRun = true)
+    @Test(enabled = true,description = "input too Much trc10 send number", alwaysRun = true)
     public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("tooMuch");
@@ -89,7 +89,7 @@ public class SendTrc10 extends Base {
 
 
 
-    @Test(description = "trc10 check 10name", alwaysRun = true)
+    @Test(enabled = true,description = "trc10 check 10name", alwaysRun = true)
     public void test005_check10Name() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrx10Page();
@@ -139,6 +139,16 @@ public class SendTrc10 extends Base {
         System.out.println("beforeSendBalance:" + beforeSendBalance);
         System.out.println("afterSendBalance:" + afterSendBalance);
         Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);
+    }
+
+    @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
+    public void test008_transactionRecord() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        String transactionType = transaction.transactionTypeList.get(0).getText();
+        System.out.println(transactionType);
+        Assert.assertTrue(transactionType.equals("转账TRC10token") || transactionType.equals("transfer TRC10 token"));
     }
 
 

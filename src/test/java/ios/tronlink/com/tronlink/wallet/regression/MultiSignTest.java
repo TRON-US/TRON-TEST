@@ -222,7 +222,7 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
-        Assert.assertTrue(multiSignRecodPage.typeLabels.get(0).getText().contains("TRX转账"));
+        Assert.assertTrue(multiSignRecodPage.typeLabels.get(0).getText().contains("TRX 转账"));
 
     }
 
