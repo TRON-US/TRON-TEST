@@ -30,7 +30,7 @@ public class SettingTest extends BaseTest {
         SettingPage setting = mine.enterSettingPage();
         setting.trunDeveloperOptions();
         String developerNow = setting.connected_title.getText();
-        Assert.assertEquals(developerNow,"已选择shasta网络");
+        Assert.assertTrue(developerNow.contains("Shasta"));
     }
     @Test(description = "Developer options Off Test",alwaysRun = true)
     public void test003_developerOffOptions() throws Exception {

@@ -43,7 +43,7 @@ public class DappFrozenTest extends BaseTest {
     public void test001_enterDetailsOfTheRules() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
-        Assert.assertTrue(Helper.isElementExist(detailsAndRules.driver,"TRX冻结解冻细则"));
+        Assert.assertTrue(Helper.isElementExist(detailsAndRules.driver,"冻结解冻细则"));
     }
 
     @Test(description = "Freeze energy detail", alwaysRun = true)
@@ -73,7 +73,7 @@ public class DappFrozenTest extends BaseTest {
     public void test004_checkEnergyQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("Energy"));
+        Assert.assertTrue(frozen.questionContent_btn.getText().contains("能量"));
     }
 
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
@@ -81,7 +81,7 @@ public class DappFrozenTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getbandwidth_btn().click();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("Bandwidth"));
+        Assert.assertTrue(frozen.questionContent_btn.getText().contains("带宽"));
     }
     @Test(description = "ChangeFreezeUnfreeze Test", alwaysRun = true)
     public void test006_checkBandwidthQuestion() throws Exception {
@@ -128,6 +128,7 @@ public class DappFrozenTest extends BaseTest {
     public void test011_freezeEnergyEqualTrx() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         String availableTrx = frozen.getAvailableTrx();
+        log(availableTrx);
         frozen.inputFrozenCount(removeSymbol(availableTrx));
         Assert.assertTrue(frozen.getFreeze_btn().isEnabled());
     }
