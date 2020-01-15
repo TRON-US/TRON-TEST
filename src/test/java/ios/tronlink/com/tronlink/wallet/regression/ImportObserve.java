@@ -93,7 +93,7 @@ public class ImportObserve extends BaseTest {
         TimeUnit.SECONDS.sleep(2);
         String hits = namePage.getError_hits();
         System.out.println(hits);
-        Assert.assertTrue(hits.contains("钱包名已存在") || hits.contains("already exists"));
+        Assert.assertTrue(hits.contains("钱包名称已存在") || hits.contains("already exists"));
     }
 
 //    @Test(description = "Observe The same name but different capitalization", alwaysRun = true)

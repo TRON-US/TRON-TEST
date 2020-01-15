@@ -97,13 +97,13 @@ public class MultiSignActiveTest extends BaseTest {
     @Test(description = "signature Name Is Null", alwaysRun = true)
     public void test006_signatureNameIsNull() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.getnameNullErrorString().contains("长度须1-32"));
+        Assert.assertTrue(multiSignManagerPage.getnameNullErrorString().contains("1-32"));
     }
 
     @Test(description = "signature Name Is too long", alwaysRun = true)
     public void test007_signatureNameIsSoLong() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.getnameToolongErrorString().contains("长度须1-32"));
+        Assert.assertTrue(multiSignManagerPage.getnameToolongErrorString().contains("1-32"));
 
     }
     @Test(description = "signature without choise Permission", alwaysRun = true)
@@ -115,13 +115,13 @@ public class MultiSignActiveTest extends BaseTest {
     @Test(description = "signature threshold > 100", alwaysRun = true)
     public void test009_thresholdTooLarge() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.ThrHoldErrWith("101").contains("阈值须≤100"));
+        Assert.assertTrue(multiSignManagerPage.ThrHoldErrWith("101").contains("阈值须"));
     }
 
     @Test(description = "signature threshold Is 0", alwaysRun = true)
     public void test010_thresholdIsZero() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.ThrHoldErrWith("0").contains("阈值须≤100"));
+        Assert.assertTrue(multiSignManagerPage.ThrHoldErrWith("0").contains("阈值须"));
     }
 
 

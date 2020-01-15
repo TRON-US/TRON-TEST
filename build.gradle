@@ -42,7 +42,15 @@ task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
     }
 }
 
+
 task ios(type: Test,dependsOn: 'autoCreateIosTestngXml') {
+    useTestNG {
+        suites(file('src/test/resources/tronlink-ios.xml'))
+        parallel 'tests'
+        threadCount 10
+    }
+}
+task iost(type: Test) {
     useTestNG {
         suites(file('src/test/resources/tronlink-ios.xml'))
         parallel 'tests'
