@@ -270,7 +270,7 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public MinePage enterMinePage() throws  Exception{
+    public MinePage enterMinePage(){
 //        try {
 //            TimeUnit.SECONDS.sleep(2);
 //            // if page display AD , cloese the AD
@@ -279,7 +279,9 @@ public class AssetPage extends AbstractPage {
 //                TimeUnit.SECONDS.sleep(1);
 //            }
 //        }catch (Exception e){}
-        TimeUnit.SECONDS.sleep(3);
+        try {
+          TimeUnit.SECONDS.sleep(3);
+        } catch (Exception e ){};
         //driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         mine_btn.click();
         return new MinePage(driver);
