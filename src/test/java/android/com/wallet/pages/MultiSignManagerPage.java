@@ -91,7 +91,7 @@ public class MultiSignManagerPage extends AbstractPage {
     public AddPermissionPage enterAddPermissionPage(){
         try {
             addPermission_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
             System.out.println(1);
         }

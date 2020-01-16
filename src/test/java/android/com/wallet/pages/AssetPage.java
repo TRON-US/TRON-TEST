@@ -254,7 +254,9 @@ public class AssetPage extends AbstractPage {
 //                TimeUnit.SECONDS.sleep(1);
 //            }
 //        }catch (Exception e){}
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         addAssert_btn.click();
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         return new AddAssertPage(driver);
     }
 
@@ -262,7 +264,7 @@ public class AssetPage extends AbstractPage {
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
         try {
             freeze_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+          TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
         }

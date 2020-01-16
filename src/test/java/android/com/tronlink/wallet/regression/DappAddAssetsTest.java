@@ -64,8 +64,9 @@ public class DappAddAssetsTest extends Base {
 
 
     @Test(description = "test remove asset", alwaysRun = true)
-    public void test003_removeAsset() {
+    public void test003_removeAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
         AddAssertPage addAssert = asset.enterAddAssertPage();
         addAssert.mainPageAssetManage_tab.get(1).click();
         //addAssert.removeAsset();
