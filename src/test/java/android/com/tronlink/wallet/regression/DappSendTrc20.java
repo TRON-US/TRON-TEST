@@ -99,7 +99,7 @@ public class DappSendTrc20 extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
         String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
     }
 
     @Test(description = "Input too Much TRX send number")
@@ -120,7 +120,7 @@ public class DappSendTrc20 extends Base {
     }
 
     @Test(enabled = true,description = "Dapp chain send TRC20 recording")
-    public void test006_dappChainSendTrc10Recording() throws Exception {
+    public void test006_dappChainSendTrc20Recording() throws Exception {
         TrxPage trx = enterTrxPage();
         int tries = 0;
         Boolean exist = false;

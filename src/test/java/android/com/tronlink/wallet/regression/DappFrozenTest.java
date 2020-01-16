@@ -130,7 +130,8 @@ public class DappFrozenTest extends Base {
     public void test0006_checkEnergyQuestion() throws Exception{
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("Energy"));
+        String questionContent = frozen.questionContent_btn.getText();
+        Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
     }
 
     @Test(enabled = true,description = "Dapp chain bandwidth question Test", alwaysRun = true)
@@ -138,7 +139,8 @@ public class DappFrozenTest extends Base {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.bandwidth_btn.click();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("Bandwidth"));
+        String questionContent = frozen.questionContent_btn.getText();
+        Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));
     }
 
     //Freeze Energy more than trx
@@ -147,7 +149,8 @@ public class DappFrozenTest extends Base {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.inputFrozenCount("99999999");
         String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.equals("可用TRX不足") || prompt.equals("Insufficient TRX"));
+        System.out.println("prompt:" + prompt);
+        Assert.assertTrue(prompt.equals("可用TRX不足") || prompt.equals("Insufficient TRX") || prompt.equals("可用 TRX 不足"));
     }
 
 

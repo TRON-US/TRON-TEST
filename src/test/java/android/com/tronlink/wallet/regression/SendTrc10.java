@@ -75,7 +75,7 @@ public class SendTrc10 extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("mix");
         String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
     }
 
 
@@ -148,7 +148,7 @@ public class SendTrc10 extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.equals("转账TRC10token") || transactionType.equals("transfer TRC10 token"));
+        Assert.assertTrue(transactionType.contains("转账 TRC10 通证") || transactionType.equals("转账TRC10token") || transactionType.equals("transfer TRC10 token"));
     }
 
 

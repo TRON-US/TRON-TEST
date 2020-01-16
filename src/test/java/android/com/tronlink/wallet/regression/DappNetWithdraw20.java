@@ -95,7 +95,7 @@ public class DappNetWithdraw20 extends Base {
         TrxPage trx = enterTrc20Page();
         TransferPage transferOut = trx.enterTransferPage();
         String info = transferOut.getTransferInfo("hits");
-        Assert.assertTrue(info.equals("转出需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
+        Assert.assertTrue(info.contains("转出需要执行智能合约。执行智能合约同时会消耗能量") || info.contains("requires the execution of a smart contract"));
     }
 
 

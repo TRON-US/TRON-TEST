@@ -149,7 +149,7 @@ public class MutiSignatureTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreenToTop(DRIVER);
         String tip = add.tip_hits.getText();
-        Assert.assertTrue(tip.contains("名字长度须") || tip.contains("Name length must be"));
+        Assert.assertTrue(tip.contains("名称长度须") || tip.contains("名字长度须") || tip.contains("Name length must be"));
     }
 
 
@@ -160,7 +160,7 @@ public class MutiSignatureTest extends Base {
         add.permissionName_input.sendKeys("TXtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.tip_hits.getText();
-        Assert.assertTrue(tip.contains("名字长度须") || tip.contains("Name length must be"));
+        Assert.assertTrue(tip.contains("名称长度须") || tip.contains("名字长度须") || tip.contains("Name length must be"));
     }
 
 
@@ -182,7 +182,7 @@ public class MutiSignatureTest extends Base {
         //add.inputInfoWithoutPermission("AutoTest");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.threshold_tip.getText();
-        Assert.assertTrue(tip.contains("阈值须≤100") || tip.contains("threhold value of"));
+        Assert.assertTrue(tip.contains("阈值须为 ≤100 的正整数") || tip.contains("阈值须≤100") || tip.contains("threhold value of"));
     }
 
 
@@ -194,7 +194,7 @@ public class MutiSignatureTest extends Base {
         //add.inputInfoWithoutPermission("AutoTest");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.threshold_tip.getText();
-        Assert.assertTrue(tip.contains("阈值须≤100") || tip.contains("threhold value of"));
+        Assert.assertTrue(tip.contains("阈值须为 ≤100 的正整数") || tip.contains("阈值须≤100") || tip.contains("threhold value of"));
     }
 
 
@@ -229,7 +229,8 @@ public class MutiSignatureTest extends Base {
         add.inputSameAddress();
         TimeUnit.SECONDS.sleep(1);
         String tip = add.addkey_tip.getText();
-        Assert.assertTrue(tip.contains("key重复") || tip.contains("has been added"));
+        System.out.println("tip:" + tip);
+        Assert.assertTrue(tip.contains("该地址与已添加的地址重复") || tip.contains("key重复") || tip.contains("has been added"));
     }
 
 
@@ -262,7 +263,7 @@ public class MutiSignatureTest extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.equals("更新账号权限") || transactionType.contains("Update"));
+        Assert.assertTrue(transactionType.equals("更新账户权限")  || transactionType.equals("更新账号权限") || transactionType.contains("Update"));
     }
 
 
