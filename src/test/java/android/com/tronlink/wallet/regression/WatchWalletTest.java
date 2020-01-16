@@ -75,8 +75,10 @@ public class WatchWalletTest extends Base {
     public void test002_frozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.freezeCount_input.sendKeys("1");
+        TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.freeze_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -178,7 +180,7 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "tranferOut QRCode", alwaysRun = true)
     public void test009_trc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        TrxPage trxPage = asset.enterTrx10Page();
+        TrxPage trxPage = asset.enterTrx20Page();
         TransferPage transfer = trxPage.enterTransferPage();
         transfer.count_text.sendKeys("10");
         transfer.transferIn_btn.click();

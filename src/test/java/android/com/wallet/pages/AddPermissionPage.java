@@ -113,6 +113,7 @@ public class AddPermissionPage extends AbstractPage {
         conf_btn.click();
         TimeUnit.SECONDS.sleep(1);
         threshold_input.sendKeys("1");
+        TimeUnit.SECONDS.sleep(1);
         address_input.get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         weight_input.sendKeys("1");
         //Helper.scrollToElementUntilVisible(driver,confirm_btn);
