@@ -62,6 +62,9 @@ public class MainNetDeposit20 extends Base {
     //enter TRXPage
     public TrxPage enterTrc20Page() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        Helper.swipScreen(asset.driver);
+        TimeUnit.SECONDS.sleep(3);
         return asset.enterTrx20Page();
     }
 
@@ -71,8 +74,7 @@ public class MainNetDeposit20 extends Base {
         TrxPage trx = enterTrc20Page();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("hits");
-        Assert.assertTrue(info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。")
-            || info.contains("requires the execution of a smart contract"));
+        Assert.assertTrue(info.contains("转入需要执行智能合约。执行智能合约同时会消耗能量") || info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
     }
 
 

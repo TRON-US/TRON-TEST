@@ -128,7 +128,8 @@ public class FrozenAndUnfreezeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("Energy"));
+        String questionContent = frozen.questionContent_btn.getText();
+        Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
     }
 
     @Test(enabled = true, description = "Bandwidth Question Test", alwaysRun = true)
@@ -137,7 +138,8 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.bandwidth_btn.click();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("Bandwidth"));
+        String questionContent = frozen.questionContent_btn.getText();
+        Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));
     }
 
     //Balance in frozen mainPage equal

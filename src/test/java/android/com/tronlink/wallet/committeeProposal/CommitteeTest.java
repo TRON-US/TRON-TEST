@@ -60,13 +60,13 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "page can load before data", alwaysRun = true)
+    @Test(enabled = true,description = "page can load before data", alwaysRun = true)
     public void test001_enterCommittee() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         //return mine.enterCommitteeProposalPage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        TimeUnit.SECONDS.sleep(2);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Assert.assertTrue(committeeProposalPage.allVotes_text.isDisplayed());
     }
 
@@ -84,7 +84,7 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "Enter Proposal Detail success test", alwaysRun = true)
+    @Test(enabled = true,description = "Enter Proposal Detail success test", alwaysRun = true)
     public void test003_enterProposalDetails() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -100,7 +100,7 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "create Proposal page reset", alwaysRun = true)
+    @Test(enabled = true,description = "create Proposal page reset", alwaysRun = true)
     public void test004_createProposalReset() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -115,7 +115,7 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "create proposal success", alwaysRun = true)
+    @Test(enabled = true,description = "create proposal success", alwaysRun = true)
     public void test005_createCommitteeProposalSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -129,7 +129,7 @@ public class CommitteeTest extends Base {
 
     //............................
     //add 详情页显示  投票中！！！！！！
-    @Test(description = "display Proposal Details Is Voteing", alwaysRun = true)
+    @Test(enabled = true,description = "display Proposal Details Is Voteing", alwaysRun = true)
     public void test006_ProposalDetailsVoteing() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -144,7 +144,7 @@ public class CommitteeTest extends Base {
 
     //............................
     //add 详情页显示  展示总票数
-    @Test(description = "display Proposal Details count of Vote", alwaysRun = true)
+    @Test(enabled = true,description = "display Proposal Details count of Vote", alwaysRun = true)
     public void test007_ProposalDetailsVoteCount() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -157,7 +157,7 @@ public class CommitteeTest extends Base {
 
 
     //add 详情页显示  展示有效票数
-    @Test(description = "display Proposal Details Valid Vote", alwaysRun = true)
+    @Test(enabled = true,description = "display Proposal Details Valid Vote", alwaysRun = true)
     public void test008_ProposalDetailsValidVote() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -171,7 +171,7 @@ public class CommitteeTest extends Base {
 
 
     //add 详情页显示  展示有效票数
-    @Test(description = "display Proposal Details Create Time", alwaysRun = true)
+    @Test(enabled = true,description = "display Proposal Details Create Time", alwaysRun = true)
     public void test009_ProposalDetailsCreateTime() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -184,7 +184,7 @@ public class CommitteeTest extends Base {
 
 
     //add 详情页显示  展示结束时间
-    @Test(description = "display Proposal End Time", alwaysRun = true)
+    @Test(enabled = true,description = "display Proposal End Time", alwaysRun = true)
     public void test010_ProposalDetailsEndTime() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -198,7 +198,7 @@ public class CommitteeTest extends Base {
 
 
     //add 详情页显示  无赞成者
-    @Test(description = "display Proposal End Time", alwaysRun = true)
+    @Test(enabled = true,description = "display Proposal End Time", alwaysRun = true)
     public void test011_ProposalDetails() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -212,7 +212,7 @@ public class CommitteeTest extends Base {
 
     /////////////////.................................................../////////////////////////////
     //赞成，然后看详情有赞成者
-    @Test(description = "have approve People", alwaysRun = true)
+    @Test(enabled = true,description = "have approve People", alwaysRun = true)
     public void test012_haveApprovePeople() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -221,10 +221,10 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
         Assert.assertTrue(proposalDetailsPage.pproversPeo_text.isDisplayed());
 
@@ -240,7 +240,7 @@ public class CommitteeTest extends Base {
 
 
     /////////////////.................................................../////////////////////////////
-    @Test(description = "approve proposal", alwaysRun = true)
+    @Test(enabled = true,description = "approve proposal", alwaysRun = true)
     public void test013_approveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -249,10 +249,10 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Assert.assertTrue(MyProposalsPage.approveNum_text.getText()!="0");
 
 //        committeeProposalPage.agree_btn.click();
@@ -268,7 +268,7 @@ public class CommitteeTest extends Base {
 
     //赞成后详情页在有赞成者
     /////////////////.................................................../////////////////////////////
-    @Test(description = "disapprove proposal", alwaysRun = true)
+    @Test(enabled = true,description = "disapprove proposal", alwaysRun = true)
     public void test014_disApproveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -277,15 +277,15 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.agree_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         String number = MyProposalsPage.approveNum_text.getText();
         //System.out.println("number=" + number);
         Assert.assertTrue(number.equals("0") || number == "0");
@@ -309,32 +309,34 @@ public class CommitteeTest extends Base {
 
     /////////////////.................................................../////////////////////////////
     //撤销
-    @Test(description = "cancel proposal", alwaysRun = true)
+    @Test(enabled = true,description = "cancel proposal", alwaysRun = true)
     public void test015_cancelProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         committeeProposalPage = createProposePage.createProposal();
-        TimeUnit.SECONDS.sleep(1);
+        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
         //ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
         proposalDetailsPage.proposalCancle_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         proposalDetailsPage.confirm_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        String proposalStatus = committeeProposalPage.proposals_state_btn.getText();
+        //asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(10);
+        String proposalStatus = proposalDetailsPage.proposals_state_btn.getText();
+        //String proposalStatus = committeeProposalPage.proposals_state_btn.getText();
         Assert.assertTrue(proposalStatus.equals("已取消"));
     }
 
 
 
     //提议撤销时间 关键字
-    @Test(description = "cancel proposal", alwaysRun = true)
+    @Test(enabled = true,description = "cancel proposal", alwaysRun = true)
     public void test016_cancelProposalDetailsStatus() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -345,7 +347,7 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(description = "cancel proposal", alwaysRun = true)
+    @Test(enabled = true,description = "cancel proposal", alwaysRun = true)
     public void test017_cancelProposalDetailsTimes() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -358,12 +360,12 @@ public class CommitteeTest extends Base {
 
 
     //我发起的提议
-    @Test(description = "my proposals ", alwaysRun = true)
+    @Test(enabled = true,description = "my proposals ", alwaysRun = true)
     public void test018_myProposals() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        TimeUnit.SECONDS.sleep(5);
+        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         Assert.assertTrue(committeeProposalPage.myProposals_text.getText() != "0");
     }
 
@@ -371,12 +373,12 @@ public class CommitteeTest extends Base {
 
 
     //我赞成的提议
-    @Test(description = "my Approve Proposals", alwaysRun = true)
+    @Test(enabled = true,description = "my Approve Proposals", alwaysRun = true)
     public void test019_myApproveProposals() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        TimeUnit.SECONDS.sleep(5);
+        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         Assert.assertTrue(committeeProposalPage.myApproved_text.getText() != "0");
     }
 
@@ -384,12 +386,12 @@ public class CommitteeTest extends Base {
 
 
     //另一个入口发起提议，按钮可以点击就可以
-    @Test(description = "create Proposals Entrance", alwaysRun = true)
+    @Test(enabled = true,description = "create Proposals Entrance", alwaysRun = true)
     public void test020_createProposalsEntrance() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        TimeUnit.SECONDS.sleep(5);
+        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         MyProposalsPage myProposals = committeeProposalPage.enterMyProposals();
         Assert.assertTrue(myProposals.createProposal_btn.isEnabled());
     }

@@ -122,7 +122,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, address);
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("发送地址与接收地址不能相同") || hits.contains("cannot be the same"));
+        Assert.assertTrue(hits.equals("转出地址与接收地址不能相同") || hits.equals("发送地址与接收地址不能相同") || hits.contains("cannot be the same"));
     }
 
 
@@ -147,7 +147,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("mix");
         String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
     }
 
 

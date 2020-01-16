@@ -103,7 +103,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "MutiSignature Question Content Test", alwaysRun = true)
+    @Test(enabled = true,description = "MutiSignature Question Content Test", alwaysRun = true)
     public void test001_MutiSignatureQuestionContentTest() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         String content = multiSignManager.questionClick();
@@ -113,7 +113,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "MutiSignature Test", alwaysRun = true)
+    @Test(enabled = true,description = "MutiSignature Test", alwaysRun = true)
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
@@ -129,7 +129,7 @@ public class DappMutiSignatureTest extends Base {
 
     //Modify signature,Return to the before state
     @Parameters({"address"})
-    @Test(description = "Modify signature Test", alwaysRun = true)
+    @Test(enabled = true,description = "Modify signature Test", alwaysRun = true)
     public void test003_modifySignature(String address) throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
@@ -143,7 +143,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-    @Test(description = "delete signature Test", alwaysRun = true)
+    @Test(enabled = true,description = "delete signature Test", alwaysRun = true)
     public void test005_delSignature() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         String signName = multiSignManager.permissionName_text.getText();
@@ -152,7 +152,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "signature Name Is Null", alwaysRun = true)
+    @Test(enabled = true,description = "signature Name Is Null", alwaysRun = true)
     public void test007_signatureNameIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -161,22 +161,22 @@ public class DappMutiSignatureTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreenToTop(DRIVER);
         String tip = add.tip_hits.getText();
-        Assert.assertTrue(tip.contains("名字长度须") || tip.contains("Name length must be"));
+        Assert.assertTrue(tip.contains("名称长度须") || tip.contains("名字长度须") || tip.contains("Name length must be"));
     }
 
 
-    @Test(description = "signature Name Is too long", alwaysRun = true)
+    @Test(enabled = true,description = "signature Name Is too long", alwaysRun = true)
     public void test008_signatureNameIsSoLong() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.permissionName_input.sendKeys("TXtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.tip_hits.getText();
-        Assert.assertTrue(tip.contains("名字长度须") || tip.contains("Name length must be"));
+        Assert.assertTrue(tip.contains("名称长度须") || tip.contains("名字长度须") || tip.contains("Name length must be"));
     }
 
 
-    @Test(description = "signature without choise Permission", alwaysRun = true)
+    @Test(enabled = true,description = "signature without choise Permission", alwaysRun = true)
     public void test009_signatureWithoutPermission() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -186,7 +186,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "signature threshold > 100", alwaysRun = true)
+    @Test(enabled = true,description = "signature threshold > 100", alwaysRun = true)
     public void test010_thresholdTooLarge() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -194,11 +194,12 @@ public class DappMutiSignatureTest extends Base {
         //add.inputInfoWithoutPermission("AutoTest");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.threshold_tip.getText();
-        Assert.assertTrue(tip.contains("阈值须≤100") || tip.contains("threhold value of"));
+        System.out.println("tip:" + tip);
+        Assert.assertTrue(tip.contains("阈值须为 ≤100 的正整数") || tip.contains("阈值须≤100") || tip.contains("threhold value of"));
     }
 
 
-    @Test(description = "signature threshold Is 0", alwaysRun = true)
+    @Test(enabled = true,description = "signature threshold Is 0", alwaysRun = true)
     public void test011_thresholdIsZero() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -206,11 +207,11 @@ public class DappMutiSignatureTest extends Base {
         //add.inputInfoWithoutPermission("AutoTest");
         TimeUnit.SECONDS.sleep(1);
         String tip = add.threshold_tip.getText();
-        Assert.assertTrue(tip.contains("阈值须≤100") || tip.contains("threhold value of"));
+        Assert.assertTrue(tip.contains("阈值须为 ≤100 的正整数") || tip.contains("阈值须≤100") || tip.contains("threhold value of"));
     }
 
 
-    @Test(description = "signature with error Adress", alwaysRun = true)
+    @Test(enabled = true,description = "signature with error Adress", alwaysRun = true)
     public void test012_errorAdress() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -221,7 +222,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "Adress Is Null", alwaysRun = true)
+    @Test(enabled = true,description = "Adress Is Null", alwaysRun = true)
     public void test013_AdressIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -233,7 +234,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "two Adress is equals", alwaysRun = true)
+    @Test(enabled = true,description = "two Adress is equals", alwaysRun = true)
     public void test014_adressIsEquals() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -245,7 +246,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "password is null", alwaysRun = true)
+    @Test(enabled = true,description = "password is null", alwaysRun = true)
     public void test015_passwordIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -256,7 +257,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(description = "password is wrong", alwaysRun = true)
+    @Test(enabled = true,description = "password is wrong", alwaysRun = true)
     public void test016_passwordIsWrong() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();

@@ -35,10 +35,18 @@ public class AllSignatureSuccTest extends Base {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        //DRIVER.quit();
-        //DRIVER.resetApp();
-        DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlink.wallet");
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlink.wallet");
+        }catch (Exception e){
+            try {
+                DRIVER.closeApp();
+                DRIVER.activateApp("com.tronlink.wallet");
+            }catch (Exception e1){
+
+            }
+        }
+
     }
 
 

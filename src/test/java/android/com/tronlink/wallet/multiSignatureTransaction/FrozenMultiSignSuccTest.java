@@ -26,10 +26,18 @@ public class FrozenMultiSignSuccTest extends Base {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        //DRIVER.quit();
-        //DRIVER.resetApp();
-        DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlink.wallet");
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlink.wallet");
+        }catch (Exception e){
+            try {
+                DRIVER.closeApp();
+                DRIVER.activateApp("com.tronlink.wallet");
+            }catch (Exception e1){
+
+            }
+        }
+
     }
 
 
@@ -161,7 +169,7 @@ public class FrozenMultiSignSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test check TRX", alwaysRun = true)
+    @Test(description = "Sign options Test check TRX", alwaysRun = true)
     public void test008_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
 //        DRIVER.resetApp();
 //        new Helper().getSign(multiSignPrivateKey, DRIVER);
@@ -177,7 +185,7 @@ public class FrozenMultiSignSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test check TransFrom", alwaysRun = true)
+    @Test(description = "Sign options Test check TransFrom", alwaysRun = true)
     public void test009_signPageCheckTransFrom(String multiSignPrivateKey) throws Exception {
 //        DRIVER.resetApp();
 //        new Helper().getSign(multiSignPrivateKey, DRIVER);

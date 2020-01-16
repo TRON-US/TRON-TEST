@@ -87,7 +87,7 @@ public class SendTrc20 extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
         String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+      Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
     }
 
 
