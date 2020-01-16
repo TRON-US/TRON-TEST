@@ -47,7 +47,7 @@ public class Base {
         try {
             File srcFile = DRIVER.getScreenshotAs(OutputType.FILE);
             System.out.println(srcFile);
-            DateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss");
             File location = new File("build/tmp/screenshot");
             File targetFile = new File(location.getAbsolutePath() + File.separator + dest + dateFormat.format(new Date()) + ".png");
             log("----------------- file is " + targetFile.getPath());
@@ -91,6 +91,7 @@ public class Base {
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort", "automationName"})
     @BeforeClass() //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort, String automationName) throws Exception {
+        log("我是类之间Base的BeforeClass");
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
