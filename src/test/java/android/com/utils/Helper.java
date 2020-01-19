@@ -120,6 +120,9 @@ public class Helper {
     @FindBy(id = "com.tronlink.wallet:id/assets")
     public WebElement assetsMain_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_offline_sign_desc")
+    public WebElement coldWalletScan_btn;
+
     @FindBy(id = "com.tronlink.wallet:id/assets_name")
     public List<WebElement> asset_list;
 
@@ -139,6 +142,15 @@ public class Helper {
             assetsMain_btn.isDisplayed();
         }catch (Exception e){
             getWatchWalletSignOperate(address);
+        }
+    }
+
+    public void getColdWalletSign(String privateKey,AndroidDriver driver){
+        this.DRIVER = driver;
+        try {
+            coldWalletScan_btn.isDisplayed();
+        }catch (Exception e){
+            getColdWalletSignOperate(privateKey);
         }
     }
 
@@ -196,6 +208,32 @@ public class Helper {
             System.out.println(e);
         }
     }
+
+
+    public void  getColdWalletSignOperate(String testPrivateKey){
+        try {
+            findWebElement("com.tronlink.wallet:id/tv_cold_wallet").click();
+            findWebElement("com.tronlink.wallet:id/tv_ok").click();
+            swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
+            findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            findWebElement("com.tronlink.wallet:id/cd_pk").click();
+            findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("com.tronlink.wallet:id/bt_next").click();
+            findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Cold-test");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            TimeUnit.SECONDS.sleep(1);
+            findWebElement("com.tronlink.wallet:id/tv_offline_sign_desc");
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 
 
     public void swipUntilElementEnable(String id) throws Exception{
