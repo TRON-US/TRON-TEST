@@ -1,12 +1,11 @@
 package android.com.wallet.pages;
 
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import io.appium.java_client.android.AndroidDriver;
 
 public class NodeSetPage extends AbstractPage {
 
@@ -27,7 +26,8 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
     public WebElement back_btn;
 
-
+    @FindBy(id = "com.tronlink.wallet:id/back3")
+    public WebElement forward_btn;
 
 
 
@@ -47,6 +47,21 @@ public class NodeSetPage extends AbstractPage {
         return new SettingPage(driver);
     }
 
+    public InternalNodeSetPage enterInternalMainChainPage() throws Exception{
+        node_selected.get(0).click();
+        TimeUnit.SECONDS.sleep(3);
+        forward_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new InternalNodeSetPage(driver);
+    }
+
+    public InternalNodeSetPage enterInternalDAppChainPage() throws Exception{
+        node_selected.get(1).click();
+        TimeUnit.SECONDS.sleep(3);
+        forward_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new InternalNodeSetPage(driver);
+    }
 
 
 }
