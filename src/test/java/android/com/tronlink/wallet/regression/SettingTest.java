@@ -1,17 +1,10 @@
 package android.com.tronlink.wallet.regression;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-
-import org.testng.annotations.*;
-
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.DAPP_BrowerPage;
-import android.com.wallet.pages.MinePage;
-import android.com.wallet.pages.SettingPage;
+import android.com.wallet.pages.*;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 /**
  * setting function test
@@ -78,5 +71,26 @@ public class SettingTest extends Base {
         Assert.assertEquals("TEST", dapp.dappTtile_btn.getText());
     }
 
+    @Test(description = "choose mainChain", alwaysRun = true)
+    public void test004_Node_Setting() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        NodeSetPage node = setting.enterNodeSetPage();
+        InternalNodeSetPage internal = node.enterInternalMainChainPage();
+        Assert.assertEquals("节点设置",internal.title_text.getText());
+
+    }
+
+    @Test(description = "choose DAppChain", alwaysRun = true)
+    public void test005_Node_Setting() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        NodeSetPage node = setting.enterNodeSetPage();
+        InternalNodeSetPage internal = node.enterInternalDAppChainPage();
+        Assert.assertEquals("节点设置",internal.title_text.getText());
+
+    }
 
 }
