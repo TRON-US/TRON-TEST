@@ -20,9 +20,10 @@ public class AssetPage extends AbstractPage {
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
-
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             try {
-                TimeUnit.SECONDS.sleep(1);
+
+                //TimeUnit.SECONDS.sleep(1);
                 if (ad_pic.isDisplayed()){
                     adClose_btn.click();
                 }
@@ -151,7 +152,8 @@ public class AssetPage extends AbstractPage {
     public VotePage enterVotePage(){
         try {
             vote_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(1);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,7 +216,8 @@ public class AssetPage extends AbstractPage {
     public FrozenAndUnfreezePage enterFrozenAndThawingPage(){
         try {
             frozen_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(1);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,11 +229,13 @@ public class AssetPage extends AbstractPage {
     //enter AddAssert Page
     public AddAssertPage enterAddAssertPage() {
         try {
-            TimeUnit.SECONDS.sleep(2);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(2);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                //TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){}
         addAssert_btn.click();
@@ -246,10 +251,13 @@ public EnergyRentPage entereneryRantage()throws Exception {
 }
     //enter mine page
     public MinePage enterMinePage() throws Exception{
-        TimeUnit.SECONDS.sleep(2);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        //TimeUnit.SECONDS.sleep(2);
         mine_btn.click();
+        driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         mine_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+        //TimeUnit.SECONDS.sleep(2);
         return new MinePage(driver);
     }
 

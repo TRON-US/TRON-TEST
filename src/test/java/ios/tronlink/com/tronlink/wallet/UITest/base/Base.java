@@ -88,9 +88,10 @@ public class Base {
 
 
 
-    @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort", "automationName"})
+    @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort", "automationName", "xcodeOrgId", "bundleId"})
     @BeforeClass() //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort, String automationName) throws Exception {
+    public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort, String automationName, String xcodeOrgId,
+        String bundleId) throws Exception {
         log("我是类之间Base的BeforeClass");
         int tries = 0;
         Boolean driver_is_start = false;
@@ -106,9 +107,12 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", automationName);
                 desiredCapabilities.setCapability("newCommandTimeout", 50);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
-                desiredCapabilities.setCapability("noReset", true);
-                desiredCapabilities.setCapability("xcodeOrgId", "736VAMJ43C");
+                desiredCapabilities.setCapability("noReset", false);
+                desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
                 desiredCapabilities.setCapability("xcodeSigningId", "iPhone Developer");
+                //        <parameter name="bundleId"  value="com.tronlink.hdwallet"/>
+                desiredCapabilities.setCapability("bundleId",bundleId);
+                desiredCapabilities.setCapability("xcodeOrgId","736VAMJ43C");
                 desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT, webDriverPort);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
                 File app = new File(appDir, "Tronlink.ipa");
