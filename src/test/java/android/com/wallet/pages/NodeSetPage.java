@@ -21,6 +21,8 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/iv_select")
     public List<WebElement> node_selected;
 
+    @FindBy(id = "com.tronlink.wallet:id/root")
+    public List<WebElement> chain_list;
 
 
     @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
@@ -48,7 +50,7 @@ public class NodeSetPage extends AbstractPage {
     }
 
     public InternalNodeSetPage enterInternalMainChainPage() throws Exception{
-        node_selected.get(0).click();
+        node_selected.get(1).click();
         TimeUnit.SECONDS.sleep(3);
         forward_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -62,6 +64,19 @@ public class NodeSetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new InternalNodeSetPage(driver);
     }
+
+    public InternalNodeSetPage enterMainChainNodeSettingPage() throws Exception{
+        chain_list.get(0).click();
+        TimeUnit.SECONDS.sleep(3);
+        return new InternalNodeSetPage(driver);
+    }
+
+    public InternalNodeSetPage enterDappChainNodeSettingPage() throws Exception{
+        chain_list.get(1).click();
+        TimeUnit.SECONDS.sleep(3);
+        return new InternalNodeSetPage(driver);
+    }
+
 
 
 }

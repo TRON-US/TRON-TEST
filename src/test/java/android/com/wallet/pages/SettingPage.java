@@ -25,6 +25,12 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/selected")
     public List<WebElement> selected_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/title")
+    public List<WebElement> language_list;
+
+    @FindBy(id = "com.tronlink.wallet:id/title")
+    public List<WebElement> currency_list;
+
 
     @FindBy(id = "com.tronlink.wallet:id/testnode")
     public WebElement developerOptions_btn;
@@ -56,6 +62,16 @@ public class SettingPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
     public WebElement back_btn;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/money")
+    public WebElement currency_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/root")
+    public List<WebElement> chain_list;
+
+
+
 
 
 //    public void switchLanguage(String language){

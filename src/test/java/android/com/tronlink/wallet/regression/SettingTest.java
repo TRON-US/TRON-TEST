@@ -3,6 +3,9 @@ package android.com.tronlink.wallet.regression;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -10,16 +13,8 @@ import org.testng.annotations.*;
  * setting function test
  */
 public class SettingTest extends Base {
-
-
-//    @Parameters({"privateKey"})
-//    @BeforeMethod()
-//    public void setUpBefore(String privateKey) throws Exception{
-//        DRIVER.closeApp();
-//        DRIVER.launchApp();
-//        getSign(privateKey);
-//    }
-
+    String beforeLanguage;
+    String afterLanguage;
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -42,23 +37,35 @@ public class SettingTest extends Base {
         }
     }
 
-
-    @Test(description = "switch Language Test")
-    public void test002_bulletin() throws Exception {
+    @Test(description = "Switch Language Test")
+    public void test001_lanaugeSwitchTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
+        setting.languane_btn.click();
+        List<WebElement> languageList = setting.language_list;
+        List<WebElement> selectList = setting.selected_btn;
+        beforeLanguage = languageList.get(0).getText();
+        Assert.assertTrue(languageList.get(0).getText().contains("英文"));
+        Assert.assertTrue(languageList.get(1).getText().contains("简体中文"));
+        selectList.get(0).click();
+        TimeUnit.SECONDS.sleep(3);
     }
 
-    @Test(description = "Developer options Test", alwaysRun = true)
-    public void test002_developerOptions() throws Exception {
+    @Test(description = "Language switch success check")
+    public void test002_lanaugeContentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
-        String developer = setting.testnode_text.getText();
-        setting.trunDeveloperOptions();
-        String developerNow = setting.testnode_text.getText();
-        Assert.assertNotEquals(developer, developerNow);
+        setting.languane_btn.click();
+        List<WebElement> languageList = setting.language_list;
+        List<WebElement> selectList = setting.selected_btn;
+        beforeLanguage = languageList.get(0).getText();
+        Assert.assertTrue(languageList.get(0).getText().contains("English"));
+        Assert.assertTrue(languageList.get(1).getText().contains("Simplified Chinese"));
+        selectList.get(1).click();
+        TimeUnit.SECONDS.sleep(3);
+
     }
 
     @Test(description = "DAPP Browser Test", alwaysRun = true)
@@ -71,26 +78,53 @@ public class SettingTest extends Base {
         Assert.assertEquals("TEST", dapp.dappTtile_btn.getText());
     }
 
-    @Test(description = "choose mainChain", alwaysRun = true)
+    @Test(description = "choose DAppChain", alwaysRun = true)
     public void test004_Node_Setting() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage node = setting.enterNodeSetPage();
-        InternalNodeSetPage internal = node.enterInternalMainChainPage();
-        Assert.assertEquals("节点设置",internal.title_text.getText());
+        InternalNodeSetPage internal = node.enterDappChainNodeSettingPage();
+        System.out.println("internal:" + internal.title_text.getText());
+        Assert.assertTrue("节点设置".contains(internal.title_text.getText())
+            || "Node Settings".contains(internal.title_text.getText()) );
 
     }
 
-    @Test(description = "choose DAppChain", alwaysRun = true)
+    @Test(description = "choose mainChain", alwaysRun = true)
     public void test005_Node_Setting() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage node = setting.enterNodeSetPage();
-        InternalNodeSetPage internal = node.enterInternalDAppChainPage();
-        Assert.assertEquals("节点设置",internal.title_text.getText());
+        InternalNodeSetPage internal = node.enterMainChainNodeSettingPage();
+        System.out.println("internal:" + internal.title_text.getText());
+        Assert.assertTrue("节点设置".contains(internal.title_text.getText())
+            || "Node Settings".contains(internal.title_text.getText()) );
 
     }
+
+    @Test(description = "Switch Language Test")
+    public void test006_currencyTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        setting.currency_btn.click();
+        List<WebElement> currencyList = setting.currency_list;
+        Assert.assertTrue(currencyList.get(0).getText().contains("CNY"));
+        Assert.assertTrue(currencyList.get(1).getText().contains("USD"));
+    }
+
+    @Test(description = "Developer options Test", alwaysRun = true)
+    public void test007_developerOptions() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        String developer = setting.testnode_text.getText();
+        setting.trunDeveloperOptions();
+        String developerNow = setting.testnode_text.getText();
+        Assert.assertNotEquals(developer, developerNow);
+    }
+
 
 }
