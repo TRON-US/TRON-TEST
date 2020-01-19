@@ -75,7 +75,7 @@ public class WatchWalletTest extends Base {
     public void test002_frozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         Helper.swipScreen(DRIVER);
         frozen.freezeCount_input.sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
