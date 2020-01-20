@@ -236,5 +236,11 @@ public class Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
+    public void waiteTime(long time) {
+        DRIVER.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+    public void waiteTime() {
+        waiteTime(5);
+    }
 
 }
