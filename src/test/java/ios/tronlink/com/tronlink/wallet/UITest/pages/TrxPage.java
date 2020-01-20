@@ -1,6 +1,8 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -152,7 +154,23 @@ public class TrxPage extends AbstractPage {
         return new AssetPage(driver);
     }
 
+    public boolean enterNumberRecordPage(String record){
+        waiteTime();
+        Helper.swipRefreshScreen(driver);
+        waiteTime();
+        driver.findElementByName(record).click();
+        waiteTime();
+        try{
+            log(driver.findElementById("headerLabel").getText());
 
+        }catch (Exception e){
+            driver.findElementByName(record).click();
+            log(driver.findElementById("headerLabel").getText());
+        }
+
+        return  driver.findElementById("headerLabel").getText().contains(record);
+
+    }
 
 
 }

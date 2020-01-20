@@ -284,7 +284,8 @@ public class Helper {
                 Element_is_exist = true;
             }catch (NoSuchElementException e){
                 //Element_is_exist = false;
-                TimeUnit.SECONDS.sleep(2);
+//                TimeUnit.SECONDS.sleep(2);
+                DRIVER.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
             }
         }
         if(el != null){
