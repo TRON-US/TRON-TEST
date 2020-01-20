@@ -257,7 +257,7 @@ public EnergyRentPage entereneryRantage()throws Exception {
 
     public SendTrxPage enterSendTrxPage() throws Exception{
         transfer_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         return new SendTrxPage(driver);
     }
 
@@ -269,9 +269,9 @@ public EnergyRentPage entereneryRantage()throws Exception {
 
 
     public TrxPage enterTrxPage() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         cellArray.get(0).click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
         return new TrxPage(driver);
     }
 
