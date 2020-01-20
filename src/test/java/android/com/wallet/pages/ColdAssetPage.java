@@ -49,6 +49,32 @@ public class ColdAssetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_address")
     public WebElement address_text;
 
+    @FindBy(className = "android.view.View")
+    public List<WebElement> knowledgeText_list;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_wallet_manager")
+    public WebElement addWallet_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/cd_pk")
+    public WebElement privateKey_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/cd_kt2")
+    public WebElement keystore_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/cd_cw")
+    public WebElement createWallet_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/rl_mm")
+    public WebElement mnemonic_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_qr")
+    public WebElement privateKeyQrScan_btn;
+
+
+
+
+
+
     public ColdMinePage enterColdMinePage() {
       driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
       me_btn.click();

@@ -104,7 +104,7 @@ public class SettingTest extends Base {
 
     }
 
-    @Test(description = "Switch Language Test")
+    @Test(description = "Currency Test")
     public void test006_currencyTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
