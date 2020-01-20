@@ -61,4 +61,10 @@ public class AbstractPage {
         return integer.toString();
     }
 
+    public void waiteTime(long time) {
+        driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+    public void waiteTime() {
+        waiteTime(5);
+    }
 }

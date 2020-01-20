@@ -94,12 +94,12 @@ public class SendTrxPage extends AbstractPage {
 
 
     public WebElement getTrc20Token() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
         return  cells.get(1);
     }
     public WebElement getTrc10Token() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
         return  cells.get(2);
     }
@@ -117,6 +117,7 @@ public class SendTrxPage extends AbstractPage {
 
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
         element.click();
+        waiteTime();
 
     }
 
@@ -371,5 +372,65 @@ public class SendTrxPage extends AbstractPage {
         }
     }
 
+    public TrxPage sendTrxWithNumber(String number) throws Exception{
 
+        waiteTime();
+        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        waiteTime();
+        testfieldArray.get(2).sendKeys(number);
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        send_btn.click();
+        waiteTime();
+        transferNow_btn.click();
+        waiteTime();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        waiteTime();
+        broadcastButtonClick();
+        return new TrxPage(driver);
+    }
+
+    public TrxPage sendTrx10WithNumber(String number) throws Exception{
+        waiteTime();
+        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        token_btn.click();
+        waiteTime();
+        getTrc10Token().click();
+        waiteTime();
+        testfieldArray.get(2).sendKeys(number);
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        send_btn.click();
+        waiteTime();
+        transferNow_btn.click();
+        waiteTime();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        waiteTime();
+        broadcastButtonClick();
+        return new TrxPage(driver);
+    }
+
+    public TrxPage sendTrx20WithNumber(String number) throws Exception{
+        waiteTime();
+        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        token_btn.click();
+        getTrc20Token().click();
+        waiteTime();
+        testfieldArray.get(2).sendKeys(number);
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        send_btn.click();
+        waiteTime();
+        transferNow_btn.click();
+        waiteTime();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        waiteTime();
+        broadcastButtonClick();
+
+        return new TrxPage(driver);
+    }
 }
