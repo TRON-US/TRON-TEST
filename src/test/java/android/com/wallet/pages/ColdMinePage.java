@@ -33,9 +33,14 @@ public class ColdMinePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/about")
     public WebElement about_btn;
 
-  @FindBy(id = "com.tronlink.wallet:id/setting")
-  public WebElement setting_btn;
+    @FindBy(id = "com.tronlink.wallet:id/setting")
+    public WebElement setting_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    public WebElement address_test;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    public WebElement walletName_test;
 
 
 
@@ -51,7 +56,7 @@ public class ColdMinePage extends AbstractPage {
 
 
     //enter Setting page
-    public SettingPage enterSettingPage(){
+    public ColdSettingPage enterSettingPage(){
         Helper.swipScreen(driver);
         try {
             Helper.swipScreen(driver);
@@ -59,7 +64,7 @@ public class ColdMinePage extends AbstractPage {
         }catch (Exception e){
             new Base().log("setting_btn button not found");
         }
-        return new SettingPage(driver);
+        return new ColdSettingPage(driver);
     }
 
 
