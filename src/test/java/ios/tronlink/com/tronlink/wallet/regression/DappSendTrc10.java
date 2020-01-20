@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class DappSendTrc10 extends BaseTest {
+    String successNumber;
 
     public SendTrxPage enterToSendTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -60,18 +61,28 @@ public class DappSendTrc10 extends BaseTest {
         Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
 
     }
-
-
-    @Test(description = "ssendaddressChanged test",alwaysRun = true)
-    public void tsst001_sendaddressChanged() throws Exception {
+    @Test(description = "SendTrc10 success test",alwaysRun = true)
+    public void test001_sendTrc10Success() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.testfieldArray.get(0).sendKeys(" ");
-        Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址格式不正确"));
+        String count = random(10,10);
+        log(count);
+        successNumber = count;
+        TrxPage tokenpage = transfer.sendTrx10WithNumber(successNumber);
+
+        double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+        transfer.back_bt.click();//返回到首页资产页
+        waiteTime();
+        AssetPage assetpage = new AssetPage(DRIVER);
+        tokenpage = assetpage.enterTrx10Page();
+        double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+        System.out.println(count   + "   " + trc10Before  + " " + trc10after);
+        Assert.assertTrue(trc10after + Integer.parseInt(removeSymbol(count)) <= trc10Before);
     }
 
+
+
     @Test(description = "input max send number",alwaysRun = true)
-    public void tsst002_inputMaxSendNumber() throws Exception {
+    public void test002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("max");
         transfer.transferNow_btn.click();
@@ -80,7 +91,7 @@ public class DappSendTrc10 extends BaseTest {
 
 
     @Test(description = "input mix send number",alwaysRun = true)
-    public void tsst003_inputMixSendNumber() throws Exception {
+    public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("mix");
         Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"格式错误"));
@@ -88,37 +99,28 @@ public class DappSendTrc10 extends BaseTest {
 
 
     @Test(description = "input too Much trc10 send number",alwaysRun = true)
-    public void tsst004_inputTooMuchSendNumber() throws Exception {
+    public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("tooMuch");
         Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"余额不足"));
     }
 
-    @Test(description = "SendTrc10 success test",alwaysRun = true)
-    public void tsst005_sendTrc10Success() throws Exception {
+    @Test(description = "ssendaddressChanged test",alwaysRun = true)
+    public void test005_sendaddressChanged() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
-        TimeUnit.SECONDS.sleep(1);
-        transfer.token_btn.click();
-        transfer.getTrc10Token().click();
-        TimeUnit.SECONDS.sleep(1);
-        transfer.testfieldArray.get(2).sendKeys("1");
-        Helper.tapWhitePlace(transfer.driver);
-        TimeUnit.SECONDS.sleep(1);
-        transfer.send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        transfer.transferNow_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        transfer.InputPasswordConfim_btn.sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(1);
-        transfer.broadcastButtonClick();
-        TrxPage tokenpage = new TrxPage(transfer.driver);
-        double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        transfer.back_bt.click();//返回到首页资产页
-        AssetPage assetpage = new AssetPage(DRIVER);
-        tokenpage = assetpage.enterTrx10Page();
-        double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        Assert.assertTrue(trc10after + 1 == trc10Before);
+        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址格式不正确"));
+    }
+
+    @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
+    public void test006_CheckOutNumberInRecordTrx10() throws Exception {
+        log(successNumber);
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx10Page();
+        String findString = "-" + successNumber;
+        log(findString);
+        Assert.assertTrue(page.enterNumberRecordPage(findString));
+
     }
 }
