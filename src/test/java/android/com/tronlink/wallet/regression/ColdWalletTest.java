@@ -30,10 +30,10 @@ public class ColdWalletTest extends Base {
     String addressString;
 
 
-    @Parameters({"privateKey","address"})
+    @Parameters({"privateKey","address","udid"})
     @BeforeClass(alwaysRun = true)
-    public void setUpBefore(String privateKey,String address) throws Exception {
-        AppiumTestCase.cmdReturn("adb shell svc wifi disable");
+    public void setUpBefore(String privateKey,String address,String udid) throws Exception {
+        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi disable");
         TimeUnit.SECONDS.sleep(3);
         new Helper().getColdWalletSign(privateKey, DRIVER);
         addressString = address;
@@ -45,11 +45,12 @@ public class ColdWalletTest extends Base {
         DRIVER.activateApp("com.tronlink.wallet");
     }
 
+    @Parameters({"udid"})
     @AfterClass(alwaysRun = true)
-    public void tearDownAfterClass() {
+    public void tearDownAfterClass(String udid) {
         //Base.tearDownAfterClass();
         try {
-            AppiumTestCase.cmdReturn("adb shell svc wifi enable");
+            AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi enable");
             TimeUnit.SECONDS.sleep(3);
             DRIVER.quit();
         } catch (Exception e) {
