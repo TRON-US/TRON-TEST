@@ -4,6 +4,7 @@ import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
+import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,12 +17,7 @@ public class NodeSetTest extends BaseTest {
         MinePage mine = assetPage.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-        int topX = nodeSetPage.MainChain_btn.getLocation().x + 10;
-        int topY = nodeSetPage.MainChain_btn.getLocation().y + 10;
-        log("\n topY: " + topX + " botY: " + topY );
-        IOSTouchAction action = new IOSTouchAction(nodeSetPage.driver);
-        action.tap(PointOption.point(topX,topY)).perform();
-
+        Helper.TapLocationOffset(DRIVER,nodeSetPage.MainChain_btn,10,10);
         TimeUnit.SECONDS.sleep(1);
         log("已经点击过:MainChain");
         return new NodeSetHelperPage(DRIVER);

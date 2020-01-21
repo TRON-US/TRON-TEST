@@ -51,77 +51,78 @@ public class MinePage extends AbstractPage {
     public WebElement assets_btn;
 
     @FindBy(name = "委员会提议")
-    public  WebElement committee_btn;
+    public WebElement committee_btn;
 
     //enter about us Page
-    public AboutUsPage enterAboutUsPage(){
+    public AboutUsPage enterAboutUsPage() {
         try {
             TimeUnit.SECONDS.sleep(1);
             aboutUs_btn.click();
             TimeUnit.SECONDS.sleep(1);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             new Base().log("aboutUs_btn button not found");
         }
         return new AboutUsPage(driver);
     }
 
-    public CommitteePage enterCommitteePage(){
+    public CommitteePage enterCommitteePage() {
         try {
             TimeUnit.SECONDS.sleep(1);
             committee_btn.click();
             TimeUnit.SECONDS.sleep(8);
-        }catch (Exception e){
+        } catch (Exception e) {
             new Base().log("committee_btn button not found");
         }
-        return  new CommitteePage(driver);
+        return new CommitteePage(driver);
     }
 
     //enter Setting page
-    public SettingPage enterSettingPage(){
+    public SettingPage enterSettingPage() {
         try {
             Helper.swipScreen(driver);
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             setting_btn.click();
-            TimeUnit.SECONDS.sleep(1);
-
-        }catch (Exception e){
+            waiteTime();
+        } catch (Exception e) {
             new Base().log("setting_btn button not found");
         }
         return new SettingPage(driver);
     }
 
     //enter Group page
-    public GroupPage enterGroupPage(){
+    public GroupPage enterGroupPage() {
         try {
             TimeUnit.SECONDS.sleep(1);
             intoGroup_btn.click();
             TimeUnit.SECONDS.sleep(3);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             new Base().log("intoGroup_btn button not found");
         }
         return new GroupPage(driver);
     }
+
     //enter Help page
-    public HelpPage enterHelpPage(){
+    public HelpPage enterHelpPage() {
         try {
             TimeUnit.SECONDS.sleep(1);
             helpCenter_btn.click();
             TimeUnit.SECONDS.sleep(5);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             new Base().log("intoGroup_btn button not found");
         }
         return new HelpPage(driver);
     }
+
     //enter FriendInvitation Page
-    public FriendInvitationPage enterFriendInvitationPage(){
+    public FriendInvitationPage enterFriendInvitationPage() {
         try {
             TimeUnit.SECONDS.sleep(1);
             friendInvitation_btn.click();
             TimeUnit.SECONDS.sleep(3);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return new FriendInvitationPage(driver);
@@ -129,24 +130,24 @@ public class MinePage extends AbstractPage {
 
 
     //enter FriendInvitation Page
-    public AnnouncementPage enterAnnouncementPage(){
+    public AnnouncementPage enterAnnouncementPage() {
         try {
             announcement_btn.click();
             TimeUnit.SECONDS.sleep(5);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return new AnnouncementPage(driver);
     }
 
 
-    public TransactionRecordPage enterTransactionRecordPage(){
+    public TransactionRecordPage enterTransactionRecordPage() {
         try {
             TimeUnit.SECONDS.sleep(3);
             transferHistory_btn.click();
             TimeUnit.SECONDS.sleep(3);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -155,12 +156,12 @@ public class MinePage extends AbstractPage {
 
 
     //enter android.com.wallet page
-    public MyPursePage enterMyPursePage(){
+    public MyPursePage enterMyPursePage() {
         try {
             TimeUnit.SECONDS.sleep(1);
             myPurse_btn.click();
             TimeUnit.SECONDS.sleep(1);
-        }catch (Exception e){
+        } catch (Exception e) {
             myPurse_btn.click();
             System.out.println(e);
         }
@@ -174,8 +175,6 @@ public class MinePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new AssetPage(driver);
     }
-
-
 
 
 }
