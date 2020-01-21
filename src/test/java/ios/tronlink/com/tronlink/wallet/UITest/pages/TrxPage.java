@@ -172,5 +172,37 @@ public class TrxPage extends AbstractPage {
 
     }
 
+    public boolean enterWithDrawNumberRecordPage(String record){
+       return enterDepositNumberRecordPage(record);
+    }
 
+    public boolean enterDepositNumberRecordPage(String record){
+        waiteTime();
+        log("进入token page");
+        Helper.swipeLeftScreen(driver);
+        waiteTime();
+        Helper.swipeLeftScreen(driver);
+        waiteTime();
+        Helper.swipeLeftScreen(driver);
+        waiteTime();
+        Helper.swipeLeftScreen(driver);
+        waiteTime();
+        Helper.swipeLeftScreen(driver);
+        waiteTime();
+        Helper.swipeLeftScreen(driver);
+        waiteTime();
+        Helper.TapLocationName(driver,record);
+        log("have click : " + record);
+        waiteTime();
+        try{
+            log(driver.findElementById("headerLabel").getText());
+        }catch (Exception e){
+            log("没有进入那条记录");
+            Helper.TapLocationName(driver,record);
+            log(driver.findElementById("headerLabel").getText());
+        }
+
+        return  driver.findElementById("headerLabel").getText().contains(record);
+
+    }
 }

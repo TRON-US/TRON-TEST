@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class DappChainWithdraw10 extends BaseTest {
 
 
+    String successNumber;
 
 
     //enter SettingPage
@@ -54,20 +55,30 @@ public class DappChainWithdraw10 extends BaseTest {
         }
     }
 
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test001_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
-    }
 
-
-
-    @Test(description = "Check transferOut Trc10 Count",alwaysRun = true)
-    public void test002_checkTransferOutTrx() throws Exception {
+    @Test(description = "transferOut Success Checkout Trc10 Available trx",alwaysRun = true)
+    public void test002_checktransferOutSuccessAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
+        double trxCount = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println(trxCount);
+        String count = removeSymbol(random(10,10));
+        count = Helper.getPrettyNumber(count);
+        successNumber = count;
+
+        log(count);
+        TransferPage transferOut =  trx.enterTransferOutPage();
+        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
+        AssetPage page = trx.enterAssetPage();
+
+        trx = page.enterTrx10Page();
+        double trxCountNow = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println(trxCountNow);
+        waiteTime();
+        System.out.println(count   + "   " + trxCount  + " " + trxCountNow);
+        Assert.assertTrue(trxCount >= trxCountNow +  Double.parseDouble(count) );
+
     }
+
 
 
 
@@ -104,38 +115,25 @@ public class DappChainWithdraw10 extends BaseTest {
 
     }
 
-
-
-    @Test(description = "transferOut Success Checkout Trc10 Available trx",alwaysRun = true)
-    public void test006_checktransferOutSuccessAvailableBalance() throws Exception {
-
+    @Test(description = "Check transferOut Trc10 Count",alwaysRun = true)
+    public void test006_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferOut =  trx.enterTransferOutPage();
-        trx = transferOut.enterTrxPageWithTransferOutSuccess();
-        AssetPage page = trx.enterAssetPage();
-        trx = page.enterTrx10Page();
-        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TimeUnit.SECONDS.sleep(3);
-        System.out.println("trxCount:" + trxCount + "trxCountNow:" + trxCountNow);
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        TransferPage transferOut = trx.enterTransferOutPage();
+        transferOut.inputAndTapToTransferOut();
+        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
     }
 
 
-//    @Test(description = "transferOut Success trc10 Recording",alwaysRun = true)
-//    public void test007_transferOutSuccessRecording() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        double trc10before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-//        TransferPage transferOut =  trx.enterTransferOutPage();
-//        String count = removeSymbol(random(10,10));
-//        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-//        TimeUnit.SECONDS.sleep(1);
-//        AssetPage assetPage = trx.enterAssetPage();
-//        trx =  assetPage.enterTrx10Page();
-//        double trc10after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-//        Assert.assertTrue(trc10after + Double.parseDouble(count) <= trc10before );
-//    }
 
+
+    @Test(description = "Check OutNumberInRecord WithDraw trx10",alwaysRun = true)
+    public void test007_checkOutNumberInRecordWithDrawTrx10() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx10Page();
+        String findString = "-" + successNumber;
+        Assert.assertTrue(page.enterWithDrawNumberRecordPage(findString));
+
+    }
 
 
 
