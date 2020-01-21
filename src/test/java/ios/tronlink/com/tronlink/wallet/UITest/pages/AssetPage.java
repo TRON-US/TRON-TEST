@@ -299,7 +299,8 @@ public EnergyRentPage entereneryRantage()throws Exception {
     }
 
     public String getTrxCount() throws Exception {
-        TimeUnit.SECONDS.sleep(3);
+//        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         String trxCount = trxValue.getText().split(" ")[0];
         return trxCount;
     }
