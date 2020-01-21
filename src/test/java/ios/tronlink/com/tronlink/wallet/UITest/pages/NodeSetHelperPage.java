@@ -66,16 +66,20 @@ public class NodeSetHelperPage extends AbstractPage {
 
 
     public boolean addNote()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
-        test.click();
+        waiteTime(8);
+        addNewNodeBtn.click();
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192.168.1.1");
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("5000");
+        waiteTime();
         Helper.closeKeyBoard(driver);
-//        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND label = '确定'").click();
         comfirmBtn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);//必须这么用,因为要等待页面跳转
         try {
+
             driver.findElementByName("节点类型").getLocation();
+            log("没有退出页面");
             return false;
         }catch (Exception e){
             return true;
@@ -84,14 +88,15 @@ public class NodeSetHelperPage extends AbstractPage {
     }
 
     public boolean deleteNode()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(1);
-        nodeEditButton.click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Helper.TapLocationWL(driver,nodeEditButton);
+        waiteTime();
         deleteBtn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         try {
+
             nodeEditButton.getLocation();
             return false;
         }catch (Exception e){
@@ -118,17 +123,18 @@ public class NodeSetHelperPage extends AbstractPage {
     //
 
     public boolean ipwrong()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addNewNodeBtn.click();
-
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192");
         Helper.closeKeyBoard(driver);
         return  driver.findElementById("errorStr").getText().contains("请输入正确的 IP 格式");
     }
 
     public boolean portwrong()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addNewNodeBtn.click();
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("65555");
         Helper.closeKeyBoard(driver);
         return  driver.findElementById("errorStr").getText().contains("请输入正确的端口格式");
@@ -137,16 +143,18 @@ public class NodeSetHelperPage extends AbstractPage {
     //ic arrow drop
     //XCUIElementTypeCell
     public boolean haveSolidity()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addNewNodeBtn.click();
+        waiteTime();
         driver.findElementById("ic arrow drop").click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         return  driver.findElementsByClassName("XCUIElementTypeCell").size() == 2;
     }
 
     public boolean addSolidityNode()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addNewNodeBtn.click();
+        waiteTime();
         driver.findElementById("ic arrow drop").click();
         driver.findElementsByClassName("XCUIElementTypeCell").get(1).click();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192.168.1.1");
@@ -167,20 +175,26 @@ public class NodeSetHelperPage extends AbstractPage {
 
 
     public boolean ipwrongSolidity()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addNewNodeBtn.click();
+        waiteTime();
         driver.findElementById("ic arrow drop").click();
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeCell").get(1).click();
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192");
         Helper.closeKeyBoard(driver);
         return  driver.findElementById("errorStr").getText().contains("请输入正确的 IP 格式");
     }
 
     public boolean portwrongSolidity()throws Exception{
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addNewNodeBtn.click();
+        waiteTime();
         driver.findElementById("ic arrow drop").click();
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeCell").get(1).click();
+        waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("65555");
         Helper.closeKeyBoard(driver);
         return  driver.findElementById("errorStr").getText().contains("请输入正确的端口格式");
