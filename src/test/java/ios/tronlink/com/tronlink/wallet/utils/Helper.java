@@ -385,4 +385,23 @@ public class Helper {
                 .moveTo(PointOption.point(width*1/5, height*4/5))
                 .release().perform();
     }
+
+    public static  void TapLocationIosNsPredicate(IOSDriver<?> driver,String predicate){
+        WebElement wl = driver.findElementByIosNsPredicate(predicate);
+        TapLocationOffset(driver,wl,4,4);
+    }
+    public static  void TapLocationName(IOSDriver<?> driver,String name){
+        WebElement wl = driver.findElementByName(name);
+        TapLocationOffset(driver,wl,4,4);
+    }
+    public static  void TapLocationId(IOSDriver<?> driver,String id){
+        WebElement wl = driver.findElementById(id);
+        TapLocationOffset(driver,wl,4,4);
+    }
+    public static  void TapLocationOffset(IOSDriver<?> driver,WebElement wl,int offsetX,int offsetY){
+        int topX = wl.getLocation().x + offsetX;
+        int topY = wl.getLocation().y + offsetY;
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.tap(PointOption.point(topX,topY)).perform();
+    }
 }

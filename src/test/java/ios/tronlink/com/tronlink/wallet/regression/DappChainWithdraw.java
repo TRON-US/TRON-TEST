@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class DappChainWithdraw extends BaseTest {
-
+    String successNumber;
 
     //enter SettingPage
     public SettingPage enterSettingPage() throws Exception {
@@ -55,21 +55,25 @@ public class DappChainWithdraw extends BaseTest {
 
 
 
-    @Test(description = "Check transferOut Chain Name",alwaysRun = true)
-    public void test001_checkTransferOutChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
-    }
 
+    @Test(description = "transferOut Success Checkout Available trx",alwaysRun = true)
+    public void test002_checktransferOutSuccessedAvailableBalance() throws Exception {
 
-
-
-    @Test(description = "Check transferOut Trx Count",alwaysRun = true)
-    public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferOutPage();
-        transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
+        double trxCount = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        String count = removeSymbol(random(10,10));
+        count = Helper.getPrettyNumber(count);
+        successNumber = count;
+        TransferPage transferOut =  trx.enterTransferOutPage();
+        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
+        AssetPage page = trx.enterAssetPage();
+        double trxCountNow = Double.parseDouble(removeSymbol(page.getTrxCount()));
+        waiteTime();
+        System.out.println(count   + "   " + trxCount  + " " + trxCountNow);
+        Assert.assertTrue(trxCount >= trxCountNow +  Double.parseDouble(count) );
     }
+
+
 
 
 
@@ -111,53 +115,22 @@ public class DappChainWithdraw extends BaseTest {
 
 
 
-    @Test(description = "transferOut Success Checkout Available trx",alwaysRun = true)
-    public void test006_checktransferOutSuccessedAvailableBalance() throws Exception {
-
+    @Test(description = "Check transferOut Trx Count",alwaysRun = true)
+    public void test006_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferOut =  trx.enterTransferOutPage();
-        trx = transferOut.enterTrxPageWithTransferOutSuccess();
-        AssetPage page = trx.enterAssetPage();
-        int trxCountNow = Integer.parseInt(removeSymbol(page.getTrxCount()));
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        TransferPage transferOut = trx.enterTransferOutPage();
+        transferOut.inputAndTapToTransferOut();
+        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
     }
 
+    @Test(description = "Check OutNumberInRecord WithDraw trx",alwaysRun = true)
+    public void test007_CheckOutNumberInRecordWithDrawTrx() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        String findString = "-" + successNumber;
+        Assert.assertTrue(page.enterWithDrawNumberRecordPage(findString));
 
-//
-//    @Test(description = "transferOut TRX Success Recording",alwaysRun = true)
-//    public void test007_transferOutSuccessRecording() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-//
-//        TransferPage transferOut =  trx.enterTransferOutPage();
-//        String count = removeSymbol(random(10,10));
-//        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-//        TimeUnit.SECONDS.sleep(1);
-//        AssetPage assetPage = trx.enterAssetPage();
-//        trx =  assetPage.enterTrxPage();
-//        double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-//        Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
-////        int tries = 0;
-////        Boolean exist = false;//XCUIElementTypeStaticText  XCUIElementTypeCell
-////        while(!exist && tries < 7) {
-////            tries++;
-////            try {
-////                AssetPage arret = trx.enterAssetPage();
-////                trx = arret.enterTrxPage();
-////                trx.tranferOut_tab.get(2).click();
-////                TimeUnit.SECONDS.sleep(3);
-////                List<WebElement> lintiest = trx.getFirstTransferOutNumber();
-////                if(Helper.contentTexts(lintiest,count)){
-////                    exist = true;
-////                    break;
-////                }
-////
-////            }catch (Exception e){}
-////        }
-////        Assert.assertTrue(exist);
-//    }
+    }
 
 
 

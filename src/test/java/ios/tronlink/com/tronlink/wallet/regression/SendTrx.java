@@ -42,13 +42,9 @@ public class SendTrx extends BaseTest {
         waiteTime();
         tokenpage = asset.enterTrxPage();
         double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-
         System.out.println(count   + "   " + trcBefore  + " " + trcafter);
         Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
     }
-
-
-
 
 
 
@@ -85,7 +81,6 @@ public class SendTrx extends BaseTest {
         Helper.tapWhitePlace(transfer.driver);
         Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址不能相同"));
     }
-
 
 
     @Test(description = "input Null Receiving address",alwaysRun = true)
