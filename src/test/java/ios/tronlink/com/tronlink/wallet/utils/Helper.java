@@ -394,6 +394,9 @@ public class Helper {
         WebElement wl = driver.findElementByName(name);
         TapLocationOffset(driver,wl,4,4);
     }
+    public static  void TapLocationWL(IOSDriver<?> driver,WebElement wl){
+        TapLocationOffset(driver,wl,4,4);
+    }
     public static  void TapLocationId(IOSDriver<?> driver,String id){
         WebElement wl = driver.findElementById(id);
         TapLocationOffset(driver,wl,4,4);
