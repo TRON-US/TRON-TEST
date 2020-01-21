@@ -309,6 +309,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void sendAllTrc20(String value) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
         TimeUnit.SECONDS.sleep(3);
