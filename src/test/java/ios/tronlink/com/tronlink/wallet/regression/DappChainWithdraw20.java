@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DappChainWithdraw20 extends BaseTest {
 
+    String successNumber;
 
     //enter SettingPage
     public SettingPage enterSettingPage() throws Exception {
@@ -51,19 +52,34 @@ public class DappChainWithdraw20 extends BaseTest {
             return asset;
         }
     }
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
+
+    @Test(description = "transferOut Success Checkout Trc20 Available trx",alwaysRun = true)
+    public void test001_transferOutSuccessCheckoutTrc20Availablealance() throws Exception {
+
+        TrxPage trx = enterTrxPage();
+        double trxCount = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        String count = removeSymbol(random(10,10));
+        count = Helper.getPrettyNumber(count);
+        successNumber = count;
+
+        TransferPage transferOut =  trx.enterTransferOutPage();
+        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
+        AssetPage page = trx.enterAssetPage();
+
+        trx = page.enterTrx20Page();
+        double trxCountNow =  Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        waiteTime();
+        System.out.println(count   + "   " + trxCount  + " " + trxCountNow);
+        Assert.assertTrue(trxCount >= trxCountNow +  Double.parseDouble(count) );
     }
 
-//
-//    @Test(description = "Check transferOut Trc20 Count",alwaysRun = true)
-//    public void test002_checkTransferOutTrx() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferOutPage();
-//        transferOut.inputAndTapToTransferOut();
-//        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
-//    }
+    @Test(description = "Check transferOut Trc20 Count",alwaysRun = true)
+    public void test002_checkTransferOutTrx() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage transferOut = trx.enterTransferOutPage();
+        transferOut.inputAndTapToTransferOut();
+        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
+    }
 
 
 
@@ -72,11 +88,6 @@ public class DappChainWithdraw20 extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
-//        System.out.println("start");
-//
-//        System.out.println(transferOut.errTipLabel.getText());
-//        System.out.println("end");
-
         Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"转出需要执行智能合约"));
 //转出需要执行智能合约。执行智能合约同时会消耗 Energy。
     }
@@ -95,52 +106,27 @@ public class DappChainWithdraw20 extends BaseTest {
 
 
 
-//    @Test(description = "Check Available Trc20 Balance",alwaysRun = true)
-//    public void test005_checkAvailableBalance() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-//        System.out.println("trxCount:" + trxCount);
-//        TransferPage transferOut = trx.enterTransferOutPage();
-//        int availableBalance = Integer.parseInt(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
-//        System.out.println("availableBalance:" + availableBalance);
-//        Assert.assertTrue(trxCount ==  availableBalance);
-//
-//    }
-
-
-
-    @Test(description = "transferOut Success Checkout Trc20 Available trx",alwaysRun = true)
-    public void test006_transferOutSuccessCheckoutTrc20Availablealance() throws Exception {
-
+    @Test(description = "Check Available Trc20 Balance",alwaysRun = true)
+    public void test005_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferOut =  trx.enterTransferOutPage();
-        trx = transferOut.enterTrxPageWithTransferOutSuccess();
-        AssetPage page = trx.enterAssetPage();
-        trx = page.enterTrx20Page();
-        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("startCount: " + trxCount + "  endCountNow: " + trxCountNow);
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
+        System.out.println("trxCount:" + trxCount);
+        TransferPage transferOut = trx.enterTransferOutPage();
+        int availableBalance = Integer.parseInt(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
+        System.out.println("availableBalance:" + availableBalance);
+        Assert.assertTrue(trxCount ==  availableBalance);
+
     }
 
 
+    @Test(description = "Check OutNumberInRecord WithDraw trx20",alwaysRun = true)
+    public void test006_checkOutNumberInRecordWithDrawTrx20() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx20Page();
+        String findString = "-" + successNumber;
+        Assert.assertTrue(page.enterWithDrawNumberRecordPage(findString));
 
-//    @Test(description = "transferOut Success Recording",alwaysRun = true)
-//    public void test007_transferOutSuccessRecording() throws Exception {
-//        TrxPage trx = enterTrxPage();
-//        double trc20before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-//        TransferPage transferOut =  trx.enterTransferOutPage();
-//        String count = removeSymbol(random(10,10));
-//        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-//        TimeUnit.SECONDS.sleep(1);
-//        AssetPage assetPage = trx.enterAssetPage();
-//        trx =  assetPage.enterTrx20Page();
-//        double trc20after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-//        Assert.assertTrue(trc20after + Double.parseDouble(count) <= trc20before );
-//
-//    }
-
+    }
 
 
 

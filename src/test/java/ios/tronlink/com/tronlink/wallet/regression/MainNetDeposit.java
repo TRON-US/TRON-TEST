@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MainNetDeposit extends BaseTest {
 
+    String successNumber;
 
     //enter SettingPage
     public SettingPage enterSettingPage() throws Exception {
@@ -39,12 +40,27 @@ public class MainNetDeposit extends BaseTest {
     }
 
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test001_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+//    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+//    public void test001_GuaranteeChainName() throws Exception {
+//        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+//    }
+
+    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    public void test002_transferInSuccessRecording() throws Exception {
+        TrxPage trx = enterTrxPage();
+        double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        TransferPage transferIn =  trx.enterTransferPage();
+        String count = removeSymbol(random(10,10));
+        count = Helper.getPrettyNumber(count);
+        successNumber = count;
+        trx = transferIn.enterTrxPageWithTransferSuccess(count);
+        TimeUnit.SECONDS.sleep(1);
+        AssetPage assetPage = trx.enterAssetPage();
+        trx =  assetPage.enterTrxPage();
+        double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println(count   + "   " + trcbefore  + " " + trcafter);
+        Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
     }
-
-
     @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
     public void test003_checkTransferInTrx() throws Exception {
         TrxPage trx = enterTrxPage();
@@ -109,21 +125,14 @@ public class MainNetDeposit extends BaseTest {
 
 
 
-    @Test(description = "TransferIn Success Recording",alwaysRun = true)
-    public void test008_transferInSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
-        String count = removeSymbol(random(10,10));
-        count = Helper.getPrettyNumber(count);
-        System.out.println("---------:" +trcbefore);
-        trx = transferIn.enterTrxPageWithTransferSuccess(count);
-        TimeUnit.SECONDS.sleep(1);
-        AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrxPage();
-        double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("---------:" +trcafter);
-        Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
+    @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
+    public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
+//        successNumber = "16";
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        String findString = "-" + successNumber;
+        Assert.assertTrue(page.enterDepositNumberRecordPage(findString));
+
     }
 
 

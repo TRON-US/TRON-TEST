@@ -123,7 +123,25 @@ public class TransferPage extends AbstractPage {
     }
 
 
-
+    public TrxPage enterTrxPageWithTransferOutSuccess(String count) throws Exception {
+//        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
+        count_text.sendKeys(count);
+        Helper.tapWhitePlace(driver);
+//        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
+        get_out_btn().click();
+//        TimeUnit.SECONDS.sleep(8);
+        waiteTime(8);
+        password_input.sendKeys("Test0001");
+        Helper.tapWhitePlace(driver);
+        waiteTime();
+//        TimeUnit.SECONDS.sleep(3);
+        get_finish_btn().click();
+        waiteTime(8);
+//        TimeUnit.SECONDS.sleep(8);
+        return new TrxPage(driver);
+    }
 
 
 
