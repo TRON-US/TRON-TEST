@@ -2,6 +2,9 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -31,27 +34,35 @@ public class BaseTest extends Base {
 
     }
 
+    @Parameters({"bundleId"})
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(Method methed) throws Exception {
+    public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
 
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
             screenshotAction(name);
-            DRIVER.closeApp();
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
+            //DRIVER.closeApp();
         } catch (Exception e) {
         }
 
     }
 
+    @Parameters({"bundleId"})
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethod() throws Exception {
+    public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
             tries++;
             try {
-                DRIVER.launchApp();
+                Map<String, Object> params = new HashMap<>();
+                params.put("bundleId", bundleId);
+                DRIVER.executeScript("mobile: activateApp", params);
+                //DRIVER.launchApp();
                 driver_is_start = true;
             } catch (Exception e) {
                 System.out.println(e);
