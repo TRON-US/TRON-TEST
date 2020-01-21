@@ -161,9 +161,9 @@ public class SettingPage extends AbstractPage {
 
 
     public NodeSetPage enterNodeSetPage() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         node_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         return new NodeSetPage(driver);
     }
 
