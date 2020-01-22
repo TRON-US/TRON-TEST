@@ -151,7 +151,7 @@ public class CommitteePage extends AbstractPage {
             log("try 进入我发起的提议");
             enterMyProposal();
             log("success 进入我发起的提议");
-            waiteTime();
+            TimeUnit.SECONDS.sleep(3);
             List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
             return wls.get(0);
     }
@@ -223,9 +223,9 @@ public class CommitteePage extends AbstractPage {
 
     public void agreeAction() throws Exception {
         enterMyProposal();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         agreeBtn.click();
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
@@ -236,8 +236,9 @@ public class CommitteePage extends AbstractPage {
 
     public void disagreeAction() throws Exception {
         enterMyAgreedProposal();
+        TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         disagreeBtn.click();
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
@@ -248,9 +249,9 @@ public class CommitteePage extends AbstractPage {
 
     public void deleteAction() throws Exception {
         enterMyProposal();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         deleteBtn.click();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();

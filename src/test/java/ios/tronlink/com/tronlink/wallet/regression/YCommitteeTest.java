@@ -120,10 +120,10 @@ public class YCommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(6 );
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
-        committeePage.change0proposal("0.12345");
+        committeePage.change0proposal("0.123456");
         WebElement wl = committeePage.findFirstproposalWl();
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, "0.12345"));
+        Assert.assertTrue(Helper.contentTexts(textarray, "0.123456"));
     }
     @Test(description = "be agreed Proposal", alwaysRun = true)
     public void test_005agreedProposal() throws Exception {
