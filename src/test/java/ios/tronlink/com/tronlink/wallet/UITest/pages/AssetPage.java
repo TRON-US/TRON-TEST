@@ -176,8 +176,8 @@ public class AssetPage extends AbstractPage {
     //enter MyPurse Page
     public String getWalletName() {
         try {
+            waiteTime();
             String name = walletNameBtn.getText();
-            TimeUnit.SECONDS.sleep(2);
             System.out.println("成功得到名称");
             return name;
         } catch (Exception e) {
@@ -390,20 +390,22 @@ public class AssetPage extends AbstractPage {
     }
 
     public MultiSignRecodPage enterMultiSignRecordView() throws Exception {
+
         gotoDetailBtn.click();
         TimeUnit.SECONDS.sleep(3);
         return new MultiSignRecodPage(driver);
     }
 
     public void importWatchWallet() throws Exception {
+        waiteTime();
         addWallet_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementById("观察钱包").click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
         Helper.closeKeyBoard(driver);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextField").sendKeys("WatchWallet");
         Helper.closeKeyBoard(driver);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();

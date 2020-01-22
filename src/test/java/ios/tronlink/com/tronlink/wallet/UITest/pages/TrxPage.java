@@ -127,23 +127,21 @@ public class TrxPage extends AbstractPage {
     }
 
     public TransferPage enterTransferPage() throws Exception {
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         tranferInBtn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         return new TransferPage(driver);
     }
     public TransferPage enterTransferInPage() throws Exception {
-//        System.out.println(transferIn_btnArray.size());
-//        transferIn_btnArray.get(1).click();
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         tranferInBtn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         return new TransferPage(driver);
     }
     public TransferPage enterTransferOutPage() throws Exception {
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         tranferOutBtn.click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         return new TransferPage(driver);
     }
 

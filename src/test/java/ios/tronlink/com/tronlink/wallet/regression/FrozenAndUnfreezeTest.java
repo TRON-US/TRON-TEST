@@ -47,6 +47,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     @Test(description = "Freeze energy detail", alwaysRun = true)
     public void test002_FreezeEnergyDetail() {
         FrozenAndUnfreezePage frozen = interferonPage();
+        waiteTime();
         frozen.freezeEnergyDetail_btn.get(0).click();
 
         int myFreeze = Integer.parseInt(removeSymbol(frozen.myFreeze_btn.get(0).getText().split(" ")[0]));

@@ -139,8 +139,9 @@ public class MultiSignRecodPage extends AbstractPage {
     }
 
     public boolean signWrongPass() throws Exception {
+        waiteTime();
         signBtns.get(0).click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         password_input.sendKeys("Test000");
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(3);

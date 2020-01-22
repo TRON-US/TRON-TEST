@@ -20,32 +20,32 @@ public class WatchWalletHelpPage extends AbstractPage {
     public void sendTrx() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
         SendTrxPage trxPage = assetPage.enterSendTrxPage();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         trxPage.testfieldArray.get(2).sendKeys("1");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
         TimeUnit.SECONDS.sleep(4);
 
     }
     public void send10token() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         assetPage.cellArray.get(1).click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
         TrxPage page = new TrxPage(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         page.sendBtn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         SendTrxPage trxPage = new SendTrxPage(driver);
 
         trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         trxPage.testfieldArray.get(2).sendKeys("1");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
         TimeUnit.SECONDS.sleep(4);
 
@@ -55,13 +55,14 @@ public class WatchWalletHelpPage extends AbstractPage {
         AssetPage assetPage = new AssetPage(driver);
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
         frozenAndUnfreezePage.inputFrozenCount("1");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         frozenAndUnfreezePage.getFreeze_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         if(Helper.isElementExist(driver,"继续")){
+            waiteTime();
             frozenAndUnfreezePage.getConfirmGo_btn().click();
-            TimeUnit.SECONDS.sleep(3);
         }
+        waiteTime();
         frozenAndUnfreezePage.getfreezeNow_btn().click();
         TimeUnit.SECONDS.sleep(2);
     }
@@ -71,13 +72,14 @@ public class WatchWalletHelpPage extends AbstractPage {
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
         driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '带宽'").click();
         frozenAndUnfreezePage.inputFrozenCount("1");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         frozenAndUnfreezePage.getFreeze_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         if(Helper.isElementExist(driver,"继续")){
+            waiteTime();
             frozenAndUnfreezePage.getConfirmGo_btn().click();
-            TimeUnit.SECONDS.sleep(3);
         }
+        waiteTime();
         frozenAndUnfreezePage.getfreezeNow_btn().click();
         TimeUnit.SECONDS.sleep(2);
     }
@@ -85,14 +87,14 @@ public class WatchWalletHelpPage extends AbstractPage {
         AssetPage assetPage = new AssetPage(driver);
         MinePage minePage = assetPage.enterMinePage();
         CommitteePage committeePage = minePage.enterCommitteePage();
-        TimeUnit.SECONDS.sleep(6);
+        waiteTime(6);
         committeePage.Setuppropos.click();
-        TimeUnit.SECONDS.sleep(9);
-        committeePage.textfieldList.get(2).clear();
+        waiteTime(9);
+        committeePage.textfieldList.get(2).click();
         committeePage.textfieldList.get(2).clear();
         committeePage.textfieldList.get(2).sendKeys("0.21");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(4);
 
@@ -167,10 +169,10 @@ public class WatchWalletHelpPage extends AbstractPage {
         AssetPage assetPage = new AssetPage(driver);
         TrxPage trxPage = assetPage.enterTrxPage();
         TransferPage page = trxPage.enterTransferInPage();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         page.count_text.sendKeys("10");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         page.get_inter_btn().click();
         TimeUnit.SECONDS.sleep(8);
 
@@ -194,10 +196,10 @@ public class WatchWalletHelpPage extends AbstractPage {
         AssetPage assetPage = new AssetPage(driver);
         TrxPage trxPage = assetPage.enterTrxPage();
         TransferPage page = trxPage.enterTransferOutPage();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         page.count_text.sendKeys("10");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         page.get_out_btn().click();
         TimeUnit.SECONDS.sleep(3);
         try {
@@ -212,6 +214,7 @@ public class WatchWalletHelpPage extends AbstractPage {
 
     public boolean isEnterColdPage(){
         try {
+            waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '冷钱包已被扫描'").getText();
             return  true;
         }catch (Exception e){
