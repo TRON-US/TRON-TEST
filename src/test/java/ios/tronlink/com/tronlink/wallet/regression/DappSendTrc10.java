@@ -65,10 +65,10 @@ public class DappSendTrc10 extends BaseTest {
     public void test001_sendTrc10Success() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         String count = random(10,10);
+        count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
         TrxPage tokenpage = transfer.sendTrx10WithNumber(successNumber);
-
         double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         transfer.back_bt.click();//返回到首页资产页
         waiteTime();
