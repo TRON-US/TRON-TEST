@@ -184,9 +184,9 @@ public class MultiSignManagerPage extends AbstractPage {
             Helper.swipScreen(driver);
             waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
-            waiteTime();
+            TimeUnit.SECONDS.sleep(3);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
-            waiteTime();
+            TimeUnit.SECONDS.sleep(10);
             driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
             waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
@@ -258,7 +258,7 @@ public class MultiSignManagerPage extends AbstractPage {
         Helper.closeKeyBoard(driver);//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
@@ -287,7 +287,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
@@ -367,7 +367,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
@@ -407,7 +407,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
 

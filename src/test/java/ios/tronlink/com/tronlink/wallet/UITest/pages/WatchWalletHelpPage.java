@@ -89,7 +89,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         CommitteePage committeePage = minePage.enterCommitteePage();
         waiteTime(6);
         committeePage.Setuppropos.click();
-        waiteTime(9);
+        TimeUnit.SECONDS.sleep(10);
         committeePage.textfieldList.get(2).click();
         committeePage.textfieldList.get(2).clear();
         committeePage.textfieldList.get(2).sendKeys("0.21");
