@@ -181,9 +181,9 @@ public class SettingPage extends AbstractPage {
     }
 
     public MinePage enterMinePage() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         back_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         return new MinePage(driver);
     }
 

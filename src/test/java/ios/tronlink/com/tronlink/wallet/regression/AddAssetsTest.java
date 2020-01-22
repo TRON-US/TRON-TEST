@@ -18,10 +18,10 @@ import static org.testng.Assert.assertTrue;
 public class AddAssetsTest extends BaseTest {
 
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
+//    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+//    public void test000_GuaranteeChainName() throws Exception {
+//        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
+//    }
 
 //    @Test(description = "test add assert",alwaysRun = true)
 //    public void test002_addAsset() throws Exception {

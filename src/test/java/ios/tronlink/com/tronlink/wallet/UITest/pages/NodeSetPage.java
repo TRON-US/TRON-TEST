@@ -31,8 +31,8 @@ public class NodeSetPage extends AbstractPage {
     public WebElement DAppChain_btn;
 
 
-    @FindBy(className = "XCUIElementTypeButton")
-    public List<WebElement> buttonArray;
+//    @FindBy(className = "XCUIElementTypeButton")
+//    public List<WebElement> buttonArray;  //原来有5个后来定位有时候顺序不一致
 
 
 
@@ -54,15 +54,27 @@ public class NodeSetPage extends AbstractPage {
 
 
     public SettingPage enterSettingPageChoiseDappChain() throws Exception {
-        buttonArray.get(3).click();
+        int normal = driver.findElementById("node select normal").getLocation().getY();
+        int selected = driver.findElementById("node select selected").getLocation().getY();
+        if (normal > selected){
+            driver.findElementById("node select normal").click();
+        }
+        waiteTime();
         back_btn.click();
+        waiteTime();
         return new SettingPage(driver);
     }
 
 
     public SettingPage enterSettingPageChoiseMainChain() throws Exception {
-        buttonArray.get(1).click();
+        int normal = driver.findElementById("node select normal").getLocation().getY();
+        int selected = driver.findElementById("node select selected").getLocation().getY();
+        if (normal < selected){
+            driver.findElementById("node select normal").click();
+        }
+        waiteTime();
         back_btn.click();
+        waiteTime();
         return new SettingPage(driver);
     }
 

@@ -197,15 +197,12 @@ public class Helper {
             SettingPage set = mine.enterSettingPage();
             NodeSetPage nodeSet = set.enterNodeSetPage();
             SettingPage settingPage = nodeSet.enterSettingPageChoiseDappChain();
-            boolean isdapp = !fastFindMainChain(settingPage.textArray);
             mine = settingPage.enterMinePage();
             mine.enterAssetPage();
-            return  isdapp;
-
-        }else{
-            return true;
-
         }
+        return true;
+
+
     }
     public static void switchToReleaseNet(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
@@ -283,8 +280,6 @@ public class Helper {
                 el = DRIVER.findElementByName(element);
                 Element_is_exist = true;
             }catch (NoSuchElementException e){
-                //Element_is_exist = false;
-//                TimeUnit.SECONDS.sleep(2);
                 DRIVER.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
             }
         }
