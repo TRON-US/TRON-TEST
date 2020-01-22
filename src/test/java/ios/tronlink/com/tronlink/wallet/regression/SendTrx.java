@@ -34,6 +34,7 @@ public class SendTrx extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         String count = random(10,10);
+        count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
         TrxPage tokenpage = transfer.sendTrxWithNumber(successNumber);

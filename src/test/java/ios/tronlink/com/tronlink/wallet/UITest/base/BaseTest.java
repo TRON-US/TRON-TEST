@@ -34,7 +34,6 @@ public class BaseTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod(Method methed) throws Exception {
         try {
-
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
             screenshotAction(name);
