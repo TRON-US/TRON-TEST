@@ -31,6 +31,7 @@ public class SendTrc10 extends BaseTest {
     public void test001_sendTrc10Success() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         String count = random(10, 10);
+        count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
         TrxPage tokenpage = transfer.sendTrx10WithNumber(successNumber);
