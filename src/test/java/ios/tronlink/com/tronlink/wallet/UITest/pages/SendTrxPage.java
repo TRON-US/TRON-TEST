@@ -195,17 +195,17 @@ public class SendTrxPage extends AbstractPage {
 
 
     public void sendKey(WebElement el,String value) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         el.sendKeys(value);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
     }
 
 
     public void sendAllTrx(String value) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         //calculate trx
         switch(value){
             case "max":
@@ -219,20 +219,20 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
     }
 
     public void sendAllTrc10(String value) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         token_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         getTrc10Token().click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         //calculate trx
         switch(value){
             case "max":
@@ -253,14 +253,14 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void sendAllTrc20(String value) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         token_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         getTrc20Token().click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         //calculate trx
         switch(value){
             case "max":
@@ -275,7 +275,7 @@ public class SendTrxPage extends AbstractPage {
                 break;
         }
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
 
@@ -284,7 +284,7 @@ public class SendTrxPage extends AbstractPage {
 
 
     public void enterSendTextField(String addr) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         testfieldArray.get(0).clear();
         testfieldArray.get(0).clear();
         testfieldArray.get(0).sendKeys(addr);
@@ -293,7 +293,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void enterGetTextField(String addr) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         testfieldArray.get(1).clear();
         testfieldArray.get(1).clear();
         testfieldArray.get(1).sendKeys(addr);
@@ -301,7 +301,7 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(4);
     }
     public void enterAmountTextField(String amount) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         testfieldArray.get(2).clear();
         testfieldArray.get(2).clear();
         testfieldArray.get(2).sendKeys(amount);
@@ -332,7 +332,7 @@ public class SendTrxPage extends AbstractPage {
         enterSendTextField(addr);
         enterGetTextField("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         enterAmountTextField("1.1");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(6);
         InputPasswordConfim_btn.sendKeys("Test0001");
@@ -351,13 +351,13 @@ public class SendTrxPage extends AbstractPage {
         enterSendTextField(addr);
         enterGetTextField("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         enterAmountTextField("1.2");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         driver.findElementsById("ic arrow drop").get(1).click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementById("active").click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(6);
         InputPasswordConfim_btn.sendKeys("Test0001");

@@ -158,9 +158,9 @@ public class MinePage extends AbstractPage {
     //enter android.com.wallet page
     public MyPursePage enterMyPursePage() {
         try {
-            TimeUnit.SECONDS.sleep(1);
+            waiteTime();
             myPurse_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            waiteTime();
         } catch (Exception e) {
             myPurse_btn.click();
             System.out.println(e);

@@ -84,7 +84,7 @@ public class CommitteePage extends AbstractPage {
             textfieldList.get(1).sendKeys("");
             textfieldList.get(1).sendKeys(pro);
             Helper.tapWhitePlace(driver);
-            TimeUnit.SECONDS.sleep(1);
+            waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
             TimeUnit.SECONDS.sleep(6);
             passwordTF.sendKeys("Test0001");
@@ -95,13 +95,13 @@ public class CommitteePage extends AbstractPage {
 
     }
     public void change2proposal(String pro) throws Exception{
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         textfieldList.get(2).clear();
         textfieldList.get(2).clear();
         textfieldList.get(2).sendKeys("");
         textfieldList.get(2).sendKeys(pro);
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
@@ -112,13 +112,13 @@ public class CommitteePage extends AbstractPage {
 
     }
     public void change0proposal(String pro) throws Exception{
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         textfieldList.get(0).clear();
         textfieldList.get(0).clear();
         textfieldList.get(0).sendKeys("");
         textfieldList.get(0).sendKeys(pro);
         Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
@@ -151,6 +151,7 @@ public class CommitteePage extends AbstractPage {
             log("try 进入我发起的提议");
             enterMyProposal();
             log("success 进入我发起的提议");
+            waiteTime();
             List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
             return wls.get(0);
     }
@@ -162,26 +163,26 @@ public class CommitteePage extends AbstractPage {
     }
 
     public int findvoteNumbers() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         findFirstAgreedroposalWl().click();
         TimeUnit.SECONDS.sleep(3);
         return  Integer.parseInt(totalVoteValue.getText());
     }
     public int findvoteafterNumbers() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         findFirstproposalWl().click();
         TimeUnit.SECONDS.sleep(3);
         return  Integer.parseInt(totalVoteValue.getText());
     }
     public boolean getagreedStateofproposal() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         findFirstAgreedroposalWl().click();
         TimeUnit.SECONDS.sleep(4);
         return disagreeBtn.isDisplayed();
     }
 
     public boolean getdisagreedStateofproposal() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         findFirstproposalWl().click();
         TimeUnit.SECONDS.sleep(4);
         return agreeBtn.isDisplayed();
@@ -195,7 +196,7 @@ public class CommitteePage extends AbstractPage {
 
 
     public void enterMyProposal() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         int topX = mysetuppropos.getLocation().x + 10;
         int topY = mysetuppropos.getLocation().y + 10;
         log("\n topY: " + topX + " botY: " + topY );
@@ -204,7 +205,7 @@ public class CommitteePage extends AbstractPage {
         action.tap(PointOption.point(topX,topY)).perform();
         System.out.println("end");
 //        mysetuppropos.click();
-        TimeUnit.SECONDS.sleep(4);
+
     }
 
     public void enterMyAgreedProposal() throws Exception {
@@ -222,8 +223,9 @@ public class CommitteePage extends AbstractPage {
 
     public void agreeAction() throws Exception {
         enterMyProposal();
+        waiteTime();
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
         agreeBtn.click();
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
@@ -235,7 +237,7 @@ public class CommitteePage extends AbstractPage {
     public void disagreeAction() throws Exception {
         enterMyAgreedProposal();
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
         disagreeBtn.click();
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
@@ -246,8 +248,9 @@ public class CommitteePage extends AbstractPage {
 
     public void deleteAction() throws Exception {
         enterMyProposal();
+        waiteTime();
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
         deleteBtn.click();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();

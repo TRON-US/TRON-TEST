@@ -154,9 +154,9 @@ public class MyPursePage extends AssetPage {
     public MultiSignManagerPage enterMultiSignManagerPageNew() {
         try {
             System.out.println("\n1 times find multiManage");
-            TimeUnit.SECONDS.sleep(2);
+            waiteTime();
             multiManageDoor.click();
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             int i = 2;
             while (i<6){
                 if (!isEnterMultiSingManagePage()){
@@ -170,9 +170,9 @@ public class MyPursePage extends AssetPage {
 
                     System.out.println("\n after 1find to try"+i+" times find multiManage");
                     Helper.refreshWalletScreen(driver);
-                    TimeUnit.SECONDS.sleep(1);
+                    waiteTime();
                     multiManageDoor.click();
-                    TimeUnit.SECONDS.sleep(3);
+                    waiteTime();
                 }else {
                     break;
                 }
@@ -183,9 +183,9 @@ public class MyPursePage extends AssetPage {
             try {
                 System.out.println("\n after Exception 2 times find multiManage");
                 Helper.refreshWalletScreen(driver);
-                TimeUnit.SECONDS.sleep(1);
+                waiteTime();
                 multiManageDoor.click();
-                TimeUnit.SECONDS.sleep(3);
+                waiteTime();
                 int i = 2;
                 while (i<5){
                     if (!isEnterMultiSingManagePage()){
@@ -199,9 +199,9 @@ public class MyPursePage extends AssetPage {
 
                         System.out.println("\nIN Exception "+i+" times find multiManage");
                         Helper.refreshWalletScreen(driver);
-                        TimeUnit.SECONDS.sleep(1);
+                        waiteTime();
                         multiManageDoor.click();
-                        TimeUnit.SECONDS.sleep(3);
+                        waiteTime();
                     }else {
                         break;
                     }
@@ -211,17 +211,17 @@ public class MyPursePage extends AssetPage {
                 try {
                     System.out.println("\nafter Exception 3 times find multiManage");
                     Helper.refreshWalletScreen(driver);
-                    TimeUnit.SECONDS.sleep(1);
+                    waiteTime();
                     ManageViewCells.get(0).click();
-                    TimeUnit.SECONDS.sleep(3);
+                    waiteTime();
                     int i = 2;
                     while (i<5){
                         if (!isEnterMultiSingManagePage()){
                             System.out.println("\nIN 2Exception"+i+" times find multiManage");
                             Helper.refreshWalletScreen(driver);
-                            TimeUnit.SECONDS.sleep(1);
+                            waiteTime();
                             multiManageDoor.click();
-                            TimeUnit.SECONDS.sleep(3);
+                            waiteTime();
                         }else {
                             break;
                         }
@@ -231,9 +231,9 @@ public class MyPursePage extends AssetPage {
                     try {
                         System.out.println("\n4 times find multiManage");
                         Helper.refreshWalletScreen(driver);
-                        TimeUnit.SECONDS.sleep(1);
+                        waiteTime();
                         multiManageDoor.click();
-                        TimeUnit.SECONDS.sleep(3);
+                        waiteTime();
                     }catch (Exception eddd){
                         System.out.println(eddd);
                     }

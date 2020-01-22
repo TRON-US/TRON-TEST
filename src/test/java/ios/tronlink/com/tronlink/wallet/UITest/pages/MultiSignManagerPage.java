@@ -169,7 +169,7 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
     public void delSignData() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         System.out.println("delSignData()");
         if (havedaddActive()) {
             System.out.println("need to del...");
@@ -182,13 +182,13 @@ public class MultiSignManagerPage extends AbstractPage {
 //            TimeUnit.SECONDS.sleep(3);
             System.out.println("Entered Active detailPage..");
             Helper.swipScreen(driver);
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
-            TimeUnit.SECONDS.sleep(1);
+            waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
-            TimeUnit.SECONDS.sleep(4);
+            waiteTime();
             driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-            TimeUnit.SECONDS.sleep(2);
+            waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
             TimeUnit.SECONDS.sleep(3);
         }
@@ -197,7 +197,7 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public boolean havedaddActive() throws Exception {
         Helper.refreshWalletScreen(driver);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         try {
             System.out.println("havedActive:print:\n" + havedActive.getText());
             return true;
@@ -228,100 +228,100 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public void addPermission(String name) throws Exception {
         System.out.println("into addPermission");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addauthorBtn.click();
         System.out.println("添加权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         activeNameTF.sendKeys(name);
         System.out.println("添加权限名称 clicked");
         Helper.closeKeyBoard(driver);
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         activeContentEditBtn.click();
         System.out.println("进入编辑权限页面 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         trxTranPower.click();
         System.out.println("点击添加trx转账 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应阈值 clicked");
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         Helper.closeKeyBoard(driver);//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
     }
 
     public void modifyPermission() throws Exception {
         System.out.println("into modifyPermission");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         haveActivedClickFunc();
         System.out.println("添加权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         Helper.closeKeyBoard(driver);
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         activeContentEditBtn.click();
         System.out.println("进入编辑权限页面 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         freezeAssetPower.click();
         System.out.println("点击添加冻结资产 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
-        TimeUnit.SECONDS.sleep(4);
+        waiteTime();
     }
 
 
     public void haveActivedClickFunc() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         System.out.println("Location:\n" + havedActive.getLocation()+"\nLocation\n Rect IS:\n" + havedActive.getRect() + "\nRect");
         IOSTouchAction action = new IOSTouchAction(driver);
         action.tap(PointOption.point(havedActive.getLocation().x+ 10,havedActive.getLocation().y + 20)).perform();
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
     }
 
     public void ownerClickFunc() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         try {
             System.out.println("Location:\n" + owner.getLocation()+"\nLocation\n Rect IS:\n" + owner.getRect() + "\nRect");
             IOSTouchAction action = new IOSTouchAction(driver);
             action.tap(PointOption.point(owner.getLocation().x+ 10,owner.getLocation().y + 20)).perform();
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             System.out.println("1次点击进入");
         }catch (Exception e){
             System.out.println("1次失败 ");
 
             Helper.swipRefreshScreen(driver);
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             System.out.println("Location:\n" + owner.getLocation()+"\nLocation\n Rect IS:\n" + owner.getRect() + "\nRect");
             IOSTouchAction action = new IOSTouchAction(driver);
             action.tap(PointOption.point(owner.getLocation().x+ 10,owner.getLocation().y + 20)).perform();
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             System.out.println("2次点击进入");
 
         }
@@ -337,37 +337,37 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public boolean inputPassword(String pass) throws Exception {
         System.out.println("into addPermission");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addauthorBtn.click();
         System.out.println("添加权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         activeNameTF.sendKeys("testActive");
         System.out.println("添加权限名称 clicked");
         Helper.closeKeyBoard(driver);
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         activeContentEditBtn.click();
         System.out.println("进入编辑权限页面 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         trxTranPower.click();
         System.out.println("点击添加trx转账 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应权重 clicked");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
@@ -377,34 +377,34 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public boolean inputEmptyPassword() throws Exception {
         System.out.println("into addPermission");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         addauthorBtn.click();
         System.out.println("添加权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         activeNameTF.sendKeys("testActive");
         System.out.println("添加权限名称 clicked");
         Helper.closeKeyBoard(driver);
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         activeContentEditBtn.click();
         System.out.println("进入编辑权限页面 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         trxTranPower.click();
         System.out.println("点击添加trx转账 clicked");
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应权重 clicked");
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(1);
