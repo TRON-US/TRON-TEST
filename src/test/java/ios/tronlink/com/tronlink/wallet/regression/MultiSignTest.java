@@ -110,15 +110,16 @@ public class MultiSignTest extends Base {
     @Test(description = "add sign account", alwaysRun = true)
     public void test002_addSignAccountSuccess(String multiSignPrivateKey) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
+        waiteTime();
         assetPage.addWallet_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         DRIVER.findElementByName("私钥导入").click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
         ImportPrivateKeyPage importPrivateKey = new ImportPrivateKeyPage(DRIVER);
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(multiSignPrivateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("Signed");
         PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
         setPwdAgain.pwd_input.sendKeys("Test0001");
         Helper.tapWhitePlace(DRIVER);
         setPwdAgain.getComplish_btn().click();
@@ -132,7 +133,7 @@ public class MultiSignTest extends Base {
     @Test(description = "change account", alwaysRun = true)
     public void test003_swipChangeAccountSuccess() throws Exception {
             AssetPage assetPage = new AssetPage(DRIVER);
-            TimeUnit.SECONDS.sleep(3);
+            waiteTime();
             String oldName = assetPage.walletNameBtn.getText();
             log("\nfrom Wallet: " + oldName );
             MyPursePage myPursePage = assetPage.enterMyPursePage();
@@ -144,7 +145,7 @@ public class MultiSignTest extends Base {
     @Test(description = "swip account address is change", alwaysRun = true)
     public void test004_swipAccountAddressChange() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         String oldName = assetPage.walletNameBtn.getText();
         MyPursePage myPursePage = assetPage.enterMyPursePage();
         myPursePage.swipWalletTochangeNext();
@@ -155,7 +156,7 @@ public class MultiSignTest extends Base {
     @Test(description = "make account address to Signed", alwaysRun = true)
     public void test005_makeAccountToSigned() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         String oldName = assetPage.walletNameBtn.getText();
         if (oldName.contains("Signed")){
             Assert.assertTrue(true);
@@ -199,7 +200,7 @@ public class MultiSignTest extends Base {
     @Test(description = "make account address to Owner", alwaysRun = true)
     public void test010_makeAccountToOwner() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         String oldName = assetPage.walletNameBtn.getText();
         if (oldName.contains("Auto_test")){
             Assert.assertTrue(true);
@@ -272,7 +273,7 @@ public class MultiSignTest extends Base {
     @Test(description = "make account address to Signed", alwaysRun = true)
     public void test017_makeAccountToSigned() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         String oldName = assetPage.walletNameBtn.getText();
         if (oldName.contains("Signed")){
             Assert.assertTrue(true);
@@ -302,7 +303,7 @@ public class MultiSignTest extends Base {
     @Test(description = "make account address to Owner", alwaysRun = true)
     public void test020_makeAccountToOwner() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
         String oldName = assetPage.walletNameBtn.getText();
         if (oldName.contains("Auto_test")) {
             Assert.assertTrue(true);
