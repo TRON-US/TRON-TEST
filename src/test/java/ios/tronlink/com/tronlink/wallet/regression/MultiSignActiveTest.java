@@ -57,11 +57,11 @@ public class MultiSignActiveTest extends BaseTest {
 //        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
 //    }
 //
-//    @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
-//    public void test001_MultiSignatureQuestionContentTest() throws Exception {
-//        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
-//        Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
-//    }
+    @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
+    public void test001_MultiSignatureQuestionContentTest() throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
+    }
 
     @Test(description = "Add MultiSignature Test", alwaysRun = true)
     public void test002_multiSignature() throws Exception {
