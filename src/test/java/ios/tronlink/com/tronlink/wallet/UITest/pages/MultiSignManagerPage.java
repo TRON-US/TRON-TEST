@@ -284,7 +284,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(3);
