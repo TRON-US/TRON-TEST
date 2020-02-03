@@ -97,6 +97,7 @@ public class Helper {
         for (int i=0;i<5;i++) {
             try {
                 we.isDisplayed();
+                TimeUnit.SECONDS.sleep(3);
             }catch (Exception e){
                 AndroidTouchAction action = new AndroidTouchAction(driver);
                 int width = driver.manage().window().getSize().width;
@@ -109,7 +110,9 @@ public class Helper {
                         .release().perform();
                 System.out.println("swip the screen...");
             }
+
         }
+
 
     }
 

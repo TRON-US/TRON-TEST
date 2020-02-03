@@ -247,6 +247,7 @@ public class CommitteeTest extends Base {
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         committeeProposalPage = createProposePage.createProposal();
+        TimeUnit.SECONDS.sleep(3);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
