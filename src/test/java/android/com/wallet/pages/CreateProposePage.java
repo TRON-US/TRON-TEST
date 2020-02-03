@@ -56,7 +56,7 @@ public class CreateProposePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         password_btn.sendKeys("Test0001");
         send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         return new CommitteeProposalPage(driver);
     }
 

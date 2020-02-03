@@ -106,6 +106,7 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
     public CreateProposePage enterCreateProposePage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         createPropose_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new CreateProposePage(driver);
@@ -136,6 +137,7 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
     public MyProposalsPage enterMyProposalsPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
         myProposal_btn.click();
         TimeUnit.SECONDS.sleep(5);
         return new MyProposalsPage(driver);
