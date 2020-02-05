@@ -56,9 +56,11 @@ public class MinePage extends AbstractPage {
     //enter about us Page
     public AboutUsPage enterAboutUsPage() {
         try {
-            TimeUnit.SECONDS.sleep(1);
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(1);
             aboutUs_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(1);
 
         } catch (Exception e) {
             new Base().log("aboutUs_btn button not found");

@@ -78,7 +78,7 @@ public class autoCreateTestngXml {
         //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
         //singleClassNameList.add("");
         dirList.add("regression");
-        dirList.add("multiSign");
+//        dirList.add("multiSign");
         iosDeviceNameList.add("38afae054a2740c4f3e7835564b82cb1bdec6cc8");
         iosDeviceNameList.add("1fb216ca798cf08a2d01fbdc78e2cdbb05321e24");
         iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
@@ -201,6 +201,7 @@ public class autoCreateTestngXml {
 
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
+
 //        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
 //        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
         String classContent = "";
@@ -221,9 +222,9 @@ public class autoCreateTestngXml {
                 }
                 AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
                 System.out.print("Uninstall tronlink from " + udid + " succesfully\n");
-                //install app
                 AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
                 System.out.print("Install tronlink to " + udid + " succesfully");
+
                 sb.append("    <test name= \"" + udid + "\">\n");
                 String platformVersion = getDeviceVersion(udid);
                 String deviceName = getDeviceName(udid);
@@ -515,7 +516,6 @@ public class autoCreateTestngXml {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }
-        //HttpMethed.printJsonContent(responseContent);
         httppost.releaseConnection();
         return 0L;
     }
@@ -617,9 +617,14 @@ public class autoCreateTestngXml {
                 for (int j = 0; j < currentDepth; j++) {
                     System.out.print("   ");
                 }
-                System.out.print("|--");
-                System.out.println(name);
-                nameList.add(dirName + "." + name);
+                if (!name.contains(".DS_Store")){
+                    System.out.print("|--");
+                    System.out.println(name);
+                    nameList.add(dirName + "." + name);
+                }else {
+                    System.out.println("found DS_Store !!!");
+                }
+
 
             }
         }

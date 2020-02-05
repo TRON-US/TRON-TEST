@@ -19,9 +19,8 @@ public class AssetPage extends AbstractPage {
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
-
         try {
-            TimeUnit.SECONDS.sleep(1);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
             }
@@ -29,6 +28,7 @@ public class AssetPage extends AbstractPage {
         } catch (Exception e) {
             try {
                 if (adClose_btn.isDisplayed()) {
+
                     adClose_btn.click();
                 }
             } catch (Exception el) {
@@ -150,7 +150,7 @@ public class AssetPage extends AbstractPage {
     public VotePage enterVotePage() {
         try {
             vote_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,8 +202,9 @@ public class AssetPage extends AbstractPage {
     //ReceiptPage
     public ReceiptPage enterReceiptCoinPage() {
         try {
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
             receipt_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -213,9 +214,11 @@ public class AssetPage extends AbstractPage {
     //enter FrozenAndUnfreeze Page
     public FrozenAndUnfreezePage enterFrozenAndThawingPage() {
         try {
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
             frozen_btn.click();
-            TimeUnit.SECONDS.sleep(1);
-        } catch (Exception e) {
+            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e) {
             e.printStackTrace();
         }
         return new FrozenAndUnfreezePage(driver);
@@ -225,11 +228,12 @@ public class AssetPage extends AbstractPage {
     //enter AddAssert Page
     public AddAssertPage enterAddAssertPage() {
         try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                //TimeUnit.SECONDS.sleep(1);
             }
         } catch (Exception e) {
         }
@@ -246,9 +250,12 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter mine page
-    public MinePage enterMinePage() throws Exception {
-        waiteTime();
+
+    public MinePage enterMinePage() throws Exception{
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+
         mine_btn.click();
+        driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         mine_btn.click();
         waiteTime();
         return new MinePage(driver);
