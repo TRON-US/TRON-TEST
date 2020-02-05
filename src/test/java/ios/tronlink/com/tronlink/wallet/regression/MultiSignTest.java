@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class MultiSignTest extends Base {
@@ -16,44 +18,63 @@ public class MultiSignTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
         System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
-        DRIVER.closeApp();
-        log("开始移除app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-        log("开始安装app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-        log("开始导入ownerPrivatekey");
-        DRIVER.closeApp();
-        DRIVER.launchApp();
+//        DRIVER.closeApp();
+//        log("开始移除app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+//        log("开始安装app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//        log("开始导入ownerPrivatekey");
+//        DRIVER.closeApp();
+//        DRIVER.launchApp();
         new Helper().getSign(ownerPrivateKey, DRIVER);
     }
 
+    @Parameters({"bundleId"})
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(Method methed) throws Exception {
+    public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
             screenshotAction(name);
-            DRIVER.closeApp();
-            DRIVER.launchApp();
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
         } catch (Exception e) {
         }
 
     }
-
-    @Parameters({"udid"})
-    @AfterClass(alwaysRun = true)
-    public void tearDownAfterClass(String udid) {
-        try {
-            DRIVER.closeApp();
-            System.out.println("开始移除app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-            System.out.println("开始安装app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-            DRIVER.quit();
-        } catch (Exception e) {
+    @Parameters({"bundleId"})
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod(String bundleId) throws Exception {
+        int tries = 0;
+        Boolean driver_is_start = false;
+        while (!driver_is_start && tries < 5) {
+            tries++;
+            try {
+                Map<String, Object> params = new HashMap<>();
+                params.put("bundleId", bundleId);
+                DRIVER.executeScript("mobile: activateApp", params);
+                driver_is_start = true;
+            } catch (Exception e) {
+                System.out.println(e);
+                TimeUnit.SECONDS.sleep(2);
+            }
         }
-
     }
+//    @Parameters({"udid"})
+//    @AfterClass(alwaysRun = true)
+//    public void tearDownAfterClass(String udid) {
+//        try {
+//            DRIVER.closeApp();
+//            System.out.println("开始移除app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//            System.out.println("开始安装app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//            DRIVER.quit();
+//        } catch (Exception e) {
+//        }
+//
+//    }
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
 
@@ -90,11 +111,6 @@ public class MultiSignTest extends Base {
             return managerPage;
         }
 
-    }
-
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
     }
 
     @Parameters({"multiSignAddress"})

@@ -16,11 +16,6 @@ import org.testng.annotations.Test;
 public class AboutUsTest extends BaseTest {
 
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
     @Test(description = "test AboutUs assert",alwaysRun = true)
     public void test001_aboutUs() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
