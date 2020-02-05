@@ -49,6 +49,7 @@ public class DappNetWithdraw20 extends Base {
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlink.wallet");
+            TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){}
     }
 
@@ -121,7 +122,11 @@ public class DappNetWithdraw20 extends Base {
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
         TransferPage transferOut = trx.enterTransferPage();
         int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
-        Assert.assertTrue(trxCount == frozenCount + availableBalance);
+        System.out.println("trxCount" + trxCount);
+        System.out.println("frozenCount" + frozenCount);
+        System.out.println("availableBalance" + availableBalance);
+        Assert.assertTrue(trxCount - (frozenCount + availableBalance) >= -1
+            && trxCount - (frozenCount + availableBalance) <= 1);
     }
 
 
