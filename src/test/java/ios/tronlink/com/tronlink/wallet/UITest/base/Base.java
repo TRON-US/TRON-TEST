@@ -2,6 +2,7 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 
 
+import android.com.utils.AppiumTestCase;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
@@ -33,7 +34,7 @@ public class Base {
 
     public IOSDriver<?> DRIVER;
 
-    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
+    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss ");
 
     public int RetryAgainTimes = 5;
 
@@ -41,85 +42,72 @@ public class Base {
 
     public String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
 
-    //@Test(retryAnalyzer = TestRetryAnalyzer.class)
-
-    public void screenshotAction(String dest) {
-        try {
-            File srcFile = DRIVER.getScreenshotAs(OutputType.FILE);
-            System.out.println(srcFile);
-            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss");
-            File location = new File("build/tmp/screenshot");
-            File targetFile = new File(location.getAbsolutePath() + File.separator + dest + dateFormat.format(new Date()) + ".png");
-            log("----------------- file is " + targetFile.getPath());
-            try {
-                FileUtils.copyFile(srcFile, targetFile);
-            } catch (IOException e1) {
-                System.out.println("error: " + e1);
-                e1.printStackTrace();
-            }
-
-
-        }catch (Exception e){
-            System.out.println(e);
-            e.printStackTrace();
-        }
-
-
-
-    }
 
     //setUp
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "bpPort", "webDriverPort"})
     @BeforeTest
     public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) {
+
         try {
             System.out.println(port + udid);
             Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
-            //Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p "+port + " -bp " + bpPort + " --udid " + udid + " --command-timeout 600 --webdriveragent-port " + webDriverPort);
             InputStreamReader isr = new InputStreamReader(process.getInputStream());
             Scanner sc = new Scanner(isr);
             StringBuffer sb = new StringBuffer();
             sb.append(sc.next());
             System.out.println(sb.toString());
+            System.out.println("\n startServer  Success \n" );
+
         } catch (Exception e) {
+            System.out.println("\n startServer  Fail \n" );
             e.printStackTrace();
         }
     }
 
 
 
-    @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort", "automationName"})
+    @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort","xcodeSigningId","noReset", "automationName", "xcodeOrgId", "bundleId"})
     @BeforeClass() //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort, String automationName) throws Exception {
-        log("我是类之间Base的BeforeClass");
+    public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort,String xcodeSigningId,String noReset, String automationName, String xcodeOrgId,
+        String bundleId) throws Exception {
+        log("我是Base类的Before");
+
         int tries = 0;
         Boolean driver_is_start = false;
-        while (!driver_is_start && tries < 5) {
+        while (!driver_is_start && tries < 3) {
             tries++;
             try {
-                System.out.println("try start driver " + tries + " times");
                 String url = "http://127.0.0.1:" + port + "/wd/hub";
+                System.out.println("try start driver " + tries + " times \n URL: " + url + "\n");
+
                 desiredCapabilities.setCapability("deviceName", deviceName);
                 desiredCapabilities.setCapability("platformName", platformName);
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("automationName", automationName);
-                desiredCapabilities.setCapability("newCommandTimeout", 50);
+                desiredCapabilities.setCapability("newCommandTimeout", 500);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
-                desiredCapabilities.setCapability("noReset", true);
-                desiredCapabilities.setCapability("xcodeOrgId", "736VAMJ43C");
-                desiredCapabilities.setCapability("xcodeSigningId", "iPhone Developer");
-                desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT, webDriverPort);
+                desiredCapabilities.setCapability("noReset", Boolean.getBoolean(noReset));
+                desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
+                desiredCapabilities.setCapability("xcodeSigningId", xcodeSigningId);
+                desiredCapabilities.setCapability("bundleId",bundleId);
+                desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId);
+                desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT,webDriverPort);
                 File appDir = new File(System.getProperty("user.dir"), ".//");
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());
+                System.out.println("--------------------\n"+ desiredCapabilities.toString());
+                System.out.println("\n URL: " +url+ "\n--------------------\n");
                 URL remoteUrl = new URL(url);
                 DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
+                System.out.println("setUp DRIVER success");
+
             } catch (Exception e) {
+                System.out.println("setUp DRIVER fail");
                 System.out.println(e);
-                TimeUnit.SECONDS.sleep(2);
+                TimeUnit.SECONDS.sleep(1);
             }
         }
         screenOn();
@@ -242,5 +230,33 @@ public class Base {
     public void waiteTime() {
         waiteTime(5);
     }
+
+
+
+    public void screenshotAction(String dest) {
+        try {
+            File srcFile = DRIVER.getScreenshotAs(OutputType.FILE);
+            System.out.println(srcFile);
+            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss");
+            File location = new File("build/tmp/screenshot");
+            File targetFile = new File(location.getAbsolutePath() + File.separator + dest + dateFormat.format(new Date()) + ".png");
+            log("----------------- file is " + targetFile.getPath());
+            try {
+                FileUtils.copyFile(srcFile, targetFile);
+            } catch (IOException e1) {
+                System.out.println("error: " + e1);
+                e1.printStackTrace();
+            }
+
+
+        }catch (Exception e){
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+
+
+    }
+
 
 }
