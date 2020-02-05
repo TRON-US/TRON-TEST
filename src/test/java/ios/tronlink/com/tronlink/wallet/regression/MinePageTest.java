@@ -15,10 +15,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class MinePageTest extends BaseTest {
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
 
     @Test(description = "test Me into about us", alwaysRun = true)
     public void test001_enteraboutus() throws Exception {

@@ -36,13 +36,6 @@ public class MainNetDeposit20 extends BaseTest {
 
     }
 
-
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test001_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
-
     @Test(description = "TransferIn Success Recording",alwaysRun = true)
     public void test002_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();

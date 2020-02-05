@@ -61,6 +61,7 @@ public class DappSendTrc10 extends BaseTest {
         Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
 
     }
+
     @Test(description = "SendTrc10 success test",alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();

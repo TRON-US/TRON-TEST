@@ -31,12 +31,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         return asset.enterFrozenAndThawingPage();
     }
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
-
     @Test(description = "enter Details of the rules", alwaysRun = true)
     public void test001_enterDetailsOfTheRules()  {
         FrozenAndUnfreezePage frozen = interferonPage();
