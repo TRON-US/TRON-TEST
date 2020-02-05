@@ -311,9 +311,11 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(3);
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         trx20_btn.get(2).click();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(1);
         return new TrxPage(driver);
     }
 
