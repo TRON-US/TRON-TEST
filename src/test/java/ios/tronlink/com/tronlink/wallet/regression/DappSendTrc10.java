@@ -56,11 +56,6 @@ public class DappSendTrc10 extends BaseTest {
     }
 
 
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
-
-    }
 
     @Test(description = "SendTrc10 success test",alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {

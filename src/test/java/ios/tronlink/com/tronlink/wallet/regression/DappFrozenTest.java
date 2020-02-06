@@ -34,10 +34,7 @@ public class DappFrozenTest extends BaseTest {
         return asset.enterFrozenAndThawingPage();
     }
 
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
-    }
+
 
     @Test(description = "enter Details of the rules", alwaysRun = true)
     public void test001_enterDetailsOfTheRules() throws Exception {
