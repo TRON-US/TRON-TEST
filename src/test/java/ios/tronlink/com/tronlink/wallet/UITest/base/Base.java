@@ -46,8 +46,8 @@ public class Base {
     //setUp
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "bpPort", "webDriverPort"})
     @BeforeTest
-    public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) {
-
+    public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) throws IOException {
+//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
         try {
             System.out.println(port + udid);
             Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
@@ -71,14 +71,13 @@ public class Base {
     public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort,String xcodeSigningId,String noReset, String automationName, String xcodeOrgId,
         String bundleId) throws Exception {
         log("我是Base类的Before");
-
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 3) {
             tries++;
             try {
                 String url = "http://127.0.0.1:" + port + "/wd/hub";
-                System.out.println("try start driver " + tries + " times \n URL: " + url + "\n");
+                System.out.println("try start driver " + tries + " times  URL: " + url + "\n");
 
                 desiredCapabilities.setCapability("deviceName", deviceName);
                 desiredCapabilities.setCapability("platformName", platformName);
@@ -87,7 +86,7 @@ public class Base {
                 desiredCapabilities.setCapability("automationName", automationName);
                 desiredCapabilities.setCapability("newCommandTimeout", 500);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
-                desiredCapabilities.setCapability("noReset", Boolean.getBoolean(noReset));
+                desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
                 desiredCapabilities.setCapability("xcodeSigningId", xcodeSigningId);
                 desiredCapabilities.setCapability("bundleId",bundleId);
