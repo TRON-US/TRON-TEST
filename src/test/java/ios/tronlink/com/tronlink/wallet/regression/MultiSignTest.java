@@ -142,7 +142,7 @@ public class MultiSignTest extends Base {
         TimeUnit.SECONDS.sleep(8);
         String trxtext = assetPage.getTrxCount();
         log("value:" + trxtext);
-        Assert.assertTrue(Integer.parseInt(trxtext) < 100);
+        Assert.assertTrue(Double.parseDouble(trxtext) < 100);
 
     }
 
