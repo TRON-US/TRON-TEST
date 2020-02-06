@@ -26,14 +26,14 @@ public class YCommitteeTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String witnessKey, String udid) throws Exception {
         System.out.println("pk: " + witnessKey + " udid: " + udid);
-//        DRIVER.closeApp();
-//        log("开始移除app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-//        log("开始安装app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//        log("开始导入ownerPrivatekey");
-//        DRIVER.closeApp();
-//        DRIVER.launchApp();
+        DRIVER.closeApp();
+        log("开始移除app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+        log("开始安装app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+        log("开始导入ownerPrivatekey");
+        DRIVER.closeApp();
+        DRIVER.launchApp();
         new Helper().getSign(witnessKey, DRIVER);
     }
     @Parameters({"bundleId"})
@@ -69,20 +69,20 @@ public class YCommitteeTest extends Base {
         }
     }
 
-//    @Parameters({"udid"})
-//    @AfterClass(alwaysRun = true)
-//    public void tearDownAfterClass(String udid) {
-//        try {
-//            DRIVER.closeApp();
-//            System.out.println("开始移除app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//            System.out.println("开始安装app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//            DRIVER.quit();
-//        } catch (Exception e) {
-//        }
-//
-//    }
+    @Parameters({"udid"})
+    @AfterClass(alwaysRun = true)
+    public void tearDownAfterClass(String udid) {
+        try {
+            DRIVER.closeApp();
+            System.out.println("开始移除app");
+            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+            System.out.println("开始安装app");
+            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+            DRIVER.quit();
+        } catch (Exception e) {
+        }
+
+    }
 
 
 
