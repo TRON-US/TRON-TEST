@@ -230,7 +230,7 @@ public class CommitteePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         backBtn.click();
     }
 
