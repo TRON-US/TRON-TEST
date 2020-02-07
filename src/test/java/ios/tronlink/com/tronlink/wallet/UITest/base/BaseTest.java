@@ -2,6 +2,9 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -16,41 +19,47 @@ public class BaseTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        log("我是类之间BaseTest的BeforeClass");
+        log("我是BaseTest类的Before");
         new Helper().getSign(privateKey, DRIVER);
     }
 
 
-    @AfterClass(alwaysRun = true)
-    public void tearDownAfterClass() {
+//    @AfterClass(alwaysRun = true)
+//    public void tearDownAfterClass() {
+//
+//        try {
+//            DRIVER.quit();
+//        } catch (Exception e) {
+//        }
+//
+//    }
 
-        try {
-            DRIVER.quit();
-        } catch (Exception e) {
-        }
-
-    }
-
+    @Parameters({"bundleId"})
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(Method methed) throws Exception {
+    public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
             screenshotAction(name);
-            DRIVER.closeApp();
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
         } catch (Exception e) {
         }
 
     }
 
+    @Parameters({"bundleId"})
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethod() throws Exception {
+    public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
             tries++;
             try {
-                DRIVER.launchApp();
+                Map<String, Object> params = new HashMap<>();
+                params.put("bundleId", bundleId);
+                DRIVER.executeScript("mobile: activateApp", params);
                 driver_is_start = true;
             } catch (Exception e) {
                 System.out.println(e);
@@ -60,19 +69,6 @@ public class BaseTest extends Base {
     }
 
 
-    //    @AfterMethod(alwaysRun = true)
-//    public void afterMethod(Method methed) throws Exception {
-//        try {
-//
-//            String name = this.getClass().getSimpleName() + "." +
-//                    methed.getName();
-//            screenshotAction(name);
-//            DRIVER.closeApp();
-//            DRIVER.launchApp();
-//        } catch (Exception e) {
-//        }
-//
-//    }
 
 
 }

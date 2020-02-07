@@ -23,11 +23,6 @@ public class ImportPrivateKey extends BaseTest {
         return new ImportPrivateKeyPage(DRIVER);
     }
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
     @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
     public void test001_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();

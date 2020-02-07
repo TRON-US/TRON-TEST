@@ -19,10 +19,6 @@ public class VoteTest extends BaseTest {
         TimeUnit.SECONDS.sleep(4);
         return vote;
     }
-    @Test(description = "Guarantee Main Chain in VoteTest Test",alwaysRun = true)
-    public void test000_guaranteemainchainTest() throws Exception {
-        Assert.assertTrue(Helper.guaranteeMainChain(DRIVER));
-    }
 
     @Test(description = "Test into VotePage'", alwaysRun = true)
     public void test001_checkintoVotePage() throws Exception {

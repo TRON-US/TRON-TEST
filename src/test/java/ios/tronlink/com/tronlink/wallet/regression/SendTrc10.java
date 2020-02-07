@@ -22,11 +22,6 @@ public class SendTrc10 extends BaseTest {
         return transfer;
     }
 
-    @Test(description = "guarantee Chain in MainChain", alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue(Helper.guaranteeMainChain(DRIVER));
-    }
-
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
