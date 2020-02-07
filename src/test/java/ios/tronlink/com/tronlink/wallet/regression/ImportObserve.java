@@ -23,11 +23,6 @@ public class ImportObserve extends BaseTest {
         return new ObservePage(DRIVER);
     }
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
     @Test(description = "Observe Address Format Incorrect", alwaysRun = true)
     public void test001_importObserveFormatIncorrect() throws Exception {
         ObservePage importObservePage = enterImportObservePage();

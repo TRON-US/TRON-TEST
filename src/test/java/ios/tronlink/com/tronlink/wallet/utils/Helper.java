@@ -160,21 +160,42 @@ public class Helper {
         getSignOperate(testPrivateKey);
     }
 
+    public void getColdSign(String testPrivateKey, IOSDriver driver) throws Exception{
+        this.DRIVER = driver;
+        getColdSignOperate(testPrivateKey);
+    }
+
 
 
     public void getSignOperate(String testPrivateKey) throws Exception{
 
+
+        System.out.println("setupbefore");
+        try {
+            findWebElement("导入钱包").click();
+            getSignStep(testPrivateKey);
+            System.out.println("import action");
+        }catch (Exception e){
+            System.out.println("do nothing have imported");
+
+        }
+    }
+
+    public void getColdSignOperate(String testPrivateKey) throws Exception{
+
         System.out.println("setupbefore");
         try {
             System.out.println("try to import");
-            findWebElement("导入钱包").click();
-            getSignStep(testPrivateKey);
+            findWebElement("冷钱包").click();
+            getColdSignStep(testPrivateKey);
             System.out.println("imported");
         }catch (Exception e){
             System.out.println("haved imported");
 
         }
     }
+
+
     public static boolean guaranteeMainChain(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
         if(assetFindMainChain(asset)){
@@ -233,19 +254,41 @@ public class Helper {
                 int height = DRIVER.manage().window().getSize().height;
                 Duration duration = Duration.ofMillis(200);
                 action.press(
-                        PointOption.point(width/2, height*4/5))
-                        .waitAction(WaitOptions.waitOptions(duration))
-                        .moveTo(PointOption.point(width/2, height/5))
-                        .release().perform();
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
             }
             findWebElement("接受").click();
         }catch (Exception e){
         }
 
         importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
-
-
     }
+
+    public void getColdSignStep(String testPrivateKey){
+        System.out.println("111111111111");
+        try {
+            DRIVER.findElement(By.name("选择此模式")).click();
+            DRIVER.findElement(By.name("接受"));
+            while (!findWebElement("接受").isEnabled()) {
+                IOSTouchAction action = new IOSTouchAction(DRIVER);
+                int width = DRIVER.manage().window().getSize().width;
+                int height = DRIVER.manage().window().getSize().height;
+                Duration duration = Duration.ofMillis(200);
+                action.press(
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
+            }
+            findWebElement("接受").click();
+        }catch (Exception e){
+        }
+
+        importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
+    }
+
 
     public void importUsePrivateKey(String privatekey,String name,String pass){
         try {
@@ -253,15 +296,18 @@ public class Helper {
             DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(20);
+            DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(20);
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(5);
+            DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+            //TimeUnit.SECONDS.sleep(5);
             DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
             TimeUnit.SECONDS.sleep(5);
+            //TimeUnit.SECONDS.sleep(5);
             DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
             tapWhitePlace(DRIVER);
             findWebElement("完成").click();

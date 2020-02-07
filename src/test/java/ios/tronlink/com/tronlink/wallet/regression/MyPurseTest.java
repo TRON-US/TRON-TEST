@@ -27,12 +27,6 @@ public class MyPurseTest extends BaseTest {
 //    }
 
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
-
     @Test(description = "test goto MyPurse",alwaysRun = true)
     public void test001_gotoMyPurse() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
