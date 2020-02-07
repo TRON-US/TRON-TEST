@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class MultiSignTest extends Base {
@@ -27,19 +29,38 @@ public class MultiSignTest extends Base {
         new Helper().getSign(ownerPrivateKey, DRIVER);
     }
 
+    @Parameters({"bundleId"})
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(Method methed) throws Exception {
+    public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
             screenshotAction(name);
-            DRIVER.closeApp();
-            DRIVER.launchApp();
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
         } catch (Exception e) {
         }
 
     }
-
+    @Parameters({"bundleId"})
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod(String bundleId) throws Exception {
+        int tries = 0;
+        Boolean driver_is_start = false;
+        while (!driver_is_start && tries < 5) {
+            tries++;
+            try {
+                Map<String, Object> params = new HashMap<>();
+                params.put("bundleId", bundleId);
+                DRIVER.executeScript("mobile: activateApp", params);
+                driver_is_start = true;
+            } catch (Exception e) {
+                System.out.println(e);
+                TimeUnit.SECONDS.sleep(2);
+            }
+        }
+    }
     @Parameters({"udid"})
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass(String udid) {
@@ -92,11 +113,6 @@ public class MultiSignTest extends Base {
 
     }
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
-
     @Parameters({"multiSignAddress"})
     @Test(description = "valued sign address is right",alwaysRun = true)
     public void test001_ValueSignAddressIsRight(String multiSignAddress) throws Exception{
@@ -126,7 +142,7 @@ public class MultiSignTest extends Base {
         TimeUnit.SECONDS.sleep(8);
         String trxtext = assetPage.getTrxCount();
         log("value:" + trxtext);
-        Assert.assertTrue(Integer.parseInt(trxtext) < 100);
+        Assert.assertTrue(Double.parseDouble(trxtext) < 100);
 
     }
 
