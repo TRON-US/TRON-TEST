@@ -52,11 +52,7 @@ public class MultiSignActiveTest extends BaseTest {
 
     }
 
-//    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-//    public void test000_GuaranteeChainName() throws Exception {
-//        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-//    }
-//
+
     @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
     public void test001_MultiSignatureQuestionContentTest() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();

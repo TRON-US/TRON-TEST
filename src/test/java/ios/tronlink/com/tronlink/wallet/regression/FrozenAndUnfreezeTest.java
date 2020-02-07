@@ -36,7 +36,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
     }
 
-
     @Test(description = "enter Details of the rules", alwaysRun = true)
     public void test001_enterDetailsOfTheRules()  {
         FrozenAndUnfreezePage frozen = interferonPage();

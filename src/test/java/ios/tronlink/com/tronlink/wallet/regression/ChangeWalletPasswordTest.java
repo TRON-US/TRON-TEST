@@ -38,12 +38,6 @@ public class ChangeWalletPasswordTest extends BaseTest {
         }
         return  false;
     }
-//
-
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
 
     @Test(description = "Input dont match password",alwaysRun = true)
     public void test0001InputIncorrectPassword() throws Exception{

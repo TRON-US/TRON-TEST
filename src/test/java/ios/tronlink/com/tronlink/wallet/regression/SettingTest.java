@@ -73,15 +73,5 @@ public class SettingTest extends BaseTest {
 
     }
 
-//    @Test(description = "DAPP BrowserPage Test",alwaysRun = true)
-//    public void test009_DAPP_Browser()  {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage mine = asset.enterMinePage();
-//        SettingPage setting = mine.enterSettingPage();
-//        DAPP_BrowerPage dapp1 =  setting.enterDAPP_BrowerPage();
-//        dapp1.testUrl();
-////        Assert.assertEquals("TEST",dapp.dappTtile_btn.getText());
-//    }
-
 
 }
