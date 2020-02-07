@@ -213,16 +213,25 @@ public class AssetPage extends AbstractPage {
         return new VotePage(driver);
     }
 
-    public MarketPage enterMarketPage(){
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//            // if page display AD , cloese the AD
-//            if (ad_pic.isDisplayed()){
-//                adClose_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
+    public MarketPage enterMarketPage() {
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
+/*            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }*/
+        } catch (Exception e){}
         market_btn.click();
+        try {
+        TimeUnit.SECONDS.sleep(2);
+        // if page display AD , cloese the AD
+/*            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }*/
+      } catch (Exception e){}
+
         return new MarketPage(driver);
     }
 
