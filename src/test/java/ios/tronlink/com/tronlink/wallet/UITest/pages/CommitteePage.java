@@ -124,8 +124,7 @@ public class CommitteePage extends AbstractPage {
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(3);
-        //XCUIElementTypeButton name
-        //XCUIElementTypeStaticText
+
 
     }
     public String getNameofproposal() throws Exception {

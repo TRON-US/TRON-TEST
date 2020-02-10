@@ -98,7 +98,7 @@ public class YCommitteeTest extends Base {
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         String count = String.format("%.0f", Math.random() * 100000);
@@ -131,16 +131,17 @@ public class YCommitteeTest extends Base {
     public void test_004makeecendNewProposal() throws  Exception{
 
         log("second 开始执行时间");
-        String count = String.format("%.0f", Math.random() * 100000);
+        String count = random(6,0);
+        count = Helper.getPrettyNumber(count);
         System.out.println(count);
         CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(6 );
+        TimeUnit.SECONDS.sleep(15 );
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
-        committeePage.change0proposal("0.123456");
+        committeePage.change0proposal(count);
         WebElement wl = committeePage.findFirstproposalWl();
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, "0.123456"));
+        Assert.assertTrue(Helper.contentTexts(textarray, count));
     }
     @Test(description = "be agreed Proposal", alwaysRun = true)
     public void test_005agreedProposal() throws Exception {
@@ -171,7 +172,7 @@ public class YCommitteeTest extends Base {
 
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         committeePage.change2proposal("0.2");
