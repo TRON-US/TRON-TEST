@@ -302,9 +302,9 @@ public class autoCreateTestngXml {
                     sb.append(classContent);
                 }*/
                 if (deviceName.contains("autotest-ios")){
-                 sb.append(classNoColdWallet);
-                }else {
                     sb.append(classContent);
+                }else {
+                    sb.append(classNoColdWallet);
                 }
                 sb.append("        </classes>\n");
                 sb.append("    </test>\n");
