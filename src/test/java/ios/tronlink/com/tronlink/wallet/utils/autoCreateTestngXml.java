@@ -201,14 +201,21 @@ public class autoCreateTestngXml {
 
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
-
+//regression.
 //        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
 //        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
         String classContent = "";
+        String classNoColdWallet = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
+            if (taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5).contains("ZColdWalletTest")){
+                continue;
+            }
+            classNoColdWallet = classNoColdWallet + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
         }
 
+        System.out.println("classContent " +classContent);
+        System.out.println("\nclassNoColdWallet " +classNoColdWallet);
 
         boolean singleClassHasSetToSingleDevice = false;
 
@@ -287,13 +294,18 @@ public class autoCreateTestngXml {
                         + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
+                //autotest-ios can
 /*                if (!singleClassHasSetToSingleDevice) {
                     singleClassHasSetToSingleDevice = true;
                     sb.append(extendSingleClassContent);
                 } else {
                     sb.append(classContent);
                 }*/
-                sb.append(classContent);
+                if (deviceName.contains("autotest-ios")){
+                 sb.append(classNoColdWallet);
+                }else {
+                    sb.append(classContent);
+                }
                 sb.append("        </classes>\n");
                 sb.append("    </test>\n");
                 it.remove();
