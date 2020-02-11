@@ -70,7 +70,8 @@ public class MinePage extends AbstractPage {
 
     public CommitteePage enterCommitteePage() {
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(3);
+            waiteTime(15);
             committee_btn.click();
             TimeUnit.SECONDS.sleep(15);
         } catch (Exception e) {

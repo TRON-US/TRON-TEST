@@ -17,4 +17,8 @@ public class HelpPage extends AbstractPage {
     @FindBy(name = "帮助中心")
     public WebElement title;
 
+    @FindBy(name = "kefu")
+    public WebElement helperPhone;
+
+
 }

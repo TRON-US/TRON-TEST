@@ -28,8 +28,8 @@ public class ColdBaseTest extends Base {
             //DRIVER.findElement(By.name("无线局域网")).click();
             DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
-            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
-            //DRIVER.findElementByIosNsPredicate("label CONTAINS '无线局域网' AND name == '无线局域网' AND enabled == true").click();
+//            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
+            DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
             DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
             //findWebElement("无线局域网").click();
@@ -68,8 +68,8 @@ public class ColdBaseTest extends Base {
             //DRIVER.findElement(By.name("无线局域网")).click();
             DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
-            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
-            //DRIVER.findElementByIosNsPredicate("label CONTAINS '无线局域网' AND name == '无线局域网' AND enabled == true").click();
+//            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
+            DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
             DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("好")).click();
