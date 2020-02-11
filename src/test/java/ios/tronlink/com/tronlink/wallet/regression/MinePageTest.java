@@ -41,13 +41,10 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         FriendInvitationPage friendPage = minePage.enterFriendInvitationPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(15);
         Assert.assertTrue(Helper.contentTexts(friendPage.textArray,"好友邀请"));
 
     }
-
-
-
 
     @Test(description = "test Me into AnnouncementPage", alwaysRun = true)
 
@@ -55,7 +52,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         AnnouncementPage announPage = minePage.enterAnnouncementPage();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(15);
         Assert.assertTrue(Helper.contentTexts(announPage.textArray,"公告"));
 
     }
@@ -66,8 +63,8 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
-        TimeUnit.SECONDS.sleep(6);
-        Assert.assertEquals(helpPage.title.getText(), "帮助中心");
+        TimeUnit.SECONDS.sleep(15);
+        Assert.assertTrue(helpPage.helperPhone.isDisplayed());
 
     }
 
