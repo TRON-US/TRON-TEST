@@ -252,19 +252,17 @@ public class AssetPage extends AbstractPage {
     //enter mine page
 
     public MinePage enterMinePage() throws Exception{
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-
-        mine_btn.click();
-        driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+        waiteTime(15);
         mine_btn.click();
         waiteTime();
+        mine_btn.click();
         return new MinePage(driver);
     }
 
 
     public SendTrxPage enterSendTrxPage() throws Exception {
-        transfer_btn.click();
         waiteTime();
+        transfer_btn.click();
         return new SendTrxPage(driver);
     }
 
@@ -306,7 +304,6 @@ public class AssetPage extends AbstractPage {
     }
 
     public String getTrxCount() throws Exception {
-//        TimeUnit.SECONDS.sleep(3);
         waiteTime();
         String trxCount = trxValue.getText().split(" ")[0];
         return trxCount;

@@ -251,13 +251,22 @@ public class CommitteePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(3);
-        deleteBtn.click();
-        TimeUnit.SECONDS.sleep(2);
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(6);
-        passwordTF.sendKeys("Test0001");
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
-        backBtn.click();
+        if (stateLabel.getText().contains("已取消")){
+            waiteTime();
+            backBtn.click();
+            waiteTime();
+            backBtn.click();
+        }else {
+            deleteBtn.click();
+            TimeUnit.SECONDS.sleep(2);
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+            TimeUnit.SECONDS.sleep(6);
+            passwordTF.sendKeys("Test0001");
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+            TimeUnit.SECONDS.sleep(3);
+            backBtn.click();
+        }
+
+
     }
 }
