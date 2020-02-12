@@ -301,11 +301,11 @@ public class autoCreateTestngXml {
                 } else {
                     sb.append(classContent);
                 }*/
-                if (deviceName.contains("autotest-ios")){
+//                if (deviceName.contains("autotest-ios")){
                     sb.append(classContent);
-                }else {
-                    sb.append(classNoColdWallet);
-                }
+//                }else {
+//                    sb.append(classNoColdWallet);
+//                }
                 sb.append("        </classes>\n");
                 sb.append("    </test>\n");
                 it.remove();
