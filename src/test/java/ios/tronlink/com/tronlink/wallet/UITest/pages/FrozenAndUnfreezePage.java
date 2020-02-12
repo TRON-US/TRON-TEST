@@ -231,7 +231,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
             getConfirm_btn().click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -292,6 +292,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public String getAvailableTrx() {
+        waiteTime(10);
         String availableTrx = availableTrx_text.getText();
         String[]   array = availableTrx.split("：");
         availableTrx = array[1];

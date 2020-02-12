@@ -179,7 +179,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.inputFrozenCount("10");
         Helper.tapWhitePlace(frozen.driver);
         frozen.frozenTheEnergy(); //Freeze operating
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         String availableTrxNew = frozen.getAvailableTrx();
         log("availableTrxOld: "+availableTrxOld + "availableTrxNew: " + availableTrxNew);
         Assert.assertTrue(Double.parseDouble(availableTrxNew) + 10 == Double.parseDouble(availableTrxOld));
