@@ -151,12 +151,14 @@ public class CommitteePage extends AbstractPage {
             enterMyProposal();
             log("success 进入我发起的提议");
             TimeUnit.SECONDS.sleep(3);
+            waiteTime(10);
             List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
             return wls.get(0);
     }
     public WebElement findFirstAgreedroposalWl( ) throws Exception {
         TimeUnit.SECONDS.sleep(3);
         enterMyAgreedProposal();
+        waiteTime(10);
         List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
         return wls.get(0);
     }
@@ -195,7 +197,8 @@ public class CommitteePage extends AbstractPage {
 
 
     public void enterMyProposal() throws Exception {
-        waiteTime();
+        TimeUnit.SECONDS.sleep(2);
+        waiteTime(10);
         int topX = mysetuppropos.getLocation().x + 10;
         int topY = mysetuppropos.getLocation().y + 10;
         log("\n topY: " + topX + " botY: " + topY );
@@ -209,6 +212,7 @@ public class CommitteePage extends AbstractPage {
 
     public void enterMyAgreedProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
+        waiteTime(10);
         int topX = myagreedpropos.getLocation().x + 10;
         int topY = myagreedpropos.getLocation().y + 10;
         log("\n topY: " + topX + " botY: " + topY );
