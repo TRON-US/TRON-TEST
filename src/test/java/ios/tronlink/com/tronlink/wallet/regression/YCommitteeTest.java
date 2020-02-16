@@ -98,7 +98,7 @@ public class YCommitteeTest extends Base {
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(10);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         String count = String.format("%.0f", Math.random() * 100000);
@@ -115,6 +115,7 @@ public class YCommitteeTest extends Base {
     @Test(description = "cheack state proposal", alwaysRun = true)
     public void test_002cheackProposalState() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
+
         String states = committeePage.getStateofproposal();
         System.out.println(states);
         Assert.assertTrue(states.contains("投票中"));
