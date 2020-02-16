@@ -73,7 +73,7 @@ public class MinePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(3);
             waiteTime(15);
             committee_btn.click();
-            TimeUnit.SECONDS.sleep(15);
+            TimeUnit.SECONDS.sleep(20);
         } catch (Exception e) {
             new Base().log("committee_btn button not found");
         }
