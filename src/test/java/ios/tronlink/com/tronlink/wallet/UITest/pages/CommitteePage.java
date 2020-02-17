@@ -190,6 +190,7 @@ public class CommitteePage extends AbstractPage {
     }
 
     public void enterProposalDetail() throws Exception {
+        waiteTime(10);
         WebElement wl = findFirstproposalWl();
         wl.click();
         TimeUnit.SECONDS.sleep(4);
@@ -229,12 +230,20 @@ public class CommitteePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(3);
-        agreeBtn.click();
-        TimeUnit.SECONDS.sleep(6);
-        passwordTF.sendKeys("Test0001");
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(6);
-        backBtn.click();
+        if (Helper.isElementExist(driver,"取消赞成")) {
+            waiteTime();
+            backBtn.click();
+            waiteTime();
+            backBtn.click();
+        }else {
+            agreeBtn.click();
+            TimeUnit.SECONDS.sleep(6);
+            passwordTF.sendKeys("Test0001");
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+            TimeUnit.SECONDS.sleep(6);
+            backBtn.click();
+        }
+
     }
 
     public void disagreeAction() throws Exception {
@@ -242,12 +251,21 @@ public class CommitteePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(3);
-        disagreeBtn.click();
-        TimeUnit.SECONDS.sleep(6);
-        passwordTF.sendKeys("Test0001");
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
-        backBtn.click();
+        if (Helper.isElementExist(driver,"赞成")) {
+            waiteTime();
+            backBtn.click();
+            waiteTime();
+            backBtn.click();
+        }else {
+            disagreeBtn.click();
+            TimeUnit.SECONDS.sleep(6);
+            passwordTF.sendKeys("Test0001");
+            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+            TimeUnit.SECONDS.sleep(3);
+            backBtn.click();
+        }
+
+
     }
 
     public void deleteAction() throws Exception {
