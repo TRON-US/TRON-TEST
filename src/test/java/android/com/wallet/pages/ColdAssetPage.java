@@ -70,6 +70,14 @@ public class ColdAssetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/iv_qr")
     public WebElement privateKeyQrScan_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/create_option_desc")
+    public WebElement accountType_normalAccount;
+
+    @FindBy(id = "com.tronlink.wallet:id/create_option_desc_shield")
+    public WebElement accountType_shieldAccount;
+
+
+
 
 
 

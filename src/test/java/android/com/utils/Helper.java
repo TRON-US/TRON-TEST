@@ -174,6 +174,14 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
             swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
             findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            try {
+                //新增匿名账户页面
+                // 普通账户id：com.tronlink.wallet:id/create_option_desc
+                //匿名账户id:com.tronlink.wallet:id/create_option_desc_shield
+                findWebElement("com.tronlink.wallet:id/create_option_desc").click();
+            } catch (Exception e) {
+
+            }
             findWebElement("com.tronlink.wallet:id/cd_pk").click();
             findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
             findWebElement("com.tronlink.wallet:id/bt_next").click();
@@ -201,6 +209,14 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
             swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
             findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            try {
+                //新增匿名账户页面
+                // 普通账户id：com.tronlink.wallet:id/create_option_desc
+                //匿名账户id:com.tronlink.wallet:id/create_option_desc_shield
+                findWebElement("com.tronlink.wallet:id/create_option_desc").click();
+            } catch (Exception e) {
+
+            }
             findWebElement("com.tronlink.wallet:id/cd_ow").click();
             findWebElement("com.tronlink.wallet:id/et_content").sendKeys(address);
             findWebElement("com.tronlink.wallet:id/bt_next").click();
@@ -219,6 +235,14 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/tv_ok").click();
             swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
             findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            try {
+                //新增匿名账户页面
+                // 普通账户id：com.tronlink.wallet:id/create_option_desc
+                //匿名账户id:com.tronlink.wallet:id/create_option_desc_shield
+                findWebElement("com.tronlink.wallet:id/create_option_desc").click();
+            } catch (Exception e) {
+
+            }
             findWebElement("com.tronlink.wallet:id/cd_pk").click();
             findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
             findWebElement("com.tronlink.wallet:id/bt_next").click();
