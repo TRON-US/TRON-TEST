@@ -109,6 +109,11 @@ public class ColdWalletTest extends Base {
         coldAsset.addWallet_btn.click();
         coldAsset.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 
+        try {
+            coldAsset.accountType_normalAccount.click();
+        } catch (Exception e) {
+
+        }
         Assert.assertTrue(coldAsset.privateKey_btn.isEnabled());
         Assert.assertTrue(coldAsset.createWallet_btn.isEnabled());
         Assert.assertTrue(coldAsset.keystore_btn.isEnabled());

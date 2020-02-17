@@ -273,7 +273,7 @@ public class AssetPage extends AbstractPage {
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
         try {
             freeze_btn.click();
-          TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
         }
