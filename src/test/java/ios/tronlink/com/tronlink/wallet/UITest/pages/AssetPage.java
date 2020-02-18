@@ -380,7 +380,7 @@ public class AssetPage extends AbstractPage {
         asset_btn.click();
         mine_btn.click();
         asset_btn.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
     }
 
     public boolean isMultiSignViewShow() {

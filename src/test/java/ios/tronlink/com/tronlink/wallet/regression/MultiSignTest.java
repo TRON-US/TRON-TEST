@@ -273,18 +273,6 @@ public class MultiSignTest extends Base {
         Assert.assertTrue(beforeNumber > afterNumber);
     }
 
-    @Test(description = " multiSign sign Active success Test", alwaysRun = true)
-    public void test016_multiSignSuccessTest() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
-        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
-        int beforeNumber = multiSignRecodPage.getwaitingCellsCount();
-        log("beforeNumber:"+ beforeNumber);
-        multiSignRecodPage.signSuccess();
-        int afterNumber = multiSignRecodPage.getwaitingCellsCount();
-        log("afterNumber:"+ afterNumber);
-        Assert.assertTrue(beforeNumber > afterNumber);
-    }
 
     @Test(description = "make account address to Signed", alwaysRun = true)
     public void test017_makeAccountToSigned() throws Exception{
