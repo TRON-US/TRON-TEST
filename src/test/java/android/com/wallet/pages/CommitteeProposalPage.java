@@ -106,7 +106,7 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
     public CreateProposePage enterCreateProposePage() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         createPropose_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new CreateProposePage(driver);
