@@ -194,9 +194,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '下一步'").click();
         TimeUnit.SECONDS.sleep(1);
         checkPasswotd_input.sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(1);
-        getConfirm_btn().click();
         TimeUnit.SECONDS.sleep(3);
+        getConfirm_btn().click();
+        TimeUnit.SECONDS.sleep(12);
         return new  MultiSignRecodPage(driver);
     }
 

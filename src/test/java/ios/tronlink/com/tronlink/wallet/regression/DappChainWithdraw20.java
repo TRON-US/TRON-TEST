@@ -67,9 +67,26 @@ public class DappChainWithdraw20 extends BaseTest {
         AssetPage page = trx.enterAssetPage();
 
         trx = page.enterTrx20Page();
-        double trxCountNow =  Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         waiteTime();
-        System.out.println(count   + "   " + trxCount  + " " + trxCountNow);
+        double trxCountNow =  Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+
+        int tries = 0;
+        Boolean value_is_changed = false;
+        while (!value_is_changed && tries < 10) {
+            System.out.println("value_is_changedFindTimes:" + tries);
+            tries++;
+            if(trxCount == trxCountNow){
+                waiteTime();
+                trx.back_btn.click();
+                waiteTime();
+                trx = page.enterTrx20Page();
+                waiteTime();
+                trxCountNow =  Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+            }else{
+                value_is_changed = true;
+            }
+        }
+        System.out.println("-----------\n before: "+ trxCount    + " after: " + trxCountNow  + "value: " + count);
         Assert.assertTrue(trxCount >= trxCountNow +  Double.parseDouble(count) );
     }
 
