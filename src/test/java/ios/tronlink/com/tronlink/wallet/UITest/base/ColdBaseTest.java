@@ -1,5 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.base;
 
+import android.com.utils.AppiumTestCase;
+
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -14,9 +16,19 @@ import org.testng.annotations.Parameters;
 
 public class ColdBaseTest extends Base {
 
-    @Parameters({"privateKey","bundleId"})
+    @Parameters({"privateKey","bundleId","udid"})
     @BeforeClass(alwaysRun = true)
-    public void setUpBefore(String privateKey,String bundleId) throws Exception {
+    public void setUpBefore(String privateKey,String bundleId,String udid) throws Exception {
+
+        DRIVER.closeApp();
+        log("开始移除app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+        log("开始安装app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+        log("开始导入ownerPrivatekey");
+        DRIVER.closeApp();
+        DRIVER.launchApp();
+
         log("我是类之间BaseTest的BeforeClass");
         try {
             Map<String, Object> params = new HashMap<>();
