@@ -89,7 +89,7 @@ public class CommitteePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(6);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(6);
             //XCUIElementTypeButton name
             //XCUIElementTypeStaticText
 
@@ -106,7 +106,7 @@ public class CommitteePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         //XCUIElementTypeButton name
         //XCUIElementTypeStaticText
 
@@ -123,7 +123,7 @@ public class CommitteePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(6);
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
 
 
     }
@@ -202,12 +202,10 @@ public class CommitteePage extends AbstractPage {
         waiteTime(10);
         int topX = mysetuppropos.getLocation().x + 10;
         int topY = mysetuppropos.getLocation().y + 10;
-        log("\n topY: " + topX + " botY: " + topY );
+        log("\n MyProposal topX: " + topX + " botY: " + topY );
         IOSTouchAction action = new IOSTouchAction(driver);
-        System.out.println("start");
         action.tap(PointOption.point(topX,topY)).perform();
-        System.out.println("end");
-//        mysetuppropos.click();
+        log("MyProposal have clicked");
 
     }
 
@@ -216,11 +214,10 @@ public class CommitteePage extends AbstractPage {
         waiteTime(10);
         int topX = myagreedpropos.getLocation().x + 10;
         int topY = myagreedpropos.getLocation().y + 10;
-        log("\n topY: " + topX + " botY: " + topY );
+        log("\n AgreedProposal topX: " + topX + " botY: " + topY );
         IOSTouchAction action = new IOSTouchAction(driver);
-        System.out.println("start");
         action.tap(PointOption.point(topX,topY)).perform();
-        System.out.println("end");
+        log("MyAgreed have clicked");
         TimeUnit.SECONDS.sleep(4);
 
     }
