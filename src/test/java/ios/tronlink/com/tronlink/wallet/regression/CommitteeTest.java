@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
-public class YCommitteeTest extends Base {
+public class CommitteeTest extends Base {
 
     //    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
 
