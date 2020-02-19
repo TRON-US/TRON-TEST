@@ -55,7 +55,6 @@
             <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrx"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SettingTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.VoteTest"></class>
-            <class name="ios.tronlink.com.tronlink.wallet.regression.YCommitteeTest"></class>
         </classes>
     </test>
 </suite>
