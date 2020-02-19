@@ -192,8 +192,11 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/creat").click();
             findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
             findWebElement("com.tronlink.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(3);
+            //校验是否导入成功
+            System.out.println("开始校验是否导入成功");
             findWebElement("com.tronlink.wallet:id/assets_name");
+            System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println(e);
         }
@@ -222,7 +225,7 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/bt_next").click();
             findWebElement("com.tronlink.wallet:id/et_name").sendKeys("WatchWallet");
             findWebElement("com.tronlink.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
             System.out.println(e);
         }
