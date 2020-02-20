@@ -69,6 +69,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/select_bandwidth")
     public WebElement bandwidth_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/select_energy")
+    public WebElement energy_btn;
+
 
     @FindBy(id = "com.tronlink.wallet:id/current_use")
     public WebElement currentCanUse_btn;

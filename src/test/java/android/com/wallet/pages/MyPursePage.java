@@ -49,9 +49,18 @@ public class MyPursePage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_create")
+    //@FindBy(id = "com.tronlink.wallet:id/tv_create")
+    //public WebElement newCreate_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_create")
     public WebElement newCreate_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/create_option_desc")
+    public WebElement normal_account_type;
+
+    //com.tronlink.wallet:id/create_option_desc_shield
+    @FindBy(id = "com.tronlink.wallet:id/create_option_desc_shield")
+    public WebElement shield_account_type;
 
 
     @FindBy(id = "com.tronlink.wallet:id/rl_keystore2")
@@ -118,6 +127,11 @@ public class MyPursePage extends AbstractPage {
     public AddwalletPage enterAddwalletPage() throws Exception {
         newCreate_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        try {
+            normal_account_type.click();
+        } catch (Exception e) {
+
+        }
         return new AddwalletPage(driver);
     }
 
