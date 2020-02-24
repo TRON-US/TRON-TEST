@@ -25,6 +25,9 @@ public class AddwalletPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='Private key']")
     public WebElement privateKeyE_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/cd_pk")
+    public WebElement privateKey_btn;
+
     @FindBy(id = "com.tronlink.wallet:id/cd_kt")
     public WebElement keystore_btn;
 
@@ -32,13 +35,21 @@ public class AddwalletPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
     public WebElement back_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/create_option_desc")
+    public WebElement normal_account_type;
+
+    //com.tronlink.wallet:id/create_option_desc_shield
+    @FindBy(id = "com.tronlink.wallet:id/create_option_desc_shield")
+    public WebElement shield_account_type;
+
 
 
     public ImportPrivateKeyPage enterImportPrivateKeyPage() throws Exception{
         try {
-            privateKeyC_btn.click();
+            normal_account_type.click();
+            privateKey_btn.click();
         }catch (Exception e){
-            privateKeyE_btn.click();
+            privateKey_btn.click();
         }
         TimeUnit.SECONDS.sleep(1);
         return new ImportPrivateKeyPage(driver);
