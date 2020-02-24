@@ -94,7 +94,7 @@ public class DappFrozenTest extends Base {
     @Test(enabled = true,description = "Dapp chain freeze energy success", alwaysRun = true)
     public void test0002_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = enterFreezePage();
-        //frozen.bandwidth_btn.click();
+        frozen.energy_btn.click();
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
     }
@@ -129,6 +129,7 @@ public class DappFrozenTest extends Base {
     @Test(enabled = true,description = "Dapp chain energy question Test", alwaysRun = true)
     public void test0006_checkEnergyQuestion() throws Exception{
         FrozenAndUnfreezePage frozen = enterFreezePage();
+        frozen.energy_btn.click();
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
@@ -137,7 +138,7 @@ public class DappFrozenTest extends Base {
     @Test(enabled = true,description = "Dapp chain bandwidth question Test", alwaysRun = true)
     public void test0007_checkBandwidthQuestion() throws Exception{
         FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.bandwidth_btn.click();
+        //frozen.bandwidth_btn.click();
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));
