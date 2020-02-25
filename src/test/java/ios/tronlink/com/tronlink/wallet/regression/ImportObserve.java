@@ -16,8 +16,11 @@ public class ImportObserve extends BaseTest {
 
     public ObservePage enterImportObservePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
+        waiteTime();
         assetPage.addWallet_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
+        DRIVER.findElementById("normalWallet").click();
+        waiteTime();
         DRIVER.findElementByName("观察钱包").click();
         TimeUnit.SECONDS.sleep(2);
         return new ObservePage(DRIVER);
