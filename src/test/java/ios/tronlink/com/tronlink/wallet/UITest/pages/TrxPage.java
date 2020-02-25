@@ -190,16 +190,15 @@ public class TrxPage extends AbstractPage {
         Helper.swipeLeftScreen(driver);
         waiteTime();
         Helper.TapLocationName(driver,record);
-        log("have click : " + record);
+        log("\n have click : " + record);
         waiteTime();
         try{
-            log(driver.findElementById("headerLabel").getText());
+            log("detail page number is：" + driver.findElementById("headerLabel").getText());
         }catch (Exception e){
-            log("没有进入那条记录");
+            log("没有进入那条记录,再次尝试点击");
             Helper.TapLocationName(driver,record);
-            log(driver.findElementById("headerLabel").getText());
         }
-
+        waiteTime();
         return  driver.findElementById("headerLabel").getText().contains(record);
 
     }

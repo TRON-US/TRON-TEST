@@ -170,11 +170,12 @@ public class Helper {
     public void getSignOperate(String testPrivateKey) throws Exception{
 
 
-        System.out.println("setupbefore");
+        System.out.println("getSignOperate");
         try {
+            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             findWebElement("导入钱包").click();
             getSignStep(testPrivateKey);
-            System.out.println("import action");
+            System.out.println("make imported");
         }catch (Exception e){
             System.out.println("do nothing have imported");
 
@@ -183,14 +184,14 @@ public class Helper {
 
     public void getColdSignOperate(String testPrivateKey) throws Exception{
 
-        System.out.println("setupbefore");
+        System.out.println("getColdSignOperate");
         try {
-            System.out.println("try to import");
+            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             findWebElement("冷钱包").click();
             getColdSignStep(testPrivateKey);
-            System.out.println("imported");
+            System.out.println("make imported");
         }catch (Exception e){
-            System.out.println("haved imported");
+            System.out.println("do nothing have imported");
 
         }
     }
@@ -245,7 +246,7 @@ public class Helper {
 
 
     public void getSignStep(String testPrivateKey){
-        System.out.println("111111111111");
+        System.out.println("getSignStep");
         try {
             DRIVER.findElement(By.name("接受"));
             while (!findWebElement("接受").isEnabled()) {
@@ -260,6 +261,8 @@ public class Helper {
                     .release().perform();
             }
             findWebElement("接受").click();
+            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.findElementById("normalWallet").click();
         }catch (Exception e){
         }
 
@@ -267,7 +270,7 @@ public class Helper {
     }
 
     public void getColdSignStep(String testPrivateKey){
-        System.out.println("111111111111");
+        System.out.println("getColdSignStep");
         try {
             DRIVER.findElement(By.name("选择此模式")).click();
             DRIVER.findElement(By.name("接受"));
@@ -283,6 +286,8 @@ public class Helper {
                     .release().perform();
             }
             findWebElement("接受").click();
+            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.findElementById("normalWallet").click();
         }catch (Exception e){
         }
 
@@ -292,6 +297,8 @@ public class Helper {
 
     public void importUsePrivateKey(String privatekey,String name,String pass){
         try {
+            DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+
             findWebElement("私钥导入").click();
             DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
             tapWhitePlace(DRIVER);
@@ -320,7 +327,7 @@ public class Helper {
         Boolean Element_is_exist = false;
         WebElement el = null;
         while (!Element_is_exist && tries < 3) {
-            System.out.println("findWElementTimes:" + tries);
+            System.out.println("find  ("+  element  +") WElementTimes:" + tries);
             tries++;
             try {
                 el = DRIVER.findElementByName(element);

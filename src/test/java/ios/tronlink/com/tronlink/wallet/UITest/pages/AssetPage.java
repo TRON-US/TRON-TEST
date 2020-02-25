@@ -405,6 +405,8 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         addWallet_btn.click();
         waiteTime();
+        driver.findElementById("normalWallet").click();
+        waiteTime();
         driver.findElementById("观察钱包").click();
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
