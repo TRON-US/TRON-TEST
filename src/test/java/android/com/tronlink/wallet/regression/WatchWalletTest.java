@@ -77,6 +77,7 @@ public class WatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         TimeUnit.SECONDS.sleep(3);
         Helper.swipScreen(DRIVER);
+        frozen.energy_btn.click();
         frozen.freezeCount_input.sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);

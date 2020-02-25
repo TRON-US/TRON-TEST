@@ -66,6 +66,9 @@ public class MyPursePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/rl_keystore2")
     public WebElement backupKeystore_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_privatekey")
+    public WebElement backupPrivateKey_btn;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/et_password")
@@ -108,6 +111,12 @@ public class MyPursePage extends AbstractPage {
     @FindBy(xpath = "//*[@text='多重签名交易']")
     public WebElement mulSignTranfer_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/editText")
+    public WebElement sk_text;
+
+    @FindBy(id = "com.tronlink.wallet:id/editText")
+    public WebElement shieldAddress_text;
+
 
 
     public MultiSignManagerPage enterMultiSignManagerPage() {
@@ -129,6 +138,17 @@ public class MyPursePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         try {
             normal_account_type.click();
+        } catch (Exception e) {
+
+        }
+        return new AddwalletPage(driver);
+    }
+
+    public AddwalletPage enterAddwalletPage(Boolean isShieldWallet) throws Exception {
+        newCreate_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        try {
+            shield_account_type.click();
         } catch (Exception e) {
 
         }
