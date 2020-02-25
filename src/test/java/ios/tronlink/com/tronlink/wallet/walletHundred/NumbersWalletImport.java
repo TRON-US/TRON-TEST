@@ -65,8 +65,11 @@ public class NumbersWalletImport extends BaseTest {
 
     public ImportPrivateKeyPage enterImportPrivateKeyPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
+        waiteTime();
         assetPage.addWallet_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        waiteTime();
+        DRIVER.findElementById("normalWallet").click();
+        waiteTime();
         DRIVER.findElementByName("私钥导入").click();
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);

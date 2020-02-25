@@ -4,13 +4,13 @@
     <listeners>
         <listener class-name="ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener"/>
     </listeners>
-    <test name= "7d7e0ff85f9f971f61c677d1968c7399771f99d0">
+    <test name= "1fb216ca798cf08a2d01fbdc78e2cdbb05321e24">
         <parameter name="port"  value="4725"/>
-        <parameter name="udid" value="7d7e0ff85f9f971f61c677d1968c7399771f99d0"/>
+        <parameter name="udid" value="1fb216ca798cf08a2d01fbdc78e2cdbb05321e24"/>
         <parameter name="platformName" value="iOS"/>
         <parameter name="platformVersion" value= "13.3"/>
-        <parameter name="deviceName" value= "test7130"/>
-        <parameter name="noReset" value="false"/>
+        <parameter name="deviceName" value= "iPhone"/>
+        <parameter name="noReset" value="true"/>
         <parameter name="webDriverPort"  value="8100"/>
         <parameter name="bpPort"  value="2251"/>
         <parameter name="automationName"  value="XCUITest"/>
@@ -28,17 +28,16 @@
         <parameter name="witnessUrl" value="IOS-UI-Witness-001"/>
         <classes>
             <class name="ios.tronlink.com.tronlink.wallet.regression.AboutUsTest"></class>
-            <class name="ios.tronlink.com.tronlink.wallet.regression.AddAssetsTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.AssetsPageTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.ChangeWalletPasswordTest"></class>
-            <class name="ios.tronlink.com.tronlink.wallet.regression.DappAddAssetsTest"></class>
-            <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainSendTrxTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.CommitteeTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainWithdraw"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainWithdraw10"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainWithdraw20"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappFrozenTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrc10"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrc20"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrxTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.FrozenAndUnfreezeTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.ImportKeystore"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.ImportObserve"></class>
@@ -50,11 +49,15 @@
             <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignActiveTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.MyPurseTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.NodeSetTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.NoteAdrBookTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrc10"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrc20"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrx"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.SettingTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.VoteTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.WatchWalletTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ZColdWalletTest"></class>
         </classes>
     </test>
 </suite>

@@ -129,6 +129,8 @@ public class MultiSignTest extends Base {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
+        DRIVER.findElementById("normalWallet").click();
+        waiteTime();
         DRIVER.findElementByName("私钥导入").click();
         waiteTime();
         ImportPrivateKeyPage importPrivateKey = new ImportPrivateKeyPage(DRIVER);
