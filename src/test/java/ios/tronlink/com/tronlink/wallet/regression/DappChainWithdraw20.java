@@ -63,7 +63,7 @@ public class DappChainWithdraw20 extends BaseTest {
         successNumber = count;
 
         TransferPage transferOut =  trx.enterTransferOutPage();
-        trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
+        trx = transferOut.enterTrxPageWithTransferOutSuccess(successNumber);
         AssetPage page = trx.enterAssetPage();
 
         trx = page.enterTrx20Page();
@@ -86,7 +86,7 @@ public class DappChainWithdraw20 extends BaseTest {
                 value_is_changed = true;
             }
         }
-        System.out.println("-----------\n before: "+ trxCount    + " after: " + trxCountNow  + "value: " + count);
+        System.out.println("-----------\n before: "+ trxCount    + " after: " + trxCountNow  + "value successNumber : " + successNumber);
         Assert.assertTrue(trxCount >= trxCountNow +  Double.parseDouble(count) );
     }
 
