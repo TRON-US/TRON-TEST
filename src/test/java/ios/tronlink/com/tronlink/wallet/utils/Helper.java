@@ -170,11 +170,12 @@ public class Helper {
     public void getSignOperate(String testPrivateKey) throws Exception{
 
 
-        System.out.println("setupbefore");
+        System.out.println("getSignOperate");
         try {
+            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             findWebElement("导入钱包").click();
             getSignStep(testPrivateKey);
-            System.out.println("import action");
+            System.out.println("make imported");
         }catch (Exception e){
             System.out.println("do nothing have imported");
 
@@ -183,14 +184,14 @@ public class Helper {
 
     public void getColdSignOperate(String testPrivateKey) throws Exception{
 
-        System.out.println("setupbefore");
+        System.out.println("getColdSignOperate");
         try {
-            System.out.println("try to import");
+            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             findWebElement("冷钱包").click();
             getColdSignStep(testPrivateKey);
-            System.out.println("imported");
+            System.out.println("make imported");
         }catch (Exception e){
-            System.out.println("haved imported");
+            System.out.println("do nothing have imported");
 
         }
     }

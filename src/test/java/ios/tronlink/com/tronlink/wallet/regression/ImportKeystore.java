@@ -13,7 +13,11 @@ public class ImportKeystore extends BaseTest {
     String oldKeystore;
     public ImportKeystorePage getImportKeystorePage(){
         AssetPage assetPage = new AssetPage(DRIVER);
+        waiteTime();
         assetPage.addWallet_btn.click();
+        waiteTime();
+        DRIVER.findElementById("normalWallet").click();
+        waiteTime();
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
     }
