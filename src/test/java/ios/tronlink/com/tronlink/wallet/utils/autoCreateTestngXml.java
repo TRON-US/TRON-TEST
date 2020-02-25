@@ -292,6 +292,14 @@ public class autoCreateTestngXml {
                     "        <parameter name=\"witnessUrl\" value=\""
                         + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
                         + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"shieldSK\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("IosShieldAccount.sk" + multiSignIndex.get())
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"shieldAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
+                        + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
                 //autotest-ios can
