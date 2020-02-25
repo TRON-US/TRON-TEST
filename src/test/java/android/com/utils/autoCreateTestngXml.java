@@ -1,8 +1,11 @@
 package android.com.utils;
 
 import com.alibaba.fastjson.JSONArray;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonParser;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -24,6 +27,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import org.testng.collections.Lists;
+import org.tron.api.GrpcAPI;
+import org.tron.common.utils.ByteArray;
+import org.tron.common.utils.ByteUtil;
 
 public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
@@ -45,10 +52,12 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
-    private String httpnode = Configuration.getByPath("testng.conf").getString("tronex.httpnode");
-    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("tronex.dappChainHttpNode");
+    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
+    static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
+
     public static AtomicInteger multiSignIndex = new AtomicInteger(1);
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
@@ -87,7 +96,8 @@ public class autoCreateTestngXml {
         testAccountList.put("TWhc6AAh6BWRr3k5dV8iMvkp8ys7NHzXCk","6850fd0a0f2cb94167bf0507a738fa9eef51d6fdc65e8452039f711a4bdf3135");
         testAccountList.put("TSsaSxHnb3xLTop2A8LrDk1P896yiDeupe","cec7fc3c9c603ae6cdc026c777db037b8ca4995d451fa5fe7b2f19a0dc01cd98");
         testAccountList.put("TMDs8oTj8mVnakqiVyDKdp2ruWPdFeDgbq","7652071f95c376e6d1100f9fed5c520f22262c1530f328bb1c3ed10bad771e68");
-//        testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
+        //testAccountList.put("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe","b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647");
+        //        testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
 //        testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");
 //        testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
 //        testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
@@ -118,7 +128,7 @@ public class autoCreateTestngXml {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
         }
@@ -139,7 +149,7 @@ public class autoCreateTestngXml {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
 
@@ -171,6 +181,8 @@ public class autoCreateTestngXml {
 //        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
 //        testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
 //        testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
+
+
 
         StringBuilder sb = new StringBuilder();
 
@@ -239,6 +251,14 @@ public class autoCreateTestngXml {
                     "        <parameter name=\"witnessUrl\" value=\""
                         + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Url")
                         + "\"/>\n");
+                sb.append(
+                  "        <parameter name=\"shieldSK\" value=\""
+                      + Configuration.getByPath("testng.conf").getString("androidShieldAccount.sk" + multiSignIndex.get())
+                      + "\"/>\n");
+                sb.append(
+                  "        <parameter name=\"shieldAddress\" value=\""
+                      + Configuration.getByPath("testng.conf").getString("androidShieldAccount.shieldAddress" + multiSignIndex.get())
+                      + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <packages>\n");
                 for (int i = 0; i < packagesNameList.size();i++) {
@@ -462,7 +482,7 @@ public class autoCreateTestngXml {
         JSONArray tokenArray = responseContent.getJSONArray("assetV2");
         for (int i = 0; i < tokenArray.size();i++) {
             System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
-            if (Integer.valueOf(String.valueOf(tokenArray.getJSONObject(i).get("key"))) == 1000042) {
+          if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId)) {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }
@@ -504,6 +524,48 @@ public class autoCreateTestngXml {
         }
         return response;
     }
+
+
+
+  /**
+   * constructor.
+   */
+  public static HttpResponse sendShieldCoin(String httpNode, String publicZenTokenOwnerAddress,
+      long fromAmount, String publicZenTokenKey, String shieldAddress,String sendAmount) {
+    try {
+      final String requestUrl = "http://" + httpNode + "/wallet/createshieldedtransaction";
+
+      Map<String, Object> map = new HashMap<String, Object>();
+      map.put("transparent_from_address", publicZenTokenOwnerAddress);
+      map.put("from_amount", fromAmount);
+      map.put("ovk", "030c8c2bc59fb3eb8afb047a8ea4b028743d23e7d38c6fa30908358431e2314d");
+      ArrayList<Object> noteList = new ArrayList<>();
+      final Map<String, Object> note = new HashMap<String, Object>();
+      Map<String, Object> noteInfo = new HashMap<String, Object>();
+      noteInfo.put("value", sendAmount);
+      noteInfo.put("payment_address", shieldAddress);
+      noteInfo.put("rcm", "c094341876e1c857d45f7b7083912e342a0d19a499236662a02ae8ef90651007");
+      noteInfo.put("memo", "Testgroup send shield coin");
+      note.put("note", noteInfo);
+      noteList.add(note);
+      map.put("shielded_receives", noteList);
+
+
+      String jsonStr = new Gson().toJson(map);
+      JsonObject jsonObj = new JsonParser().parse(jsonStr).getAsJsonObject();
+      response = createConnect(requestUrl, jsonObj);
+      transactionString = EntityUtils.toString(response.getEntity());
+      transactionSignString = gettransactionsign(httpNode, transactionString, publicZenTokenKey);
+      response = broadcastTransaction(httpNode, transactionSignString);
+    } catch (Exception e) {
+      e.printStackTrace();
+      httppost.releaseConnection();
+      return null;
+    }
+    return response;
+  }
+
+
 
 
 

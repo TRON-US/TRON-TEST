@@ -48,11 +48,13 @@ public class autoCreateTestngXmlForRelease {
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
     static List<String> classNameList = new ArrayList<>();
-    private String httpnode = Configuration.getByPath("testng.conf").getString("tronex.httpnode");
-    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("tronex.dappChainHttpNode");
+    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
     public static AtomicInteger multiSignIndex = new AtomicInteger(1);
+    static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
+
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
         pccm.setDefaultMaxPerRoute(20);
@@ -118,7 +120,7 @@ public class autoCreateTestngXmlForRelease {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000002",targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
         }
@@ -139,7 +141,7 @@ public class autoCreateTestngXmlForRelease {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000002",targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
 
@@ -258,6 +260,14 @@ public class autoCreateTestngXmlForRelease {
                 sb.append(
                     "        <parameter name=\"witnessUrl\" value=\""
                         + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Url")
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"shieldSK\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidShieldAccount.sk" + multiSignIndex.get())
+                        + "\"/>\n");
+                sb.append(
+                    "        <parameter name=\"shieldAddress\" value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidShieldAccount.shieldAddress" + multiSignIndex.get())
                         + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
@@ -480,7 +490,7 @@ public class autoCreateTestngXmlForRelease {
         JSONArray tokenArray = responseContent.getJSONArray("assetV2");
         for (int i = 0; i < tokenArray.size();i++) {
             System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
-            if (Integer.valueOf(String.valueOf(tokenArray.getJSONObject(i).get("key"))) == 1000042) {
+            if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId) ) {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }
