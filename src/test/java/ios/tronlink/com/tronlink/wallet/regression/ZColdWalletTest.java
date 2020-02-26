@@ -62,6 +62,8 @@ public class ZColdWalletTest extends ColdBaseTest {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         coldHelper.AddWalletBtn.click();
         waiteTime();
+        DRIVER.findElementById("normalWallet").click();
+        waiteTime();
         Assert.assertTrue(coldHelper.importtitle.isEnabled());
         Assert.assertTrue(coldHelper.memtitle.isEnabled());
         Assert.assertTrue(coldHelper.Keystorettitle.isEnabled());
