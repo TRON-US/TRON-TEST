@@ -26,7 +26,8 @@ public class MultiSignTest extends Base {
         log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
-        new Helper().getSign(ownerPrivateKey, DRIVER);
+        new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
+
     }
 
     @Parameters({"bundleId"})

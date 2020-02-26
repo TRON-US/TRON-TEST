@@ -34,7 +34,8 @@ public class CommitteeTest extends Base {
         log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
-        new Helper().getSign(witnessKey, DRIVER);
+        new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
+
     }
     @Parameters({"bundleId"})
     @AfterMethod(alwaysRun = true)
