@@ -71,7 +71,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     public void test004_checkEnergyQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("能量"));
+        Assert.assertTrue(frozen.questionContent_btn.getText().contains("整个网络"));
     }
 
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
