@@ -63,8 +63,8 @@ public class ColdBaseTest extends Base {
         } catch (Exception e) {
         }
 
-
-        new Helper().getColdSign(privateKey, DRIVER);
+        new Helper().importFirstWallet(Helper.importType.coldWallet,privateKey,DRIVER);
+//        new Helper().getColdSign(privateKey, DRIVER);
     }
 
     @Parameters({"bundleId"})

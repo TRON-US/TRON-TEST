@@ -1,7 +1,6 @@
 package ios.tronlink.com.tronlink.wallet.utils;
 
 
-import android.com.utils.AppiumTestCase;
 import io.appium.java_client.TouchAction;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -13,7 +12,6 @@ import org.openqa.selenium.WebElement;
 
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +22,7 @@ import io.appium.java_client.touch.offset.PointOption;
 
 public class Helper {
 
-
+    public enum importType {normal,coldWallet,shieldWallet}
 
     public IOSDriver DRIVER = null;
 
@@ -155,47 +153,6 @@ public class Helper {
         }
     }
 
-    public void getSign(String testPrivateKey, IOSDriver driver) throws Exception{
-        this.DRIVER = driver;
-        getSignOperate(testPrivateKey);
-    }
-
-    public void getColdSign(String testPrivateKey, IOSDriver driver) throws Exception{
-        this.DRIVER = driver;
-        getColdSignOperate(testPrivateKey);
-    }
-
-
-
-    public void getSignOperate(String testPrivateKey) throws Exception{
-
-
-        System.out.println("getSignOperate");
-        try {
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-            findWebElement("导入钱包").click();
-            getSignStep(testPrivateKey);
-            System.out.println("make imported");
-        }catch (Exception e){
-            System.out.println("do nothing have imported");
-
-        }
-    }
-
-    public void getColdSignOperate(String testPrivateKey) throws Exception{
-
-        System.out.println("getColdSignOperate");
-        try {
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-            findWebElement("冷钱包").click();
-            getColdSignStep(testPrivateKey);
-            System.out.println("make imported");
-        }catch (Exception e){
-            System.out.println("do nothing have imported");
-
-        }
-    }
-
 
     public static boolean guaranteeMainChain(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
@@ -245,8 +202,8 @@ public class Helper {
     }
 
 
-    public void getSignStep(String testPrivateKey){
-        System.out.println("getSignStep");
+
+    public void findAcceptAndClick(){
         try {
             DRIVER.findElement(By.name("接受"));
             while (!findWebElement("接受").isEnabled()) {
@@ -255,66 +212,79 @@ public class Helper {
                 int height = DRIVER.manage().window().getSize().height;
                 Duration duration = Duration.ofMillis(200);
                 action.press(
-                    PointOption.point(width/2, height*4/5))
-                    .waitAction(WaitOptions.waitOptions(duration))
-                    .moveTo(PointOption.point(width/2, height/5))
-                    .release().perform();
+                        PointOption.point(width/2, height*4/5))
+                        .waitAction(WaitOptions.waitOptions(duration))
+                        .moveTo(PointOption.point(width/2, height/5))
+                        .release().perform();
             }
             findWebElement("接受").click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-            DRIVER.findElementById("normalWallet").click();
         }catch (Exception e){
         }
-
-        importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
     }
 
-    public void getColdSignStep(String testPrivateKey){
-        System.out.println("getColdSignStep");
-        try {
-            DRIVER.findElement(By.name("选择此模式")).click();
-            DRIVER.findElement(By.name("接受"));
-            while (!findWebElement("接受").isEnabled()) {
-                IOSTouchAction action = new IOSTouchAction(DRIVER);
-                int width = DRIVER.manage().window().getSize().width;
-                int height = DRIVER.manage().window().getSize().height;
-                Duration duration = Duration.ofMillis(200);
-                action.press(
-                    PointOption.point(width/2, height*4/5))
-                    .waitAction(WaitOptions.waitOptions(duration))
-                    .moveTo(PointOption.point(width/2, height/5))
-                    .release().perform();
+    public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
+        this.DRIVER = driver;
+         if(!isElementExist(DRIVER,"home manager")){
+             System.out.println("=================\n Need to import first Wallet \n ================");
+             importFirstWallet(type,privateKey,"Auto_test","Test0001");
+         }
+    }
+
+    public void importFirstWallet(importType type,String privateKey,String name,String pass) throws Exception{
+
+        DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+
+        switch (type){
+            case normal:
+            {
+                findWebElement("导入钱包").click();
+                findAcceptAndClick();
+                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                DRIVER.findElementById("normalWallet").click();
+                break;
             }
-            findWebElement("接受").click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-            DRIVER.findElementById("normalWallet").click();
-        }catch (Exception e){
+            case coldWallet:
+            {
+                findWebElement("冷钱包").click();
+                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                DRIVER.findElement(By.name("选择此模式")).click();
+                findAcceptAndClick();
+                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                DRIVER.findElementById("normalWallet").click();
+                break;
+            }
+            case shieldWallet:
+            {
+                findWebElement("导入钱包").click();
+                findAcceptAndClick();
+                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                DRIVER.findElementById("shieldedWallet").click();
+                break;
+            }
         }
 
-        importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
+        importUsePrivateKey(privateKey,name,pass);
+
     }
+
 
 
     public void importUsePrivateKey(String privatekey,String name,String pass){
         try {
             DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-
             findWebElement("私钥导入").click();
             DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
             DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-            //TimeUnit.SECONDS.sleep(20);
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
             DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-            //TimeUnit.SECONDS.sleep(5);
             DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
             TimeUnit.SECONDS.sleep(5);
-            //TimeUnit.SECONDS.sleep(5);
             DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
             tapWhitePlace(DRIVER);
             findWebElement("完成").click();

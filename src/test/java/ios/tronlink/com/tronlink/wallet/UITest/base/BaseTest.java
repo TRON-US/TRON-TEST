@@ -20,7 +20,8 @@ public class BaseTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         log("我是BaseTest类的Before");
-        new Helper().getSign(privateKey, DRIVER);
+        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
+
     }
 
 
