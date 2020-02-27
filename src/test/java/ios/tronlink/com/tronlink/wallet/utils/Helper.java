@@ -199,49 +199,49 @@ public class Helper {
 //}
 
 
-    public void getColdSign(String testPrivateKey, IOSDriver driver) throws Exception{
-        this.DRIVER = driver;
-        getColdSignOperate(testPrivateKey);
-    }
-
-
-    public void getColdSignOperate(String testPrivateKey) throws Exception{
-
-        System.out.println("getColdSignOperate");
-        try {
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-            findWebElement("冷钱包").click();
-            getColdSignStep(testPrivateKey);
-            System.out.println("make imported");
-        }catch (Exception e){
-            System.out.println("do nothing have imported");
-
-        }
-    }
-    public void getColdSignStep(String testPrivateKey){
-        System.out.println("getColdSignStep");
-        try {
-            DRIVER.findElement(By.name("选择此模式")).click();
-            DRIVER.findElement(By.name("接受"));
-            while (!findWebElement("接受").isEnabled()) {
-                IOSTouchAction action = new IOSTouchAction(DRIVER);
-                int width = DRIVER.manage().window().getSize().width;
-                int height = DRIVER.manage().window().getSize().height;
-                Duration duration = Duration.ofMillis(200);
-                action.press(
-                        PointOption.point(width/2, height*4/5))
-                        .waitAction(WaitOptions.waitOptions(duration))
-                        .moveTo(PointOption.point(width/2, height/5))
-                        .release().perform();
-            }
-            findWebElement("接受").click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-            DRIVER.findElementById("normalWallet").click();
-        }catch (Exception e){
-        }
-
-        importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
-    }
+//    public void getColdSign(String testPrivateKey, IOSDriver driver) throws Exception{
+//        this.DRIVER = driver;
+//        getColdSignOperate(testPrivateKey);
+//    }
+//
+//
+//    public void getColdSignOperate(String testPrivateKey) throws Exception{
+//
+//        System.out.println("getColdSignOperate");
+//        try {
+//            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+//            findWebElement("冷钱包").click();
+//            getColdSignStep(testPrivateKey);
+//            System.out.println("make imported");
+//        }catch (Exception e){
+//            System.out.println("do nothing have imported");
+//
+//        }
+//    }
+//    public void getColdSignStep(String testPrivateKey){
+//        System.out.println("getColdSignStep");
+//        try {
+//            DRIVER.findElement(By.name("选择此模式")).click();
+//            DRIVER.findElement(By.name("接受"));
+//            while (!findWebElement("接受").isEnabled()) {
+//                IOSTouchAction action = new IOSTouchAction(DRIVER);
+//                int width = DRIVER.manage().window().getSize().width;
+//                int height = DRIVER.manage().window().getSize().height;
+//                Duration duration = Duration.ofMillis(200);
+//                action.press(
+//                        PointOption.point(width/2, height*4/5))
+//                        .waitAction(WaitOptions.waitOptions(duration))
+//                        .moveTo(PointOption.point(width/2, height/5))
+//                        .release().perform();
+//            }
+//            findWebElement("接受").click();
+//            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+//            DRIVER.findElementById("normalWallet").click();
+//        }catch (Exception e){
+//        }
+//
+//        importUsePrivateKey(testPrivateKey,"Auto_test","Test0001");
+//    }
 
 
 
