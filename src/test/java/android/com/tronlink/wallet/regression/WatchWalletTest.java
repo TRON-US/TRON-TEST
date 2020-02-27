@@ -178,7 +178,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "tranferOut QRCode", alwaysRun = true)
+    @Test(enabled = true,description = "Trc20 QRCode", alwaysRun = true)
     public void test009_trc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrx20Page();
