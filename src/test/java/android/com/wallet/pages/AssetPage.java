@@ -166,6 +166,36 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
     public WebElement trc10Page_transfer_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
+    public WebElement shieldDataSyn_area;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_current_block")
+    public WebElement synCurrent_blockNum;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_block_amount")
+    public WebElement chainCurrent_blockNum;
+
+    @FindBy(id = "com.tronlink.wallet:id/assets_count")
+    public WebElement trz_balance;
+
+
+    public void waitShieldDataSynFinished() {
+      Long startSynTime = System.currentTimeMillis();
+      Long currentSynTime;
+      while (Integer.valueOf(synCurrent_blockNum.getText()) + 500
+          < Integer.valueOf(chainCurrent_blockNum.getText())) {
+        try {
+          TimeUnit.SECONDS.sleep(10);
+          currentSynTime = System.currentTimeMillis();
+          //同步大于十分钟，强制退出
+          if (currentSynTime - startSynTime > 300000L) {
+            break;
+          }
+        } catch (Exception e){}
+      }
+
+    }
+
 
 
 
