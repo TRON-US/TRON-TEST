@@ -31,7 +31,10 @@ public class VoteConfirmPage extends AbstractPage {
     public void voteOperate(){
         try {
             TimeUnit.SECONDS.sleep(1);
-            voteNow_btn.click();
+            try {
+                voteNow_btn.click();
+            } catch (Exception e) {
+            }
             password_input.sendKeys("Test0001");
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);

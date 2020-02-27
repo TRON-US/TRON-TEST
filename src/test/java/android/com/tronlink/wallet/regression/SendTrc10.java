@@ -56,6 +56,8 @@ public class SendTrc10 extends Base {
     @Test(enabled = true,description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        asset.market_btn.click();
+        asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.enterSendTrc10Page();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         sendTrxAmount = rand.nextFloat() + 1;
@@ -103,6 +105,7 @@ public class SendTrc10 extends Base {
     @Test(enabled = true,description = "Trc10 transfer success recording")
     public void test006_trc10TransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+
         TrxPage trx = asset.enterTrx10Page();
         int tries = 0;
         Boolean exist = false;

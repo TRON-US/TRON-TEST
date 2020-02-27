@@ -138,17 +138,30 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='TRX']")
     public WebElement trx_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/rl_main")
+    public WebElement trz_btn;
+
 
 /*    @FindBy(xpath = "//*[@text='TRX']")
     public List<WebElement> trx20_btn;*/
 
-    @FindBy(id = "com.tronlink.wallet:id/assets_name")
-    public List<WebElement> trx20_btn;
+    //@FindBy(id = "com.tronlink.wallet:id/assets_name")
+    //public List<WebElement> trx20_btn;
 
+    //com.tronlink.wallet:id/rl_main
+    @FindBy(id = "com.tronlink.wallet:id/rl_main")
+    public List<WebElement> trx20_btn;
 
 
     @FindBy(xpath = "//*[@text='tronlink_token']")
     public WebElement trx10_btn;
+
+    //com.tronlink.wallet:id/iv_renzheng
+    @FindBy(id = "com.tronlink.wallet:id/iv_renzheng")
+    public WebElement trx10_icon_btn;
+
+    //@FindBy(id = "com.tronlink.wallet:id/rl_main")
+    //public List<WebElement> trx10_btn;
 
 
 
@@ -182,7 +195,7 @@ public class AssetPage extends AbstractPage {
     public void waitShieldDataSynFinished() {
       Long startSynTime = System.currentTimeMillis();
       Long currentSynTime;
-      while (Integer.valueOf(synCurrent_blockNum.getText()) + 500
+      while (Integer.valueOf(synCurrent_blockNum.getText()) + 400
           < Integer.valueOf(chainCurrent_blockNum.getText())) {
         try {
           TimeUnit.SECONDS.sleep(10);
@@ -206,9 +219,21 @@ public class AssetPage extends AbstractPage {
         return new SendTrxPage(driver);
     }
 
+    public SendTrzPage enterSendTrzPage() {
+      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      assets_btn.click();
+      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      return new SendTrzPage(driver);
+    }
+
+
     public SendTrxPage enterSendTrc10Page() {
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        trx10_btn.click();
+        try {
+          trx10_btn.click();
+        } catch (Exception e) {
+          trx10_icon_btn.click();
+        }
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -335,13 +360,27 @@ public class AssetPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
+    public TrzPage enterTrzPage() throws Exception {
+      //Helper.scrollToElementUntilVisible(driver,trx_btn);
+      waitShieldDataSynFinished();
+      trz_btn.click();
+      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      return new TrzPage(driver);
+  }
+
 
     public TrxPage enterTrx10Page() throws Exception {
-        //Helper.scrollToElementUntilVisible(driver,trx10_btn);
+        market_btn.click();
+        assetsMain_btn.click();
+        Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(1);
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         Helper.swipScreen(driver);
-        trx10_btn.click();
+        try {
+          trx10_btn.click();
+        } catch (Exception e) {
+          trx10_icon_btn.click();
+        }
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         TimeUnit.SECONDS.sleep(1);
         return new TrxPage(driver);
@@ -349,6 +388,8 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx20Page() throws Exception {
+        market_btn.click();
+        assetsMain_btn.click();
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(3);
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);

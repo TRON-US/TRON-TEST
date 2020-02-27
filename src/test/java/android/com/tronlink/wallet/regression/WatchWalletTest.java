@@ -172,7 +172,11 @@ public class WatchWalletTest extends Base {
         vote.et_input.sendKeys("1");
         vote.vote_btn.click();
         TimeUnit.SECONDS.sleep(2);
-        vote.btgo_btn.click();
+        try {
+            vote.btgo_btn.click();
+        } catch (Exception e) {
+
+        }
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -190,8 +194,8 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "tranferOut QRCode", alwaysRun = true)
-    public void test010_tranferOutQRCode() throws Exception{
+    @Test(enabled = true,description = "Deposit QRCode", alwaysRun = true)
+    public void test010_depositTrxQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
         TransferPage transfer = trxPage.enterTransferPage();
