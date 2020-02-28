@@ -111,7 +111,11 @@ public class SendTrc20 extends Base {
     public void test005_trc20TransferInSuccessRecording() throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       TrxPage trx = asset.enterTrx20Page();
-      int tries = 0;
+      trx.tranfer_tab.get(1).click();
+      System.out.println(trx.tranferIncount_text.get(1).getText());
+      String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+      Assert.assertTrue(Float.toString(sendTrc20Amount).substring(0,5).equals(tranferInCount.substring(0,5)));
+   /*   int tries = 0;
       Boolean exist = false;
       while (exist == false && tries++ < 5) {
         tries++;
@@ -131,7 +135,7 @@ public class SendTrc20 extends Base {
           System.out.println(e);
         }
       }
-      Assert.assertTrue(exist);
+      Assert.assertTrue(exist);*/
   }
 
 

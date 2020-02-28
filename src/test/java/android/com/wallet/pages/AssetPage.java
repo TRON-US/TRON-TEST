@@ -213,39 +213,39 @@ public class AssetPage extends AbstractPage {
 
 
     public SendTrxPage enterSendTrxPage() {
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         assets_btn.click();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
     }
 
     public SendTrzPage enterSendTrzPage() {
-      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
       assets_btn.click();
-      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
       return new SendTrzPage(driver);
     }
 
 
     public SendTrxPage enterSendTrc10Page() {
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {
           trx10_btn.click();
         } catch (Exception e) {
           trx10_icon_btn.click();
         }
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
     }
 
   public SendTrxPage enterSendTrc20Page() {
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trx20_btn.get(2).click();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
   }
 
@@ -261,7 +261,7 @@ public class AssetPage extends AbstractPage {
   public VotePage enterVotePage(){
         try {
             vote_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -304,7 +304,7 @@ public class AssetPage extends AbstractPage {
     }
 
     public String getTrxCount() throws Exception {
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         String trxCount = trxValue.getText().split(" ")[0];
         return trxCount;
     }

@@ -96,8 +96,9 @@ public class Helper {
     public static void scrollToElementUntilVisible(AndroidDriver<?> driver, WebElement we){
         for (int i=0;i<5;i++) {
             try {
+                TimeUnit.SECONDS.sleep(2);
                 we.isDisplayed();
-                TimeUnit.SECONDS.sleep(3);
+                break;
             }catch (Exception e){
                 AndroidTouchAction action = new AndroidTouchAction(driver);
                 int width = driver.manage().window().getSize().width;
