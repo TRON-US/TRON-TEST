@@ -94,6 +94,9 @@ public class VotePage extends AbstractPage {
     @FindBy(xpath = "//*[@text='0 vote']")
     public WebElement english_availableVote_toast_null;
 
+    @FindBy(id = "com.tronlink.wallet:id/et_new_password")
+    public WebElement password_input;
+
     public boolean getHits(){
         boolean hits = false;
         try {

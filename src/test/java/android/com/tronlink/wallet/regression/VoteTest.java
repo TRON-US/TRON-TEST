@@ -65,6 +65,7 @@ public class VoteTest extends Base {
     }
 
 
+
     //3.5版本由于需要添加取消全部投票的临时功能，暂时屏蔽了投票确认页面
     @Test(enabled = true,description = "Gets the address of the second candidate", alwaysRun = true)
     public void test001_searchVoteInfo() throws Exception {
@@ -124,6 +125,20 @@ public class VoteTest extends Base {
         Assert.assertTrue(transactionType.equals("投票") || transactionType.equals("Vote"));
         Assert.assertTrue(voteInfo.contains("总票数") || voteInfo.contains("Total votes"));
     }
+
+
+    @Test(enabled = true,description = "Try to cancel all vote, vote for first sr", alwaysRun = true)
+    public void test006_cancelAllVote() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        vote.reset_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        vote.vote_btn.click();
+        Assert.assertTrue(vote.password_input.isEnabled());
+    }
+
+
+
 
 
 }

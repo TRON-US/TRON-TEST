@@ -1,7 +1,9 @@
 package android.com.tronlink.wallet.dappChain;
 
+import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.NodeSetPage;
+import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 
@@ -23,7 +25,10 @@ import android.com.wallet.pages.SettingPage;
 public class MainNetDeposit10 extends Base {
     Random rand = new Random();
     float depositTrc10Amount;
-
+    static String mainNetGateWay = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.mainNetGateWay");
+    static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentDappNetBlockNum");
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         try {
@@ -55,15 +60,17 @@ public class MainNetDeposit10 extends Base {
 
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
-        SettingPage set = enterSettingPage();
+/*        SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseMainChain();
         MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = mine.enterAssetPage();*/
+        AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
         return asset.enterTrx10Page();
     }
 
-    @Test(description = "Change Chain", alwaysRun = true)
+    @Test(enabled = false,description = "Change Chain", alwaysRun = true)
     public void test0001_changeChain() throws Exception {
         SettingPage set = enterSettingPage();
         String nodeName = set.node_name.getText();
@@ -161,5 +168,26 @@ public class MainNetDeposit10 extends Base {
         }
         Assert.assertTrue(exist);
     }
+
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Trc10 depisit transaction detail info test", alwaysRun = true)
+    public void test010_trc10DepositTransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(1);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),mainNetGateWay);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentDappNetBlockNum) );
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrc10Amount).substring(0,6));
+    }
+
 
 }

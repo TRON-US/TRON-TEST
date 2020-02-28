@@ -1,9 +1,11 @@
 package android.com.tronlink.wallet.dappChain;
 
+import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
+import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 
@@ -25,6 +27,10 @@ public class MainNetDeposit20 extends Base {
 
     Random rand = new Random();
     float depositTrc20Amount;
+    static String mainNetGateWay = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.mainNetGateWay");
+    static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentDappNetBlockNum");
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
@@ -124,5 +130,28 @@ public class MainNetDeposit20 extends Base {
         }
         Assert.assertTrue(exist);
     }
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Trc20 depisit transaction detail info test", alwaysRun = true)
+    public void test010_trc20DepositTransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(2);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),mainNetGateWay);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentDappNetBlockNum));
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrc20Amount).substring(0,6));
+    }
+
+
+
+
 
 }

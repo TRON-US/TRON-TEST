@@ -70,7 +70,7 @@ public class ShieldSynTest extends Base {
 
 
     @Test(enabled = true,description = "Shield account transfer shield coin to public account test", alwaysRun = true)
-    public void test004ShieldToPublicTest() throws Exception {
+    public void test004ShieldTransactionExceptionTest() throws Exception {
         SendTrzPage transfer = enterToSendTrzPage();
         transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e9");
         String hits = transfer.formatErrorHits_text.getText();
@@ -128,10 +128,9 @@ public class ShieldSynTest extends Base {
         System.out.println("shiled2ShieldSendAmount:" + shiled2ShieldSendAmount);
         System.out.println("shiled2PublicSendAmount:" + shiled2PublicSendAmount);
         System.out.println("shieldFee:" + shieldFee);
-        Assert.assertTrue(beforeBalance - afterBalance >= 2 * Long.valueOf(shieldFee)
-            + shiled2ShieldSendAmount + shiled2PublicSendAmount - 1);
+        Assert.assertTrue(beforeBalance - afterBalance >= 2 * Long.valueOf(shieldFee));
         Assert.assertTrue(beforeBalance - afterBalance <= 2 * Long.valueOf(shieldFee)
-            + shiled2ShieldSendAmount + shiled2PublicSendAmount + 1);
+            + 2);
     }
 
 

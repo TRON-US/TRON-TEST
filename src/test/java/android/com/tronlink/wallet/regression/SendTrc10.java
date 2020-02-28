@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.regression;
 
+import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
 import android.com.utils.Helper;
@@ -19,6 +20,12 @@ public class SendTrc10 extends Base {
     float sendTrxAmount;
     int beforeSendBalance;
     int afterSendBalance;
+    static String receiverAddress = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.receiverAddress");
+    static String currentMainNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentMainNetBlockNum");
+    static String trc10TokenName = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.trc10TokenName");
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
@@ -153,6 +160,28 @@ public class SendTrc10 extends Base {
         System.out.println(transactionType);
         Assert.assertTrue(transactionType.contains("转账 TRC10 通证") || transactionType.equals("转账TRC10token") || transactionType.equals("transfer TRC10 token"));
     }
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Trc10 transaction detail info test", alwaysRun = true)
+    public void test009_trc10TransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrxAmount).substring(0,6));
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentMainNetBlockNum) );
+    }
+
+
 
 
 

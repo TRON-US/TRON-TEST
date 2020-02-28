@@ -1,6 +1,7 @@
 package android.com.tronlink.wallet.regression;
 
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
@@ -8,6 +9,7 @@ import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.SendTrxPage;
 import android.com.wallet.pages.SendTrxSuccessPage;
 
+import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TransactionRecordPage;
 import android.com.wallet.pages.TrxPage;
 import java.util.Random;
@@ -23,6 +25,10 @@ import org.testng.annotations.Test;
  * 转帐功能测试
  */
 public class SendTrx extends Base {
+    static String receiverAddress = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.receiverAddress");
+    static String currentMainNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentMainNetBlockNum");
 
 
     Random rand = new Random();
@@ -65,7 +71,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input Privatekey to Receiving address", alwaysRun = true)
+    @Test(enabled = true, description = "input Privatekey to Receiving address", alwaysRun = true)
     public void test001_inputPrivatekey() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
@@ -75,7 +81,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input error address to Receiving address", alwaysRun = true)
+    @Test(enabled = true, description = "input error address to Receiving address", alwaysRun = true)
     public void test002_inputErrorAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
@@ -84,7 +90,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input not active Receiving address", alwaysRun = true)
+    @Test(enabled = true, description = "input not active Receiving address", alwaysRun = true)
     public void test003_inputNotActiveAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
@@ -94,7 +100,7 @@ public class SendTrx extends Base {
 
 
     @Parameters({"address"})
-    @Test(description = "input Receiving address same as send address", alwaysRun = true)
+    @Test(enabled = true, description = "input Receiving address same as send address", alwaysRun = true)
     public void test004_inputReceivingAddressSameAsSend(String address) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, address);
@@ -103,7 +109,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input Null Receiving address", alwaysRun = true)
+    @Test(enabled = true, description = "input Null Receiving address", alwaysRun = true)
     public void test005_inputNullReceivingAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.tranferCount_text, "1");
@@ -111,7 +117,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input max send number", alwaysRun = true)
+    @Test(enabled = true, description = "input max send number", alwaysRun = true)
     public void test006_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("max");
@@ -119,7 +125,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input mix send number", alwaysRun = true)
+    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
     public void test007_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("mix");
@@ -128,7 +134,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "input too Much TRX send number", alwaysRun = true)
+    @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
     public void test008_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("tooMuch");
@@ -137,7 +143,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "password error", alwaysRun = true)
+    @Test(enabled = true, description = "password error", alwaysRun = true)
     public void test009_passwordError() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -149,7 +155,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "Receiving address trim", alwaysRun = true)
+    @Test(enabled = true, description = "Receiving address trim", alwaysRun = true)
     public void test010_receivingAddressTrim() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
@@ -159,7 +165,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "Receiving Minimum Trx", alwaysRun = true)
+    @Test(enabled = true, description = "Receiving Minimum Trx", alwaysRun = true)
     public void test011_sendMinimumTrx() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
@@ -169,7 +175,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(description = "check trx name", alwaysRun = true)
+    @Test(enabled = true, description = "check trx name", alwaysRun = true)
     public void test012_sendTrxCheckName() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         Assert.assertTrue(transfer.tvName_text.getText().contains("TRX"));
@@ -234,6 +240,53 @@ public class SendTrx extends Base {
         System.out.println(transactionType);
         Assert.assertTrue(transactionType.contains("转账 TRX") || transactionType.equals("转账Trx") || transactionType.equals("Send Trx"));
     }
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Trx transaction detail info test", alwaysRun = true)
+    public void test017_trxTransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertTrue(sendIcon.equals("-"));
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrxAmount).substring(0,6));
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentMainNetBlockNum));
+    }
+
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Trx receive transaction detail info test", alwaysRun = true)
+    public void test018_trxReceiveTransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(0);
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertTrue(receiveIcon.equals("+"));
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains("TRX"));
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+
+
+        Assert.assertTrue(Float.valueOf(detailPageReceiveAmount) > 0);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentMainNetBlockNum));
+    }
+
+
 
 
 
