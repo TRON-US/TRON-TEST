@@ -185,6 +185,29 @@ public class SendTrc10 extends Base {
     }
 
 
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Trc10 receive transaction detail info test", alwaysRun = true)
+    public void test010_trc10ReceiveTransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertTrue(receiveIcon.equals("+"));
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        Assert.assertTrue(Float.valueOf(detailPageReceiveAmount) > 0);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentMainNetBlockNum));
+    }
+
+
+
 
 
 
