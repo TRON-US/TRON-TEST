@@ -338,7 +338,9 @@ public class AssetPage extends AbstractPage {
 
     public MinePage enterMinePage(){
         try {
-          TimeUnit.SECONDS.sleep(3);
+          TimeUnit.SECONDS.sleep(2);
+          market_btn.click();
+          TimeUnit.SECONDS.sleep(2);
         } catch (Exception e ){};
         //driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         mine_btn.click();

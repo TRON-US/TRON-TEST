@@ -170,7 +170,7 @@ public class SendTrc20 extends Base {
   }
 
   @Parameters({"address"})
-  @Test(enabled = true, description = "Trc20 receive transaction detail info test", alwaysRun = true)
+  @Test(enabled = false, description = "Trc20 receive transaction detail info test", alwaysRun = true)
   public void test008_trc20ReceiveTransactionDetailInfo(String address) throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
