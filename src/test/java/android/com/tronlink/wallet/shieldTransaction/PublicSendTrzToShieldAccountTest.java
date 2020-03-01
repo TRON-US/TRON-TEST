@@ -107,8 +107,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.cont
-            ains("匿名交易") || transactionType.contains("Shielded Transaction"));
+        Assert.assertTrue(transactionType.contains("匿名交易") || transactionType.contains("Shielded Transaction"));
     }
 
 
