@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.shieldTransaction;
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;

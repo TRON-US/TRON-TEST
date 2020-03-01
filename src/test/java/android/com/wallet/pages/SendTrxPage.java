@@ -179,6 +179,20 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
+    public SendTrxSuccessPage publicSendTrz(String receiverAddress,String number) throws Exception {
+        receiveAddress_text.sendKeys(receiverAddress);
+        tranferCount_text.sendKeys(number);
+        swip();
+        send_btn.click();
+        transferNow_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(5);
+        back_bt.click();
+        return new SendTrxSuccessPage(driver);
+    }
+
+
     public SendTrxSuccessPage sendTrc20(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         tranferCount_text.sendKeys(number);

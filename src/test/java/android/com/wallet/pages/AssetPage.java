@@ -154,7 +154,10 @@ public class AssetPage extends AbstractPage {
 
 
     @FindBy(xpath = "//*[@text='tronlink_token']")
-    public WebElement trx10_btn;
+  public WebElement trx10_btn;
+
+    @FindBy(xpath = "//*[@text='TRZ']")
+    public WebElement public_account_trz_btn;
 
     //com.tronlink.wallet:id/iv_renzheng
     @FindBy(id = "com.tronlink.wallet:id/iv_renzheng")
@@ -248,6 +251,20 @@ public class AssetPage extends AbstractPage {
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
   }
+
+  public SendTrxPage publicAccountenterSendTrzPage() {
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    try {
+      public_account_trz_btn.click();
+    } catch (Exception e) {
+      public_account_trz_btn.click();
+    }
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    trc10Page_transfer_btn.click();
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    return new SendTrxPage(driver);
+  }
+
 
 
 
@@ -375,6 +392,8 @@ public class AssetPage extends AbstractPage {
         case 2 :
           trx = enterTrx20Page();
           break;
+        case 3:
+          trx = publicAccountEnterTrzPage();
         default :
           trx = enterTrxPage();
       }
@@ -442,6 +461,25 @@ public class AssetPage extends AbstractPage {
       driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
       return new TrzPage(driver);
   }
+
+  public TrxPage publicAccountEnterTrzPage() throws Exception {
+    TimeUnit.SECONDS.sleep(1);
+    market_btn.click();
+    assetsMain_btn.click();
+    Helper.swipScreen(driver);
+    TimeUnit.SECONDS.sleep(1);
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    Helper.swipScreen(driver);
+    try {
+      public_account_trz_btn.click();
+    } catch (Exception e) {
+      public_account_trz_btn.click();
+    }
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    TimeUnit.SECONDS.sleep(1);
+    return new TrxPage(driver);
+  }
+
 
 
     public TrxPage enterTrx10Page() throws Exception {

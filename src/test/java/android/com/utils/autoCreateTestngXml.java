@@ -57,6 +57,7 @@ public class autoCreateTestngXml {
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
     static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
+    static String shieldTokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.shieldTokenId");
 
     public static AtomicInteger multiSignIndex = new AtomicInteger(1);
     static {
@@ -155,6 +156,29 @@ public class autoCreateTestngXml {
             }
 
 
+        }
+
+    }
+
+    @Test(enabled = true)
+    public void sendTrzToWitnessAccountToTestShiledTransaction() throws IOException{
+        List<String> witnessAccountAddressList = new ArrayList<>();
+        for (int androidDeviceNum = 1; androidDeviceNum <= 5; androidDeviceNum++) {
+            witnessAccountAddressList.add(Configuration.getByPath("testng.conf")
+                .getString("androidWitnessAccount.witness" + androidDeviceNum + "Address"));
+        }
+        for (int iosDeviceNum = 1; iosDeviceNum <= 3; iosDeviceNum++) {
+            witnessAccountAddressList.add(Configuration.getByPath("testng.conf")
+                .getString("iosWitnessAccount.witness" + iosDeviceNum + "Address"));
+        }
+        Long targetShieldTokenAmount = 500000000L;
+        Long shieldTokenBalance;
+        for (int i = 0; i < witnessAccountAddressList.size(); i++) {
+            shieldTokenBalance = getTokenBalance(httpnode,witnessAccountAddressList.get(i),shieldTokenId);
+            if (shieldTokenBalance <= targetShieldTokenAmount * 2 / 5) {
+                transferAsset(httpnode,foundationAccountAddress,witnessAccountAddressList.get(i),
+                    shieldTokenId,targetShieldTokenAmount,foundationAccountKey);
+            }
         }
 
     }
@@ -485,6 +509,35 @@ public class autoCreateTestngXml {
         for (int i = 0; i < tokenArray.size();i++) {
             System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
           if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId)) {
+                return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
+            }
+        }
+        //HttpMethed.printJsonContent(responseContent);
+        httppost.releaseConnection();
+        return 0L;
+    }
+
+    public static Long getTokenBalance(String httpNode, String queryAddress,String tokenId) {
+        try {
+            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
+            JsonObject userBaseObj2 = new JsonObject();
+            userBaseObj2.addProperty("address", queryAddress);
+            userBaseObj2.addProperty("visible", true);
+            response = createConnect(requestUrl, userBaseObj2);
+        } catch (Exception e) {
+            e.printStackTrace();
+            httppost.releaseConnection();
+            return null;
+        }
+        responseContent = parseResponseContent(response);
+        if (!responseContent.containsKey("assetV2")) {
+            return 0L;
+        }
+        JSONArray tokenArray = responseContent.getJSONArray("assetV2");
+
+        for (int i = 0; i < tokenArray.size();i++) {
+            System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
+            if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId)) {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }
