@@ -194,6 +194,13 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/assets_count")
     public WebElement trz_balance;
 
+    @FindBy(id = "com.tronlink.wallet:id/address")
+    public WebElement shieldAddress_text;
+
+    //com.tronlink.wallet:id/tv_common_right2
+    @FindBy(id = "com.tronlink.wallet:id/tv_common_right2")
+    public WebElement saveQR_btn;
+
 
     public void waitShieldDataSynFinished() {
       Long startSynTime = System.currentTimeMillis();
@@ -455,9 +462,17 @@ public class AssetPage extends AbstractPage {
 
 
     public TrzPage enterTrzPage() throws Exception {
-      //Helper.scrollToElementUntilVisible(driver,trx_btn);
       waitShieldDataSynFinished();
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+      try {
+        mine_btn.click();
+        assetsMain_btn.click();
+      } catch (Exception e) {
+        assetsMain_btn.click();
+      }
+      TimeUnit.SECONDS.sleep(1);
       trz_btn.click();
+      TimeUnit.SECONDS.sleep(10);
       driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
       return new TrzPage(driver);
   }

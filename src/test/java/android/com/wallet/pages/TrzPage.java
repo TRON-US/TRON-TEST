@@ -41,6 +41,9 @@ public class TrzPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_count")
     public WebElement trxTotal_text;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_count")
+    public WebElement trzTotal_text;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
@@ -63,6 +66,14 @@ public class TrzPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/tv_balance")
     public WebElement balance_text;
+
+    //详情按钮
+    @FindBy(id = "com.tronlink.wallet:id/tv_note_detail")
+    public WebElement noteDetail_btn;
+
+    //com.tronlink.wallet:id/tv_num
+    @FindBy(id = "com.tronlink.wallet:id/tv_num")
+    public WebElement tokenBalanceInNoteDetail_text;
 
 
 
