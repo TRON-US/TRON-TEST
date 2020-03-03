@@ -136,7 +136,7 @@ public class DappNetWithdraw20 extends Base {
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
         TransferPage transferOut = trx.enterTransferPage();
-        withdrawTrc20Amount = rand.nextFloat() + 1;
+        withdrawTrc20Amount = getAnAmount();
         trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc20Amount));
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCountNow = " + trxCountNow);

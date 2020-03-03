@@ -77,7 +77,7 @@ public class DappSendTrc10 extends Base {
     public void test001_sendTrc10Success() throws Exception {
       SendTrxPage transfer = enterToSendTrc10Page();
       beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
-      dappChainSendTrc10Amount = rand.nextFloat() + 1;
+      dappChainSendTrc10Amount = getAnAmount();
       transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
     }
 

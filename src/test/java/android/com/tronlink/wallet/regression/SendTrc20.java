@@ -71,7 +71,7 @@ public class SendTrc20 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         double trc20Before = transfer.getTrc20Amount();
-        sendTrc20Amount = rand.nextFloat() + 1;
+        sendTrc20Amount = getAnAmount();
         String trc20SendAmount = Float.toString(sendTrc20Amount);
         SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
         stsp.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);

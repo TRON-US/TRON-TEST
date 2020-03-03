@@ -137,7 +137,7 @@ public class MainNetDeposit extends Base {
     @Test(enabled = true,description = "Deposit trx into Dapp chain success checkout available trx", alwaysRun = true)
     public void test006_depositTrxIntoDappChain() throws Exception {
         TrxPage trx = enterTrxPage();
-        depositTrxAmount = rand.nextFloat() + 10;
+        depositTrxAmount = getAnAmount() + 9;
         TransferPage transferIn = trx.enterTransferPage();
         transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrxAmount));
     }

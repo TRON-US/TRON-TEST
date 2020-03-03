@@ -195,7 +195,7 @@ public class DappSendTrx extends Base {
     public void test0012_dappChainSendTrxSucess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
-        dappChainSendTrxAmount = rand.nextFloat() + 1;
+        dappChainSendTrxAmount = getAnAmount();
         transfer.sendTrx(Float.toString(dappChainSendTrxAmount));
     }
 

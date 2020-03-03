@@ -126,7 +126,7 @@ public class DappNetWithdraw10 extends Base {
     public void test007_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
-        withdrawTrc10Amount = rand.nextFloat() + 1;
+        withdrawTrc10Amount = getAnAmount();
         trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc10Amount));
         int tries = 0;
         Boolean exist = false;

@@ -99,7 +99,7 @@ public class MainNetDeposit20 extends Base {
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
         TransferPage transferIn = trx.enterTransferPage();
-        depositTrc20Amount = rand.nextFloat() + 1;
+        depositTrc20Amount = getAnAmount();
         trx = transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrc20Amount));
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCountNow = " + trxCountNow);

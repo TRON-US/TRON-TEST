@@ -141,7 +141,7 @@ public class MainNetDeposit10 extends Base {
     public void test008_depositTrc10ToDappChainSuccess() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage depositTrc10 = trx.enterTransferPage();
-        depositTrc10Amount = rand.nextFloat() + 1;
+        depositTrc10Amount = getAnAmount();
         depositTrc10.enterTrxPageWithTransferSuccess(Float.toString(depositTrc10Amount));
     }
 

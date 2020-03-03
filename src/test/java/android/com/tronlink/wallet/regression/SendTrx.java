@@ -75,7 +75,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         System.out.println("beforeSendBalance-----"+beforeSendBalance);
-        sendTrxAmount = rand.nextFloat() + 1;
+        sendTrxAmount = getAnAmount();
         transfer.sendTrx(Float.toString(sendTrxAmount));
     }
 
@@ -280,6 +280,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains("TRX"));
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        System.out.println("transaction_time_text:" + transactionInfo.transaction_time_text.getText());
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());

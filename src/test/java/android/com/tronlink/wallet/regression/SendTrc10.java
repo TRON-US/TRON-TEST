@@ -67,7 +67,7 @@ public class SendTrc10 extends Base {
         asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.enterSendTrc10Page();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
-        sendTrxAmount = rand.nextFloat() + 1;
+        sendTrxAmount  = getAnAmount();
         transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
 
