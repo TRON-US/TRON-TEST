@@ -104,7 +104,8 @@ public class VoteTest extends BaseTest {
                 Assert.assertTrue(true);
                 return;
             }else {
-
+                vote.awardsLabel.click();
+                TimeUnit.SECONDS.sleep(2);
                 if(Helper.isElementExist(DRIVER,"确认")){
                     log("after 24h get reward");
                     vote.getReward();
