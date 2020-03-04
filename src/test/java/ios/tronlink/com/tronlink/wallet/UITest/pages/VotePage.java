@@ -4,6 +4,7 @@ import io.appium.java_client.ios.IOSDriver;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -127,8 +128,7 @@ public class VotePage extends AbstractPage {
 
     }
     public void  getReward() throws Exception{
-        awardsLabel.click();
-        TimeUnit.SECONDS.sleep(1);
+
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
