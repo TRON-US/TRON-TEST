@@ -104,9 +104,16 @@ public class VoteTest extends BaseTest {
                 Assert.assertTrue(true);
                 return;
             }else {
-                log("after 24h get reward");
-                vote.getReward();
-                Assert.assertEquals(vote.votingRewardNumberLabel.getText(),"0 TRX");
+
+                if(Helper.isElementExist(DRIVER,"确认")){
+                    log("after 24h get reward");
+                    vote.getReward();
+                    Assert.assertEquals(vote.votingRewardNumberLabel.getText(),"0 TRX");
+                }else {
+                    log("one Day run double Times");
+                    Assert.assertTrue(true);
+                }
+
             }
 
         }
