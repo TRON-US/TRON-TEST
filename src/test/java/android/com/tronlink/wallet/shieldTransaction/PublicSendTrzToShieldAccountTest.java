@@ -76,7 +76,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
-        sendTrzAmount = rand.nextFloat() + 1;
+        sendTrzAmount = getAnAmount();
         transfer.publicSendTrz(receiverShieldAddress,Float.toString(sendTrzAmount));
     }
 

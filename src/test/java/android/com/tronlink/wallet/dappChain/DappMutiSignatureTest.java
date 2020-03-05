@@ -153,7 +153,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "signature Name Is Null", alwaysRun = true)
-    public void test007_signatureNameIsNull() throws Exception {
+    public void test006_signatureNameIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         Helper.swipScreen(DRIVER);
@@ -166,7 +166,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "signature Name Is too long", alwaysRun = true)
-    public void test008_signatureNameIsSoLong() throws Exception {
+    public void test007_signatureNameIsSoLong() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.permissionName_input.sendKeys("TXtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
@@ -177,7 +177,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "signature without choise Permission", alwaysRun = true)
-    public void test009_signatureWithoutPermission() throws Exception {
+    public void test008_signatureWithoutPermission() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.inputInfoWithoutPermission("AutoTest");
@@ -187,7 +187,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "signature threshold > 100", alwaysRun = true)
-    public void test010_thresholdTooLarge() throws Exception {
+    public void test009_thresholdTooLarge() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.threshold_input.sendKeys("101");
@@ -200,7 +200,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "signature threshold Is 0", alwaysRun = true)
-    public void test011_thresholdIsZero() throws Exception {
+    public void test010_thresholdIsZero() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.threshold_input.sendKeys("0");
@@ -212,7 +212,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "signature with error Adress", alwaysRun = true)
-    public void test012_errorAdress() throws Exception {
+    public void test011_errorAdress() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.address_input.get(0).sendKeys("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
@@ -223,7 +223,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "Adress Is Null", alwaysRun = true)
-    public void test013_AdressIsNull() throws Exception {
+    public void test012_AdressIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         Helper.swipScreen(DRIVER);
@@ -235,7 +235,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "two Adress is equals", alwaysRun = true)
-    public void test014_adressIsEquals() throws Exception {
+    public void test013_adressIsEquals() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         //add.address_input.sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
@@ -247,7 +247,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "password is null", alwaysRun = true)
-    public void test015_passwordIsNull() throws Exception {
+    public void test014_passwordIsNull() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.inputInfo("AutoTest");
@@ -258,7 +258,7 @@ public class DappMutiSignatureTest extends Base {
 
 
     @Test(enabled = true,description = "password is wrong", alwaysRun = true)
-    public void test016_passwordIsWrong() throws Exception {
+    public void test015_passwordIsWrong() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.inputInfo("AutoTest");
@@ -266,6 +266,16 @@ public class DappMutiSignatureTest extends Base {
         add.send_btn.click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(add.inputPassword_title.isDisplayed());
+    }
+
+    @Test(enabled = true, description = "Dapp mutisign history record test", alwaysRun = true)
+    public void test016_transactionRecord() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        String transactionType = transaction.transactionTypeList.get(0).getText();
+        System.out.println(transactionType);
+        Assert.assertTrue(transactionType.equals("更新账户权限")  || transactionType.equals("更新账号权限") || transactionType.contains("Update"));
     }
 
 

@@ -172,6 +172,8 @@ public class DappNetWithdraw extends Base {
                 trx.tranfer_tab.get(3).click();
                 //todo 转出转入记录中没有最新数据
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                System.out.println("withdrawTrxAmount:" + Float.toString(withdrawTrxAmount).substring(0, 5));
+                System.out.println("tranferInCount:" + tranferInCount.substring(0, 5));
                 if (Float.toString(withdrawTrxAmount).substring(0, 5)
                     .equals(tranferInCount.substring(0, 5))) {
                     exist = true;

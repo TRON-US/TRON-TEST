@@ -499,7 +499,7 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrx10Page() throws Exception {
       TimeUnit.SECONDS.sleep(1);
-        market_btn.click();
+        mine_btn.click();
         assetsMain_btn.click();
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(1);
@@ -517,7 +517,7 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx20Page() throws Exception {
-        market_btn.click();
+        mine_btn.click();
         assetsMain_btn.click();
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(3);

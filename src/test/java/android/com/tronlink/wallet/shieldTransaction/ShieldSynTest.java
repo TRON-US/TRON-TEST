@@ -63,7 +63,7 @@ public class ShieldSynTest extends Base {
     @Test(enabled = true,description = "Shield account transfer shield coin to shield account test", alwaysRun = true)
     public void test003ShieldToShieldTest() throws Exception {
         SendTrzPage transfer = enterToSendTrzPage();
-        shiled2ShieldSendAmount = rand.nextFloat() + 1;
+        shiled2ShieldSendAmount = getAnAmount();
         transfer.sendTrz(receiverShieldAddress,Float.toString(shiled2ShieldSendAmount));
     }
 
