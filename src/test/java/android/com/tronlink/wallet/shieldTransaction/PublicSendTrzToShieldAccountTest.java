@@ -28,6 +28,8 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         .getString("foundationAccount.currentMainNetBlockNum");
     static String trc10TokenName = Configuration.getByPath("testng.conf")
         .getString("foundationAccount.trc10TokenName");
+    static String trzName = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.trzName");
 
     static String receiverShieldAddress = Configuration.getByPath("testng.conf")
         .getString("foundationAccount.shieldAddress");
@@ -80,7 +82,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         transfer.publicSendTrz(receiverShieldAddress,Float.toString(sendTrzAmount));
     }
 
-    @Test(enabled = false,description = "Public trz transfer success recording")
+    @Test(enabled = true,description = "Public trz transfer success recording")
     public void test002_PublicTrzTransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trx = asset.publicAccountEnterTrzPage();
@@ -113,16 +115,16 @@ public class PublicSendTrzToShieldAccountTest extends Base {
 
 
     @Parameters({"witnessAddress"})
-    @Test(enabled = false, description = "Public send trz transaction detail info test", alwaysRun = true)
-    public void test005_PublicSendtrzTransactionDetailInfo(String address) throws Exception {
+    @Test(enabled = true, description = "Public send trz transaction detail info test", alwaysRun = true)
+    public void test005_PublicSendtrzTransactionDetailInfo(String witnessAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(3);
-        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverShieldAddress);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),witnessAddress);
+        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名地址"));
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
@@ -133,18 +135,18 @@ public class PublicSendTrzToShieldAccountTest extends Base {
     }
 
 
-    @Parameters({"address"})
-    @Test(enabled = false, description = "Trc10 receive transaction detail info test", alwaysRun = true)
-    public void test010_trc10ReceiveTransactionDetailInfo(String address) throws Exception {
+    @Parameters({"witnessAddress"})
+    @Test(enabled = true, description = "Trz receive transaction detail info test", alwaysRun = true)
+    public void test006_trzReceiveTransactionDetailInfo(String witnessAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
+        TransactionDetailInfomaitonPage transactionInfo = asset.pubilcEnterTrzReceiveTransactionDetailPage();
+
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
         String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(receiveIcon.equals("+"));
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());

@@ -26,6 +26,9 @@ public class TrzPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_deposit")
     public WebElement transferIn_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_count")
+    public List<WebElement> tranferRecordCount_text;
+
 
 
     @FindBy(id = "com.tronlink.wallet:id/tv_trx_amount")

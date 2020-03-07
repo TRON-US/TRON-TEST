@@ -399,8 +399,9 @@ public class AssetPage extends AbstractPage {
         case 2 :
           trx = enterTrx20Page();
           break;
-        case 3:
+        case 3 :
           trx = publicAccountEnterTrzPage();
+          break;
         default :
           trx = enterTrxPage();
       }
@@ -410,6 +411,37 @@ public class AssetPage extends AbstractPage {
       driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
       return new TransactionDetailInfomaitonPage(driver);
   }
+
+  public TransactionDetailInfomaitonPage pubilcEnterTrzReceiveTransactionDetailPage() throws Exception {
+    TrxPage trx = publicAccountEnterTrzPage();
+    trx.tranfer_tab.get(2).click();
+    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    trx.tranferIncount_text.get(1).click();
+    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    return new TransactionDetailInfomaitonPage(driver);
+  }
+
+  //0代表进入第一条转账接收页面，1代编进入第一条收款接收页面
+  public TransactionDetailInfomaitonPage enterTrzTransactionDetailPage(Integer type) throws Exception {
+    TrzPage trz = enterTrzPage();
+
+    switch (type) {
+      case 0 :
+        trz.tranfer_tab.get(1).click();
+        break;
+      case 1 :
+        trz.tranfer_tab.get(2).click();
+        break;
+      default :
+        trz.tranfer_tab.get(0).click();
+    }
+
+    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    trz.tranferRecordCount_text.get(1).click();
+    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    return new TransactionDetailInfomaitonPage(driver);
+  }
+
 
   //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
   public TransactionDetailInfomaitonPage enterReceiverTransactionDetailPage(Integer type) throws Exception {

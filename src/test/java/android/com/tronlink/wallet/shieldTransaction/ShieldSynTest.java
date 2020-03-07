@@ -8,6 +8,7 @@ import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.MyPursePage;
 import android.com.wallet.pages.SendTrxPage;
 import android.com.wallet.pages.SendTrzPage;
+import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TrxPage;
 import android.com.wallet.pages.TrzPage;
 import java.util.Random;
@@ -29,6 +30,11 @@ public class ShieldSynTest extends Base {
         .getString("foundationAccount.shieldAddress");
     static String shieldFee = Configuration.getByPath("testng.conf")
         .getString("foundationAccount.shieldTransactionFee");
+    static String trzName = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.trzName");
+    static String currentMainNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentMainNetBlockNum");
+
     Random rand = new Random();
     float shiled2PublicSendAmount;
     float shiled2ShieldSendAmount;
@@ -56,7 +62,7 @@ public class ShieldSynTest extends Base {
         SendTrzPage transfer = enterToSendTrzPage();
         System.out.println("beforeBalance:" + transfer.shieldBalance_text.getText());
         beforeBalance = Float.valueOf(transfer.shieldBalance_text.getText());
-        shiled2PublicSendAmount = rand.nextFloat() + 1;
+        shiled2PublicSendAmount = getAnAmount();
         transfer.sendTrz(receiverPublicAddress,Float.toString(shiled2PublicSendAmount));
     }
 
@@ -128,10 +134,50 @@ public class ShieldSynTest extends Base {
         System.out.println("shiled2ShieldSendAmount:" + shiled2ShieldSendAmount);
         System.out.println("shiled2PublicSendAmount:" + shiled2PublicSendAmount);
         System.out.println("shieldFee:" + shieldFee);
-        Assert.assertTrue(beforeBalance - afterBalance >= 2 * Long.valueOf(shieldFee));
+        Assert.assertTrue(beforeBalance - afterBalance >= 2 * Long.valueOf(shieldFee) + 2);
         Assert.assertTrue(beforeBalance - afterBalance <= 2 * Long.valueOf(shieldFee)
-            + 2);
+            + 4);
     }
+
+
+
+    @Parameters({"shieldAddress"})
+    @Test(enabled = true, description = "Shield send trz to shield transaction detail info test", alwaysRun = true)
+    public void test008_ShieldToShieldSendTrzTransactionDetailInfo(String shieldAddress) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterTrzTransactionDetailPage(0);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),shieldAddress);
+        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("Shielded Address"));
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(shiled2ShieldSendAmount).substring(0,6));
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentMainNetBlockNum) );
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+    }
+
+    @Parameters({"shieldAddress"})
+    @Test(enabled = true, description = "Shield account receive trz transaction detail info test", alwaysRun = true)
+    public void test009_ShieldAccountReceiveTrzTransactionDetailInfo(String shieldAddress) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterTrzTransactionDetailPage(1);
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),shieldAddress);
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
+            > Long.valueOf(currentMainNetBlockNum) );
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+    }
+
+
+
 
 
 
