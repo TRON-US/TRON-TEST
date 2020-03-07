@@ -42,14 +42,14 @@ public class FrozenAndUnfreezeTest extends Base {
     }
 
     /**
-     * freeze Bandwidth
+     * Freeze Energy
      */
-    @Test(enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
-    public void test0001_freezeBandwidthSuccess() {
+    @Test(enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+    public void test0001_freezeEnergySuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
-        frozen.bandwidth_btn.click();
+        frozen.energy_btn.click();
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
@@ -58,17 +58,16 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
 
-    
 
     /**
-     * Freeze Energy
+     * freeze Bandwidth
      */
-    @Test(enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
-    public void test0002_freezeEnergySuccess() {
+    @Test(enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    public void test0002_freezeBandwidthSuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
-        frozen.energy_btn.click();
+        //frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
@@ -138,7 +137,7 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test0008_checkBandwidthQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.bandwidth_btn.click();
+        //frozen.bandwidth_btn.click();
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));

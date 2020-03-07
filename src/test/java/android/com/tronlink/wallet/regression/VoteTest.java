@@ -134,7 +134,15 @@ public class VoteTest extends Base {
         vote.reset_btn.click();
         TimeUnit.SECONDS.sleep(1);
         vote.vote_btn.click();
-        Assert.assertTrue(vote.password_input.isEnabled());
+        Boolean isIntoPasswordPage = false;
+        try {
+            vote.password_input.isDisplayed();
+            isIntoPasswordPage = true;
+        } catch (Exception e) {
+            
+        }
+        Assert.assertTrue(!isIntoPasswordPage);
+        
     }
 
 
