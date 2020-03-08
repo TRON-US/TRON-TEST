@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.dappChain;
 
 import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;

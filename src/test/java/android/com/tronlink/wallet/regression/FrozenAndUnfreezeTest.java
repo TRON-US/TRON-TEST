@@ -228,6 +228,6 @@ public class FrozenAndUnfreezeTest extends Base {
         String resourceType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlink.wallet:id/tv_two")).getText();
         System.out.println(transactionType);
         Assert.assertTrue(transactionType.equals("冻结资产") || transactionType.equals("Freeze Asset"));
-        Assert.assertTrue(resourceType.contains("ENERGY"));
+        Assert.assertTrue(resourceType.contains("BANDWIDTH"));
     }
 }
