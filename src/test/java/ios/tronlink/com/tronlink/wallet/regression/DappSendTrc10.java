@@ -111,7 +111,7 @@ public class DappSendTrc10 extends BaseTest {
 
     @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
     public void test006_CheckOutNumberInRecordTrx10() throws Exception {
-        log(successNumber);
+        log("successNumber:"+successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx10Page();
         String findString = "-" + successNumber;
