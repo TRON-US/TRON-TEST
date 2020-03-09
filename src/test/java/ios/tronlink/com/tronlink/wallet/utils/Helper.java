@@ -340,7 +340,7 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+        System.out.print("  width: " + width + "   height:" + height + "\n");
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))

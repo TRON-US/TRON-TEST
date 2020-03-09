@@ -5,8 +5,11 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -188,6 +191,7 @@ public class MultiSignManagerPage extends AbstractPage {
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
             TimeUnit.SECONDS.sleep(10);
             driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
+            TimeUnit.SECONDS.sleep(3);
             waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
             TimeUnit.SECONDS.sleep(3);

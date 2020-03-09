@@ -107,7 +107,8 @@ public class MainNetDeposit extends BaseTest {
 
     @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
-//        successNumber = "16";
+//        successNumber = "8";
+        log("successNumber:"+successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrxPage();
         String findString = "-" + successNumber;
