@@ -260,6 +260,7 @@ public class AssetPage extends AbstractPage {
   }
 
   public SendTrxPage publicAccountenterSendTrzPage() {
+    Helper.swipScreen(driver);
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     try {
       public_account_trz_btn.click();
