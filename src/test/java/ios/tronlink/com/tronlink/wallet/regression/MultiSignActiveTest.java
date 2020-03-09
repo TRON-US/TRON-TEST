@@ -64,7 +64,7 @@ public class MultiSignActiveTest extends BaseTest {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
         multiSignManagerPage.addPermission(signName);
-        System.out.println("multiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
+        System.out.println("-------------\nmultiSignManagerPage.havedaddActive() value Is:\n"+multiSignManagerPage.havedaddActive() + "\n----------\n");
         Assert.assertTrue(multiSignManagerPage.havedaddActive());
     }
 

@@ -53,7 +53,6 @@ public class MainNetDeposit10 extends BaseTest {
         trx =  assetPage.enterTrx10Page();
         double trc10after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println(count   + "   " + trc10before  + " " + trc10after);
-
         Assert.assertTrue(trc10after + Double.parseDouble(count) <= trc10before );
 
     }
@@ -102,23 +101,10 @@ public class MainNetDeposit10 extends BaseTest {
     }
 
 
-    @Test(description = "TransferIn Success Checkout Available trc10",alwaysRun = true)
-    public void test007_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
-        trx = transferIn.enterTrxPageWithTransferSuccess();
-        AssetPage page = trx.enterAssetPage();
-        trx = page.enterTrx10Page();
-        TimeUnit.SECONDS.sleep(3);
-        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("startCount:" + trxCount + "endCountNow:" + trxCountNow);
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
-    }
-
 
     @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
-    public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
+    public void test007_CheckOutNumberInRecordDepositTrx() throws Exception {
+        log("successNumber:"+successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx10Page();
         String findString = "-" + successNumber;

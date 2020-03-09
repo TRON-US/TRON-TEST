@@ -58,10 +58,12 @@ public class autoCreateTestngXml {
     static List<String> taskClassNameList = new ArrayList<>();
     static List<String> taskSingleClassNameList = new ArrayList<>();
     static List<String> singleClassNameList = new ArrayList<>();
-    private String httpnode = Configuration.getByPath("testng.conf").getString("tronex.httpnode");
-    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("tronex.dappChainHttpNode");
+    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
+    static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
+    static String shieldTokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.shieldTokenId");
     public static AtomicInteger multiSignIndex = new AtomicInteger(1);
 
     static {
@@ -113,7 +115,7 @@ public class autoCreateTestngXml {
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");//x
 
         Long balance = 0L;
-        Long targetAmount = 1998000000L;
+        Long targetAmount = 2998000000L;
         Long tokenBalance = 0L;
         Long targetTokenAmount = 500000000L;
         for (HashMap.Entry entry : testAccountList.entrySet()) {
@@ -123,6 +125,7 @@ public class autoCreateTestngXml {
                 tokenBalance = 0L;
                 tokenBalance = getTokenBalance(httpnode,entry.getKey().toString());
             } catch (Exception e) {
+                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
@@ -132,7 +135,7 @@ public class autoCreateTestngXml {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
         }
@@ -144,6 +147,7 @@ public class autoCreateTestngXml {
                 tokenBalance = 0L;
                 tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
             } catch (Exception e) {
+                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
@@ -153,7 +157,7 @@ public class autoCreateTestngXml {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000042",targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
 
@@ -348,6 +352,7 @@ public class autoCreateTestngXml {
 
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
         Long amount, String fromKey) {
+//        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + fromAddress + "\ntoAddress: " + toAddress + "\namount: " + amount + "\nfromKey: " + fromKey);
       try {
             final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
@@ -374,6 +379,8 @@ public class autoCreateTestngXml {
      */
     public static HttpResponse transferAsset(String httpNode, String ownerAddress,
                                              String toAddress, String assetIssueById, Long amount, String fromKey) {
+//        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + ownerAddress + "\ntoAddress: "+ toAddress  +"\n assetIssueById:" + assetIssueById + "\namount: " + amount + "\nfromKey: " + fromKey);
+
         try {
             final String requestUrl = "http://" + httpNode + "/wallet/transferasset";
             JsonObject userBaseObj2 = new JsonObject();
@@ -532,7 +539,7 @@ public class autoCreateTestngXml {
         JSONArray tokenArray = responseContent.getJSONArray("assetV2");
         for (int i = 0; i < tokenArray.size();i++) {
             System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
-            if (Integer.valueOf(String.valueOf(tokenArray.getJSONObject(i).get("key"))) == 1000042) {
+            if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId)) {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }

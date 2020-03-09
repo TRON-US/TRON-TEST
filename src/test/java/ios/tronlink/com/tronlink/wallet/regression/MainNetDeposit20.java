@@ -94,26 +94,9 @@ public class MainNetDeposit20 extends BaseTest {
 
 
 
-    @Test(description = "TransferIn Success Checkout Available trc20",enabled = false)
-    public void test007_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
-        trx = transferIn.enterTrxPageWithTransferSuccess();
-        AssetPage page = trx.enterAssetPage();
-        trx =  page.enterTrx20Page();
-        waiteTime();
-        int trxCountNow = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("startCount:" + trxCount + "endCountNow:" + trxCountNow);
-        Assert.assertTrue(trxCount >= trxCountNow + 10);
-    }
-
-
-
-
-
     @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
-    public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
+    public void test007_CheckOutNumberInRecordDepositTrx() throws Exception {
+        log("successNumber:"+successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx20Page();
         String findString = "-" + successNumber;
