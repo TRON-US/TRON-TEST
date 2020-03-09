@@ -140,6 +140,10 @@ public class SendTrzPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/rl_fee")
     public WebElement shieldFee_text;
 
+    //com.tronlink.wallet:id/toscan
+    @FindBy(id = "com.tronlink.wallet:id/toscan")
+    public WebElement coldHadScan_next_btn;
+
 
     public SendTrxSuccessPage enterSendTrxSuccessPage(){
         confirm_btn.click();

@@ -27,6 +27,11 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+    //com.tronlink.wallet:id/toscan
+    @FindBy(id = "com.tronlink.wallet:id/toscan")
+    public WebElement coldHadScan_next_btn;
+
+
     @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
     public WebElement transferTtile_btn;
 

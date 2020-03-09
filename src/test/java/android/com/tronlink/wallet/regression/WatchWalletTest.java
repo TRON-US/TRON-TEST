@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.regression;
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
@@ -13,14 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 public class WatchWalletTest extends Base {
 
-
-//    @Parameters({"privateKey"})
-//    @BeforeMethod()
-//    public void setUpBefore(String privateKey) throws Exception{
-//        DRIVER.closeApp();
-//        DRIVER.launchApp();
-//        getSign(privateKey);
-//    }
+    static String receiverShieldAddress = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.shieldAddress");
 
 
 
@@ -225,6 +220,31 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
+
+    @Test(enabled = true,description = "Public send trz to shield account success test", alwaysRun = true)
+    public void test003_PbulicSendTrzToShieldAccountSuccess() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.market_btn.click();
+        asset.assetsMain_btn.click();
+        SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
+        transfer.receiveAddress_text.sendKeys(receiverShieldAddress);
+        transfer.tranferCount_text.sendKeys(Float.toString(getAnAmount()));
+        transfer.swip();
+        transfer.send_btn.click();
+        transfer.transferNow_btn.click();
+
+        while (!transfer.coldHadScan_next_btn.getText().contains("广播交易")) {
+            Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+            Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
+            transfer.coldHadScan_next_btn.click();
+        }
+
+        Assert.assertTrue(transfer.coldHadScan_next_btn.getText().contains("广播交易"));
+        Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
+        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+
+
+    }
 
 
 

@@ -6,6 +6,7 @@ import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
 
 import java.util.List;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,9 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
 public class Helper {
+
+
+
 
     public static void swipScreen(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
@@ -59,6 +63,19 @@ public class Helper {
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(width/2, height*4/5))
                 .release().perform();
+    }
+
+    public static void swipScreenFromTopToBottom(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+            PointOption.point(width/2, height*4/5))
+            .waitAction(WaitOptions.waitOptions(duration))
+            .moveTo(PointOption.point(width/2, height/5))
+            .release().perform();
     }
 
     public static void swipeDownScreen(AndroidDriver<?> driver){
@@ -165,6 +182,16 @@ public class Helper {
         }
     }
 
+    public void getShieldWatchWalletSign(String nsk,String ak,String ovk,String shieldAddress,AndroidDriver driver){
+        this.DRIVER = driver;
+        try {
+            assetsMain_btn.isDisplayed();
+        }catch (Exception e){
+            getShieldWatchWalletSignOperate(nsk,ak,ovk,shieldAddress);
+        }
+    }
+
+
     public void getColdWalletSign(String privateKey,AndroidDriver driver){
         this.DRIVER = driver;
         try {
@@ -173,6 +200,16 @@ public class Helper {
             getColdWalletSignOperate(privateKey);
         }
     }
+
+    public void getShieldColdWalletSign(String privateSk,AndroidDriver driver){
+        this.DRIVER = driver;
+        try {
+            coldWalletScan_btn.isDisplayed();
+        }catch (Exception e){
+            getShieldColdWalletSignOperate(privateSk);
+        }
+    }
+
 
 
     public void changeDappchain() throws Exception{
@@ -252,7 +289,6 @@ public class Helper {
         }
 
     }
-
     public void getShieldSignOperate(String testPrivateKey){
         try {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
@@ -288,6 +324,44 @@ public class Helper {
     }
 
 
+    public void  getShieldWatchWalletSignOperate(String nsk,String ak,String ovk,String shieldAddress){
+        try {
+            findWebElement("com.tronlink.wallet:id/tv_import").click();
+            swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
+            findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            try {
+                findWebElement("com.tronlink.wallet:id/create_option_desc_shield").click();
+            } catch (Exception e) {
+
+            }
+            //点击观察钱包
+            findWebElement("com.tronlink.wallet:id/cd_ow").click();
+            TimeUnit.SECONDS.sleep(1);
+            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(nsk);
+            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ak);
+            TimeUnit.SECONDS.sleep(1);
+            swipScreenFromTopToBottom(DRIVER);
+            swipScreenFromTopToBottom(DRIVER);
+            TimeUnit.SECONDS.sleep(1);
+            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ovk);
+            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
+            TimeUnit.SECONDS.sleep(1);
+            findWebElement("com.tronlink.wallet:id/btn_next").click();
+            findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Auto-shield-test");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            TimeUnit.SECONDS.sleep(3);
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void tapBetweenTwoElement(WebElement a, WebElement b) throws Exception{
+        AndroidTouchAction action = new AndroidTouchAction(DRIVER);
+        int width = DRIVER.manage().window().getSize().width;
+        action.press(PointOption.point(width/2,(a.getLocation().getY() + b.getLocation().getY())/2))
+            .release().perform();
+    }
 
 
 
@@ -318,6 +392,7 @@ public class Helper {
             System.out.println(e);
         }
     }
+
 
 
     public void  getColdWalletSignOperate(String testPrivateKey){
@@ -353,6 +428,43 @@ public class Helper {
     }
 
 
+    public void  getShieldColdWalletSignOperate(String testPrivateKey){
+        try {
+            findWebElement("com.tronlink.wallet:id/tv_cold_wallet").click();
+            findWebElement("com.tronlink.wallet:id/tv_ok").click();
+            swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
+            findWebElement("com.tronlink.wallet:id/bt_accept").click();
+            try {
+                //新增匿名账户页面
+                // 普通账户id：com.tronlink.wallet:id/create_option_desc
+                //匿名账户id:com.tronlink.wallet:id/create_option_desc_shield
+                findWebElement("com.tronlink.wallet:id/create_option_desc_shield").click();
+            } catch (Exception e) {
+                System.out.println(e);
+
+            }
+            findWebElement("com.tronlink.wallet:id/cd_pk").click();
+            findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("com.tronlink.wallet:id/bt_next").click();
+            findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Cold-test");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.wallet:id/creat").click();
+            TimeUnit.SECONDS.sleep(1);
+            findWebElement("com.tronlink.wallet:id/tv_offline_sign_desc");
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+
+
+
+
 
     public void swipUntilElementEnable(String id) throws Exception{
         TimeUnit.SECONDS.sleep(1);
@@ -368,6 +480,23 @@ public class Helper {
                     .waitAction(WaitOptions.waitOptions(duration))
                     .moveTo(PointOption.point(width/2, height/5))
                     .release().perform();
+        }
+    }
+
+    public void swipUntilElementDisplayed(String id) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        //while (findWebElement(id).isEnabled() == false) {
+        while (!findWebElement(id).isDisplayed()) {
+            AndroidTouchAction action = new AndroidTouchAction(DRIVER);
+            int width = DRIVER.manage().window().getSize().width;
+            int height = DRIVER.manage().window().getSize().height;
+            System.out.print("  " + width + "   " + height);
+            Duration duration = Duration.ofMillis(200);
+            action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height/5))
+                .release().perform();
         }
     }
 
@@ -409,22 +538,4 @@ public class Helper {
         el = DRIVER.findElementById(element);
         return el;
     }
-
-
-
-//    public static void swipDropdownRefresh(AndroidDriver<?> driver) {
-//        AndroidTouchAction action = new AndroidTouchAction(driver);
-//        int width = driver.manage().window().getSize().width;
-//        int height = driver.manage().window().getSize().height;
-//        System.out.print("   " + width + "   " + height);
-//        Duration duration = Duration.ofMillis(5500);
-//        action.press(
-//                PointOption.point(width/2, height*1/25))
-//                .waitAction(WaitOptions.waitOptions(duration))
-//                .moveTo(PointOption.point(width/2, height*9/10))
-//                .release().perform();
-//    }
-
-
-
 }
