@@ -70,22 +70,8 @@ public class MainNetDeposit10 extends Base {
         return asset.enterTrx10Page();
     }
 
-    @Test(enabled = false,description = "Change Chain", alwaysRun = true)
-    public void test0001_changeChain() throws Exception {
-        SettingPage set = enterSettingPage();
-        String nodeName = set.node_name.getText();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseDappChain();
-        //String currentNodeName = set.node_name.getText();
-        MinePage mine = set.enterMinePage();
-        AssetPage assetPage = mine.enterAssetPage();
-        String currentNodeName = assetPage.currChain_name.getText();
-        System.out.println("change chain to : " + currentNodeName);
-        Assert.assertNotEquals(nodeName, currentNodeName);
-    }
-
     @Test(enabled = true,description = "Check TransferIn Chain Name", alwaysRun = true)
-    public void test0002_checkTransferInChainName() throws Exception {
+    public void test0001_checkTransferInChainName() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String chain = transferIn.chain_text.getText();
@@ -93,7 +79,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "Check TransferIn Trc10 Count", alwaysRun = true)
-    public void test0003_checkTransferInTrc10() throws Exception {
+    public void test0002_checkTransferInTrc10() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("trx");
@@ -101,7 +87,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "Check TransferIn Hits", alwaysRun = true)
-    public void test0004_checkTransferInHits() throws Exception {
+    public void test0003_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("hits");
@@ -109,7 +95,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "Check TransferIn Fee", alwaysRun = true)
-    public void test0005_checkTransferInFee() throws Exception {
+    public void test0004_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("fee");
@@ -118,7 +104,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "TransferIn Success Checkout Available trc10", alwaysRun = true)
-    public void test0006_checkAvailableBalance() throws Exception {
+    public void test0005_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
@@ -130,7 +116,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "Check TransferIn Hits", alwaysRun = true)
-    public void test007_checkTransferInHits() throws Exception {
+    public void test0006_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("hits");
@@ -138,7 +124,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "Deposit TRC10 to Dapp Chain succesfully", alwaysRun = true)
-    public void test008_depositTrc10ToDappChainSuccess() throws Exception {
+    public void test0007_depositTrc10ToDappChainSuccess() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage depositTrc10 = trx.enterTransferPage();
         depositTrc10Amount = getAnAmount();
@@ -146,7 +132,7 @@ public class MainNetDeposit10 extends Base {
     }
 
     @Test(enabled = true,description = "Trc10 deposit into Dapp chain Success Recording", alwaysRun = true)
-    public void test009_depositSuccessRecording() throws Exception {
+    public void test0008_depositSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         int tries = 0;
         Boolean exist = false;
@@ -172,7 +158,7 @@ public class MainNetDeposit10 extends Base {
 
     @Parameters({"address"})
     @Test(enabled = true, description = "Trc10 depisit transaction detail info test", alwaysRun = true)
-    public void test010_trc10DepositTransactionDetailInfo(String address) throws Exception {
+    public void test0009_trc10DepositTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(1);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);

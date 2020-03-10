@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.dappChain;
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.pages.*;
 import java.util.Random;
@@ -17,6 +18,13 @@ public class DappSendTrx extends Base {
     float dappChainSendTrxAmount;
     float beforeBalance;
     float afterBalance;
+    static String receiverAddress = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.receiverAddress");
+    static String dappNetGateWay = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.dappNetGateWay");
+    static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentDappNetBlockNum");
+
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
@@ -234,15 +242,15 @@ public class DappSendTrx extends Base {
 
 
     @Parameters({"address"})
-    @Test(enabled = true, description = "Trx deposit transaction detail info test", alwaysRun = true)
-    public void test017_trxTransactionDetailInfo(String address) throws Exception {
+    @Test(enabled = true, description = "Dapp send Trx transaction detail info test", alwaysRun = true)
+    public void test0015_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(0);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-        //尼罗河主链gateway
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        //尼罗河测链gateway
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > 12000000);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
