@@ -161,7 +161,7 @@ public class SendTrc10 extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.contains("转账 TRC10 通证") || transactionType.equals("转账TRC10token") || transactionType.equals("transfer TRC10 token"));
+        Assert.assertTrue(transactionType.contains("转账 TRC10 通证") || transactionType.contains("TRC10") || transactionType.equals("transfer TRC10 token"));
     }
 
     @Parameters({"address"})
