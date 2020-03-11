@@ -97,14 +97,14 @@ public class ShieldWatchWalletTest extends Base {
         transfer.send_btn.click();
         transfer.transferNow_btn.click();
 
-        while (!transfer.coldHadScan_next_btn.getText().contains("广播交易")) {
+        while (transfer.coldHadScan_next_btn.getText().contains("冷钱包已扫描")) {
             Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
             Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
             transfer.coldHadScan_next_btn.click();
         }
 
 
-        Assert.assertTrue(transfer.coldHadScan_next_btn.getText().contains("广播交易"));
+        Assert.assertTrue(transfer.coldHadScan_next_btn.getText().contains("冷钱包已签名"));
         Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
 

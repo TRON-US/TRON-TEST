@@ -297,7 +297,7 @@ public class Base {
     public float getAnAmount() {
         Random rand = new Random();
         String amountStr = Float.toString(rand.nextFloat() + 1);
-        while (amountStr.length() <= 8) {
+        while (amountStr.length() != 8) {
             amountStr = Float.toString(rand.nextFloat() + 1);
         }
         return Float.valueOf(amountStr);
