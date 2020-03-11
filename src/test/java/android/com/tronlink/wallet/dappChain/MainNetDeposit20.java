@@ -133,7 +133,7 @@ public class MainNetDeposit20 extends Base {
 
     @Parameters({"address"})
     @Test(enabled = true, description = "Trc20 depisit transaction detail info test", alwaysRun = true)
-    public void test010_trc20DepositTransactionDetailInfo(String address) throws Exception {
+    public void test005_trc20DepositTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(2);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);

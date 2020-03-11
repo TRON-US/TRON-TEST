@@ -170,10 +170,10 @@ public class SendTrc20 extends Base {
   }
 
   @Parameters({"address"})
-  @Test(enabled = false, description = "Trc20 receive transaction detail info test", alwaysRun = true)
+  @Test(enabled = true, description = "Trc20 receive transaction detail info test", alwaysRun = true)
   public void test008_trc20ReceiveTransactionDetailInfo(String address) throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
-    TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
+    TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(2);
     System.out.println(transactionInfo.title_amount_test.getText());
     System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
     String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
@@ -185,7 +185,7 @@ public class SendTrc20 extends Base {
     Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-    Assert.assertTrue(Float.valueOf(detailPageReceiveAmount) > 0);
+    Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
         > Long.valueOf(currentMainNetBlockNum));
   }
