@@ -21,7 +21,7 @@ public class ImportKeystore extends BaseTest {
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
     }
-
+//
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
     public void test001_gotoimportFromeKeyStroe() throws Exception {
 
@@ -45,6 +45,7 @@ public class ImportKeystore extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"密码错误"));
 
     }
+
 //    @Test(description = "test  input haved Keystore",alwaysRun = true)
 //    public void test004_inputhavedKeystore() throws Exception {
 //        Helper.guaranteeMainChain(DRIVER);
@@ -89,26 +90,24 @@ public class ImportKeystore extends BaseTest {
 ////        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包名称过长"));
 //    }
 
-//    @Test(description = "test import Keystore Wallet Success",alwaysRun = true)
-//    public  void test007_keystoreNameSetSuccess() throws Exception {
-//        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-//        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Test0001");
-//        setNamePage.name_input.sendKeys("willbedelete");
-//        Helper.tapWhitePlace(DRIVER);
-//        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-//        TimeUnit.SECONDS.sleep(3);
-//        Assert.assertEquals(DRIVER.findElementByName("trxLabel").getText().split(" ")[0],"0");
-////        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
-//    }
+    @Test(description = "test import Keystore Wallet Success",alwaysRun = true)
+    public  void test007_keystoreNameSetSuccess() throws Exception {
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
+        setNamePage.name_input.sendKeys("willbedelete");
+        Helper.tapWhitePlace(DRIVER);
+        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(3);
+        AssetPage assetPage = new AssetPage(DRIVER);
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("willbedelete"));
+    }
 
-//    @Test(description = "test Delete Wallet  password",alwaysRun = true)
-//    public void  test008_testDeletewalletSuccess() throws InterruptedException {
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        MinePage minePage =  assetPage.enterMinePage();
-//        MyPursePage walletPage = minePage.enterMyPursePage();
-//        walletPage.deletWallet("Test0001");
-//        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(Helper.isElementExist(DRIVER,"冷钱包"));
-////        Assert.assertNotEquals(DRIVER.findElementByName("trxLabel").getText().split(" ")[0],"0");
-//    }
+    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+    public void  test008_testDeletewalletSuccess() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MyPursePage walletPage = assetPage.enterMyPursePage();
+        walletPage.deletWallet("Qqqqqqq1");
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
+    }
 }

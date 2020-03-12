@@ -412,30 +412,43 @@ public String getBackupKeystoreInClipboard(String password){
         }
     }
 
-    public boolean deletWallet (String password) throws Exception{
+//    public boolean deletWallet (String password) throws Exception{
+//        WebElement  confirm_btn;
+//            Helper.swipScreen(driver);
+//            TimeUnit.SECONDS.sleep(5);
+//
+//            findWebElement("删除钱包").click();
+//
+//            System.out.println("deletewallet_btn");
+//            TimeUnit.SECONDS.sleep(2);
+//            password_et.sendKeys(password);
+//            TimeUnit.SECONDS.sleep(2);
+//            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+//            confirm_btn.click();
+//            TimeUnit.SECONDS.sleep(2);
+//            System.out.println("isDisplayed");
+//
+//            return  !confirm_btn.isDisplayed();
+//
+//    }
+
+    public void deletWallet (String password) throws Exception{
         WebElement  confirm_btn;
-//        try {
-            Helper.swipScreen(driver);
-            TimeUnit.SECONDS.sleep(5);
+        Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(5);
 
-            findWebElement("删除钱包").click();
-//            deletewallet_btn.click();
-            System.out.println("deletewallet_btn");
-            TimeUnit.SECONDS.sleep(2);
-            password_et.sendKeys(password);
-            TimeUnit.SECONDS.sleep(2);
-            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
-            confirm_btn.click();
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("isDisplayed");
+        findWebElement("删除钱包").click();
 
-            return  !confirm_btn.isDisplayed();
+        System.out.println("deletewallet_btn");
+        TimeUnit.SECONDS.sleep(2);
+        password_et.sendKeys(password);
+        TimeUnit.SECONDS.sleep(2);
+        confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(2);
 
-//        }catch (Exception e){
-//            System.out.println(e);
-//            return false;
-//        }
     }
+
     public boolean deleteObserveWallet(){
         WebElement  confirm_btn;
         try {
