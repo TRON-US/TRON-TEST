@@ -55,6 +55,12 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "nameLabel")
     public List<WebElement> nameLabels;
 
+    @FindBy(id = "scanBlockView")
+    public WebElement scanBlockView;
+
+    @FindBy(id = "shieldIV")
+    public WebElement shieldIV;
+
     @FindBy(name = "转账")
     public WebElement transfer_btn;
 
@@ -187,6 +193,7 @@ public class AssetPage extends AbstractPage {
         }
         return "";
     }
+
 
     //enter transfer Page
     public TransferPage enterTransportPage() {
