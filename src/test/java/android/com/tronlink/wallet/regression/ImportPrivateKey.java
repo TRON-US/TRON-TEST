@@ -128,7 +128,7 @@ public class ImportPrivateKey extends Base {
     public void test008_walletNameHasAleradyExist(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("AutoM_Test");
+        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("test");
         PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
         AssetPage asset = setPwdAgain.enterAssetPage("Test0001");
         MinePage mine = asset.enterMinePage();
@@ -136,7 +136,7 @@ public class ImportPrivateKey extends Base {
         AddwalletPage addwallet = myPurse.enterAddwalletPage();
         importPrivateKey = addwallet.enterImportPrivateKeyPage();
         setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        setName.name_input.sendKeys("AutoM_Test");
+        setName.name_input.sendKeys("test");
         setName.next_btn.click();
         TimeUnit.SECONDS.sleep(1);
         String hits = setName.error_hits.getText();

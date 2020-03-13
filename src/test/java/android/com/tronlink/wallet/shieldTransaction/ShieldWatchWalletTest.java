@@ -115,7 +115,7 @@ public class ShieldWatchWalletTest extends Base {
 
 
     @Test(enabled = true,description = "Shield to public QR test", alwaysRun = true)
-    public void test002_Shield2PublicQRTest() throws Exception {
+    public void test003_Shield2PublicQRTest() throws Exception {
         SendTrzPage transfer = enterToSendTrzPage();
         transfer.receiveAddress_text.sendKeys(receiverPublicAddress);
         transfer.tvMax_btn.click();
