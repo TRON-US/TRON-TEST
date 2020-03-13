@@ -245,10 +245,12 @@ public class autoCreateTestngXml {
                 sb.append(
                     "        <parameter name=\"systemPort\"  value=\"" + systemPort++ + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"address\"  value=\"" + entry.getKey()
+                    "        <parameter name=\"address\"  value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.address" + multiSignIndex.get())
                         + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
+                    "        <parameter name=\"privateKey\"  value=\""
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.privateKey" + multiSignIndex.get())
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"ownerPrivateKey\" value=\""
