@@ -194,7 +194,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     public String getCurrentCanUseTrx() {
         String currentCanUseTrx = (currentCanUse_btn.getText().split(" ")[1]);
-        currentCanUseTrx = currentCanUseTrx.substring(0,currentCanUseTrx.length()-3);
+        //currentCanUseTrx = currentCanUseTrx.substring(0,currentCanUseTrx.length()-3);
         return currentCanUseTrx;
     }
 

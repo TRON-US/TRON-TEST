@@ -150,6 +150,7 @@ public class FrozenAndUnfreezeTest extends Base {
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
+        System.out.println("frozen.getCurrentCanUseTrx():" + frozen.getCurrentCanUseTrx());
         int currentCanUseTrx = Integer.valueOf(removeSymbol(frozen.getCurrentCanUseTrx()));
         System.out.println(trxCount + "......" + myVotingPower + "....." + currentCanUseTrx);
         Assert.assertTrue(myVotingPower + currentCanUseTrx == trxCount);
