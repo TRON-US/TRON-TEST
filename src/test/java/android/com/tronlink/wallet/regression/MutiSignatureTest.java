@@ -24,6 +24,10 @@ public class MutiSignatureTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlink.wallet");
+        }catch (Exception e){}
     }
 
     @AfterMethod(alwaysRun = true)

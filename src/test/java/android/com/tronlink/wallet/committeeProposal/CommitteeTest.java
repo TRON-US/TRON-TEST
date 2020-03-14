@@ -15,6 +15,10 @@ public class CommitteeTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String witnessKey) throws Exception {
         new Helper().getSign(witnessKey, DRIVER);
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlink.wallet");
+        }catch (Exception e){}
     }
 
     @AfterMethod(alwaysRun = true)

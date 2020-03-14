@@ -365,7 +365,8 @@ public class AssetPage extends AbstractPage {
     public MinePage enterMinePage(){
         try {
           TimeUnit.SECONDS.sleep(2);
-          market_btn.click();
+          mine_btn.click();
+          driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
           TimeUnit.SECONDS.sleep(2);
         } catch (Exception e ){};
         //driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -545,7 +546,7 @@ public class AssetPage extends AbstractPage {
           trx10_icon_btn.click();
         }
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return new TrxPage(driver);
     }
 
