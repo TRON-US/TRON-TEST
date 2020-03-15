@@ -534,6 +534,11 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrx10Page() throws Exception {
       TimeUnit.SECONDS.sleep(1);
+        try {
+          mine_btn.click();
+        } catch (Exception e) {
+          mine_btn.click();
+        }
         mine_btn.click();
         assetsMain_btn.click();
         Helper.swipScreen(driver);
