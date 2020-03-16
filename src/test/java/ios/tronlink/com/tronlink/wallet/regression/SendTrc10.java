@@ -24,6 +24,7 @@ public class SendTrc10 extends BaseTest {
 
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
+        Helper.guaranteeMainChain(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         String count = random(10, 10);
         count = Helper.getPrettyNumber(count);
@@ -37,7 +38,7 @@ public class SendTrc10 extends BaseTest {
         AssetPage assetpage = new AssetPage(DRIVER);
         tokenpage = assetpage.enterTrx10Page();
         double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        System.out.println(count + "   " + trc10Before + " " + trc10after);
+        System.out.println("   count:" +count + "   trc10Before:" + trc10Before + " trc10after:" + trc10after);
         Assert.assertTrue(trc10after + Integer.parseInt(removeSymbol(count)) <= trc10Before);
     }
 
@@ -55,7 +56,7 @@ public class SendTrc10 extends BaseTest {
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("mix");
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "格式错误"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
     }
 
 
@@ -63,7 +64,7 @@ public class SendTrc10 extends BaseTest {
     public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("tooMuch");
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "余额不足"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("余额不足"));
     }
 
     @Test(description = "ssendaddressChanged test", alwaysRun = true)

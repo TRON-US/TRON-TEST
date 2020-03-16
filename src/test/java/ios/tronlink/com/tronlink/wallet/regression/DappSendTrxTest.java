@@ -84,16 +84,12 @@ public class DappSendTrxTest extends BaseTest {
     }
 
 
-
-
-
-
     @Test(description = "input error address to Receiving address",alwaysRun = true)
     public void test002_inputErrorAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址格式不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址格式不正确"));
     }
 
 
@@ -102,7 +98,8 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址未激活"));
+//        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址未激活"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址未激活"));
 
     }
 
@@ -114,7 +111,8 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),address);
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址不能相同"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址不能相同"));
+
     }
 
 
@@ -144,7 +142,8 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("mix");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"格式错误"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
+
     }
 
 
@@ -154,7 +153,7 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("tooMuch");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"余额不足"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("余额不足"));
     }
 
 
@@ -184,7 +183,7 @@ public class DappSendTrxTest extends BaseTest {
         transfer.testfieldArray.get(1).sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址格式不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址格式不正确"));
 
     }
 
@@ -207,10 +206,6 @@ public class DappSendTrxTest extends BaseTest {
     }
 
 
-
-
-
-
     @Test(description = "Receiving Minimum Extra Trx",alwaysRun = true)
     public void test012_sendMinimumTrx() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
@@ -218,7 +213,7 @@ public class DappSendTrxTest extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("0.0000001");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"0.000001"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("0.000001"));
 
     }
 
@@ -227,7 +222,7 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址格式不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址格式不正确"));
     }
 
     @Test(description = "Check OutNumberInRecord Trx",alwaysRun = true)

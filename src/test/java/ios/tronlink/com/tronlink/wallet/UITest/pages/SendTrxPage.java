@@ -82,6 +82,12 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "transferAddressErrorLabel")
     public WebElement transferErrorLabel;
 
+    @FindBy(id = "amountErrorLabel")
+    public WebElement amountErrorLabel;
+
+    @FindBy(id = "reciptErrorLabel")
+    public WebElement reciptErrorLabel;
+
 
     @FindBy(name = "com.tronlink.wallet:id/tv_balance")
     public WebElement balance_text;

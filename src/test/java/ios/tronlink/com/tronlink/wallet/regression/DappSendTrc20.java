@@ -90,7 +90,7 @@ public class DappSendTrc20 extends BaseTest {
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "格式错误"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
     }
 
 
@@ -98,7 +98,7 @@ public class DappSendTrc20 extends BaseTest {
     public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("tooMuch");
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "余额不足"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("余额不足"));
     }
 
 
@@ -107,7 +107,7 @@ public class DappSendTrc20 extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "地址格式不正确"));
+        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("地址格式不正确"));
     }
 
     @Test(description = "Check OutNumberInRecord Trx20",alwaysRun = true)
