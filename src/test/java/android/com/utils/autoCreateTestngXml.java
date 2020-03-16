@@ -52,6 +52,7 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
+    private Boolean isManualTest = false;
     private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
@@ -210,6 +211,9 @@ public class autoCreateTestngXml {
 //        testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
 
+        if (isManualTest) {
+            multiSignIndex.addAndGet(5);
+        }
 
         StringBuilder sb = new StringBuilder();
 
