@@ -54,7 +54,7 @@ public class SendTrc20 extends BaseTest {
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "格式错误"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
     }
 
 
@@ -62,7 +62,7 @@ public class SendTrc20 extends BaseTest {
     public void test004_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("tooMuch");
-        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray, "余额不足"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("余额不足"));
     }
     @Test(description = "ssendaddressChanged test", alwaysRun = true)
     public void test005_sendaddressChanged() throws Exception {
