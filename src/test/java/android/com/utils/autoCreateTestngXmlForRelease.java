@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import android.com.wallet.UITest.base.Base;
 
 public class autoCreateTestngXmlForRelease {
     private String reportPath = "src/test/resources/tronlink-testng.xml";

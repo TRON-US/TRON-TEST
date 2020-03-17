@@ -10,6 +10,7 @@ import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TransactionRecordPage;
 import android.com.wallet.pages.TrxPage;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -74,7 +75,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
     @Test(enabled = true,description = "Public send trz to shield account success test", alwaysRun = true)
     public void test001_PbulicSendTrzToShieldAccountSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.market_btn.click();
+        asset.mine_btn.click();
         asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
@@ -85,6 +86,14 @@ public class PublicSendTrzToShieldAccountTest extends Base {
     @Test(enabled = true,description = "Public trz transfer success recording")
     public void test002_PublicTrzTransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+      try {
+        TimeUnit.SECONDS.sleep(80);
+        // if page display AD , cloese the AD
+/*            if (ad_pic.isDisplayed()){
+                adClose_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }*/
+      } catch (Exception e){}
         TrxPage trx = asset.publicAccountEnterTrzPage();
         trx.tranfer_tab.get(1).click();
         System.out.println(trx.tranferIncount_text.get(1).getText());
@@ -151,7 +160,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-        Assert.assertTrue(Float.valueOf(detailPageReceiveAmount) > 0);
+        Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum));
     }

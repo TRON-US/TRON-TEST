@@ -409,18 +409,20 @@ public class AssetPage extends AbstractPage {
           trx = enterTrxPage();
       }
       trx.tranfer_tab.get(1).click();
-      driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
       trx.tranferIncount_text.get(1).click();
-      driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+      TimeUnit.SECONDS.sleep(3);
       return new TransactionDetailInfomaitonPage(driver);
   }
 
   public TransactionDetailInfomaitonPage pubilcEnterTrzReceiveTransactionDetailPage() throws Exception {
     TrxPage trx = publicAccountEnterTrzPage();
     trx.tranfer_tab.get(2).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     trx.tranferIncount_text.get(1).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    TimeUnit.SECONDS.sleep(3);
     return new TransactionDetailInfomaitonPage(driver);
   }
 
@@ -514,7 +516,7 @@ public class AssetPage extends AbstractPage {
 
   public TrxPage publicAccountEnterTrzPage() throws Exception {
     TimeUnit.SECONDS.sleep(1);
-    market_btn.click();
+    mine_btn.click();
     assetsMain_btn.click();
     Helper.swipScreen(driver);
     TimeUnit.SECONDS.sleep(1);

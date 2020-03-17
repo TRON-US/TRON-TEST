@@ -275,8 +275,10 @@ public class Helper {
             findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Auto-test");
             findWebElement("com.tronlink.wallet:id/creat").click();
             findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
+            TimeUnit.SECONDS.sleep(1);
+            //findWebElement("com.tronlink.wallet:id/creat").click();
             findWebElement("com.tronlink.wallet:id/creat").click();
-            findWebElement("com.tronlink.wallet:id/creat").click();
+            TimeUnit.SECONDS.sleep(1);
             findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
             findWebElement("com.tronlink.wallet:id/creat").click();
             TimeUnit.SECONDS.sleep(3);
