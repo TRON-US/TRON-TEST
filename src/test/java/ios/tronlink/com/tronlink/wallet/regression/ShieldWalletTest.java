@@ -96,7 +96,7 @@ public class ShieldWalletTest extends Base {
     public void test001_checkImportSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         Assert.assertTrue(Helper.contentTexts(asset.nameLabels,"TRZ"));
-        Assert.assertTrue(asset.scanBlockView.isDisplayed());
+//        Assert.assertTrue(asset.scanBlockView.isDisplayed());
 
     }
 
@@ -126,7 +126,7 @@ public class ShieldWalletTest extends Base {
         TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(asset.walletNameBtn.getText().contains("WalletName"));
         Assert.assertTrue(Helper.contentTexts(asset.nameLabels,"TRZ"));
-        Assert.assertTrue(asset.scanBlockView.isDisplayed());
+//        Assert.assertTrue(asset.scanBlockView.isDisplayed());
     }
 
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
@@ -179,30 +179,56 @@ public class ShieldWalletTest extends Base {
     }
 
 
-//    @Test(description = "Test shieldWallet Imported use KeyStore'", alwaysRun = true)
-//    public void test005_testImportWithKeyStoreSuccess() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-//        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
-//        setNamePage.name_input.sendKeys("keystore");
-//        Helper.tapWhitePlace(DRIVER);
-//        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-//        TimeUnit.SECONDS.sleep(3);
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("keystore"));
-//    }
+    @Test(description = "Test shieldWallet Imported use KeyStore'", alwaysRun = true)
+    public void test006_testImportWithKeyStoreSuccess() throws Exception {
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
+        setNamePage.name_input.sendKeys("keystore");
+        Helper.tapWhitePlace(DRIVER);
+        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(6);
+        AssetPage assetPage = new AssetPage(DRIVER);
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("keystore"));
+    }
+
+    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+    public void  test007_testDeletewalletSuccess() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MyPursePage walletPage  = assetPage.enterMyPursePage();
+        walletPage.deletWallet("Qqqqqqq1");
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
+    }
+
+    @Parameters({"shieldSK"})
+    @Test(description = "Test shieldWallet Imported use same sk privateKey'", alwaysRun = true)
+    public void test008_testImportWithsameskprivateKeySuccess(String shieldSK) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        waiteTime();
+        asset.addWallet_btn.click();
+        waiteTime();
+        DRIVER.findElementById("shieldedWallet").click();
+        waiteTime();
+        DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+        DRIVER.findElementByName("私钥导入").click();
+        DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(shieldSK);
+        Helper.tapWhitePlace(DRIVER);
+        DRIVER.findElementByName("下一步").click();
+        waiteTime();
+        Assert.assertTrue(DRIVER.findElementById("errorStr").getText().contains("已存在"));
+
+    }
 
 
 
-//    public ImportKeystorePage getImportKeystorePage(){
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        waiteTime();
-//        assetPage.addWallet_btn.click();
-//        waiteTime();
-//        DRIVER.findElementById("shieldedWallet").click();
-//        waiteTime();
-//        DRIVER.findElementByName("Keystore").click();
-//        return new ImportKeystorePage(DRIVER);
-//    }
+    public ImportKeystorePage getImportKeystorePage(){
+        AssetPage assetPage = new AssetPage(DRIVER);
+        waiteTime();
+        assetPage.addWallet_btn.click();
+        waiteTime();
+        DRIVER.findElementById("shieldedWallet").click();
+        waiteTime();
+        DRIVER.findElementByName("Keystore").click();
+        return new ImportKeystorePage(DRIVER);
+    }
 
 }

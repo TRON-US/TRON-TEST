@@ -31,6 +31,8 @@ public class ImportKeystorePage extends AbstractPage {
   @FindBy(name = "com.tronlink.wallet:id/tv_error")
   public List<WebElement> error_hits;
 
+  @FindBy(id = "errorStr")
+  public WebElement errorStr;
 
 
   public PrivateKeySetNamePage enterPrivateKeySetNamePage(String key,String password) throws Exception{
