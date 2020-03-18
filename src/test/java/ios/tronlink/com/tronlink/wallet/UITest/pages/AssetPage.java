@@ -153,6 +153,15 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "walletName")
     public WebElement walletNameBtn;
 
+    @FindBy(id = "blockNumberLabel")//块数量
+    public WebElement blockNumberLabel;
+
+    @FindBy(id = "blockSyncName")//块同步中...
+    public WebElement blockSyncName;
+
+
+
+
     public VotePage enterVotePage() {
         try {
             vote_btn.click();

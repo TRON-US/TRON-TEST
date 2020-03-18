@@ -4,6 +4,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -35,34 +36,34 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.content_text.sendKeys("wrong keysotre format");
         Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"格式错误"));
+        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("格式错误"));
+//        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"格式错误"));
 
     }
     @Test(description = "test  input wrong format Password",alwaysRun = true)
     public void test003_inputWrongPasswordKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
-        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"密码错误"));
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("密码错误"));
+//        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"密码错误"));
 
     }
 
-//    @Test(description = "test  input haved Keystore",alwaysRun = true)
-//    public void test004_inputhavedKeystore() throws Exception {
-//        Helper.guaranteeMainChain(DRIVER);
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        MinePage minePage =  assetPage.enterMinePage();
-//        MyPursePage walletPage = minePage.enterMyPursePage();
-//        oldKeystore = walletPage.getBackupKeystore("Test0001");
-//        System.out.println("oldKeystore:" + oldKeystore);
-//        walletPage.backbtn.click();
-//        walletPage.enterAssetPage();
-//        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-//        importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
-//        TimeUnit.SECONDS.sleep(3);
+    @Test(description = "test  input haved Keystore",alwaysRun = true)
+    public void test004_inputHaveExistWallet() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MyPursePage walletPage = asset.enterMyPursePage();
+        oldKeystore = walletPage.getBackupKeystore("Test0001");
+        walletPage.backbtn.click();
+        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("钱包已存在"));
 //        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包已存在"));
-//    }
-////
-//    @Test(description = "test import Keystore name Too long number",alwaysRun = true)
+    }
+
+    //    @Test(description = "test import Keystore name Too long number",alwaysRun = true)
 //    public  void test005_keystoreNameSetlongNumber() throws Exception {
 //        ImportKeystorePage importKeystorePage = getImportKeystorePage();
 //        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");

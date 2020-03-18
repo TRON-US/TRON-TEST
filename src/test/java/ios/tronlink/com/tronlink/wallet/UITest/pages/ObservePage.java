@@ -24,6 +24,10 @@ public class ObservePage extends  AbstractPage {
     @FindBy(className = "XCUIElementTypeButton" )
     public List<WebElement> error_hits;
 
+    @FindBy(id = "errorStr")
+    public WebElement errorStr;
+
+
     public String  getError_hits(){
         return error_hits.get(2).getText();
     }

@@ -24,7 +24,7 @@ public class SendTrc10 extends BaseTest {
 
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
-        Helper.guaranteeMainChain(DRIVER);
+
         SendTrxPage transfer = enterToSendTrxPage();
         String count = random(10, 10);
         count = Helper.getPrettyNumber(count);
