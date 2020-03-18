@@ -96,7 +96,7 @@ public class ShieldWalletTest extends Base {
     public void test001_checkImportSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         Assert.assertTrue(Helper.contentTexts(asset.nameLabels,"TRZ"));
-        Assert.assertTrue(asset.scanBlockView.isDisplayed());
+//        Assert.assertTrue(asset.scanBlockView.isDisplayed());
 
     }
 
@@ -126,7 +126,7 @@ public class ShieldWalletTest extends Base {
         TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(asset.walletNameBtn.getText().contains("WalletName"));
         Assert.assertTrue(Helper.contentTexts(asset.nameLabels,"TRZ"));
-        Assert.assertTrue(asset.scanBlockView.isDisplayed());
+//        Assert.assertTrue(asset.scanBlockView.isDisplayed());
     }
 
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
