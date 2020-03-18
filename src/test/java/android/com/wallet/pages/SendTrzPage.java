@@ -174,7 +174,7 @@ public class SendTrzPage extends AbstractPage {
         transferNow_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         confirm_btn.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(10);
         return new SendTrxSuccessPage(driver);
     }
 

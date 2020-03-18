@@ -205,6 +205,11 @@ public class AssetPage extends AbstractPage {
     public void waitShieldDataSynFinished() {
       Long startSynTime = System.currentTimeMillis();
       Long currentSynTime;
+      try {
+        TimeUnit.SECONDS.sleep(10);
+      } catch (Exception e) {
+
+      }
       while (Integer.valueOf(synCurrent_blockNum.getText()) + 400
           < Integer.valueOf(chainCurrent_blockNum.getText())) {
         try {
