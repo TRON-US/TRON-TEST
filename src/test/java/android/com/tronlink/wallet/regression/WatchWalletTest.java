@@ -224,7 +224,7 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
     public void test013_PbulicSendTrzToShieldQR() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.market_btn.click();
+        asset.mine_btn.click();
         asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
         transfer.receiveAddress_text.sendKeys(receiverShieldAddress);

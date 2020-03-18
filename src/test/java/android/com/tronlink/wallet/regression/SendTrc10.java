@@ -63,7 +63,7 @@ public class SendTrc10 extends Base {
     @Test(enabled = true,description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.market_btn.click();
+        asset.mine_btn.click();
         asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.enterSendTrc10Page();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));

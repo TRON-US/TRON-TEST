@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import android.com.wallet.UITest.base.Base;
 
 public class autoCreateTestngXmlForRelease {
     private String reportPath = "src/test/resources/tronlink-testng.xml";
@@ -180,10 +181,10 @@ public class autoCreateTestngXmlForRelease {
         classNameList = findNameList(classNameList,testCaseDir,1);
         testCaseDir = "src/test/java/android/com/tronlink/wallet/multiSignatureTransaction";
         classNameList = findNameList(classNameList,testCaseDir,1);
-        //testCaseDir = "src/test/java/android/com/tronlink/wallet/shieldTransaction";
-        //classNameList = findNameList(classNameList,testCaseDir,1);
-        //testCaseDir = "src/test/java/android/com/tronlink/wallet/dappChain";
-        //classNameList = findNameList(classNameList,testCaseDir,1);
+        testCaseDir = "src/test/java/android/com/tronlink/wallet/shieldTransaction";
+        classNameList = findNameList(classNameList,testCaseDir,1);
+        testCaseDir = "src/test/java/android/com/tronlink/wallet/dappChain";
+        classNameList = findNameList(classNameList,testCaseDir,1);
         Integer deviceIndex = 0;
         List<List<String>> classContent = new ArrayList<>();
 
