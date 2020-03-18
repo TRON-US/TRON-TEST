@@ -229,6 +229,36 @@ public class Helper {
              importFirstWallet(type,privateKey,"Auto_test","Test0001");
          }
     }
+    //导入正常的,需要报错信息不能使用此方法
+    public void importMoreWallet(importType type,String privateKey,String name,String pass, IOSDriver driver) throws Exception{
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        switch (type){
+            case normal:
+            {
+                findWebElement("home manager").click();
+                findAcceptAndClick();
+                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                DRIVER.findElementById("normalWallet").click();
+                break;
+            }
+            case coldWallet:
+            {
+
+                break;
+            }
+            case shieldWallet:
+            {
+                findWebElement("home manager").click();
+                findAcceptAndClick();
+                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                DRIVER.findElementById("shieldedWallet").click();
+                break;
+            }
+        }
+
+        importUsePrivateKey(privateKey,name,pass);
+
+    }
 
     public void importFirstWallet(importType type,String privateKey,String name,String pass) throws Exception{
 

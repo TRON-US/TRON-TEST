@@ -46,7 +46,7 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "titleLabel")
     public List<WebElement> titleLabels;
 
-    @FindBy(name = "备份keystore")
+    @FindBy(name = "备份 Keystore")
     public WebElement backkeystore_btn;
     @FindBy(name = "删除钱包")
     public WebElement deletewallet_btn;

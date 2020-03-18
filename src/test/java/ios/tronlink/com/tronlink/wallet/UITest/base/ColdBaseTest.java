@@ -67,9 +67,9 @@ public class ColdBaseTest extends Base {
 //        new Helper().getColdSign(privateKey, DRIVER);
     }
 
-    @Parameters({"bundleId"})
+    @Parameters({"bundleId","udid"})
     @AfterClass(alwaysRun = true)
-    public void tearDownAfterClass(String bundleId) {
+    public void tearDownAfterClass(String bundleId,String udid) {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
@@ -87,6 +87,8 @@ public class ColdBaseTest extends Base {
             DRIVER.findElement(By.name("好")).click();
             DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
+            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }
