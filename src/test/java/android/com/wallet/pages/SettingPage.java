@@ -70,6 +70,10 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/root")
     public List<WebElement> chain_list;
 
+    //com.tronlink.wallet:id/select_online
+    @FindBy(id = "com.tronlink.wallet:id/select_online")
+    public WebElement online_version_icon;
+
 
 
 

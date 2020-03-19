@@ -39,7 +39,7 @@ public class MarketPage extends AbstractPage {
     public WebElement Market_title;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_price")
-    public WebElement newPrice_btn;
+    public WebElement price_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_price")
     public List<WebElement> firstRowPriceList;
@@ -51,6 +51,17 @@ public class MarketPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/tv_statue")
     public WebElement firstQuoteChange_list;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_search")
+    public WebElement market_search_btn;
+
+    //com.tronlink.wallet:id/tv_usd_price
+    @FindBy(id = "com.tronlink.wallet:id/tv_price")
+    public List<WebElement> priceList;
+
+    //com.tronlink.wallet:id/tv_statue
+    @FindBy(id = "com.tronlink.wallet:id/tv_statue")
+    public List<WebElement> rangeList;
 
 
     public String sortPrice() throws Exception {

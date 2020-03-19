@@ -40,7 +40,7 @@ public class DappAddAssetsTest extends Base {
     }
 
 
-    @Test(description = "test add assert", alwaysRun = true)
+    @Test(description = "Dapp chain add assert", alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         ///////////////////////////////////////////
@@ -63,7 +63,7 @@ public class DappAddAssetsTest extends Base {
     }
 
 
-    @Test(description = "test remove asset", alwaysRun = true)
+    @Test(description = "Dapp chain remove asset", alwaysRun = true)
     public void test003_removeAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);

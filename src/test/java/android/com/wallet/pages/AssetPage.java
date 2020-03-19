@@ -381,9 +381,12 @@ public class AssetPage extends AbstractPage {
 
 
 
-    public DiscoverPage enterDiscoverPage(){
-        discover_btn.click();
-        return new DiscoverPage(driver);
+    public DiscoverPage enterDiscoverPage() throws Exception{
+      TimeUnit.SECONDS.sleep(3);
+      discover_btn.click();
+      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      TimeUnit.SECONDS.sleep(10);
+      return new DiscoverPage(driver);
     }
 
 
