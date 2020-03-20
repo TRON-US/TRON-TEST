@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.regression;
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AddAssertPage;
@@ -27,6 +28,8 @@ public class AddressBookTest extends Base {
 
     String addressName;
     String addressString;
+    static String shieldAddress = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.shieldAddress");
 
     @Parameters({"privateKey","address"})
     @BeforeClass(alwaysRun = true)
@@ -141,6 +144,34 @@ public class AddressBookTest extends Base {
         addressBookPage.deleteConfirm_btn.click();
         Assert.assertTrue(addressBookPage.dataInfo_display.getText().equals("暂无数据")
         || addressBookPage.dataInfo_display.getText().equalsIgnoreCase("No data"));
+    }
+
+
+    @Test(enabled = true,description = "Add shield address book test", alwaysRun = true)
+    public void test007_addShieldAddressBook() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
+        addressBookPage.addAddressBook_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        
+        Random rand = new Random();
+        addressName = "shield-" + rand.nextInt(1000);
+        addressBookPage.addName_input.sendKeys(addressName);
+        
+        addressBookPage.addAddress_input.sendKeys(shieldAddress);
+        addressBookPage.addNote_input.sendKeys(shieldAddress);
+        addressBookPage.save_btn.click();
+    }
+
+    @Test(enabled = true,description = "Send trz use shield address book test", alwaysRun = true)
+    public void test008_sendTrzUseShieldAddressBook() throws Exception {
+        //AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.addressBook_btn.click();
+        transfer.addressName_display.click();
+        Assert.assertTrue(transfer.receiveAddress_text.getText().equals(shieldAddress));
+        Assert.assertTrue(transfer.note_text.getText().contains("匿名地址"));
     }
 
 
