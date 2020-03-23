@@ -156,6 +156,12 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='tronlink_token']")
   public WebElement trx10_btn;
 
+  @FindBy(xpath = "//*[@text='BTT']")
+  public WebElement online_trc10_btn;
+
+  @FindBy(xpath = "//*[@text='USDT']")
+  public WebElement online_trc20_btn;
+
     @FindBy(xpath = "//*[@text='TRZ']")
     public WebElement public_account_trz_btn;
 
@@ -255,6 +261,19 @@ public class AssetPage extends AbstractPage {
         return new SendTrxPage(driver);
     }
 
+  public SendTrxPage enterOnlineSendTrc10Page() {
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    try {
+      online_trc10_btn.click();
+    } catch (Exception e) {
+      online_trc10_btn.click();
+    }
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    trc10Page_transfer_btn.click();
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    return new SendTrxPage(driver);
+  }
+
   public SendTrxPage enterSendTrc20Page() {
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trx20_btn.get(2).click();
@@ -263,6 +282,16 @@ public class AssetPage extends AbstractPage {
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
   }
+
+  public SendTrxPage enterOnlineSendTrc20Page() {
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    online_trc20_btn.click();
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    trc10Page_transfer_btn.click();
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    return new SendTrxPage(driver);
+  }
+
 
   public SendTrxPage publicAccountenterSendTrzPage() {
     Helper.swipScreen(driver);
@@ -565,6 +594,30 @@ public class AssetPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
+  public TrxPage enterOnlineTrc10Page() throws Exception {
+    TimeUnit.SECONDS.sleep(1);
+    try {
+      mine_btn.click();
+    } catch (Exception e) {
+      mine_btn.click();
+    }
+    mine_btn.click();
+    assetsMain_btn.click();
+    //Helper.swipScreen(driver);
+    TimeUnit.SECONDS.sleep(1);
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    //Helper.swipScreen(driver);
+    try {
+      online_trc10_btn.click();
+    } catch (Exception e) {
+      online_trc10_btn.click();
+    }
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    TimeUnit.SECONDS.sleep(2);
+    return new TrxPage(driver);
+  }
+
+
 
     public TrxPage enterTrx20Page() throws Exception {
         mine_btn.click();
@@ -577,6 +630,18 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         return new TrxPage(driver);
     }
+
+  public TrxPage enterOnlineTrc20Page() throws Exception {
+    mine_btn.click();
+    assetsMain_btn.click();
+    //Helper.swipScreen(driver);
+    TimeUnit.SECONDS.sleep(3);
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    online_trc20_btn.click();
+    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    TimeUnit.SECONDS.sleep(1);
+    return new TrxPage(driver);
+  }
 
 
 

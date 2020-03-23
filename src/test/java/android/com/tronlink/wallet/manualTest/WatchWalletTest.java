@@ -1,16 +1,27 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.manualTest;
 
 import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.*;
+import android.com.wallet.pages.AddPermissionPage;
+import android.com.wallet.pages.AssetPage;
+import android.com.wallet.pages.CommitteeProposalPage;
+import android.com.wallet.pages.CreateProposePage;
+import android.com.wallet.pages.FrozenAndUnfreezePage;
+import android.com.wallet.pages.MinePage;
+import android.com.wallet.pages.MultiSignManagerPage;
+import android.com.wallet.pages.MyPursePage;
+import android.com.wallet.pages.QRodeEPage;
+import android.com.wallet.pages.SendTrxPage;
+import android.com.wallet.pages.TransferPage;
+import android.com.wallet.pages.TrxPage;
+import android.com.wallet.pages.VotePage;
+import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class WatchWalletTest extends Base {
 

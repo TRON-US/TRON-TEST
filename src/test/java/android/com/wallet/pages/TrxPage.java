@@ -64,12 +64,24 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_balance")
     public WebElement balance_text;
 
+  //@FindBy(id = "com.tronlink.wallet:id/send")
+  //public WebElement send_btn;
+
+  @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
+  public WebElement send_btn;
+
 
 
     public TransferPage enterTransferPage() throws Exception {
         transferIn_btn.click();
         driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new TransferPage(driver);
+    }
+
+    public TransferPage enterSendPage() throws Exception {
+      send_btn.click();
+      driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+      return new TransferPage(driver);
     }
 
 
