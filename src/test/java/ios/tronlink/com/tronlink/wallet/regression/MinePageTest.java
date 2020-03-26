@@ -110,7 +110,7 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         EnergyRentPage rentPage = assetPage.entereneryRantage();
         TimeUnit.SECONDS.sleep(4);
-        Assert.assertTrue(Helper.contentTexts(rentPage.textArray,"TronLending"));
+        Assert.assertTrue(Helper.contentTexts(rentPage.textArray,"能量租赁")||Helper.contentTexts(rentPage.textArray,"TronLending"));
 
 
     }

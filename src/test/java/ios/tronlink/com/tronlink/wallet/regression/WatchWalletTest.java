@@ -86,19 +86,4 @@ public class WatchWalletTest extends BaseTest {
         Assert.assertTrue(helpPage.isEnterColdPage());
     }
 
-    @Test(description = "guarantee Chain in Dappchain",alwaysRun = true)
-    public void test010_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeDappChain(DRIVER));
-    }
-
-    @Test(description = "transferOut QRCode", alwaysRun = true)
-    public void test011_transferOutQRCode() throws Exception{
-        WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
-        Assert.assertTrue(helpPage.maketransferOut());
-    }
-    @Test(description = "Guarantee Main Chain ", alwaysRun = true)
-    public void test012_guaranteemainchainTest() throws Exception {
-        Assert.assertTrue(Helper.guaranteeMainChain(DRIVER));
-    }
-
 }

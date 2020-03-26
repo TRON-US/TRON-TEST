@@ -71,7 +71,7 @@ public class DappSendTrc10 extends BaseTest {
         AssetPage assetpage = new AssetPage(DRIVER);
         tokenpage = assetpage.enterTrx10Page();
         double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        System.out.println(count   + "   " + trc10Before  + " " + trc10after);
+        System.out.println("   count:" +count + "   trc10Before:" + trc10Before + " trc10after:" + trc10after);
         Assert.assertTrue(trc10after + Integer.parseInt(removeSymbol(count)) <= trc10Before);
     }
 

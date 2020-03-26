@@ -77,8 +77,7 @@ public class DappSendTrxTest extends BaseTest {
         waiteTime();
         tokenpage = asset.enterTrxPage();
         double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-
-        System.out.println(count   + "   " + trcBefore  + " " + trcafter);
+        System.out.println("   count:" +count + "   trcBefore:" + trcBefore + " trcafter:" + trcafter);
         Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
 
     }
