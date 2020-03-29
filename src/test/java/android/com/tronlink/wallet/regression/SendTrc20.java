@@ -158,8 +158,6 @@ public class SendTrc20 extends Base {
     Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
     Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
     Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
     System.out.println(transactionInfo.title_amount_test.getText());
     System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
@@ -167,6 +165,9 @@ public class SendTrc20 extends Base {
     Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrc20Amount).substring(0,6));
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
         > Long.valueOf(currentMainNetBlockNum) );
+    Helper.swipScreen(transactionInfo.driver);
+    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
   }
 
   @Parameters({"address"})
@@ -183,11 +184,12 @@ public class SendTrc20 extends Base {
     Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
     Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
     Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
         > Long.valueOf(currentMainNetBlockNum));
+    Helper.swipScreen(transactionInfo.driver);
+    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
   }
 
 

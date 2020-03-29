@@ -29,7 +29,7 @@ public class DappSendTrx extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //reset DAPP chain trun main chain
-        changeToMainChain();
+        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -252,12 +252,13 @@ public class DappSendTrx extends Base {
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(dappChainSendTrxAmount).substring(0,6));
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     }
 
 

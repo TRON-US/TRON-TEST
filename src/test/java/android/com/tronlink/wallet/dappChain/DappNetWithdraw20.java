@@ -1,10 +1,12 @@
 package android.com.tronlink.wallet.dappChain;
 
+import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
+import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 
@@ -23,11 +25,17 @@ import android.com.utils.Helper;
 public class DappNetWithdraw20 extends Base {
     Random rand = new Random();
     float withdrawTrc20Amount;
+    static String dappNetGateWay = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.dappNetGateWay");
+    static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentDappNetBlockNum");
+    static String trc20TokenName = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.trc20TokenName");
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //reset DAPP chain trun main chain
-        changeToMainChain();
+        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -92,7 +100,7 @@ public class DappNetWithdraw20 extends Base {
 
 
     @Test(enabled = true,description = "Check withdraw from dapp chain information", alwaysRun = true)
-    public void test001_checkTransferOutHits() throws Exception {
+    public void test001_withdrawInformation() throws Exception {
         TrxPage trx = enterTrc20Page();
         TransferPage transferOut = trx.enterTransferPage();
         String info = transferOut.getTransferInfo("hits");
@@ -109,29 +117,8 @@ public class DappNetWithdraw20 extends Base {
         Assert.assertTrue(50 <= count && count <= 500);
     }
 
-
-    @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
-    public void test003_checkAvailableBalance() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
-        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
-        TrxPage trx = asset.enterTrxPage();
-        int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
-        TransferPage transferOut = trx.enterTransferPage();
-        int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
-        System.out.println("trxCount" + trxCount);
-        System.out.println("frozenCount" + frozenCount);
-        System.out.println("availableBalance" + availableBalance);
-        Assert.assertTrue(trxCount - (frozenCount + availableBalance) >= -1
-            && trxCount - (frozenCount + availableBalance) <= 1);
-    }
-
-
     @Test(enabled = true,description = "Withdraw from dapp chain success and checkout available trx", alwaysRun = true)
-    public void test004_checkAvailableBalance() throws Exception {
+    public void test003_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrc20Page();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
@@ -145,7 +132,7 @@ public class DappNetWithdraw20 extends Base {
 
 
     @Test(enabled = true,description = "Withdraw trc20 from dapp chain Recording")
-    public void test005_transferOutSuccessRecording() throws Exception {
+    public void test004_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrc20Page();
         int tries = 0;
         Boolean exist = false;
@@ -167,4 +154,28 @@ public class DappNetWithdraw20 extends Base {
         }
         Assert.assertTrue(exist);
     }
+
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Dapp net withdraw Trc20 transaction detail info test", alwaysRun = true)
+    public void test005_DappNetWithdrawTrc20TransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterWithdrawTransactionDetailPage(2);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        //尼罗河测链gateway
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),dappNetGateWay);
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(withdrawTrc20Amount).substring(0,6));
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+    }
+
+
 }

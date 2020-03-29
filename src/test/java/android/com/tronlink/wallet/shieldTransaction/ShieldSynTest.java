@@ -150,9 +150,7 @@ public class ShieldSynTest extends Base {
         System.out.println("receiverAddress_text: " + transactionInfo.receiverAddress_text.getText());
         Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名地址"));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
@@ -160,6 +158,9 @@ public class ShieldSynTest extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum) );
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     }
 
     @Parameters({"shieldAddress"})
@@ -169,12 +170,13 @@ public class ShieldSynTest extends Base {
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTrzTransactionDetailPage(1);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),shieldAddress);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum) );
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     }
 
 

@@ -1,5 +1,6 @@
 package android.com.tronlink.wallet.dappChain;
 
+import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
 import android.com.utils.Helper;
@@ -19,6 +20,14 @@ public class DappSendTrc20 extends Base {
     float dappChainSendTrc20Amount;
     float beforeBalance;
     float afterBalance;
+    static String receiverAddress = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.receiverAddress");
+    static String dappNetGateWay = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.dappNetGateWay");
+    static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.currentDappNetBlockNum");
+    static String trc20TokenName = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.trc20TokenName");
 
 
     @Parameters({"privateKey"})
@@ -151,4 +160,27 @@ public class DappSendTrc20 extends Base {
         afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         Assert.assertTrue(beforeBalance - afterBalance >= 1);
     }
+
+
+    @Parameters({"address"})
+    @Test(enabled = true, description = "Dapp send Trc 20 transaction detail info test", alwaysRun = true)
+    public void test008_DappSendTrc20TransactionDetailInfo(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        //尼罗河测链gateway
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        System.out.println(transactionInfo.title_amount_test.getText());
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(dappChainSendTrc20Amount).substring(0,6));
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+    }
+
 }

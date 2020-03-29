@@ -16,7 +16,7 @@ public class DappFrozenTest extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //reset DAPP chain trun main chain
-        changeToMainChain();
+        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {

@@ -1,7 +1,9 @@
 package android.com.tronlink.wallet.dappChain;
 
+import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.NodeSetPage;
+import android.com.wallet.pages.TransactionDetailInfomaitonPage;
 import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 
@@ -23,11 +25,17 @@ import android.com.wallet.pages.SettingPage;
 public class DappNetWithdraw10 extends Base {
   Random rand = new Random();
   float withdrawTrc10Amount;
+  static String dappNetGateWay = Configuration.getByPath("testng.conf")
+      .getString("foundationAccount.dappNetGateWay");
+  static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+      .getString("foundationAccount.currentDappNetBlockNum");
+  static String trc10TokenName = Configuration.getByPath("testng.conf")
+      .getString("foundationAccount.trc10TokenName");
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //reset DAPP chain trun main chain
-        changeToMainChain();
+        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -149,6 +157,29 @@ public class DappNetWithdraw10 extends Base {
         }
         Assert.assertTrue(exist);
     }
+
+  @Parameters({"address"})
+  @Test(enabled = true, description = "Dapp net withdraw Trc10 transaction detail info test", alwaysRun = true)
+  public void test006_DappNetWithdrawTrc10TransactionDetailInfo(String address) throws Exception {
+    AssetPage asset = new AssetPage(DRIVER);
+    TransactionDetailInfomaitonPage transactionInfo = asset.enterWithdrawTransactionDetailPage(1);
+    Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+    //尼罗河测链gateway
+    Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),dappNetGateWay);
+    Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+    Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+    Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
+    Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+    System.out.println(transactionInfo.title_amount_test.getText());
+    System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
+    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+    Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(withdrawTrc10Amount).substring(0,6));
+    Helper.swipScreen(transactionInfo.driver);
+    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+  }
+
+
 
 
 }

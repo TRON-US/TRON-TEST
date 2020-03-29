@@ -178,12 +178,14 @@ public class MainNetDeposit extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentDappNetBlockNum) );
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrxAmount).substring(0,6));
+
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     }
 
 

@@ -132,15 +132,17 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名地址"));
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrzAmount).substring(0,6));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum) );
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+
     }
 
 
@@ -158,11 +160,12 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum));
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     }
 
 

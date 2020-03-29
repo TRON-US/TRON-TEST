@@ -532,6 +532,30 @@ public class AssetPage extends AbstractPage {
     return new TransactionDetailInfomaitonPage(driver);
   }
 
+  //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
+  public TransactionDetailInfomaitonPage enterWithdrawTransactionDetailPage(Integer type) throws Exception {
+    TrxPage trx;
+    switch (type) {
+      case 0 :
+        trx = enterTrxPage();
+        break;
+      case 1 :
+        trx = enterTrx10Page();
+        break;
+      case 2 :
+        trx = enterTrx20Page();
+        break;
+      default :
+        trx = enterTrxPage();
+    }
+    trx.tranfer_tab.get(3).click();
+    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    trx.tranferIncount_text.get(1).click();
+    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+    return new TransactionDetailInfomaitonPage(driver);
+  }
+
+
 
 
 

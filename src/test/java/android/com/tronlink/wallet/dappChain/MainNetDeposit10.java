@@ -29,6 +29,8 @@ public class MainNetDeposit10 extends Base {
         .getString("foundationAccount.mainNetGateWay");
     static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
         .getString("foundationAccount.currentDappNetBlockNum");
+    static String trc10TokenName = Configuration.getByPath("testng.conf")
+        .getString("foundationAccount.trc10TokenName");
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         try {
@@ -167,12 +169,14 @@ public class MainNetDeposit10 extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentDappNetBlockNum) );
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrc10Amount).substring(0,6));
+        Helper.swipScreen(transactionInfo.driver);
+        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     }
 
 
