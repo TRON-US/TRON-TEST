@@ -117,11 +117,12 @@ public class MainNetDeposit extends Base {
 
     @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
-        SettingPage set = enterSettingPage();
+/*        SettingPage set = enterSettingPage();
         NodeSetPage nodeSet = set.enterNodeSetPage();
         set = nodeSet.enterSettingPageChoiseMainChain();
         MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = mine.enterAssetPage();*/
+        AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         System.out.println("trxCount = " + trxCount);
         TrxPage trx = asset.enterTrxPage();
