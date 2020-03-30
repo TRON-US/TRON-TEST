@@ -51,7 +51,20 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement back_btn;
 
+    //token详情右上角按钮
+    @FindBy(name = "token details")
+    public WebElement tokendetails;
 
+//匿名币的详情按钮
+@FindBy(id = "shieldedDetailBtn")
+public WebElement shieldedDetailBtn;
+//票据详情页里面 返回按钮  black path  一个图片
+    //instructionBtn  票据详情里的问号
+    //blanceLabel 票据的余额按钮
+//cellAmount
+    //commitID
+    //copyBtn
+    //cellView
 
     @FindBy(name = "全部")
     public List<WebElement> tranfer_all;
