@@ -143,7 +143,7 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(coldSetting.languane_btn.isEnabled());
         Assert.assertTrue(coldSetting.currency_btn.isEnabled());
         Assert.assertTrue(coldSetting.developerOptions_btn.isEnabled());
-        Assert.assertTrue(coldSetting.changeTool_btn.isEnabled());
+        //Assert.assertTrue(coldSetting.changeTool_btn.isEnabled());
 
     }
 
