@@ -396,6 +396,8 @@ public class AssetPage extends AbstractPage {
     }
 
 
+
+
     public MinePage enterMinePage(){
         try {
           TimeUnit.SECONDS.sleep(2);
