@@ -87,7 +87,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
     public void test002_PublicTrzTransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
       try {
-        TimeUnit.SECONDS.sleep(80);
+        TimeUnit.SECONDS.sleep(20);
         // if page display AD , cloese the AD
 /*            if (ad_pic.isDisplayed()){
                 adClose_btn.click();

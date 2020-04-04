@@ -55,7 +55,7 @@ public class DiscoverTest extends Base {
         String noteContent = discover.nile_discover_note.getText();
         System.out.println(noteContent);
         Assert.assertTrue(noteContent.contains("尼罗河"));
-        Assert.assertTrue(noteContent.contains("DApp"));
+        Assert.assertTrue(noteContent.contains("DAPP") || noteContent.contains("DApp"));
         Assert.assertTrue(noteContent.contains("暂不支持"));
 
 
@@ -84,17 +84,24 @@ public class DiscoverTest extends Base {
 
 
         //尼罗河测试点
-        Assert.assertTrue(discover.dapp_title.getText().contains("DAPP"));
+        Assert.assertTrue(discover.dapp_title.getText().contains("DApp"));
 
     }
 
     @Test(enabled = true,description = "Online main chain discover page test",alwaysRun = true)
     public void test003_onlineMainNetDiscoverTest() throws Exception {
-        AssetPage asset = enterOnlineAssetPage();
+        enterOnlineAssetPage();
+      try {
+        DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlink.wallet");
+      }catch (Exception e){}
+      AssetPage asset = new AssetPage(DRIVER);
+
         DiscoverPage discover = asset.enterDiscoverPage();
 
         //主网测试点
-        Assert.assertTrue(discover.dapp_title.getText().contains("DAPP"));
+        Assert.assertTrue(discover.dapp_title.getText().contains("DApp") ||
+            discover.dapp_title.getText().contains("DAPP"));
         Assert.assertTrue(discover.qr_scan_btn.isEnabled());
         Assert.assertTrue(discover.search_history_btn.isEnabled());
         Assert.assertTrue(discover.search_btn.isEnabled());
@@ -109,8 +116,11 @@ public class DiscoverTest extends Base {
         AssetPage asset = enterDappAssetPage();
         DiscoverPage discover = asset.enterDiscoverPage();
 
+        //discover.nile_discover_note.getText().contains("DApp")
+
         //主网测试点
-        Assert.assertTrue(discover.dapp_title.getText().contains("DAPP"));
+        Assert.assertTrue(discover.dapp_title.getText().contains("DApp") ||
+            discover.dapp_title.getText().contains("DAPP"));
         Assert.assertTrue(discover.qr_scan_btn.isEnabled());
         Assert.assertTrue(discover.search_history_btn.isEnabled());
         Assert.assertTrue(discover.search_btn.isEnabled());

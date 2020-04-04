@@ -319,6 +319,7 @@ public class AssetPage extends AbstractPage {
 
   public VotePage enterVotePage(){
         try {
+            TimeUnit.SECONDS.sleep(3);
             vote_btn.click();
             driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         }catch (Exception e) {
@@ -646,6 +647,7 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx20Page() throws Exception {
+      TimeUnit.SECONDS.sleep(1);
         mine_btn.click();
         assetsMain_btn.click();
         Helper.swipScreen(driver);

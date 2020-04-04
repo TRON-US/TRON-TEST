@@ -104,7 +104,7 @@ public class DappSendTrc20 extends Base {
     }
 
     @Test(description = "Input mix send number")
-    public void test003_inputMixSendNumber() throws Exception {
+    public void test003_inputMinSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
         String centent = transfer.formatErrorHits_text.getText();
