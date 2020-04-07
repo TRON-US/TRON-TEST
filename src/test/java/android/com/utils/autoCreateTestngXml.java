@@ -84,7 +84,6 @@ public class autoCreateTestngXml {
             adb = "/Users/tron/Library/Android/sdk/platform-tools/adb";
             deviceNameList = AppiumTestCase.getDeviceList(adb + "  devices");
         }
-        deviceNameList.remove("CLB0218A10004233");
         beforeWrite();
     }
 
