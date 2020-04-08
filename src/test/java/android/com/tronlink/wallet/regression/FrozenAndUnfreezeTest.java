@@ -210,9 +210,18 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
     }
 
+    @Test(enabled = true, description = "Freeze Energy for shield Address is not allow", alwaysRun = true)
+    public void test0015_freezeEnergyForShieldAddress() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.inputReceivingAddress("ztron1v5q4efydnkd6z06qmmj0uzdysjlage2h5d2teecdacjre6kuh49mg6paaf7uua0wclcmwlkv30f");
+        String prompt = frozen.errorAddress_hits.getText();
+        Assert.assertTrue(prompt.contains("匿名地址") || prompt.contains("Shielded address"));
+    }
+
 
     @Test(enabled = true, description = "freeze Energy with not active Receiving Address", alwaysRun = true)
-    public void test0015_freezeEnergyNotActiveReceivingAddress() throws Exception {
+    public void test0016_freezeEnergyNotActiveReceivingAddress() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
@@ -221,7 +230,7 @@ public class FrozenAndUnfreezeTest extends Base {
     }
     
     @Test(enabled = true, description = "Freeze transaction record test", alwaysRun = true)
-    public void test0016_transactionRecord() throws Exception {
+    public void test0017_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
