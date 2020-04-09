@@ -17,15 +17,8 @@ public class PrivateKeySetPwdPage extends AbstractPage {
     }
 
 
-
-
     @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement pwd_input;
-
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_common_title")
-    public WebElement pwd_title;
 
 
     public WebElement getNext_btn(){

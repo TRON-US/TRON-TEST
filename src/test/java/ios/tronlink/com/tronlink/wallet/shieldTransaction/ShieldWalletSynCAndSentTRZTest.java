@@ -24,14 +24,14 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
     @Parameters({"shieldSK", "udid"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String shieldSK,String udid) throws Exception {
-        log("我是BaseTest类的Before");
-        System.out.println("pk: " + shieldSK + " udid: " + udid);
-        DRIVER.closeApp();
-        log("开始移除app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-        log("开始安装app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-        log("开始导入ownerPrivatekey");
+//        log("我是BaseTest类的Before");
+//        System.out.println("pk: " + shieldSK + " udid: " + udid);
+//        DRIVER.closeApp();
+//        log("开始移除app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+//        log("开始安装app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//        log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
         new Helper().importFirstWallet(Helper.importType.shieldWallet,shieldSK, DRIVER);
@@ -92,13 +92,70 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
         asset.waitShieldDataSynFinished();
         Long endTime = System.currentTimeMillis();
         System.out.println("finished syn cost time:" + (endTime - startTime));
-        Assert.assertTrue(Float.valueOf(removeSymbol(asset.getTrxCount())) > 10);
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(Integer.parseInt(removeSymbol(asset.getTrxCount())) > 10);
     }
 
+    @Test(description = "Test TRZDetailValueTest", alwaysRun = true)
+    public void test002_ShieldWalletTRZDetailValueTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        Integer aint = 0;
 
+        for (int i = 0;i<5;i++){
+            TimeUnit.SECONDS.sleep(5);
+            String amount = removeSymbol(asset.getTrxCount());
+            aint = Integer.parseInt(amount);
+            log("amount:" + amount);
+            if (aint > 0)
+            {  break;}
+        }
+
+
+        TrxPage trz = asset.enterTrxPage();
+        String amount = removeSymbol(trz.trxTotal_text.getText());
+        aint = Integer.parseInt(amount);
+        log("aint:" + amount);
+
+        TrzTokenDetailPage trzDetail = trz.enterTrzDetailPage();
+        String detailAmount = removeSymbol(trzDetail.blanceLabel.getText());
+        log("detailAmount:" + detailAmount);
+
+        Integer dint = Integer.parseInt(detailAmount);
+        Assert.assertTrue(aint.equals(dint));
+    }
+
+    @Test(description = "Test TRZDetailHelpDocTest", alwaysRun = true)
+    public void test003_ShieldWalletTRZDetailHelpDocTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trz = asset.enterTrxPage();
+        TrzTokenDetailPage trzDetail = trz.enterTrzDetailPage();
+        trzDetail.instructionBtn.click();
+        boolean isExist;
+        try{
+            waiteTime();
+            trzDetail.helpWebview.getLocation();
+            isExist = true;
+        }catch (Exception e){
+            isExist = false;
+
+        }
+        Assert.assertTrue(isExist);
+
+     }
+
+    @Test(description = "Test TRZDetailPageTest", alwaysRun = true)
+    public void test004_ShieldWalletTRZDetailPageTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage trz = asset.enterTrxPage();
+        TrzTokenDetailPage trzDetail = trz.enterTrzProjectPage();
+        waiteTime();
+        Assert.assertTrue(trzDetail.nameLabel.getText().contains("TRZ"));
+        Assert.assertTrue(trzDetail.typeLabel.getText().contains("TRC10 Token"));
+
+    }
 
     @Test(enabled = true,description = "Shield account transfer shield coin to public account test", alwaysRun = true)
-    public void test002ShieldToPublicTest() throws Exception {
+    public void test005_ShieldToPublicTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         System.out.println("beforeBalance:" + transfer.shieldedCurrentBalance.getText());
         beforeBalance = Float.valueOf(transfer.shieldedCurrentBalance.getText());
@@ -107,14 +164,14 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
     }
 
     @Test(enabled = true,description = "Shield account transfer shield coin to shield account test", alwaysRun = true)
-    public void test003ShieldToShieldTest() throws Exception {
+    public void test006_ShieldToShieldTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         shiled2ShieldSendAmount = getAnAmount();
         transfer.sendTrzWithNumber(Float.toString(shiled2ShieldSendAmount),receiverShieldAddress);
     }
 
     @Test(enabled = true,description = "Shield account transfer Wrong format test", alwaysRun = true)
-    public void test004ShieldTransactionExceptionTest() throws Exception {
+    public void test007_ShieldTransactionExceptionTest() throws Exception {
 
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.enterGetTextField("324a2052e491e9");
@@ -124,7 +181,7 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
 
     @Parameters({"shieldAddress"})
     @Test(enabled = true,description = "input Receiving address same as send address", alwaysRun = true)
-    public void test005_inputReceivingAddressSameAsSend(String shieldAddress) throws Exception {
+    public void test008_inputReceivingAddressSameAsSend(String shieldAddress) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.enterGetTextField(shieldAddress);
         String hits = transfer.reciptErrorLabel.getText();
@@ -132,7 +189,7 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
     }
 
     @Test(enabled = true,description = "Shield to Address transaction record test")
-    public void test006_ShieldToAddressSuccessRecording() throws Exception {
+    public void test009_ShieldToAddressSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trz = asset.enterTrxPage();
         int tries = 0;
@@ -159,7 +216,7 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
     }
 
     @Test(enabled = true,description = "Shield to shield transaction record test")
-    public void test007_ShieldToShieldSuccessRecording() throws Exception {
+    public void test010_ShieldToShieldSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trz = asset.enterTrxPage();
         int tries = 0;

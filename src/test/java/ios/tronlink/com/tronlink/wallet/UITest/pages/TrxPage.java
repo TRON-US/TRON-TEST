@@ -65,6 +65,7 @@ public WebElement shieldedDetailBtn;
     //commitID
     //copyBtn
     //cellView
+    //tokenPageReceiveBtn
 
     @FindBy(name = "全部")
     public List<WebElement> tranfer_all;
@@ -85,8 +86,19 @@ public WebElement shieldedDetailBtn;
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
-//    @FindBy(name = "balanceLabel")
-//    public WebElement ;
+
+    public TrzTokenDetailPage enterTrzDetailPage() throws Exception{
+        waiteTime();
+        shieldedDetailBtn.click();
+        return  new TrzTokenDetailPage(driver);
+    }
+    public TrzTokenDetailPage enterTrzProjectPage() throws Exception{
+        waiteTime();
+        tokendetails.click();
+        return  new TrzTokenDetailPage(driver);
+    }
+
+
 
     public List<WebElement> getFirstTransferNumberList(){
         WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell");

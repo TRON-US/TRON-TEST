@@ -63,10 +63,10 @@ public class ShieldWalletCreateImportTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-            System.out.println("开始移除app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-            System.out.println("开始安装app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//            System.out.println("开始移除app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//            System.out.println("开始安装app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }

@@ -322,6 +322,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         testfieldArray.get(1).sendKeys(Addr);
         waiteTime();
+        log("send Number IS: " + number + "  To: " + Addr);
         testfieldArray.get(2).sendKeys(number);
         Helper.closeKeyBoard(driver);
         waiteTime();
@@ -332,6 +333,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         waiteTime();
         broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(10);
         return new TrxPage(driver);
     }
 
@@ -379,4 +381,6 @@ public class SendTrxPage extends AbstractPage {
 
         return new TrxPage(driver);
     }
+
+
 }
