@@ -55,6 +55,10 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "nameLabel")
     public List<WebElement> nameLabels;
 
+
+    @FindBy(id = "titleLabel")
+    public List<WebElement> titleLabel;
+
     @FindBy(id = "scanBlockView")
     public WebElement scanBlockView;
 
@@ -281,7 +285,21 @@ public class AssetPage extends AbstractPage {
         transfer_btn.click();
         return new SendTrxPage(driver);
     }
+    public SendTrxPage enterSendTrzPage() throws Exception {
+        waiteTime();
+        transfer_btn.click();
+        for (int i = 0; i < 5; i++) {
+            if(Helper.contentTexts(titleLabel,"转出地址")){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(10);
+                log("\n第" + i + "次 等待同步中....");
+                transfer_btn.click();
+            }
+        }
+        return new SendTrxPage(driver);
 
+    }
 
     public DiscoverPage enterDiscoverPage() {
         discover_btn.click();
@@ -435,4 +453,34 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
 
     }
+
+
+    public void waitShieldDataSynFinished() {
+//        Long startSynTime = System.currentTimeMillis();
+//        Long currentSynTime;
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (Exception e) {
+
+        }
+        String[]  arr = blockNumberLabel.getText().split("/");
+
+        while (Integer.valueOf(arr[0])
+                < Integer.valueOf(arr[1])) {
+            try {
+                Helper.refreshWalletScreen(driver);
+                TimeUnit.SECONDS.sleep(10);
+                arr = blockNumberLabel.getText().split("/");
+
+                log("arr[0]:"+arr[0] + "  arr[1]:"+ arr[1] + "\n");
+//                currentSynTime = System.currentTimeMillis();
+                //同步大于十分钟，强制退出
+//                if (currentSynTime - startSynTime > 900000L) {
+//                    break;
+//                }
+            } catch (Exception e){}
+        }
+
+    }
+
 }

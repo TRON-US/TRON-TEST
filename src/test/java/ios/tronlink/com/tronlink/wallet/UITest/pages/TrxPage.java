@@ -51,7 +51,21 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement back_btn;
 
+    //token详情右上角按钮
+    @FindBy(name = "token details")
+    public WebElement tokendetails;
 
+//匿名币的详情按钮
+@FindBy(id = "shieldedDetailBtn")
+public WebElement shieldedDetailBtn;
+//票据详情页里面 返回按钮  black path  一个图片
+    //instructionBtn  票据详情里的问号
+    //blanceLabel 票据的余额按钮
+//cellAmount
+    //commitID
+    //copyBtn
+    //cellView
+    //tokenPageReceiveBtn
 
     @FindBy(name = "全部")
     public List<WebElement> tranfer_all;
@@ -72,8 +86,19 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "com.tronlink.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
-//    @FindBy(name = "balanceLabel")
-//    public WebElement ;
+
+    public TrzTokenDetailPage enterTrzDetailPage() throws Exception{
+        waiteTime();
+        shieldedDetailBtn.click();
+        return  new TrzTokenDetailPage(driver);
+    }
+    public TrzTokenDetailPage enterTrzProjectPage() throws Exception{
+        waiteTime();
+        tokendetails.click();
+        return  new TrzTokenDetailPage(driver);
+    }
+
+
 
     public List<WebElement> getFirstTransferNumberList(){
         WebElement view = driver.findElementByXPath("//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeTable/XCUIElementTypeCell");
