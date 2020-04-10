@@ -111,8 +111,9 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void broadcastButtonClick(){
-
+        waiteTime();
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
+        waiteTime();
         element.click();
         waiteTime();
 
@@ -331,9 +332,8 @@ public class SendTrxPage extends AbstractPage {
         transferNow_btn.click();
         waiteTime();
         InputPasswordConfim_btn.sendKeys("Test0001");
-        waiteTime();
         broadcastButtonClick();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         return new TrxPage(driver);
     }
 
