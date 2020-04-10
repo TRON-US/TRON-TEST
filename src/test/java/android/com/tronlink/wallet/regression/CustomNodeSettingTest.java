@@ -51,7 +51,7 @@ public class CustomNodeSettingTest extends Base {
         }
     }
 
-    @Test(enabled = true,description = "Node setting of main chain page test")
+    @Test(enabled = false,description = "Node setting of main chain page test")
     public void test001_NodeSettingOfMainChainTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
@@ -63,7 +63,7 @@ public class CustomNodeSettingTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Add custom node to mainNet test")
+    @Test(enabled = false,description = "Add custom node to mainNet test")
     public void test002_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
@@ -80,7 +80,7 @@ public class CustomNodeSettingTest extends Base {
         Assert.assertEquals(ip,mainNetCustomIp);
     }
 
-    @Test(enabled = true,description = "Delete custom node from mainNet test")
+    @Test(enabled = false,description = "Delete custom node from mainNet test")
     public void test003_DeleteCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
@@ -93,7 +93,7 @@ public class CustomNodeSettingTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Node setting of dapp chain page test")
+    @Test(enabled = false,description = "Node setting of dapp chain page test")
     public void test004_NodeSettingOfDappChainTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
@@ -108,7 +108,7 @@ public class CustomNodeSettingTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Add custom node to dappNet test")
+    @Test(enabled = false,description = "Add custom node to dappNet test")
     public void test005_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
@@ -123,7 +123,7 @@ public class CustomNodeSettingTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Delete custom node in dappNet test")
+    @Test(enabled = false,description = "Delete custom node in dappNet test")
     public void test006_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
