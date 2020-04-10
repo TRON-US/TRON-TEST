@@ -50,6 +50,11 @@ public class AbstractPage {
                 .release().perform();
     }
 
+    @FindBy(name = "white back arrow")
+    public WebElement whiteBackBtn;
+
+    @FindBy(id = "black path")
+    public WebElement blackBackBtn;
 
     public void log(String log) {
         String time = timeStamp.format(new Date()).toString();

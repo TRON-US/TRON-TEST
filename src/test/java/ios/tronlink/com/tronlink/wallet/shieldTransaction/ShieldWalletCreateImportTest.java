@@ -1,4 +1,4 @@
-package ios.tronlink.com.tronlink.wallet.regression;
+package ios.tronlink.com.tronlink.wallet.shieldTransaction;
 
 import android.com.utils.AppiumTestCase;
 
@@ -24,7 +24,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.PrivateKeySetNamePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.WalletPasswordPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
-public class ShieldWalletTest extends Base {
+public class ShieldWalletCreateImportTest extends Base {
     String keystore = "{\"version\":3,\"id\":\"9ccf9d8c-3215-481d-b7c7-d4baf18758ed\",\"crypto\":{\"ciphertext\":\"35dea764547ea2b75b9f89b649b26dabe3a3eacc6b800f412bf5f824892a9ecb\",\"cipherparams\":{\"iv\":\"34499d307dc014529f9ec5a6474c502a\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"r\":8,\"p\":6,\"n\":4096,\"dklen\":32,\"salt\":\"a20438bd6dc815473c71f535e0b33f66c2d69f1f2671471a3168198db5f017df\"},\"mac\":\"b5e53e6868c110405b2e8c58ab5878b67f3966e367b6ca23b740f1da00229c98\",\"cipher\":\"aes-128-ctr\"},\"type\":\"private-key\",\"address\":\"4109abebC9f471b3508d23763a3d41d145599485A7\"}";
     String mnemonic = "unique spider amount maple manage apple eight empty area trim energy example";
 
@@ -63,10 +63,10 @@ public class ShieldWalletTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-            System.out.println("开始移除app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-            System.out.println("开始安装app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//            System.out.println("开始移除app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//            System.out.println("开始安装app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }

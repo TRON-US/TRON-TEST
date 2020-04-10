@@ -185,10 +185,10 @@ public class autoCreateTestngXml {
 
         String deviceList = AppiumTestCase.cmdReturn("idevice_id -l");
 
-/*
+
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
-        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
+        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/shieldTransaction";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
 
         String extendSingleClassContent = "";
@@ -201,25 +201,25 @@ public class autoCreateTestngXml {
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
         }
-*/
 
-        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
-        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
-//regression.
-//        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/multiSign";
+
+//        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
 //        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
-        String classContent = "";
-        String classNoColdWallet = "";
-        for (int i = 0; i < taskClassNameList.size();i++) {
-            classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
-            if (taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5).contains("ZColdWalletTest")){
-                continue;
-            }
-            classNoColdWallet = classNoColdWallet + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
-        }
+//
+//        String classContent = "";
+//        String classNoColdWallet = "";
+//        for (int i = 0; i < taskClassNameList.size();i++) {
+//            classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
+//            if (taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5).contains("ZColdWalletTest")){
+//                continue;
+//            }
+//            classNoColdWallet = classNoColdWallet + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
+//        }
+//
+//        System.out.println("\nclassNoColdWallet " +classNoColdWallet);
+
 
         System.out.println("classContent " +classContent);
-        System.out.println("\nclassNoColdWallet " +classNoColdWallet);
 
         boolean singleClassHasSetToSingleDevice = false;
 

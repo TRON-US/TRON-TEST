@@ -50,18 +50,6 @@ public class SendTrxPage extends AbstractPage {
     public WebElement gotoDetailBtn;
 
 
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_common_title")
-    public WebElement transferTtile_btn;
-
-    @FindBy(name = "com.tronlink.wallet:id/et_address")
-    public WebElement receiveAddress_text;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/et_count")
-    public WebElement tranferCount_text;
-
-
     @FindBy(name = "立即转账")
     public WebElement transferNow_btn;
 
@@ -88,6 +76,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "reciptErrorLabel")
     public WebElement reciptErrorLabel;
 
+    @FindBy(id = "shieldedCurrentBalance")
+    public WebElement shieldedCurrentBalance;
+
 
     @FindBy(name = "com.tronlink.wallet:id/tv_balance")
     public WebElement balance_text;
@@ -96,7 +87,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name='tronlink_token (1000042)']")
     public WebElement trc10_btn;
 
-
+//shieldedCurrentBalance  余额  shieldedLimitHelpBtn  限额按钮  shieldedFeeLabel 手续费   shieldedLimitLabel 单笔限额
 
 
     public WebElement getTrc20Token() throws Exception{
@@ -127,77 +118,7 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
-    public SendTrxSuccessPage enterSendTrxSuccessPage(){
-        confirm_btn.click();
-        return new SendTrxSuccessPage(driver);
-    }
 
-
-    public SendTrxSuccessPage normalSendTrx() throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        tranferCount_text.sendKeys("1");
-        swip();
-        send_btn.click();
-        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        return new SendTrxSuccessPage(driver);
-    }
-
-    public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        getTrc10Token().click();
-        tranferCount_text.sendKeys(number);
-        swip();
-        send_btn.click();
-        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        back_bt.click();
-        return new SendTrxSuccessPage(driver);
-    }
-
-    public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        getTrc20Token().click();
-        tranferCount_text.sendKeys(number);
-        swip();
-        send_btn.click();
-        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        back_bt.click();
-        return new SendTrxSuccessPage(driver);
-    }
-
-    public double getTrc10Amount() throws Exception {
-        token_btn.click();
-        getTrc10Token().click();
-        String balance = balance_text.getText();
-        double trc10Amount = 0;
-        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-        Matcher matcher = pattern.matcher(balance);
-        if(matcher.find())
-            trc10Amount = Double.valueOf(matcher.group(0));
-        return trc10Amount;
-    }
-
-    public double getTrc20Amount() throws Exception {
-        token_btn.click();
-        getTrc20Token().click();
-        String balance = balance_text.getText();
-        double trc10Amount = 0;
-        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-        Matcher matcher = pattern.matcher(balance);
-        if(matcher.find())
-            trc10Amount = Double.valueOf(matcher.group(0));
-        return trc10Amount;
-    }
 
 
     public void sendKey(WebElement el,String value) throws Exception {
@@ -396,6 +317,27 @@ public class SendTrxPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
+    public TrxPage sendTrzWithNumber(String number,String Addr) throws Exception{
+
+        waiteTime();
+        testfieldArray.get(1).sendKeys(Addr);
+        waiteTime();
+        log("send Number IS: " + number + "  To: " + Addr);
+        testfieldArray.get(2).sendKeys(number);
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        send_btn.click();
+        waiteTime();
+        transferNow_btn.click();
+        waiteTime();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        waiteTime();
+        broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(10);
+        return new TrxPage(driver);
+    }
+
+
     public TrxPage sendTrx10WithNumber(String number) throws Exception{
         waiteTime();
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -439,4 +381,6 @@ public class SendTrxPage extends AbstractPage {
 
         return new TrxPage(driver);
     }
+
+
 }
