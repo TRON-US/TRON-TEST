@@ -88,8 +88,8 @@ public class DappSendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(description = "Dapp chain send TRC10 success test", alwaysRun = true)
-    public void test001_sendTrc10Success() throws Exception {
+    @Test(groups = {"P0"},description = "Dapp chain send TRC20 success test", alwaysRun = true)
+    public void test001_sendTrc20Success() throws Exception {
         SendTrxPage transfer = enterToSendTrc20Page();
         beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         dappChainSendTrc20Amount = getAnAmount();

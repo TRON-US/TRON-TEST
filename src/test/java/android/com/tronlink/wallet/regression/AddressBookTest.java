@@ -64,7 +64,7 @@ public class AddressBookTest extends Base {
         Assert.assertTrue(addressBookPage.addAddressBook_btn.isEnabled());
     }
 
-    @Test(enabled = true,description = "Add address book test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Add address book test", alwaysRun = true)
     public void test002_addAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();

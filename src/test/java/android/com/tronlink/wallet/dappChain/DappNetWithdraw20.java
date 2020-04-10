@@ -117,7 +117,7 @@ public class DappNetWithdraw20 extends Base {
         Assert.assertTrue(50 <= count && count <= 500);
     }
 
-    @Test(enabled = true,description = "Withdraw from dapp chain success and checkout available trx", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Withdraw from dapp chain success and checkout available trx", alwaysRun = true)
     public void test003_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrc20Page();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -131,7 +131,7 @@ public class DappNetWithdraw20 extends Base {
     }
 
 
-    @Test(enabled = true,description = "Withdraw trc20 from dapp chain Recording")
+    @Test(groups = {"P0"},enabled = true,description = "Withdraw trc20 from dapp chain Recording")
     public void test004_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrc20Page();
         int tries = 0;

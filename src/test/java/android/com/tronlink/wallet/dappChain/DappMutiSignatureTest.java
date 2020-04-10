@@ -117,7 +117,7 @@ public class DappMutiSignatureTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "MutiSignature Test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "MutiSignature Test", alwaysRun = true)
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
@@ -133,7 +133,7 @@ public class DappMutiSignatureTest extends Base {
 
     //Modify signature,Return to the before state
     @Parameters({"address"})
-    @Test(enabled = true,description = "Modify signature Test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Modify signature Test", alwaysRun = true)
     public void test003_modifySignature(String address) throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
@@ -147,7 +147,7 @@ public class DappMutiSignatureTest extends Base {
 
 
 
-    @Test(enabled = true,description = "delete signature Test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "delete signature Test", alwaysRun = true)
     public void test005_delSignature() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         String signName = multiSignManager.permissionName_text.getText();

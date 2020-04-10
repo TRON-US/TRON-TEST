@@ -44,7 +44,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * Freeze Energy
      */
-    @Test(enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
     public void test0001_freezeEnergySuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -62,7 +62,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * freeze Bandwidth
      */
-    @Test(enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
     public void test0002_freezeBandwidthSuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -229,7 +229,7 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertTrue(prompt.contains("请重新填写接收地址") || prompt.contains("has not been activated"));
     }
     
-    @Test(enabled = true, description = "Freeze transaction record test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Freeze transaction record test", alwaysRun = true)
     public void test0017_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();

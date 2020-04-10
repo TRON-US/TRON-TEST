@@ -60,7 +60,7 @@ public class SendTrc10 extends Base {
     }
 
 
-    @Test(enabled = true,description = "SendTrc10 success test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         asset.mine_btn.click();
@@ -109,7 +109,7 @@ public class SendTrc10 extends Base {
 
 
 
-    @Test(enabled = true,description = "Trc10 transfer success recording")
+    @Test(groups = {"P0"},enabled = true,description = "Trc10 transfer success recording")
     public void test006_trc10TransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trx = asset.enterTrx10Page();

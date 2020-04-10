@@ -50,7 +50,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "watch wallet sendTrx QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "watch wallet sendTrx QRCode", alwaysRun = true)
     public void test001_sendTrxQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
@@ -66,7 +66,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Frozen Energy QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Frozen Energy QRCode", alwaysRun = true)
     public void test002_frozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -86,7 +86,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Frozen Bandwidth QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Frozen Bandwidth QRCode", alwaysRun = true)
     public void test003_frozenBandwidthQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -104,7 +104,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "create proposal QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "create proposal QRCode", alwaysRun = true)
     public void test004_createCommitteeQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -120,7 +120,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "muliSignature QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "muliSignature QRCode", alwaysRun = true)
     public void test005_muliSignatureQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -134,7 +134,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Deposit QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Deposit QRCode", alwaysRun = true)
     public void test006_DepositQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
@@ -146,7 +146,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Send trc10 QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Send trc10 QRCode", alwaysRun = true)
     public void test007_trc10QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrc10Page();
@@ -162,7 +162,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "vote QRCode", alwaysRun = true)
     public void test008_voteQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -180,7 +180,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Send trc20 QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Send trc20 QRCode", alwaysRun = true)
     public void test009_trc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrc20Page();
@@ -195,7 +195,7 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Deposit QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Deposit QRCode", alwaysRun = true)
     public void test010_depositTrxQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
@@ -205,7 +205,7 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-    @Test(enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
     public void test011_UnfreezeQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -217,7 +217,7 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
     public void test012_WithdrawRewardQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
@@ -227,7 +227,7 @@ public class WatchWalletTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
     public void test013_PbulicSendTrzToShieldQR() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         asset.mine_btn.click();

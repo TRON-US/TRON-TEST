@@ -50,7 +50,7 @@ public class MarketTest extends Base {
     }
 
 
-    @Test(description = "MainNet market price test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "MainNet market price test", alwaysRun = true)
     public void test01_marketPriceTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();

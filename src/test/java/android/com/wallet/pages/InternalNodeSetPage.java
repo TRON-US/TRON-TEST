@@ -37,6 +37,10 @@ public class InternalNodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_full_node")
     public WebElement fulllNode_text;
 
+    //com.tronlink.wallet:id/iv_node_edit
+    @FindBy(id = "com.tronlink.wallet:id/iv_node_edit")
+    public WebElement edit_custom_icon;
+
 
 
 
@@ -46,5 +50,13 @@ public class InternalNodeSetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         return new AddCustomNodePage(driver);
     }
+
+
+    public AddCustomNodePage enterEditCustomNodePage() throws Exception{
+        edit_custom_icon.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new AddCustomNodePage(driver);
+    }
+
 
 }

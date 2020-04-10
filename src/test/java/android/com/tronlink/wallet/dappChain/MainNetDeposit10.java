@@ -125,7 +125,7 @@ public class MainNetDeposit10 extends Base {
         Assert.assertTrue(info.contains("智能合约") || info.contains("smart contract"));
     }
 
-    @Test(enabled = true,description = "Deposit TRC10 to Dapp Chain succesfully", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Deposit TRC10 to Dapp Chain succesfully", alwaysRun = true)
     public void test0007_depositTrc10ToDappChainSuccess() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage depositTrc10 = trx.enterTransferPage();

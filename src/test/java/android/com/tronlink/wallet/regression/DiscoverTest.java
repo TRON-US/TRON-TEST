@@ -115,19 +115,7 @@ public class DiscoverTest extends Base {
     public void test004_onlineDappNetDiscoverTest() throws Exception {
         AssetPage asset = enterDappAssetPage();
         DiscoverPage discover = asset.enterDiscoverPage();
-
-        //discover.nile_discover_note.getText().contains("DApp")
-
-        //主网测试点
-        Assert.assertTrue(discover.dapp_title.getText().contains("DApp") ||
-            discover.dapp_title.getText().contains("DAPP"));
-        Assert.assertTrue(discover.qr_scan_btn.isEnabled());
-        Assert.assertTrue(discover.search_history_btn.isEnabled());
-        Assert.assertTrue(discover.search_btn.isEnabled());
-        discover.search_btn.click();
-        Assert.assertTrue(discover.search_icon_in_searchPage_btn.isEnabled());
-
-
+        Assert.assertTrue(discover.nile_discover_note.getText().contains("DApp"));
     }
 
 

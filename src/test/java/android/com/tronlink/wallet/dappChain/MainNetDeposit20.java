@@ -96,7 +96,7 @@ public class MainNetDeposit20 extends Base {
         Assert.assertTrue(50 <= count && count <= 900);
     }
 
-    @Test(enabled = true,description = "Deposit TRC20 Success and checkout available trx", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Deposit TRC20 Success and checkout available trx", alwaysRun = true)
     public void test003_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrc20Page();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));

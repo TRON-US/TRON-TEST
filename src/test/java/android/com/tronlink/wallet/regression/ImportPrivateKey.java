@@ -76,7 +76,7 @@ public class ImportPrivateKey extends Base {
 
 
     @Parameters({"privateKey"})
-    @Test(description = "PrivateKey Name Too Long", alwaysRun = true)
+    @Test(groups = {"P0"},description = "PrivateKey Name Too Long", alwaysRun = true)
     public void test004_privateKeyNameTooLong(String privateKey) throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);

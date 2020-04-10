@@ -39,14 +39,14 @@ public class SendTrx extends Base {
 
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         System.out.println("执行setUpBefore");
         new Helper().getSign(privateKey, DRIVER);
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             DRIVER.closeApp();
@@ -55,7 +55,7 @@ public class SendTrx extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -70,7 +70,7 @@ public class SendTrx extends Base {
         return transfer;
     }
 
-    @Test(enabled = true,description = "Send trx success test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
@@ -191,7 +191,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(enabled = true,description = "Trx transfer success recording")
+    @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
     public void test014_transferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trx = asset.enterTrxPage();
@@ -226,7 +226,7 @@ public class SendTrx extends Base {
     }
 
 
-    @Test(enabled = true,description = "Trx transfer balance decrease check")
+    @Test(groups = {"P0"},enabled = true,description = "Trx transfer balance decrease check")
     public void test015_balanceReduceAfterSendCoin() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
@@ -235,7 +235,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);
     }
 
-    @Test(enabled = true, description = "Trx transfer history record test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Trx transfer history record test", alwaysRun = true)
     public void test016_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -246,7 +246,7 @@ public class SendTrx extends Base {
     }
 
     @Parameters({"address"})
-    @Test(enabled = true, description = "Trx transaction detail info test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Trx transaction detail info test", alwaysRun = true)
     public void test017_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
@@ -269,7 +269,7 @@ public class SendTrx extends Base {
 
 
     @Parameters({"address"})
-    @Test(enabled = true, description = "Trx receive transaction detail info test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Trx receive transaction detail info test", alwaysRun = true)
     public void test018_trxReceiveTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(0);

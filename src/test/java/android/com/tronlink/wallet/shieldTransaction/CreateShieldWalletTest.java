@@ -26,7 +26,7 @@ public class CreateShieldWalletTest extends Base {
         new Helper().getCreateWalletSign(false,"name","Test0001", DRIVER);
     }
 
-    @Test(description = "Create shield wallet test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Create shield wallet test", alwaysRun = true)
     public void test001CreateShieldWallet() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();

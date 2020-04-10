@@ -199,7 +199,7 @@ public class DappSendTrx extends Base {
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
 
-    @Test(enabled = true,description = "Dapp chain send trx succesfully", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Dapp chain send trx succesfully", alwaysRun = true)
     public void test0012_dappChainSendTrxSucess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
@@ -209,7 +209,7 @@ public class DappSendTrx extends Base {
 
 
 
-    @Test(enabled = true,description = "Dapp chain send coin recording")
+    @Test(groups = {"P0"},enabled = true,description = "Dapp chain send coin recording")
     public void test0013_dappChainSendTrxRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         int tries = 0;
@@ -242,7 +242,7 @@ public class DappSendTrx extends Base {
 
 
     @Parameters({"address"})
-    @Test(enabled = true, description = "Dapp send Trx transaction detail info test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Dapp send Trx transaction detail info test", alwaysRun = true)
     public void test0015_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
