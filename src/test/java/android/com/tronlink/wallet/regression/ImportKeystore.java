@@ -44,7 +44,7 @@ public class ImportKeystore extends Base {
         }
     }
 
-    @Test(description = "import android.com.wallet with incorrect keystore")
+    @Test(groups = {"P0"},description = "import android.com.wallet with incorrect keystore")
     public void test0001ImportsErrorKeystore() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();

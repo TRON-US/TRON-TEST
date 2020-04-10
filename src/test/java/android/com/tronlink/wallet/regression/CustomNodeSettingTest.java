@@ -10,6 +10,7 @@ import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -27,8 +28,8 @@ public class CustomNodeSettingTest extends Base {
     Integer dappnetBeforeNodeNum;
     Integer mainnetAfterNodeNum;
     Integer dappnetAftereNodeNum;
-    String mainNetCustomIp = "1.1.1.1";
-    String dappNetCustomIp = "2.2.2.2";
+    String mainNetCustomIp = "";
+    String dappNetCustomIp = "";
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -51,7 +52,7 @@ public class CustomNodeSettingTest extends Base {
         }
     }
 
-    @Test(enabled = false,description = "Node setting of main chain page test")
+    @Test(enabled = true,description = "Node setting of main chain page test")
     public void test001_NodeSettingOfMainChainTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
@@ -63,12 +64,13 @@ public class CustomNodeSettingTest extends Base {
     }
 
 
-    @Test(enabled = false,description = "Add custom node to mainNet test")
+    @Test(enabled = true,description = "Add custom node to mainNet test")
     public void test002_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
         mainnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
+        mainNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(mainNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
         internalNodeSetPage = addCustomNodePage.saveNode();
@@ -80,7 +82,7 @@ public class CustomNodeSettingTest extends Base {
         Assert.assertEquals(ip,mainNetCustomIp);
     }
 
-    @Test(enabled = false,description = "Delete custom node from mainNet test")
+    @Test(enabled = true,description = "Delete custom node from mainNet test")
     public void test003_DeleteCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
@@ -88,12 +90,12 @@ public class CustomNodeSettingTest extends Base {
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterEditCustomNodePage();
         internalNodeSetPage = addCustomNodePage.deleteNode();
         Integer currentNodeNum = internalNodeSetPage.ip_list.size();
-        Assert.assertEquals(currentNodeNum,mainnetBeforeNodeNum);
+        Assert.assertTrue(currentNodeNum + 1 == mainnetBeforeNodeNum);
 
     }
 
 
-    @Test(enabled = false,description = "Node setting of dapp chain page test")
+    @Test(enabled = true,description = "Node setting of dapp chain page test")
     public void test004_NodeSettingOfDappChainTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
@@ -108,11 +110,12 @@ public class CustomNodeSettingTest extends Base {
 
 
 
-    @Test(enabled = false,description = "Add custom node to dappNet test")
+    @Test(enabled = true,description = "Add custom node to dappNet test")
     public void test005_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
+        dappNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(dappNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
         internalNodeSetPage = addCustomNodePage.saveNode();
@@ -123,7 +126,7 @@ public class CustomNodeSettingTest extends Base {
     }
 
 
-    @Test(enabled = false,description = "Delete custom node in dappNet test")
+    @Test(enabled = true,description = "Delete custom node in dappNet test")
     public void test006_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
@@ -131,7 +134,7 @@ public class CustomNodeSettingTest extends Base {
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterEditCustomNodePage();
         internalNodeSetPage = addCustomNodePage.deleteNode();
         Integer currentNodeNum = internalNodeSetPage.ip_list.size();
-        Assert.assertEquals(currentNodeNum,dappnetBeforeNodeNum);
+        Assert.assertTrue(currentNodeNum + 1 == dappnetBeforeNodeNum);
 
     }
 
@@ -159,6 +162,17 @@ public class CustomNodeSettingTest extends Base {
             }
         }
         return true;
+    }
+
+    public String createRandomIp() {
+        Random random = new Random();
+        String ip = "";
+        for (int i = 0; i < 4; i++) {
+            int ipStr = random.nextInt(255);
+            ip = ip + String.valueOf(ipStr) + '.';
+        }
+        return ip.substring(0,ip.length()-1);
+
     }
 
 
