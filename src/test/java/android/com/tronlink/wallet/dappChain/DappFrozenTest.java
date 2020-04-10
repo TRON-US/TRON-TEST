@@ -80,7 +80,7 @@ public class DappFrozenTest extends Base {
     /**
      * freeze Bandwidth
      */
-    @Test(groups = {"P0"},enabled = true,description = "Dapp chain freeze bandwidth Success", alwaysRun = true)
+    @Test(enabled = true,description = "Dapp chain freeze bandwidth Success", alwaysRun = true)
     public void test0001_freezeBandwidthSuccess() throws Exception {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.bandwidth_btn.click();
@@ -91,7 +91,7 @@ public class DappFrozenTest extends Base {
     /**
      * freeze Bandwidth
      */
-    @Test(groups = {"P0"},enabled = true,description = "Dapp chain freeze energy success", alwaysRun = true)
+    @Test(enabled = true,description = "Dapp chain freeze energy success", alwaysRun = true)
     public void test0002_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.energy_btn.click();

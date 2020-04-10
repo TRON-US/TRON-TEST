@@ -44,7 +44,7 @@ public class ImportKeystore extends Base {
         }
     }
 
-    @Test(groups = {"P0"},description = "import android.com.wallet with incorrect keystore")
+    @Test(description = "import android.com.wallet with incorrect keystore")
     public void test0001ImportsErrorKeystore() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
@@ -70,7 +70,7 @@ public class ImportKeystore extends Base {
 
 
     @Parameters({"address"})
-    @Test(groups = {"P0"},description = "import android.com.wallet with correct keystore", alwaysRun = true)
+    @Test(description = "import android.com.wallet with correct keystore", alwaysRun = true)
     public void test0003ImportsKeystore(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
