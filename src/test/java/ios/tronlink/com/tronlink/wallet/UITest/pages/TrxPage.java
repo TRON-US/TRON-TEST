@@ -151,11 +151,11 @@ public WebElement shieldedDetailBtn;
         return new  TransactionRecordPage(driver);
     }
 
-    public TransferPage enterTransferPage() throws Exception {
+    public SendTrxPage enterTransferPage() throws Exception {
         waiteTime();
-        tranferInBtn.click();
+        sendBtn.click();
         waiteTime();
-        return new TransferPage(driver);
+        return new SendTrxPage(driver);
     }
     public TransferPage enterTransferInPage() throws Exception {
         waiteTime();
@@ -169,6 +169,8 @@ public WebElement shieldedDetailBtn;
         waiteTime();
         return new TransferPage(driver);
     }
+
+    //
 
 
     public AssetPage enterAssetPage() throws Exception {
@@ -194,6 +196,24 @@ public WebElement shieldedDetailBtn;
         return  driver.findElementById("headerLabel").getText().contains(record);
 
     }
+
+    public TransactionRecordPage enterTransactionRecordPage(String record){
+        waiteTime();
+        Helper.swipRefreshScreen(driver);
+        waiteTime();
+        driver.findElementByName(record).click();
+        waiteTime();
+        try{
+            log(driver.findElementById("headerLabel").getText());
+        }catch (Exception e){
+            driver.findElementByName(record).click();
+            log(driver.findElementById("headerLabel").getText());
+        }
+
+        return  new TransactionRecordPage(driver);
+    }
+
+
 
     public boolean enterWithDrawNumberRecordPage(String record){
        return enterDepositNumberRecordPage(record);

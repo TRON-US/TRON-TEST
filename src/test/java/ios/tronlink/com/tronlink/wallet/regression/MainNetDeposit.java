@@ -44,7 +44,7 @@ public class MainNetDeposit extends BaseTest {
     public void test002_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
+        TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
         successNumber = count;
@@ -97,7 +97,7 @@ public class MainNetDeposit extends BaseTest {
         int trxCount = Integer.parseInt(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
         int frozenCount = Integer.parseInt(removeSymbol(trx.freezeCount_text.getText()));
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
         System.out.println("trxCount startCount:" + trxCount + "availableBalance:" + availableBalance  + "frozenCount:" +  frozenCount);
         Assert.assertTrue(trxCount >= frozenCount + availableBalance);

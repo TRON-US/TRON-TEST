@@ -40,7 +40,7 @@ public class MainNetDeposit20 extends BaseTest {
     public void test002_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         double trc20before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn =  trx.enterTransferPage();
+        TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
         successNumber = count;
@@ -61,7 +61,7 @@ public class MainNetDeposit20 extends BaseTest {
     @Test(description = "Check TransferIn Hits",alwaysRun = true)
     public void test004_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
         Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"转入需要执行智能合约"));
     }
@@ -87,7 +87,7 @@ public class MainNetDeposit20 extends BaseTest {
     public void test006_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
         Assert.assertTrue(trxCount == availableBalance);
     }

@@ -304,6 +304,14 @@ public class autoCreateTestngXml {
                     "        <parameter name=\"shieldAddress\" value=\""
                         + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
                         + "\"/>\n");
+                sb.append(
+                        "        <parameter name=\"publicShieldSK\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.privateKey" + multiSignIndex.get())
+                                + "\"/>\n");
+                sb.append(
+                        "        <parameter name=\"publicShieldAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.publicAddress" + multiSignIndex.get())
+                                + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
                 //autotest-ios can
