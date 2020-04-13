@@ -265,6 +265,7 @@ public class AssetPage extends AbstractPage {
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     try {
       online_trc10_btn.click();
+      Helper.swipScreen(driver);
     } catch (Exception e) {
       online_trc10_btn.click();
     }
@@ -285,6 +286,7 @@ public class AssetPage extends AbstractPage {
 
   public SendTrxPage enterOnlineSendTrc20Page() {
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    Helper.swipScreen(driver);
     online_trc20_btn.click();
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     trc10Page_transfer_btn.click();
