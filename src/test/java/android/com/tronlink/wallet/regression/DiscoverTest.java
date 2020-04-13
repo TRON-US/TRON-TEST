@@ -3,10 +3,13 @@ package android.com.tronlink.wallet.regression;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
+import android.com.wallet.pages.DAPP_SearchPage;
 import android.com.wallet.pages.DiscoverPage;
 import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -21,11 +24,27 @@ import org.testng.annotations.Test;
  */
 public class DiscoverTest extends Base {
 
+    List<String> dappNameList = new ArrayList<>();
+    int dappListIndex = 0;
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        dappNameList.add("Poloni DEX");
+        dappNameList.add("TRONSCAN");
+        dappNameList.add("WINk");
+        dappNameList.add("TRONLENDING");
+        dappNameList.add("RocketGame");
+        dappNameList.add("JUST");
+        //dappNameList.add("Knight Story");
+        dappNameList.add("TronVegas");
+        dappNameList.add("TRON UP");
+        dappNameList.add("Newdex");
+        dappNameList.add("Bankroll");
+        dappNameList.add("888TRON");
+        dappNameList.add("TRONTOPIA");
+
     }
 
     @AfterMethod(alwaysRun = true)
@@ -46,7 +65,7 @@ public class DiscoverTest extends Base {
     }
 
 
-    @Test(description = "Nile main chain discover page test", alwaysRun = true)
+    @Test(enabled = true,description = "Nile main chain discover page test", alwaysRun = true)
     public void test001_discoverTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage discover = asset.enterDiscoverPage();
@@ -69,12 +88,12 @@ public class DiscoverTest extends Base {
 
     }
 
-    @Test(enabled = false,description = "Nile dapp chain discover page test",alwaysRun = true)
+    @Test(enabled = true,description = "Nile dapp chain discover page test",alwaysRun = true)
     public void test002_dappDiscoverTest() throws Exception {
         AssetPage asset = enterDappAssetPage();
         DiscoverPage discover = asset.enterDiscoverPage();
         try {
-            TimeUnit.SECONDS.sleep(60);
+            TimeUnit.SECONDS.sleep(10);
             // if page display AD , cloese the AD
 /*            if (ad_pic.isDisplayed()){
                 adClose_btn.click();
@@ -111,8 +130,32 @@ public class DiscoverTest extends Base {
 
     }
 
+    @Test(enabled = true,description = "Online dapp list search test",alwaysRun = true)
+    public void test004_onlineDappListSearch() throws Exception {
+
+        for (int i = dappListIndex;i < dappNameList.size();i++) {
+            AssetPage asset = new AssetPage(DRIVER);
+            DiscoverPage discover = asset.enterDiscoverPage();
+            DAPP_SearchPage dapp_search_page = discover.enterDAPP_SearchPage();
+            dapp_search_page.search_text.sendKeys(dappNameList.get(dappListIndex));
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (Exception e){}
+            String dappNameInSearchResult = dapp_search_page.dappName_text.getText();
+            System.out.println("dappName_text:" + dappNameInSearchResult);
+            Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(dappNameList.get(dappListIndex)) ||
+                dappNameInSearchResult.contains(dappNameList.get(dappListIndex)));
+            dappListIndex++;
+
+            try {
+                DRIVER.closeApp();
+                DRIVER.activateApp("com.tronlink.wallet");
+            }catch (Exception e){}
+        }
+    }
+
     @Test(enabled = true,description = "Online dapp chain discover page test",alwaysRun = true)
-    public void test004_onlineDappNetDiscoverTest() throws Exception {
+    public void test005_onlineDappNetDiscoverTest() throws Exception {
         AssetPage asset = enterDappAssetPage();
         DiscoverPage discover = asset.enterDiscoverPage();
         Assert.assertTrue(discover.nile_discover_note.getText().contains("DApp"));
