@@ -71,7 +71,7 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(coldAsset.me_btn.isEnabled());
     }
 
-    @Test(enabled = true,description = "Cold wallet receive test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cold wallet receive test", alwaysRun = true)
     public void test002_coldWalletCanReceiveTrx() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         coldAsset.receive_btn.click();
@@ -126,7 +126,7 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(coldAsset.privateKeyQrScan_btn.isEnabled());
     }
 
-    @Test(enabled = true,description = "Cold wallet manager test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cold wallet manager test", alwaysRun = true)
     public void test006_coldWalletManagerTest() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         ColdMinePage coldMine = coldAsset.enterColdMinePage();
@@ -135,7 +135,7 @@ public class ColdWalletTest extends Base {
         coldMine.walletName_test.getText().contains("Cold");
     }
 
-    @Test(enabled = true,description = "Cold wallet setting test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cold wallet setting test", alwaysRun = true)
     public void test007_coldWalletSettingTest() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         ColdMinePage coldMine = coldAsset.enterColdMinePage();
@@ -143,7 +143,7 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(coldSetting.languane_btn.isEnabled());
         Assert.assertTrue(coldSetting.currency_btn.isEnabled());
         Assert.assertTrue(coldSetting.developerOptions_btn.isEnabled());
-        Assert.assertTrue(coldSetting.changeTool_btn.isEnabled());
+        //Assert.assertTrue(coldSetting.changeTool_btn.isEnabled());
 
     }
 

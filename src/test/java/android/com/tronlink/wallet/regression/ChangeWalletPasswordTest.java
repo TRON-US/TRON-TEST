@@ -69,7 +69,7 @@ public class ChangeWalletPasswordTest extends Base {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    @Test(description = "input correct password", alwaysRun = true)
+    @Test(groups = {"P0"},description = "input correct password", alwaysRun = true)
     public void test0003InputIncorrectPassword() throws Exception {
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
         walletPasswordPage.changePassword(oldPassword, newPassword, newPassword);

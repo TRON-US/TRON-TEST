@@ -82,7 +82,7 @@ public class CommitteeTest extends Base {
     }
 
     /////////////////.................................................../////////////////////////////
-    @Test(enabled = true,description = "Approve proposal", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Approve proposal", alwaysRun = true)
     public void test004_approveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -99,7 +99,7 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(MyProposalsPage.approveNum_text.getText()!="0");
     }
 
-    @Test(enabled = true,description = "Disapprove proposal", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Disapprove proposal", alwaysRun = true)
     public void test005_disApproveProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -122,7 +122,7 @@ public class CommitteeTest extends Base {
     }
 
     //撤销
-    @Test(enabled = true,description = "Cancel proposal", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cancel proposal", alwaysRun = true)
     public void test006_cancelProposal() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();

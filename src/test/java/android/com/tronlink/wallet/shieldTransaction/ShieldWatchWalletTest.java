@@ -24,6 +24,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class ShieldWatchWalletTest extends Base {
@@ -45,11 +46,11 @@ public class ShieldWatchWalletTest extends Base {
     float beforeBalance;
     float afterBalance;
 
-
+    @Parameters({"udid"})
     @BeforeClass(alwaysRun = true)
-    public void setUpBefore() throws Exception {
+    public void setUpBefore(String udid) throws Exception {
         //String nsk,String ak,String ovk,String shieldAddress
-        new Helper().getShieldWatchWalletSign("c120f2daf13d564d4a5619e7a38241fc9d2773310a1acdeab1aa624b89680d0b",
+        new Helper().getShieldWatchWalletSign(udid,"c120f2daf13d564d4a5619e7a38241fc9d2773310a1acdeab1aa624b89680d0b",
             "59d1e9786a617f9dcbc77e640caa3f6c3901a89f79bf778f549b40b1e59a800d",
             "d5a1f56573f882f322d28f90eaa9855e13d72a1a56dc4cb5197f4292c4b7add4",
             "ztron1tgde9pm2eerqgquljyq9qrcu6krxwefje5qfyrnua3z0km4e8xcyjjgw9fhdzwa95583u3c8fxy",

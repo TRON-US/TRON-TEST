@@ -264,8 +264,10 @@ public class AssetPage extends AbstractPage {
   public SendTrxPage enterOnlineSendTrc10Page() {
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     try {
+      Helper.swipScreen(driver);
       online_trc10_btn.click();
     } catch (Exception e) {
+      Helper.swipScreen(driver);
       online_trc10_btn.click();
     }
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -285,7 +287,13 @@ public class AssetPage extends AbstractPage {
 
   public SendTrxPage enterOnlineSendTrc20Page() {
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    online_trc20_btn.click();
+    try {
+      Helper.swipScreen(driver);
+      online_trc20_btn.click();
+    } catch (Exception e) {
+      Helper.swipScreen(driver);
+      online_trc20_btn.click();
+    }
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     trc10Page_transfer_btn.click();
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -319,6 +327,7 @@ public class AssetPage extends AbstractPage {
 
   public VotePage enterVotePage(){
         try {
+            TimeUnit.SECONDS.sleep(3);
             vote_btn.click();
             driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         }catch (Exception e) {
@@ -394,6 +403,8 @@ public class AssetPage extends AbstractPage {
         }
         return new FrozenAndUnfreezePage(driver);
     }
+
+
 
 
     public MinePage enterMinePage(){
@@ -644,6 +655,7 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx20Page() throws Exception {
+      TimeUnit.SECONDS.sleep(1);
         mine_btn.click();
         assetsMain_btn.click();
         Helper.swipScreen(driver);

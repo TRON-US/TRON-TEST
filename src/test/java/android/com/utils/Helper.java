@@ -182,12 +182,12 @@ public class Helper {
         }
     }
 
-    public void getShieldWatchWalletSign(String nsk,String ak,String ovk,String shieldAddress,AndroidDriver driver){
+    public void getShieldWatchWalletSign(String udid,String nsk,String ak,String ovk,String shieldAddress,AndroidDriver driver){
         this.DRIVER = driver;
         try {
             assetsMain_btn.isDisplayed();
         }catch (Exception e){
-            getShieldWatchWalletSignOperate(nsk,ak,ovk,shieldAddress);
+            getShieldWatchWalletSignOperate(udid,nsk,ak,ovk,shieldAddress);
         }
     }
 
@@ -327,7 +327,7 @@ public class Helper {
     }
 
 
-    public void  getShieldWatchWalletSignOperate(String nsk,String ak,String ovk,String shieldAddress){
+    public void  getShieldWatchWalletSignOperate(String udid,String nsk,String ak,String ovk,String shieldAddress){
         try {
             findWebElement("com.tronlink.wallet:id/tv_import").click();
             swipUntilElementEnable("com.tronlink.wallet:id/bt_accept");
@@ -342,13 +342,25 @@ public class Helper {
             TimeUnit.SECONDS.sleep(1);
             DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(nsk);
             DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ak);
-            TimeUnit.SECONDS.sleep(1);
-            swipScreenFromTopToBottom(DRIVER);
-            swipScreenFromTopToBottom(DRIVER);
-            TimeUnit.SECONDS.sleep(1);
-            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ovk);
-            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
-            TimeUnit.SECONDS.sleep(1);
+            switch (udid) {
+                //大屏幕手机单独处理
+                case "d94d4ea":
+                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ovk);
+                    TimeUnit.SECONDS.sleep(1);
+                    swipScreenFromTopToBottom(DRIVER);
+                    swipScreenFromTopToBottom(DRIVER);
+                    TimeUnit.SECONDS.sleep(1);
+                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[4]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
+                    break;
+                default:
+                    TimeUnit.SECONDS.sleep(1);
+                    swipScreenFromTopToBottom(DRIVER);
+                    swipScreenFromTopToBottom(DRIVER);
+                    TimeUnit.SECONDS.sleep(1);
+                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ovk);
+                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
+                    TimeUnit.SECONDS.sleep(1);
+            }
             findWebElement("com.tronlink.wallet:id/btn_next").click();
             findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Auto-shield-test");
             findWebElement("com.tronlink.wallet:id/creat").click();

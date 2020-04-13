@@ -41,6 +41,23 @@ task tronlink(type: Test,dependsOn: 'autoCreateTestngXml') {
         threadCount 10
     }
 }
+
+task androidP0(type: Test,dependsOn: 'autoCreateAndroidP0Xml') {
+    useTestNG {
+        suites(file('src/test/resources/android-p0.xml'))
+        parallel 'tests'
+        threadCount 10
+    }
+}
+
+task autoCreateAndroidP0Xml(type: Test) {
+    useTestNG {
+        suites(file('src/test/resources/autoCreateAndroidP0Xml.xml'))
+        parallel 'tests'
+        threadCount 1
+    }
+}
+
 task tronlinkt(type: Test) {
     useTestNG {
         suites(file('src/test/resources/tronlink-testng.xml'))

@@ -66,9 +66,19 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/assets")
     public WebElement assets_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/dapp")
+    public WebElement dapp_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/committee_proposals")
+
+    //com.tronlink.wallet:id/commit_proposal
+    //com.tronlink.wallet:id/commit_proposal
+    //com.tronlink.wallet:id/committee_proposals
+    @FindBy(id = "com.tronlink.wallet:id/commit_proposal")
     public WebElement committeeProposals_btn;
+
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_advanced_features")
+    public WebElement advanced_features_btn;
 
 
 
@@ -158,7 +168,10 @@ public class MinePage extends AbstractPage {
     public CommitteeProposalPage enterCommitteeProposalPage(){
         try {
             TimeUnit.SECONDS.sleep(3);
+            advanced_features_btn.click();
+            TimeUnit.SECONDS.sleep(2);
             committeeProposals_btn.click();
+            //committeeProposals_btn.click();
             driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
@@ -173,6 +186,16 @@ public class MinePage extends AbstractPage {
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         return new AssetPage(driver);
     }
+
+    public DAPP_BrowerPage enterDAPP_BrowerPage() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        advanced_features_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        dapp_btn.click();
+        return new DAPP_BrowerPage(driver);
+    }
+
+
 
 
 

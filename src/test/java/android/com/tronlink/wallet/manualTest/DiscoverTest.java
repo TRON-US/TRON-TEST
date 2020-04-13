@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.manualTest;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
@@ -36,7 +36,6 @@ public class DiscoverTest extends Base {
         dappNameList.add("WINk");
         dappNameList.add("TRONLENDING");
         dappNameList.add("RocketGame");
-        dappNameList.add("JUST");
         //dappNameList.add("Knight Story");
         dappNameList.add("TronVegas");
         dappNameList.add("TRON UP");

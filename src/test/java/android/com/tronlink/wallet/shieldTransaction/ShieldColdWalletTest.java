@@ -58,7 +58,7 @@ public class ShieldColdWalletTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Shield cold wallet asset page test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Shield cold wallet asset page test", alwaysRun = true)
     public void test001_enterShieldColdWallet() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         Assert.assertTrue(coldAsset.scanQrSign_btn.isEnabled());
@@ -68,7 +68,7 @@ public class ShieldColdWalletTest extends Base {
         Assert.assertTrue(coldAsset.me_btn.isEnabled());
     }
 
-    @Test(enabled = true,description = "Shield cold wallet receive test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Shield cold wallet receive test", alwaysRun = true)
     public void test002_shieldColdWalletCanReceiveTrx() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         coldAsset.receive_btn.click();

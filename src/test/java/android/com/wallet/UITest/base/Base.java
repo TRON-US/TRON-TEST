@@ -47,7 +47,7 @@ public class Base {
 
     //setUp
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid"})
-    @BeforeTest
+    @BeforeTest(groups = {"P0"})
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
         try {
             System.out.println(port+udid);
@@ -64,7 +64,7 @@ public class Base {
 
 
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey","noReset"})
-    @BeforeClass() //Increase stability(because some case star setup error)
+    @BeforeClass(groups = {"P0"}) //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey,String noReset)throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;

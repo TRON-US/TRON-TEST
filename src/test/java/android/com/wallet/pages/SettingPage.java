@@ -44,10 +44,6 @@ public class SettingPage extends AbstractPage {
     public WebElement connect_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/dapp")
-    public WebElement dapp_btn;
-
-
 
     @FindBy(id = "com.tronlink.wallet:id/node")
     public WebElement node_btn;
@@ -74,6 +70,9 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/select_online")
     public WebElement online_version_icon;
 
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_advanced_features")
+    public WebElement advanced_features_btn;
 
 
 
@@ -104,11 +103,6 @@ public class SettingPage extends AbstractPage {
         }
     }
 
-
-    public DAPP_BrowerPage enterDAPP_BrowerPage(){
-        dapp_btn.click();
-        return new DAPP_BrowerPage(driver);
-    }
 
 
 

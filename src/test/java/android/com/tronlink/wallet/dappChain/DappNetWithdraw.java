@@ -141,7 +141,7 @@ public class DappNetWithdraw extends Base {
     }
 
 
-    @Test(enabled = true,description = "transferOut Success Checkout Available trx", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "transferOut Success Checkout Available trx", alwaysRun = true)
     public void test006_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -163,7 +163,7 @@ public class DappNetWithdraw extends Base {
     }
 
 
-    @Test(enabled = true,description = "transferOut Success Recording")
+    @Test(groups = {"P0"},enabled = true,description = "transferOut Success Recording")
     public void test008_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();

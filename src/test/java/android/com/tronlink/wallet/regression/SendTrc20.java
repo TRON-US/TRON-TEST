@@ -66,7 +66,7 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(enabled = true,description = "SendTrc20 success test")
+    @Test(groups = {"P0"},enabled = true,description = "SendTrc20 success test")
     public void test001_sendTrc20Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -107,7 +107,7 @@ public class SendTrc20 extends Base {
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
 
-    @Test(enabled = true,description = "Trc20 transfer success recording")
+    @Test(groups = {"P0"},enabled = true,description = "Trc20 transfer success recording")
     public void test005_trc20TransferInSuccessRecording() throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       TrxPage trx = asset.enterTrx20Page();

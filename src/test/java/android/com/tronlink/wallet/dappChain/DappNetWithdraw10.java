@@ -130,7 +130,7 @@ public class DappNetWithdraw10 extends Base {
 
 
 
-    @Test(enabled = true,description = "Withdraw from dappChain of Trc10 Success Recording", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Withdraw from dappChain of Trc10 Success Recording", alwaysRun = true)
     public void test005_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();

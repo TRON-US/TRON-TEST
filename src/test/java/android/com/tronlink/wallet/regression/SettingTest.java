@@ -37,7 +37,7 @@ public class SettingTest extends Base {
         }
     }
 
-    @Test(description = "Switch Language Test")
+    @Test(groups = {"P0"},description = "Switch Language Test")
     public void test001_lanaugeSwitchTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -72,8 +72,7 @@ public class SettingTest extends Base {
     public void test003_DAPP_Browser() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        DAPP_BrowerPage dapp = setting.enterDAPP_BrowerPage();
+        DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         dapp.testUrl();
         Assert.assertEquals("TEST", dapp.dappTtile_btn.getText());
     }

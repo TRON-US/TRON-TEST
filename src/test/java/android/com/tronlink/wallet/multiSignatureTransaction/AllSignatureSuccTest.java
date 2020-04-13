@@ -117,7 +117,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignAddress"})
-    @Test(description = "Invalid Time is exist", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Invalid Time is exist", alwaysRun = true)
     public void test001_invalidTimeIsExists(String multiSignAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage SendTrx = asset.enterSendTrxPage();
@@ -139,7 +139,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "Sign Address Is Exists", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Sign Address Is Exists", alwaysRun = true)
     public void test002_signAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -162,7 +162,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "WaitSign Address Is Exists", alwaysRun = true)
+    @Test(groups = {"P0"},description = "WaitSign Address Is Exists", alwaysRun = true)
     public void test003_waitSignAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -185,7 +185,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "WaitSign Address Is Exists", alwaysRun = true)
+    @Test(groups = {"P0"},description = "WaitSign Address Is Exists", alwaysRun = true)
     public void test004_signNameCheck(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -208,7 +208,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "send trx sign success options Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "send trx sign success options Test", alwaysRun = true)
     public void test005_sendTrxOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -222,7 +222,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "send trx sign success two times options Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "send trx sign success two times options Test", alwaysRun = true)
     public void test006_sendTrxTwoTimesOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -235,7 +235,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "sign options Test", alwaysRun = true)
     public void test007_signOptions(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
@@ -252,7 +252,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test check TRX", alwaysRun = true)
+    @Test(groups = {"P0"},description = "sign options Test check TRX", alwaysRun = true)
     public void test008_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
@@ -268,7 +268,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test check TransFrom", alwaysRun = true)
+    @Test(groups = {"P0"},description = "sign options Test check TransFrom", alwaysRun = true)
     public void test009_signPageCheckTransFrom(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
@@ -283,7 +283,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test check TransTo", alwaysRun = true)
+    @Test(groups = {"P0"},description = "sign options Test check TransTo", alwaysRun = true)
     public void test010_signPageCheckTransTo(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
@@ -298,7 +298,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test check InvaTime", alwaysRun = true)
+    @Test(groups = {"P0"},description = "sign options Test check InvaTime", alwaysRun = true)
     public void test011_signPageCheckInvaTime(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);

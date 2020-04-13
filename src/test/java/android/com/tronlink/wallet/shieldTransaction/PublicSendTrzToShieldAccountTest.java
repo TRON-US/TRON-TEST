@@ -72,7 +72,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Public send trz to shield account success test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Public send trz to shield account success test", alwaysRun = true)
     public void test001_PbulicSendTrzToShieldAccountSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         asset.mine_btn.click();
@@ -83,11 +83,11 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         transfer.publicSendTrz(receiverShieldAddress,Float.toString(sendTrzAmount));
     }
 
-    @Test(enabled = true,description = "Public trz transfer success recording")
+    @Test(groups = {"P0"},enabled = true,description = "Public trz transfer success recording")
     public void test002_PublicTrzTransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
       try {
-        TimeUnit.SECONDS.sleep(80);
+        TimeUnit.SECONDS.sleep(20);
         // if page display AD , cloese the AD
 /*            if (ad_pic.isDisplayed()){
                 adClose_btn.click();

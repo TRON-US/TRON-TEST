@@ -135,7 +135,7 @@ public class MainNetDeposit extends Base {
     }
 
 
-    @Test(enabled = true,description = "Deposit trx into Dapp chain success checkout available trx", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Deposit trx into Dapp chain success checkout available trx", alwaysRun = true)
     public void test006_depositTrxIntoDappChain() throws Exception {
         TrxPage trx = enterTrxPage();
         depositTrxAmount = getAnAmount() + 9;
@@ -143,7 +143,7 @@ public class MainNetDeposit extends Base {
         transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrxAmount));
     }
 
-    @Test(enabled = true,description = "Trc10 deposit into Dapp chain Success Recording", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Trc10 deposit into Dapp chain Success Recording", alwaysRun = true)
     public void test007_depositSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         int tries = 0;

@@ -82,7 +82,7 @@ public class DappSendTrc10 extends Base {
         return transfer;
     }
 
-    @Test(description = "SendTrc10 success test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
       SendTrxPage transfer = enterToSendTrc10Page();
       beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));

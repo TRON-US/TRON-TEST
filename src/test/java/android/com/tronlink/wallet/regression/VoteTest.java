@@ -67,7 +67,7 @@ public class VoteTest extends Base {
 
 
     //3.5版本由于需要添加取消全部投票的临时功能，暂时屏蔽了投票确认页面
-    @Test(enabled = true,description = "Gets the address of the second candidate", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Gets the address of the second candidate", alwaysRun = true)
     public void test001_searchVoteInfo() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
