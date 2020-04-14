@@ -313,7 +313,12 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         return new TrxPage(driver);
     }
-
+    public TrxPage enterPublicTrzPage() throws Exception {
+        waiteTime();
+        cellArray.get(1).click();
+        waiteTime();
+        return new TrxPage(driver);
+    }
 
     public TrxPage enterTrx10Page() throws Exception {
         Helper.swipRefreshScreen(driver);
