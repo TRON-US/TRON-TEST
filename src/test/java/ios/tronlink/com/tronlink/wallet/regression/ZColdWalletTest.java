@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 //    }
 public class ZColdWalletTest extends ColdBaseTest {
 
-    @Test(enabled = true,description = "Cold wallet asset page test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cold wallet asset page test", alwaysRun = true)
     public void test001_enterColdWallet() throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         Assert.assertTrue(coldHelper.AssetBtn.isEnabled());
@@ -37,7 +37,7 @@ public class ZColdWalletTest extends ColdBaseTest {
 
 
     @Parameters({"address"})
-    @Test(enabled = true,description = "Cold wallet receive test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cold wallet receive test", alwaysRun = true)
     public void test002_coldWalletCanReceiveTrx(String address) throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         coldHelper.recieveLabel.click();
@@ -57,7 +57,7 @@ public class ZColdWalletTest extends ColdBaseTest {
     }
 
 
-    @Test(enabled = true,description = "Cold wallet add wallet test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Cold wallet add wallet test", alwaysRun = true)
     public void test005_coldWalletAddWalletTest() throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         coldHelper.AddWalletBtn.click();

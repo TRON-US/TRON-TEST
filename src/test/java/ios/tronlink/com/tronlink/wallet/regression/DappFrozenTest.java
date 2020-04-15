@@ -173,7 +173,7 @@ public class DappFrozenTest extends BaseTest {
     /**
     freeze Energy
     */
-    @Test(description = "Freeze Energy Scuuess", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Freeze Energy Scuuess", alwaysRun = true)
     public void test016_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         String availableTrxOld = frozen.getAvailableTrx();

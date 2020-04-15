@@ -28,14 +28,14 @@ public class WatchWalletTest extends BaseTest {
 //
 //    }
 
-    @Test(description = "watch wallet add WatchWallet", alwaysRun = true)
+    @Test(groups = {"P0"},description = "watch wallet add WatchWallet", alwaysRun = true)
     public void test001_addWatchWallet() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.importWatchWallet();
         Assert.assertTrue(assetPage.getWalletName().contains("WatchWallet"));
     }
 
-    @Test(enabled = true, description = "watch wallet sendTrx QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "watch wallet sendTrx QRCode", alwaysRun = true)
     public void test002_sendTrxQRCode() throws Exception {
         WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
         helpPage.sendTrx();
@@ -48,7 +48,7 @@ public class WatchWalletTest extends BaseTest {
         Assert.assertTrue(helpPage.isEnterColdPage());
     }
 
-    @Test(enabled = true, description = "Frozen Energy QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Frozen Energy QRCode", alwaysRun = true)
     public void test004_frozenEnergyQRCode() throws Exception {
         WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
         helpPage.frozenTRX();
@@ -64,7 +64,7 @@ public class WatchWalletTest extends BaseTest {
     }
 
 
-    @Test(enabled = true, description = "create proposal QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "create proposal QRCode", alwaysRun = true)
     public void test006_createCommitteeQRCode() throws Exception {
         WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
         helpPage.makeApropos();
@@ -72,14 +72,14 @@ public class WatchWalletTest extends BaseTest {
     }
 
 
-    @Test(enabled = true, description = "muliSignature QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "muliSignature QRCode", alwaysRun = true)
     public void test007_multiSignatureQRCode() throws Exception {
         WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
         helpPage.makemultiSign();
         Assert.assertTrue(helpPage.isEnterColdPage());
     }
 
-    @Test(enabled = true, description = "transferIn QRCode", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "transferIn QRCode", alwaysRun = true)
     public void test008_transferInQRCode() throws Exception {
         WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
         helpPage.maketransferIn();

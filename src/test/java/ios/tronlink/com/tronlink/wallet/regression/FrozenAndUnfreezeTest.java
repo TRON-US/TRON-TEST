@@ -31,7 +31,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         return asset.enterFrozenAndThawingPage();
     }
 
-    @Test(description = "guarantee Chain in MainChain",alwaysRun = true)
+    @Test(groups = {"P0"},description = "guarantee Chain in MainChain",alwaysRun = true)
     public void test000_GuaranteeChainName() throws Exception {
         Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
     }
@@ -172,7 +172,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     /**
      freeze Energy
      */
-    @Test(description = "Freeze Energy Scuuess", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Freeze Energy Scuuess", alwaysRun = true)
     public void test016_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         String availableTrxOld = frozen.getAvailableTrx();

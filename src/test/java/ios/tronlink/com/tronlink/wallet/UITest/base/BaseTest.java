@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest extends Base {
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         log("我是BaseTest类的Before");
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
@@ -36,7 +36,7 @@ public class BaseTest extends Base {
 //    }
 
     @Parameters({"bundleId"})
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
@@ -51,7 +51,7 @@ public class BaseTest extends Base {
     }
 
     @Parameters({"bundleId"})
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;

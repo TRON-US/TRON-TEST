@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class MultiSignTest extends Base {
 
     @Parameters({"ownerPrivateKey", "udid"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
         System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
         DRIVER.closeApp();
@@ -31,7 +31,7 @@ public class MultiSignTest extends Base {
     }
 
     @Parameters({"bundleId"})
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
@@ -45,7 +45,7 @@ public class MultiSignTest extends Base {
 
     }
     @Parameters({"bundleId"})
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
@@ -63,7 +63,7 @@ public class MultiSignTest extends Base {
         }
     }
     @Parameters({"udid"})
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
@@ -124,7 +124,7 @@ public class MultiSignTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @Test(description = "add sign account", alwaysRun = true)
+    @Test(groups = {"P0"},description = "add sign account", alwaysRun = true)
     public void test002_addSignAccountSuccess(String multiSignPrivateKey) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
@@ -186,7 +186,7 @@ public class MultiSignTest extends Base {
         }
     }
 
-    @Test(description = "send trx overstep one’s authority Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "send trx overstep one’s authority Test", alwaysRun = true)
     public void test006_sendTrxOptions() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
@@ -209,14 +209,14 @@ public class MultiSignTest extends Base {
 
     }
     @Parameters({"ownerAddress"})
-    @Test(description = "send trx sign success use active authority Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "send trx sign success use active authority Test", alwaysRun = true)
     public void test009_sendSignSuccessUseOwnerActiveSuccess(String ownerAddress) throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
         Assert.assertTrue(sendTrxPage.multiSignActiveSend(ownerAddress));
     }
 
-    @Test(description = "make account address to Owner", alwaysRun = true)
+    @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
     public void test010_makeAccountToOwner() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
@@ -263,7 +263,7 @@ public class MultiSignTest extends Base {
 
     }
 
-    @Test(description = " multiSign sign Owner success Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = " multiSign sign Owner success Test", alwaysRun = true)
     public void test015_multiSignSuccessTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();
@@ -277,7 +277,7 @@ public class MultiSignTest extends Base {
     }
 
 
-    @Test(description = "make account address to Signed", alwaysRun = true)
+    @Test(groups = {"P0"},description = "make account address to Signed", alwaysRun = true)
     public void test017_makeAccountToSigned() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
@@ -299,7 +299,7 @@ public class MultiSignTest extends Base {
     }
 
     @Parameters({"ownerAddress"})
-    @Test(description = "frozenPage setup MultiSigned thing", alwaysRun = true)
+    @Test(groups = {"P0"},description = "frozenPage setup MultiSigned thing", alwaysRun = true)
     public void test019_frozenPagehaveMultiSignedTest(String ownerAddress) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
@@ -307,7 +307,7 @@ public class MultiSignTest extends Base {
         Assert.assertTrue(recodPage.isHaveMultiSingTrans());
     }
 
-    @Test(description = "make account address to Owner", alwaysRun = true)
+    @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
     public void test020_makeAccountToOwner() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
@@ -321,7 +321,7 @@ public class MultiSignTest extends Base {
         }
     }
 
-    @Test(description = " multiSign  is Frozen Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = " multiSign  is Frozen Test", alwaysRun = true)
     public void test021_multiSignTitleTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();

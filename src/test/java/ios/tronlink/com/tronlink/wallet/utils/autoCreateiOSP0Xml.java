@@ -1,13 +1,10 @@
 package ios.tronlink.com.tronlink.wallet.utils;
 
 import android.com.utils.AppiumTestCase;
-
 import android.com.utils.Configuration;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
-
-import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -25,26 +22,19 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class autoCreateTestngXml {
-    private String reportPath = "src/test/resources/tronlink-ios.xml";
-    private String adb = "adb";
-    private String packagesName = "<package name=\"ios.tronlink.com.tronlink.wallet.regression.*\"></package>";
+public class autoCreateiOSP0Xml {
+    private String reportPath = "src/test/resources/ios-p0.xml";
     private String preClass = "<class name=\"ios.tronlink.com.tronlink.wallet.";
     private String afterClass = "\"></class>";
-    private List<String> dirList = new ArrayList<>();
     private String platformName = "iOS";
     private Boolean noReset = true;
     private Integer webDriverPort = 8100;
     private Integer port = 4725;
     private Integer bpPort = 2251;
-    List<String> iosDeviceNameList = new ArrayList<>();
-    List<String> iosDeviceUdidList = new ArrayList<>();
+    List<String> deviceNameList = new ArrayList<>();
     static HttpClient httpClient;
     static HttpPost httppost;
     static HttpResponse response;
@@ -53,18 +43,14 @@ public class autoCreateTestngXml {
     static String transactionString;
     static String transactionSignString;
     static JSONObject responseContent;
-    static JSONObject signResponseContent;
-    static JSONObject transactionApprovedListContent;
-    static List<String> taskClassNameList = new ArrayList<>();
-    static List<String> taskSingleClassNameList = new ArrayList<>();
-    static List<String> singleClassNameList = new ArrayList<>();
+
+    static List<String> classNameList = new ArrayList<>();
     private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
-    static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
-    static String shieldTokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.shieldTokenId");
     public static AtomicInteger multiSignIndex = new AtomicInteger(1);
+    static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
 
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
@@ -77,42 +63,32 @@ public class autoCreateTestngXml {
 
     @BeforeClass
     public void beforeClass() throws IOException{
-        //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
-        //singleClassNameList.add("");
-        dirList.add("regression");
-//        dirList.add("multiSign");
-        iosDeviceNameList.add("38afae054a2740c4f3e7835564b82cb1bdec6cc8");
-        iosDeviceNameList.add("1fb216ca798cf08a2d01fbdc78e2cdbb05321e24");
-        iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
-        iosDeviceNameList.add("00008020-001661EE0C88003A");
-        iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
-        iosDeviceNameList.add("00008020-001E202E2288002E");
-        iosDeviceNameList.add("a64acfa6c4ce4881357b1668dba9c52f24b2b28d");
-/*        String udid;
-        for (int i = 0; i < iosDeviceNameList.size();i++) {
-            udid = iosDeviceNameList.get(i);
-            if (isConnectToTaskMacViaUsb(udid)){
-                iosDeviceUdidList.add(udid);
-            }
-        }*/
+        deviceNameList.add("38afae054a2740c4f3e7835564b82cb1bdec6cc8");
+        deviceNameList.add("1fb216ca798cf08a2d01fbdc78e2cdbb05321e24");
+        deviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
+        deviceNameList.add("00008020-001661EE0C88003A");
+        deviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
+        deviceNameList.add("00008020-001E202E2288002E");
+        deviceNameList.add("a64acfa6c4ce4881357b1668dba9c52f24b2b28d");
+
         beforeWrite();
     }
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void sendCoinToTestCount() throws IOException{
         HashMap<String,String> testAccountList = new HashMap<>();
 
-        testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");//8
-//        testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");//xr
+        testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
+        testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");
         testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
         testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
         testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
         testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-//        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
+        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
         testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
-        testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");//8p
-        testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");//x
+        testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
+        testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
         Long balance = 0L;
         Long targetAmount = 2998000000L;
@@ -125,7 +101,6 @@ public class autoCreateTestngXml {
                 tokenBalance = 0L;
                 tokenBalance = getTokenBalance(httpnode,entry.getKey().toString());
             } catch (Exception e) {
-                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
@@ -135,7 +110,7 @@ public class autoCreateTestngXml {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(httpnode,foundationAccountAddress,entry.getKey().toString(),"1000002",targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
         }
@@ -147,7 +122,6 @@ public class autoCreateTestngXml {
                 tokenBalance = 0L;
                 tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
             } catch (Exception e) {
-                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
                 System.out.print(e + "\n");
             }
             System.out.print("balance:" + balance + "\n");
@@ -157,7 +131,7 @@ public class autoCreateTestngXml {
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
+                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),"1000002",targetTokenAmount - tokenBalance,foundationAccountKey);
             }
 
 
@@ -171,12 +145,12 @@ public class autoCreateTestngXml {
         HashMap<String,String> testAccountList = new HashMap<>();
 
         testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
-//        testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");
+        testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");
         testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
         testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
         testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
         testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-//        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
+        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
         testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
         testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
@@ -184,56 +158,44 @@ public class autoCreateTestngXml {
         StringBuilder sb = new StringBuilder();
         String deviceList = AppiumTestCase.cmdReturn("idevice_id -l");
 
-
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
-        taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
+        classNameList = findNameList(classNameList,testCaseDir,1);
         testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/shieldTransaction";
-        taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
+        classNameList = findNameList(classNameList,testCaseDir,1);
+        Integer deviceIndex = 0;
+//        List<List<String>> classContent = new ArrayList<>();
 
-        String extendSingleClassContent = "";
-        for (int i = 0; i < taskSingleClassNameList.size();i++) {
-            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
-        }
 
-        taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
         String classContent = "";
-        for (int i = 0; i < taskClassNameList.size();i++) {
-            classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
+        for (int i = 0; i < classNameList.size();i++) {
+            classContent = classContent + "            " + preClass + classNameList.get(i).substring(0,classNameList.get(i).length() - 5) + afterClass + "\n";
         }
 
-
-//        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
-//        taskClassNameList = findNameList(taskClassNameList,testCaseDir,1);
-//
-//        String classContent = "";
-//        String classNoColdWallet = "";
-//        for (int i = 0; i < taskClassNameList.size();i++) {
-//            classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
-//            if (taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5).contains("ZColdWalletTest")){
-//                continue;
+//        for (int i = 0; i < classNameList.size();i++) {
+//            if (deviceIndex == deviceNameList.size()) {
+//                deviceIndex = 0;
 //            }
-//            classNoColdWallet = classNoColdWallet + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
-//        }
+//            if (classContent.size() <= deviceIndex){
+//                classContent.add(new ArrayList<>());
+//            }
+//            classContent.get(deviceIndex++).add( "            " + preClass + classNameList.get(i).substring(0,classNameList.get(i).length() - 5) + afterClass + "\n");
 //
-//        System.out.println("\nclassNoColdWallet " +classNoColdWallet);
-
-
-        System.out.println("classContent " +classContent);
-
-        boolean singleClassHasSetToSingleDevice = false;
+//        }
 
         {
+            deviceIndex = 0;
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
-            for (Iterator<String> it = iosDeviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
+            for (Iterator<String> it = deviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
                 HashMap.Entry<String, String> entry = entries.next();
                 String udid = it.next();
                 if (!deviceList.contains(udid)){
                     continue;
                 }
+
                 AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
                 System.out.print("Uninstall tronlink from " + udid + " succesfully\n");
                 AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-                System.out.print("Install tronlink to " + udid + " succesfully");
+                System.out.print("Install tronlink to " + udid + " succesfully\n");
 
                 sb.append("    <test name= \"" + udid + "\">\n");
                 String platformVersion = getDeviceVersion(udid);
@@ -247,9 +209,9 @@ public class autoCreateTestngXml {
                 sb.append(
                     "        <parameter name=\"deviceName\" value= \"" + deviceName + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"noReset\" value=\"" + noReset.toString() + "\"/>\n");
+                        "        <parameter name=\"noReset\" value=\"" + noReset.toString() + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"webDriverPort\"  value=\"" + webDriverPort++ + "\"/>\n");
+                        "        <parameter name=\"webDriverPort\"  value=\"" + webDriverPort++ + "\"/>\n");
                 sb.append(
                         "        <parameter name=\"bpPort\"  value=\"" + bpPort++ + "\"/>\n");
                 sb.append(
@@ -259,50 +221,50 @@ public class autoCreateTestngXml {
                 sb.append(
                         "        <parameter name=\"xcodeSigningId\"  value=\"iPhone Developer\"/>\n");
                 sb.append(
-                    "        <parameter name=\"bundleId\"  value=\"" + "com.tronlink.hdwallet"
-                        + "\"/>\n");
+                        "        <parameter name=\"bundleId\"  value=\"" + "com.tronlink.hdwallet"
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
-                        + "\"/>\n");
+                        "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
+                                + "\"/>\n");
                 sb.append(
                         "        <parameter name=\"address\"  value=\"" + entry.getKey()
                                 + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"ownerPrivateKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
-                    + "\"/>\n");
+                        "        <parameter name=\"ownerPrivateKey\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"ownerAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "Address")
-                        + "\"/>\n");
+                        "        <parameter name=\"ownerAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "Address")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"multiSignPrivateKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
-                        + "\"/>\n");
+                        "        <parameter name=\"multiSignPrivateKey\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"multiSignAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
-                        + "\"/>\n");
+                        "        <parameter name=\"multiSignAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"witnessKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Key")
-                        + "\"/>\n");
+                        "        <parameter name=\"witnessKey\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Key")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"witnessAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Address")
-                        + "\"/>\n");
+                        "        <parameter name=\"witnessAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Address")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"witnessUrl\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
-                        + "\"/>\n");
+                        "        <parameter name=\"witnessUrl\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"shieldSK\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("IosShieldAccount.sk" + multiSignIndex.get())
-                        + "\"/>\n");
+                        "        <parameter name=\"shieldSK\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("IosShieldAccount.sk" + multiSignIndex.get())
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"shieldAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
-                        + "\"/>\n");
+                        "        <parameter name=\"shieldAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
+                                + "\"/>\n");
                 sb.append(
                         "        <parameter name=\"publicShieldSK\" value=\""
                                 + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.privateKey" + multiSignIndex.get())
@@ -311,23 +273,22 @@ public class autoCreateTestngXml {
                         "        <parameter name=\"publicShieldAddress\" value=\""
                                 + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.publicAddress" + multiSignIndex.get())
                                 + "\"/>\n");
+                sb.append("    <groups>\n");
+                sb.append("    <run>\n");
+                sb.append("    <include name=\"P0\"/>\n");
+                sb.append("    </run>\n");
+                sb.append("    </groups>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
-                //autotest-ios can
-/*                if (!singleClassHasSetToSingleDevice) {
-                    singleClassHasSetToSingleDevice = true;
-                    sb.append(extendSingleClassContent);
-                } else {
-                    sb.append(classContent);
-                }*/
-//                if (deviceName.contains("autotest-ios")){
-                    sb.append(classContent);
-//                }else {
-//                    sb.append(classNoColdWallet);
+                sb.append(classContent);
+//
+//                for (int i = 0; i < classContent.get(deviceIndex).size();i++) {
+//                    sb.append(classContent.get(deviceIndex).get(i));
 //                }
-                sb.append("        </classes>\n");
-                sb.append("    </test>\n");
+                sb.append(    "        </classes>\n" +
+                    "    </test>\n");
                 it.remove();
+                deviceIndex++;
             }
         }
 
@@ -343,11 +304,11 @@ public class autoCreateTestngXml {
 
     public void beforeWrite() {
         StringBuilder sb = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-            + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
-            + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n"
-            + "    <listeners>\n"
-            + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener\"/>\n"
-            + "    </listeners>\n");
+                + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
+                + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + deviceNameList.size() + "\">\n"
+                + "    <listeners>\n"
+                + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener\"/>\n"
+                + "    </listeners>\n");
         String res = sb.toString();
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"));
@@ -359,7 +320,6 @@ public class autoCreateTestngXml {
 
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
         Long amount, String fromKey) {
-//        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + fromAddress + "\ntoAddress: " + toAddress + "\namount: " + amount + "\nfromKey: " + fromKey);
       try {
             final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
@@ -386,8 +346,6 @@ public class autoCreateTestngXml {
      */
     public static HttpResponse transferAsset(String httpNode, String ownerAddress,
                                              String toAddress, String assetIssueById, Long amount, String fromKey) {
-//        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + ownerAddress + "\ntoAddress: "+ toAddress  +"\n assetIssueById:" + assetIssueById + "\namount: " + amount + "\nfromKey: " + fromKey);
-
         try {
             final String requestUrl = "http://" + httpNode + "/wallet/transferasset";
             JsonObject userBaseObj2 = new JsonObject();
@@ -546,10 +504,11 @@ public class autoCreateTestngXml {
         JSONArray tokenArray = responseContent.getJSONArray("assetV2");
         for (int i = 0; i < tokenArray.size();i++) {
             System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
-            if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId)) {
+            if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId) ) {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }
+        //HttpMethed.printJsonContent(responseContent);
         httppost.releaseConnection();
         return 0L;
     }
@@ -588,25 +547,6 @@ public class autoCreateTestngXml {
         return response;
     }
 
-    public static String getDeviceName(String udid) {
-        String deviceName = "";
-        try {
-            deviceName = AppiumTestCase.cmdReturn("ideviceinfo -u " + udid + "  -k DeviceName");
-        } catch (Exception e) {
-            System.out.print(e);
-        }
-        return deviceName;
-    }
-
-    public static String getDeviceVersion(String udid) {
-        String deviceVersion = "";
-        try {
-            deviceVersion = AppiumTestCase.cmdReturn("ideviceinfo -u " + udid + "  -k ProductVersion");
-        } catch (Exception e) {
-            System.out.print(e);
-        }
-        return deviceVersion;
-    }
 
     public static List<String> findNameList(List<String> nameList,String pathName,int depth) throws IOException{
         //List<String> nameList = new ArrayList<>();
@@ -667,20 +607,24 @@ public class autoCreateTestngXml {
         return nameList;
     }
 
-    public List<String> removeSingleClass(List<String> singleClassList, List<String> removeList) {
-        for (int i = 0 ; i < singleClassList.size();i++) {
-            for (int j = 0; j < removeList.size();j++) {
-                if (singleClassList.get(i).contains(removeList.get(j))) {
-                    singleClassList.remove(i);
-                    continue;
-                }
-            }
+    public static String getDeviceName(String udid) {
+        String deviceName = "";
+        try {
+            deviceName = AppiumTestCase.cmdReturn("ideviceinfo -u " + udid + "  -k DeviceName");
+        } catch (Exception e) {
+            System.out.print(e);
         }
-        return singleClassList;
+        return deviceName;
     }
 
-
-
-
+    public static String getDeviceVersion(String udid) {
+        String deviceVersion = "";
+        try {
+            deviceVersion = AppiumTestCase.cmdReturn("ideviceinfo -u " + udid + "  -k ProductVersion");
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+        return deviceVersion;
+    }
 
 }

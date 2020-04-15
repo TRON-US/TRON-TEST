@@ -20,7 +20,7 @@ public class NoteAdrBookTest extends BaseTest {
         TimeUnit.SECONDS.sleep(1);
         return new NotebookHelpPage(DRIVER);
     }
-    @Test(description = "import a address into notebook",alwaysRun = true)
+    @Test(groups = {"P0"},description = "import a address into notebook",alwaysRun = true)
     public void Test01_ImportAddressIntoNoteBookSuccess() throws Exception{
         NotebookHelpPage page = enterAdrNoteBook();
         page.importSuccess("TTwaSwvSQur5G54vMSTiu4AEuW4cdhrQzq");
@@ -51,20 +51,20 @@ public class NoteAdrBookTest extends BaseTest {
         NotebookHelpPage page = enterAdrNoteBook();
         Assert.assertTrue(page.importWrongAddr("aT").contains("请输入正确的地址"));
     }
-    @Test(description = "modify address book name",alwaysRun = true)
+    @Test(groups = {"P0"},description = "modify address book name",alwaysRun = true)
     public void Test07_ModifyAddressBookNameTest() throws Exception{
         NotebookHelpPage page = enterAdrNoteBook();
         page.modifyNoteName("newNameAdr");
         Assert.assertTrue(page.isName("newNameAdr"));
     }
-    @Test(description = "modify address book address",alwaysRun = true)
+    @Test(groups = {"P0"},description = "modify address book address",alwaysRun = true)
     public void Test08_ModifyAddressBookAddressTest() throws Exception{
         NotebookHelpPage page = enterAdrNoteBook();
         page.modifyNoteAddress("TXqHdPhZLh4AZh7CK9Qv6JH6dyPFEv8dXW");
         Assert.assertTrue(page.isAddress("TXqHdPhZLh4AZh7CK9Qv6JH6dyPFEv8dXW"));
     }
 
-    @Test(description = "delete address book address",alwaysRun = true)
+    @Test(groups = {"P0"},description = "delete address book address",alwaysRun = true)
     public void Test09_DeleteAddressBookAddressTest() throws Exception{
         NotebookHelpPage page = enterAdrNoteBook();
         page.deleteNoteAddress();

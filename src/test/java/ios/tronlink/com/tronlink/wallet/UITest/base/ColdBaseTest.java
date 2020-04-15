@@ -17,7 +17,7 @@ import org.testng.annotations.Parameters;
 public class ColdBaseTest extends Base {
 
     @Parameters({"privateKey","bundleId","udid"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId,String udid) throws Exception {
 
         DRIVER.closeApp();
@@ -68,7 +68,7 @@ public class ColdBaseTest extends Base {
     }
 
     @Parameters({"bundleId","udid"})
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String bundleId,String udid) {
         try {
             Map<String, Object> params = new HashMap<>();
@@ -96,7 +96,7 @@ public class ColdBaseTest extends Base {
     }
 
     @Parameters({"bundleId"})
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
 
@@ -113,7 +113,7 @@ public class ColdBaseTest extends Base {
     }
 
     @Parameters({"bundleId"})
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;

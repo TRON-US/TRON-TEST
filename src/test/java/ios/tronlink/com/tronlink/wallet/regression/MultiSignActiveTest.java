@@ -59,7 +59,7 @@ public class MultiSignActiveTest extends BaseTest {
         Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
     }
 
-    @Test(description = "Add MultiSignature Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Add MultiSignature Test", alwaysRun = true)
     public void test002_multiSignature() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
@@ -68,7 +68,7 @@ public class MultiSignActiveTest extends BaseTest {
         Assert.assertTrue(multiSignManagerPage.havedaddActive());
     }
 
-    @Test(description = "Modify signature Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Modify signature Test", alwaysRun = true)
     public void test003_modifySignature() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.modifyPermission();
@@ -82,7 +82,7 @@ public class MultiSignActiveTest extends BaseTest {
         Assert.assertTrue(multiSignManagerPage.havedaddActive());
     }
 
-    @Test(description = "delete signature Test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "delete signature Test", alwaysRun = true)
     public void test005_delSignature() throws Exception {
         MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();

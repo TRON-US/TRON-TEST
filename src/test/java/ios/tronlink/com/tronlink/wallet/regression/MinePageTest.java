@@ -69,7 +69,7 @@ public class MinePageTest extends BaseTest {
     }
 
 
-    @Test(description = "test Me into GroupPage", alwaysRun = true)
+    @Test(groups = {"P0"},description = "test Me into GroupPage", alwaysRun = true)
     public void test006_enterGroupPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();

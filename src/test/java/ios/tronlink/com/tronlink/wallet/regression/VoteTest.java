@@ -50,7 +50,7 @@ public class VoteTest extends BaseTest {
         Assert.assertEquals(tempstr,"0");
     }
 
-    @Test(description = "Test vote success ", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Test vote success ", alwaysRun = true)
     public void test005_TestvoteSuccess() throws Exception {
         VotePage vote = enterVotePage();
         int before = Integer.parseInt(vote.avilabelAmount.getText().replace(",","")) ;
