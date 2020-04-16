@@ -11,7 +11,6 @@ import org.testng.annotations.*;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class ShieldWatchWalletTest extends Base {
