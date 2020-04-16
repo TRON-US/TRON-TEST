@@ -107,24 +107,24 @@ public class Helper {
     public static boolean isElementExist(IOSDriver driver,String name) {
        try {
            driver.findElementByName(name);
-           System.out.println("findByName");
+           System.out.println("IsFindByName: "+name);
            return  true;
        }catch (org.openqa.selenium.NoSuchElementException ex){
            try {
                driver.findElementById(name);
-               System.out.println("findById");
+               System.out.println("IsFindById: "+name);
 
                return  true;
            }catch (org.openqa.selenium.NoSuchElementException eex){
                try {
                    if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
-                       System.out.println("findByBtn");
+                       System.out.println("IsFindByBtn: "+name);
                        return  true;
                    }else {
                        return  false;
                    }
                }catch (org.openqa.selenium.NoSuchElementException e){
-                   System.out.println("NotFound");
+                   System.out.println("NotFound: "+name);
                    return  false;
                }
            }
@@ -222,6 +222,13 @@ public class Helper {
         }
     }
 
+    public void  importWatchShieldWallet(String udid,String nsk,String ak,String ovk,String shieldAddress,IOSDriver driver) throws Exception{
+        this.DRIVER = driver;
+        if(!isElementExist(DRIVER,"home manager")) {
+            importFirstWatchShieldWallet("WSW",nsk,ak,ovk,shieldAddress);
+        }
+    }
+
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
          if(!isElementExist(DRIVER,"home manager")){
@@ -297,8 +304,44 @@ public class Helper {
 
     }
 
+    public void importFirstWatchShieldWallet(String name,String nsk,String ak,String ovk,String shieldAddress) throws Exception{
+        DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        findWebElement("导入钱包").click();
+        findAcceptAndClick();
+        DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        DRIVER.findElementById("shieldedWallet").click();
+        importWatchShieldWallet(name, nsk, ak, ovk, shieldAddress);
 
+    }
 
+    public void importWatchShieldWallet(String name,String nsk,String ak,String ovk,String shieldAddress) {
+        try {
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            findWebElement("观察钱包").click();
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            DRIVER.findElementById("card_one_textview").sendKeys(nsk);
+            closeKeyBoard(DRIVER);
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            DRIVER.findElementById("card_two_textview").sendKeys(ak);
+            closeKeyBoard(DRIVER);
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            DRIVER.findElementById("card_three_textview").sendKeys(ovk);
+            closeKeyBoard(DRIVER);
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            DRIVER.findElementById("card_four_textview").sendKeys(shieldAddress);
+            closeKeyBoard(DRIVER);
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            findWebElement("下一步").click();
+            DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
+            tapWhitePlace(DRIVER);
+            findWebElement("完成").click();
+
+            TimeUnit.SECONDS.sleep(10);
+        } catch (Exception e) {
+        }
+
+    }
     public void importUsePrivateKey(String privatekey,String name,String pass){
         try {
             DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
