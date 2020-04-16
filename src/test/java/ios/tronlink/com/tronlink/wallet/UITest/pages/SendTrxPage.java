@@ -328,7 +328,7 @@ public class SendTrxPage extends AbstractPage {
         Helper.closeKeyBoard(driver);
         waiteTime();
         send_btn.click();
-        waiteTime();
+        waiteTime(20);
         transferNow_btn.click();
         waiteTime();
         InputPasswordConfim_btn.sendKeys("Test0001");
@@ -336,7 +336,20 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(15);
         return new TrxPage(driver);
     }
+    public QRCodePage sendTrzWatchWithNumber(String number,String Addr) throws Exception{
 
+        waiteTime();
+        testfieldArray.get(1).sendKeys(Addr);
+        waiteTime();
+        log("send Number IS: " + number + "  To: " + Addr);
+        testfieldArray.get(2).sendKeys(number);
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        send_btn.click();
+        waiteTime(20);
+
+        return new QRCodePage(driver);
+    }
 
     public TrxPage sendTrx10WithNumber(String number) throws Exception{
         waiteTime();
