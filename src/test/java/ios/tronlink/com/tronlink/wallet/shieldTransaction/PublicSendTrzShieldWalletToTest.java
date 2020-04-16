@@ -22,7 +22,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
     float afterBalance;
 
     @Parameters({"publicShieldSK", "udid"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String publicShieldSK,String udid) throws Exception {
         log("我是BaseTest类的Before");
         System.out.println("publicPk: " + publicShieldSK + " udid: " + udid);
@@ -37,7 +37,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         new Helper().importFirstWallet(Helper.importType.normal,publicShieldSK, DRIVER);
     }
     @Parameters({"bundleId"})
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
@@ -52,7 +52,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
     }
 
     @Parameters({"udid"})
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
@@ -67,7 +67,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
     }
 
     @Parameters({"bundleId"})
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
@@ -85,7 +85,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         }
     }
 
-    @Test(description = "PublicAddressSend Trz To ShieldWallet Success", alwaysRun = true)
+    @Test(groups = {"P0"},description = "PublicAddressSend Trz To ShieldWallet Success", alwaysRun = true)
     public void test001_PublicAddressSendTrzToShieldWalletSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
@@ -113,7 +113,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         Assert.assertTrue(trzPage.enterNumberRecordPage(findString));
     }
     @Parameters({"publicShieldAddress"})
-    @Test(enabled = true, description = "Public send trz transaction detail info test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Public send trz transaction detail info test", alwaysRun = true)
     public void test004_PublicSendTrzTransactionDetailInfo(String publicShieldAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
@@ -127,7 +127,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
     }
 
 
-    @Test(description = "PublicAddressSend Trz To PublicWallet Success", alwaysRun = true)
+    @Test(groups = {"P0"},description = "PublicAddressSend Trz To PublicWallet Success", alwaysRun = true)
     public void test005_PublicAddressSendTrzToPublicWalletSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
@@ -155,7 +155,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
     }
 
     @Parameters({"publicShieldAddress"})
-    @Test(enabled = true, description = "Trz receive transaction detail info test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, description = "Trz receive transaction detail info test", alwaysRun = true)
     public void test008_trzReceiveTransactionDetailInfo(String publicShieldAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();

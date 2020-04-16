@@ -45,7 +45,7 @@ public class Base {
 
     //setUp
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "bpPort", "webDriverPort"})
-    @BeforeTest
+    @BeforeTest(groups = {"P0"})
     public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) throws IOException {
 //        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
         try {
@@ -67,7 +67,7 @@ public class Base {
 
 
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "webDriverPort","xcodeSigningId","noReset", "automationName", "xcodeOrgId", "bundleId"})
-    @BeforeClass() //Increase stability(because some case star setup error)
+    @BeforeClass(groups = {"P0"}) //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort,String xcodeSigningId,String noReset, String automationName, String xcodeOrgId,
         String bundleId) throws Exception {
         log("我是Base类的Before");

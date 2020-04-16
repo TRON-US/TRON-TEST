@@ -56,7 +56,7 @@ public class DappChainWithdraw extends BaseTest {
 
 
 
-    @Test(description = "transferOut Success Checkout Available trx",alwaysRun = true)
+    @Test(groups = {"P0"},description = "transferOut Success Checkout Available trx",alwaysRun = true)
     public void test002_checktransferOutSuccessedAvailableBalance() throws Exception {
 
         TrxPage trx = enterTrxPage();
@@ -115,7 +115,7 @@ public class DappChainWithdraw extends BaseTest {
 
 
 
-    @Test(description = "Check transferOut Trx Count",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Check transferOut Trx Count",alwaysRun = true)
     public void test006_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
@@ -123,7 +123,7 @@ public class DappChainWithdraw extends BaseTest {
         Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
     }
 
-    @Test(description = "Check OutNumberInRecord WithDraw trx",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Check OutNumberInRecord WithDraw trx",alwaysRun = true)
     public void test007_CheckOutNumberInRecordWithDrawTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrxPage();

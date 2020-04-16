@@ -63,7 +63,7 @@ public class DappSendTrxTest extends BaseTest {
     }
 
 
-    @Test(description = "SendTrx success test",alwaysRun = true)
+    @Test(groups = {"P0"},description = "SendTrx success test",alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -92,7 +92,7 @@ public class DappSendTrxTest extends BaseTest {
     }
 
 
-    @Test(description = "input not active Receiving address",alwaysRun = true)
+    @Test(groups = {"P0"},description = "input not active Receiving address",alwaysRun = true)
     public void test003_inputNotActiveAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
@@ -105,7 +105,7 @@ public class DappSendTrxTest extends BaseTest {
 
 
     @Parameters({"address"})
-    @Test(description = "input Receiving address same as send address",alwaysRun = true)
+    @Test(groups = {"P0"},description = "input Receiving address same as send address",alwaysRun = true)
     public void test004_inputReceivingAddressSameAsSend(String address) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),address);
@@ -205,7 +205,7 @@ public class DappSendTrxTest extends BaseTest {
     }
 
 
-    @Test(description = "Receiving Minimum Extra Trx",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Receiving Minimum Extra Trx",alwaysRun = true)
     public void test012_sendMinimumTrx() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -224,7 +224,7 @@ public class DappSendTrxTest extends BaseTest {
         Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址格式不正确"));
     }
 
-    @Test(description = "Check OutNumberInRecord Trx",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Check OutNumberInRecord Trx",alwaysRun = true)
     public void test014_CheckOutNumberInRecordTrx() throws Exception {
         log("successNumber:"+successNumber);
         AssetPage asset = new AssetPage(DRIVER);

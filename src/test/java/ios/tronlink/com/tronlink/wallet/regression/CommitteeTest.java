@@ -23,7 +23,7 @@ public class CommitteeTest extends Base {
     //    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
 
     @Parameters({"witnessKey", "udid"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String witnessKey, String udid) throws Exception {
         System.out.println("pk: " + witnessKey + " udid: " + udid);
         DRIVER.closeApp();
@@ -38,7 +38,7 @@ public class CommitteeTest extends Base {
 
     }
     @Parameters({"bundleId"})
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
@@ -52,7 +52,7 @@ public class CommitteeTest extends Base {
 
     }
     @Parameters({"bundleId"})
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
@@ -71,7 +71,7 @@ public class CommitteeTest extends Base {
     }
 
     @Parameters({"udid"})
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
@@ -95,7 +95,7 @@ public class CommitteeTest extends Base {
     }
 
 
-    @Test(description = "send proposals", alwaysRun = true)
+    @Test(groups = {"P0"},description = "send proposals", alwaysRun = true)
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
@@ -122,14 +122,14 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(states.contains("投票中"));
     }
 
-    @Test(description = "be delete My first Proposal", alwaysRun = true)
+    @Test(groups = {"P0"}, description = "be delete My first Proposal", alwaysRun = true)
     public void test_003cancalagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
         String states = committeePage.getStateofproposal();
         Assert.assertTrue(states.contains("已取消"));
     }
-    @Test(description = "secendnewProposal",alwaysRun = true)
+    @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
     public void test_004makeecendNewProposal() throws  Exception{
 
         log("second 开始执行时间");
@@ -169,7 +169,7 @@ public class CommitteeTest extends Base {
 
     }
 
-    @Test(description = "newProposal",alwaysRun = true)
+    @Test(groups = {"P0"},description = "newProposal",alwaysRun = true)
     public void test_008makeNewProposal() throws  Exception{
 
         log("three 开始执行时间");
@@ -184,7 +184,7 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(Helper.contentTexts(textarray, "0.2"));
     }
 
-    @Test(description = "be agreed Proposal", alwaysRun = true)
+    @Test(groups = {"P0"},description = "be agreed Proposal", alwaysRun = true)
     public void test_009agreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.agreeAction();
@@ -192,7 +192,7 @@ public class CommitteeTest extends Base {
     }
 
     //有没有攥成着
-    @Test(description = "be dis agreed Proposal", alwaysRun = true)
+    @Test(groups = {"P0"},description = "be dis agreed Proposal", alwaysRun = true)
     public void test_010disagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.disagreeAction();

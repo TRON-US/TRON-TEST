@@ -24,7 +24,7 @@ public class SendTrx extends BaseTest {
     }
 
 
-    @Test(description = "SendTrx success test",alwaysRun = true)
+    @Test(groups = {"P0"},description = "SendTrx success test",alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -72,7 +72,7 @@ public class SendTrx extends BaseTest {
 
 
     @Parameters({"address"})
-    @Test(description = "input Receiving address same as send address",alwaysRun = true)
+    @Test(groups = {"P0"},description = "input Receiving address same as send address",alwaysRun = true)
     public void test004_inputReceivingAddressSameAsSend(String address) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),address);
@@ -203,7 +203,7 @@ public class SendTrx extends BaseTest {
     }
 
 
-    @Test(description = "Check OutNumberInRecord Trx",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Check OutNumberInRecord Trx",alwaysRun = true)
     public void test014_CheckOutNumberInRecordTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrxPage();

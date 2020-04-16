@@ -62,7 +62,7 @@ public class SettingTest extends BaseTest {
         MnemonicToolsPage toolsPage = setting.enternemTools_btnPage();
         Assert.assertEquals(toolsPage.title.getText(),"助记词转换工具");
     }
-    @Test(description = "Mnemonic Exchange Test",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Mnemonic Exchange Test",alwaysRun = true)
     public void test008_MnemonicExchangetest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();

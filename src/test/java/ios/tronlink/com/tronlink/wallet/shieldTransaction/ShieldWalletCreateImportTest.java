@@ -29,7 +29,7 @@ public class ShieldWalletCreateImportTest extends Base {
     String mnemonic = "unique spider amount maple manage apple eight empty area trim energy example";
 
     @Parameters({"shieldSK", "udid"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String shieldSK,String udid) throws Exception {
         log("我是BaseTest类的Before");
         System.out.println("pk: " + shieldSK + " udid: " + udid);
@@ -44,7 +44,7 @@ public class ShieldWalletCreateImportTest extends Base {
         new Helper().importFirstWallet(Helper.importType.shieldWallet,shieldSK, DRIVER);
     }
     @Parameters({"bundleId"})
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
             String name = this.getClass().getSimpleName() + "." +
@@ -59,7 +59,7 @@ public class ShieldWalletCreateImportTest extends Base {
     }
 
     @Parameters({"udid"})
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
@@ -74,7 +74,7 @@ public class ShieldWalletCreateImportTest extends Base {
     }
 
     @Parameters({"bundleId"})
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;

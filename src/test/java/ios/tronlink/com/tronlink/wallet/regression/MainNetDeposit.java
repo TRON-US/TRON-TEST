@@ -40,7 +40,7 @@ public class MainNetDeposit extends BaseTest {
     }
 
 
-    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    @Test(groups = {"P0"},description = "TransferIn Success Recording",alwaysRun = true)
     public void test002_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
@@ -90,7 +90,7 @@ public class MainNetDeposit extends BaseTest {
 
 
 
-    @Test(description = "Check Available Balance",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Check Available Balance",alwaysRun = true)
     public void test006_checkAvailableBalance() throws Exception {
 
         AssetPage asset = enterAssetPage();
@@ -105,7 +105,7 @@ public class MainNetDeposit extends BaseTest {
 
 
 
-    @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
 //        successNumber = "8";
         log("successNumber:"+successNumber);

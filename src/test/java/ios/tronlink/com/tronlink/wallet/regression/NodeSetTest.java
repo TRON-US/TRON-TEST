@@ -31,7 +31,7 @@ public class NodeSetTest extends BaseTest {
     }
 
     //    添加自定义节点
-    @Test(description = "Test  add note", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Test  add note", alwaysRun = true)
     public void test02_AddnoteSuccess() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.addNote());
@@ -68,7 +68,7 @@ public class NodeSetTest extends BaseTest {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.portwrongSolidity());
     }
-    @Test(description = "Test  note  delete", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
     public void test09_noteDeleteSuccess() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.deleteNode());

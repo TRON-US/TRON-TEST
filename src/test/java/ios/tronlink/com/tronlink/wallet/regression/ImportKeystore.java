@@ -91,7 +91,7 @@ public class ImportKeystore extends BaseTest {
 ////        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包名称过长"));
 //    }
 
-    @Test(description = "test import Keystore Wallet Success",alwaysRun = true)
+    @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
     public  void test007_keystoreNameSetSuccess() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
@@ -103,7 +103,7 @@ public class ImportKeystore extends BaseTest {
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("willbedelete"));
     }
 
-    @Test(description = "test Delete Wallet  password",alwaysRun = true)
+    @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
     public void  test008_testDeletewalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();

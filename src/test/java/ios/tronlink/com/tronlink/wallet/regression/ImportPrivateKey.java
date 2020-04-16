@@ -70,7 +70,7 @@ public class ImportPrivateKey extends BaseTest {
     }
 
 
-    @Test(description = "Wallet Name Has Alerady Exist", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Wallet Name Has Alerady Exist", alwaysRun = true)
     public void test006_PrivateKeywalletNameHasAleradyExist() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);

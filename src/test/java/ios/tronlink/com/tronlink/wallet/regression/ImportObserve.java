@@ -81,7 +81,7 @@ public class ImportObserve extends BaseTest {
         Assert.assertTrue(namePage.toolongname.isDisplayed());
 
     }
-    @Test(description = "Observe Name Has Alerady Exist", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Observe Name Has Alerady Exist", alwaysRun = true)
     public void test007_walletNameHasAleradyExist() throws Exception {
         ObservePage importObservePage = enterImportObservePage();
         importObservePage.inputAddreseString(addressNew);
