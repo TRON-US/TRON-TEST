@@ -15,12 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 //public class ZColdWalletTest extends BaseTest {
 //
-//    @Parameters({"privateKey"})
-//    @BeforeClass(alwaysRun = true)
-//    public void setUpBefore(String privateKey) throws Exception {
-//        log("我是BaseTest类的Before");
-//        new Helper().getColdSign(privateKey, DRIVER);
-//    }
+
 public class ZColdWalletTest extends ColdBaseTest {
 
     @Test(groups = {"P0"},enabled = true,description = "Cold wallet asset page test", alwaysRun = true)
@@ -137,4 +132,56 @@ public class ZColdWalletTest extends ColdBaseTest {
         String developerNow = setting.disconnected_title.getText();
         Assert.assertEquals(developerNow,"未选择");
     }
+
+    @Parameters({"shieldSK"})
+    @Test(groups = {"P0"},description = "ShieldWallet Import",alwaysRun = true)
+    public void test010_ColdWalletShieldWalletImport(String shieldSK) throws Exception {
+        ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
+        new Helper().importMoreWallet(Helper.importType.coldShieldWallet,shieldSK,"shieldCold","Test0001",coldHelper.driver);
+        Assert.assertTrue(coldHelper.AssetBtn.isEnabled());
+        Assert.assertTrue(coldHelper.MineBtn.isEnabled());
+        Assert.assertTrue(coldHelper.recieveLabel.isDisplayed());
+        Assert.assertTrue(coldHelper.offlineLabel.isDisplayed());
+        Assert.assertTrue(coldHelper.AddWalletBtn.isEnabled());
+        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即扫描'").isEnabled());
+    }
+
+    @Parameters({"shieldAddress"})
+    @Test(groups = {"P0"},enabled = true,description = "shield Cold wallet receive test", alwaysRun = true)
+    public void test011_coldShieldWalletCanReceiveTrx(String shieldAddress) throws Exception {
+        ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
+        coldHelper.recieveLabel.click();
+        waiteTime();
+        Helper.swipScreen(DRIVER);
+        Assert.assertTrue(coldHelper.addressLabel.getText().equals(shieldAddress));
+        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款地址'").isEnabled());
+    }
+
+    @Test(groups = {"P0"},enabled = true,description = "Shield Cold wallet knowledge test", alwaysRun = true)
+    public void test012_coldShieldWalletKnowledgeTest() throws Exception {
+        ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
+        Helper.swipRefreshScreen(DRIVER);
+        coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '了解冷钱包'").click();
+        waiteTime();
+        Assert.assertTrue(coldHelper.coldWallettitle.getText().contains("冷钱包的使用说明"));
+    }
+
+    @Test(groups = {"P0"},description = "Cold Shield wallet  Me into GroupPage", alwaysRun = true)
+    public void test013_ColdShieldWalletEnterGroupPage() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage = assetPage.enterMinePage();
+        GroupPage groupPage = minePage.enterGroupPage();
+        TimeUnit.SECONDS.sleep(4);
+        Assert.assertEquals(groupPage.groupInto_title.getText(), "加入社群");
+        groupPage.blackBackBtn.click();
+        SettingPage setPage = minePage.enterSettingPage();
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertEquals(setPage.title.getText(), "设置");
+        groupPage.blackBackBtn.click();
+        MyPursePage walletPage = minePage.enterMyPursePage();
+        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(Helper.contentTexts(walletPage.textArray,"钱包管理"));
+        Assert.assertTrue(Helper.isElementExist(walletPage.driver,"钱包管理"));
+    }
+
 }
