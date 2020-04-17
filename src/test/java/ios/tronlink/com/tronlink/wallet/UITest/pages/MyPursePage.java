@@ -341,6 +341,7 @@ public class MyPursePage extends AssetPage {
         String keystore = "";
         try {
             Helper.swipScreen(driver);
+            waiteTime();
             try{
                 backkeystore_btn.click();
             }catch (Exception e){
@@ -354,13 +355,17 @@ public class MyPursePage extends AssetPage {
 
             }
             TimeUnit.SECONDS.sleep(1);
+            waiteTime();
             password_et.sendKeys(password);
-            WebElement  confirm_btn;
-            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+            waiteTime();
+            WebElement confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(2);
+            waiteTime();
             keystore = keystore_text.getText();
+            waiteTime();
             done_btn.click();
+            TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){
             System.out.println(e);
         }
