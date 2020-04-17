@@ -347,6 +347,7 @@ public class autoCreateTestngXml {
             + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n"
             + "    <listeners>\n"
             + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener\"/>\n"
+            + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.sqlTronlinkUI\"/>\n"
             + "    </listeners>\n");
         String res = sb.toString();
         try {
