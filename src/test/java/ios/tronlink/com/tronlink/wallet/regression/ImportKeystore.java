@@ -49,12 +49,15 @@ public class ImportKeystore extends BaseTest {
 //        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"密码错误"));
 
     }
-
+    @Parameters({"privateKey"})
     @Test(description = "test  input haved Keystore",alwaysRun = true)
-    public void test004_inputHaveExistWallet() throws Exception {
+    public void test004_inputHaveExistWallet(String privateKey) throws Exception {
+        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
+
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage walletPage = asset.enterMyPursePage();
         oldKeystore = walletPage.getBackupKeystore("Test0001");
+        waiteTime();
         walletPage.backbtn.click();
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
