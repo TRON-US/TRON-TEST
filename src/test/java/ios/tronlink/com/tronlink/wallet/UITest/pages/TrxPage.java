@@ -20,21 +20,12 @@ public class TrxPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(name = "com.tronlink.wallet:id/rl_send")
-    public WebElement assets_btn;
 
-
-
-    @FindBy(name = "com.tronlink.wallet:id/ll_deposit")
-    public WebElement transferIn_btn;
 
     @FindBy(name = "转入") ////XCUIElementTypeApplication[@name="TronLink"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]
     public List<WebElement> transferIn_btnArray;
     @FindBy(name = "转出") ////XCUIElementTypeApplication[@name="TronLink"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]
     public List<WebElement> transferOut_btnArray;
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_trx_amount")
-    public WebElement trx_text;
 
 
 
@@ -83,8 +74,21 @@ public WebElement shieldedDetailBtn;
     public WebElement receiveBtn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_count")
-    public List<WebElement> tranferIncount_text;
+    @FindBy(id = "amountDesContent")
+    public WebElement amountDesContent;
+
+    @FindBy(className = "XCUIElementTypeTextField")
+    public WebElement textField;
+
+
+
+    @FindBy(id = "最大")
+    public WebElement maxBtn;
+
+    @FindBy(id = "amountErrorLabel")
+    public WebElement amountErrorLabel;
+
+
 
 
     public TrzTokenDetailPage enterTrzDetailPage() throws Exception{

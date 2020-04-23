@@ -34,6 +34,18 @@ public class TransferPage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement password_input;
 
+    @FindBy(id = "chargeText")
+    public WebElement chargeText;
+
+    @FindBy(id = "titleText")
+    public WebElement titleText;
+
+
+    @FindBy(id = "bandwidthLabel")
+    public WebElement bandwidthLabel;
+
+    @FindBy(id = "bandwidthText")
+    public WebElement bandwidthText;
 
     public WebElement get_inter_btn(){
         return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转入'");

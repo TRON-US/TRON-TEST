@@ -192,6 +192,15 @@ public class Base {
         }
         return value;
     }
+
+    public String removeSymbolNoDot(String arg) {
+        String value = arg;
+        if (arg.contains(",")) {
+            value = arg.replace(",", "");
+        }
+        return value;
+    }
+
     public float getAnAmount() {
         Random rand = new Random();
         String amountStr = Float.toString(rand.nextFloat() + 1);
