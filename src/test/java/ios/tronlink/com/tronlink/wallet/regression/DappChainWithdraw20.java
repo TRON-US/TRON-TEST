@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class DappChainWithdraw20 extends BaseTest {
-
+//缺少最大值最小值的case
     String successNumber;
 
     //enter SettingPage
@@ -135,9 +135,52 @@ public class DappChainWithdraw20 extends BaseTest {
 
     }
 
+    @Test(description = "input max send number",alwaysRun = true)
+    public void test006_inputMaxSendNumber() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage outPage = trx.enterTransferOutPage();
+        waiteTime();
+        trx.maxBtn.click();
+        waiteTime();
+        Double ableNumber =  Double.parseDouble(removeSymbolNoDot(trx.amountDesContent.getText().split(" ")[1]));
+        Double textNumber =  Double.parseDouble(removeSymbolNoDot(trx.textField.getText()));
+        log("ableNumber:"+ ableNumber.toString() + " textNumber:" + textNumber);
+        Assert.assertTrue(ableNumber.equals(textNumber));
+        outPage.get_out_btn().click();
+        TimeUnit.SECONDS.sleep(10);
+        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.chargeText.getText().split(" ")[0]));
+        log("confirmNumber:"+ confirmNumber.toString() + " textNumber:" + textNumber);
+        Assert.assertTrue(confirmNumber.equals(textNumber) );
+        Double feeNumber = Double.parseDouble(removeSymbolNoDot(outPage.bandwidthText.getText().split(" ")[0]));
+        log("feeNumber:"+ feeNumber.toString());
+        Assert.assertTrue(feeNumber > 0 );
+        Assert.assertTrue(outPage.titleText.getText().contains("转出签名"));
+        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("手续费"));
+        Assert.assertFalse( outPage.get_finish_btn().isEnabled());
+        outPage.password_input.click();
+        outPage.password_input.sendKeys("balabala");
+        Helper.tapWhitePlace(outPage.driver);
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue( outPage.get_finish_btn().isEnabled());
+
+    }
+
+
+
+    @Test(description = "input mix send number",alwaysRun = true)
+    public void test007_inputMixSendNumber() throws Exception {
+        TrxPage trx = enterTrxPage();
+        trx.enterTransferOutPage();
+        waiteTime();
+        trx.textField.click();
+        trx.textField.sendKeys("0");
+        Helper.tapWhitePlace(trx.driver);
+        Assert.assertTrue( trx.amountErrorLabel.getText().contains("格式错误"));
+
+    }
 
     @Test(description = "Check OutNumberInRecord WithDraw trx20",alwaysRun = true)
-    public void test006_checkOutNumberInRecordWithDrawTrx20() throws Exception {
+    public void test008_checkOutNumberInRecordWithDrawTrx20() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx20Page();
         String findString = "-" + successNumber;

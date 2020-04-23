@@ -57,7 +57,7 @@ public class DappChainWithdraw10 extends BaseTest {
 
 
     @Test(description = "transferOut Success Checkout Trc10 Available trx",alwaysRun = true)
-    public void test002_checktransferOutSuccessAvailableBalance() throws Exception {
+    public void test001_checktransferOutSuccessAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         double trxCount = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println(trxCount);
@@ -80,10 +80,8 @@ public class DappChainWithdraw10 extends BaseTest {
     }
 
 
-
-
     @Test(description = "Check transferOut Trc10 Hits",alwaysRun = true)
-    public void test003_checkTransferOutHits() throws Exception {
+    public void test002_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
@@ -94,7 +92,7 @@ public class DappChainWithdraw10 extends BaseTest {
 
 
     @Test(description = "Check transferOut Trc10  Fee",alwaysRun = true)
-    public void test004_checkTransferOutFee() throws Exception {
+    public void test003_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
@@ -106,7 +104,7 @@ public class DappChainWithdraw10 extends BaseTest {
 
 
     @Test(description = "Check Available Trc10 Balance",alwaysRun = true)
-    public void test005_checkAvailableBalance() throws Exception {
+    public void test004_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
         TransferPage transferOut = trx.enterTransferOutPage();
@@ -116,18 +114,60 @@ public class DappChainWithdraw10 extends BaseTest {
     }
 
     @Test(description = "Check transferOut Trc10 Count",alwaysRun = true)
-    public void test006_checkTransferOutTrx() throws Exception {
+    public void test005_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
         Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
     }
 
+    @Test(description = "input max send number",alwaysRun = true)
+    public void test006_inputMaxSendNumber() throws Exception {
+        TrxPage trx = enterTrxPage();
+        TransferPage outPage = trx.enterTransferOutPage();
+        waiteTime();
+        trx.maxBtn.click();
+        waiteTime();
+        Double ableNumber =  Double.parseDouble(removeSymbolNoDot(trx.amountDesContent.getText().split(" ")[1]));
+        Double textNumber =  Double.parseDouble(removeSymbolNoDot(trx.textField.getText()));
+        log("ableNumber:"+ ableNumber.toString() + " textNumber:" + textNumber);
+        Assert.assertTrue(ableNumber.equals(textNumber));
+        outPage.get_out_btn().click();
+        TimeUnit.SECONDS.sleep(10);
+        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.chargeText.getText().split(" ")[0]));
+        log("confirmNumber:"+ confirmNumber.toString() + " textNumber:" + textNumber);
+        Assert.assertTrue(confirmNumber.equals(textNumber) );
+        Double feeNumber = Double.parseDouble(removeSymbolNoDot(outPage.bandwidthText.getText().split(" ")[0]));
+        log("feeNumber:"+ feeNumber.toString());
+        Assert.assertTrue(feeNumber > 0 );
+        Assert.assertTrue(outPage.titleText.getText().contains("转出签名"));
+        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("手续费"));
+        Assert.assertFalse( outPage.get_finish_btn().isEnabled());
+        outPage.password_input.click();
+        outPage.password_input.sendKeys("balabala");
+        Helper.tapWhitePlace(outPage.driver);
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue( outPage.get_finish_btn().isEnabled());
 
+    }
+
+
+
+    @Test(description = "input mix send number",alwaysRun = true)
+    public void test007_inputMixSendNumber() throws Exception {
+        TrxPage trx = enterTrxPage();
+        trx.enterTransferOutPage();
+        waiteTime();
+        trx.textField.click();
+        trx.textField.sendKeys("0");
+        Helper.tapWhitePlace(trx.driver);
+        Assert.assertTrue( trx.amountErrorLabel.getText().contains("格式错误"));
+
+    }
 
 
     @Test(description = "Check OutNumberInRecord WithDraw trx10",alwaysRun = true)
-    public void test007_checkOutNumberInRecordWithDrawTrx10() throws Exception {
+    public void test008_checkOutNumberInRecordWithDrawTrx10() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx10Page();
         String findString = "-" + successNumber;
