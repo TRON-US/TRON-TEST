@@ -83,7 +83,7 @@ public class CustomNodeSettingTest extends Base {
     }
 
     @Test(enabled = true,description = "Delete custom node from mainNet test")
-    public void test003_DeleteCustomNodeToMainNetTest() throws Exception {
+    public void test003_DeleteCustomNodeFromMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
         mainnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
@@ -111,23 +111,26 @@ public class CustomNodeSettingTest extends Base {
 
 
     @Test(enabled = true,description = "Add custom node to dappNet test")
-    public void test005_AddCustomNodeToMainNetTest() throws Exception {
+    public void test005_AddCustomNodeToDappNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
+        dappnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
         dappNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(dappNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
         internalNodeSetPage = addCustomNodePage.saveNode();
-        mainnetAfterNodeNum = internalNodeSetPage.ip_list.size();
-        Assert.assertTrue(mainnetAfterNodeNum == mainnetBeforeNodeNum + 1);
+        dappnetAftereNodeNum = internalNodeSetPage.ip_list.size();
+        System.out.println("dappnetBeforeNodeNum:" + dappnetBeforeNodeNum);
+        System.out.println("dappnetAftereNodeNum:" + dappnetAftereNodeNum);
+        Assert.assertTrue(dappnetAftereNodeNum == dappnetBeforeNodeNum + 1);
         String ip = internalNodeSetPage.ip_list.get(mainnetAfterNodeNum-1).getText();
         Assert.assertEquals(ip,dappNetCustomIp);
     }
 
 
     @Test(enabled = true,description = "Delete custom node in dappNet test")
-    public void test006_AddCustomNodeToMainNetTest() throws Exception {
+    public void test006_DeleteCustomNodeFromDappNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
         dappnetBeforeNodeNum = internalNodeSetPage.ip_list.size();

@@ -117,6 +117,10 @@ public class MyPursePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/editText")
     public WebElement shieldAddress_text;
 
+    @FindBy(id = "com.tronlink.wallet:id/bt_know")
+    public WebElement i_know_btn;
+
+
 
 
     public MultiSignManagerPage enterMultiSignManagerPage() {
@@ -180,6 +184,12 @@ public class MyPursePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(1);
             password_et.sendKeys(password);
             confirm_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+            try {
+                i_know_btn.click();
+            } catch (Exception e) {
+                System.out.println("I know btn is disappear");
+            }
             TimeUnit.SECONDS.sleep(1);
             keystore = keystore_text.getText();
             done_btn.click();
