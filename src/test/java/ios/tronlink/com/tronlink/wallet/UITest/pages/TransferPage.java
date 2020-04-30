@@ -47,6 +47,12 @@ public class TransferPage extends AbstractPage {
     @FindBy(id = "bandwidthText")
     public WebElement bandwidthText;
 
+    @FindBy(id = "DappChainDepositsignTips")
+    public WebElement DappChainDepositsignTips;
+
+
+
+
     public WebElement get_inter_btn(){
         return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转入'");
     }

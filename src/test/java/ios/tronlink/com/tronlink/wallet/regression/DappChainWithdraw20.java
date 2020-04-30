@@ -95,7 +95,7 @@ public class DappChainWithdraw20 extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"10"));
+        Assert.assertTrue(transferOut.chargeText.getText().contains("10"));
     }
 
 
@@ -105,8 +105,8 @@ public class DappChainWithdraw20 extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"转出需要执行智能合约"));
-//转出需要执行智能合约。执行智能合约同时会消耗 Energy。
+        Assert.assertTrue(transferOut.DappChainDepositsignTips.getText().contains("转出需要执行智能合约"));
+        //转出需要执行智能合约。执行智能合约同时会消耗 Energy。
     }
 
 
