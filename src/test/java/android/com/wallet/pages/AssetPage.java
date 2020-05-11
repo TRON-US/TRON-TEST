@@ -221,8 +221,8 @@ public class AssetPage extends AbstractPage {
         try {
           TimeUnit.SECONDS.sleep(10);
           currentSynTime = System.currentTimeMillis();
-          //同步大于十分钟，强制退出
-          if (currentSynTime - startSynTime > 900000L) {
+          //同步大于三十分钟，强制退出
+          if (currentSynTime - startSynTime > 1800000L) {
             break;
           }
         } catch (Exception e){}
