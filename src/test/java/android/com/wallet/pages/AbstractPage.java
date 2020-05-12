@@ -27,4 +27,11 @@ public abstract class AbstractPage {
 
     }
 
+    public void waiteTime(long time) {
+        this.driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+    public void waiteTime() {
+        waiteTime(10);
+    }
+
 }

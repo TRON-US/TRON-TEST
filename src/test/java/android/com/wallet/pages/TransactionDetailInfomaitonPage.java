@@ -42,4 +42,9 @@ public class TransactionDetailInfomaitonPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_vdd")
     public WebElement to_tronscan_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_resource")
+    public WebElement resouce_cost;
+
+
+
 }

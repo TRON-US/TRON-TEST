@@ -234,9 +234,9 @@ public class AssetPage extends AbstractPage {
 
 
     public SendTrxPage enterSendTrxPage() {
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        waiteTime();
         assets_btn.click();
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        waiteTime();
         return new SendTrxPage(driver);
     }
 
@@ -410,11 +410,10 @@ public class AssetPage extends AbstractPage {
     public MinePage enterMinePage(){
         try {
           TimeUnit.SECONDS.sleep(2);
+          waiteTime();
           mine_btn.click();
-          driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-          TimeUnit.SECONDS.sleep(2);
         } catch (Exception e ){};
-        //driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        waiteTime();
         mine_btn.click();
         return new MinePage(driver);
     }
@@ -431,9 +430,11 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrxPage() throws Exception {
+        waiteTime();
         Helper.scrollToElementUntilVisible(driver,trx_btn);
+        waiteTime();
         trx_btn.click();
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        waiteTime();
         return new TrxPage(driver);
     }
 
