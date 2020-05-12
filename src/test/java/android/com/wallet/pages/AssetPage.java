@@ -457,10 +457,11 @@ public class AssetPage extends AbstractPage {
         default :
           trx = enterTrxPage();
       }
+      waiteTime();
       trx.tranfer_tab.get(1).click();
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+      waiteTime();
       trx.tranferIncount_text.get(1).click();
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+      waiteTime();
       TimeUnit.SECONDS.sleep(3);
       return new TransactionDetailInfomaitonPage(driver);
   }
@@ -589,14 +590,18 @@ public class AssetPage extends AbstractPage {
 
   public TrxPage publicAccountEnterTrzPage() throws Exception {
     TimeUnit.SECONDS.sleep(1);
+    waiteTime();
     mine_btn.click();
+    waiteTime();
     assetsMain_btn.click();
     Helper.swipScreen(driver);
     TimeUnit.SECONDS.sleep(1);
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     Helper.swipScreen(driver);
     try {
-      public_account_trz_btn.click();
+        waiteTime();
+
+        public_account_trz_btn.click();
     } catch (Exception e) {
       public_account_trz_btn.click();
     }
@@ -610,17 +615,21 @@ public class AssetPage extends AbstractPage {
     public TrxPage enterTrx10Page() throws Exception {
       TimeUnit.SECONDS.sleep(1);
         try {
+            waiteTime();
           mine_btn.click();
         } catch (Exception e) {
           mine_btn.click();
         }
+        waiteTime();
         mine_btn.click();
+        waiteTime();
         assetsMain_btn.click();
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(1);
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         Helper.swipScreen(driver);
         try {
+            waiteTime();
           trx10_btn.click();
         } catch (Exception e) {
           trx10_icon_btn.click();
@@ -657,7 +666,9 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrx20Page() throws Exception {
       TimeUnit.SECONDS.sleep(1);
+      waiteTime();
         mine_btn.click();
+        waiteTime();
         assetsMain_btn.click();
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(3);

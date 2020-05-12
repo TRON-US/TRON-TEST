@@ -242,7 +242,6 @@ public class SendTrx extends Base {
         String content = transfer.bandwidth_text.getText();
         String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
-
     }
 
 
@@ -279,7 +278,7 @@ public class SendTrx extends Base {
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
         String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(sendIcon.equals("-"));
-//        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrxAmount).substring(0,6));
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrxAmount).substring(0,6));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum));
         Helper.swipScreen(transactionInfo.driver);

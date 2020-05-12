@@ -8,6 +8,7 @@ import android.com.utils.Helper;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -154,8 +155,20 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);
     }
 
+    @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
+    public void test008_BandWidthShowTest() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        waiteTime();
+        String content = transfer.bandwidth_text.getText();
+        String number = StringUtils.substringBeforeLast(content,"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    }
+
     @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
-    public void test008_transactionRecord() throws Exception {
+    public void test009_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
@@ -166,7 +179,7 @@ public class SendTrc10 extends Base {
 
     @Parameters({"address"})
     @Test(enabled = true, description = "Trc10 transaction detail info test", alwaysRun = true)
-    public void test009_trc10TransactionDetailInfo(String address) throws Exception {
+    public void test010_trc10TransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -186,12 +199,14 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
 
+        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
     }
 
 
     @Parameters({"address"})
     @Test(enabled = true, description = "Trc10 receive transaction detail info test", alwaysRun = true)
-    public void test010_trc10ReceiveTransactionDetailInfo(String address) throws Exception {
+    public void test011_trc10ReceiveTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
         System.out.println(transactionInfo.title_amount_test.getText());
@@ -209,6 +224,8 @@ public class SendTrc10 extends Base {
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
     }
 
 
