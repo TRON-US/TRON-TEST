@@ -223,6 +223,7 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum));
         Helper.swipScreen(transactionInfo.driver);
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");

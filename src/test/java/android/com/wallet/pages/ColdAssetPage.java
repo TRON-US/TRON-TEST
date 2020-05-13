@@ -22,6 +22,10 @@ public class ColdAssetPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_walletname")
+    public WebElement tv_walletname;
+
+
     @FindBy(id = "com.tronlink.wallet:id/tv_offline_sign_desc")
     public WebElement scanQrSign_btn;
 
@@ -77,6 +81,11 @@ public class ColdAssetPage extends AbstractPage {
     public WebElement accountType_shieldAccount;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/create_opt_general")
+    public WebElement create_opt_general;
+
+    @FindBy(id = "com.tronlink.wallet:id/cd_cw")
+    public WebElement create_wallet;
 
 
 
