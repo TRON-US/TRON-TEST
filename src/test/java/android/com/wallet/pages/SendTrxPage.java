@@ -61,9 +61,14 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_error")
     public WebElement formatErrorHits_text;
 
+    @FindBy( id = "com.tronlink.wallet:id/tv_fee_amount_bw")
+    public WebElement bandwidth_text;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_note")
     public WebElement note_text;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_no_bandwidth")
+    public WebElement no_bandwidth;
 
 
     @FindBy(id = "com.tronlink.wallet:id/tv_balance")
@@ -303,10 +308,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrc10(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        trc10_btn.click();
-        //calculate trx
+        selectTokenType("10");
         switch(value){
             case "max":
 //                String current = balance_text.getText();
@@ -330,10 +332,8 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrc20(String value) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        trc20_btn.click();
-        //calculate trx
+        selectTokenType("20");
+
         switch(value){
             case "max":
 //                String current = balance_text.getText();
@@ -354,7 +354,20 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
-
+    public void selectTokenType(String value) throws Exception{
+        waiteTime();
+        switch (value){
+            case  "20":
+                token_btn.click();
+                TimeUnit.SECONDS.sleep(3);
+                trc20_btn.click();
+                break;
+            case "10":
+                token_btn.click();
+                TimeUnit.SECONDS.sleep(3);
+                trc10_btn.click();
+        }
+    }
 
     public AssetPage sendRamonTrxSuccess(String revAddress) throws Exception {
         receiveAddress_text.sendKeys(revAddress);

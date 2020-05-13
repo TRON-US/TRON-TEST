@@ -10,6 +10,7 @@ import android.com.wallet.pages.TrxPage;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -106,9 +107,29 @@ public class SendTrc20 extends Base {
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
-
+    @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
+    public void test005_BandWidthShowTest() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        waiteTime();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.selectTokenType("20");
+        waiteTime();
+        transfer.tranferCount_text.sendKeys("0.000001");
+        waiteTime();
+        transfer.send_btn.click();
+        waiteTime();
+        String no_bandwidthTips = transfer.no_bandwidth.getText();
+        Assert.assertTrue(no_bandwidthTips.contains("20"));
+        Assert.assertTrue(no_bandwidthTips.contains("燃烧"));
+        Assert.assertTrue(no_bandwidthTips.contains("TRX"));
+        Assert.assertTrue(no_bandwidthTips.contains("消耗能量"));
+        Assert.assertTrue(no_bandwidthTips.contains("智能合约"));
+        String content = transfer.bandwidth_text.getText();
+        String number = StringUtils.substringBeforeLast(content,"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    }
     @Test(groups = {"P0"},enabled = true,description = "Trc20 transfer success recording")
-    public void test005_trc20TransferInSuccessRecording() throws Exception {
+    public void test006_trc20TransferInSuccessRecording() throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       TrxPage trx = asset.enterTrx20Page();
       trx.tranfer_tab.get(1).click();
@@ -139,8 +160,9 @@ public class SendTrc20 extends Base {
   }
 
 
+
     @Test(enabled = true, description = "TRC20 transfer history record test", alwaysRun = true)
-    public void test006_trc20TransactionHistory() throws Exception {
+    public void test007_trc20TransactionHistory() throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       MinePage mine = asset.enterMinePage();
       TransactionRecordPage transaction = mine.enterTransactionRecordPage();
@@ -149,9 +171,10 @@ public class SendTrc20 extends Base {
       Assert.assertTrue(transactionType.equals("触发智能合约") || transactionType.equals("Trigger Smart Contract"));
   }
 
+
   @Parameters({"address"})
   @Test(enabled = true, description = "Trc 20 transaction detail info test", alwaysRun = true)
-  public void test007_trc20TransactionDetailInfo(String address) throws Exception {
+  public void test008_trc20TransactionDetailInfo(String address) throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
     Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -168,6 +191,11 @@ public class SendTrc20 extends Base {
     Helper.swipScreen(transactionInfo.driver);
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+    String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+    Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    String LRnumber = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"能量");
+    String Rnumber = StringUtils.substringAfterLast(LRnumber,"带宽");
+      Assert.assertTrue(Integer.parseInt(Rnumber.trim()) > 0);
   }
 
   @Parameters({"address"})
@@ -190,6 +218,8 @@ public class SendTrc20 extends Base {
     Helper.swipScreen(transactionInfo.driver);
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+    String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+    Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
   }
 
 

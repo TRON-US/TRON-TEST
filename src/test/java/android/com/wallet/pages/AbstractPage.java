@@ -27,4 +27,29 @@ public abstract class AbstractPage {
 
     }
 
+    public void waiteTime(long time) {
+        this.driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+    public void waiteTime() {
+        waiteTime(10);
+    }
+
+    public boolean isElementExist(String name) {
+        try {
+            driver.findElementById(name);
+            System.out.println("IsFindById: "+name);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            try {
+                driver.findElementByName(name);
+                System.out.println("IsFindByName: "+name);
+                return  true;
+            }catch (org.openqa.selenium.NoSuchElementException eex){
+                System.out.println("NotFound: "+name);
+                return  false;
+
+            }
+        }
+    }
+
 }

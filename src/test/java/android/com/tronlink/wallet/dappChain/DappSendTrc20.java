@@ -8,6 +8,7 @@ import android.com.utils.Helper;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -95,7 +96,7 @@ public class DappSendTrc20 extends Base {
         dappChainSendTrc20Amount = getAnAmount();
         transfer.sendTrc20(Float.toString(dappChainSendTrc20Amount));
     }
-    
+
     @Test(description = "Input max send number")
     public void test002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
@@ -128,8 +129,31 @@ public class DappSendTrc20 extends Base {
         Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("TRX"));
     }
 
+    @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
+    public void test006_BandWidthShowTest() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.selectTokenType("20");
+        waiteTime();
+        transfer.tranferCount_text.sendKeys("0.000001");
+        waiteTime();
+        transfer.send_btn.click();
+        waiteTime();
+        String no_bandwidthTips = transfer.no_bandwidth.getText();
+        Assert.assertTrue(no_bandwidthTips.contains("20"));
+        Assert.assertTrue(no_bandwidthTips.contains("燃烧"));
+        Assert.assertTrue(no_bandwidthTips.contains("TRX"));
+        Assert.assertTrue(no_bandwidthTips.contains("消耗能量"));
+        Assert.assertTrue(no_bandwidthTips.contains("智能合约"));
+        String content = transfer.bandwidth_text.getText();
+        String number = StringUtils.substringBeforeLast(content,"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    }
+
     @Test(enabled = true,description = "Dapp chain send TRC20 recording")
-    public void test006_dappChainSendTrc20Recording() throws Exception {
+    public void test007_dappChainSendTrc20Recording() throws Exception {
         TrxPage trx = enterTrxPage();
         int tries = 0;
         Boolean exist = false;
@@ -155,7 +179,7 @@ public class DappSendTrc20 extends Base {
     }
 
     @Test(enabled = true,description = "Dapp chain send TRC20 transfer balance decrease check")
-    public void test007_balanceReduceAfterSendTrc20() throws Exception {
+    public void test008_balanceReduceAfterSendTrc20() throws Exception {
         SendTrxPage transfer = enterToSendTrc20Page();
         afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         Assert.assertTrue(beforeBalance - afterBalance >= 1);
@@ -164,7 +188,7 @@ public class DappSendTrc20 extends Base {
 
     @Parameters({"address"})
     @Test(enabled = true, description = "Dapp send Trc 20 transaction detail info test", alwaysRun = true)
-    public void test008_DappSendTrc20TransactionDetailInfo(String address) throws Exception {
+    public void test009_DappSendTrc20TransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -181,6 +205,8 @@ public class DappSendTrc20 extends Base {
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
     }
 
 }

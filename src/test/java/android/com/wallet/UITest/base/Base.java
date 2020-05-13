@@ -335,5 +335,11 @@ public class Base {
         TimeUnit.SECONDS.sleep(6);
     }
 
+    public void waiteTime(long time) {
+        DRIVER.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+    public void waiteTime() {
+        waiteTime(10);
+    }
 
 }
