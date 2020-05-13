@@ -235,7 +235,7 @@ public class SendTrx extends Base {
     @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
     public void test015_BandWidthShowTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
         waiteTime();

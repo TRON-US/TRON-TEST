@@ -107,16 +107,23 @@ public class SendTrc20 extends Base {
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
-    @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
+    @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
     public void test005_BandWidthShowTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         waiteTime();
-        transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.selectTokenType("20");
         waiteTime();
         transfer.tranferCount_text.sendKeys("0.000001");
         waiteTime();
         transfer.send_btn.click();
         waiteTime();
+        String no_bandwidthTips = transfer.no_bandwidth.getText();
+        Assert.assertTrue(no_bandwidthTips.contains("20"));
+        Assert.assertTrue(no_bandwidthTips.contains("燃烧"));
+        Assert.assertTrue(no_bandwidthTips.contains("TRX"));
+        Assert.assertTrue(no_bandwidthTips.contains("消耗能量"));
+        Assert.assertTrue(no_bandwidthTips.contains("智能合约"));
         String content = transfer.bandwidth_text.getText();
         String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);

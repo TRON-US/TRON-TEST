@@ -8,6 +8,7 @@ import android.com.utils.Helper;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -125,10 +126,21 @@ public class DappSendTrc10 extends Base {
         Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
     }
 
-
+    @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
+    public void test006_BandWidthShowTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrc10Page();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        waiteTime();
+        String content = transfer.bandwidth_text.getText();
+        String number = StringUtils.substringBeforeLast(content,"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    }
 
     @Test(enabled = true,description = "Dapp chain send TRC10 recording")
-    public void test006_dappChainSendTrc10Recording() throws Exception {
+    public void test007_dappChainSendTrc10Recording() throws Exception {
       TrxPage trx = enterTrxPage();
       int tries = 0;
       Boolean exist = false;
@@ -154,7 +166,7 @@ public class DappSendTrc10 extends Base {
     }
 
     @Test(enabled = true,description = "TRC10 transfer balance decrease check")
-    public void test007_balanceReduceAfterSendTrc10() throws Exception {
+    public void test008_balanceReduceAfterSendTrc10() throws Exception {
       SendTrxPage transfer = enterToSendTrc10Page();
       afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
       Assert.assertTrue(beforeBalance - afterBalance >= 1);
@@ -162,7 +174,7 @@ public class DappSendTrc10 extends Base {
 
   @Parameters({"address"})
   @Test(enabled = true, description = "Dapp send Trc 10 transaction detail info test", alwaysRun = true)
-  public void test008_DappSendTrc10TransactionDetailInfo(String address) throws Exception {
+  public void test009_DappSendTrc10TransactionDetailInfo(String address) throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
     Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -179,6 +191,8 @@ public class DappSendTrc10 extends Base {
     Helper.swipScreen(transactionInfo.driver);
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+    String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+    Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
   }
 
   }

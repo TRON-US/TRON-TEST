@@ -5,6 +5,8 @@ import android.com.utils.Helper;
 import android.com.wallet.pages.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -198,9 +200,20 @@ public class DappSendTrx extends Base {
         transfer.send_btn.click();
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
+    @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
+    public void test0012_BandWidthShowTest() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        waiteTime();
+        String content = transfer.bandwidth_text.getText();
+        String number = StringUtils.substringBeforeLast(content,"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    }
 
     @Test(groups = {"P0"},enabled = true,description = "Dapp chain send trx succesfully", alwaysRun = true)
-    public void test0012_dappChainSendTrxSucess() throws Exception {
+    public void test0013_dappChainSendTrxSucess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         dappChainSendTrxAmount = getAnAmount();
@@ -210,7 +223,7 @@ public class DappSendTrx extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Dapp chain send coin recording")
-    public void test0013_dappChainSendTrxRecording() throws Exception {
+    public void test0014_dappChainSendTrxRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         int tries = 0;
         Boolean exist = false;
@@ -234,7 +247,7 @@ public class DappSendTrx extends Base {
     }
 
     @Test(enabled = true,description = "Trx transfer balance decrease check")
-    public void test0014_balanceReduceAfterSendCoin() throws Exception {
+    public void test0015_balanceReduceAfterSendCoin() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         Assert.assertTrue(beforeBalance - afterBalance >= 1);
@@ -243,7 +256,7 @@ public class DappSendTrx extends Base {
 
     @Parameters({"address"})
     @Test(groups = {"P0"},enabled = true, description = "Dapp send Trx transaction detail info test", alwaysRun = true)
-    public void test0015_trxTransactionDetailInfo(String address) throws Exception {
+    public void test0016_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -259,6 +272,8 @@ public class DappSendTrx extends Base {
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
     }
 
 
