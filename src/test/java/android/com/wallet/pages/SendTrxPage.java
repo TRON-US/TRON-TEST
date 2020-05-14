@@ -35,6 +35,13 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
     public WebElement transferTtile_btn;
 
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_one_delete")
+    public WebElement transferAddress_deleteBtn;
+
+    @FindBy(id = "com.tronlink.wallet:id/et_transfer_address")
+    public WebElement transferAddress_text;
+
     @FindBy(id = "com.tronlink.wallet:id/et_address")
     public WebElement receiveAddress_text;
 
@@ -56,10 +63,20 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlink.wallet:id/bt_send")
     public WebElement confirm_btn;
+    @FindBy(id = "com.tronlink.wallet:id/tv_from_address")
+    public WebElement from_address;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    public WebElement to_address;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_error")
     public WebElement formatErrorHits_text;
+
+    @FindBy( id = "com.tronlink.wallet:id/tv_real_money")
+    public WebElement real_money;
+
+    @FindBy( id = "com.tronlink.wallet:id/tv_fee")
+    public WebElement fee_text;
 
     @FindBy( id = "com.tronlink.wallet:id/tv_fee_amount_bw")
     public WebElement bandwidth_text;
