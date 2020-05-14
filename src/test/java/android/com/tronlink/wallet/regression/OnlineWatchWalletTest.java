@@ -19,6 +19,8 @@ import android.com.wallet.pages.TransferPage;
 import android.com.wallet.pages.TrxPage;
 import android.com.wallet.pages.VotePage;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -30,7 +32,8 @@ public class OnlineWatchWalletTest extends Base {
     static String receiverShieldAddress = Configuration.getByPath("testng.conf")
         .getString("foundationAccount.shieldAddress");
 
-
+    static  String unactiveAddr = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+    static  String activeAddr = "TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5";
 
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
@@ -78,11 +81,247 @@ public class OnlineWatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
+    @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
+    public void test002_onlineHaveActiveTrx() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlink.wallet:id/tv_note"));
+    }
+    @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
+    public void test003_onlineHaveActiveTrx10() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc10Page();
+        sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlink.wallet:id/tv_note"));
+    }
+    @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
+    public void test004_onlineHaveActiveTrx20() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc20Page();
+        sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlink.wallet:id/tv_note"));
+    }
 
+    @Test(groups = {"P0"},enabled = true,description = "onlineMultiSignatureFeeCheck", alwaysRun = true)
+    public void test005_onlineMultiSignatureFeeCheck() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        sendTrxPage.transferAddress_deleteBtn.click();
+        waiteTime();
+        sendTrxPage.transferAddress_text.sendKeys("TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        waiteTime();
+        sendTrxPage.receiveAddress_text.sendKeys(activeAddr);
+        waiteTime();
+        sendTrxPage.tranferCount_text.sendKeys("1");
+        Helper.swipScreen(DRIVER);
+        waiteTime();
+        String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        Assert.assertEquals(feeSendNumber.trim(),"1.0");
+        waiteTime();
+        sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"TRX");
+        String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
+        Assert.assertTrue(Integer.parseInt(feeNumber.trim()) == 1);
+        Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
+        Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        Assert.assertEquals(sendTrxPage.to_address.getText(),activeAddr);
+    }
+    @Test(groups = {"P0"},enabled = true,description = "test006_onlineMultiSignatureUnActiveFeeCheck", alwaysRun = true)
+    public void test006_onlineMultiSignatureUnActiveFeeCheck() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        sendTrxPage.transferAddress_deleteBtn.click();
+        waiteTime();
+        sendTrxPage.transferAddress_text.sendKeys("TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        waiteTime();
+        sendTrxPage.receiveAddress_text.sendKeys(unactiveAddr);
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("0.1")&&sendTrxPage.note_text.getText().contains("未激活"));
+        waiteTime();
+        sendTrxPage.tranferCount_text.sendKeys("1");
+        Helper.swipScreen(DRIVER);
+        waiteTime();
+        String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        Assert.assertEquals(feeSendNumber.trim(),"1.1");
+        waiteTime();
+        sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"TRX");
+        String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
+        Assert.assertEquals(feeNumber.trim(),"1.1");
+        Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
+        Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        Assert.assertEquals(sendTrxPage.to_address.getText(),unactiveAddr);
+
+    }
+
+    @Test(groups = {"P0"},enabled = true,description = "onlineMultiSignatureTrc10FeeCheck", alwaysRun = true)
+    public void test007_onlineMultiSignatureTrc10FeeCheck() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        sendTrxPage.transferAddress_deleteBtn.click();
+        waiteTime();
+        sendTrxPage.transferAddress_text.sendKeys("TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        waiteTime();
+        sendTrxPage.receiveAddress_text.sendKeys(activeAddr);
+        waiteTime();
+        sendTrxPage.token_btn.click();
+        waiteTime();
+        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"BTT\")").click();
+        waiteTime();
+        sendTrxPage.tranferCount_text.sendKeys("1");
+        Helper.swipScreen(DRIVER);
+        waiteTime();
+        String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        Assert.assertEquals(feeSendNumber.trim(),"1.0");
+        waiteTime();
+        sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"BTT");
+        String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
+        Assert.assertTrue(Integer.parseInt(feeNumber.trim()) == 1);
+        Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
+        Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        Assert.assertEquals(sendTrxPage.to_address.getText(),activeAddr);
+    }
+
+    @Test(groups = {"P0"},enabled = true,description = "test006_onlineMultiSignatureUnActiveTrc10FeeCheck", alwaysRun = true)
+    public void test008_onlineMultiSignatureUnActiveTrc10FeeCheck() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        sendTrxPage.transferAddress_deleteBtn.click();
+        waiteTime();
+        sendTrxPage.transferAddress_text.sendKeys("TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        waiteTime();
+        sendTrxPage.receiveAddress_text.sendKeys(unactiveAddr);
+        waiteTime();
+        sendTrxPage.token_btn.click();
+        waiteTime();
+        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"BTT\")").click();
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("0.1")&&sendTrxPage.note_text.getText().contains("未激活"));
+        waiteTime();
+        sendTrxPage.tranferCount_text.sendKeys("1");
+        Helper.swipScreen(DRIVER);
+        waiteTime();
+        String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        Assert.assertEquals(feeSendNumber.trim(),"1.1");
+        waiteTime();
+        sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"BTT");
+        String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
+        Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
+        Assert.assertEquals(feeNumber.trim(),"1.1");
+        Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
+        Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        Assert.assertEquals(sendTrxPage.to_address.getText(),unactiveAddr);
+
+    }
+
+    @Test(groups = {"P0"},enabled = true,description = "onlineMultiSignatureTrc20FeeCheck", alwaysRun = true)
+    public void test009_onlineMultiSignatureTrc20FeeCheck() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        sendTrxPage.transferAddress_deleteBtn.click();
+        waiteTime();
+        sendTrxPage.transferAddress_text.sendKeys("TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        waiteTime();
+        sendTrxPage.receiveAddress_text.sendKeys(activeAddr);
+        waiteTime();
+        sendTrxPage.token_btn.click();
+        waiteTime();
+        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"USDJ\")").click();
+        waiteTime();
+        sendTrxPage.tranferCount_text.sendKeys("0.00001");
+        Helper.swipScreen(DRIVER);
+        waiteTime();
+        String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        Assert.assertEquals(feeSendNumber.trim(),"1.0");
+        waiteTime();
+        sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"USDJ");
+        String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
+        Assert.assertEquals(realNumber.trim(),"0.00001");
+        Assert.assertTrue(Integer.parseInt(feeNumber.trim()) == 1);
+        Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
+        Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        Assert.assertEquals(sendTrxPage.to_address.getText(),activeAddr);
+        Assert.assertTrue(sendTrxPage.no_bandwidth.getText().contains("执行智能合约")&&sendTrxPage.no_bandwidth.getText().contains("燃烧")&&sendTrxPage.no_bandwidth.getText().contains("TRX"));
+
+    }
+
+    @Test(groups = {"P0"},enabled = true,description = "test006_onlineMultiSignatureUnActiveTrc20FeeCheck", alwaysRun = true)
+    public void test010_onlineMultiSignatureUnActiveTrc20FeeCheck() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        sendTrxPage.transferAddress_deleteBtn.click();
+        waiteTime();
+        sendTrxPage.transferAddress_text.sendKeys("TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        waiteTime();
+        sendTrxPage.receiveAddress_text.sendKeys(unactiveAddr);
+        waiteTime();
+        sendTrxPage.token_btn.click();
+        waiteTime();
+        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"USDJ\")").click();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("不会激活该地址")&&sendTrxPage.note_text.getText().contains("地址未激活"));
+        waiteTime();
+        sendTrxPage.tranferCount_text.sendKeys("0.00001");
+        Helper.swipScreen(DRIVER);
+        waiteTime();
+        String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        Assert.assertEquals(feeSendNumber.trim(),"1.0");
+        waiteTime();
+        sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"USDJ");
+        String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
+        String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
+        Assert.assertEquals(realNumber.trim(),"0.00001");
+        Assert.assertTrue(Integer.parseInt(feeNumber.trim()) == 1);
+        Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
+        Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
+        Assert.assertEquals(sendTrxPage.to_address.getText(),unactiveAddr);
+        Assert.assertTrue(sendTrxPage.no_bandwidth.getText().contains("执行智能合约")&&sendTrxPage.no_bandwidth.getText().contains("燃烧")&&sendTrxPage.no_bandwidth.getText().contains("TRX"));
+
+    }
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online frozen Energy QRCode", alwaysRun = true)
-    public void test002_onlineFrozenEnergyQRCode() throws Exception {
+    public void test011_onlineFrozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         TimeUnit.SECONDS.sleep(3);
@@ -102,7 +341,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online frozen Bandwidth QRCode", alwaysRun = true)
-    public void test003_onlineFrozenBandwidthQRCode() throws Exception {
+    public void test012_onlineFrozenBandwidthQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         Helper.swipScreen(DRIVER);
@@ -118,7 +357,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online muliSignature QRCode", alwaysRun = true)
-    public void test004_onlineMuliSignatureQRCode() throws Exception{
+    public void test013_onlineMuliSignatureQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         MyPursePage myPursePage = mine.enterMyPursePage();
@@ -133,7 +372,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online deposit QRCode", alwaysRun = true)
-    public void test005_onlineDepositQRCode() throws Exception{
+    public void test014_onlineDepositQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
         TransferPage transfer = trxPage.enterTransferPage();
@@ -145,7 +384,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online send trc10 QRCode", alwaysRun = true)
-    public void test006_onlineTrc10QRCode() throws Exception{
+    public void test015_onlineTrc10QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc10Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -164,7 +403,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online vote QRCode", alwaysRun = true)
-    public void test007_onlineVoteQRCode() throws Exception{
+    public void test016_onlineVoteQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.reset_btn.click();
@@ -182,7 +421,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Online trc20 QRCode", alwaysRun = true)
-    public void test008_onlineTrc20QRCode() throws Exception{
+    public void test017_onlineTrc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc20Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -199,7 +438,7 @@ public class OnlineWatchWalletTest extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
-    public void test009_OnlineUnfreezeQRCode() throws Exception{
+    public void test018_OnlineUnfreezeQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
@@ -216,7 +455,7 @@ public class OnlineWatchWalletTest extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Online Withdraw reward transaction QRCode", alwaysRun = true)
-    public void test010_OnlineWithdrawRewardQRCode() throws Exception{
+    public void test019_OnlineWithdrawRewardQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.reward_btn.click();
