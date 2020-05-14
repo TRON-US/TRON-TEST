@@ -67,6 +67,9 @@ public class OnlineWatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("0.1")&&sendTrxPage.note_text.getText().contains("未激活"));
         sendTrxPage.tranferCount_text.sendKeys("1");
         Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
@@ -121,6 +124,7 @@ public class OnlineWatchWalletTest extends Base {
         MyPursePage myPursePage = mine.enterMyPursePage();
         MultiSignManagerPage multiSignManager = myPursePage.enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
+        waiteTime();
         add.inputInfo("AutoTest_0001");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -145,6 +149,9 @@ public class OnlineWatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc10Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("0.1")&&sendTrxPage.note_text.getText().contains("未激活"));
         sendTrxPage.tranferCount_text.sendKeys("1");
         Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
@@ -179,6 +186,10 @@ public class OnlineWatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc20Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("未激活")&&sendTrxPage.note_text.getText().contains("不会激活")&&sendTrxPage.note_text.getText().contains("TRC20"));
+        Assert.assertFalse(sendTrxPage.note_text.getText().contains("0.1"));
         sendTrxPage.tranferCount_text.sendKeys("1");
         Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
@@ -193,10 +204,15 @@ public class OnlineWatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
         frozen.unfreezeType_btn.click();
-        frozen.unfreezeTargetAddress_btn.click();
-        frozen.unfreeze_btn.click();
-        frozen.unfreezeInfoConfirm_btn.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+        if(frozen.isElementExist("com.tronlink.wallet:id/iv_unfreeze")){
+            frozen.unfreezeTargetAddress_btn.click();
+            frozen.unfreeze_btn.click();
+            frozen.unfreezeInfoConfirm_btn.click();
+            Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+        }else {
+            log("未到解冻时间!!");
+        }
+
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Online Withdraw reward transaction QRCode", alwaysRun = true)
