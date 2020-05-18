@@ -34,6 +34,11 @@ public abstract class AbstractPage {
         waiteTime(10);
     }
 
+    /**
+     * is element is exist
+     * @param name
+     * @return boolean value
+     */
     public boolean isElementExist(String name) {
         try {
             driver.findElementById(name);
@@ -52,4 +57,14 @@ public abstract class AbstractPage {
         }
     }
 
+    /**
+     *
+     * @param  text ,which you want to find
+     * @return WebElement
+     */
+    public WebElement findElementByText(String text) {
+
+       return driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+
+    }
 }
