@@ -157,6 +157,14 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_address_name")
     public WebElement addressName_display;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_add_note")
+    public WebElement add_note;
+
+    @FindBy(id = "com.tronlink.wallet:id/et_note")
+    public WebElement et_note;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_delete")
+    public WebElement tv_delete;
 
 
     public SendTrxSuccessPage enterSendTrxSuccessPage(){
@@ -233,6 +241,38 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
+    public void selectCoinType(String type) throws Exception{
+        switch(type){
+            case "trc10":
+                selectTokenType("10");
+                break;
+            case "trc20":
+                selectTokenType("20");
+            break;
+            default:
+                break;
+        }
+    }
+
+
+
+    public SendTrxSuccessPage sendTrxTypeWithNotes(String sendAmount,String notes,String type) throws Exception {
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        selectCoinType(type);
+        tranferCount_text.sendKeys(sendAmount);
+        swip();
+        waiteTime();
+        add_note.click();
+        waiteTime();
+        et_note.sendKeys(notes);
+        waiteTime();
+        send_btn.click();
+        transferNow_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(5);
+        return new SendTrxSuccessPage(driver);
+    }
 
 
 
