@@ -196,9 +196,21 @@ public class SendTrx extends Base {
         Assert.assertTrue(transfer.tvName_text.getText().contains("TRX"));
     }
 
+    @Test(enabled = true, description = "check test014_sendTrzCheckFee TR-1076", alwaysRun = true)
+    public void test014_sendTrzCheckFee() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("ztron16nq696tkyuag3et5h4tygn4vumsgx7m2955azkfvpcecfy6na6f5n7n2l2svhpknmqp2v4wqne7");
+        Assert.assertTrue(transfer.tvName_text.getText().contains("TRZ"));
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ"));
+        Assert.assertTrue(transfer.fee_text.getText().contains("10"));
+        transfer.tranferCount_text.sendKeys("1");
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ")&&transfer.fee_text.getText().contains("10"));
+    }
 
     @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
-    public void test014_transferInSuccessRecording() throws Exception {
+    public void test015_transferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trx = asset.enterTrxPage();
         trx.tranfer_tab.get(1).click();
@@ -233,7 +245,7 @@ public class SendTrx extends Base {
 
 
     @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
-    public void test015_BandWidthShowTest() throws Exception {
+    public void test016_BandWidthShowTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
@@ -246,7 +258,7 @@ public class SendTrx extends Base {
 
 
     @Test(groups = {"P0"},enabled = true,description = "Trx transfer balance decrease check")
-    public void test016_balanceReduceAfterSendCoin() throws Exception {
+    public void test017_balanceReduceAfterSendCoin() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         System.out.println("beforeSendBalance:" + beforeSendBalance);
@@ -255,7 +267,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, description = "Trx transfer history record test", alwaysRun = true)
-    public void test017_transactionRecord() throws Exception {
+    public void test018_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
@@ -266,7 +278,7 @@ public class SendTrx extends Base {
 
     @Parameters({"address"})
     @Test(groups = {"P0"},enabled = true, description = "Trx transaction detail info test", alwaysRun = true)
-    public void test018_trxTransactionDetailInfo(String address) throws Exception {
+    public void test019_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -292,7 +304,7 @@ public class SendTrx extends Base {
 
     @Parameters({"address"})
     @Test(groups = {"P0"},enabled = true, description = "Trx receive transaction detail info test", alwaysRun = true)
-    public void test019_trxReceiveTransactionDetailInfo(String address) throws Exception {
+    public void test020_trxReceiveTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(0);
         System.out.println(transactionInfo.title_amount_test.getText());

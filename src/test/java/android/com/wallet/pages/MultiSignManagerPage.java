@@ -41,6 +41,11 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/ll_more")
     public WebElement more_btn;
 
+    @FindBy(id = "com.tronlink.wallet:id/ll_edit")
+    public WebElement edit_btn;
+
+    @FindBy(id = "com.tronlink.wallet:id/iv_more")
+    public WebElement iv_more;
 
 //    @FindBy(id = "/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView")
 //    public WebElement delSign_btn;
@@ -154,6 +159,17 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
 
+    public ModifyPermissionPage enterModifyPage() throws Exception {
+        for (int i=0;i<=7;i++){
+            Helper.swipeLeftScreen(driver);
+        }
+        TimeUnit.SECONDS.sleep(1);
+        iv_more.click();
+        TimeUnit.SECONDS.sleep(1);
+        edit_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new ModifyPermissionPage(driver);
+    }
 
 
 }
