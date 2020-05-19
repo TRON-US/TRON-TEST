@@ -311,9 +311,27 @@ public class AllSignatureSuccTest extends Base {
     }
 
 
+    @Parameters({"address"})
+    @Test(groups = {"P0"},description = "test012_modifyMultiSignFeeCheck TR-1066", alwaysRun = true)
+    public void test012_modifyMultiSignFeeCheck() throws Exception {
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
+        Helper.swipScreen(modifyPermission.driver);
+        modifyPermission.confirm_btn.click();
+        modifyPermission.nextBtnClick();
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(modifyPermission.feetext.getText().contains("TRX"));
+        Assert.assertTrue(modifyPermission.feetext.getText().contains("101"));
+    }
 
 
-
+    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        MyPursePage myPursePage = mine.enterMyPursePage();
+        MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
+        return MultiSignManager;
+    }
 
 
 

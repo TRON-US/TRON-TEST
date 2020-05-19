@@ -21,7 +21,8 @@ public class ModifyPermissionPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/et_permission_name")
     public WebElement modifyPermissionName_input;
 
-
+    @FindBy(id = "com.tronlink.wallet:id/tv_right")
+    public WebElement feetext;
 
     @FindBy(id = "com.tronlink.wallet:id/et_key_address")
     public WebElement modifyAddress_input;
@@ -64,7 +65,9 @@ public class ModifyPermissionPage extends AbstractPage {
 
 
 
-
+    public void nextBtnClick(){
+        findElementByText("下一步").click();
+    }
 
 
 
