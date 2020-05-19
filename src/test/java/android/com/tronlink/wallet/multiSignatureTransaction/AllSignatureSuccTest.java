@@ -14,15 +14,11 @@ import java.util.concurrent.TimeUnit;
 public class AllSignatureSuccTest extends Base {
 
 
-
     public String sourceWallet = "";
     public String fromAccountPrivateKey1 = "dad5b1d416822eb02e79bb818c35411e58b88db85562bcc8e71cac2c1ffa441c";
     //public String fromAccountAddress = "TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS";
     public String signatureAccountPrivateKey2 = "451a602d36e0158b5d642daca47e01ec5abdc96ec67a9f88dbc165c7dbb2a08a";
     public String signatureAccountAddress = "TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v";
-
-
-
 
 
     @Parameters({"ownerPrivateKey"})
@@ -32,23 +28,21 @@ public class AllSignatureSuccTest extends Base {
     }
 
 
-
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlink.wallet");
-        }catch (Exception e){
+        } catch (Exception e) {
             try {
                 DRIVER.closeApp();
                 DRIVER.activateApp("com.tronlink.wallet");
-            }catch (Exception e1){
+            } catch (Exception e1) {
 
             }
         }
 
     }
-
 
 
     @AfterClass(alwaysRun = true)
@@ -58,8 +52,6 @@ public class AllSignatureSuccTest extends Base {
         } catch (Exception e) {
         }
     }
-
-
 
 
     //import two privateKay(wallet)
@@ -73,7 +65,7 @@ public class AllSignatureSuccTest extends Base {
         PrivateKeySetNamePage privateKeySetNamePage = importPrivateKey.enterPrivateKeySetNamePage(fromAccountPrivateKey1);
         PrivateKeySetPwdPage privateKeySetPwd = privateKeySetNamePage.enterPrivateKeySetPwdPage("FromAccount");
         try {
-            if (privateKeySetPwd.error_hits.getText().equals("钱包已存在")){
+            if (privateKeySetPwd.error_hits.getText().equals("钱包已存在")) {
                 privateKeySetPwd.back_btn.click();
                 TimeUnit.SECONDS.sleep(1);
                 importPrivateKey.back_btn.click();
@@ -83,7 +75,7 @@ public class AllSignatureSuccTest extends Base {
                 myPursePage.back_btn.click();
                 TimeUnit.SECONDS.sleep(1);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             PrivateKeySetPwdAgainPage privateKeySetPwdAgain = privateKeySetPwd.enterPrivateKeySetPwdAgainPage("Test0001");
             asset = privateKeySetPwdAgain.enterAssetPage("Test0001");
         }
@@ -106,14 +98,12 @@ public class AllSignatureSuccTest extends Base {
                 TimeUnit.SECONDS.sleep(1);
                 myPursePage.back_btn.click();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             PrivateKeySetPwdAgainPage privateKeySetPwdAgain = privateKeySetPwd.enterPrivateKeySetPwdAgainPage("Test0001");
             asset = privateKeySetPwdAgain.enterAssetPage("Test0001");
         }
         return asset;
     }
-
-
 
 
     @Parameters({"multiSignAddress"})
@@ -205,11 +195,9 @@ public class AllSignatureSuccTest extends Base {
     }
 
 
-
-
-    @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(groups = {"P0"},description = "send trx sign success options Test", alwaysRun = true)
-    public void test005_sendTrxOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
+    @Parameters({"ownerPrivateKey", "multiSignAddress"})
+    @Test(groups = {"P0"}, description = "send trx sign success options Test", alwaysRun = true)
+    public void test005_sendTrxOptions(String ownerPrivateKey, String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
         //MyPursePage myPurse = asset.enterMyPursePage();
@@ -219,11 +207,9 @@ public class AllSignatureSuccTest extends Base {
     }
 
 
-
-
-    @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(groups = {"P0"},description = "send trx sign success two times options Test", alwaysRun = true)
-    public void test006_sendTrxTwoTimesOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
+    @Parameters({"ownerPrivateKey", "multiSignAddress"})
+    @Test(groups = {"P0"}, description = "send trx sign success two times options Test", alwaysRun = true)
+    public void test006_sendTrxTwoTimesOptions(String ownerPrivateKey, String multiSignAddress) throws Exception {
         //new Helper().getSign(ownerPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
         //MyPursePage myPurse = asset.enterMyPursePage();
@@ -233,10 +219,46 @@ public class AllSignatureSuccTest extends Base {
     }
 
 
+    @Parameters({"ownerPrivateKey", "multiSignAddress"})
+    @Test(groups = {"P0"}, description = "test007_multiAlreadySignSendTrxNotesCheck", alwaysRun = true)
+    public void test007_multiAlreadySignSendTrxNotesCheck(String ownerPrivateKey, String multiSignAddress) throws Exception {
+        //new Helper().getSign(ownerPrivateKey, DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        MyPursePage myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        TimeUnit.SECONDS.sleep(3);
+        multiSignTransactionPage.transactionAlreadySign_text.click();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
+        waiteTime();
+        multiSignTransactionPage.tv_note_more.click();
+        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
+        Assert.assertTrue(multiSignTransactionPage.tv_cancle.getText().contains("我知道了"));
+
+    }
+
+    @Parameters({"multiSignPrivateKey"})
+    @Test(groups = {"P0"}, description = "test007_multiAlreadySignSendTrxNotesCheck", alwaysRun = true)
+    public void test008_multiSignWaitSendTrxNotesCheck(String multiSignPrivateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(multiSignPrivateKey, DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        MyPursePage myPurse = minePage.enterMyPursePage();
+        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
+        waiteTime();
+        multiSignTransactionPage.tv_note_more.click();
+        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
+        Assert.assertTrue(multiSignTransactionPage.tv_cancle.getText().contains("我知道了"));
+
+    }
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test", alwaysRun = true)
-    public void test007_signOptions(String multiSignPrivateKey) throws Exception {
+    public void test009_signOptions(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -253,7 +275,7 @@ public class AllSignatureSuccTest extends Base {
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test check TRX", alwaysRun = true)
-    public void test008_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
+    public void test010_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -269,7 +291,7 @@ public class AllSignatureSuccTest extends Base {
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test check TransFrom", alwaysRun = true)
-    public void test009_signPageCheckTransFrom(String multiSignPrivateKey) throws Exception {
+    public void test011_signPageCheckTransFrom(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -284,7 +306,7 @@ public class AllSignatureSuccTest extends Base {
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test check TransTo", alwaysRun = true)
-    public void test010_signPageCheckTransTo(String multiSignPrivateKey) throws Exception {
+    public void test012_signPageCheckTransTo(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -299,7 +321,7 @@ public class AllSignatureSuccTest extends Base {
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test check InvaTime", alwaysRun = true)
-    public void test011_signPageCheckInvaTime(String multiSignPrivateKey) throws Exception {
+    public void test013_signPageCheckInvaTime(String multiSignPrivateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(multiSignPrivateKey, DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -313,7 +335,7 @@ public class AllSignatureSuccTest extends Base {
 
     @Parameters({"address"})
     @Test(groups = {"P0"},description = "test012_modifyMultiSignFeeCheck TR-1066", alwaysRun = true)
-    public void test012_modifyMultiSignFeeCheck() throws Exception {
+    public void test014_modifyMultiSignFeeCheck() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
         Helper.swipScreen(modifyPermission.driver);
@@ -332,7 +354,6 @@ public class AllSignatureSuccTest extends Base {
         MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
         return MultiSignManager;
     }
-
 
 
 //    @Test(description = "send trx sign options Test", alwaysRun = true,enabled = false)
@@ -473,12 +494,6 @@ public class AllSignatureSuccTest extends Base {
 //        TimeUnit.SECONDS.sleep(2);
 //        Assert.assertTrue(multiSignTransactionPage.transactionAlreadySign_text.isDisplayed());
 //    }
-
-
-
-
-
-
 
 
 }

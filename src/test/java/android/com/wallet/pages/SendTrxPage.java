@@ -435,6 +435,11 @@ public class SendTrxPage extends AbstractPage {
         trxCount = str;
         tranferCount_text.sendKeys(str);
         swip();
+        waiteTime();
+        add_note.click();
+        waiteTime();
+        et_note.sendKeys("I'm multiSign notes");
+        waiteTime();
         send_btn.click();
         transferNow_btn.click();
         TimeUnit.SECONDS.sleep(2);

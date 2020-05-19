@@ -50,9 +50,14 @@ public abstract class AbstractPage {
                 System.out.println("IsFindByName: "+name);
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
-                System.out.println("NotFound: "+name);
-                return  false;
-
+                try {
+                    System.out.println("IsFindByText: "+name);
+                    findElementByText(name);
+                    return  true;
+                }catch (org.openqa.selenium.NoSuchElementException xxx) {
+                    System.out.println("NotFound: " + name);
+                    return false;
+                }
             }
         }
     }
