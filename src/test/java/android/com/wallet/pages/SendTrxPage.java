@@ -107,10 +107,11 @@ public class SendTrxPage extends AbstractPage {
     public WebElement trc10_btn;
 
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
+//    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
+//    public WebElement trc20_btn;
+
+    @FindBy(xpath = "//*[@text='(TCCc****5n71)']")
     public WebElement trc20_btn;
-
-
 
 
     @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
@@ -435,6 +436,11 @@ public class SendTrxPage extends AbstractPage {
         trxCount = str;
         tranferCount_text.sendKeys(str);
         swip();
+        waiteTime();
+        add_note.click();
+        waiteTime();
+        et_note.sendKeys("I'm multiSign notes");
+        waiteTime();
         send_btn.click();
         transferNow_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -453,6 +459,13 @@ public class SendTrxPage extends AbstractPage {
         return trxCount;
     }
 
+    public void inputFormAddress(String address){
+        waiteTime();
+        transferAddress_deleteBtn.click();
+        waiteTime();
+        transferAddress_text.sendKeys(address);
+        waiteTime();
+    }
 
 
 }

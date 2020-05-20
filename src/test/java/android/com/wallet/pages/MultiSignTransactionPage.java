@@ -21,7 +21,7 @@ public class MultiSignTransactionPage extends AbstractPage {
 
 
     @FindBy(id = "com.tronlink.wallet:id/bt_sign")
-    public WebElement sign_btn;
+    public WebElement  sign_btn;
 
 
 
@@ -38,7 +38,14 @@ public class MultiSignTransactionPage extends AbstractPage {
     public WebElement back_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_note")
+    public WebElement tv_note;
 
+    @FindBy(id = "com.tronlink.wallet:id/tv_note_more")
+    public WebElement tv_note_more;
+
+    @FindBy(id = "com.tronlink.wallet:id/tv_cancle")
+    public WebElement tv_cancle;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_sign_success")
     public WebElement signSuccess_tab;
