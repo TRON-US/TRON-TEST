@@ -17,7 +17,9 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -348,4 +350,33 @@ public class Base {
         waiteTime(10);
     }
 
+
+    public float sepLeftNumberTextToFloat(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
+
+    }
+    public Integer sepLeftNumberTextToInter(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));
+    }
+    public String  sepLeftNumberTextToString(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  removeSymbolFloat(realNumber.trim());
+
+    }
+    public float sepRightNumberTextToFloat(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
+
+    }
+    public Integer sepRightNumberTextToInter(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));
+    }
+    public String  sepRightNumberTextToString(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  removeSymbolFloat(realNumber.trim());
+
+    }
 }

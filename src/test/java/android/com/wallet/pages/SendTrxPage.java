@@ -1,5 +1,6 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -19,6 +20,9 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class SendTrxPage extends AbstractPage {
+
+    static String unActiveAddress = Configuration.getByPath("testng.conf")
+            .getString("unActiveAddressInNile.Address1");
 
     public AndroidDriver<?> driver;
 
@@ -410,6 +414,18 @@ public class SendTrxPage extends AbstractPage {
         Helper.swipScreen(driver);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
+    }
+    public String sendMaxTrc20() throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        receiveAddress_text.sendKeys(unActiveAddress);
+        selectTokenType("20");
+        tvMax_btn.click();
+        Helper.swipScreen(driver);
+        String allNumberText = balance_text.getText();
+        System.out.println("allNumberText"+allNumberText);
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return  allNumberText;
     }
 
     public void selectTokenType(String value) throws Exception{
