@@ -58,7 +58,7 @@ public class SettingTest extends BaseTest {
     public void test007_IntoMnemonicPagetest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
+        AdvanceFuncPage setting = mine.enterAdvancePage();
         MnemonicToolsPage toolsPage = setting.enternemTools_btnPage();
         Assert.assertEquals(toolsPage.title.getText(),"助记词转换工具");
     }
@@ -66,7 +66,7 @@ public class SettingTest extends BaseTest {
     public void test008_MnemonicExchangetest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
+        AdvanceFuncPage setting = mine.enterAdvancePage();
         MnemonicToolsPage toolsPage = setting.enternemTools_btnPage();
         toolsPage.switchMnems();
         Assert.assertNotNull(toolsPage.assetExpectText);
