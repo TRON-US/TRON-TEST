@@ -415,10 +415,32 @@ public class SendTrxPage extends AbstractPage {
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
+
     public String sendMaxTrc20() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys(unActiveAddress);
         selectTokenType("20");
+        tvMax_btn.click();
+        Helper.swipScreen(driver);
+        String allNumberText = balance_text.getText();
+        System.out.println("allNumberText"+allNumberText);
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return  allNumberText;
+    }
+
+    /**
+     *
+     * @param cointype 10 20 noun
+     * @return
+     * @throws Exception
+     */
+    public String sendMaxCoinWithType( String ... cointype) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        receiveAddress_text.sendKeys(unActiveAddress);
+        if (cointype.length != 0){
+            selectTokenType(cointype[0]);
+        }
         tvMax_btn.click();
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
