@@ -33,6 +33,9 @@ public class SendTrc20 extends Base {
       .getString("foundationAccount.currentMainNetBlockNum");
   static String trc20TokenName = Configuration.getByPath("testng.conf")
       .getString("foundationAccount.trc20TokenName");
+  static String onlyhaveTRC20privatekey = Configuration.getByPath("testng.conf")
+            .getString("onlyHaveTRC20InNile.privateKey1");
+
   
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
@@ -89,10 +92,35 @@ public class SendTrc20 extends Base {
         transfer.sendAllTrc20("max");
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
+    //使用一个没有trx但是又20币的账户转账20,会出现消耗trx的确认信息,点击转账后会失败
+    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
+    public void test003_inputNotEnoughBandWidthSendMax20NumberUNActive() throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(onlyhaveTRC20privatekey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxTrc20(),"可转账数量");
+        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(),"TRX") > 0);
+        Assert.assertEquals(allNumber,number);
+        Assert.assertTrue(transfer.no_bandwidth.getText().contains("带宽少于"));
+        Assert.assertTrue(transfer.no_bandwidth.getText().contains("本次交易预计会消耗"));
+    }
+    //使用一个带宽充足账户转给未激活地址20,手续费trx是0,不转账!!
+    @Parameters({"privateKey"})
+    @Test(enabled = true,description = "test004_inputHaveBandWidthSendMax20NumberToUNActive")
+    public void test004_inputHaveBandWidthSendMax20NumberToUNActive(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxTrc20(),"可转账数量");
+        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(),"TRX") == 0);
+        Assert.assertEquals(allNumber,number);
+    }
 
 
     @Test(enabled = true,description = "input mix send number")
-    public void test003_inputMixSendNumber() throws Exception {
+    public void test005_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
         String centent = transfer.formatErrorHits_text.getText();
@@ -101,14 +129,14 @@ public class SendTrc20 extends Base {
 
 
     @Test(enabled = true,description = "input too Much trc20 send number", alwaysRun = true)
-    public void test004_inputTooMuchSendNumber() throws Exception {
+    public void test006_inputTooMuchSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("tooMuch");
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
     @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
-    public void test005_BandWidthShowTest() throws Exception {
+    public void test007_BandWidthShowTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         waiteTime();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -129,7 +157,7 @@ public class SendTrc20 extends Base {
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
     }
     @Test(groups = {"P0"},enabled = true,description = "Trc20 transfer success recording")
-    public void test006_trc20TransferInSuccessRecording() throws Exception {
+    public void test008_trc20TransferInSuccessRecording() throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       TrxPage trx = asset.enterTrx20Page();
       trx.tranfer_tab.get(1).click();
@@ -162,7 +190,7 @@ public class SendTrc20 extends Base {
 
 
     @Test(enabled = true, description = "TRC20 transfer history record test", alwaysRun = true)
-    public void test007_trc20TransactionHistory() throws Exception {
+    public void test009_trc20TransactionHistory() throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       MinePage mine = asset.enterMinePage();
       TransactionRecordPage transaction = mine.enterTransactionRecordPage();
@@ -174,7 +202,7 @@ public class SendTrc20 extends Base {
 
   @Parameters({"address"})
   @Test(enabled = true, description = "Trc 20 transaction detail info test", alwaysRun = true)
-  public void test008_trc20TransactionDetailInfo(String address) throws Exception {
+  public void test010_trc20TransactionDetailInfo(String address) throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
     Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -200,7 +228,7 @@ public class SendTrc20 extends Base {
 
   @Parameters({"address"})
   @Test(enabled = true, description = "Trc20 receive transaction detail info test", alwaysRun = true)
-  public void test008_trc20ReceiveTransactionDetailInfo(String address) throws Exception {
+  public void test011_trc20ReceiveTransactionDetailInfo(String address) throws Exception {
     AssetPage asset = new AssetPage(DRIVER);
     TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(2);
     System.out.println(transactionInfo.title_amount_test.getText());
