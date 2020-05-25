@@ -15,12 +15,12 @@ import org.testng.annotations.Test;
 
 public class GeneralTransactionNotes extends Base {
 
-    static String beforeTRXBalance ;
-    static float sendTrxAmount;
-    static String beforeTRC10Balance ;
-    static float sendTrc10Amount;
-    static String beforeTRC20Balance ;
-    static float sendTrc20Amount;
+     String beforeTRXBalance ;
+     float sendTrxAmount;
+     String beforeTRC10Balance ;
+     float sendTrc10Amount;
+     String beforeTRC20Balance ;
+     float sendTrc20Amount;
 
     static String trxnote = "I'm send TRX notes!!" ;
     static String trc10note = "I'm send TRC10 notes!!" ;
