@@ -80,24 +80,20 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
         sendTrzAmount = getAnAmount();
+        System.out.println("sendTrzAmount:" + sendTrzAmount);
         transfer.publicSendTrz(receiverShieldAddress,Float.toString(sendTrzAmount));
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Public trz transfer success recording")
     public void test002_PublicTrzTransferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-      try {
-        TimeUnit.SECONDS.sleep(20);
-        // if page display AD , cloese the AD
-/*            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }*/
-      } catch (Exception e){}
+        asset.refrashWaiteTime(60);
         TrxPage trx = asset.publicAccountEnterTrzPage();
         trx.tranfer_tab.get(1).click();
         System.out.println(trx.tranferIncount_text.get(1).getText());
         String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+        System.out.println("sendTrzAmount:" + sendTrzAmount);
+        System.out.println("tranferInCount:" + tranferInCount);
         Assert.assertTrue(Float.toString(sendTrzAmount).substring(0,5).equals(tranferInCount.substring(0,5)));
     }
 
@@ -129,7 +125,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(3);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),witnessAddress);
-        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名地址"));
+        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名账户"));
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));

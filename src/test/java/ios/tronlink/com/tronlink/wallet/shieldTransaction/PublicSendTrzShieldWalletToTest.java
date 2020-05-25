@@ -121,7 +121,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         TransactionRecordPage recordPage = trzPage.enterTransactionRecordPage(findString);
         waiteTime();
         Assert.assertTrue(recordPage.isElementExist("10 TRZ"));
-        Assert.assertTrue(recordPage.isElementExist("匿名地址"));
+        Assert.assertTrue(recordPage.isElementExist("匿名账户"));
         Assert.assertTrue(recordPage.isElementExist(publicShieldAddress));
 
     }

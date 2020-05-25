@@ -78,8 +78,6 @@ public class SendTrzPage extends AbstractPage {
     public WebElement trc10_btn;
 
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
-    public WebElement trc20_btn;
 
 
 
@@ -153,8 +151,6 @@ public class SendTrzPage extends AbstractPage {
 
     public String trxCount = "";
 
-
-
     public SendTrxSuccessPage normalSendTrx() throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         tranferAmount_text.sendKeys("1");
@@ -195,21 +191,21 @@ public class SendTrzPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        trc20_btn.click();
-        tranferAmount_text.sendKeys(number);
-        swip();
-        send_btn.click();
-        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        back_bt.click();
-        return new SendTrxSuccessPage(driver);
-    }
+//    public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
+//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        token_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        trc20_btn.click();
+//        tranferAmount_text.sendKeys(number);
+//        swip();
+//        send_btn.click();
+//        transferNow_btn.click();
+//        InputPasswordConfim_btn.sendKeys("Test0001");
+//        confirm_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        back_bt.click();
+//        return new SendTrxSuccessPage(driver);
+//    }
 
     public double getTrc10Amount() throws Exception {
         token_btn.click();
@@ -224,18 +220,18 @@ public class SendTrzPage extends AbstractPage {
         return trc10Amount;
     }
 
-    public double getTrc20Amount() throws Exception {
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        trc20_btn.click();
-        String balance = balance_text.getText();
-        double trc10Amount = 0;
-        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-        Matcher matcher = pattern.matcher(balance);
-        if(matcher.find())
-            trc10Amount = Double.valueOf(matcher.group(0));
-        return trc10Amount;
-    }
+//    public double getTrc20Amount() throws Exception {
+//        token_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        trc20_btn.click();
+//        String balance = balance_text.getText();
+//        double trc10Amount = 0;
+//        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
+//        Matcher matcher = pattern.matcher(balance);
+//        if(matcher.find())
+//            trc10Amount = Double.valueOf(matcher.group(0));
+//        return trc10Amount;
+//    }
 
 
     public void sendKey(WebElement el,String value) throws Exception {
@@ -292,32 +288,32 @@ public class SendTrzPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    public void sendAllTrc20(String value) throws Exception {
-        TimeUnit.SECONDS.sleep(2);
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        trc20_btn.click();
-        //calculate trx
-        switch(value){
-            case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferAmount_text.sendKeys(current);
-                tvMax_btn.click();
-                break;
-            case "mix":
-                tranferAmount_text.sendKeys("0");
-                break;
-            case "tooMuch":
-                tranferAmount_text.sendKeys("9999999999");
-                break;
-        }
-        Helper.swipScreen(driver);
-        send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-    }
+//    public void sendAllTrc20(String value) throws Exception {
+//        TimeUnit.SECONDS.sleep(2);
+//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        token_btn.click();
+//        TimeUnit.SECONDS.sleep(3);
+//        trc20_btn.click();
+//        //calculate trx
+//        switch(value){
+//            case "max":
+////                String current = balance_text.getText();
+////                int  index = current.lastIndexOf(" ");
+////                current = current.substring(index + 1,current.length());
+////                tranferAmount_text.sendKeys(current);
+//                tvMax_btn.click();
+//                break;
+//            case "mix":
+//                tranferAmount_text.sendKeys("0");
+//                break;
+//            case "tooMuch":
+//                tranferAmount_text.sendKeys("9999999999");
+//                break;
+//        }
+//        Helper.swipScreen(driver);
+//        send_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//    }
 
 
 

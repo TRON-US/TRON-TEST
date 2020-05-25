@@ -25,6 +25,8 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "设置")
     public WebElement setting_btn;
 
+    @FindBy(name = "高级功能")
+    public WebElement advanceFunc_btn;
 
     @FindBy(name = "好友邀请")
     public WebElement friendInvitation_btn;
@@ -79,6 +81,7 @@ public class MinePage extends AbstractPage {
         }
         return new CommitteePage(driver);
     }
+
 
     //enter Setting page
     public SettingPage enterSettingPage() {
@@ -143,6 +146,17 @@ public class MinePage extends AbstractPage {
         return new AnnouncementPage(driver);
     }
 
+    public AdvanceFuncPage enterAdvancePage() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+            advanceFunc_btn.click();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return new AdvanceFuncPage(driver);
+    }
 
     public TransactionRecordPage enterTransactionRecordPage() {
         try {

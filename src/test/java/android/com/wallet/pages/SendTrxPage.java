@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -76,13 +77,13 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/tv_error")
     public WebElement formatErrorHits_text;
 
-    @FindBy( id = "com.tronlink.wallet:id/tv_real_money")
+    @FindBy(id = "com.tronlink.wallet:id/tv_real_money")
     public WebElement real_money;
 
-    @FindBy( id = "com.tronlink.wallet:id/tv_fee")
+    @FindBy(id = "com.tronlink.wallet:id/tv_fee")
     public WebElement fee_text;
 
-    @FindBy( id = "com.tronlink.wallet:id/tv_fee_amount_bw")
+    @FindBy(id = "com.tronlink.wallet:id/tv_fee_amount_bw")
     public WebElement bandwidth_text;
 
     @FindBy(id = "com.tronlink.wallet:id/tv_note")
@@ -126,8 +127,7 @@ public class SendTrxPage extends AbstractPage {
     public List<WebElement> signAddress_input;
 
 
-
-    public void swip(){
+    public void swip() {
         Helper.swipScreen(driver);
     }
 
@@ -136,21 +136,16 @@ public class SendTrxPage extends AbstractPage {
     public WebElement next_btn;
 
 
-
     @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
     public WebElement enableTime_text;
-
 
 
     @FindBy(id = "com.tronlink.wallet:id/tv_address")
     public List<WebElement> signAddress_text;
 
 
-
-
     @FindBy(id = "com.tronlink.wallet:id/tv_selected_name")
     public WebElement selectSignName_text;
-
 
 
     @FindBy(id = "com.tronlink.wallet:id/tv_name")
@@ -172,7 +167,7 @@ public class SendTrxPage extends AbstractPage {
     public WebElement tv_delete;
 
 
-    public SendTrxSuccessPage enterSendTrxSuccessPage(){
+    public SendTrxSuccessPage enterSendTrxSuccessPage() {
         confirm_btn.click();
         return new SendTrxSuccessPage(driver);
     }
@@ -180,7 +175,27 @@ public class SendTrxPage extends AbstractPage {
 
     public String trxCount = "";
 
+    public WebElement trc20_btn() {
+        try {
+            return findElementByText("(TCCc****5n71)");
 
+        } catch (Exception e) {
+            System.out.println("no MainChain");
+
+        }
+
+        try {
+
+            return findElementByText("(TXkd****NfD7)");
+
+        } catch (Exception e) {
+            System.out.println("no DappChain");
+
+            return findElementByText("(TXkd****NfD7)");
+
+        }
+
+    }
 
     public SendTrxSuccessPage normalSendTrx() throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -219,7 +234,7 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public SendTrxSuccessPage publicSendTrz(String receiverAddress,String number) throws Exception {
+    public SendTrxSuccessPage publicSendTrz(String receiverAddress, String number) throws Exception {
         receiveAddress_text.sendKeys(receiverAddress);
         tranferCount_text.sendKeys(number);
         swip();
@@ -246,22 +261,21 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public void selectCoinType(String type) throws Exception{
-        switch(type){
+    public void selectCoinType(String type) throws Exception {
+        switch (type) {
             case "trc10":
                 selectTokenType("10");
                 break;
             case "trc20":
                 selectTokenType("20");
-            break;
+                break;
             default:
                 break;
         }
     }
 
 
-
-    public SendTrxSuccessPage sendTrxTypeWithNotes(String sendAmount,String notes,String type) throws Exception {
+    public SendTrxSuccessPage sendTrxTypeWithNotes(String sendAmount, String notes, String type) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         selectCoinType(type);
         tranferCount_text.sendKeys(sendAmount);
@@ -278,7 +292,6 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(5);
         return new SendTrxSuccessPage(driver);
     }
-
 
 
     public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
@@ -301,7 +314,7 @@ public class SendTrxPage extends AbstractPage {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        trc20_btn.click();
+        trc20_btn().click();
         tranferCount_text.sendKeys(number);
         swip();
         send_btn.click();
@@ -321,7 +334,7 @@ public class SendTrxPage extends AbstractPage {
         double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
-        if(matcher.find())
+        if (matcher.find())
             trc10Amount = Double.valueOf(matcher.group(0));
         return trc10Amount;
     }
@@ -329,18 +342,18 @@ public class SendTrxPage extends AbstractPage {
     public double getTrc20Amount() throws Exception {
         token_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        trc20_btn.click();
+        trc20_btn().click();
         String balance = balance_text.getText();
         double trc10Amount = 0;
         Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
         Matcher matcher = pattern.matcher(balance);
-        if(matcher.find())
+        if (matcher.find())
             trc10Amount = Double.valueOf(matcher.group(0));
         return trc10Amount;
     }
 
 
-    public void sendKey(WebElement el,String value) throws Exception {
+    public void sendKey(WebElement el, String value) throws Exception {
         el.sendKeys(value);
         TimeUnit.SECONDS.sleep(2);
     }
@@ -349,7 +362,7 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrx(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         //calculate trx
-        switch(value){
+        switch (value) {
             case "max":
 //                String current = balance_text.getText();
 //                int  index = current.lastIndexOf(" ");
@@ -371,7 +384,7 @@ public class SendTrxPage extends AbstractPage {
     public void sendAllTrc10(String value) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         selectTokenType("10");
-        switch(value){
+        switch (value) {
             case "max":
 //                String current = balance_text.getText();
 //                int  index = current.lastIndexOf(" ");
@@ -396,7 +409,7 @@ public class SendTrxPage extends AbstractPage {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         selectTokenType("20");
 
-        switch(value){
+        switch (value) {
             case "max":
 //                String current = balance_text.getText();
 //                int  index = current.lastIndexOf(" ");
@@ -423,40 +436,39 @@ public class SendTrxPage extends AbstractPage {
         tvMax_btn.click();
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
-        System.out.println("allNumberText"+allNumberText);
+        System.out.println("allNumberText" + allNumberText);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        return  allNumberText;
+        return allNumberText;
     }
 
     /**
-     *
      * @param cointype 10 20 noun
      * @return
      * @throws Exception
      */
-    public String sendMaxCoinWithType( String ... cointype) throws Exception {
+    public String sendMaxCoinWithType(String... cointype) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys(unActiveAddress);
-        if (cointype.length != 0){
+        if (cointype.length != 0) {
             selectTokenType(cointype[0]);
         }
         tvMax_btn.click();
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
-        System.out.println("allNumberText"+allNumberText);
+        System.out.println("allNumberText" + allNumberText);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        return  allNumberText;
+        return allNumberText;
     }
 
-    public void selectTokenType(String value) throws Exception{
+    public void selectTokenType(String value) throws Exception {
         waiteTime();
-        switch (value){
-            case  "20":
+        switch (value) {
+            case "20":
                 token_btn.click();
                 TimeUnit.SECONDS.sleep(3);
-                trc20_btn.click();
+                trc20_btn().click();
                 break;
             case "10":
                 token_btn.click();
@@ -469,7 +481,7 @@ public class SendTrxPage extends AbstractPage {
         receiveAddress_text.sendKeys(revAddress);
         Random random = new Random();
         float count = random.nextFloat();
-        DecimalFormat df = new DecimalFormat( "0.00" );
+        DecimalFormat df = new DecimalFormat("0.00");
         String str = df.format(count);
         trxCount = str;
         tranferCount_text.sendKeys(str);
@@ -497,7 +509,7 @@ public class SendTrxPage extends AbstractPage {
         return trxCount;
     }
 
-    public void inputFormAddress(String address){
+    public void inputFormAddress(String address) {
         waiteTime();
         transferAddress_deleteBtn.click();
         waiteTime();

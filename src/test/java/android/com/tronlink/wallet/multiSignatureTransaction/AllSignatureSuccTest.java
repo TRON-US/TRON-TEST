@@ -236,7 +236,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(SendTrx.note_text.getText().contains("不会激活该地址")&&SendTrx.note_text.getText().contains("地址未激活"));
+        Assert.assertTrue(SendTrx.note_text.getText().contains("不会激活该地址")&&SendTrx.note_text.getText().contains("账户未激活"));
         log(SendTrx.fee_text.getText());
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
@@ -474,9 +474,11 @@ public class AllSignatureSuccTest extends Base {
         Assert.assertTrue(multiSignTransactionPage.invaTime_text.isDisplayed());
     }
 
-
+    @Parameters({"ownerPrivateKey"})
     @Test(groups = {"P0"},description = "test012_modifyMultiSignFeeCheck TR-1066", alwaysRun = true)
-    public void test019_modifyMultiSignFeeCheck() throws Exception {
+    public void test019_modifyMultiSignFeeCheck(String ownerPrivateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(ownerPrivateKey, DRIVER);
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
         Helper.swipScreen(modifyPermission.driver);

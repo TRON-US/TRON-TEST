@@ -97,7 +97,6 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
         Helper.tapWhitePlace(transfer.driver);
-//        Assert.assertTrue(Helper.contentTexts(transfer.alltextArray,"地址未激活"));
         Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("地址未激活"));
 
     }
