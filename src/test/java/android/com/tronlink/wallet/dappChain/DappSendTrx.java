@@ -122,7 +122,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
         String hits = transfer.note_text.getText();
-        Assert.assertTrue(hits.contains("地址未激活") || hits.contains("Address not activated"));
+        Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));
     }
 
 
