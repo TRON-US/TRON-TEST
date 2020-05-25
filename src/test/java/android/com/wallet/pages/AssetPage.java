@@ -233,6 +233,13 @@ public class AssetPage extends AbstractPage {
 
     }
 
+    public void refrashWaiteTime(Integer second) throws Exception {
+        for (int i = 0 ;i<second;i++){
+            Helper.swipScreenToTop(driver);
+            TimeUnit.SECONDS.sleep(1);
+        }
+
+    }
 
 
 

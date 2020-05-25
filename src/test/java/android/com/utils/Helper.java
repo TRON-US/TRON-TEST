@@ -28,7 +28,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.println("   " + width + "   " + height);
+        System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
@@ -42,7 +42,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.println("   " + width + "   " + height);
+        System.out.println("2/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*2/5))
@@ -56,7 +56,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+        System.out.print("1/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/5))
@@ -69,7 +69,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+        System.out.print("4/5上拉到1/5    " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
             PointOption.point(width/2, height*4/5))
@@ -82,7 +82,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+        System.out.print("2/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
             PointOption.point(width/2, height*2/5))
