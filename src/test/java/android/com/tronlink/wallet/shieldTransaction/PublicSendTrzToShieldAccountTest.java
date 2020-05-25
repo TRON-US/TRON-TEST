@@ -129,7 +129,7 @@ public class PublicSendTrzToShieldAccountTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(3);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),witnessAddress);
-        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名地址"));
+        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名账户"));
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));

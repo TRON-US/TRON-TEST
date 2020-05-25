@@ -171,7 +171,10 @@ public class AddressBookTest extends Base {
         transfer.addressBook_btn.click();
         transfer.addressName_display.click();
         Assert.assertTrue(transfer.receiveAddress_text.getText().equals(shieldAddress));
-        Assert.assertTrue(transfer.note_text.getText().contains("匿名地址"));
+        Assert.assertTrue(transfer.note_text.getText().contains("匿名"));
+        Assert.assertTrue(transfer.note_text.getText().contains("账户"));
+        Assert.assertTrue(transfer.note_text.getText().contains("地址"));
+
     }
 
 
