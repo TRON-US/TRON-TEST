@@ -284,6 +284,7 @@ public class SendTrxPage extends AbstractPage {
         add_note.click();
         waiteTime();
         et_note.sendKeys(notes);
+        swip();
         waiteTime();
         send_btn.click();
         transferNow_btn.click();
@@ -377,6 +378,8 @@ public class SendTrxPage extends AbstractPage {
                 tranferCount_text.sendKeys("9999999999");
                 break;
         }
+        swip();
+        waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
@@ -491,6 +494,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         et_note.sendKeys("I'm multiSign notes");
         waiteTime();
+        swip();
         send_btn.click();
         transferNow_btn.click();
         TimeUnit.SECONDS.sleep(2);
