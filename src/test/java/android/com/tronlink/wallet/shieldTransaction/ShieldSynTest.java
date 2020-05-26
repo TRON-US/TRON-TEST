@@ -89,7 +89,7 @@ public class ShieldSynTest extends Base {
         SendTrzPage transfer = enterToSendTrzPage();
         transfer.sendKey(transfer.receiveAddress_text, shieldAddress);
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("转出账户与接收账户不能相同") || hits.equals("发送地址与接收地址不能相同") || hits.contains("cannot be the same"));
+        Assert.assertTrue(hits.equals("转出地址与接收地址不能相同") || hits.equals("发送地址与接收地址不能相同") || hits.contains("cannot be the same"));
     }
 
     @Test(enabled = true,description = "Shield to shield transaction record test")
@@ -148,7 +148,7 @@ public class ShieldSynTest extends Base {
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTrzTransactionDetailPage(0);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),shieldAddress);
         System.out.println("receiverAddress_text: " + transactionInfo.receiverAddress_text.getText());
-        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名账户"));
+        Assert.assertTrue(transactionInfo.receiverAddress_text.getText().contains("匿名地址"));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trzName));
         System.out.println(transactionInfo.title_amount_test.getText());
