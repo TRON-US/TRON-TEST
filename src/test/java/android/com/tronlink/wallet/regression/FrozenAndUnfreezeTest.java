@@ -216,7 +216,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputReceivingAddress("ztron1v5q4efydnkd6z06qmmj0uzdysjlage2h5d2teecdacjre6kuh49mg6paaf7uua0wclcmwlkv30f");
         String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.contains("匿名账户") || prompt.contains("Shielded address"));
+        Assert.assertTrue(prompt.contains("匿名地址") || prompt.contains("Shielded address"));
     }
 
 

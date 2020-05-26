@@ -236,7 +236,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(SendTrx.note_text.getText().contains("账户未激活"));
+        Assert.assertTrue(SendTrx.note_text.getText().contains("地址未激活"));
         log(SendTrx.fee_text.getText());
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
