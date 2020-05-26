@@ -97,6 +97,9 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlink.wallet:id/et_new_password")
     public WebElement password_input;
 
+    @FindBy(id = "com.tronlink.wallet:id/total_vote")
+    public WebElement total_vote;
+
     public boolean getHits(){
         boolean hits = false;
         try {

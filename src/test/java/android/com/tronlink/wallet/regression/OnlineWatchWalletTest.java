@@ -419,9 +419,18 @@ public class OnlineWatchWalletTest extends Base {
     }
 
 
+    @Test(groups = {"P0"},enabled = true,description = "Online vote TotalNumber", alwaysRun = true)
+    public void test017_onlineVoteQRCode() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        waiteTime();
+        long number = Long.parseLong(removeSymbol(vote.total_vote.getText())) ;
+        Assert.assertTrue(number > 0);
+
+    }
 
     @Test(groups = {"P0"},enabled = true,description = "Online trc20 QRCode", alwaysRun = true)
-    public void test017_onlineTrc20QRCode() throws Exception{
+    public void test018_onlineTrc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc20Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -438,7 +447,7 @@ public class OnlineWatchWalletTest extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
-    public void test018_OnlineUnfreezeQRCode() throws Exception{
+    public void test019_OnlineUnfreezeQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
@@ -455,7 +464,7 @@ public class OnlineWatchWalletTest extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Online Withdraw reward transaction QRCode", alwaysRun = true)
-    public void test019_OnlineWithdrawRewardQRCode() throws Exception{
+    public void test020_OnlineWithdrawRewardQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         vote.reward_btn.click();
