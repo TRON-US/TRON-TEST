@@ -2,6 +2,7 @@ package ios.tronlink.com.tronlink.wallet.regression;
 
 import android.com.utils.AppiumTestCase;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.AdvanceFuncPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.CommitteePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -89,7 +90,8 @@ public class CommitteeTest extends Base {
 
     public CommitteePage enterCommitteePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
+        MinePage mine = assetPage.enterMinePage();
+        AdvanceFuncPage minePage = mine.enterAdvancePage();
         CommitteePage committeePage = minePage.enterCommitteePage();
         return committeePage;
     }
@@ -99,7 +101,7 @@ public class CommitteeTest extends Base {
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         String count = String.format("%.0f", Math.random() * 100000);

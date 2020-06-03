@@ -88,6 +88,7 @@ public class autoCreateTestngXml {
         iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
         iosDeviceNameList.add("00008020-001E202E2288002E");
         iosDeviceNameList.add("a64acfa6c4ce4881357b1668dba9c52f24b2b28d");
+        iosDeviceNameList.add("f6c579c9d216e741babe109d04536b19acc542f8");
 /*        String udid;
         for (int i = 0; i < iosDeviceNameList.size();i++) {
             udid = iosDeviceNameList.get(i);
