@@ -59,6 +59,7 @@ public class ImportKeystore extends BaseTest {
         oldKeystore = walletPage.getBackupKeystore("Test0001");
         waiteTime();
         walletPage.backbtn.click();
+        TimeUnit.SECONDS.sleep(3);
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
         TimeUnit.SECONDS.sleep(5);

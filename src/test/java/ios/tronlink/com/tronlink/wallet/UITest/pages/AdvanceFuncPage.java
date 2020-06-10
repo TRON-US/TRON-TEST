@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.ios.IOSDriver;
+import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -36,7 +37,17 @@ public class AdvanceFuncPage extends AbstractPage {
     public WebElement walletExport_btn;
 
 
-
+    public CommitteePage enterCommitteePage() {
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            waiteTime(15);
+            commiteeBtn.click();
+            TimeUnit.SECONDS.sleep(20);
+        } catch (Exception e) {
+            new Base().log("committee_btn button not found");
+        }
+        return new CommitteePage(driver);
+    }
 
 
     public MnemonicToolsPage enternemTools_btnPage() throws Exception {

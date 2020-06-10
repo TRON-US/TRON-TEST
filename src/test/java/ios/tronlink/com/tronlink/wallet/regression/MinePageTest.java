@@ -73,6 +73,9 @@ public class MinePageTest extends BaseTest {
     public void test006_enterGroupPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
+        waiteTime();
+        minePage.aboutUs_btn.click();
+        waiteTime();
         GroupPage groupPage = minePage.enterGroupPage();
         TimeUnit.SECONDS.sleep(4);
         Assert.assertEquals(groupPage.groupInto_title.getText(), "加入社群");

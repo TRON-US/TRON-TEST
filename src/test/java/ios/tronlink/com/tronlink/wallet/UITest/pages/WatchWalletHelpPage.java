@@ -85,7 +85,8 @@ public class WatchWalletHelpPage extends AbstractPage {
     }
     public void makeApropos() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
-        MinePage minePage = assetPage.enterMinePage();
+        MinePage mine = assetPage.enterMinePage();
+        AdvanceFuncPage minePage = mine.enterAdvancePage();
         CommitteePage committeePage = minePage.enterCommitteePage();
         waiteTime(6);
         committeePage.Setuppropos.click();

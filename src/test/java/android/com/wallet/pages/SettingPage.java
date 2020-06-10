@@ -44,6 +44,8 @@ public class SettingPage extends AbstractPage {
     public WebElement connect_btn;
 
 
+    @FindBy(id = "com.tronlink.wallet:id/server")
+    public WebElement server_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/node")
     public WebElement node_btn;
@@ -120,6 +122,11 @@ public class SettingPage extends AbstractPage {
     }
 
 
+    public SeverSetPage enterSeverSetPage() throws  Exception {
+        server_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return  new SeverSetPage(driver);
+    }
 
     public MinePage enterMinePage() throws Exception {
         back_btn.click();
