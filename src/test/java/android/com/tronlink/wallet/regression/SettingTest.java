@@ -125,5 +125,27 @@ public class SettingTest extends Base {
         Assert.assertNotEquals(developer, developerNow);
     }
 
+    @Test(description = "choose Sever Sigapor", alwaysRun = true)
+    public void test008_Sever_Setting() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        SeverSetPage sever = setting.enterSeverSetPage();
+        sever.Sigapor_btn.click();
+        Assert.assertTrue(sever.isElementExist("com.tronlink.wallet:id/iv_select2"));
+
+    }
+
+    @Test(description = "choose SeverUSA", alwaysRun = true)
+    public void test009_Sever_Setting() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        SeverSetPage sever = setting.enterSeverSetPage();
+        sever.USA_btn.click();
+        Assert.assertTrue(sever.isElementExist("com.tronlink.wallet:id/iv_select1"));
+
+    }
+
 
 }
