@@ -193,7 +193,7 @@ public class CommitteePage extends AbstractPage {
         waiteTime(10);
         WebElement wl = findFirstproposalWl();
         wl.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(8);
     }
 
 
