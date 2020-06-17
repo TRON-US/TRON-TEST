@@ -96,26 +96,18 @@ public class ZColdWalletTest extends ColdBaseTest {
 
     }
 
-    @Test(description = "Cold wallet  Me into GroupPage", alwaysRun = true)
-    public void test009_ColdWalletEnterGroupPage() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
-        GroupPage groupPage = minePage.enterGroupPage();
-        TimeUnit.SECONDS.sleep(4);
-        Assert.assertEquals(groupPage.groupInto_title.getText(), "加入社群");
-    }
 
     @Test(description = "Cold wallet Into Mnemonic Page Test",alwaysRun = true)
-    public void test007_ColdWalletIntoMnemonicPagetest() throws Exception {
+    public void test010_ColdWalletIntoMnemonicPagetest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        MnemonicToolsPage toolsPage = setting.enternemTools_btnPage();
+        AdvanceFuncPage advanceFuncPage = mine.enterAdvancePage();
+        MnemonicToolsPage toolsPage = advanceFuncPage.enternemTools_btnPage();
         Assert.assertEquals(toolsPage.title.getText(),"助记词转换工具");
     }
 
     @Test(description = " ColdWallet Developer options On Test",alwaysRun = true)
-    public void test008_ColdWalletDeveloperOnOptions() throws Exception {
+    public void test011_ColdWalletDeveloperOnOptions() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
@@ -124,7 +116,7 @@ public class ZColdWalletTest extends ColdBaseTest {
         Assert.assertTrue(developerNow.contains("Shasta"));
     }
     @Test(description = " ColdWallet Developer options Off Test",alwaysRun = true)
-    public void test009_ColdWalletDeveloperOffOptions() throws Exception {
+    public void test012_ColdWalletDeveloperOffOptions() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
@@ -135,7 +127,7 @@ public class ZColdWalletTest extends ColdBaseTest {
 
     @Parameters({"shieldSK"})
     @Test(groups = {"P0"},description = "ShieldWallet Import",alwaysRun = true)
-    public void test010_ColdWalletShieldWalletImport(String shieldSK) throws Exception {
+    public void test013_ColdWalletShieldWalletImport(String shieldSK) throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         new Helper().importMoreWallet(Helper.importType.coldShieldWallet,shieldSK,"shieldCold","Test0001",coldHelper.driver);
         Assert.assertTrue(coldHelper.AssetBtn.isEnabled());
@@ -148,7 +140,7 @@ public class ZColdWalletTest extends ColdBaseTest {
 
     @Parameters({"shieldAddress"})
     @Test(groups = {"P0"},enabled = true,description = "shield Cold wallet receive test", alwaysRun = true)
-    public void test011_coldShieldWalletCanReceiveTrx(String shieldAddress) throws Exception {
+    public void test014_coldShieldWalletCanReceiveTrx(String shieldAddress) throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         coldHelper.recieveLabel.click();
         waiteTime();
@@ -158,7 +150,7 @@ public class ZColdWalletTest extends ColdBaseTest {
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Shield Cold wallet knowledge test", alwaysRun = true)
-    public void test012_coldShieldWalletKnowledgeTest() throws Exception {
+    public void test015_coldShieldWalletKnowledgeTest() throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         Helper.swipRefreshScreen(DRIVER);
         coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '了解冷钱包'").click();
@@ -167,21 +159,14 @@ public class ZColdWalletTest extends ColdBaseTest {
     }
 
     @Test(groups = {"P0"},description = "Cold Shield wallet  Me into GroupPage", alwaysRun = true)
-    public void test013_ColdShieldWalletEnterGroupPage() throws Exception {
+    public void test016_ColdShieldWalletEnterGroupPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
-        GroupPage groupPage = minePage.enterGroupPage();
+        AboutUsPage aboutuspage =  minePage.enterAboutUsPage();
+        GroupPage groupPage = aboutuspage.enterGroupPage();
         TimeUnit.SECONDS.sleep(4);
         Assert.assertEquals(groupPage.groupInto_title.getText(), "加入社群");
-        groupPage.blackBackBtn.click();
-        SettingPage setPage = minePage.enterSettingPage();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertEquals(setPage.title.getText(), "设置");
-        groupPage.blackBackBtn.click();
-        MyPursePage walletPage = minePage.enterMyPursePage();
-        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(Helper.contentTexts(walletPage.textArray,"钱包管理"));
-        Assert.assertTrue(Helper.isElementExist(walletPage.driver,"钱包管理"));
+
     }
 
 }

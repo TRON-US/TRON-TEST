@@ -22,6 +22,18 @@ public class ImportKeystore extends BaseTest {
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
     }
+
+    public ImportKeystorePage mypurpustokeystore(MyPursePage page){
+        waiteTime();
+        page.addwallet.click();
+        waiteTime();
+        DRIVER.findElementById("normalWallet").click();
+        waiteTime();
+        DRIVER.findElementByName("Keystore").click();
+        return new ImportKeystorePage(DRIVER);
+
+    }
+
 //
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
     public void test001_gotoimportFromeKeyStroe() throws Exception {
@@ -57,10 +69,7 @@ public class ImportKeystore extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage walletPage = asset.enterMyPursePage();
         oldKeystore = walletPage.getBackupKeystore("Test0001");
-        waiteTime();
-        walletPage.backbtn.click();
-        TimeUnit.SECONDS.sleep(3);
-        ImportKeystorePage importKeystorePage = getImportKeystorePage();
+        ImportKeystorePage importKeystorePage = mypurpustokeystore(walletPage);
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
         TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(importKeystorePage.errorStr.getText().contains("钱包已存在"));

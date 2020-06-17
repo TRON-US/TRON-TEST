@@ -72,6 +72,9 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "资源")
     public WebElement asset_btn;
 
+    @FindBy(id = "manage wallet")
+    public  WebElement addwallet;
+
     @FindBy(className = "XCUIElementTypeSecureTextField")
     public WebElement password_et;
 
@@ -83,7 +86,7 @@ public class MyPursePage extends AssetPage {
     @FindBy(className = "XCUIElementTypeTextView")
     public WebElement keystore_text;
 
-    @FindBy(name = "备份完成")
+    @FindBy(name = "我已安全备份")
     public WebElement done_btn;
 
 
@@ -361,8 +364,11 @@ public class MyPursePage extends AssetPage {
             WebElement confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
             confirm_btn.click();
             TimeUnit.SECONDS.sleep(2);
+            driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '我知道了'").click();
+            TimeUnit.SECONDS.sleep(2);
             waiteTime();
             keystore = keystore_text.getText();
+            log("keystore: " + keystore);
             waiteTime();
             done_btn.click();
             TimeUnit.SECONDS.sleep(1);
