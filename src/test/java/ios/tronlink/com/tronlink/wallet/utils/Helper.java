@@ -85,7 +85,7 @@ public class Helper {
 
     public static void tapWhitePlace(IOSDriver driver)  throws Exception{
         TouchAction action = new TouchAction(driver);
-        PointOption whiteplace = PointOption.point(10,130);
+        PointOption whiteplace = PointOption.point(8,166);
         action.tap(whiteplace).perform().release();
     }
     public static void closeKeyBoard(IOSDriver driver)  throws Exception{
