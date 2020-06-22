@@ -133,8 +133,8 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         TimeUnit.SECONDS.sleep(2);
         transfer.testfieldArray.get(2).sendKeys("1");
-        Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
+        Helper.tapWhitePlace(transfer.driver);
         transfer.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         transfer.transferNow_btn.click();

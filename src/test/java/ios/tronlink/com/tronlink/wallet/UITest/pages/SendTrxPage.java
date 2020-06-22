@@ -329,8 +329,9 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         log("send Number IS: " + number + "  To: " + Addr);
         testfieldArray.get(2).sendKeys(number);
-        Helper.closeKeyBoard(driver);
         waiteTime();
+        TimeUnit.SECONDS.sleep(1);
+        Helper.tapWhitePlace(driver);
         send_btn.click();
         waiteTime(20);
         transferNow_btn.click();
@@ -365,8 +366,9 @@ public class SendTrxPage extends AbstractPage {
         getTrc10Token().click();
         waiteTime();
         testfieldArray.get(2).sendKeys(number);
-        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(1);
         waiteTime();
+        Helper.tapWhitePlace(driver);
         send_btn.click();
         waiteTime();
         transferNow_btn.click();
@@ -386,8 +388,9 @@ public class SendTrxPage extends AbstractPage {
         getTrc20Token().click();
         waiteTime();
         testfieldArray.get(2).sendKeys(number);
-        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(1);
         waiteTime();
+        Helper.tapWhitePlace(driver);
         send_btn.click();
         waiteTime();
         transferNow_btn.click();

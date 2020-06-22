@@ -90,7 +90,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
         log("beforeBalance TRZ: " + trzPage.trxTotal_text.getText());
-        beforeBalance = Float.valueOf(trzPage.trxTotal_text.getText());
+        beforeBalance = Float.valueOf(removeSymbolNoDot(trzPage.trxTotal_text.getText()));
         PublicToShieldSendAmount = getAnAmount();
         SendTrxPage transfer =trzPage.enterTransferPage();
         transfer.sendTrzWithNumber(Float.toString(PublicToShieldSendAmount),receiverShieldAddress);
@@ -101,7 +101,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
         log("afterBalance TRZ: " + trzPage.trxTotal_text.getText());
-        afterBalance = Float.valueOf(trzPage.trxTotal_text.getText());
+        afterBalance = Float.valueOf(removeSymbolNoDot(trzPage.trxTotal_text.getText()));
         Assert.assertTrue(afterBalance < beforeBalance);
     }
 
@@ -132,7 +132,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
         log("beforeBalance TRZ: " + trzPage.trxTotal_text.getText());
-        beforeBalance = Float.valueOf(trzPage.trxTotal_text.getText());
+        beforeBalance = Float.valueOf(removeSymbolNoDot(trzPage.trxTotal_text.getText()));
         PublicToPublicSendAmount = getAnAmount();
         SendTrxPage transfer =trzPage.enterTransferPage();
         transfer.sendTrzWithNumber(Float.toString(PublicToPublicSendAmount),receiverPublicAddress);
@@ -143,7 +143,7 @@ public class PublicSendTrzShieldWalletToTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trzPage = asset.enterPublicTrzPage();
         log("afterBalance TRZ: " + trzPage.trxTotal_text.getText());
-        afterBalance = Float.valueOf(trzPage.trxTotal_text.getText());
+        afterBalance = Float.valueOf(removeSymbolNoDot(trzPage.trxTotal_text.getText()) );
         Assert.assertTrue(afterBalance < beforeBalance);
     }
     @Test(description = "Public trz transfer history record test", alwaysRun = true)
