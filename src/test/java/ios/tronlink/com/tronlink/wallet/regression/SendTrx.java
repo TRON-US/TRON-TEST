@@ -223,7 +223,7 @@ public class SendTrx extends BaseTest {
     @Parameters({ "udid"})
     @Test(enabled = true,description = "test008_inputNotEnoughBandWidthSendMaxNumberUNActive")
     public void test015_inputNotEnoughBandWidthSendMaxNumberUNActive(String udid) throws Exception {
-        resetApp(udid);
+        DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(),"可转账数量");
@@ -243,7 +243,7 @@ public class SendTrx extends BaseTest {
     @Parameters({ "udid"})
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
     public void test016_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
-        resetApp(udid);
+        DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(), "可转账数量");
