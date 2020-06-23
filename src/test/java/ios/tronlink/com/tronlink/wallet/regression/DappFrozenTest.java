@@ -29,9 +29,19 @@ public class DappFrozenTest extends BaseTest {
     }
 
 
-    public FrozenAndUnfreezePage interferonPage(){
+    public FrozenAndUnfreezePage interferonPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
+        if(Helper.assetFindMainChain(asset)){
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+        }
+
         return asset.enterFrozenAndThawingPage();
+
     }
 
 
@@ -44,7 +54,7 @@ public class DappFrozenTest extends BaseTest {
     }
 
     @Test(description = "Freeze energy detail", alwaysRun = true)
-    public void test002_FreezeEnergyDetail() {
+    public void test002_FreezeEnergyDetail() throws Exception  {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.freezeEnergyDetail_btn.get(0).click();
 
@@ -67,14 +77,14 @@ public class DappFrozenTest extends BaseTest {
     }
 
     @Test(description = "Energy Question Test", alwaysRun = true)
-    public void test004_checkEnergyQuestion() {
+    public void test004_checkEnergyQuestion() throws Exception  {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("整个网络"));
     }
 
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
-    public void test005_checkBandwidthQuestion() {
+    public void test005_checkBandwidthQuestion() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getbandwidth_btn().click();
         frozen.questionClick();
@@ -109,7 +119,7 @@ public class DappFrozenTest extends BaseTest {
 
    // Freeze Change to Unfreeze
     @Test(description = "Freeze Change to Unfreeze", alwaysRun = true)
-    public void test010_freezeEnergyChangetoUnfreeze()  {
+    public void test010_freezeEnergyChangetoUnfreeze() throws Exception  {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getDirectionFzUfz_btn().click();
         frozen.unfreeze_btn.click();

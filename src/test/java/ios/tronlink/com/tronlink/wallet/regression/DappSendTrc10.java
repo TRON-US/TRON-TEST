@@ -13,8 +13,14 @@ public class DappSendTrc10 extends BaseTest {
 
     public SendTrxPage enterToSendTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        return transfer;
+        if(Helper.assetFindMainChain(asset)) {
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            asset = mine.enterAssetPage();
+        }
+        return asset.enterSendTrxPage();
     }
 
 

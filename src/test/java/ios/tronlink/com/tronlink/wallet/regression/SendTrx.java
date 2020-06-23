@@ -256,6 +256,5 @@ public class SendTrx extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出地址"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收地址"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
-        resetApp(udid);
     }
 }
