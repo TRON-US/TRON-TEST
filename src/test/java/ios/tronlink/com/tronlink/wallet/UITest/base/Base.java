@@ -4,6 +4,7 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 import android.com.utils.AppiumTestCase;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -269,6 +270,53 @@ public class Base {
             System.out.println(e);
             e.printStackTrace();
         }
+
+    }
+    public String removeSymbolFloat(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
+    }
+
+    public float sepLeftNumberTextToFloat(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
+
+    }
+    public Integer sepLeftNumberTextToInter(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));
+    }
+    public String  sepLeftNumberTextToString(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  removeSymbolFloat(realNumber.trim());
+
+    }
+    public float sepRightNumberTextToFloat(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
+
+    }
+    public Integer sepRightNumberTextToInter(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));
+    }
+    public String  sepRightNumberTextToString(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  removeSymbolFloat(realNumber.trim());
+
+    }
+
+    public void resetApp(String udid) throws Exception {
+        DRIVER.closeApp();
+        log("开始移除app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+        log("开始安装app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+        log("resetApp Finish!!");
+        DRIVER.launchApp();
 
     }
 
