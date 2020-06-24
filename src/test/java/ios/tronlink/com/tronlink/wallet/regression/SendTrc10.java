@@ -87,6 +87,7 @@ public class SendTrc10 extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.tapWhitePlace(transfer.driver);
         waiteTime();
         transfer.token_btn.click();
         waiteTime();

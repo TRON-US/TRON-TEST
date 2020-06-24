@@ -91,6 +91,12 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name='tronlink_token (1000042)']")
     public WebElement trc10_btn;
 
+    @FindBy(id = "TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)")
+    public WebElement TRX20Token;
+
+    @FindBy(id = "tronlink_token (1000002)")
+    public WebElement TRX10Token;
+
     @FindBy(id = "atualTRXLabel")
     public WebElement real_money;
 
@@ -104,13 +110,15 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement getTrc20Token() throws Exception{
         waiteTime();
-        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-        return  cells.get(1);
+//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
+//        return  cells.get(1);
+        return driver.findElementById("TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
     }
     public WebElement getTrc10Token() throws Exception{
         waiteTime();
-        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-        return  cells.get(2);
+//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
+//        return  cells.get(2);
+        return driver.findElementById("tronlink_token (1000002)");
     }
 
     public void swip(){
