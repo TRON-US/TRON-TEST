@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 
+import android.com.utils.Configuration;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxPage;
@@ -8,6 +9,7 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxSuccessPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.TrxPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -15,7 +17,10 @@ import java.util.concurrent.TimeUnit;
 
 public class SendTrc10 extends BaseTest {
     String successNumber;
-
+    static String TRXandTRC10InNileprivateKey = android.com.utils.Configuration.getByPath("testng.conf")
+            .getString("HaveTRXandTRC10InNile.privateKey1");
+    static String haveBandwidthprivateKey = Configuration.getByPath("testng.conf")
+            .getString("HaveBandWidthInNile.privateKey1");
     public SendTrxPage enterToSendTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -76,8 +81,37 @@ public class SendTrc10 extends BaseTest {
 
     }
 
+
+    @Test(description = "password error",alwaysRun = true)
+    public void test006_passwordError() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        TimeUnit.SECONDS.sleep(2);
+        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.tapWhitePlace(transfer.driver);
+        waiteTime();
+        transfer.token_btn.click();
+        waiteTime();
+        transfer.getTrc10Token().click();
+        waiteTime();
+        transfer.testfieldArray.get(2).sendKeys("1");
+        TimeUnit.SECONDS.sleep(2);
+        Helper.tapWhitePlace(transfer.driver);
+        transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        transfer.transferNow_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        transfer.InputPasswordConfim_btn.sendKeys("forget_password");
+        TimeUnit.SECONDS.sleep(2);
+        transfer.broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(2);
+        WebElement element = transfer.driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
+        Assert.assertTrue(element.isDisplayed());
+    }
+
+
+
     @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
-    public void test006_CheckOutNumberInRecordTrx10() throws Exception {
+    public void test007_CheckOutNumberInRecordTrx10() throws Exception {
         log(successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx10Page();
@@ -85,6 +119,45 @@ public class SendTrc10 extends BaseTest {
         log(findString);
         Assert.assertTrue(page.enterNumberRecordPage(findString));
 
+    }
+
+    //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
+    @Parameters({ "udid"})
+    @Test(enabled = true,description = "test008_inputNotEnoughBandWidthSendMaxNumberUNActive")
+    public void test008_inputNotEnoughBandWidthSendMaxNumberUNActive(String udid) throws Exception {
+        DRIVER.resetApp();
+        new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"),"可转账数量");
+        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"tronlink_token");
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
+        Assert.assertEquals(allNumber,number);
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收地址"));
+        Assert.assertFalse(Helper.isElementExist(transfer.driver,"消耗资源"));
+        Assert.assertTrue(transfer.sendImmediatelyEnable());
+
+    }
+
+    //max 未激活的显示
+    @Parameters({ "udid"})
+    @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
+    public void test009_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
+        DRIVER.resetApp();
+        new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"), "可转账数量");
+        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "tronlink_token");
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
+        Assert.assertEquals(allNumber, number);
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收地址"));
+        Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 
 }

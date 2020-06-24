@@ -1,5 +1,6 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
+import android.com.utils.Configuration;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,9 @@ import java.util.regex.Pattern;
  */
 
 public class SendTrxPage extends AbstractPage {
+
+    static String unActiveAddress = Configuration.getByPath("testng.conf")
+            .getString("unActiveAddressInNile.Address1");
 
     public IOSDriver<?> driver;
 
@@ -80,25 +84,41 @@ public class SendTrxPage extends AbstractPage {
     public WebElement shieldedCurrentBalance;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_balance")
+    @FindBy(id = "currentTRXCountLabel")
     public WebElement balance_text;
 
 
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name='tronlink_token (1000042)']")
     public WebElement trc10_btn;
 
+    @FindBy(id = "TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)")
+    public WebElement TRX20Token;
+
+    @FindBy(id = "tronlink_token (1000002)")
+    public WebElement TRX10Token;
+
+    @FindBy(id = "atualTRXLabel")
+    public WebElement real_money;
+
+    @FindBy(id = "chargeLabel")
+    public WebElement fee_text;
+
+
+
 //shieldedCurrentBalance  余额  shieldedLimitHelpBtn  限额按钮  shieldedFeeLabel 手续费   shieldedLimitLabel 单笔限额
 
 
     public WebElement getTrc20Token() throws Exception{
         waiteTime();
-        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-        return  cells.get(1);
+//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
+//        return  cells.get(1);
+        return driver.findElementById("TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
     }
     public WebElement getTrc10Token() throws Exception{
         waiteTime();
-        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-        return  cells.get(2);
+//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
+//        return  cells.get(2);
+        return driver.findElementById("tronlink_token (1000002)");
     }
 
     public void swip(){
@@ -402,5 +422,47 @@ public class SendTrxPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
+    public void selectTokenType(String value) throws Exception {
+        waiteTime();
+        switch (value) {
+            case "20":
+                token_btn.click();
+                getTrc20Token().click();
+                break;
+            case "10":
+                token_btn.click();
+                waiteTime();
+                getTrc10Token().click();
+                break;
+        }
+    }
+
+    /**
+     * @param cointype 10 20 noun
+     * @return
+     * @throws Exception
+     */
+    public String sendMaxCoinWithType(String... cointype) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        testfieldArray.get(1).sendKeys(unActiveAddress);
+        Helper.tapWhitePlace(driver);
+        if (cointype.length != 0) {
+            selectTokenType(cointype[0]);
+        }
+        waiteTime();
+        tvMax_btn.click();
+        waiteTime();
+        log("clicked");
+        Helper.swipScreen(driver);
+        String allNumberText = balance_text.getText();
+        System.out.println("allNumberText" + allNumberText);
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return allNumberText;
+    }
+
+    public boolean sendImmediatelyEnable(){
+       return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").isEnabled();
+    }
 
 }
