@@ -103,17 +103,39 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "chargeLabel")
     public WebElement fee_text;
 
+    @FindBy(id = "resourcesLabel")
+    public WebElement resourcesLabel;
+
+
 
 
 //shieldedCurrentBalance  余额  shieldedLimitHelpBtn  限额按钮  shieldedFeeLabel 手续费   shieldedLimitLabel 单笔限额
-
 
     public WebElement getTrc20Token() throws Exception{
         waiteTime();
 //        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
 //        return  cells.get(1);
-        return driver.findElementById("TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
+
+        try {
+            return driver.findElementById("TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
+
+        } catch (Exception e) {
+            System.out.println("no MainChain");
+
+        }
+
+        try {
+
+            return driver.findElementById("TRX (TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
+
+        } catch (Exception e) {
+            System.out.println("no DappChain");
+            return driver.findElementById("TRX (TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
+
+        }
+
     }
+
     public WebElement getTrc10Token() throws Exception{
         waiteTime();
 //        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
