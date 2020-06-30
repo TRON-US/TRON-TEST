@@ -152,7 +152,7 @@ public class SendTrc10 extends BaseTest {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额："+successNumber));
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账 TRC10 通证"));
- }
+    }
 
     //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
     @Parameters({ "udid"})
