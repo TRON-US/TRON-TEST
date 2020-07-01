@@ -146,7 +146,7 @@ public class SendTrc10 extends BaseTest {
 
 
     @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
-    public void test009_transactionRecord() throws Exception {
+    public void test009_transactionRecordInMePage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
