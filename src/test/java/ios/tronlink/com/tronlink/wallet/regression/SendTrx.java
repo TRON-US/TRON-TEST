@@ -216,12 +216,14 @@ public class SendTrx extends BaseTest {
         Assert.assertTrue(page.enterNumberRecordPage(findString));
 
     }
+
     @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
     public void test015_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额：-"+successNumber));
+        log("转账金额：-"+successNumber);
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额：-"+successNumber+"TRX"));
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账"));
     }
 
