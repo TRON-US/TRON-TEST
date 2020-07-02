@@ -48,6 +48,8 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "钱包管理")
     public WebElement myPurse_btn;
 
+    @FindBy(name = "版本日志")
+    public WebElement versionNote_btn;
 
     @FindBy(name = "资源")
     public WebElement assets_btn;
