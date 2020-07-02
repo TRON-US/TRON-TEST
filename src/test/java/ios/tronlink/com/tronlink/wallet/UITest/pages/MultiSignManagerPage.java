@@ -61,8 +61,14 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "owner")
     public WebElement owner;
 
+    @FindBy(id = "multiSig edit")
+    public WebElement multiSigEdit;
 
+    @FindBy(id = "address scan")
+    public WebElement addressClean;
 
+    @FindBy(id = "detailLabel")
+    public WebElement detailLabel;
 
     public String getInstructionString() {
         instructionBtn.click();
@@ -418,4 +424,50 @@ public class MultiSignManagerPage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").isEnabled();
     }
 
+    public void addActiveBeforeConfirm(String name) throws Exception {
+        multiSigEdit.click();
+        waiteTime();
+        addressClean.click();
+        waiteTime();
+        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
+        Helper.closeKeyBoard(driver);
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+        System.out.println("into addPermission");
+        TimeUnit.SECONDS.sleep(2);
+        Helper.refreshWalletScreen(driver);
+        waiteTime();
+        addauthorBtn.click();
+        System.out.println("添加权限 clicked");
+        waiteTime();
+        activeNameTF.sendKeys("func");
+        System.out.println("添加权限名称 clicked");
+        Helper.closeKeyBoard(driver);
+        Helper.swipScreen(driver);
+        waiteTime();
+        activeContentEditBtn.click();
+        System.out.println("进入编辑权限页面 clicked");
+        waiteTime();
+        trxTranPower.click();
+        System.out.println("点击添加trx转账 clicked");
+        waiteTime();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+        System.out.println("确认添加对应权限 clicked");
+        waiteTime();
+        thresholdTextField.sendKeys("1");
+        System.out.println("总threahold clicked");
+        Helper.closeKeyBoard(driver);
+        waiteTime();
+        driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
+        System.out.println("输入地址 clicked");
+        driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
+        System.out.println("地址对应阈值 clicked");
+        waiteTime();
+        Helper.closeKeyBoard(driver);//
+        System.out.println("进入确定流程...");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+        TimeUnit.SECONDS.sleep(3);
+//        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+
+    }
 }
