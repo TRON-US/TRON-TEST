@@ -18,12 +18,12 @@ public class MultiSignTest extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
         System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
-        DRIVER.closeApp();
-        log("开始移除app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-        log("开始安装app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-        log("开始导入ownerPrivatekey");
+//        DRIVER.closeApp();
+//        log("开始移除app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+//        log("开始安装app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//        log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
@@ -67,10 +67,10 @@ public class MultiSignTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-            System.out.println("开始移除app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-            System.out.println("开始安装app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//            System.out.println("开始移除app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//            System.out.println("开始安装app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }
@@ -299,8 +299,16 @@ public class MultiSignTest extends Base {
     }
 
     @Parameters({"ownerAddress"})
+    @Test(groups = {"P0"},description = "Add multiSignatureFeeCheck Test", alwaysRun = true)
+    public void test019_multiSignatureFeeCheck(String ownerAddress) throws Exception {
+        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
+        Assert.assertTrue(multiSignManagerPage.detailLabel.getText().contains("101"));
+    }
+
+    @Parameters({"ownerAddress"})
     @Test(groups = {"P0"},description = "frozenPage setup MultiSigned thing", alwaysRun = true)
-    public void test019_frozenPagehaveMultiSignedTest(String ownerAddress) throws Exception {
+    public void test020_frozenPagehaveMultiSignedTest(String ownerAddress) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
         MultiSignRecodPage recodPage = frozenAndUnfreezePage.FrozenMutiSignWith(ownerAddress);
@@ -308,7 +316,7 @@ public class MultiSignTest extends Base {
     }
 
     @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
-    public void test020_makeAccountToOwner() throws Exception {
+    public void test021_makeAccountToOwner() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
         String oldName = assetPage.walletNameBtn.getText();
@@ -322,7 +330,7 @@ public class MultiSignTest extends Base {
     }
 
     @Test(groups = {"P0"},description = " multiSign  is Frozen Test", alwaysRun = true)
-    public void test021_multiSignTitleTest() throws Exception {
+    public void test022_multiSignTitleTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
@@ -330,7 +338,7 @@ public class MultiSignTest extends Base {
     }
 
     @Test(description = " multiSign sign Frozen  Test", alwaysRun = true)
-    public void test022_multiSignFrozenSuccessTest() throws Exception {
+    public void test023_multiSignFrozenSuccessTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
@@ -341,4 +349,6 @@ public class MultiSignTest extends Base {
         log("afterNumber:"+ afterNumber);
         Assert.assertTrue(beforeNumber > afterNumber);
     }
+
+
 }

@@ -9,6 +9,8 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * 关于我们功能测试
@@ -16,12 +18,47 @@ import org.testng.annotations.Test;
 public class AboutUsTest extends BaseTest {
 
 
-    @Test(description = "test AboutUs assert",alwaysRun = true)
+    @Test(description = "test AboutUs test",alwaysRun = true)
     public void test001_aboutUs() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
+    }
+
+    @Test(description = "test version test",alwaysRun = true)
+    public void test002_versionTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage =  assetPage.enterMinePage();
+        minePage.enterAboutUsPage();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"版本日志"));
+        minePage.versionNote_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"3.6.0"));
+    }
+
+    @Test(description = "test versionUpdate test",alwaysRun = true)
+    public void test003_versionUpdateTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage =  assetPage.enterMinePage();
+        minePage.enterAboutUsPage();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"版本更新"));
+    }
+
+    @Test(description = "test enterGroup test" ,alwaysRun = true)
+    public void test004_enterGroupTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage minePage =  assetPage.enterMinePage();
+        minePage.enterAboutUsPage();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"加入社群"));
+        minePage.intoGroup_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"Twitter"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"微信"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"Telegram电报群"));
+
     }
 
 

@@ -3,12 +3,10 @@ package ios.tronlink.com.tronlink.wallet.regression;
 
 import android.com.utils.Configuration;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.SendTrxSuccessPage;
-import ios.tronlink.com.tronlink.wallet.UITest.pages.TrxPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -26,7 +24,7 @@ public class SendTrc10 extends BaseTest {
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
     }
-
+//
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
 
@@ -110,21 +108,56 @@ public class SendTrc10 extends BaseTest {
 
 
 
+
+    @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
+    public void test007_BandWidthShowTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
+        waiteTime();
+        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.closeKeyBoard(transfer.driver);
+        waiteTime();
+        transfer.token_btn.click();
+        transfer.getTrc20Token().click();
+        waiteTime();
+        transfer.testfieldArray.get(2).sendKeys("0.000001");
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        Helper.tapWhitePlace(transfer.driver);
+        transfer.send_btn.click();
+        waiteTime();
+        String content = transfer.resourcesLabel.getText();
+        String number = StringUtils.substringBeforeLast(content, "带宽");
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    }
+
+    @Parameters({ "address"})
     @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
-    public void test007_CheckOutNumberInRecordTrx10() throws Exception {
+    public void test008_CheckOutNumberInRecordTrx10(String address) throws Exception {
         log(successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrx10Page();
         String findString = "-" + successNumber;
         log(findString);
         Assert.assertTrue(page.enterNumberRecordPage(findString));
+        Assert.assertTrue(Helper.isElementExist(page.driver,address));
+    }
 
+
+
+    @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
+    public void test009_transactionRecordInMePage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额："+successNumber));
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账 TRC10 通证"));
     }
 
     //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
     @Parameters({ "udid"})
     @Test(enabled = true,description = "test008_inputNotEnoughBandWidthSendMaxNumberUNActive")
-    public void test008_inputNotEnoughBandWidthSendMaxNumberUNActive(String udid) throws Exception {
+    public void test010_inputNotEnoughBandWidthSendMaxNumberUNActive(String udid) throws Exception {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
@@ -144,7 +177,7 @@ public class SendTrc10 extends BaseTest {
     //max 未激活的显示
     @Parameters({ "udid"})
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
-    public void test009_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
+    public void test011_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
@@ -159,5 +192,6 @@ public class SendTrc10 extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收地址"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
+
 
 }
