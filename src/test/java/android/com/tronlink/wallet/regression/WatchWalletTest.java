@@ -162,21 +162,21 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
-    public void test008_voteQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        vote.reset_btn.click();
-        vote.et_input.sendKeys("1");
-        vote.vote_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        try {
-            vote.btgo_btn.click();
-        } catch (Exception e) {
-
-        }
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
+//    public void test008_voteQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        vote.reset_btn.click();
+//        vote.et_input.sendKeys("1");
+//        vote.vote_btn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        try {
+//            vote.btgo_btn.click();
+//        } catch (Exception e) {
+//
+//        }
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
 
@@ -217,14 +217,14 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
-    public void test012_WithdrawRewardQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        vote.reward_btn.click();
-        vote.btgo_btn.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
+//    public void test012_WithdrawRewardQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        vote.reward_btn.click();
+//        vote.btgo_btn.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
     @Test(enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
