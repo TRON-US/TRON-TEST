@@ -154,9 +154,8 @@ public class SendTrx extends Base {
     }
 
     //max 未激活的显示
-    @Parameters({"privateKey"})
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
-    public void test009_inputHaveBandWidthSendMaxNumberToUNActive(String privateKey) throws Exception {
+    public void test009_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
@@ -167,9 +166,11 @@ public class SendTrx extends Base {
         Assert.assertFalse(transfer.isElementExist("com.tronlink.wallet:id/tv_no_bandwidth"));
 
     }
-
+    @Parameters({"privateKey"})
     @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-    public void test010_inputMixSendNumber() throws Exception {
+    public void test010_inputMixSendNumber(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("mix");
         String centent = transfer.formatErrorHits_text.getText();

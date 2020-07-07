@@ -107,9 +107,8 @@ public class SendTrc20 extends Base {
         Assert.assertTrue(transfer.no_bandwidth.getText().contains("本次交易预计会消耗"));
     }
     //使用一个带宽充足账户转给未激活地址20,手续费trx是0,不转账!!
-    @Parameters({"privateKey"})
     @Test(enabled = true,description = "test004_inputHaveBandWidthSendMax20NumberToUNActive")
-    public void test004_inputHaveBandWidthSendMax20NumberToUNActive(String privateKey) throws Exception {
+    public void test004_inputHaveBandWidthSendMax20NumberToUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
@@ -119,9 +118,11 @@ public class SendTrc20 extends Base {
         Assert.assertEquals(allNumber,number);
     }
 
-
+    @Parameters({"privateKey"})
     @Test(enabled = true,description = "input mix send number")
-    public void test005_inputMixSendNumber() throws Exception {
+    public void test005_inputMixSendNumber(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
         String centent = transfer.formatErrorHits_text.getText();

@@ -29,6 +29,9 @@ public class SendTrc10 extends Base {
             .getString("foundationAccount.trc10TokenName");
     static String TRXandTRC10InNileprivateKey = Configuration.getByPath("testng.conf")
             .getString("HaveTRXandTRC10InNile.privateKey1");
+    static String haveBandwidthprivateKey = Configuration.getByPath("testng.conf")
+            .getString("HaveBandWidthInNile.privateKey1");
+
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -95,11 +98,10 @@ public class SendTrc10 extends Base {
     }
 
     //max 未激活的显示
-    @Parameters({"privateKey"})
     @Test(enabled = true, description = "test004_inputHaveBandWidthSendMax10NumberToUNActive")
-    public void test004_inputHaveBandWidthSendMax10NumberToUNActive(String privateKey) throws Exception {
+    public void test004_inputHaveBandWidthSendMax10NumberToUNActive() throws Exception {
         DRIVER.resetApp();
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"), "可转账数量");
         Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "tronlink_token");
@@ -110,9 +112,11 @@ public class SendTrc10 extends Base {
 
     }
 
-
+    @Parameters({"privateKey"})
     @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-    public void test005_inputMixSendNumber() throws Exception {
+    public void test005_inputMixSendNumber(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc10("mix");
         String centent = transfer.formatErrorHits_text.getText();
