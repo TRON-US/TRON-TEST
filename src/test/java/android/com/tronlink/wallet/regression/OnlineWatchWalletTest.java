@@ -297,7 +297,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"USDJ\")").click();
         waiteTime();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(sendTrxPage.note_text.getText().contains("不会激活该地址")&&sendTrxPage.note_text.getText().contains("地址未激活"));
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("不会激活该账户")&&sendTrxPage.note_text.getText().contains("账户未激活"));
         waiteTime();
         sendTrxPage.tranferCount_text.sendKeys("0.00001");
         Helper.swipScreen(DRIVER);

@@ -461,7 +461,7 @@ public class SendTrxPage extends AbstractPage {
         String allNumberText = balance_text.getText();
         System.out.println("allNumberText" + allNumberText);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return allNumberText;
     }
 
@@ -496,6 +496,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         swip();
         send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         transferNow_btn.click();
         TimeUnit.SECONDS.sleep(2);
         next_btn.click();

@@ -35,7 +35,8 @@ public class SendTrc20 extends Base {
       .getString("foundationAccount.trc20TokenName");
   static String onlyhaveTRC20privatekey = Configuration.getByPath("testng.conf")
             .getString("onlyHaveTRC20InNile.privateKey1");
-
+    static String haveBandwidthprivateKey = Configuration.getByPath("testng.conf")
+            .getString("HaveBandWidthInNile.privateKey1");
   
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
@@ -110,7 +111,7 @@ public class SendTrc20 extends Base {
     @Test(enabled = true,description = "test004_inputHaveBandWidthSendMax20NumberToUNActive")
     public void test004_inputHaveBandWidthSendMax20NumberToUNActive(String privateKey) throws Exception {
         DRIVER.resetApp();
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxTrc20(),"可转账数量");
         Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
