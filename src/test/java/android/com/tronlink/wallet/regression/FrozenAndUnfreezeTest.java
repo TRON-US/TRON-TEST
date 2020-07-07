@@ -216,7 +216,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputReceivingAddress("ztron1v5q4efydnkd6z06qmmj0uzdysjlage2h5d2teecdacjre6kuh49mg6paaf7uua0wclcmwlkv30f");
         String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.contains("匿名地址") || prompt.contains("Shielded address"));
+        Assert.assertTrue(prompt.contains("匿名账户") || prompt.contains("Shielded address"));
     }
 
 
@@ -228,7 +228,7 @@ public class FrozenAndUnfreezeTest extends Base {
         String prompt = frozen.errorAddress_hits.getText();
         Assert.assertTrue(prompt.contains("请重新填写接收地址") || prompt.contains("has not been activated"));
     }
-    
+
     @Test(groups = {"P0"},enabled = true, description = "Freeze transaction record test", alwaysRun = true)
     public void test0017_transactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
