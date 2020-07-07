@@ -140,6 +140,7 @@ public class DappSendTrc20 extends Base {
         transfer.tranferCount_text.sendKeys("0.000001");
         waiteTime();
         transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         waiteTime();
         String no_bandwidthTips = transfer.no_bandwidth.getText();
         Assert.assertTrue(no_bandwidthTips.contains("20"));
