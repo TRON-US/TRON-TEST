@@ -76,6 +76,8 @@ public class Base {
                 System.out.println("try start driver "+tries+" times");
                 String url = "http://127.0.0.1:"+port+"/wd/hub";
                 desiredCapabilities.setCapability("deviceName", deviceName);
+                desiredCapabilities.setCapability("language", "zh");
+                desiredCapabilities.setCapability("locale", "CN");
                 desiredCapabilities.setCapability("platformName", platformName);
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
