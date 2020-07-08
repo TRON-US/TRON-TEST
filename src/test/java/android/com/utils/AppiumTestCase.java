@@ -288,6 +288,8 @@ public class AppiumTestCase {
         System.out.println(port);
         String url = "http://127.0.0.1:"+port+"/wd/hub";
         desiredCapabilities.setCapability("deviceName", deviceName);
+        desiredCapabilities.setCapability("language", "zh");
+        desiredCapabilities.setCapability("locale", "CN");
         desiredCapabilities.setCapability("platformName", platformName);
         desiredCapabilities.setCapability("platformVersion", platformVersion);
         desiredCapabilities.setCapability("unicodeKeyboard", true);
