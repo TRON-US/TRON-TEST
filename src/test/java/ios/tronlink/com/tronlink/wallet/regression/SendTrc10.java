@@ -75,7 +75,7 @@ public class SendTrc10 extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("地址格式不正确"));
+        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("账户格式不正确"));
 
     }
 
@@ -167,8 +167,8 @@ public class SendTrc10 extends BaseTest {
         Assert.assertEquals(allNumber,number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出地址"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收账户"));
         Assert.assertFalse(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
@@ -188,8 +188,8 @@ public class SendTrc10 extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出地址"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 

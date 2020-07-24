@@ -185,7 +185,7 @@ public class ShieldWalletSynCAndSentTRZTest extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.enterGetTextField(shieldAddress);
         String hits = transfer.reciptErrorLabel.getText();
-        Assert.assertTrue(hits.contains("转出地址与接收地址不能相同") || hits.contains("发送地址与接收地址不能相同") || hits.contains("cannot be the same"));
+        Assert.assertTrue(hits.contains("转出账户与接收账户不能相同") || hits.contains("发送账户与接收账户不能相同") || hits.contains("cannot be the same"));
     }
 
     @Test(enabled = true,description = "Shield to Address transaction record test")

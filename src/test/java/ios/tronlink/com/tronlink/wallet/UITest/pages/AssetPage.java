@@ -289,7 +289,7 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         transfer_btn.click();
         for (int i = 0; i < 5; i++) {
-            if(Helper.contentTexts(titleLabel,"转出地址")){
+            if(Helper.contentTexts(titleLabel,"转出账户")){
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(10);
