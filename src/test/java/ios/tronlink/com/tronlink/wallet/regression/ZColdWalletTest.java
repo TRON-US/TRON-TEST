@@ -39,7 +39,7 @@ public class ZColdWalletTest extends ColdBaseTest {
         waiteTime();
         Helper.swipScreen(DRIVER);
         Assert.assertTrue(coldHelper.addressLabel.getText().equals(address));
-        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款地址'").isEnabled());
+        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款账户'").isEnabled());
     }
 
     @Test(enabled = true,description = "Cold wallet knowledge test", alwaysRun = true)
@@ -146,7 +146,7 @@ public class ZColdWalletTest extends ColdBaseTest {
         waiteTime();
         Helper.swipScreen(DRIVER);
         Assert.assertTrue(coldHelper.addressLabel.getText().equals(shieldAddress));
-        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款地址'").isEnabled());
+        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款账户'").isEnabled());
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Shield Cold wallet knowledge test", alwaysRun = true)
