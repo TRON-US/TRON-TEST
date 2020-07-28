@@ -165,7 +165,7 @@ public class DappFrozenTest extends BaseTest {
 //        frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
 //        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
 ////        String prompt = frozen.errorAddress_hits.getText();
-////        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
+////        Assert.assertTrue(prompt.contains("账户格式不正确") || prompt.contains("address format is incorrect"));
 //    }
 //
 //
