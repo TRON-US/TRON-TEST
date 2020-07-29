@@ -34,7 +34,8 @@ public class SendTrx extends Base {
         .getString("foundationAccount.currentMainNetBlockNum");
     static String TRXandTRC10InNileprivateKey = Configuration.getByPath("testng.conf")
             .getString("HaveTRXandTRC10InNile.privateKey1");
-
+    static String haveBandwidthprivateKey = Configuration.getByPath("testng.conf")
+            .getString("HaveBandWidthInNile.privateKey1");
     Random rand = new Random();
     float sendTrxAmount;
     int beforeSendBalance;
@@ -109,7 +110,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
         String hits = transfer.note_text.getText();
-        Assert.assertTrue(hits.contains("地址未激活") || hits.contains("Address not activated"));
+        Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));
     }
 
 
@@ -119,7 +120,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, address);
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("转出地址与接收地址不能相同") || hits.equals("发送地址与接收地址不能相同") || hits.contains("cannot be the same"));
+        Assert.assertTrue(hits.equals("转出账户与接收账户不能相同") || hits.equals("发送账户与接收账户不能相同") || hits.contains("cannot be the same"));
     }
 
 
@@ -153,11 +154,10 @@ public class SendTrx extends Base {
     }
 
     //max 未激活的显示
-    @Parameters({"privateKey"})
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
-    public void test009_inputHaveBandWidthSendMaxNumberToUNActive(String privateKey) throws Exception {
+    public void test009_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();
-        new Helper().getSign(privateKey,DRIVER);
+        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(), "可转账数量");
         Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
@@ -166,9 +166,11 @@ public class SendTrx extends Base {
         Assert.assertFalse(transfer.isElementExist("com.tronlink.wallet:id/tv_no_bandwidth"));
 
     }
-
+    @Parameters({"privateKey"})
     @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-    public void test010_inputMixSendNumber() throws Exception {
+    public void test010_inputMixSendNumber(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("mix");
         String centent = transfer.formatErrorHits_text.getText();
@@ -227,12 +229,12 @@ public class SendTrx extends Base {
     public void test016_sendTrzCheckFee() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("ztron16nq696tkyuag3et5h4tygn4vumsgx7m2955azkfvpcecfy6na6f5n7n2l2svhpknmqp2v4wqne7");
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(transfer.tvName_text.getText().contains("TRZ"));
-        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.fee_text.getText().contains("TRZ"));
         Assert.assertTrue(transfer.fee_text.getText().contains("10"));
         transfer.tranferCount_text.sendKeys("1");
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(transfer.fee_text.getText().contains("TRZ")&&transfer.fee_text.getText().contains("10"));
     }
 

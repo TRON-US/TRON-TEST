@@ -131,6 +131,7 @@ public class AllSignatureSuccTest extends Base {
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
     }
 
@@ -158,6 +159,7 @@ public class AllSignatureSuccTest extends Base {
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.1"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.1"));
 
     }
@@ -184,7 +186,7 @@ public class AllSignatureSuccTest extends Base {
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
     }
 
@@ -211,7 +213,7 @@ public class AllSignatureSuccTest extends Base {
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
         Assert.assertTrue(SendTrx.no_bandwidth.getText().contains("执行智能合约")&&SendTrx.no_bandwidth.getText().contains("燃烧")&&SendTrx.no_bandwidth.getText().contains("TRX"));
 
@@ -236,7 +238,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(SendTrx.note_text.getText().contains("地址未激活"));
+        Assert.assertTrue(SendTrx.note_text.getText().contains("账户未激活"));
         log(SendTrx.fee_text.getText());
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));

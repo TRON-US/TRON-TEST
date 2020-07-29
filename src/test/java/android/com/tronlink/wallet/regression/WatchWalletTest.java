@@ -162,21 +162,21 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
-    public void test008_voteQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        vote.reset_btn.click();
-        vote.et_input.sendKeys("1");
-        vote.vote_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        try {
-            vote.btgo_btn.click();
-        } catch (Exception e) {
-
-        }
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
+//    public void test008_voteQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        vote.reset_btn.click();
+//        vote.et_input.sendKeys("1");
+//        vote.vote_btn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        try {
+//            vote.btgo_btn.click();
+//        } catch (Exception e) {
+//
+//        }
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
 
@@ -217,36 +217,36 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
-    public void test012_WithdrawRewardQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        vote.reward_btn.click();
-        vote.btgo_btn.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
+//    public void test012_WithdrawRewardQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        vote.reward_btn.click();
+//        vote.btgo_btn.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
-    @Test(enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
-    public void test013_PbulicSendTrzToShieldQR() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
-        asset.mine_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        asset.assetsMain_btn.click();
-        SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
-        transfer.receiveAddress_text.sendKeys(receiverShieldAddress);
-        transfer.tranferCount_text.sendKeys(Float.toString(getAnAmount()));
-        transfer.swip();
-        transfer.send_btn.click();
-        transfer.transferNow_btn.click();
-        while (transfer.coldHadScan_next_btn.getText().contains("冷钱包已扫描")) {
-            Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-            Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
-            transfer.coldHadScan_next_btn.click();
-        }
-        Assert.assertTrue(transfer.coldHadScan_next_btn.getText().contains("冷钱包已签名"));
-        Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
+//    public void test013_PbulicSendTrzToShieldQR() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TimeUnit.SECONDS.sleep(3);
+//        asset.mine_btn.click();
+//        TimeUnit.SECONDS.sleep(3);
+//        asset.assetsMain_btn.click();
+//        SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
+//        transfer.receiveAddress_text.sendKeys(receiverShieldAddress);
+//        transfer.tranferCount_text.sendKeys(Float.toString(getAnAmount()));
+//        transfer.swip();
+//        transfer.send_btn.click();
+//        transfer.transferNow_btn.click();
+//        while (transfer.coldHadScan_next_btn.getText().contains("冷钱包已扫描")) {
+//            Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//            Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
+//            transfer.coldHadScan_next_btn.click();
+//        }
+//        Assert.assertTrue(transfer.coldHadScan_next_btn.getText().contains("冷钱包已签名"));
+//        Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 }

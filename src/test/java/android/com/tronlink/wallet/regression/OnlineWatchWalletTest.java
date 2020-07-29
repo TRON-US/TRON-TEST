@@ -297,7 +297,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"USDJ\")").click();
         waiteTime();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(sendTrxPage.note_text.getText().contains("不会激活该地址")&&sendTrxPage.note_text.getText().contains("地址未激活"));
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("不会激活该账户")&&sendTrxPage.note_text.getText().contains("账户未激活"));
         waiteTime();
         sendTrxPage.tranferCount_text.sendKeys("0.00001");
         Helper.swipScreen(DRIVER);
@@ -402,32 +402,32 @@ public class OnlineWatchWalletTest extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online vote QRCode", alwaysRun = true)
-    public void test016_onlineVoteQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        vote.reset_btn.click();
-        vote.et_input.sendKeys("1");
-        vote.vote_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        try {
-            vote.btgo_btn.click();
-        } catch (Exception e) {
+//    @Test(groups = {"P0"},enabled = true,description = "Online vote QRCode", alwaysRun = true)
+//    public void test016_onlineVoteQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        vote.reset_btn.click();
+//        vote.et_input.sendKeys("1");
+//        vote.vote_btn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        try {
+//            vote.btgo_btn.click();
+//        } catch (Exception e) {
+//
+//        }
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
-        }
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
 
-
-    @Test(groups = {"P0"},enabled = true,description = "Online vote TotalNumber", alwaysRun = true)
-    public void test017_onlineVoteQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        waiteTime();
-        long number = Long.parseLong(removeSymbol(vote.total_vote.getText())) ;
-        Assert.assertTrue(number > 0);
-
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online vote TotalNumber", alwaysRun = true)
+//    public void test017_onlineVoteQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        waiteTime();
+//        long number = Long.parseLong(removeSymbol(vote.total_vote.getText())) ;
+//        Assert.assertTrue(number > 0);
+//
+//    }
 
     @Test(groups = {"P0"},enabled = true,description = "Online trc20 QRCode", alwaysRun = true)
     public void test018_onlineTrc20QRCode() throws Exception{
@@ -463,14 +463,14 @@ public class OnlineWatchWalletTest extends Base {
 
     }
 
-    @Test(groups = {"P0"},enabled = true,description = "Online Withdraw reward transaction QRCode", alwaysRun = true)
-    public void test020_OnlineWithdrawRewardQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-        vote.reward_btn.click();
-        vote.btgo_btn.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online Withdraw reward transaction QRCode", alwaysRun = true)
+//    public void test020_OnlineWithdrawRewardQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        vote.reward_btn.click();
+//        vote.btgo_btn.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
     //enter SettingPage
     public SettingPage enterSettingPage() throws Exception {
