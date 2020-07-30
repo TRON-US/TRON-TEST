@@ -187,8 +187,7 @@ public class autoCreateTestngXml {
 
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
-        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/shieldTransaction";
-        taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
+
 
         String extendSingleClassContent = "";
         for (int i = 0; i < taskSingleClassNameList.size();i++) {
