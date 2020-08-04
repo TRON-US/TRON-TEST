@@ -181,8 +181,6 @@ public class autoCreateTestngXmlForRelease {
         classNameList = findNameList(classNameList,testCaseDir,1);
         testCaseDir = "src/test/java/android/com/tronlink/wallet/multiSignatureTransaction";
         classNameList = findNameList(classNameList,testCaseDir,1);
-        testCaseDir = "src/test/java/android/com/tronlink/wallet/shieldTransaction";
-        classNameList = findNameList(classNameList,testCaseDir,1);
         testCaseDir = "src/test/java/android/com/tronlink/wallet/dappChain";
         classNameList = findNameList(classNameList,testCaseDir,1);
         Integer deviceIndex = 0;
