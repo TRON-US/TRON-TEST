@@ -72,7 +72,7 @@ public class DappSendTrxTest extends BaseTest {
     @Test(groups = {"P0"},description = "SendTrx success test",alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
+        SendTrxPage transfer = enterToSendTrxPage();
         String count = random(10,10);
         count = Helper.getPrettyNumber(count);
         log(count);
