@@ -61,7 +61,7 @@ public class AssetsPageTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         String about = asset.trxtotalvalue.getText();
         String result = sepLeftNumberTextToString(about,"TRX").trim();
-        Double number = Double.parseDouble(result);
+        Double number = Double.parseDouble(removeSymbolFloat(result));
         System.out.println("Total number:" + number);
         Assert.assertTrue(number > 0 );
     }
@@ -71,8 +71,13 @@ public class AssetsPageTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         String about = asset.abountmoneyvalue.getText();
-        String result = sepLeftNumberTextToString(about,"USD").replace("≈"," ").trim();
-        Double number = Double.parseDouble(result);
+        String result;
+        if (about.contains("USD")){
+             result = sepLeftNumberTextToString(about,"USD").replace("≈"," ").trim();
+        }else {
+             result = sepLeftNumberTextToString(about,"CNY").replace("≈"," ").trim();
+        }
+        Double number = Double.parseDouble(removeSymbolFloat(result));
         System.out.println("Total about number:" + number);
         Assert.assertTrue(number > 0 );
     }
