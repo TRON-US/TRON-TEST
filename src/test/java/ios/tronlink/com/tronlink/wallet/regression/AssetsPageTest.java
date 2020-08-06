@@ -41,6 +41,8 @@ public class AssetsPageTest extends BaseTest {
         Assert.assertEquals(receiptPage.assert_title.getText(), "资源");
     }
 
+
+
 //    @Test(description = "Assert vote test", alwaysRun = true)
 //    public void test004_gotovotePage() throws Exception {
 //        AssetPage assetPage = new AssetPage(DRIVER);
@@ -62,4 +64,32 @@ public class AssetsPageTest extends BaseTest {
 //        TimeUnit.SECONDS.sleep(3);
 //        Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"租用记录"));
 //    }
+
+    @Test(enabled = true,description = "assets total amount test", alwaysRun = true)
+    public void test007_AssetsTotalAmountTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        String about = asset.trxValue.getText();
+        String result = sepLeftNumberTextToString(about,"TRX").trim();
+        Double number = Double.parseDouble(removeSymbolFloat(result));
+        System.out.println("Total number:" + number);
+        Assert.assertTrue(number > 0 );
+    }
+
+    @Test(enabled = true,description = "assets total about amount test", alwaysRun = true)
+    public void test008_AssetsTotalAboutAmountTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
+        String about = asset.assetsLabel.getText();
+        String result;
+        if (about.contains("USD")){
+            result = sepLeftNumberTextToString(about,"USD").replace("≈"," ").trim();
+        }else {
+            result = sepLeftNumberTextToString(about,"CNY").replace("≈"," ").trim();
+        }
+        Double number = Double.parseDouble(removeSymbolFloat(result));
+        System.out.println("Total about number:" + number);
+        Assert.assertTrue(number > 0 );
+    }
+
 }

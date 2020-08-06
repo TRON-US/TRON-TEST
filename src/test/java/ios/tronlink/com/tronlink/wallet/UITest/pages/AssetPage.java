@@ -151,6 +151,10 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "trxLabel")
     public WebElement trxValue;
 
+    @FindBy(name = "assetsLabel")
+    public WebElement assetsLabel;
+
+
     @FindBy(name = "nameLabel")
     public List<WebElement> cellArray;
 
