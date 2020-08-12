@@ -16,27 +16,27 @@ public class AddAssertPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlink.wallet:id/et_search")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
     public WebElement addAssert_input;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
     public WebElement assertSatus_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_tab_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_tab_title")
     public List<WebElement> mainPageAssetManage_tab;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
     public List<WebElement> switch_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_switch")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
     public WebElement switchFirst_btn;
 
 

@@ -22,7 +22,7 @@ public class FindPageTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlink.wallet");
+        DRIVER.activateApp("com.tronlinkpro.wallet");
     }
 
     @AfterClass(alwaysRun = true)

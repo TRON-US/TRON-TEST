@@ -16,19 +16,19 @@ public class WalletPasswordPage extends AbstractPage {
   }
 
 
-  @FindBy(id = "com.tronlink.wallet:id/et_oldpassword")
+  @FindBy(id = "com.tronlinkpro.wallet:id/et_oldpassword")
   public WebElement oldPassword_et;
 
-  @FindBy(id = "com.tronlink.wallet:id/et_newpassword")
+  @FindBy(id = "com.tronlinkpro.wallet:id/et_newpassword")
   public WebElement newPassword_et;
 
-  @FindBy(id = "com.tronlink.wallet:id/et_confirm_password")
+  @FindBy(id = "com.tronlinkpro.wallet:id/et_confirm_password")
   public WebElement confirmPassword_et;
 
-  @FindBy(id = "com.tronlink.wallet:id/ok")
+  @FindBy(id = "com.tronlinkpro.wallet:id/ok")
   public WebElement ok_btn;
 
-  @FindBy(id = "com.tronlink.wallet:id/tv_error")
+  @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
   public WebElement error;
 
   public void changePassword(String oldpw,String newpw,String confirmpw) throws Exception{

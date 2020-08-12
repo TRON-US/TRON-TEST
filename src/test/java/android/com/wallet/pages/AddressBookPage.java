@@ -14,61 +14,61 @@ public class AddressBookPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement addressBook_title;
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_qr")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr")
     public WebElement addAddressBook_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_bg_right")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_bg_right")
     public WebElement save_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/et_address_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_address_name")
     public WebElement addName_input;
 
-    @FindBy(id = "com.tronlink.wallet:id/et_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
     public WebElement addAddress_input;
 
-    @FindBy(id = "com.tronlink.wallet:id/et_description")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_description")
     public WebElement addNote_input;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_name")
     public WebElement name_display;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public WebElement address_display;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_description")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_description")
     public WebElement note_display;
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_address_copy")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_address_copy")
     public WebElement copy_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_address_edit")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_address_edit")
     public WebElement edit_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_delete")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_delete")
     public WebElement deleteBook_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_delete")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_delete")
     public WebElement deleteAddress_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_confirm")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm")
     public WebElement deleteConfirm_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_cancle")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
     public WebElement deleteCancle_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_scan")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_scan")
     public WebElement scan_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_name_error")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name_error")
     public WebElement nameError_info;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address_error")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_error")
     public WebElement addressError_info;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_msg")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_msg")
     public WebElement dataInfo_display;
 
 }

@@ -19,17 +19,17 @@ public class PrivateKeySetNamePage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_name")
     public WebElement name_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/creat")
+    @FindBy(id = "com.tronlinkpro.wallet:id/creat")
     public WebElement next_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_error")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
     public WebElement error_hits;
 
 

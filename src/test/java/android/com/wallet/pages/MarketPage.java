@@ -27,40 +27,40 @@ public class MarketPage extends AbstractPage {
 
     }
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_pic")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
     public WebElement ad_pic;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_close")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
     public WebElement adClose_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_market")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_market")
     public WebElement Market_title;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_price")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_price")
     public WebElement price_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_price")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_price")
     public List<WebElement> firstRowPriceList;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_change")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_change")
     public WebElement quoteChange_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_statue")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_statue")
     public WebElement firstQuoteChange_list;
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_search")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_search")
     public WebElement market_search_btn;
 
-    //com.tronlink.wallet:id/tv_usd_price
-    @FindBy(id = "com.tronlink.wallet:id/tv_price")
+    //com.tronlinkpro.wallet:id/tv_usd_price
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_price")
     public List<WebElement> priceList;
 
-    //com.tronlink.wallet:id/tv_statue
-    @FindBy(id = "com.tronlink.wallet:id/tv_statue")
+    //com.tronlinkpro.wallet:id/tv_statue
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_statue")
     public List<WebElement> rangeList;
 
 

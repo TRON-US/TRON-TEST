@@ -16,27 +16,27 @@ public class DiscoverPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_one")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_one")
     public WebElement search_btn;
 
-    //com.tronlink.wallet:id/tv_title
-    @FindBy(id = "com.tronlink.wallet:id/tv_title")
+    //com.tronlinkpro.wallet:id/tv_title
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
     public WebElement dapp_title;
 
-    //com.tronlink.wallet:id/imageview
-    @FindBy(id = "com.tronlink.wallet:id/imageview")
+    //com.tronlinkpro.wallet:id/imageview
+    @FindBy(id = "com.tronlinkpro.wallet:id/imageview")
     public WebElement search_history_btn;
 
-    //com.tronlink.wallet:id/iv_scan
-    @FindBy(id = "com.tronlink.wallet:id/iv_scan")
+    //com.tronlinkpro.wallet:id/iv_scan
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_scan")
     public WebElement qr_scan_btn;
 
-    //com.tronlink.wallet:id/tv_search
-    @FindBy(id = "com.tronlink.wallet:id/tv_search")
+    //com.tronlinkpro.wallet:id/tv_search
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_search")
     public WebElement search_icon_in_searchPage_btn;
 
-    //com.tronlink.wallet:id/tv_name
-    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    //com.tronlinkpro.wallet:id/tv_name
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
     public WebElement nile_discover_note;
 
     public DAPP_SearchPage enterDAPP_SearchPage(){

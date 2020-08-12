@@ -18,62 +18,62 @@ public class SettingPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/languane")
+    @FindBy(id = "com.tronlinkpro.wallet:id/languane")
     public WebElement languane_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/selected")
+    @FindBy(id = "com.tronlinkpro.wallet:id/selected")
     public List<WebElement> selected_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/title")
     public List<WebElement> language_list;
 
-    @FindBy(id = "com.tronlink.wallet:id/title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/title")
     public List<WebElement> currency_list;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/testnode")
+    @FindBy(id = "com.tronlinkpro.wallet:id/testnode")
     public WebElement developerOptions_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_testnode")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_testnode")
     public WebElement testnode_text;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
     public WebElement connect_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/server")
+    @FindBy(id = "com.tronlinkpro.wallet:id/server")
     public WebElement server_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/node")
+    @FindBy(id = "com.tronlinkpro.wallet:id/node")
     public WebElement node_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/switch_version")
+    @FindBy(id = "com.tronlinkpro.wallet:id/switch_version")
     public WebElement version_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_node_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_name")
     public WebElement node_name;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/money")
+    @FindBy(id = "com.tronlinkpro.wallet:id/money")
     public WebElement currency_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/root")
+    @FindBy(id = "com.tronlinkpro.wallet:id/root")
     public List<WebElement> chain_list;
 
-    //com.tronlink.wallet:id/select_online
-    @FindBy(id = "com.tronlink.wallet:id/select_online")
+    //com.tronlinkpro.wallet:id/select_online
+    @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
     public WebElement online_version_icon;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_advanced_features")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_advanced_features")
     public WebElement advanced_features_btn;
 
 

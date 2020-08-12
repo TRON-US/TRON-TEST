@@ -17,15 +17,15 @@ public class DAPP_BrowerPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_url")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_url")
     public WebElement url_input;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt")
     public WebElement enterBrowser_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/middle_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/middle_title")
     public WebElement dappTtile_btn;
 
 

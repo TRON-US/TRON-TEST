@@ -55,7 +55,7 @@ public class SendTrx extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlink.wallet");
+            DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}
     }
 
@@ -149,7 +149,7 @@ public class SendTrx extends Base {
         Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertEquals(allNumber,number);
-        Assert.assertFalse(transfer.isElementExist("com.tronlink.wallet:id/tv_no_bandwidth"));
+        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
 
     }
 
@@ -163,7 +163,7 @@ public class SendTrx extends Base {
         Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
         Assert.assertEquals(allNumber, number);
-        Assert.assertFalse(transfer.isElementExist("com.tronlink.wallet:id/tv_no_bandwidth"));
+        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
 
     }
     @Parameters({"privateKey"})

@@ -32,80 +32,80 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
-    //com.tronlink.wallet:id/toscan
-    @FindBy(id = "com.tronlink.wallet:id/toscan")
+    //com.tronlinkpro.wallet:id/toscan
+    @FindBy(id = "com.tronlinkpro.wallet:id/toscan")
     public WebElement coldHadScan_next_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement transferTtile_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_one_delete")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_one_delete")
     public WebElement transferAddress_deleteBtn;
 
-    @FindBy(id = "com.tronlink.wallet:id/et_transfer_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_transfer_address")
     public WebElement transferAddress_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/et_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
     public WebElement receiveAddress_text;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_count")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_count")
     public WebElement tranferCount_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/send")
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
     public WebElement transferNow_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement InputPasswordConfim_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirm_btn;
-    @FindBy(id = "com.tronlink.wallet:id/tv_from_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_from_address")
     public WebElement from_address;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public WebElement to_address;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_error")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
     public WebElement formatErrorHits_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_real_money")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_real_money")
     public WebElement real_money;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_fee")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
     public WebElement fee_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_fee_amount_bw")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee_amount_bw")
     public WebElement bandwidth_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_note")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_note")
     public WebElement note_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_no_bandwidth")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_no_bandwidth")
     public WebElement no_bandwidth;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_balance")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
     public WebElement balance_text;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_max")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_max")
     public WebElement tvMax_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_token")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_token")
     public WebElement token_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement back_bt;
 
     @FindBy(xpath = "//*[@text='(1000002)']")
@@ -119,11 +119,11 @@ public class SendTrxPage extends AbstractPage {
     public WebElement trc20_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
     public WebElement invalidTime_input;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public List<WebElement> signAddress_input;
 
 
@@ -132,38 +132,38 @@ public class SendTrxPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_bottom_next")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
     public WebElement next_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_invalid_time")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
     public WebElement enableTime_text;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public List<WebElement> signAddress_text;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_selected_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_selected_name")
     public WebElement selectSignName_text;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
     public WebElement tvName_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_addressbook_receive")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_addressbook_receive")
     public WebElement addressBook_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_address_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_name")
     public WebElement addressName_display;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_add_note")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_add_note")
     public WebElement add_note;
 
-    @FindBy(id = "com.tronlink.wallet:id/et_note")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_note")
     public WebElement et_note;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_delete")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_delete")
     public WebElement tv_delete;
 
 
