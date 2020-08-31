@@ -324,7 +324,7 @@ public class OnlineWatchWalletTest extends Base {
     public void test011_onlineFrozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(35);
         Helper.swipScreen(DRIVER);
         frozen.energy_btn.click();
         frozen.freezeCount_input.sendKeys("1");
@@ -344,6 +344,7 @@ public class OnlineWatchWalletTest extends Base {
     public void test012_onlineFrozenBandwidthQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        TimeUnit.SECONDS.sleep(35);
         Helper.swipScreen(DRIVER);
         frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
@@ -438,9 +439,10 @@ public class OnlineWatchWalletTest extends Base {
         waiteTime();
         Assert.assertTrue(sendTrxPage.note_text.getText().contains("未激活")&&sendTrxPage.note_text.getText().contains("不会激活")&&sendTrxPage.note_text.getText().contains("TRC20"));
         Assert.assertFalse(sendTrxPage.note_text.getText().contains("0.1"));
-        sendTrxPage.tranferCount_text.sendKeys("1");
+        sendTrxPage.tranferCount_text.sendKeys("0.00001");
         Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         sendTrxPage.transferNow_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
