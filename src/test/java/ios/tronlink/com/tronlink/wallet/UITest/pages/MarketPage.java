@@ -18,51 +18,48 @@ public class MarketPage extends AbstractPage {
         super(driver);
         this.driver = driver;
     }
-    @FindBy(name = "行情")
+    @FindBy(name = "市场")
     public WebElement title;
 
-    @FindBy(name = "com.tronlink.wallet:id/iv_pic")
-    public WebElement ad_pic;
 
-    @FindBy(name ="com.tronlink.wallet:id/appmarket")
-    public WebElement market_btn;
+    @FindBy(id = "市场")
+    public WebElement market_Tab_Button;
 
-    @FindBy(name = "com.tronlink.wallet:id/iv_close")
-    public WebElement adClose_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_market")
-    public WebElement Market_title;
 
     @FindBy(name = "最新价格")
     public WebElement newPrice_btn;
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_price")
-    public List<WebElement> firstRowPriceList;
+    @FindBy(id = "自选")
+    public WebElement my_Pair;
+
+    @FindBy(id = "TRX")
+    public WebElement trx_Pair;
+
+    @FindBy(id = "USDT")
+    public WebElement usdt_Pair;
+
+    @FindBy(name = "涨跌幅")
+    public WebElement updown_OrderBtn;
+
+    @FindBy(name = "最新价格")
+    public WebElement newlest_OrderBtn;
+
+    @FindBy(name = "交易对/成交量")
+    public WebElement amount_OrderBtn;
+
+    @FindBy(name = "长按交易对添加自选")
+    public WebElement noPair_Text;
+
+    @FindBy(id = "market new search")
+    public WebElement market_Search;
+
+    @FindBy(name = "/TRX")
+    public List<WebElement> trxlist;
+
+    @FindBy(name = "/USDT")
+    public List<WebElement> usdtlist;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_change")
-    public WebElement quoteChange_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_statue")
-    public WebElement firstQuoteChange_list;
-
-
-    public String sortPrice() throws Exception {
-        firstRowPriceList.get(0).click();
-        String price = firstRowPriceList.get(1).getText();
-        TimeUnit.SECONDS.sleep(1);
-        //System.out.println(price);
-        return price;
-    }
-
-    public String sortQuoteChange() throws Exception {
-        quoteChange_btn.click();
-        String price = firstQuoteChange_list.getText();
-        TimeUnit.SECONDS.sleep(1);
-        return price;
-    }
 
 
 
