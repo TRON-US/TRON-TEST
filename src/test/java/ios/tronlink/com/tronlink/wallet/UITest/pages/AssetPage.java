@@ -121,6 +121,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "testAssetIssue_1567077083240")
     public WebElement myNewAddAsset_text;
 
+    @FindBy(id = "市场")
+    public WebElement market_Tab_Button;
 
     @FindBy(name = "我")
     public WebElement mine_btn;
@@ -364,17 +366,10 @@ public class AssetPage extends AbstractPage {
         return trxCount;
     }
 
-    public MarketPage enterMarketPage() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()) {
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        } catch (Exception e) {
-        }
-        market_btn.click();
+    public MarketPage enterMarketPage() throws  Exception {
+
+        market_Tab_Button.click();
+        TimeUnit.SECONDS.sleep(1);
         return new MarketPage(driver);
     }
 

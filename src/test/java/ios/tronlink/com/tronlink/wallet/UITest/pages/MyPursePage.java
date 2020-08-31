@@ -515,6 +515,8 @@ public String getBackupKeystoreInClipboard(String password){
         TimeUnit.SECONDS.sleep(2);
         action.tap(PointOption.point(120,botY)).perform();
         TimeUnit.SECONDS.sleep(2);
+        carouselView.click();
+        TimeUnit.SECONDS.sleep(1);
 
     }
 
