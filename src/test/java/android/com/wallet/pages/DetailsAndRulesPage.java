@@ -15,7 +15,7 @@ public class DetailsAndRulesPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement detailsAndRules_title;
 
 

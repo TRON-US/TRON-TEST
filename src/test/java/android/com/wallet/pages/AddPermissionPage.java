@@ -23,82 +23,82 @@ public class AddPermissionPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_permission_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_permission_name")
     public WebElement permissionName_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_operation")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_operation")
     public WebElement weights_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_threshold")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_threshold")
     public WebElement threshold_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_key_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_key_address")
     public List<WebElement> address_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_weight")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_weight")
     public WebElement weight_input;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_weight")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_weight")
     public List<WebElement> weightSecond_input;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_confirm")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm")
     public WebElement confirm_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement password_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_permissionname_tip")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_permissionname_tip")
     public WebElement tip_hits;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_operations_tip")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_operations_tip")
     public WebElement operations_tip;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_threshold_tip")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_threshold_tip")
     public WebElement threshold_tip;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement send_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_addkey_tip")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_addkey_tip")
     public WebElement addkey_tip;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_add_key_button")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_add_key_button")
     public WebElement addKey_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
     public WebElement inputPassword_title;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_operation")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_operation")
     public List<WebElement> permission_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt_confirm")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_confirm")
     public WebElement conf_btn;
 
 

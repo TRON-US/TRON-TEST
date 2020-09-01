@@ -19,17 +19,17 @@ public class PrivateKeySetPwdAgainPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_password")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_password")
     public WebElement pwd_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/creat")
+    @FindBy(id = "com.tronlinkpro.wallet:id/creat")
     public WebElement create_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_error")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
     public WebElement error_hits;
 
 

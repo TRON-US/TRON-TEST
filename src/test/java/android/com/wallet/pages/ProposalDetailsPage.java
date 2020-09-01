@@ -16,69 +16,69 @@ public class ProposalDetailsPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_proposals_cancle")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_proposals_cancle")
     public WebElement proposalCancle_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
     public WebElement confirm_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_proposals_state")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_proposals_state")
     public WebElement proposals_state_btn;
 
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/bt_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement send_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement pw_input;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_proposals_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_proposals_name")
     public WebElement proposalName_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_proposals_state")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_proposals_state")
     public WebElement proposalsState_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/num_all_votes")
+    @FindBy(id = "com.tronlinkpro.wallet:id/num_all_votes")
     public WebElement numAllVotes_btn;
 
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/num_valid_votes")
+    @FindBy(id = "com.tronlinkpro.wallet:id/num_valid_votes")
     public WebElement numValidVotes_btn;
 
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_create_time")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_create_time")
     public WebElement createTime_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_end_time")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_end_time")
     public WebElement endTime_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_no_approvers")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_no_approvers")
     public WebElement noApprovers_text;
 
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_content")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_content")
     public WebElement pproversPeo_text;
 
 

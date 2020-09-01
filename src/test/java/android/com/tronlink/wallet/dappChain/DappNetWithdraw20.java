@@ -49,14 +49,14 @@ public class DappNetWithdraw20 extends Base {
         new Helper().getSign(privateKey, DRIVER);
         changeToDappChain();
         DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlink.wallet");
+        DRIVER.activateApp("com.tronlinkpro.wallet");
     }
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlink.wallet");
+            DRIVER.activateApp("com.tronlinkpro.wallet");
             TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){}
     }

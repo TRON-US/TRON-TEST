@@ -16,29 +16,29 @@ public class InternalNodeSetPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement title_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_bg_right")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_bg_right")
     public WebElement tv_bg_right_btn;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/node_ip")
+    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
     public List<WebElement> ip_list;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_node_port")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_port")
     public List<WebElement> port_list;
 
-    //com.tronlink.wallet:id/custom_latency
-    @FindBy(id = "com.tronlink.wallet:id/custom_latency")
+    //com.tronlinkpro.wallet:id/custom_latency
+    @FindBy(id = "com.tronlinkpro.wallet:id/custom_latency")
     public List<WebElement> custom_latency_list;
 
-    //com.tronlink.wallet:id/tv_full_node
-    @FindBy(id = "com.tronlink.wallet:id/tv_full_node")
+    //com.tronlinkpro.wallet:id/tv_full_node
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_full_node")
     public WebElement fulllNode_text;
 
-    //com.tronlink.wallet:id/iv_node_edit
-    @FindBy(id = "com.tronlink.wallet:id/iv_node_edit")
+    //com.tronlinkpro.wallet:id/iv_node_edit
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_node_edit")
     public WebElement edit_custom_icon;
 
 

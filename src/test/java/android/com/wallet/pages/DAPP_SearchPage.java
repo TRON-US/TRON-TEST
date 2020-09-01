@@ -16,10 +16,10 @@ public class DAPP_SearchPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlink.wallet:id/et_search")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
     public WebElement search_text;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
     public WebElement dappName_text;
 
 

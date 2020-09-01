@@ -18,56 +18,56 @@ public class TrxPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlink.wallet:id/rl_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_send")
     public WebElement assets_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_deposit")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_deposit")
     public WebElement transferIn_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_trx_amount")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_amount")
     public WebElement trx_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_freeze_amout")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_freeze_amout")
     public WebElement freezeCount_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_count")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public WebElement trxTotal_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
     public WebElement back_btn;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_tab_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_tab_title")
     public List<WebElement> tranfer_tab;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_count")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
     public WebElement tranfer10_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/tv_balance")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
     public WebElement balance_text;
 
-  //@FindBy(id = "com.tronlink.wallet:id/send")
+  //@FindBy(id = "com.tronlinkpro.wallet:id/send")
   //public WebElement send_btn;
 
-  @FindBy(id = "com.tronlink.wallet:id/ll_transfer2")
+  @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
   public WebElement send_btn;
 
 

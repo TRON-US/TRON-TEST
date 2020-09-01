@@ -49,7 +49,7 @@ public class SendTrc20 extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlink.wallet");
+            DRIVER.activateApp("com.tronlinkpro.wallet");
         } catch (Exception e){
 
         }
@@ -222,10 +222,18 @@ public class SendTrc20 extends Base {
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
-    Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+    if (Integer.parseInt(number.trim()) == 0){
+       String numberCost = StringUtils.substringBeforeLast(transactionInfo.fee_coast.getText(),"TRX");
+       Float floater = Float.parseFloat(numberCost);
+       Assert.assertTrue(floater != 0.0);
+    }else {
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+
+    }
+
     String LRnumber = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"能量");
     String Rnumber = StringUtils.substringAfterLast(LRnumber,"带宽");
-      Assert.assertTrue(Integer.parseInt(Rnumber.trim()) > 0);
+    Assert.assertTrue(Integer.parseInt(Rnumber.trim()) > 0);
   }
 
   @Parameters({"address"})

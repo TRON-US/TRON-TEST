@@ -42,7 +42,7 @@ public class AddressBookTest extends Base {
     public void afterMethod() throws Exception {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlink.wallet");
+            DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}
     }
 
@@ -164,17 +164,17 @@ public class AddressBookTest extends Base {
         addressBookPage.save_btn.click();
     }
 
-    @Test(enabled = true,description = "Send trz use shield address book test", alwaysRun = true)
-    public void test008_sendTrzUseShieldAddressBook() throws Exception {
-        //AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.addressBook_btn.click();
-        transfer.addressName_display.click();
-        Assert.assertTrue(transfer.receiveAddress_text.getText().equals(shieldAddress));
-        Assert.assertTrue(transfer.note_text.getText().contains("匿名"));
-        Assert.assertTrue(transfer.note_text.getText().contains("地址"));
-
-    }
+//    @Test(enabled = true,description = "Send trz use shield address book test", alwaysRun = true)
+//    public void test008_sendTrzUseShieldAddressBook() throws Exception {
+//        //AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.addressBook_btn.click();
+//        transfer.addressName_display.click();
+//        Assert.assertTrue(transfer.receiveAddress_text.getText().equals(shieldAddress));
+//        Assert.assertTrue(transfer.note_text.getText().contains("匿名"));
+//        Assert.assertTrue(transfer.note_text.getText().contains("地址"));
+//
+//    }
 
 
     public SendTrxPage enterToSendTrxPage() {

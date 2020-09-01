@@ -18,17 +18,17 @@ public class NodeSetPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/iv_select")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_select")
     public List<WebElement> node_selected;
 
-    @FindBy(id = "com.tronlink.wallet:id/root")
+    @FindBy(id = "com.tronlinkpro.wallet:id/root")
     public List<WebElement> chain_list;
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement back_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/back3")
+    @FindBy(id = "com.tronlinkpro.wallet:id/back3")
     public List<WebElement> forward_btn;
 
 

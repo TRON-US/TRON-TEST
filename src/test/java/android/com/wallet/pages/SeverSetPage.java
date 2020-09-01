@@ -19,13 +19,13 @@ public class SeverSetPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlink.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement back_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/usa_layout") //com.tronlink.wallet:id/iv_select1
+    @FindBy(id = "com.tronlinkpro.wallet:id/usa_layout") //com.tronlinkpro.wallet:id/iv_select1
     public WebElement USA_btn;
 
-    @FindBy(id = "com.tronlink.wallet:id/sigapor_layout") //    com.tronlink.wallet:id/iv_select2
+    @FindBy(id = "com.tronlinkpro.wallet:id/sigapor_layout") //    com.tronlinkpro.wallet:id/iv_select2
     public WebElement Sigapor_btn;
 
 //    public SettingPage enterSettingPageChoiseDappChain() throws Exception {

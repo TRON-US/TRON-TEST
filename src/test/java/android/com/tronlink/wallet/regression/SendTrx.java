@@ -55,7 +55,7 @@ public class SendTrx extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlink.wallet");
+            DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}
     }
 
@@ -149,7 +149,7 @@ public class SendTrx extends Base {
         Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertEquals(allNumber,number);
-        Assert.assertFalse(transfer.isElementExist("com.tronlink.wallet:id/tv_no_bandwidth"));
+        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
 
     }
 
@@ -163,7 +163,7 @@ public class SendTrx extends Base {
         Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
         Assert.assertEquals(allNumber, number);
-        Assert.assertFalse(transfer.isElementExist("com.tronlink.wallet:id/tv_no_bandwidth"));
+        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
 
     }
     @Parameters({"privateKey"})
@@ -225,18 +225,18 @@ public class SendTrx extends Base {
         Assert.assertTrue(transfer.tvName_text.getText().contains("TRX"));
     }
 
-    @Test(enabled = true, description = "check test014_sendTrzCheckFee TR-1076", alwaysRun = true)
-    public void test016_sendTrzCheckFee() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.receiveAddress_text.sendKeys("ztron16nq696tkyuag3et5h4tygn4vumsgx7m2955azkfvpcecfy6na6f5n7n2l2svhpknmqp2v4wqne7");
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.tvName_text.getText().contains("TRZ"));
-        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ"));
-        Assert.assertTrue(transfer.fee_text.getText().contains("10"));
-        transfer.tranferCount_text.sendKeys("1");
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ")&&transfer.fee_text.getText().contains("10"));
-    }
+//    @Test(enabled = true, description = "check test014_sendTrzCheckFee TR-1076", alwaysRun = true)
+//    public void test016_sendTrzCheckFee() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.receiveAddress_text.sendKeys("ztron16nq696tkyuag3et5h4tygn4vumsgx7m2955azkfvpcecfy6na6f5n7n2l2svhpknmqp2v4wqne7");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(transfer.tvName_text.getText().contains("TRZ"));
+//        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ"));
+//        Assert.assertTrue(transfer.fee_text.getText().contains("10"));
+//        transfer.tranferCount_text.sendKeys("1");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ")&&transfer.fee_text.getText().contains("10"));
+//    }
 
     @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
     public void test017_transferInSuccessRecording() throws Exception {

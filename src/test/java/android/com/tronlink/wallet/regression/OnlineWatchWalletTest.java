@@ -48,7 +48,7 @@ public class OnlineWatchWalletTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlink.wallet");
+            DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}
     }
 
@@ -88,7 +88,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlink.wallet:id/tv_note"));
+        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlinkpro.wallet:id/tv_note"));
     }
     @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
     public void test003_onlineHaveActiveTrx10() throws Exception {
@@ -97,7 +97,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlink.wallet:id/tv_note"));
+        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlinkpro.wallet:id/tv_note"));
     }
     @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
     public void test004_onlineHaveActiveTrx20() throws Exception {
@@ -106,7 +106,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlink.wallet:id/tv_note"));
+        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlinkpro.wallet:id/tv_note"));
     }
 
     @Test(groups = {"P0"},enabled = true,description = "onlineMultiSignatureFeeCheck", alwaysRun = true)
@@ -454,7 +454,7 @@ public class OnlineWatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
         frozen.unfreezeType_btn.click();
-        if(frozen.isElementExist("com.tronlink.wallet:id/iv_unfreeze")){
+        if(frozen.isElementExist("com.tronlinkpro.wallet:id/iv_unfreeze")){
             frozen.unfreezeTargetAddress_btn.click();
             frozen.unfreeze_btn.click();
             frozen.unfreezeInfoConfirm_btn.click();
