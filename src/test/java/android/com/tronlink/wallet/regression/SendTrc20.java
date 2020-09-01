@@ -222,10 +222,14 @@ public class SendTrc20 extends Base {
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+    if (Integer.parseInt(number.trim()) == 0){
+        number = StringUtils.substringBeforeLast(transactionInfo.fee_coast.getText(),"TRX");
+    }
     Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+
     String LRnumber = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"能量");
     String Rnumber = StringUtils.substringAfterLast(LRnumber,"带宽");
-      Assert.assertTrue(Integer.parseInt(Rnumber.trim()) > 0);
+    Assert.assertTrue(Integer.parseInt(Rnumber.trim()) > 0);
   }
 
   @Parameters({"address"})

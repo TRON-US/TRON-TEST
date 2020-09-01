@@ -36,7 +36,7 @@ public class DiscoverTest extends Base {
         dappNameList.add("WINk");
         dappNameList.add("TRONLENDING");
         dappNameList.add("RocketGame");
-        dappNameList.add("JUST");
+        dappNameList.add("JustSwap");
         //dappNameList.add("Knight Story");
         dappNameList.add("TronVegas");
         dappNameList.add("TRON UP");
@@ -142,7 +142,7 @@ public class DiscoverTest extends Base {
                 TimeUnit.SECONDS.sleep(3);
             } catch (Exception e){}
             String dappNameInSearchResult = dapp_search_page.dappName_text.getText();
-            System.out.println("dappName_text:" + dappNameInSearchResult);
+            System.out.println("dappName_text:" + dappNameInSearchResult  + " index: " + i);
             Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(dappNameList.get(dappListIndex)) ||
                 dappNameInSearchResult.contains(dappNameList.get(dappListIndex)));
             dappListIndex++;

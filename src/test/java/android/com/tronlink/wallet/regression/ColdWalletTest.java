@@ -180,8 +180,6 @@ public class ColdWalletTest extends Base {
         waiteTime();
         coldAsset.addWallet_btn.click();
         waiteTime();
-        coldAsset.create_opt_general.click();
-        waiteTime();
         coldAsset.create_wallet.click();
         waiteTime();
         coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_name").sendKeys("SafeTipsM");
