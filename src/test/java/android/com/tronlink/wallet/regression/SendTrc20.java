@@ -223,9 +223,13 @@ public class SendTrc20 extends Base {
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
     String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
     if (Integer.parseInt(number.trim()) == 0){
-        number = StringUtils.substringBeforeLast(transactionInfo.fee_coast.getText(),"TRX");
+       String numberCost = StringUtils.substringBeforeLast(transactionInfo.fee_coast.getText(),"TRX");
+       Float floater = Float.parseFloat(numberCost);
+       Assert.assertTrue(floater != 0.0);
+    }else {
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+
     }
-    Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
 
     String LRnumber = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"能量");
     String Rnumber = StringUtils.substringAfterLast(LRnumber,"带宽");
