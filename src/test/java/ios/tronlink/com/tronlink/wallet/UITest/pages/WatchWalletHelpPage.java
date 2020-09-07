@@ -33,14 +33,11 @@ public class WatchWalletHelpPage extends AbstractPage {
     public void send10token() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
         waiteTime();
-        assetPage.cellArray.get(1).click();
-        waiteTime();
-        TrxPage page = new TrxPage(driver);
+        TrxPage page = assetPage.enterTrx10Page();
         waiteTime();
         page.sendBtn.click();
         waiteTime();
         SendTrxPage trxPage = new SendTrxPage(driver);
-
         trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         trxPage.testfieldArray.get(2).sendKeys("1");
