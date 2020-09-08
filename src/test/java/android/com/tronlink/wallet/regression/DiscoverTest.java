@@ -65,47 +65,47 @@ public class DiscoverTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Nile main chain discover page test", alwaysRun = true)
-    public void test001_discoverTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
+//    @Test(enabled = true,description = "Nile main chain discover page test", alwaysRun = true)
+//    public void test001_discoverTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//
+//        //尼罗河测试点
+//        String noteContent = discover.nile_discover_note.getText();
+//        System.out.println(noteContent);
+//        Assert.assertTrue(noteContent.contains("尼罗河"));
+//        Assert.assertTrue(noteContent.contains("DAPP") || noteContent.contains("DApp"));
+//        Assert.assertTrue(noteContent.contains("暂不支持"));
+//
+//
+//        //主网测试点
+///*        Assert.assertTrue(discover.dapp_title.getText().contains("DAPP"));
+//        Assert.assertTrue(discover.qr_scan_btn.isEnabled());
+//        Assert.assertTrue(discover.search_history_btn.isEnabled());
+//        Assert.assertTrue(discover.search_btn.isEnabled());
+//        discover.search_btn.click();
+//        Assert.assertTrue(discover.search_icon_in_searchPage_btn.isEnabled());*/
+//
+//    }
 
-        //尼罗河测试点
-        String noteContent = discover.nile_discover_note.getText();
-        System.out.println(noteContent);
-        Assert.assertTrue(noteContent.contains("尼罗河"));
-        Assert.assertTrue(noteContent.contains("DAPP") || noteContent.contains("DApp"));
-        Assert.assertTrue(noteContent.contains("暂不支持"));
-
-
-        //主网测试点
-/*        Assert.assertTrue(discover.dapp_title.getText().contains("DAPP"));
-        Assert.assertTrue(discover.qr_scan_btn.isEnabled());
-        Assert.assertTrue(discover.search_history_btn.isEnabled());
-        Assert.assertTrue(discover.search_btn.isEnabled());
-        discover.search_btn.click();
-        Assert.assertTrue(discover.search_icon_in_searchPage_btn.isEnabled());*/
-
-    }
-
-    @Test(enabled = true,description = "Nile dapp chain discover page test",alwaysRun = true)
-    public void test002_dappDiscoverTest() throws Exception {
-        AssetPage asset = enterDappAssetPage();
-        DiscoverPage discover = asset.enterDiscoverPage();
-        try {
-            TimeUnit.SECONDS.sleep(10);
-            // if page display AD , cloese the AD
-/*            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }*/
-        } catch (Exception e){}
-
-
-        //尼罗河测试点
-        Assert.assertTrue(discover.dapp_title.getText().contains("DApp"));
-
-    }
+//    @Test(enabled = true,description = "Nile dapp chain discover page test",alwaysRun = true)
+//    public void test002_dappDiscoverTest() throws Exception {
+//        AssetPage asset = enterDappAssetPage();
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        try {
+//            TimeUnit.SECONDS.sleep(10);
+//            // if page display AD , cloese the AD
+///*            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }*/
+//        } catch (Exception e){}
+//
+//
+//        //尼罗河测试点
+//        Assert.assertTrue(discover.dapp_title.getText().contains("DApp"));
+//
+//    }
 
     @Test(enabled = true,description = "Online main chain discover page test",alwaysRun = true)
     public void test003_onlineMainNetDiscoverTest() throws Exception {
