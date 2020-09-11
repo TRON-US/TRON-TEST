@@ -121,6 +121,9 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
         String developer = setting.testnode_text.getText();
         setting.trunDeveloperOptions();
+        TimeUnit.SECONDS.sleep(8);
+        mine = asset.enterMinePage();
+        setting = mine.enterSettingPage();
         String developerNow = setting.testnode_text.getText();
         Assert.assertNotEquals(developer, developerNow);
     }
