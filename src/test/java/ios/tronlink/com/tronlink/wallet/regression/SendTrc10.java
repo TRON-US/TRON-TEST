@@ -150,7 +150,7 @@ public class SendTrc10 extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额："+successNumber));
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账数量："+successNumber));
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账 TRC10 通证"));
     }
 

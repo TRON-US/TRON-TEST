@@ -51,7 +51,7 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "删除钱包")
     public WebElement deletewallet_btn;
 
-    @FindBy(id = "多重签名管理")
+    @FindBy(id = "权限管理")
     public WebElement multiManageDoor;
 
     @FindBy(id = "ManageViewCell")

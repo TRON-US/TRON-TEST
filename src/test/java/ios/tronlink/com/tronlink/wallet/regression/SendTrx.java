@@ -222,8 +222,8 @@ public class SendTrx extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        log("转账金额：-"+successNumber);
-        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额：-"+successNumber+"TRX"));
+        log("转账数量：-"+successNumber);
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账数量：-"+successNumber+"TRX"));
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账"));
     }
 
