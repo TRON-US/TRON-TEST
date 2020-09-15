@@ -27,13 +27,13 @@ public class CommitteeTest extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String witnessKey, String udid) throws Exception {
         System.out.println("pk: " + witnessKey + " udid: " + udid);
-        DRIVER.closeApp();
-        log("开始移除app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-        log("开始安装app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-        log("开始导入ownerPrivatekey");
-        DRIVER.closeApp();
+//        DRIVER.closeApp();
+//        log("开始移除app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+//        log("开始安装app");
+//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//        log("开始导入ownerPrivatekey");
+//        DRIVER.closeApp();
         DRIVER.launchApp();
         new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
 
@@ -76,10 +76,10 @@ public class CommitteeTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-            System.out.println("开始移除app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-            System.out.println("开始安装app");
-            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//            System.out.println("开始移除app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//            System.out.println("开始安装app");
+//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }
@@ -106,7 +106,6 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(9);
         String count = String.format("%.0f", Math.random() * 100000);
         System.out.println(count);
-        log("开始执行时间");
         committeePage.change1proposal(count);
         WebElement wl = committeePage.findFirstproposalWl();
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
@@ -134,7 +133,7 @@ public class CommitteeTest extends Base {
     @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
     public void test_004makeecendNewProposal() throws  Exception{
 
-        log("second 开始执行时间");
+
         String count = random(6,0);
         count = Helper.getPrettyNumber(count);
         System.out.println(count);
@@ -143,6 +142,7 @@ public class CommitteeTest extends Base {
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         committeePage.change0proposal(count);
+        TimeUnit.SECONDS.sleep(4);
         WebElement wl = committeePage.findFirstproposalWl();
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Assert.assertTrue(Helper.contentTexts(textarray, count));
