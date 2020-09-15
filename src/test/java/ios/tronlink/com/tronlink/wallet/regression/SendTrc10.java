@@ -28,18 +28,18 @@ public class SendTrc10 extends BaseTest {
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
 
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage assetpage = new AssetPage(DRIVER);
+        TrxPage tokenpage = assetpage.enterTrx10Page();
+        double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+
+        SendTrxPage transfer = tokenpage.enterTransferPage();
         String count = random(10, 10);
         count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
-        TrxPage tokenpage = transfer.sendTrx10WithNumber(successNumber);
+        transfer.sendTrx10WithNumber(successNumber);
+        TimeUnit.SECONDS.sleep(2);
 
-        double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        transfer.back_bt.click();//返回到首页资产页
-        waiteTime();
-        AssetPage assetpage = new AssetPage(DRIVER);
-        tokenpage = assetpage.enterTrx10Page();
         double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         System.out.println("   count:" +count + "   trc10Before:" + trc10Before + " trc10after:" + trc10after);
         Assert.assertTrue(trc10after + Integer.parseInt(removeSymbol(count)) <= trc10Before);
@@ -151,7 +151,7 @@ public class SendTrc10 extends BaseTest {
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账数量："+successNumber));
-        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账 TRC10 通证"));
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"TRC10 通证转账"));
     }
 
     //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx

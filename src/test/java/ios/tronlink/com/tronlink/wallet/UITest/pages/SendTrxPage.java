@@ -361,6 +361,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         waiteTime();
         broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
     }
 
@@ -418,6 +419,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         waiteTime();
         broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
     }
 
@@ -440,6 +442,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         waiteTime();
         broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(6);
 
         return new TrxPage(driver);
     }
