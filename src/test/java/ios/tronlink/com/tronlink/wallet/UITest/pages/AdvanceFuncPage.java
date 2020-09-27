@@ -29,7 +29,7 @@ public class AdvanceFuncPage extends AbstractPage {
     public WebElement dapp_btn;
 
 
-    @FindBy(name = "转换工具")
+    @FindBy(name = "助记词转换工具")
     public WebElement mnemTools_btn;
 
 

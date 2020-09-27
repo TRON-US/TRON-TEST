@@ -104,7 +104,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "投票")
     public WebElement vote_btn;
 
-    @FindBy(name = "资源")
+    @FindBy(name = "资产")
     public WebElement asset_btn;
 
     @FindBy(name = "冻结/解冻")

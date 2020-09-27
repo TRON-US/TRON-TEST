@@ -54,6 +54,7 @@ public class AssetsPageTest extends BaseTest {
     public void test005_gotoAssetPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         AddAssertPage receiptPage = assetPage.enterAddAssertPage();
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertEquals(receiptPage.title.getText(), "资产");
     }
 
@@ -82,13 +83,14 @@ public class AssetsPageTest extends BaseTest {
         TimeUnit.SECONDS.sleep(3);
         String about = asset.assetsLabel.getText();
         String result;
-        if (about.contains("USD")){
-            result = sepLeftNumberTextToString(about,"USD").replace("≈"," ").trim();
+        if (about.contains("$")){
+            result = about.replace("≈$"," ").trim();
         }else {
-            result = sepLeftNumberTextToString(about,"CNY").replace("≈"," ").trim();
+            result = about.replace("≈¥"," ").trim();
         }
         Double number = Double.parseDouble(removeSymbolFloat(result));
         System.out.println("Total about number:" + number);
+
         Assert.assertTrue(number > 0 );
     }
 
