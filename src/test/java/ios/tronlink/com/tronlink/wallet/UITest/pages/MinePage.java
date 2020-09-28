@@ -51,7 +51,7 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "版本日志")
     public WebElement versionNote_btn;
 
-    @FindBy(name = "资源")
+    @FindBy(name = "资产")
     public WebElement assets_btn;
 
     @FindBy(name = "委员会提议")

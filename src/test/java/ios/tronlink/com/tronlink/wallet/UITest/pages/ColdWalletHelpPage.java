@@ -29,7 +29,7 @@ public class ColdWalletHelpPage extends AbstractPage {
     public WebElement addressLabel;
 
 
-    @FindBy(name = "资源")
+    @FindBy(name = "资产")
     public WebElement AssetBtn;
 
     @FindBy(name = "我")

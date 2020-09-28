@@ -69,8 +69,6 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "black path")
     public WebElement backbtn;
 
-    @FindBy(name = "资源")
-    public WebElement asset_btn;
 
     @FindBy(id = "manage wallet")
     public  WebElement addwallet;
