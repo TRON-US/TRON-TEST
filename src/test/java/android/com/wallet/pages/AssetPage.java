@@ -120,7 +120,7 @@ public class AssetPage extends AbstractPage {
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
-    public List<WebElement> myAddedAssert_btn;
+    public List<WebElement> assetsName;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_bg_freeze_unfreeze")
@@ -175,7 +175,7 @@ public class AssetPage extends AbstractPage {
 
     //com.tronlinkpro.wallet:id/iv_renzheng
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_renzheng")
-    public WebElement trx10_icon_btn;
+    public List<WebElement> trx10_icon_btns;
 
     //@FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
     //public List<WebElement> trx10_btn;
@@ -268,7 +268,9 @@ public class AssetPage extends AbstractPage {
         try {
           trx10_btn.click();
         } catch (Exception e) {
-          trx10_icon_btn.click();
+            if (trx10_icon_btns.size() > 2){
+                trx10_icon_btns.get(1).click();
+            }
         }
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
@@ -277,12 +279,11 @@ public class AssetPage extends AbstractPage {
     }
 
   public SendTrxPage enterOnlineSendTrc10Page() {
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    try {
       Helper.swipScreen(driver);
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    try {
       online_trc10_btn.click();
     } catch (Exception e) {
-      Helper.swipScreen(driver);
       online_trc10_btn.click();
     }
     driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -292,8 +293,18 @@ public class AssetPage extends AbstractPage {
   }
 
   public SendTrxPage enterSendTrc20Page() {
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        trx20_btn.get(2).click();
+        Helper.swipScreen(driver);
+      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+//        trx20_btn.get(2).click();
+//      assetsName
+      for (int i = 1; i < trx20_btn.size(); i++) {
+          if (trx20_btn.get(i).getText().contains("TRX")){
+              System.out.println("从第" + i + "个找到了 TRX20币");
+              trx20_btn.get(i).click();
+              break;
+          }
+      }
+
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
@@ -633,10 +644,7 @@ public class AssetPage extends AbstractPage {
             waiteTime();
           mine_btn.click();
         } catch (Exception e) {
-          mine_btn.click();
         }
-        waiteTime();
-        mine_btn.click();
         waiteTime();
         assetsMain_btn.click();
         Helper.swipScreen(driver);
@@ -647,7 +655,9 @@ public class AssetPage extends AbstractPage {
             waiteTime();
           trx10_btn.click();
         } catch (Exception e) {
-          trx10_icon_btn.click();
+            if (trx10_icon_btns.size() > 2){
+                trx10_icon_btns.get(1).click();
+            }
         }
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         TimeUnit.SECONDS.sleep(2);
