@@ -63,21 +63,33 @@ public class DappSendTrc20 extends BaseTest {
         }
     }
 
+    public void guaranteeDappChain() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(Helper.assetFindMainChain(asset)) {
+            SettingPage set = enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            set = nodeSet.enterSettingPageChoiseDappChain();
+            MinePage mine  = set.enterMinePage();
+            mine.enterAssetPage();
+        }
+
+    }
 
 
     @Test(description = "SendTrc20 success test", alwaysRun = true)
     public void test001_sendTrc20Success() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        String count = (random(10,10));
+        guaranteeDappChain();
+        AssetPage assetpage = new AssetPage(DRIVER);
+        TrxPage tokenpage = assetpage.enterTrx20Page();
+        double trc20Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+        SendTrxPage transfer = tokenpage.enterTransferPage();
+        String count = random(10, 10);
         count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
-        TrxPage tokenpage = transfer.sendTrx20WithNumber(successNumber);
-        double trc20Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        transfer.back_bt.click();//返回到首页资产页
-        waiteTime();
-        AssetPage assetpage = new AssetPage(DRIVER);
-        tokenpage = assetpage.enterTrx20Page();
+        transfer.sendTrx20WithNumber(successNumber);
+        TimeUnit.SECONDS.sleep(4);
+
         double trc20after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         System.out.println("   count:" +count + "   trc20Before:" + trc20Before + " trc20after:" + trc20after);
         Assert.assertTrue(trc20after +  Integer.parseInt(removeSymbol(count))  <= trc20Before);

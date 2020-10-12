@@ -207,7 +207,7 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.address_input.get(0).sendKeys("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         String tip = add.addkey_tip.getText();
         Assert.assertTrue(tip.equals("请填写正确的地址") || tip.contains("enter the correct address"));
     }

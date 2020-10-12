@@ -32,18 +32,21 @@ public class SendTrx extends BaseTest {
     @Test(groups = {"P0"},description = "SendTrx success test",alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
+        TrxPage tokenpage = asset.enterTrxPage();
+        double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
+
         String count = random(10,10);
         count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
-        TrxPage tokenpage = transfer.sendTrxWithNumber(successNumber);
-        double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        transfer.back_bt.click();//返回到首页资产页
-        waiteTime();
-        tokenpage = asset.enterTrxPage();
+
+        SendTrxPage transfer = tokenpage.enterTransferPage();
+         transfer.sendTrxWithNumber(successNumber);
+         TimeUnit.SECONDS.sleep(2);
+
+
         double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        System.out.println(count   + "   " + trcBefore  + " " + trcafter);
+        System.out.println("   count:" +count + "   trcBefore:" + trcBefore + " trcafter:" + trcafter);
         Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
     }
 
@@ -222,9 +225,9 @@ public class SendTrx extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        log("转账金额：-"+successNumber);
-        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账金额：-"+successNumber+"TRX"));
-        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账"));
+        log("转账数量：-"+successNumber);
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账数量：-"+successNumber+"TRX"));
+        Assert.assertTrue( Helper.isElementExist(transaction.driver,"TRX 转账"));
     }
 
 

@@ -226,7 +226,7 @@ public class CommitteePage extends AbstractPage {
         enterMyProposal();
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         if (Helper.isElementExist(driver,"取消赞成")) {
             waiteTime();
             backBtn.click();
@@ -237,7 +237,7 @@ public class CommitteePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(6);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(6);
+            TimeUnit.SECONDS.sleep(15);
             backBtn.click();
         }
 
@@ -247,7 +247,7 @@ public class CommitteePage extends AbstractPage {
         enterMyAgreedProposal();
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         if (Helper.isElementExist(driver,"赞成")) {
             waiteTime();
             backBtn.click();
@@ -258,7 +258,7 @@ public class CommitteePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(6);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(15);
             backBtn.click();
         }
 
@@ -269,7 +269,7 @@ public class CommitteePage extends AbstractPage {
         enterMyProposal();
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         if (stateLabel.getText().contains("已取消")){
             waiteTime();
             backBtn.click();
@@ -282,7 +282,7 @@ public class CommitteePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(6);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(15);
             backBtn.click();
         }
 

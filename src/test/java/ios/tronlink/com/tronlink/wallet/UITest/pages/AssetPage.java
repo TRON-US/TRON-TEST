@@ -104,7 +104,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "投票")
     public WebElement vote_btn;
 
-    @FindBy(name = "资源")
+    @FindBy(name = "资产")
     public WebElement asset_btn;
 
     @FindBy(name = "冻结/解冻")
@@ -124,7 +124,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "市场")
     public WebElement market_Tab_Button;
 
-    @FindBy(name = "我")
+    @FindBy(name = "我的")
     public WebElement mine_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/app1")

@@ -63,10 +63,10 @@ public class DappChainWithdraw extends BaseTest {
         successNumber = count;
         TransferPage transferOut =  trx.enterTransferOutPage();
         trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-        AssetPage page = trx.enterAssetPage();
-        double trxCountNow = Double.parseDouble(removeSymbol(page.getTrxCount()));
+        TimeUnit.SECONDS.sleep(2);
+        double trxCountNow = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         waiteTime();
-        System.out.println(count   + "   " + trxCount  + " " + trxCountNow);
+        System.out.println("   old value:" + trxCount + "send Number:"+ count    + " new value:" + trxCountNow);
         Assert.assertTrue(trxCount >= trxCountNow +  Double.parseDouble(count) );
     }
 
