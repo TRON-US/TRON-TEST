@@ -162,7 +162,6 @@ public class SendTrc20 extends Base {
 
     @Test(groups = {"P0"},enabled = true,description = "Trc20 transfer success recording")
     public void test008_trc20TransferInSuccessRecording() throws Exception {
-        sendTrc20Amount = (float) 1.874093;
       AssetPage asset = new AssetPage(DRIVER);
       TrxPage trx = asset.enterTrx20Page();
       trx.tranfer_tab.get(1).click();
