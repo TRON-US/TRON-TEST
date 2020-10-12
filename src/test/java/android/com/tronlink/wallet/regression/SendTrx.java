@@ -244,7 +244,7 @@ public class SendTrx extends Base {
         TrxPage trx = asset.enterTrxPage();
         trx.tranfer_tab.get(1).click();
         System.out.println(trx.tranferIncount_text.get(1).getText());
-        String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+        String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
         Assert.assertTrue(Float.toString(sendTrxAmount).substring(0,5).equals(tranferInCount.substring(0,5)));
    /*     int tries = 0;
         Boolean exist = false;
@@ -302,7 +302,7 @@ public class SendTrx extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.contains("转账 TRX") || transactionType.equals("转账Trx") || transactionType.equals("Send Trx"));
+        Assert.assertTrue(transactionType.contains("转账 TRX") || transactionType.equals("TRX 转账") || transactionType.equals("Send Trx"));
     }
 
     @Parameters({"address"})
@@ -316,7 +316,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(sendIcon.equals("-"));
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrxAmount).substring(0,6));
@@ -338,7 +338,7 @@ public class SendTrx extends Base {
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(0);
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(receiveIcon.equals("+"));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains("TRX"));

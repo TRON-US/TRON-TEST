@@ -149,7 +149,7 @@ public class SendTrc10 extends Base {
         TrxPage trx = asset.enterTrx10Page();
         trx.tranfer_tab.get(1).click();
         System.out.println(trx.tranferIncount_text.get(1).getText());
-        String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+        String tranferInCount = trx.tranferIncount_text.get(1).getText().substring(1);
         Assert.assertTrue(Float.toString(sendTrxAmount).substring(0, 5).equals(tranferInCount.substring(0, 5)));
    /*     int tries = 0;
         Boolean exist = false;
@@ -223,8 +223,8 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
 
         System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertEquals(detailPageSendAmount.substring(0, 6), String.valueOf(sendTrxAmount).substring(0, 6));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
                 > Long.valueOf(currentMainNetBlockNum));

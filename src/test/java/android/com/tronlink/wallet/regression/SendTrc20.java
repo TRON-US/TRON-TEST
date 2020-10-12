@@ -82,7 +82,7 @@ public class SendTrc20 extends Base {
         stsp.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
         transfer = asset.enterSendTrxPage();
         double trc20After = transfer.getTrc20Amount();
-        System.out.println(trc20After);
+        System.out.println("trc20After: " + trc20After + "trc20SendAmount: " + trc20SendAmount + "trc20Before: " + trc20Before);
         Double min = trc20After + Double.valueOf(trc20SendAmount) - trc20Before;
         Assert.assertTrue(min < 1 && min > -1);
     }
@@ -164,7 +164,7 @@ public class SendTrc20 extends Base {
       TrxPage trx = asset.enterTrx20Page();
       trx.tranfer_tab.get(1).click();
       System.out.println(trx.tranferIncount_text.get(1).getText());
-      String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+      String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
       Assert.assertTrue(Float.toString(sendTrc20Amount).substring(0,5).equals(tranferInCount.substring(0,5)));
    /*   int tries = 0;
       Boolean exist = false;
@@ -214,7 +214,7 @@ public class SendTrc20 extends Base {
     Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
     System.out.println(transactionInfo.title_amount_test.getText());
     System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
     Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrc20Amount).substring(0,6));
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
         > Long.valueOf(currentMainNetBlockNum) );
@@ -243,7 +243,7 @@ public class SendTrc20 extends Base {
     TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(2);
     System.out.println(transactionInfo.title_amount_test.getText());
     System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-    String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+    String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
     String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
     Assert.assertTrue(receiveIcon.equals("+"));
     Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
