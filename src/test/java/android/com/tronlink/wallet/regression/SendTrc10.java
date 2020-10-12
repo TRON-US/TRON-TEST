@@ -245,7 +245,7 @@ public class SendTrc10 extends Base {
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(receiveIcon.contains("+"));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
