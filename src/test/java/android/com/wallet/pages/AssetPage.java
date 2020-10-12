@@ -153,8 +153,8 @@ public class AssetPage extends AbstractPage {
 /*    @FindBy(xpath = "//*[@text='TRX']")
     public List<WebElement> trx20_btn;*/
 
-    //@FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
-    //public List<WebElement> trx20_btn;
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    public List<WebElement> asset_names;
 
     //com.tronlinkpro.wallet:id/rl_main
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
@@ -292,18 +292,9 @@ public class AssetPage extends AbstractPage {
     return new SendTrxPage(driver);
   }
 
-  public SendTrxPage enterSendTrc20Page() {
-        Helper.swipScreen(driver);
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-//        trx20_btn.get(2).click();
-//      assetsName
-      for (int i = 1; i < trx20_btn.size(); i++) {
-          if (trx20_btn.get(i).getText().contains("TRX")){
-              System.out.println("从第" + i + "个找到了 TRX20币");
-              trx20_btn.get(i).click();
-              break;
-          }
-      }
+  public SendTrxPage enterSendTrc20Page() throws  Exception {
+
+        enterTrx20Page();
 
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
@@ -636,6 +627,27 @@ public class AssetPage extends AbstractPage {
     return new TrxPage(driver);
   }
 
+    public TrxPage enterTrx20Page() throws Exception {
+
+        Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(1);
+
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        System.out.printf("asset_names.size() :  " +  asset_names.size());
+        for (int i = 1; i < asset_names.size(); i++) {
+            System.out.printf("asset_names item " + i + "  :  " +  asset_names.get(i).getText());
+
+            if (asset_names.get(i).getText().contains("TRX")){
+                System.out.println("从第" + i + "个找到了 TRX20币");
+                asset_names.get(i).click();
+                break;
+            }
+        }
+
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        return new TrxPage(driver);
+
+    }
 
 
     public TrxPage enterTrx10Page() throws Exception {
@@ -689,20 +701,7 @@ public class AssetPage extends AbstractPage {
 
 
 
-    public TrxPage enterTrx20Page() throws Exception {
-      TimeUnit.SECONDS.sleep(1);
-      waiteTime();
-        mine_btn.click();
-        waiteTime();
-        assetsMain_btn.click();
-        Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(3);
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        trx20_btn.get(2).click();
-        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(1);
-        return new TrxPage(driver);
-    }
+
 
   public TrxPage enterOnlineTrc20Page() throws Exception {
     mine_btn.click();

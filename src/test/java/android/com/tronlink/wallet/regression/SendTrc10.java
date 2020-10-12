@@ -151,31 +151,6 @@ public class SendTrc10 extends Base {
         System.out.println(trx.tranferIncount_text.get(1).getText());
         String tranferInCount = trx.tranferIncount_text.get(1).getText().substring(1);
         Assert.assertTrue(Float.toString(sendTrxAmount).substring(0, 5).equals(tranferInCount.substring(0, 5)));
-   /*     int tries = 0;
-        Boolean exist = false;
-        while (exist == false && tries < 7) {
-            tries++;
-            try {
-                AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrx10Page();
-                trx.tranfer_tab.get(1).click();
-                System.out.println(trx.tranferIncount_text.get(1).getText());
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                System.out.println("tranferInCount = " + tranferInCount);
-                System.out.println("sendTrxAmount = " + sendTrxAmount);
-                if (Float.toString(sendTrxAmount).substring(0,5).equals(tranferInCount.substring(0,5))) {
-                    exist = true;
-                    break;
-                }
-                TimeUnit.SECONDS.sleep(3);
-
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        Assert.assertTrue(exist);
-*/
-
     }
 
     @Test(enabled = true, description = "Trc10 transfer balance decrease check")
