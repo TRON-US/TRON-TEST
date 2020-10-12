@@ -279,7 +279,7 @@ public class AssetPage extends AbstractPage {
     }
 
   public SendTrxPage enterOnlineSendTrc10Page() {
-      Helper.swipScreen(driver);
+      Helper.swipScreenLitte(driver);
       driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     try {
       online_trc10_btn.click();

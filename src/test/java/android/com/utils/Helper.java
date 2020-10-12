@@ -37,6 +37,18 @@ public class Helper {
                 .release().perform();
     }
 
+    public static void swipScreenLitte(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.println("4/5上拉到1/5   " + width + "   " + height);
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/5))
+                .release().perform();
+    }
 
     public static void swipToChangeMyPaurse(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
