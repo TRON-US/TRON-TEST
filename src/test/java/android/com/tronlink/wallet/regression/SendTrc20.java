@@ -165,7 +165,7 @@ public class SendTrc20 extends Base {
       trx.tranfer_tab.get(1).click();
       System.out.println(trx.tranferIncount_text.get(1).getText());
       String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-      Assert.assertTrue(Float.toString(sendTrc20Amount).substring(0,5).equals(tranferInCount.substring(0,5)));
+      Assert.assertTrue(Float.toString(sendTrc20Amount).substring(1,6).equals(tranferInCount.substring(0,5)));
    /*   int tries = 0;
       Boolean exist = false;
       while (exist == false && tries++ < 5) {
@@ -215,7 +215,7 @@ public class SendTrc20 extends Base {
     System.out.println(transactionInfo.title_amount_test.getText());
     System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
     String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
-    Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrc20Amount).substring(0,6));
+    Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(sendTrc20Amount).substring(0,6));
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
         > Long.valueOf(currentMainNetBlockNum) );
     Helper.swipScreen(transactionInfo.driver);
@@ -245,7 +245,7 @@ public class SendTrc20 extends Base {
     System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
     String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
     String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
-    Assert.assertTrue(receiveIcon.equals("+"));
+    Assert.assertTrue(receiveIcon.contains("+"));
     Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
     Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
     Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
