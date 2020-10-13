@@ -144,10 +144,10 @@ public class DappNetWithdraw10 extends Base {
                 trx = arret.enterTrx10Page();
                 trx.tranfer_tab.get(3).click();
                 trx.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
                 System.out.println("tranferInCount = " + tranferInCount);
               if (Float.toString(withdrawTrc10Amount).substring(0, 5)
-                  .equals(tranferInCount.substring(0, 5))) {
+                  .equals(tranferInCount.substring(1, 6))) {
                 exist = true;
                 break;
               }
@@ -170,10 +170,9 @@ public class DappNetWithdraw10 extends Base {
     Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
     Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-    System.out.println(transactionInfo.title_amount_test.getText());
-    System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
-    Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(withdrawTrc10Amount).substring(0,6));
+    System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+    Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(withdrawTrc10Amount).substring(0,6));
     Helper.swipScreen(transactionInfo.driver);
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());

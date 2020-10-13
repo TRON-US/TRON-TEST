@@ -127,16 +127,13 @@ public class DappNetWithdraw extends Base {
 
     @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
         TransferPage transferOut = trx.enterTransferPage();
         int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
+        log("trxCount: " + trxCount + " frozenCount: " + frozenCount + " availableBalance: " + availableBalance );
         Assert.assertTrue(trxCount == frozenCount + availableBalance);
     }
 
@@ -177,11 +174,11 @@ public class DappNetWithdraw extends Base {
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(3).click();
                 //todo 转出转入记录中没有最新数据
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
                 System.out.println("withdrawTrxAmount:" + Float.toString(withdrawTrxAmount).substring(0, 5));
                 System.out.println("tranferInCount:" + tranferInCount.substring(0, 5));
                 if (Float.toString(withdrawTrxAmount).substring(0, 5)
-                    .equals(tranferInCount.substring(0, 5))) {
+                    .equals(tranferInCount.substring(1, 6))) {
                     exist = true;
                     break;
                 }
@@ -205,10 +202,9 @@ public class DappNetWithdraw extends Base {
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
-        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(withdrawTrxAmount).substring(0,6));
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(withdrawTrxAmount).substring(0,6));
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
