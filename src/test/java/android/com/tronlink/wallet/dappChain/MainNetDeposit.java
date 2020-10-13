@@ -86,8 +86,16 @@ public class MainNetDeposit extends Base {
     }
 
 
+    @Test(groups = {"P0"},enabled = true,description = "Deposit trx into Dapp chain success checkout available trx", alwaysRun = true)
+    public void test002_depositTrxIntoDappChain() throws Exception {
+        TrxPage trx = enterTrxPage();
+        depositTrxAmount = getAnAmount() + 9;
+        TransferPage transferIn = trx.enterTransferPage();
+        transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrxAmount));
+    }
+
     @Test(enabled = true,description = "Check TransferIn Trx Count", alwaysRun = true)
-    public void test002_checkTransferInTrx() throws Exception {
+    public void test003_checkTransferInTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("trx");
@@ -96,7 +104,7 @@ public class MainNetDeposit extends Base {
 
 
     @Test(enabled = true,description = "Check TransferIn Hits", alwaysRun = true)
-    public void test003_checkTransferInHits() throws Exception {
+    public void test004_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("hits");
@@ -106,7 +114,7 @@ public class MainNetDeposit extends Base {
 
 
     @Test(enabled = true,description = "Check TransferIn Fee", alwaysRun = true)
-    public void test004_checkTransferInFee() throws Exception {
+    public void test005_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferPage();
         String info = transferIn.getTransferInfo("fee");
@@ -116,12 +124,8 @@ public class MainNetDeposit extends Base {
 
 
     @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
-    public void test005_checkAvailableBalance() throws Exception {
-/*        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();*/
+    public void test006_checkAvailableBalance() throws Exception {
+
         AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         System.out.println("trxCount = " + trxCount);
@@ -135,16 +139,11 @@ public class MainNetDeposit extends Base {
     }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Deposit trx into Dapp chain success checkout available trx", alwaysRun = true)
-    public void test006_depositTrxIntoDappChain() throws Exception {
-        TrxPage trx = enterTrxPage();
-        depositTrxAmount = getAnAmount() + 9;
-        TransferPage transferIn = trx.enterTransferPage();
-        transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrxAmount));
-    }
+
 
     @Test(groups = {"P0"},enabled = true,description = "Trc10 deposit into Dapp chain Success Recording", alwaysRun = true)
     public void test007_depositSuccessRecording() throws Exception {
+
         TrxPage trx = enterTrxPage();
         int tries = 0;
         Boolean exist = false;
@@ -153,11 +152,11 @@ public class MainNetDeposit extends Base {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(3).click();
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                System.out.println("dappChainSendTrc10Amount:" + depositTrxAmount);
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
+                System.out.println("dappChainSendTRXAmount:" + depositTrxAmount);
                 System.out.println("tranferInCount:" + tranferInCount);
                 if (Float.toString(depositTrxAmount).substring(0, 5)
-                    .equals(tranferInCount.substring(0, 5))) {
+                    .equals(tranferInCount.substring(1, 6))) {
                     exist = true;
                     break;
                 }
@@ -171,6 +170,7 @@ public class MainNetDeposit extends Base {
     @Parameters({"address"})
     @Test(enabled = true, description = "Trx depisit transaction detail info test", alwaysRun = true)
     public void test008_trxTransactionDetailInfo(String address) throws Exception {
+
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(0);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
@@ -179,11 +179,10 @@ public class MainNetDeposit extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentDappNetBlockNum) );
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
-        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrxAmount).substring(0,6));
 
+        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String detailPageSendAmount = recorderNumber.substring(1);
+        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrxAmount).substring(0,6));
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());

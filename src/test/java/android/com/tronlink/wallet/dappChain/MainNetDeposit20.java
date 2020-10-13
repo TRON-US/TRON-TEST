@@ -77,27 +77,8 @@ public class MainNetDeposit20 extends Base {
         return asset.enterTrx20Page();
     }
 
-
-    @Test(enabled = true,description = "Check TransferIn Hits")
-    public void test001_checkTransferInHits() throws Exception {
-        TrxPage trx = enterTrc20Page();
-        TransferPage transferIn = trx.enterTransferPage();
-        String info = transferIn.getTransferInfo("hits");
-        Assert.assertTrue(info.contains("转入需要执行智能合约。执行智能合约同时会消耗能量") || info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
-    }
-
-
-    @Test(enabled = true,description = "Check TransferIn Fee")
-    public void test002_checkTransferInFee() throws Exception {
-        TrxPage trx = enterTrc20Page();
-        TransferPage transferIn = trx.enterTransferPage();
-        String info = transferIn.getTransferInfo("fee");
-        int count = Integer.valueOf(info);
-        Assert.assertTrue(50 <= count && count <= 900);
-    }
-
     @Test(groups = {"P0"},enabled = true,description = "Deposit TRC20 Success and checkout available trx", alwaysRun = true)
-    public void test003_checkAvailableBalance() throws Exception {
+    public void test001_checkAvailableBalance() throws Exception {
         TrxPage trx = enterTrc20Page();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
@@ -108,6 +89,25 @@ public class MainNetDeposit20 extends Base {
         System.out.println("trxCountNow = " + trxCountNow);
         Assert.assertTrue(trxCount >= trxCountNow);
     }
+
+    @Test(enabled = true,description = "Check TransferIn Hits")
+    public void test002_checkTransferInHits() throws Exception {
+        TrxPage trx = enterTrc20Page();
+        TransferPage transferIn = trx.enterTransferPage();
+        String info = transferIn.getTransferInfo("hits");
+        Assert.assertTrue(info.contains("转入需要执行智能合约。执行智能合约同时会消耗能量") || info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
+    }
+
+
+    @Test(enabled = true,description = "Check TransferIn Fee")
+    public void test003_checkTransferInFee() throws Exception {
+        TrxPage trx = enterTrc20Page();
+        TransferPage transferIn = trx.enterTransferPage();
+        String info = transferIn.getTransferInfo("fee");
+        int count = Integer.valueOf(info);
+        Assert.assertTrue(50 <= count && count <= 900);
+    }
+
 
 
     @Test(enabled = true,description = "Trc20 deposit success recording")
@@ -120,10 +120,10 @@ public class MainNetDeposit20 extends Base {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrx20Page();
                 trx.tranfer_tab.get(3).click();
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
                 System.out.println("tranferInCount = " + tranferInCount);
                 System.out.println("depositTrc20Amount = " + depositTrc20Amount);
-                if (Float.toString(depositTrc20Amount).substring(0,5).equals(tranferInCount.substring(0,5))) {
+                if (Float.toString(depositTrc20Amount).substring(0,5).equals(tranferInCount.substring(1,6))) {
                     exist = true;
                     break;
                 }
@@ -145,9 +145,8 @@ public class MainNetDeposit20 extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String detailPageSendAmount = recorderNumber.substring(1);
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrc20Amount).substring(0,6));
         Helper.swipScreen(transactionInfo.driver);
