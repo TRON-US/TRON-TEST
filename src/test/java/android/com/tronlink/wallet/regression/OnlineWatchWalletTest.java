@@ -92,6 +92,7 @@ public class OnlineWatchWalletTest extends Base {
     }
     @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
     public void test003_onlineHaveActiveTrx10() throws Exception {
+
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc10Page();
         sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");

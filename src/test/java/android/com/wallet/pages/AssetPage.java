@@ -162,13 +162,13 @@ public class AssetPage extends AbstractPage {
 
 
     @FindBy(xpath = "//*[@text='tronlink_token']")
-  public WebElement trx10_btn;
+    public WebElement trx10_btn;
 
-  @FindBy(xpath = "//*[@text='BTT']")
-  public WebElement online_trc10_btn;
+    @FindBy(xpath = "//*[@text='BTT']")
+    public WebElement online_trc10_btn;
 
-  @FindBy(xpath = "//*[@text='USDT']")
-  public WebElement online_trc20_btn;
+    @FindBy(xpath = "//*[@text='USDT']")
+    public WebElement online_trc20_btn;
 
     @FindBy(xpath = "//*[@text='TRZ']")
     public WebElement public_account_trz_btn;
@@ -217,24 +217,24 @@ public class AssetPage extends AbstractPage {
 
 
     public void waitShieldDataSynFinished() {
-      Long startSynTime = System.currentTimeMillis();
-      Long currentSynTime;
-      try {
-        TimeUnit.SECONDS.sleep(10);
-      } catch (Exception e) {
-
-      }
-      while (Integer.valueOf(synCurrent_blockNum.getText()) + 400
-          < Integer.valueOf(chainCurrent_blockNum.getText())) {
+        Long startSynTime = System.currentTimeMillis();
+        Long currentSynTime;
         try {
-          TimeUnit.SECONDS.sleep(10);
-          currentSynTime = System.currentTimeMillis();
-          //同步大于三十分钟，强制退出
-          if (currentSynTime - startSynTime > 1800000L) {
-            break;
-          }
-        } catch (Exception e){}
-      }
+            TimeUnit.SECONDS.sleep(10);
+        } catch (Exception e) {
+
+        }
+        while (Integer.valueOf(synCurrent_blockNum.getText()) + 400
+                < Integer.valueOf(chainCurrent_blockNum.getText())) {
+            try {
+                TimeUnit.SECONDS.sleep(10);
+                currentSynTime = System.currentTimeMillis();
+                //同步大于三十分钟，强制退出
+                if (currentSynTime - startSynTime > 1800000L) {
+                    break;
+                }
+            } catch (Exception e){}
+        }
 
     }
 
@@ -256,17 +256,17 @@ public class AssetPage extends AbstractPage {
     }
 
     public SendTrzPage enterSendTrzPage() {
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-      assets_btn.click();
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-      return new SendTrzPage(driver);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        assets_btn.click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        return new SendTrzPage(driver);
     }
 
 
     public SendTrxPage enterSendTrc10Page() {
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {
-          trx10_btn.click();
+            trx10_btn.click();
         } catch (Exception e) {
             if (trx10_icon_btns.size() > 2){
                 trx10_icon_btns.get(1).click();
@@ -278,21 +278,22 @@ public class AssetPage extends AbstractPage {
         return new SendTrxPage(driver);
     }
 
-  public SendTrxPage enterOnlineSendTrc10Page() {
-      Helper.swipScreenLitte(driver);
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    try {
-      online_trc10_btn.click();
-    } catch (Exception e) {
-      online_trc10_btn.click();
+    public SendTrxPage enterOnlineSendTrc10Page() throws Exception {
+        TimeUnit.SECONDS.sleep(5);
+        Helper.swipScreenLitte(driver);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            online_trc10_btn.click();
+        } catch (Exception e) {
+            online_trc10_btn.click();
+        }
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        trc10Page_transfer_btn.click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        return new SendTrxPage(driver);
     }
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    trc10Page_transfer_btn.click();
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    return new SendTrxPage(driver);
-  }
 
-  public SendTrxPage enterSendTrc20Page() throws  Exception {
+    public SendTrxPage enterSendTrc20Page() throws  Exception {
 
         enterTrx20Page();
 
@@ -300,37 +301,37 @@ public class AssetPage extends AbstractPage {
         trc10Page_transfer_btn.click();
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
-  }
-
-  public SendTrxPage enterOnlineSendTrc20Page() {
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    try {
-      Helper.swipScreen(driver);
-      online_trc20_btn.click();
-    } catch (Exception e) {
-      Helper.swipScreen(driver);
-      online_trc20_btn.click();
     }
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    trc10Page_transfer_btn.click();
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    return new SendTrxPage(driver);
-  }
 
-
-  public SendTrxPage publicAccountenterSendTrzPage() {
-    Helper.swipScreen(driver);
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    try {
-      public_account_trz_btn.click();
-    } catch (Exception e) {
-      public_account_trz_btn.click();
+    public SendTrxPage enterOnlineSendTrc20Page() {
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            Helper.swipScreen(driver);
+            online_trc20_btn.click();
+        } catch (Exception e) {
+            Helper.swipScreen(driver);
+            online_trc20_btn.click();
+        }
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        trc10Page_transfer_btn.click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        return new SendTrxPage(driver);
     }
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    trc10Page_transfer_btn.click();
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    return new SendTrxPage(driver);
-  }
+
+
+    public SendTrxPage publicAccountenterSendTrzPage() {
+        Helper.swipScreen(driver);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            public_account_trz_btn.click();
+        } catch (Exception e) {
+            public_account_trz_btn.click();
+        }
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        trc10Page_transfer_btn.click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        return new SendTrxPage(driver);
+    }
 
 
 
@@ -342,7 +343,7 @@ public class AssetPage extends AbstractPage {
 
 
 
-  public VotePage enterVotePage(){
+    public VotePage enterVotePage(){
         try {
             TimeUnit.SECONDS.sleep(3);
             vote_btn.click();
@@ -364,13 +365,13 @@ public class AssetPage extends AbstractPage {
         } catch (Exception e){}
         market_btn.click();
         try {
-        TimeUnit.SECONDS.sleep(2);
-        // if page display AD , cloese the AD
+            TimeUnit.SECONDS.sleep(2);
+            // if page display AD , cloese the AD
 /*            if (ad_pic.isDisplayed()){
                 adClose_btn.click();
                 TimeUnit.SECONDS.sleep(1);
             }*/
-      } catch (Exception e){}
+        } catch (Exception e){}
 
         return new MarketPage(driver);
     }
@@ -416,7 +417,7 @@ public class AssetPage extends AbstractPage {
             freeze_btn.click();
             TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){
-          freeze_btn.click();
+            freeze_btn.click();
         }
         return new FrozenAndUnfreezePage(driver);
     }
@@ -426,9 +427,9 @@ public class AssetPage extends AbstractPage {
 
     public MinePage enterMinePage(){
         try {
-          TimeUnit.SECONDS.sleep(2);
-          waiteTime();
-          mine_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+            waiteTime();
+            mine_btn.click();
         } catch (Exception e ){};
         waiteTime();
         mine_btn.click();
@@ -438,11 +439,11 @@ public class AssetPage extends AbstractPage {
 
 
     public DiscoverPage enterDiscoverPage() throws Exception{
-      TimeUnit.SECONDS.sleep(3);
-      discover_btn.click();
-      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-      TimeUnit.SECONDS.sleep(10);
-      return new DiscoverPage(driver);
+        TimeUnit.SECONDS.sleep(3);
+        discover_btn.click();
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(10);
+        return new DiscoverPage(driver);
     }
 
 
@@ -457,175 +458,175 @@ public class AssetPage extends AbstractPage {
 
     //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
     public TransactionDetailInfomaitonPage enterTransactionDetailPage(Integer type) throws Exception {
-      TrxPage trx;
-      switch (type) {
-        case 0 :
-          trx = enterTrxPage();
-          break;
-        case 1 :
-          trx = enterTrx10Page();
-          break;
-        case 2 :
-          trx = enterTrx20Page();
-          break;
-        case 3 :
-          trx = publicAccountEnterTrzPage();
-          break;
-        default :
-          trx = enterTrxPage();
-      }
-      waiteTime();
-      trx.tranfer_tab.get(1).click();
-      waiteTime();
-      trx.tranferIncount_text.get(1).click();
-      waiteTime();
-      TimeUnit.SECONDS.sleep(3);
-      return new TransactionDetailInfomaitonPage(driver);
-  }
-
-  public TransactionDetailInfomaitonPage pubilcEnterTrzReceiveTransactionDetailPage() throws Exception {
-    TrxPage trx = publicAccountEnterTrzPage();
-    trx.tranfer_tab.get(2).click();
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    trx.tranferIncount_text.get(1).click();
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    TimeUnit.SECONDS.sleep(3);
-    return new TransactionDetailInfomaitonPage(driver);
-  }
-
-  //0代表进入第一条转账接收页面，1代编进入第一条收款接收页面
-  public TransactionDetailInfomaitonPage enterTrzTransactionDetailPage(Integer type) throws Exception {
-    TrzPage trz = enterTrzPage();
-
-    switch (type) {
-      case 0 :
-        trz.tranfer_tab.get(1).click();
-        break;
-      case 1 :
-        trz.tranfer_tab.get(2).click();
-        break;
-      default :
-        trz.tranfer_tab.get(0).click();
+        TrxPage trx;
+        switch (type) {
+            case 0 :
+                trx = enterTrxPage();
+                break;
+            case 1 :
+                trx = enterTrx10Page();
+                break;
+            case 2 :
+                trx = enterTrx20Page();
+                break;
+            case 3 :
+                trx = publicAccountEnterTrzPage();
+                break;
+            default :
+                trx = enterTrxPage();
+        }
+        waiteTime();
+        trx.tranfer_tab.get(1).click();
+        waiteTime();
+        trx.tranferIncount_text.get(1).click();
+        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
+        return new TransactionDetailInfomaitonPage(driver);
     }
 
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    trz.tranferRecordCount_text.get(1).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    return new TransactionDetailInfomaitonPage(driver);
-  }
-
-
-  //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
-  public TransactionDetailInfomaitonPage enterReceiverTransactionDetailPage(Integer type) throws Exception {
-    TrxPage trx;
-    switch (type) {
-      case 0 :
-        trx = enterTrxPage();
-        break;
-      case 1 :
-        trx = enterTrx10Page();
-        break;
-      case 2 :
-        trx = enterTrx20Page();
-        break;
-      default :
-        trx = enterTrxPage();
+    public TransactionDetailInfomaitonPage pubilcEnterTrzReceiveTransactionDetailPage() throws Exception {
+        TrxPage trx = publicAccountEnterTrzPage();
+        trx.tranfer_tab.get(2).click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        trx.tranferIncount_text.get(1).click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(3);
+        return new TransactionDetailInfomaitonPage(driver);
     }
-    trx.tranfer_tab.get(2).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    trx.tranferIncount_text.get(1).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    return new TransactionDetailInfomaitonPage(driver);
-  }
 
+    //0代表进入第一条转账接收页面，1代编进入第一条收款接收页面
+    public TransactionDetailInfomaitonPage enterTrzTransactionDetailPage(Integer type) throws Exception {
+        TrzPage trz = enterTrzPage();
 
-  //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
-  public TransactionDetailInfomaitonPage enterDepositTransactionDetailPage(Integer type) throws Exception {
-    TrxPage trx;
-    switch (type) {
-      case 0 :
-        trx = enterTrxPage();
-        break;
-      case 1 :
-        trx = enterTrx10Page();
-        break;
-      case 2 :
-        trx = enterTrx20Page();
-        break;
-      default :
-        trx = enterTrxPage();
+        switch (type) {
+            case 0 :
+                trz.tranfer_tab.get(1).click();
+                break;
+            case 1 :
+                trz.tranfer_tab.get(2).click();
+                break;
+            default :
+                trz.tranfer_tab.get(0).click();
+        }
+
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        trz.tranferRecordCount_text.get(1).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        return new TransactionDetailInfomaitonPage(driver);
     }
-    trx.tranfer_tab.get(3).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    trx.tranferIncount_text.get(1).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    return new TransactionDetailInfomaitonPage(driver);
-  }
 
-  //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
-  public TransactionDetailInfomaitonPage enterWithdrawTransactionDetailPage(Integer type) throws Exception {
-    TrxPage trx;
-    switch (type) {
-      case 0 :
-        trx = enterTrxPage();
-        break;
-      case 1 :
-        trx = enterTrx10Page();
-        break;
-      case 2 :
-        trx = enterTrx20Page();
-        break;
-      default :
-        trx = enterTrxPage();
+
+    //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
+    public TransactionDetailInfomaitonPage enterReceiverTransactionDetailPage(Integer type) throws Exception {
+        TrxPage trx;
+        switch (type) {
+            case 0 :
+                trx = enterTrxPage();
+                break;
+            case 1 :
+                trx = enterTrx10Page();
+                break;
+            case 2 :
+                trx = enterTrx20Page();
+                break;
+            default :
+                trx = enterTrxPage();
+        }
+        trx.tranfer_tab.get(2).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        trx.tranferIncount_text.get(1).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        return new TransactionDetailInfomaitonPage(driver);
     }
-    trx.tranfer_tab.get(3).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    trx.tranferIncount_text.get(1).click();
-    driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-    return new TransactionDetailInfomaitonPage(driver);
-  }
+
+
+    //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
+    public TransactionDetailInfomaitonPage enterDepositTransactionDetailPage(Integer type) throws Exception {
+        TrxPage trx;
+        switch (type) {
+            case 0 :
+                trx = enterTrxPage();
+                break;
+            case 1 :
+                trx = enterTrx10Page();
+                break;
+            case 2 :
+                trx = enterTrx20Page();
+                break;
+            default :
+                trx = enterTrxPage();
+        }
+        trx.tranfer_tab.get(3).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        trx.tranferIncount_text.get(1).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        return new TransactionDetailInfomaitonPage(driver);
+    }
+
+    //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
+    public TransactionDetailInfomaitonPage enterWithdrawTransactionDetailPage(Integer type) throws Exception {
+        TrxPage trx;
+        switch (type) {
+            case 0 :
+                trx = enterTrxPage();
+                break;
+            case 1 :
+                trx = enterTrx10Page();
+                break;
+            case 2 :
+                trx = enterTrx20Page();
+                break;
+            default :
+                trx = enterTrxPage();
+        }
+        trx.tranfer_tab.get(3).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        trx.tranferIncount_text.get(1).click();
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        return new TransactionDetailInfomaitonPage(driver);
+    }
 
 
 
 
 
     public TrzPage enterTrzPage() throws Exception {
-      waitShieldDataSynFinished();
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-      try {
-        mine_btn.click();
-        assetsMain_btn.click();
-      } catch (Exception e) {
-        assetsMain_btn.click();
-      }
-      TimeUnit.SECONDS.sleep(1);
-      trz_btn.click();
-      TimeUnit.SECONDS.sleep(10);
-      driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-      return new TrzPage(driver);
-  }
-
-  public TrxPage publicAccountEnterTrzPage() throws Exception {
-    TimeUnit.SECONDS.sleep(1);
-    waiteTime();
-    mine_btn.click();
-    waiteTime();
-    assetsMain_btn.click();
-    Helper.swipScreen(driver);
-    TimeUnit.SECONDS.sleep(1);
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    Helper.swipScreen(driver);
-    try {
-        waiteTime();
-
-        public_account_trz_btn.click();
-    } catch (Exception e) {
-      public_account_trz_btn.click();
+        waitShieldDataSynFinished();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            mine_btn.click();
+            assetsMain_btn.click();
+        } catch (Exception e) {
+            assetsMain_btn.click();
+        }
+        TimeUnit.SECONDS.sleep(1);
+        trz_btn.click();
+        TimeUnit.SECONDS.sleep(10);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        return new TrzPage(driver);
     }
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    TimeUnit.SECONDS.sleep(1);
-    return new TrxPage(driver);
-  }
+
+    public TrxPage publicAccountEnterTrzPage() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
+        waiteTime();
+        mine_btn.click();
+        waiteTime();
+        assetsMain_btn.click();
+        Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(1);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        Helper.swipScreen(driver);
+        try {
+            waiteTime();
+
+            public_account_trz_btn.click();
+        } catch (Exception e) {
+            public_account_trz_btn.click();
+        }
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(1);
+        return new TrxPage(driver);
+    }
 
     public TrxPage enterTrx20Page() throws Exception {
 
@@ -651,10 +652,10 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrx10Page() throws Exception {
-      TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(1);
         try {
             waiteTime();
-          mine_btn.click();
+            mine_btn.click();
         } catch (Exception e) {
         }
         waiteTime();
@@ -665,7 +666,7 @@ public class AssetPage extends AbstractPage {
         Helper.swipScreen(driver);
         try {
             waiteTime();
-          trx10_btn.click();
+            trx10_btn.click();
         } catch (Exception e) {
             if (trx10_icon_btns.size() > 2){
                 trx10_icon_btns.get(1).click();
@@ -676,44 +677,44 @@ public class AssetPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
-  public TrxPage enterOnlineTrc10Page() throws Exception {
-    TimeUnit.SECONDS.sleep(1);
-    try {
-      mine_btn.click();
-    } catch (Exception e) {
-      mine_btn.click();
+    public TrxPage enterOnlineTrc10Page() throws Exception {
+        TimeUnit.SECONDS.sleep(1);
+        try {
+            mine_btn.click();
+        } catch (Exception e) {
+            mine_btn.click();
+        }
+        mine_btn.click();
+        assetsMain_btn.click();
+        //Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(1);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        //Helper.swipScreen(driver);
+        try {
+            online_trc10_btn.click();
+        } catch (Exception e) {
+            online_trc10_btn.click();
+        }
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(2);
+        return new TrxPage(driver);
     }
-    mine_btn.click();
-    assetsMain_btn.click();
-    //Helper.swipScreen(driver);
-    TimeUnit.SECONDS.sleep(1);
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    //Helper.swipScreen(driver);
-    try {
-      online_trc10_btn.click();
-    } catch (Exception e) {
-      online_trc10_btn.click();
+
+
+
+
+
+    public TrxPage enterOnlineTrc20Page() throws Exception {
+        mine_btn.click();
+        assetsMain_btn.click();
+        //Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(3);
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        online_trc20_btn.click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(1);
+        return new TrxPage(driver);
     }
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    TimeUnit.SECONDS.sleep(2);
-    return new TrxPage(driver);
-  }
-
-
-
-
-
-  public TrxPage enterOnlineTrc20Page() throws Exception {
-    mine_btn.click();
-    assetsMain_btn.click();
-    //Helper.swipScreen(driver);
-    TimeUnit.SECONDS.sleep(3);
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    online_trc20_btn.click();
-    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-    TimeUnit.SECONDS.sleep(1);
-    return new TrxPage(driver);
-  }
 
 
 
