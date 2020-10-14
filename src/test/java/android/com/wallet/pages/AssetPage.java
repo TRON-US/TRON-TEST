@@ -265,6 +265,7 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterSendTrc10Page() {
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        Helper.swipScreenLitte(driver);
         try {
             trx10_btn.click();
         } catch (Exception e) {

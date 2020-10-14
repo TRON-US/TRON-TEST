@@ -132,6 +132,7 @@ public class DappNetWithdraw extends Base {
         TrxPage trx = asset.enterTrxPage();
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
         TransferPage transferOut = trx.enterTransferPage();
+        log("transferOut.availableBalance_text.getText() : " + transferOut.availableBalance_text.getText());
         int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
         log("trxCount: " + trxCount + " frozenCount: " + frozenCount + " availableBalance: " + availableBalance );
         Assert.assertTrue(trxCount == frozenCount + availableBalance);
