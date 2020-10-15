@@ -74,7 +74,7 @@ public class SettingTest extends Base {
         MinePage mine = asset.enterMinePage();
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         dapp.testUrl();
-        Assert.assertEquals("DApp测试工具", dapp.dappTtile_btn.getText());
+        Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
     }
 
     @Test(description = "choose DAppChain", alwaysRun = true)
