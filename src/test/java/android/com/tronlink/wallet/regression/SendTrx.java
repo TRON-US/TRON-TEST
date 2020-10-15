@@ -225,18 +225,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(transfer.tvName_text.getText().contains("TRX"));
     }
 
-//    @Test(enabled = true, description = "check test014_sendTrzCheckFee TR-1076", alwaysRun = true)
-//    public void test016_sendTrzCheckFee() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.receiveAddress_text.sendKeys("ztron16nq696tkyuag3et5h4tygn4vumsgx7m2955azkfvpcecfy6na6f5n7n2l2svhpknmqp2v4wqne7");
-//        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(transfer.tvName_text.getText().contains("TRZ"));
-//        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ"));
-//        Assert.assertTrue(transfer.fee_text.getText().contains("10"));
-//        transfer.tranferCount_text.sendKeys("1");
-//        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(transfer.fee_text.getText().contains("TRZ")&&transfer.fee_text.getText().contains("10"));
-//    }
+
 
     @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
     public void test017_transferInSuccessRecording() throws Exception {
@@ -244,31 +233,8 @@ public class SendTrx extends Base {
         TrxPage trx = asset.enterTrxPage();
         trx.tranfer_tab.get(1).click();
         System.out.println(trx.tranferIncount_text.get(1).getText());
-        String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-        Assert.assertTrue(Float.toString(sendTrxAmount).substring(0,5).equals(tranferInCount.substring(0,5)));
-   /*     int tries = 0;
-        Boolean exist = false;
-        while (exist == false && tries < 5) {
-            tries++;
-            try {
-                AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrxPage();
-                trx.tranfer_tab.get(1).click();
-                System.out.println(trx.tranferIncount_text.get(1).getText());
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
-                System.out.println("tranferInCount = " + tranferInCount);
-                System.out.println("sendTrxAmount = " + sendTrxAmount);
-                if (Float.toString(sendTrxAmount).substring(0,5).equals(tranferInCount.substring(0,5))) {
-                    exist = true;
-                    break;
-                }
-
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        Assert.assertTrue(exist);
-*/
+        String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
+        Assert.assertTrue(Float.toString(sendTrxAmount).substring(0,5).equals(tranferInCount.substring(1,6)));
 
     }
 
@@ -302,7 +268,7 @@ public class SendTrx extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.contains("转账 TRX") || transactionType.equals("转账Trx") || transactionType.equals("Send Trx"));
+        Assert.assertTrue(transactionType.contains("转账 TRX") || transactionType.equals("TRX 转账") || transactionType.equals("Send Trx"));
     }
 
     @Parameters({"address"})
@@ -316,10 +282,10 @@ public class SendTrx extends Base {
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
-        Assert.assertTrue(sendIcon.equals("-"));
-        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(sendTrxAmount).substring(0,6));
+        Assert.assertTrue(sendIcon.contains("-"));
+        Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(sendTrxAmount).substring(0,6));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentMainNetBlockNum));
         Helper.swipScreen(transactionInfo.driver);
@@ -338,9 +304,9 @@ public class SendTrx extends Base {
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(0);
         System.out.println(transactionInfo.title_amount_test.getText());
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
+        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
-        Assert.assertTrue(receiveIcon.equals("+"));
+        Assert.assertTrue(receiveIcon.contains("+"));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains("TRX"));
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);

@@ -76,8 +76,6 @@ public class AssetsPageTest extends Base {
              result = about.replace("≈$"," ").trim();
         }else {
             result = about.replace("≈¥"," ").trim();
-
-//            result = sepLeftNumberTextToString(about,"CNY").replace("≈"," ").trim();
         }
         Double number = Double.parseDouble(removeSymbolFloat(result));
         System.out.println("Total about number:" + number);

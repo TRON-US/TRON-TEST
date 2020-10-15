@@ -31,7 +31,7 @@ public abstract class AbstractPage {
         this.driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
     }
     public void waiteTime() {
-        waiteTime(10);
+        waiteTime(15);
     }
 
     /**

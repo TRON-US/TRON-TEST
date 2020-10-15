@@ -144,13 +144,6 @@ public class DappSendTrx extends Base {
     }
 
 
-    @Test(enabled = true,description = "Input max send number", alwaysRun = true)
-    public void test0006_inputMaxSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrx("max");
-        Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
-    }
-
 
     @Test(enabled = true,description = "Input mix send number", alwaysRun = true)
     public void test0007_inputMixSendNumber() throws Exception {
@@ -233,9 +226,9 @@ public class DappSendTrx extends Base {
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(1).click();
                 //todo 转出转入记录中没有最新数据
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
                 if (Float.toString(dappChainSendTrxAmount).substring(0, 5)
-                    .equals(tranferInCount.substring(0, 5))) {
+                    .equals(tranferInCount.substring(1, 6))) {
                     exist = true;
                     break;
                 }
@@ -265,10 +258,9 @@ public class DappSendTrx extends Base {
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
-        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(dappChainSendTrxAmount).substring(0,6));
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(dappChainSendTrxAmount).substring(0,6));
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());

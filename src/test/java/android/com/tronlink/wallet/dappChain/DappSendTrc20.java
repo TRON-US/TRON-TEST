@@ -60,7 +60,7 @@ public class DappSendTrc20 extends Base {
     }
 
 
-    public SendTrxPage enterToSendTrc20Page() {
+    public SendTrxPage enterToSendTrc20Page() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrc20Page();
         return transfer;
@@ -164,11 +164,11 @@ public class DappSendTrc20 extends Base {
                 trx = arret.enterTrx20Page();
                 trx.tranfer_tab.get(1).click();
                 //todo 转出转入记录中没有最新数据
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[1];
+                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
                 System.out.println("dappChainSendTrc20Amount:" + dappChainSendTrc20Amount);
                 System.out.println("tranferInCount:" + tranferInCount);
                 if (Float.toString(dappChainSendTrc20Amount).substring(0, 5)
-                    .equals(tranferInCount.substring(0, 5))) {
+                    .equals(tranferInCount.substring(1, 6))) {
                     exist = true;
                     break;
                 }
@@ -199,9 +199,9 @@ public class DappSendTrc20 extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[1];
-        Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(dappChainSendTrc20Amount).substring(0,6));
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(dappChainSendTrc20Amount).substring(0,6));
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
