@@ -44,9 +44,9 @@ public class Helper {
         System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
-                PointOption.point(width/2, height*4/5))
+                PointOption.point(width/2, height/2))
                 .waitAction(WaitOptions.waitOptions(duration))
-                .moveTo(PointOption.point(width/2, height*3/5))
+                .moveTo(PointOption.point(width/2, height/3))
                 .release().perform();
     }
 
