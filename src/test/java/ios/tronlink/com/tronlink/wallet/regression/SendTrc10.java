@@ -38,7 +38,7 @@ public class SendTrc10 extends BaseTest {
         log(count);
         successNumber = count;
         transfer.sendTrx10WithNumber(successNumber);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
 
         double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         System.out.println("   count:" +count + "   trc10Before:" + trc10Before + " trc10after:" + trc10after);
