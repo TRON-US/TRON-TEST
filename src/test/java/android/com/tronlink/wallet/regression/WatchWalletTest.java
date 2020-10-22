@@ -149,6 +149,7 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "Send trc10 QRCode", alwaysRun = true)
     public void test007_trc10QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(5);
         SendTrxPage sendTrxPage  = asset.enterSendTrc10Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         sendTrxPage.tranferCount_text.sendKeys("1");
