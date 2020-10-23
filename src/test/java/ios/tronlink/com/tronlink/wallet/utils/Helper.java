@@ -354,7 +354,7 @@ public class Helper {
     public void importUsePrivateKey(String privatekey,String name,String pass){
         try {
             DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-            findWebElement("私钥导入").click();
+            findWebElement("私钥").click();
             DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();

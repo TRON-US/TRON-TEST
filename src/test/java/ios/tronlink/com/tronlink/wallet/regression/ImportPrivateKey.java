@@ -21,7 +21,7 @@ public class ImportPrivateKey extends BaseTest {
         waiteTime();
         DRIVER.findElementById("normalWallet").click();
         waiteTime();
-        DRIVER.findElementByName("私钥导入").click();
+        DRIVER.findElementByName("私钥").click();
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);
     }
