@@ -89,7 +89,8 @@ public class DappSendTrc20 extends BaseTest {
         successNumber = count;
         transfer.sendTrx20WithNumber(successNumber);
         TimeUnit.SECONDS.sleep(4);
-
+        tokenpage.back_btn.click();
+        assetpage.enterTrx20Page();
         double trc20after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         System.out.println("   count:" +count + "   trc20Before:" + trc20Before + " trc20after:" + trc20after);
         Assert.assertTrue(trc20after +  Integer.parseInt(removeSymbol(count))  <= trc20Before);
