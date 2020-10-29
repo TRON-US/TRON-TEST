@@ -42,7 +42,7 @@ public class SendTrx extends BaseTest {
 
         SendTrxPage transfer = tokenpage.enterTransferPage();
          transfer.sendTrxWithNumber(successNumber);
-         TimeUnit.SECONDS.sleep(2);
+         TimeUnit.SECONDS.sleep(5);
 
 
         double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));

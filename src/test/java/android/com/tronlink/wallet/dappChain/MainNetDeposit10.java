@@ -85,6 +85,7 @@ public class MainNetDeposit10 extends Base {
         TrxPage trx = enterTrxPage();
         TransferPage depositTrc10 = trx.enterTransferPage();
         depositTrc10Amount = getAnAmount();
+        log("depositTrc10Amount: " + String.valueOf(depositTrc10Amount));
         depositTrc10.enterTrxPageWithTransferSuccess(Float.toString(depositTrc10Amount));
     }
     @Test(enabled = true,description = "Check TransferIn Trc10 Count", alwaysRun = true)
@@ -112,17 +113,7 @@ public class MainNetDeposit10 extends Base {
         Assert.assertTrue(50 <= count && count <= 500);
     }
 
-    @Test(enabled = true,description = "TransferIn Success Checkout Available trc10", alwaysRun = true)
-    public void test0006_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrxPage();
-        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCount = " + trxCount);
-        TransferPage transferIn = trx.enterTransferPage();
-        trx = transferIn.enterTrxPageWithTransferSuccess();
-        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCountNow = " + trxCountNow);
-        Assert.assertTrue(trxCount >= trxCountNow);
-    }
+
 
     @Test(enabled = true,description = "Check TransferIn Hits", alwaysRun = true)
     public void test0007_checkTransferInHits() throws Exception {
@@ -163,6 +154,7 @@ public class MainNetDeposit10 extends Base {
     @Test(enabled = true, description = "Trc10 depisit transaction detail info test", alwaysRun = true)
     public void test0009_trc10DepositTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+
         TransactionDetailInfomaitonPage transactionInfo = asset.enterDepositTransactionDetailPage(1);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),mainNetGateWay);
@@ -173,6 +165,9 @@ public class MainNetDeposit10 extends Base {
         String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
         String detailPageSendAmount = recorderNumber.substring(1);
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+        log("----");
+        log(detailPageSendAmount.substring(0,6));
+        log(String.valueOf(depositTrc10Amount).substring(0,6));
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrc10Amount).substring(0,6));
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());

@@ -308,9 +308,9 @@ public class SendTrxPage extends AbstractPage {
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").click();
         TimeUnit.SECONDS.sleep(3);
         InputPasswordConfim_btn.sendKeys("Test0001");
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(10);
 
         try{
             send_btn.getText();

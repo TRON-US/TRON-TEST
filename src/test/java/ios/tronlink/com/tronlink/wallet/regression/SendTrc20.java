@@ -38,7 +38,7 @@ public class SendTrc20 extends BaseTest {
         log(count);
         successNumber = count;
         transfer.sendTrx20WithNumber(successNumber);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(5);
         double trc20after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         System.out.println(count   + "   " + trc20Before  + " " + trc20after);
         Assert.assertTrue(trc20after +  Integer.parseInt(removeSymbol(count))  <= trc20Before);

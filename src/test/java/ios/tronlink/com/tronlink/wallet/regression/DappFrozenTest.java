@@ -190,7 +190,7 @@ public class DappFrozenTest extends BaseTest {
         frozen.inputFrozenCount("1");
         Helper.tapWhitePlace(frozen.driver);
         frozen.frozenTheEnergy(); //Freeze operating
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(5);
         String availableTrxNew = frozen.getAvailableTrx();
         System.out.println("oldValue:" +Double.parseDouble(availableTrxOld)+ "\n newvalue:" + Double.parseDouble(availableTrxNew));
         Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));

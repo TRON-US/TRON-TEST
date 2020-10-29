@@ -35,16 +35,15 @@ public class MinePageTest extends BaseTest {
     }
 
 //
-    @Test(description = "test Me into FriendInvitationPage", alwaysRun = true)
-
-    public void test003_enterInvetus() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
-        FriendInvitationPage friendPage = minePage.enterFriendInvitationPage();
-        TimeUnit.SECONDS.sleep(15);
-        Assert.assertTrue(Helper.contentTexts(friendPage.textArray,"好友邀请"));
-
-    }
+//    @Test(description = "test Me into FriendInvitationPage", alwaysRun = true)
+////    public void test003_enterInvetus() throws Exception {
+////        AssetPage assetPage = new AssetPage(DRIVER);
+////        MinePage minePage = assetPage.enterMinePage();
+////        FriendInvitationPage friendPage = minePage.enterFriendInvitationPage();
+////        TimeUnit.SECONDS.sleep(15);
+////        Assert.assertTrue(Helper.contentTexts(friendPage.textArray,"好友邀请"));
+////
+////    }
 
     @Test(description = "test Me into AnnouncementPage", alwaysRun = true)
 
