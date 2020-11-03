@@ -41,7 +41,7 @@ public class SendTrc20 extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-//        new Helper().getSign(privateKey, DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
 
