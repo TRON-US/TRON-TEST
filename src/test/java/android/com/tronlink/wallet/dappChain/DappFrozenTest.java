@@ -151,7 +151,7 @@ public class DappFrozenTest extends Base {
         frozen.inputFrozenCount("99999999");
         String prompt = frozen.error_hits.getText();
         System.out.println("prompt:" + prompt);
-        Assert.assertTrue(prompt.equals("可用TRX不足") || prompt.equals("Insufficient TRX") || prompt.equals("可用 TRX 不足"));
+        Assert.assertTrue(prompt.equals("TRX不足") || prompt.equals("Insufficient TRX") || prompt.equals("可用 TRX 不足"));
     }
 
 
