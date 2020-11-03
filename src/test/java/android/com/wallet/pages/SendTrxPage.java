@@ -439,7 +439,7 @@ public class SendTrxPage extends AbstractPage {
         tvMax_btn.click();
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
-        System.out.println("allNumberText" + allNumberText);
+        System.out.println("sendMaxTrc20_allNumberText" + allNumberText);
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return allNumberText;

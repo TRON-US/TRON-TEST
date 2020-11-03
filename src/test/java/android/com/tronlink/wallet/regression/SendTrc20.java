@@ -41,7 +41,7 @@ public class SendTrc20 extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        new Helper().getSign(privateKey, DRIVER);
+//        new Helper().getSign(privateKey, DRIVER);
     }
 
 
@@ -113,12 +113,11 @@ public class SendTrc20 extends Base {
         DRIVER.resetApp();
         new Helper().getSign(onlyhaveTRC20privatekey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxTrc20(),"可转账数量");
-        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(),"TRX") > 0);
-        Assert.assertEquals(allNumber,number);
-        Assert.assertTrue(transfer.no_bandwidth.getText().contains("带宽少于"));
-        Assert.assertTrue(transfer.no_bandwidth.getText().contains("本次交易预计会消耗"));
+        transfer.sendMaxTrc20();
+        Assert.assertFalse(transfer.send_btn.isEnabled());
+        Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("账户未激活"));
+        Assert.assertTrue(transfer.note_text.getText().contains("账户未激活，可正常转账 TRC20 通证，但不会激活该账户。"));
+
     }
     //使用一个带宽充足账户转给未激活地址20,手续费trx是0,不转账!!
     @Test(enabled = true,description = "test004_inputHaveBandWidthSendMax20NumberToUNActive")
