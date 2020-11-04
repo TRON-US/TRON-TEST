@@ -130,53 +130,53 @@ public class DappNetWithdraw10 extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Withdraw from dappChain of Trc10 Success Recording", alwaysRun = true)
-    public void test005_transferOutSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
-        withdrawTrc10Amount = getAnAmount();
-        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc10Amount));
-        int tries = 0;
-        Boolean exist = false;
-        while (exist == false && tries++ < 5) {
-            try {
-                AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrx10Page();
-                trx.tranfer_tab.get(3).click();
-                trx.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-                System.out.println("tranferInCount = " + tranferInCount);
-              if (Float.toString(withdrawTrc10Amount).substring(0, 5)
-                  .equals(tranferInCount.substring(1, 6))) {
-                exist = true;
-                break;
-              }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        Assert.assertTrue(exist);
-    }
-
-  @Parameters({"address"})
-  @Test(enabled = true, description = "Dapp net withdraw Trc10 transaction detail info test", alwaysRun = true)
-  public void test006_DappNetWithdrawTrc10TransactionDetailInfo(String address) throws Exception {
-    AssetPage asset = new AssetPage(DRIVER);
-    TransactionDetailInfomaitonPage transactionInfo = asset.enterWithdrawTransactionDetailPage(1);
-    Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-    //尼罗河测链gateway
-    Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),dappNetGateWay);
-    Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-    Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
-    Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
-    Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-    System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
-    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
-    Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(withdrawTrc10Amount).substring(0,6));
-    Helper.swipScreen(transactionInfo.driver);
-    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-  }
+//    @Test(groups = {"P0"},enabled = true,description = "Withdraw from dappChain of Trc10 Success Recording", alwaysRun = true)
+//    public void test005_transferOutSuccessRecording() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage transferOut = trx.enterTransferPage();
+//        withdrawTrc10Amount = getAnAmount();
+//        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc10Amount));
+//        int tries = 0;
+//        Boolean exist = false;
+//        while (exist == false && tries++ < 5) {
+//            try {
+//                AssetPage arret = trx.enterAssetPage();
+//                trx = arret.enterTrx10Page();
+//                trx.tranfer_tab.get(3).click();
+//                trx.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+//                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
+//                System.out.println("tranferInCount = " + tranferInCount);
+//              if (Float.toString(withdrawTrc10Amount).substring(0, 5)
+//                  .equals(tranferInCount.substring(1, 6))) {
+//                exist = true;
+//                break;
+//              }
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//        }
+//        Assert.assertTrue(exist);
+//    }
+//
+//  @Parameters({"address"})
+//  @Test(enabled = true, description = "Dapp net withdraw Trc10 transaction detail info test", alwaysRun = true)
+//  public void test006_DappNetWithdrawTrc10TransactionDetailInfo(String address) throws Exception {
+//    AssetPage asset = new AssetPage(DRIVER);
+//    TransactionDetailInfomaitonPage transactionInfo = asset.enterWithdrawTransactionDetailPage(1);
+//    Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+//    //尼罗河测链gateway
+//    Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),dappNetGateWay);
+//    Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+//    Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+//    Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
+//    Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+//    System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+//    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+//    Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(withdrawTrc10Amount).substring(0,6));
+//    Helper.swipScreen(transactionInfo.driver);
+//    Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
+//    Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
+//  }
 
 
 
