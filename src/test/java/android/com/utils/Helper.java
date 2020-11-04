@@ -28,7 +28,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.println("4/5上拉到1/5   " + width + "   " + height);
+//        System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
@@ -41,7 +41,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.println("4/5上拉到1/5   " + width + "   " + height);
+//        System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/2))
@@ -54,7 +54,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.println("2/5上拉到1/5   " + width + "   " + height);
+//        System.out.println("2/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*2/5))
@@ -68,7 +68,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("1/5下拉到4/5   " + width + "   " + height);
+//        System.out.print("1/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/5))
@@ -81,7 +81,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("4/5上拉到1/5    " + width + "   " + height);
+//        System.out.print("4/5上拉到1/5    " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
             PointOption.point(width/2, height*4/5))
@@ -94,7 +94,7 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("2/5下拉到4/5   " + width + "   " + height);
+//        System.out.print("2/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
             PointOption.point(width/2, height*2/5))
@@ -109,8 +109,8 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.println("swip the screen left");
-        System.out.print("   " + width + "   " + height);
+//        System.out.println("swip the screen left");
+//        System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width*4/5, height/2))
@@ -266,7 +266,12 @@ public class Helper {
 
         }
     }
-
+    public void waiteTime(long time) {
+        DRIVER.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+    }
+    public void waiteTime() {
+        waiteTime(10);
+    }
 
     public void getSignOperate(String testPrivateKey){
         try {
@@ -281,6 +286,7 @@ public class Helper {
             } catch (Exception e) {
 
             }
+
             findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
             findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
             findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
@@ -299,6 +305,8 @@ public class Helper {
             findWebElement("com.tronlinkpro.wallet:id/assets_name");
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
+            System.out.println("\n-----------\n导入失败!!!!!\n");
+
             System.out.println(e);
         }
 

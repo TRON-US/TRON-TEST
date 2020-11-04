@@ -92,7 +92,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("格式错误") || hits.equals("Wrong format"));
+        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
     }
 
 
@@ -101,7 +101,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("格式错误") || hits.equals("Wrong format"));
+        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
     }
 
 
@@ -120,7 +120,8 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, address);
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("转出账户与接收账户不能相同") || hits.equals("发送账户与接收账户不能相同") || hits.contains("cannot be the same"));
+        log("hits: " + hits);
+        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同")  || hits.contains("cannot be the same"));
     }
 
 

@@ -164,7 +164,8 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputFrozenCount("99999999");
         String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.equals("可用 TRX 不足") || prompt.equals("Insufficient TRX"));
+        log("prompt : " + prompt);
+        Assert.assertTrue(prompt.equals("TRX不足") || prompt.equals("Insufficient TRX"));
     }
 
 
