@@ -344,7 +344,7 @@ public class Helper {
             DRIVER.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
             tapWhitePlace(DRIVER);
-            findWebElement("完成").click();
+            findWebElement("确定").click();
 
             TimeUnit.SECONDS.sleep(10);
         } catch (Exception e) {
@@ -369,7 +369,7 @@ public class Helper {
             TimeUnit.SECONDS.sleep(5);
             DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
             tapWhitePlace(DRIVER);
-            findWebElement("完成").click();
+            findWebElement("确定").click();
             TimeUnit.SECONDS.sleep(10);
         }catch (Exception e){}
     }
@@ -422,7 +422,7 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("  width: " + width + "   height:" + height + "\n");
+//        System.out.print("  width: " + width + "   height:" + height + "\n");
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
@@ -435,7 +435,7 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+//        System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/5))
@@ -447,7 +447,7 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+//        System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/2))
@@ -462,7 +462,7 @@ public class Helper {
             IOSTouchAction action = new IOSTouchAction(DRIVER);
             int width = DRIVER.manage().window().getSize().width;
             int height = DRIVER.manage().window().getSize().height;
-            System.out.print("  " + width + "   " + height);
+//            System.out.print("  " + width + "   " + height);
             Duration duration = Duration.ofMillis(200);
             action.press(
                     PointOption.point(width/2, height*4/5))
@@ -477,7 +477,7 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-        System.out.print("   " + width + "   " + height);
+//        System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width*4/5, height*4/5))
