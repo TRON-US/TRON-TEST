@@ -34,7 +34,7 @@ public class ImportKeystore extends BaseTest {
 
     }
 
-//
+
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
     public void test001_gotoimportFromeKeyStroe() throws Exception {
 
@@ -73,36 +73,9 @@ public class ImportKeystore extends BaseTest {
         importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
         TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(importKeystorePage.errorStr.getText().contains("钱包已存在"));
-//        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包已存在"));
     }
 
-    //    @Test(description = "test import Keystore name Too long number",alwaysRun = true)
-//    public  void test005_keystoreNameSetlongNumber() throws Exception {
-//        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-//        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
-//        TimeUnit.SECONDS.sleep(2);
-//        setNamePage.name_input.sendKeys("123456789012345");
-//        Helper.tapWhitePlace(DRIVER);
-//        boolean testresult = setNamePage.toolongname.isDisplayed();
-//        setNamePage.goback();
-//        TimeUnit.SECONDS.sleep(1);
-//        Assert.assertTrue(testresult);
-////        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包名称过长"));
-//    }
-//
-//    @Test(description = "test import Keystore name Too long Chines",alwaysRun = true)
-//    public  void test006_keystoreNameSetlongChines() throws Exception {
-//        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-//        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
-//        TimeUnit.SECONDS.sleep(2);
-//        setNamePage.name_input.sendKeys("一二三四五六七超");
-//        Helper.tapWhitePlace(DRIVER);
-//        boolean testresult = setNamePage.toolongname.isDisplayed();
-//        setNamePage.goback();
-//        TimeUnit.SECONDS.sleep(1);
-//        Assert.assertTrue(testresult);
-////        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"钱包名称过长"));
-//    }
+
 
     @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
     public  void test007_keystoreNameSetSuccess() throws Exception {
@@ -110,7 +83,7 @@ public class ImportKeystore extends BaseTest {
         PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
         setNamePage.name_input.sendKeys("willbedelete");
         Helper.tapWhitePlace(DRIVER);
-        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'").click();
         TimeUnit.SECONDS.sleep(3);
         AssetPage assetPage = new AssetPage(DRIVER);
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("willbedelete"));

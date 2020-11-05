@@ -463,7 +463,7 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextField").sendKeys("WatchWallet");
         Helper.closeKeyBoard(driver);
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'").click();
         TimeUnit.SECONDS.sleep(2);
 
     }

@@ -48,7 +48,7 @@ public class PrivateKeySetNamePage extends AbstractPage {
     }
 
     public WebElement getComplish_btn(){
-        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'");
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'");
     }
     public PrivateKeySetPwdPage enterPrivateKeySetPwdPage(String name) throws Exception {
         TimeUnit.SECONDS.sleep(2);
