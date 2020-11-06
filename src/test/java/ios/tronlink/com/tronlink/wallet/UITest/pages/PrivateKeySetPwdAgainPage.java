@@ -30,7 +30,7 @@ public class PrivateKeySetPwdAgainPage extends AbstractPage {
     }
 
     public WebElement getComplish_btn(){
-        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'");
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'");
     }
 
     public AssetPage enterAssetPage(String pwdAgain) throws Exception {

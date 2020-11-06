@@ -41,7 +41,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "ic arrow drop")
     public WebElement token_btn;
 
-    @FindBy(name = "最大")
+    @FindBy(name = "全部")
     public WebElement tvMax_btn;
 
     @FindBy(name = "发送")

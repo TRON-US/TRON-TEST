@@ -75,7 +75,7 @@ public class SendTrc10 extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("账户格式不正确"));
+        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("账户不正确"));
 
     }
 
