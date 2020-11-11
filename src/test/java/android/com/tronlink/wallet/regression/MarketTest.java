@@ -14,6 +14,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * market function test
  */
@@ -50,65 +52,99 @@ public class MarketTest extends Base {
     }
 
 
-//    @Test(groups = {"P0"},description = "MainNet market price test", alwaysRun = true)
-//    public void test01_marketPriceTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MarketPage marketPage = asset.enterMarketPage();
-//        String title = marketPage.Market_title.getText();
-//        System.out.println(title);
-//        Assert.assertTrue(marketPage.market_search_btn.isEnabled());
-//
-//
-//        marketPage.price_btn.click();
-//        String price1 = marketPage.priceList.get(1).getText();
-//        System.out.println("price1 : " + price1);
-//
-//
-//        marketPage.price_btn.click();
-//        String price2 = marketPage.priceList.get(1).getText();
-//        System.out.println("price2 : " + price2);
-//
-//        Assert.assertTrue(Float.valueOf(price1) > Float.valueOf(price2));
-//
-//    }
-//
-//    @Test(description = "MainNet market change test", alwaysRun = true)
-//    public void test02_marketChangeTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MarketPage marketPage = asset.enterMarketPage();
-//
-//        marketPage.quoteChange_btn.click();
-//        String range1 = marketPage.rangeList.get(1).getText();
-//        System.out.println("range1 : " + range1);
-//
-//
-//        marketPage.quoteChange_btn.click();
-//        String range2 = marketPage.rangeList.get(1).getText();
-//        System.out.println("range2 : " + range2);
-//
-//        Assert.assertFalse(range1.equals(range2));
-//
-//    }
-
-    //enter SettingPage
-    public SettingPage enterSettingPage() throws Exception {
+    @Test(groups = {"P0"},description = "marketDisplayTest", alwaysRun = true)
+    public void test001_marketDisplayTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        return mine.enterSettingPage();
+        MarketPage marketPage = asset.enterMarketPage();
+        String titles = marketPage.Market_title.getText();
+        Assert.assertEquals(titles,"市场");
+        Assert.assertTrue(marketPage.market_search_btn.isDisplayed());
+        Assert.assertTrue(marketPage.market_vol_btn.isDisplayed());
+        Assert.assertTrue(marketPage.price_btn.isDisplayed());
+        Assert.assertTrue(marketPage.riseChange_btn.isDisplayed());
+        Assert.assertTrue(marketPage.priceList.size()>0);
     }
 
-    //enter dapp page
-    public AssetPage enterDappAssetPage() throws Exception {
-        SettingPage set = enterSettingPage();
-
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseDappChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
-        return asset;
+    @Test(description = "testSearchTextFieldDisplayAndClose",alwaysRun = true)
+    public void test002_testSearchTextFieldDisplayAndClose() {
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        marketPage.market_search_btn.click();
+        waiteTime();
+        Assert.assertTrue(marketPage.search_TF.getText().contains("请输入通证简称"));
+        marketPage.findElementByText("取消").click();
+//        marketPage.search_after_btn.click();
+        Assert.assertEquals(marketPage.Market_title.getText(),"市场");
     }
 
+    @Test (description = "volchangeTest",alwaysRun = true)
+    public void test003_volChangeTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        String bigStr = marketPage.first_vol.getText();
+        String bigName = marketPage.tv_top_name.getText();
+        log("bigStr: " + bigStr + " bigName: " + bigName);
+        marketPage.market_vol_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        String smallStr = marketPage.first_vol.getText();
+        String smallName = marketPage.tv_top_name.getText();
+        log("smallStr: " + smallStr + " smallName: " + smallName);
+        Assert.assertNotEquals(bigName,smallName);
+        Assert.assertNotEquals(bigStr,smallStr);
+    }
 
+    @Test (description = "priceChangeTest",alwaysRun = true)
+    public void test004_priceChangeTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        marketPage.price_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        String bigStr = marketPage.tv_usd_price.getText();
+        String bigName = marketPage.tv_top_name.getText();
+        log("bigStr: " + bigStr + " bigName: " + bigName);
+        marketPage.price_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        String smallStr = marketPage.tv_usd_price.getText();
+        String smallName = marketPage.tv_top_name.getText();
+        log("smallStr: " + smallStr + " smallName: " + smallName);
+        Assert.assertNotEquals(bigName,smallName);
+        Assert.assertNotEquals(bigStr,smallStr);
+    }
+
+    @Test (description = "riseChangeTest",alwaysRun = true)
+    public void test005_riseChangeTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        marketPage.price_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        String bigStr = marketPage.firstRise.getText();
+        String bigName = marketPage.tv_top_name.getText();
+        log("bigStr: " + bigStr + " bigName: " + bigName);
+        marketPage.riseChange_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+        String smallStr = marketPage.firstRise.getText();
+        String smallName = marketPage.tv_top_name.getText();
+        log("smallStr: " + smallStr + " smallName: " + smallName);
+        Assert.assertNotEquals(bigName,smallName);
+        Assert.assertNotEquals(bigStr,smallStr);
+    }
+
+    @Test(description = "test006_testSearchBttPair",alwaysRun = true)
+    public void test006_testSearchBttPair() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        MarketPage marketPage = asset.enterMarketPage();
+        marketPage.market_search_btn.click();
+        waiteTime();
+        marketPage.search_TF.sendKeys("BTT");
+        TimeUnit.SECONDS.sleep(3);
+        String topName = marketPage.tv_top_name.getText();
+        Assert.assertEquals(topName,"BTT");
+        Assert.assertTrue(marketPage.iv_delete.isDisplayed());
+        marketPage.findElementByText("交易对");
+        marketPage.findElementByText("最新价格");
+        marketPage.findElementByText("涨跌幅");
+
+    }
 
 
 

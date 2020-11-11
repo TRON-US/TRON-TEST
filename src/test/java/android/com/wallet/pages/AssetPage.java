@@ -23,11 +23,11 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         try {
-            driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
-                driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             }
         }catch (Exception e){}
 //
@@ -41,11 +41,11 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 
         try {
-            driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             // if mutisignview display ,close
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
-                driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             }
         }catch (Exception e){}
     }
@@ -356,23 +356,8 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-/*            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }*/
-        } catch (Exception e){}
+
         market_btn.click();
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-/*            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }*/
-        } catch (Exception e){}
 
         return new MarketPage(driver);
     }
