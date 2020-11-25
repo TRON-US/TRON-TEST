@@ -22,6 +22,9 @@ public class DAPP_SearchPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
     public WebElement dappName_text;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_delete")
+    public WebElement iv_delete;
+
 
     public DAPP_SearchResultPage search(String keyword){
         try {
