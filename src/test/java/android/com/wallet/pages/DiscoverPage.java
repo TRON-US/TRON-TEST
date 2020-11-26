@@ -40,6 +40,9 @@ public class DiscoverPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/title")
     public WebElement hot_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/middle_title")
+    public WebElement middle_title;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_type")
     public WebElement tv_type_title;
 

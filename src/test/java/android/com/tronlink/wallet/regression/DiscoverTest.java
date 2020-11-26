@@ -108,14 +108,19 @@ public class DiscoverTest extends Base {
             try{
                 discover.tv_ok.click();
             }catch (Exception e){}
-            Assert.assertFalse(discover.isElementExist("net_error"));
+//            Assert.assertFalse(discover.isElementExist("net_error"));
             try{
+                log(discover.middle_title.getText());
+                Assert.assertTrue(discover.isElementExist("root"));
                 discover.ll_common_left.click();
 
             }catch (Exception ee){
                 discover.ll_close.click();
+                log(discover.middle_title.getText());
+                Assert.assertTrue(discover.isElementExist("root"));
                 discover.ll_common_left.click();
             }
+
         }
     }
 
