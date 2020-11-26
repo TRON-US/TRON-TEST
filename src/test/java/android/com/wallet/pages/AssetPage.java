@@ -416,9 +416,12 @@ public class AssetPage extends AbstractPage {
             TimeUnit.SECONDS.sleep(2);
             waiteTime();
             mine_btn.click();
-        } catch (Exception e ){};
-        waiteTime();
-        mine_btn.click();
+        } catch (Exception e ){
+
+            findElementByText("我的").click();
+            System.out.println("find by name 我的");
+        }
+
         return new MinePage(driver);
     }
 
