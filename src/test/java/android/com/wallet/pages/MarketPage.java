@@ -42,7 +42,7 @@ public class MarketPage extends AbstractPage {
     public WebElement adClose_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title_header")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_market")
     public WebElement Market_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_price")
