@@ -128,6 +128,7 @@ public class FrozenAndUnfreezeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.energy_btn.click();
+        Helper.swipScreenLitte(frozen.driver);
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
@@ -137,7 +138,7 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test0008_checkBandwidthQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        //frozen.bandwidth_btn.click();
+        Helper.swipScreenLitte(frozen.driver);
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));

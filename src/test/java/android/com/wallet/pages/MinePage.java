@@ -172,7 +172,7 @@ public class MinePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(2);
             committeeProposals_btn.click();
             //committeeProposals_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
