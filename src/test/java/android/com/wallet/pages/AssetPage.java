@@ -102,6 +102,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlinkpro.wallet:id/appmarket")
     public WebElement market_btn;
 
+    @FindBy(id="com.tronlinkpro.wallet:id/tv_market")
+    public WebElement tv_market;
 
 
     @FindBy(id="com.tronlinkpro.wallet:id/tv_trx_value")
@@ -348,7 +350,7 @@ public class AssetPage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(3);
             vote_btn.click();
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -356,9 +358,9 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage() {
-
         market_btn.click();
-
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        tv_market.click();
         return new MarketPage(driver);
     }
 
