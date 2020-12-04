@@ -14,7 +14,7 @@ public class EnergyRentPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(name = "TronLending")
+    @FindBy(name = "闪兑")
     public WebElement title;
 
 

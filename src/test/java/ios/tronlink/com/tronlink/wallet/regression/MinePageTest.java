@@ -111,9 +111,7 @@ public class MinePageTest extends BaseTest {
     public void test009_onLendingEneryEant() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         EnergyRentPage rentPage = assetPage.entereneryRantage();
-        TimeUnit.SECONDS.sleep(4);
-        Assert.assertTrue(Helper.contentTexts(rentPage.textArray,"能量租赁")||Helper.contentTexts(rentPage.textArray,"TronLending"));
-
+        Assert.assertTrue(rentPage.title.getText().contains("闪兑"));
 
     }
 }
