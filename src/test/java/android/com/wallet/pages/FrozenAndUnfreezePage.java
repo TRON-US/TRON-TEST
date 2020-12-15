@@ -27,7 +27,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_myfreeze")
     public WebElement myFreeze_btn;
 
-
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_otherfreeze")
     public WebElement otherFreeze_btn;
 
@@ -248,6 +247,10 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         freezeCount_input.sendKeys(count);
         freeze_btn.click();
         TimeUnit.SECONDS.sleep(2);
+        try{
+            unfreezeInfoConfirm_btn.click();
+        }catch (Exception e){
+        }
     }
 
 
