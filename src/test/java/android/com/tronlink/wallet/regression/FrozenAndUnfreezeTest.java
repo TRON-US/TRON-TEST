@@ -69,7 +69,8 @@ public class FrozenAndUnfreezeTest extends Base {
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         //frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
-        frozen.frozenTheEnergy(); //Freeze operating
+//        frozen.frozenTheEnergy(); //Freeze operating
+        frozen.frozenTheBandwidth();
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndUnfreezePage();
         int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
