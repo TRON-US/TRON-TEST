@@ -56,8 +56,6 @@ public class MarketTest extends Base {
     public void test001_marketDisplayTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MarketPage marketPage = asset.enterMarketPage();
-        String titles = marketPage.Market_title.getText();
-        Assert.assertEquals(titles,"行情");
         Assert.assertTrue(marketPage.market_search_btn.isDisplayed());
         Assert.assertTrue(marketPage.market_vol_btn.isDisplayed());
         Assert.assertTrue(marketPage.price_btn.isDisplayed());
@@ -73,8 +71,11 @@ public class MarketTest extends Base {
         waiteTime();
         Assert.assertTrue(marketPage.search_TF.getText().contains("请输入通证简称"));
         marketPage.findElementByText("取消").click();
-//        marketPage.search_after_btn.click();
-        Assert.assertEquals(marketPage.Market_title.getText(),"行情");
+        Assert.assertTrue(marketPage.market_search_btn.isDisplayed());
+        Assert.assertTrue(marketPage.market_vol_btn.isDisplayed());
+        Assert.assertTrue(marketPage.price_btn.isDisplayed());
+        Assert.assertTrue(marketPage.riseChange_btn.isDisplayed());
+        Assert.assertTrue(marketPage.priceList.size()>0);
     }
 
     @Test (description = "volchangeTest",alwaysRun = true)

@@ -360,7 +360,13 @@ public class AssetPage extends AbstractPage {
     public MarketPage enterMarketPage() {
         market_btn.click();
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        tv_market.click();
+        try{
+            findElementByText("行情").click();
+        }catch (Exception e){
+            System.out.println("market_btn did notfount");
+            driver.findElementById("com.tronlinkpro.wallet:id/rl_bg_just_swap").click();
+            findElementByText("行情").click();
+        }
         return new MarketPage(driver);
     }
 
