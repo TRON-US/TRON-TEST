@@ -205,6 +205,10 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         try {
             freeze_btn.click();
             TimeUnit.SECONDS.sleep(1);
+            try{
+                unfreezeInfoConfirm_btn.click();
+            }catch (Exception e){
+            }
             freezeNow_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
@@ -221,6 +225,10 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         try {
             freeze_btn.click();
             TimeUnit.SECONDS.sleep(1);
+            try{
+                unfreezeInfoConfirm_btn.click();
+            }catch (Exception e){
+            }
             freezeNow_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
