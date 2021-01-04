@@ -72,4 +72,12 @@ public class AbstractPage {
     public void waiteTime() {
         waiteTime(5);
     }
+
+    public void clickOffsetElement(WebElement wele){
+        int x = wele.getLocation().getX();
+        int y = wele.getLocation().getY();
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.press(PointOption.point(x+20,y+14)).release().perform();
+    }
+
 }

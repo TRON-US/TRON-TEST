@@ -1,5 +1,8 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.ios.touch.IOSPressOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.utils.*;
 import ios.tronlink.com.tronlink.wallet.UITest.*;
 
@@ -10,6 +13,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.Action;
 
 public class FrozenAndUnfreezePage extends AbstractPage {
 
@@ -95,6 +100,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeTextField")
     public List<WebElement> freezeCount_input;
 
+    @FindBy(className = "XCUIElementTypeTextField")
+    public WebElement freezeCount_inputF;
 
     @FindBy(name = "com.tronlink.wallet:id/bt_go")
     public WebElement freezeNow_btn;
@@ -135,6 +142,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
     public WebElement getbandwidth_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '带宽'");
+    }
+    public WebElement getenergy_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '能量'");
     }
     public WebElement getConfirmGo_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '继续'");
@@ -247,13 +257,19 @@ public class FrozenAndUnfreezePage extends AbstractPage {
             //swip
             //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
             //Helper.swipScreen(driver);
-            BandwidthQuestion_btn.click();
+            int x = BandwidthQuestion_btn.getLocation().getX();
+            int y = BandwidthQuestion_btn.getLocation().getY();
+            IOSTouchAction action = new IOSTouchAction(driver);
+            action.press(PointOption.point(x+50,y+10)).release().perform();
+//            BandwidthQuestion_btn.click();
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(e);
         }
 
     }
+
+
 
 
     public String getCurrentCanUseTrx() {
@@ -269,8 +285,17 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         log("count:" + count + "  size:" + count.length());
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(2);
-        freezeCount_input.get(0).click();
-        freezeCount_input.get(0).sendKeys(count);
+        log("TextField count: " + freezeCount_input.size());
+        log("freezeCount_input.get(1):  "  + freezeCount_input.get(1).getText());
+        log("freezeCount_input.get(0):  "  + freezeCount_input.get(0).getText());
+        if (freezeCount_input.get(0).getText().contains("输入冻结资源数量")){
+            freezeCount_input.get(0).click();
+            freezeCount_input.get(0).sendKeys(count);
+        }else {
+            freezeCount_input.get(1).click();
+            freezeCount_input.get(1).sendKeys(count);
+        }
+
         Helper.closeKeyBoard(driver);
 
     }
