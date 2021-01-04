@@ -189,9 +189,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         TimeUnit.SECONDS.sleep(1);
-        freezeCount_input.get(0).sendKeys("20");
-        Helper.tapWhitePlace(driver);
-        Helper.swipScreen(driver);
+        inputFrozenCount("20");
         getFreeze_btn().click();
         TimeUnit.SECONDS.sleep(1);
         try{
