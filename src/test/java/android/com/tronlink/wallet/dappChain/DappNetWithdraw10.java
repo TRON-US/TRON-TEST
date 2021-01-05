@@ -79,14 +79,9 @@ public class DappNetWithdraw10 extends Base {
         return mine.enterSettingPage();
     }
 
-
-    //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseDappChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.changeChainToDappChain();
         return asset.enterTrx10Page();
     }
 

@@ -69,13 +69,7 @@ public class  DappNetWithdraw extends Base {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        if(!asset.currChain_name.getText().contains("DAppChain")){
-            MinePage mine = asset.enterMinePage();
-            SettingPage set = mine.enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            nodeSet.enterSettingPageChoiseDappChain();
-            TimeUnit.SECONDS.sleep(8);
-        }
+        asset.changeChainToDappChain();
         return asset.enterTrxPage();
     }
 

@@ -80,20 +80,14 @@ public class DappSendTrx extends Base {
         return mine.enterSettingPage();
     }
 
-    //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseDappChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.changeChainToDappChain();
         return asset.enterTrxPage();
     }
 
-
     public SendTrxPage enterToSendTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        //enterTrxPage();
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
     }
