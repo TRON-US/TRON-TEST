@@ -31,21 +31,31 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/back3")
     public List<WebElement> forward_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_dappchain_node_name")
+    public  WebElement dappChainName;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_dappchain_select")
+    public  WebElement dappChainBtn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_mainnet_node_name")
+    public  WebElement mainChainName;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_mainnet_select")
+    public  WebElement mainChainBtn;
 
 
+    //3.9.2开始 切换就会重启
     public SettingPage enterSettingPageChoiseDappChain() throws Exception {
-        node_selected.get(1).click();
-        back_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        waiteTime();
+        dappChainBtn.click();
+        confirmBan.click();
         return new SettingPage(driver);
     }
 
 
     public SettingPage enterSettingPageChoiseMainChain() throws Exception {
-        node_selected.get(0).click();
-        TimeUnit.SECONDS.sleep(3);
-        back_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        mainChainBtn.click();
+        confirmBan.click();
         return new SettingPage(driver);
     }
 
