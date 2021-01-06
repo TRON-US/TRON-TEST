@@ -12,6 +12,8 @@ import android.com.wallet.pages.SettingPage;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -56,11 +58,13 @@ public class CustomNodeSettingTest extends Base {
     public void test001_NodeSettingOfMainChainTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
-        Assert.assertTrue(internalNodeSetPage.fulllNode_text.getText().contains("Full Node"));
-        mainnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
-        Assert.assertTrue(checkIpFormat(internalNodeSetPage.ip_list.get(0).getText()));
-        Integer port = Integer.valueOf(internalNodeSetPage.port_list.get(mainnetBeforeNodeNum-1).getText());
+        mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
+        Assert.assertNotEquals(mainnetBeforeNodeNum,0);
+        Assert.assertTrue(checkIpFormat(internalNodeSetPage.firstIP.getText()));
+        Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
         Assert.assertTrue(port > 0 && port < 65536 );
+        waiteTime();
+        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("网络节点设置"));
     }
 
 
@@ -68,28 +72,26 @@ public class CustomNodeSettingTest extends Base {
     public void test002_AddCustomNodeToMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
-        mainnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
+        mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
         mainNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(mainNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
         internalNodeSetPage = addCustomNodePage.saveNode();
-        mainnetAfterNodeNum = internalNodeSetPage.ip_list.size();
+        mainnetAfterNodeNum = internalNodeSetPage.content_list.size();
         System.out.println("mainnetBeforeNodeNum:" + mainnetBeforeNodeNum);
         System.out.println("mainnetAfterNodeNum:" + mainnetAfterNodeNum);
         Assert.assertTrue(mainnetAfterNodeNum == mainnetBeforeNodeNum + 1);
-        String ip = internalNodeSetPage.ip_list.get(mainnetAfterNodeNum-1).getText();
-        Assert.assertEquals(ip,mainNetCustomIp);
     }
 
     @Test(enabled = true,description = "Delete custom node from mainNet test")
     public void test003_DeleteCustomNodeFromMainNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
-        mainnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
+        mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterEditCustomNodePage();
         internalNodeSetPage = addCustomNodePage.deleteNode();
-        Integer currentNodeNum = internalNodeSetPage.ip_list.size();
+        Integer currentNodeNum = internalNodeSetPage.content_list.size();
         Assert.assertTrue(currentNodeNum + 1 == mainnetBeforeNodeNum);
 
     }
@@ -99,11 +101,13 @@ public class CustomNodeSettingTest extends Base {
     public void test004_NodeSettingOfDappChainTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
-        Assert.assertTrue(internalNodeSetPage.fulllNode_text.getText().contains("Full Node"));
-        int nodeNumber = internalNodeSetPage.ip_list.size();
-        Assert.assertTrue(checkIpFormat(internalNodeSetPage.ip_list.get(0).getText()));
-        Integer port = Integer.valueOf(internalNodeSetPage.port_list.get(nodeNumber-1).getText());
+        int nodeNumber = internalNodeSetPage.content_list.size();
+        Assert.assertNotEquals(nodeNumber,0);
+        Assert.assertTrue(checkIpFormat(internalNodeSetPage.firstIP.getText()));
+        Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
         Assert.assertTrue(port > 0 && port < 65536 );
+        waiteTime();
+        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("网络节点设置"));
     }
 
 
@@ -114,18 +118,16 @@ public class CustomNodeSettingTest extends Base {
     public void test005_AddCustomNodeToDappNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
-        dappnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
+        dappnetBeforeNodeNum = internalNodeSetPage.content_list.size();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
         dappNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(dappNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
         internalNodeSetPage = addCustomNodePage.saveNode();
-        dappnetAftereNodeNum = internalNodeSetPage.ip_list.size();
+        dappnetAftereNodeNum = internalNodeSetPage.content_list.size();
         System.out.println("dappnetBeforeNodeNum:" + dappnetBeforeNodeNum);
         System.out.println("dappnetAftereNodeNum:" + dappnetAftereNodeNum);
         Assert.assertTrue(dappnetAftereNodeNum == dappnetBeforeNodeNum + 1);
-        String ip = internalNodeSetPage.ip_list.get(mainnetAfterNodeNum-1).getText();
-        Assert.assertEquals(ip,dappNetCustomIp);
     }
 
 
@@ -133,10 +135,10 @@ public class CustomNodeSettingTest extends Base {
     public void test006_DeleteCustomNodeFromDappNetTest() throws Exception {
         NodeSetPage nodeSetPage = enterNodeSettingPage();
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
-        dappnetBeforeNodeNum = internalNodeSetPage.ip_list.size();
+        dappnetBeforeNodeNum = internalNodeSetPage.content_list.size();
         AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterEditCustomNodePage();
         internalNodeSetPage = addCustomNodePage.deleteNode();
-        Integer currentNodeNum = internalNodeSetPage.ip_list.size();
+        Integer currentNodeNum = internalNodeSetPage.content_list.size();
         Assert.assertTrue(currentNodeNum + 1 == dappnetBeforeNodeNum);
 
     }

@@ -1,5 +1,7 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Helper;
+
 import io.appium.java_client.android.AndroidDriver;
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -19,15 +21,23 @@ public class InternalNodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement title_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_bg_right")
-    public WebElement tv_bg_right_btn;
+    @FindBy(id = "ccom.tronlinkpro.wallet:id/btn_add_node")
+    public WebElement addNote_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/li_bottom_button")
+    public WebElement addNoteBottom;
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
+    public WebElement firstIP;
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView[2]")
+    public WebElement firstPort;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
     public List<WebElement> ip_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_port")
-    public List<WebElement> port_list;
+    @FindBy(className = "android.view.ViewGroup")
+    public List<WebElement> content_list;
 
     //com.tronlinkpro.wallet:id/custom_latency
     @FindBy(id = "com.tronlinkpro.wallet:id/custom_latency")
@@ -46,7 +56,7 @@ public class InternalNodeSetPage extends AbstractPage {
 
 
     public AddCustomNodePage enterAddCustomNodePage() throws Exception{
-        tv_bg_right_btn.click();
+        clickElementCenter(addNoteBottom);
         TimeUnit.SECONDS.sleep(3);
         return new AddCustomNodePage(driver);
     }

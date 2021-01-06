@@ -60,18 +60,14 @@ public class NodeSetPage extends AbstractPage {
     }
 
     public InternalNodeSetPage enterInternalMainChainPage() throws Exception{
-        node_selected.get(0).click();
-        TimeUnit.SECONDS.sleep(3);
-        forward_btn.get(0).click();
-        TimeUnit.SECONDS.sleep(1);
+        mainChainBtn.click();
+        mainChainName.click();
         return new InternalNodeSetPage(driver);
     }
 
     public InternalNodeSetPage enterInternalDAppChainPage() throws Exception{
-        node_selected.get(1).click();
-        TimeUnit.SECONDS.sleep(3);
-        forward_btn.get(1).click();
-        TimeUnit.SECONDS.sleep(1);
+        dappChainBtn.click();
+        dappChainName.click();
         return new InternalNodeSetPage(driver);
     }
 

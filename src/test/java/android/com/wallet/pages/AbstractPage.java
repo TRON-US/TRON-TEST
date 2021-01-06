@@ -1,6 +1,10 @@
 package android.com.wallet.pages;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
+
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -81,4 +85,20 @@ public abstract class AbstractPage {
        return driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
 
     }
+
+    public void clickOffsetElement(WebElement wele){
+        int x = wele.getLocation().getX();
+        int y = wele.getLocation().getY();
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        action.press(PointOption.point(x+20,y+14)).release().perform();
+    }
+    public void clickElementCenter(WebElement wele){
+        int x = wele.getLocation().getX();
+        int y = wele.getLocation().getY();
+        int width = wele.getSize().getWidth();
+        int hight = wele.getSize().getHeight();
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        action.press(PointOption.point(x+width/2,y+hight/2)).release().perform();
+    }
+
 }
