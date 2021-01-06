@@ -84,6 +84,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage node = setting.enterNodeSetPage();
         InternalNodeSetPage internal = node.enterDappChainNodeSettingPage();
+        TimeUnit.SECONDS.sleep(1);
         System.out.println("internal:" + internal.title_text.getText());
         Assert.assertTrue("节点设置".contains(internal.title_text.getText())
             || "Node Settings".contains(internal.title_text.getText()) );
@@ -113,20 +114,7 @@ public class SettingTest extends Base {
         Assert.assertTrue(currencyList.get(0).getText().contains("CNY"));
         Assert.assertTrue(currencyList.get(1).getText().contains("USD"));
     }
-
-    @Test(description = "Developer options Test", alwaysRun = true)
-    public void test007_developerOptions() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        String developer = setting.testnode_text.getText();
-        setting.trunDeveloperOptions();
-        TimeUnit.SECONDS.sleep(8);
-        mine = asset.enterMinePage();
-        setting = mine.enterSettingPage();
-        String developerNow = setting.testnode_text.getText();
-        Assert.assertNotEquals(developer, developerNow);
-    }
+    
 
     @Test(description = "choose Sever Sigapor", alwaysRun = true)
     public void test008_Sever_Setting() throws Exception{
