@@ -23,6 +23,9 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
     public WebElement cancelBtn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    public WebElement backBtn;
+
 
     public AndroidDriver<?> driver;
 
@@ -99,6 +102,14 @@ public abstract class AbstractPage {
         int hight = wele.getSize().getHeight();
         AndroidTouchAction action = new AndroidTouchAction(driver);
         action.press(PointOption.point(x+width/2,y+hight/2)).release().perform();
+    }
+
+    public void printLocation(WebElement wl){
+        int x = wl.getLocation().getX();
+        int y = wl.getLocation().getY();
+        int width = wl.getSize().getWidth();
+        int hight = wl.getSize().getHeight();
+        System.out.println("x: " + x + " y: " + y + " width: " + width + " hight: "+ hight);
     }
 
 }

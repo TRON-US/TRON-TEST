@@ -36,6 +36,10 @@ public class InternalNodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
     public List<WebElement> ip_list;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
+    public WebElement firstIpByID;
+
+
     @FindBy(className = "android.view.ViewGroup")
     public List<WebElement> content_list;
 
@@ -51,6 +55,8 @@ public class InternalNodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_node_edit")
     public WebElement edit_custom_icon;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_content")
+    public WebElement tipContent;
 
 
 

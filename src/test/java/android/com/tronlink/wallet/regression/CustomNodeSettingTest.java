@@ -64,7 +64,7 @@ public class CustomNodeSettingTest extends Base {
         Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
         Assert.assertTrue(port > 0 && port < 65536 );
         waiteTime();
-        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("网络节点设置"));
+        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("节点设置"));
     }
 
 
@@ -107,11 +107,8 @@ public class CustomNodeSettingTest extends Base {
         Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
         Assert.assertTrue(port > 0 && port < 65536 );
         waiteTime();
-        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("网络节点设置"));
+        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("节点设置"));
     }
-
-
-
 
 
     @Test(enabled = true,description = "Add custom node to dappNet test")
@@ -140,7 +137,20 @@ public class CustomNodeSettingTest extends Base {
         internalNodeSetPage = addCustomNodePage.deleteNode();
         Integer currentNodeNum = internalNodeSetPage.content_list.size();
         Assert.assertTrue(currentNodeNum + 1 == dappnetBeforeNodeNum);
+    }
 
+    @Test(enabled = true ,description ="Show Tips of choise other ip")
+    public  void test007_ShowTipsOfChoiseOtherIP() throws Exception{
+        NodeSetPage nodeSetPage = enterNodeSettingPage();
+        nodeSetPage.enterSettingPageChoiseMainChain();
+        InternalNodeSetPage nodeipsetting =  nodeSetPage.enterDappChainNodeSettingPage();
+        nodeipsetting.firstIpByID.click();
+        Assert.assertTrue(nodeipsetting.tipContent.getText().contains("DAppChain"));
+        nodeipsetting.cancelBtn.click();
+        nodeipsetting.backBtn.click();
+        nodeipsetting = nodeSetPage.enterShastaNodeSettingPage();
+        nodeipsetting.firstIpByID.click();
+        Assert.assertTrue(nodeipsetting.tipContent.getText().contains("Shasta"));
     }
 
 

@@ -77,7 +77,7 @@ public class SettingTest extends Base {
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
     }
 
-    @Test(description = "choose DAppChain", alwaysRun = true)
+    @Test(description = "choose DAppChain IP view show", alwaysRun = true)
     public void test004_Node_Setting() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -91,7 +91,7 @@ public class SettingTest extends Base {
 
     }
 
-    @Test(description = "choose mainChain", alwaysRun = true)
+    @Test(description = "choose mainChain IP view show", alwaysRun = true)
     public void test005_Node_Setting() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -114,7 +114,7 @@ public class SettingTest extends Base {
         Assert.assertTrue(currencyList.get(0).getText().contains("CNY"));
         Assert.assertTrue(currencyList.get(1).getText().contains("USD"));
     }
-    
+
 
     @Test(description = "choose Sever Sigapor", alwaysRun = true)
     public void test008_Sever_Setting() throws Exception{
