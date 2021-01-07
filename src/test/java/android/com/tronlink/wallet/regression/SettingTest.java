@@ -77,33 +77,6 @@ public class SettingTest extends Base {
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
     }
 
-    @Test(description = "choose DAppChain IP view show", alwaysRun = true)
-    public void test004_Node_Setting() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        NodeSetPage node = setting.enterNodeSetPage();
-        InternalNodeSetPage internal = node.enterDappChainNodeSettingPage();
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("internal:" + internal.title_text.getText());
-        Assert.assertTrue("节点设置".contains(internal.title_text.getText())
-            || "Node Settings".contains(internal.title_text.getText()) );
-
-    }
-
-    @Test(description = "choose mainChain IP view show", alwaysRun = true)
-    public void test005_Node_Setting() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        NodeSetPage node = setting.enterNodeSetPage();
-        InternalNodeSetPage internal = node.enterMainChainNodeSettingPage();
-        System.out.println("internal:" + internal.title_text.getText());
-        Assert.assertTrue("节点设置".contains(internal.title_text.getText())
-            || "Node Settings".contains(internal.title_text.getText()) );
-
-    }
-
     @Test(description = "Currency Test")
     public void test006_currencyTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
