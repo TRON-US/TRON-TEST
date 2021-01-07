@@ -149,9 +149,9 @@ public class DiscoverTest extends Base {
     public void test005_onlineDappNetDiscoverTest() throws Exception {
         AssetPage asset = enterDappAssetPage();
         DiscoverPage discover = asset.enterDiscoverPage();
-        Assert.assertTrue(discover.nile_discover_note.getText().contains("DApp"));
-        String noteContent = discover.nile_discover_note.getText();
-        Assert.assertTrue(noteContent.contains("目前还没有DApp信息"));
+        String tipString = discover.nile_discover_note.getText();
+        Assert.assertTrue(tipString.contains("DApp"));
+        Assert.assertTrue(tipString.contains("暂不支持"));
     }
 
 
