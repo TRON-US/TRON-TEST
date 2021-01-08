@@ -27,7 +27,7 @@ public class NodeSetHelperPage extends AbstractPage {
     @FindBy(name = "black path")
     public WebElement backBtn;
 
-    @FindBy(id = "addNewNodeBtn")
+    @FindBy(id = "添加自定义节点")
     public WebElement addNewNodeBtn;
 
     @FindBy(id = "comfirmBtn")

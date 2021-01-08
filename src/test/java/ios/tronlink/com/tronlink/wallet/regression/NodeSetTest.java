@@ -17,7 +17,7 @@ public class NodeSetTest extends BaseTest {
         MinePage mine = assetPage.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-        Helper.TapLocationOffset(DRIVER,nodeSetPage.MainChain_btn,10,10);
+        nodeSetPage.enterSettingPageMainChain();
         TimeUnit.SECONDS.sleep(1);
         log("已经点击过:MainChain");
         return new NodeSetHelperPage(DRIVER);
