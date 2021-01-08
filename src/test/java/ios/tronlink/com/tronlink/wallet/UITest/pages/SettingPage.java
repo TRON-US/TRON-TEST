@@ -58,7 +58,7 @@ public class SettingPage extends AbstractPage {
 
 
 
-    @FindBy(name = "节点设置")
+    @FindBy(name = "网络节点设置")
     public WebElement node_btn;
 
     @FindBy(name = "com.tronlink.wallet:id/switch_version")

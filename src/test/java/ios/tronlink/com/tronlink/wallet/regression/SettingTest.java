@@ -13,7 +13,7 @@ import org.testng.annotations.*;
 public class SettingTest extends BaseTest {
 
 
-//
+
     @Test(description = "into Chain Set Page Test")
     public void test001_bulletin() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -23,35 +23,22 @@ public class SettingTest extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(nodeSetPage.driver,"设置"));
     }
 
-    @Test(description = "Developer options On Test",alwaysRun = true)
-    public void test002_developerOnOptions() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        setting.trunDeveloperOptions();
-        String developerNow = setting.connected_title.getText();
-        Assert.assertTrue(developerNow.contains("Shasta"));
-    }
-    @Test(description = "Developer options Off Test",alwaysRun = true)
-    public void test003_developerOffOptions() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        setting.trunOffDeveloperOptions();
-        String developerNow = setting.disconnected_title.getText();
-        Assert.assertEquals(developerNow,"未选择");
-    }
-
 
     @Test(description = "SideChain Test",alwaysRun = true)
-    public void test006_SideChaintest() throws Exception {
+    public void test006_NodeIntertest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage nodeSetPage = setting.enterNodeSetPage();
         NodeSetDetailPage detailPage =  nodeSetPage.enterSettingPageMainChain();
-        NodeSetPage nodeSetPage1 = detailPage.backToAction();
-        Assert.assertNotNull(nodeSetPage1.title);
+        Assert.assertTrue(detailPage.title.getText().contains("节点设置"));
+        nodeSetPage = detailPage.backToAction();
+        detailPage =  nodeSetPage.enterSettingPageDAppChain();
+        Assert.assertTrue(detailPage.title.getText().contains("节点设置"));
+        nodeSetPage = detailPage.backToAction();
+        detailPage =  nodeSetPage.enterSettingPageShasta();
+        Assert.assertTrue(detailPage.title.getText().contains("节点设置"));
+
     }
 
     @Test(description = "Into Mnemonic Page Test",alwaysRun = true)

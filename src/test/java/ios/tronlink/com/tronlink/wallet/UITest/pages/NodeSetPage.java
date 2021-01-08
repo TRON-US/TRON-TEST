@@ -5,6 +5,7 @@ import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.reporters.jq.Main;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -24,30 +25,38 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(name = "设置")
     public WebElement title;
 
-    @FindBy(name =  "MainChain")
+    @FindBy(name =  "TRON 主网")
     public WebElement MainChain_btn;
 
-    @FindBy(name =  "DAppChain")
+    @FindBy(name =  "DAppChain 主网")
     public WebElement DAppChain_btn;
+
+    @FindBy(name =  "TRON Shasta 测试网")
+    public WebElement Shasta_btn;
 
 
 //    @FindBy(className = "XCUIElementTypeButton")
 //    public List<WebElement> buttonArray;  //原来有5个后来定位有时候顺序不一致
 
+    public NodeSetDetailPage enterSettingPageShasta() throws Exception {
+        clickOffsetElement(Shasta_btn);
+        return new NodeSetDetailPage(driver);
+    }
 
 
     public NodeSetDetailPage enterSettingPageDAppChain() throws Exception {
-        DAppChain_btn.click();
+        clickOffsetElement(DAppChain_btn);
         return new NodeSetDetailPage(driver);
     }
 
     public NodeSetDetailPage enterSettingPageMainChain() throws Exception {
 //        MainChain_btn.click();
-        int topX = MainChain_btn.getLocation().x + 10;
-        int topY = MainChain_btn.getLocation().y + 10;
-        log("\n topY: " + topX + " botY: " + topY );
-        IOSTouchAction action = new IOSTouchAction(driver);
-        action.tap(PointOption.point(topX,topY)).perform();
+        clickOffsetElement(MainChain_btn);
+//        int topX = MainChain_btn.getLocation().x + 10;
+//        int topY = MainChain_btn.getLocation().y + 10;
+//        log("\n topY: " + topX + " botY: " + topY );
+//        IOSTouchAction action = new IOSTouchAction(driver);
+//        action.tap(PointOption.point(topX,topY)).perform();
 
         return new NodeSetDetailPage(driver);
     }
