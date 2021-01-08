@@ -51,6 +51,7 @@ public class WatchWalletHelpPage extends AbstractPage {
     public void frozenTRX() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
+        frozenAndUnfreezePage.getenergy_btn().click();
         frozenAndUnfreezePage.inputFrozenCount("1");
         waiteTime();
         frozenAndUnfreezePage.getFreeze_btn().click();

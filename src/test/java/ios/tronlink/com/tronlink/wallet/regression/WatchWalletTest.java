@@ -13,20 +13,7 @@ import org.testng.annotations.Test;
 
 public class WatchWalletTest extends BaseTest {
 
-//    @Parameters({"udid"})
-//    @AfterClass(alwaysRun = true)
-//    public void tearDownAfterClass(String udid) {
-//        try {
-//            DRIVER.closeApp();
-//            System.out.println("开始移除app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//            System.out.println("开始安装app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//            DRIVER.quit();
-//        } catch (Exception e) {
-//        }
-//
-//    }
+  
 
     @Test(groups = {"P0"},description = "watch wallet add WatchWallet", alwaysRun = true)
     public void test001_addWatchWallet() throws Exception {

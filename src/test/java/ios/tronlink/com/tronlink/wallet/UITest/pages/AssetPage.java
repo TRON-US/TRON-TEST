@@ -114,7 +114,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "添加资产")
     public WebElement addAssert_btn;
 
-    @FindBy(name = "能量租赁")
+    @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
 

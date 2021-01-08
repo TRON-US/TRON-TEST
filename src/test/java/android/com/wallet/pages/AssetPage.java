@@ -23,11 +23,11 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         try {
-            driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             // if page display AD , cloese the AD
             if (ad_pic.isDisplayed()){
                 adClose_btn.click();
-                driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             }
         }catch (Exception e){}
 //
@@ -41,11 +41,11 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 
         try {
-            driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             // if mutisignview display ,close
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
-                driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             }
         }catch (Exception e){}
     }
@@ -102,6 +102,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlinkpro.wallet:id/appmarket")
     public WebElement market_btn;
 
+    @FindBy(id="com.tronlinkpro.wallet:id/tv_market")
+    public WebElement tv_market;
 
 
     @FindBy(id="com.tronlinkpro.wallet:id/tv_trx_value")
@@ -348,7 +350,7 @@ public class AssetPage extends AbstractPage {
         try {
             TimeUnit.SECONDS.sleep(3);
             vote_btn.click();
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -356,24 +358,15 @@ public class AssetPage extends AbstractPage {
     }
 
     public MarketPage enterMarketPage() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-/*            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }*/
-        } catch (Exception e){}
         market_btn.click();
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-/*            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }*/
-        } catch (Exception e){}
-
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        try{
+            findElementByText("行情").click();
+        }catch (Exception e){
+            System.out.println("market_btn did notfount");
+            driver.findElementById("com.tronlinkpro.wallet:id/rl_bg_just_swap").click();
+            findElementByText("行情").click();
+        }
         return new MarketPage(driver);
     }
 
@@ -431,9 +424,12 @@ public class AssetPage extends AbstractPage {
             TimeUnit.SECONDS.sleep(2);
             waiteTime();
             mine_btn.click();
-        } catch (Exception e ){};
-        waiteTime();
-        mine_btn.click();
+        } catch (Exception e ){
+
+            findElementByText("我的").click();
+            System.out.println("find by name 我的");
+        }
+
         return new MinePage(driver);
     }
 

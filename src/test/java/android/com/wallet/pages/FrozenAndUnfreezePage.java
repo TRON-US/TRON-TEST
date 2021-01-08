@@ -27,7 +27,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_myfreeze")
     public WebElement myFreeze_btn;
 
-
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_otherfreeze")
     public WebElement otherFreeze_btn;
 
@@ -204,8 +203,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         //swipToFrozenBtnDisplay();
         Helper.swipScreen(driver);
         try {
-            freeze_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            frozenButtonClickAndConfirm();
             freezeNow_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
@@ -220,8 +218,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         //swipToFrozenBtnDisplay();
         Helper.swipScreen(driver);
         try {
-            freeze_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            frozenButtonClickAndConfirm();
             freezeNow_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
@@ -230,6 +227,16 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public void frozenButtonClickAndConfirm() throws Exception{
+        freeze_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        try{
+            unfreezeInfoConfirm_btn.click();
+        }catch (Exception e){
+        }
+
     }
 
 
@@ -246,8 +253,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
-        freeze_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        frozenButtonClickAndConfirm();
     }
 
 
@@ -256,8 +262,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
-        freeze_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        frozenButtonClickAndConfirm();
         freezeNow_btn.click();
         TimeUnit.SECONDS.sleep(2);
         checkPasswotd_input.sendKeys("Test0001");
@@ -273,8 +278,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.scrollToElementUntilVisible(driver,freeze_btn);
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
-        freeze_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        frozenButtonClickAndConfirm();
         freezeNow_btn.click();
         TimeUnit.SECONDS.sleep(1);
         signNext_btn.click();

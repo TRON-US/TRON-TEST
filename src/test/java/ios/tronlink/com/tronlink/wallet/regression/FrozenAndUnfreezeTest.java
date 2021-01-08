@@ -70,8 +70,9 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     @Test(description = "Energy Question Test", alwaysRun = true)
     public void test004_checkEnergyQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
+        frozen.getenergy_btn().click();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("整个网络"));
+        Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取能量冻结"));
     }
 
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
@@ -79,7 +80,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getbandwidth_btn().click();
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("带宽"));
+        Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取带宽冻结"));
     }
     @Test(description = "ChangeFreezeUnfreeze Test", alwaysRun = true)
     public void test006_checkBandwidthQuestion() {

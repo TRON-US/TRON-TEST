@@ -27,8 +27,15 @@ public class MarketPage extends AbstractPage {
 
     }
 
+
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
     public WebElement ad_pic;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_volume")
+    public WebElement first_vol;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_usd_price")
+    public WebElement tv_usd_price;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
@@ -46,39 +53,40 @@ public class MarketPage extends AbstractPage {
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_change")
-    public WebElement quoteChange_btn;
+    public WebElement riseChange_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_top_name")
+    public WebElement tv_top_name;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_delete")
+    public WebElement iv_delete;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_statue")
-    public WebElement firstQuoteChange_list;
+    public WebElement firstRise;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_search")
     public WebElement market_search_btn;
 
-    //com.tronlinkpro.wallet:id/tv_usd_price
+    @FindBy(id = "com.tronlinkpro.wallet:id/market_vol")
+    public WebElement market_vol_btn;
+
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_price")
     public List<WebElement> priceList;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
+    public WebElement search_TF;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_search")
+    public WebElement search_after_btn;
+
 
     //com.tronlinkpro.wallet:id/tv_statue
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_statue")
     public List<WebElement> rangeList;
 
 
-    public String sortPrice() throws Exception {
-        firstRowPriceList.get(0).click();
-        TimeUnit.SECONDS.sleep(2);
-        String price = firstRowPriceList.get(1).getText();
-        TimeUnit.SECONDS.sleep(1);
-        //System.out.println(price);
-        return price;
-    }
 
-    public String sortQuoteChange() throws Exception {
-        quoteChange_btn.click();
-        String price = firstQuoteChange_list.getText();
-        TimeUnit.SECONDS.sleep(1);
-        return price;
-    }
 
 
 

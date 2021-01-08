@@ -52,7 +52,7 @@ public class BaseTest extends Base {
 
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
-    public void beforeMethod(String bundleId) throws Exception {
+    public void beforeMethod(String bundleId,Method method) throws Exception {
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -67,6 +67,9 @@ public class BaseTest extends Base {
                 TimeUnit.SECONDS.sleep(2);
             }
         }
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
+
     }
 
 

@@ -69,7 +69,8 @@ public class FrozenAndUnfreezeTest extends Base {
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         //frozen.bandwidth_btn.click();
         frozen.freezeCount_input.sendKeys("1");
-        frozen.frozenTheEnergy(); //Freeze operating
+//        frozen.frozenTheEnergy(); //Freeze operating
+        frozen.frozenTheBandwidth();
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndUnfreezePage();
         int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
@@ -128,6 +129,7 @@ public class FrozenAndUnfreezeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.energy_btn.click();
+        Helper.swipScreenLitte(frozen.driver);
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
@@ -137,7 +139,7 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test0008_checkBandwidthQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        //frozen.bandwidth_btn.click();
+        Helper.swipScreenLitte(frozen.driver);
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));

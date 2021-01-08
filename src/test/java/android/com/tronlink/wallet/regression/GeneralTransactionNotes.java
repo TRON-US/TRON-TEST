@@ -93,6 +93,7 @@ public class GeneralTransactionNotes extends Base {
     public void test004_testDeleteNote() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.swip();
+        transfer.swip();
         waiteTime();
         transfer.add_note.click();
         waiteTime();
@@ -108,6 +109,7 @@ public class GeneralTransactionNotes extends Base {
     public void test005_testInputMaxLength() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.swip();
+        transfer.swip();
         waiteTime();
         transfer.add_note.click();
         waiteTime();
@@ -116,22 +118,25 @@ public class GeneralTransactionNotes extends Base {
         Assert.assertEquals(transfer.et_note.getText(),"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
 
     }
+
     @Parameters({"address"})
     @Test(enabled = true, description = "Trx transaction detail info note test", alwaysRun = true)
     public void test006_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
+        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String recorderNotes = transactionInfo.tv_note.getText();
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.swipScreen(transactionInfo.driver);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
         String detailPageSendAmount = recorderNumber.substring(1);
         String sendIcon = recorderNumber.substring(0,1);
         System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
         Assert.assertTrue(sendIcon.equals("-"));
         Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrxAmount));
-        Assert.assertEquals(transactionInfo.tv_note.getText(),trxnote);
+        Assert.assertEquals(recorderNotes,trxnote);
 
     }
     @Parameters({"address"})
@@ -139,35 +144,41 @@ public class GeneralTransactionNotes extends Base {
     public void test007_trx10TransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
+        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String recorderNotes = transactionInfo.tv_note.getText();
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.swipScreen(transactionInfo.driver);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
         String detailPageSendAmount = recorderNumber.substring(1);
         String sendIcon = recorderNumber.substring(0,1);
         System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
         Assert.assertTrue(sendIcon.equals("-"));
         Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrc10Amount));
-        Assert.assertEquals(transactionInfo.tv_note.getText(),trc10note);
+        Assert.assertEquals(recorderNotes,trc10note);
 
     }
+    //需要适当的调整UI位置来进行识别
     @Parameters({"address"})
     @Test(enabled = true, description = "Trx transaction detail 20 info note test", alwaysRun = true)
     public void test008_trx20TransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
+        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String recorderNotes = transactionInfo.tv_note.getText();
+
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        Helper.swipScreen(transactionInfo.driver);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
         String detailPageSendAmount = recorderNumber.substring(1);
         String sendIcon = recorderNumber.substring(0,1);
         System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
         Assert.assertTrue(sendIcon.equals("-"));
         Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrc20Amount));
-        Assert.assertEquals(transactionInfo.tv_note.getText(),trc20note);
+        Assert.assertEquals(recorderNotes,trc20note);
 
     }
 
