@@ -34,6 +34,14 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(name =  "TRON Shasta 测试网")
     public WebElement Shasta_btn;
 
+    @FindBy(id = "node setting select normal")
+    public List<WebElement> normal_list;
+
+    @FindBy(id = "node setting select selected")
+    public WebElement select_btn;
+
+    @FindBy(id = "node setting select normal")
+    public WebElement normal_first;
 
 //    @FindBy(className = "XCUIElementTypeButton")
 //    public List<WebElement> buttonArray;  //原来有5个后来定位有时候顺序不一致
@@ -63,10 +71,17 @@ public class NodeSetPage extends AbstractPage {
 
 
     public SettingPage enterSettingPageChoiseDappChain() throws Exception {
-        int normal = driver.findElementById("node select normal").getLocation().getY();
-        int selected = driver.findElementById("node select selected").getLocation().getY();
+        int normal = normal_first.getLocation().getY();
+        int selected = select_btn.getLocation().getY();
+
+        System.out.println("normal: " + normal + " selected: " + selected);
         if (normal > selected){
-            driver.findElementById("node select normal").click();
+            normal_list.get(1).click();
+            try {
+                queding_btn().click();
+            }catch (Exception e){
+                System.out.println("Already in");
+            }
         }
         waiteTime();
         back_btn.click();
@@ -76,10 +91,15 @@ public class NodeSetPage extends AbstractPage {
 
 
     public SettingPage enterSettingPageChoiseMainChain() throws Exception {
-        int normal = driver.findElementById("node select normal").getLocation().getY();
-        int selected = driver.findElementById("node select selected").getLocation().getY();
+        int normal = normal_first.getLocation().getY();
+        int selected = select_btn.getLocation().getY();
         if (normal < selected){
-            driver.findElementById("node select normal").click();
+            normal_list.get(0).click();
+            try {
+                queding_btn().click();
+            }catch (Exception e){
+                System.out.println("Already in");
+            }
         }
         waiteTime();
         back_btn.click();
