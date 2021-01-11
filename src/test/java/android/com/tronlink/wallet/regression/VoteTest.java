@@ -82,12 +82,12 @@ public class VoteTest extends Base {
 //
 //
 //
-//    @Test(enabled = true,description = "enter a number that great than the number of votes available", alwaysRun = true)
-//    public void test002_vote01() throws Exception {
+//    @Test(enabled = true,description = "test001_voteFirstPageShowTest", alwaysRun = true)
+//    public void test001_voteFirstPageShowTest() throws Exception {
 //        AssetPage asset = new AssetPage(DRIVER);
 //        VotePage vote = asset.enterVotePage();
-//        vote.unusualVoteOperate();
-//        Assert.assertTrue(vote.getHits());
+//        log(vote.toString());
+////        Assert.assertTrue(vote.getHits());
 //    }
 //
 //

@@ -26,6 +26,8 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement backBtn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    public WebElement bt_send;
 
     public AndroidDriver<?> driver;
 

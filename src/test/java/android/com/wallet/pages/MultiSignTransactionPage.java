@@ -81,13 +81,16 @@ public class MultiSignTransactionPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/transaction_to")
     public WebElement transactionTo_text;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    public WebElement rl_bottom_next;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_content")
     public WebElement transConten_text;
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
+    public WebElement tv_invalid_time;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/transaction_from")
     public WebElement transFrom_text;
@@ -103,7 +106,12 @@ public class MultiSignTransactionPage extends AbstractPage {
     public WebElement invaTime_text;
 
 
-
+    public void broadcaseNow() throws Exception {
+        rl_bottom_next.click();
+        password_input.sendKeys("Test0001");
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(5);
+    }
     public void sign() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         sign_btn.click();
