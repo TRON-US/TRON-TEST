@@ -145,6 +145,7 @@ public class VotePage extends AbstractPage {
         confirmBan.click();
     }
     public void votefirstSRuseMutiSign() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
         firstSR.click();
         btn_vote.click();
         password_input.sendKeys("1");
