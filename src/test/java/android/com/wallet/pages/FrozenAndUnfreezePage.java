@@ -243,8 +243,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public void frozenButtonClickAndConfirm() throws Exception{
-        freeze_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        freeze_btn.click();
         try{
             unfreezeInfoConfirm_btn.click();
         }catch (Exception e){
