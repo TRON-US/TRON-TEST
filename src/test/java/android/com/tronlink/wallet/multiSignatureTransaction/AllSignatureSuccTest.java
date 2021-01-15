@@ -108,7 +108,7 @@ public class AllSignatureSuccTest extends Base {
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
+        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
 
