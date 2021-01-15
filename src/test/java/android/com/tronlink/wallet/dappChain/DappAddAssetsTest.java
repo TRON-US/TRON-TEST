@@ -20,6 +20,11 @@ public class DappAddAssetsTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlinkpro.wallet");
+        } catch (Exception e){}
     }
 
     @AfterMethod(alwaysRun = true)
@@ -43,7 +48,6 @@ public class DappAddAssetsTest extends Base {
     @Test(description = "Dapp chain add assert", alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.changeChainToDappChain();
         AddAssertPage addAssert = asset.enterAddAssertPage();
         SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
         searchAssert.addAssert_input.sendKeys("1000029");

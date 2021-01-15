@@ -46,6 +46,11 @@ public class  DappNetWithdraw extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlinkpro.wallet");
+        } catch (Exception e){}
     }
 
 
@@ -69,7 +74,6 @@ public class  DappNetWithdraw extends Base {
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.changeChainToDappChain();
         return asset.enterTrxPage();
     }
 

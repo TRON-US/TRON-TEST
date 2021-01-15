@@ -20,10 +20,11 @@ public class DappMutiSignatureTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
+        } catch (Exception e){}
     }
 
 
@@ -67,7 +68,6 @@ public class DappMutiSignatureTest extends Base {
 
     public MultiSignManagerPage enterMultiSignManagerPageWithDappChain() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.changeChainToDappChain();
         MinePage mine = asset.enterMinePage();
         MyPursePage myPursePage = mine.enterMyPursePage();
         MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
@@ -105,10 +105,6 @@ public class DappMutiSignatureTest extends Base {
     public void test003_modifySignature(String address) throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
-        //multiSignManager = modifyPermission.modify(address);
-        //String signName = multiSignManager.permissionName_text.getText();
-        //System.out.println("get modify mulSign name is : " + signName);
-        //Assert.assertEquals(signName, "active_est");
         Assert.assertTrue(modifyPermission.title_text.isDisplayed());
     }
 

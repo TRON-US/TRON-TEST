@@ -34,7 +34,7 @@ public class DappSendTrc10 extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
       new Helper().getSign(privateKey, DRIVER);
-      enterTrxPage();
+      setToDAppChain();
       try {
         DRIVER.closeApp();
         DRIVER.activateApp("com.tronlinkpro.wallet");
@@ -68,7 +68,7 @@ public class DappSendTrc10 extends Base {
 
     public TrxPage enterTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.changeChainToDappChain();
+        Helper.swipScreenLitte(asset.driver);
         return asset.enterTrx10Page();
     }
 
@@ -129,6 +129,7 @@ public class DappSendTrc10 extends Base {
         SendTrxPage transfer = asset.enterSendTrc10Page();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
+        Helper.swipScreenLitte(transfer.driver);
         transfer.send_btn.click();
         waiteTime();
         String content = transfer.bandwidth_text.getText();

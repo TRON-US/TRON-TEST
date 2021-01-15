@@ -27,11 +27,11 @@ public class DappFrozenTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
-        changeToDappNet();
+        setToDAppChain();
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
+        } catch (Exception e){}
     }
 
     @AfterMethod(alwaysRun = true)
@@ -53,16 +53,6 @@ public class DappFrozenTest extends Base {
         }
     }
 
-    //reset app turn to MainChain
-    public void changeToDappNet() {
-        try {
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            nodeSet.enterSettingPageChoiseDappChain();
-            TimeUnit.SECONDS.sleep(1);
-        } catch (Exception e) {
-        }
-    }
 
     //enter TRXPage
     public FrozenAndUnfreezePage enterFreezePage() throws Exception {

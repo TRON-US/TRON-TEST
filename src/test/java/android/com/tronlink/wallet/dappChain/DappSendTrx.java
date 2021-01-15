@@ -43,7 +43,7 @@ public class DappSendTrx extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
-        enterTrxPage();
+        setToDAppChain();
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
@@ -82,7 +82,6 @@ public class DappSendTrx extends Base {
 
     public TrxPage enterTrxPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.changeChainToDappChain();
         return asset.enterTrxPage();
     }
 
@@ -134,6 +133,7 @@ public class DappSendTrx extends Base {
     public void test0005_inputNullReceivingAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.tranferCount_text, "1");
+        Helper.swipScreenLitte(transfer.driver);
         Assert.assertFalse(transfer.send_btn.isEnabled()); //send btn can click
     }
 
@@ -162,6 +162,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("1");
+        Helper.swipScreenLitte(transfer.driver);
         transfer.send_btn.click();
         transfer.transferNow_btn.click();
         transfer.InputPasswordConfim_btn.sendKeys("forget_password");
@@ -174,6 +175,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("1");
+        Helper.swipScreenLitte(transfer.driver);
         transfer.send_btn.click();
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
@@ -184,6 +186,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("0.000001");
+        Helper.swipScreenLitte(transfer.driver);
         transfer.send_btn.click();
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
@@ -192,6 +195,7 @@ public class DappSendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
+        Helper.swipScreenLitte(transfer.driver);
         transfer.send_btn.click();
         waiteTime();
         String content = transfer.bandwidth_text.getText();

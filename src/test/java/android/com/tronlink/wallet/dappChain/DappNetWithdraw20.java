@@ -47,9 +47,11 @@ public class DappNetWithdraw20 extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
-        changeToDappChain();
-        DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlinkpro.wallet");
+        setToDAppChain();
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlinkpro.wallet");
+        } catch (Exception e){}
     }
 
     @AfterMethod(alwaysRun = true)

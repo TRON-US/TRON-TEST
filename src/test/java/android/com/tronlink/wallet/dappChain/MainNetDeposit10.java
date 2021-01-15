@@ -62,13 +62,8 @@ public class MainNetDeposit10 extends Base {
 
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
-/*        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();*/
         AssetPage asset = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
+        Helper.swipScreenLitte(asset.driver);
         return asset.enterTrx10Page();
     }
 
