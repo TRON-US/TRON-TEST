@@ -21,7 +21,7 @@ public class InternalNodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement title_text;
 
-    @FindBy(id = "ccom.tronlinkpro.wallet:id/btn_add_node")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
     public WebElement addNote_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/li_bottom_button")
@@ -62,7 +62,7 @@ public class InternalNodeSetPage extends AbstractPage {
 
 
     public AddCustomNodePage enterAddCustomNodePage() throws Exception{
-        clickElementCenter(addNoteBottom);
+        clickElementCenter(addNote_btn);
         TimeUnit.SECONDS.sleep(3);
         return new AddCustomNodePage(driver);
     }
