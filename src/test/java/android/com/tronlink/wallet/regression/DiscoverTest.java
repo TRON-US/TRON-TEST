@@ -145,14 +145,6 @@ public class DiscoverTest extends Base {
         }
     }
 
-    @Test(enabled = true,description = "Online dapp chain discover page test",alwaysRun = true)
-    public void test005_onlineDappNetDiscoverTest() throws Exception {
-        AssetPage asset = enterDappAssetPage();
-        DiscoverPage discover = asset.enterDiscoverPage();
-        String tipString = discover.nile_discover_note.getText();
-        Assert.assertTrue(tipString.contains("DApp"));
-        Assert.assertTrue(tipString.contains("暂不支持"));
-    }
 
 
 
