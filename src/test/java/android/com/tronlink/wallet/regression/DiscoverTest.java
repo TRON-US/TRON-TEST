@@ -35,16 +35,16 @@ public class DiscoverTest extends Base {
         new Helper().getSign(privateKey, DRIVER);
         dappNameList.add("Poloni DEX");
         dappNameList.add("TRONSCAN");
-        dappNameList.add("WINk");
+//        dappNameList.add("WINk");
         dappNameList.add("TRONLENDING");
-        dappNameList.add("RocketGame");
+//        dappNameList.add("RocketGame");
         dappNameList.add("JustSwap");
-        dappNameList.add("TronVegas");
-        dappNameList.add("TRON UP");
+//        dappNameList.add("TronVegas");
+//        dappNameList.add("TRON UP");
         dappNameList.add("Newdex");
         dappNameList.add("Bankroll");
-        dappNameList.add("888TRON");
-        dappNameList.add("TRONTOPIA");
+//        dappNameList.add("888TRON");
+//        dappNameList.add("TRONTOPIA");
 
     }
 
@@ -66,77 +66,79 @@ public class DiscoverTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "test001_discoverNileTest", alwaysRun = true)
-    public void test001_discoverNileTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
-        String noteContent = discover.nile_discover_note.getText();
-        System.out.println(noteContent);
-        Assert.assertTrue(noteContent.contains("尼罗河"));
-        Assert.assertTrue(noteContent.contains("DApp"));
-        Assert.assertTrue(noteContent.contains("暂不支持"));
-        Assert.assertTrue(discover.isElementExist("iv_empty_icon"));
-
-    }
-
-    @Test(enabled = true,description = "test002_discoverMainNetTest", alwaysRun = true)
-    public void test002_discoverMainNetTest() throws Exception {
-        enterOnlineAssetPage();
-        try {
-            DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
-        Assert.assertTrue(discover.dapp_title.getText().contains("DApp"));
-        Assert.assertTrue(discover.qr_scan_btn.isEnabled());
-        Assert.assertTrue(discover.search_history_btn.isEnabled());
-        Assert.assertTrue(discover.search_btn.isEnabled());
-        Assert.assertTrue(discover.hot_title.getText().contains("热门推荐"));
-        Assert.assertTrue(discover.tv_type_title.getText().contains("游戏"));
-
-    }
-
-    @Test(enabled = true,description = "test003_discoverHotsUseAbleTest", alwaysRun = true)
-    public void test003_discoverHotsUseAbleTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
-        List<WebElement>  namelists = discover.hotDapp_names;
-        for (int i = 0 ;i<namelists.size();i++){
-            WebElement item =  namelists.get(i);
-            item.click();
-            try{
-                discover.tv_ok.click();
-            }catch (Exception e){}
-//            Assert.assertFalse(discover.isElementExist("net_error"));
-            try{
-                log(discover.middle_title.getText());
-                Assert.assertTrue(discover.isElementExist("root"));
-                discover.ll_common_left.click();
-
-            }catch (Exception ee){
-                discover.ll_close.click();
-                log(discover.middle_title.getText());
-                Assert.assertTrue(discover.isElementExist("root"));
-                discover.ll_common_left.click();
-            }
-
-        }
-    }
+//    @Test(enabled = true,description = "test001_discoverNileTest", alwaysRun = true)
+//    public void test001_discoverNileTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        String noteContent = discover.nile_discover_note.getText();
+//        System.out.println(noteContent);
+//        Assert.assertTrue(noteContent.contains("尼罗河"));
+//        Assert.assertTrue(noteContent.contains("DApp"));
+//        Assert.assertTrue(noteContent.contains("暂不支持"));
+//        Assert.assertTrue(discover.isElementExist("iv_empty_icon"));
+//
+//    }
+//
+//    @Test(enabled = true,description = "test002_discoverMainNetTest", alwaysRun = true)
+//    public void test002_discoverMainNetTest() throws Exception {
+//        enterOnlineAssetPage();
+//        try {
+//            DRIVER.closeApp();
+//            DRIVER.activateApp("com.tronlinkpro.wallet");
+//        }catch (Exception e){}
+//        AssetPage asset = new AssetPage(DRIVER);
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        Assert.assertTrue(discover.dapp_title.getText().contains("DApp"));
+//        Assert.assertTrue(discover.qr_scan_btn.isEnabled());
+//        Assert.assertTrue(discover.search_history_btn.isEnabled());
+//        Assert.assertTrue(discover.search_btn.isEnabled());
+//        Assert.assertTrue(discover.hot_title.getText().contains("热门推荐"));
+//        Assert.assertTrue(discover.tv_type_title.getText().contains("游戏"));
+//
+//    }
+//
+//    @Test(enabled = true,description = "test003_discoverHotsUseAbleTest", alwaysRun = true)
+//    public void test003_discoverHotsUseAbleTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        List<WebElement>  namelists = discover.hotDapp_names;
+//        for (int i = 0 ;i<namelists.size();i++){
+//            WebElement item =  namelists.get(i);
+//            item.click();
+//            try{
+//                discover.tv_ok.click();
+//            }catch (Exception e){}
+////            Assert.assertFalse(discover.isElementExist("net_error"));
+//            try{
+//                log(discover.middle_title.getText());
+//                Assert.assertTrue(discover.isElementExist("root"));
+//                discover.ll_common_left.click();
+//
+//            }catch (Exception ee){
+//                discover.ll_close.click();
+//                log(discover.middle_title.getText());
+//                Assert.assertTrue(discover.isElementExist("root"));
+//                discover.ll_common_left.click();
+//            }
+//
+//        }
+//    }
 
     @Test(enabled = true,description = "Online dapp list search test",alwaysRun = true)
     public void test004_onlineDappListSearch() throws Exception {
-
+            enterOnlineAssetPage();
             AssetPage asset = new AssetPage(DRIVER);
             DiscoverPage discover = asset.enterDiscoverPage();
             DAPP_SearchPage dapp_search_page = discover.enterDAPP_SearchPage();
         for (int i = dappListIndex;i < dappNameList.size();i++) {
+            System.out.println("SearchName:" + dappNameList.get(dappListIndex) + " index: " + i);
 
             dapp_search_page.search_text.sendKeys(dappNameList.get(dappListIndex));
             try {
                 TimeUnit.SECONDS.sleep(3);
             } catch (Exception e){}
             String dappNameInSearchResult = dapp_search_page.dappName_text.getText();
+            TimeUnit.SECONDS.sleep(2);
             System.out.println("DAppName:" + dappNameInSearchResult  + " index: " + i);
             Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(dappNameList.get(dappListIndex)) ||
                 dappNameInSearchResult.contains(dappNameList.get(dappListIndex)));
