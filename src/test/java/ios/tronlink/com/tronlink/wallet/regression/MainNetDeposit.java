@@ -44,16 +44,17 @@ public class MainNetDeposit extends BaseTest {
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        System.out.println( " trcbefore：  " + trcbefore  );
         TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
         successNumber = count;
+        System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
-        AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrxPage();
+        enterTrxPage();
         double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println(count   + "   " + trcbefore  + " " + trcafter);
+        System.out.println( " trcafter：  " + trcafter );
         Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
     }
 

@@ -189,10 +189,10 @@ public class autoCreateTestngXml {
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
 
 
-        String extendSingleClassContent = "";
-        for (int i = 0; i < taskSingleClassNameList.size();i++) {
-            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
-        }
+//        String extendSingleClassContent = "";
+//        for (int i = 0; i < taskSingleClassNameList.size();i++) {
+//            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
+//        }
 
         taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
         String classContent = "";
@@ -343,11 +343,7 @@ public class autoCreateTestngXml {
     public void beforeWrite() {
         StringBuilder sb = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
-            + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n"
-            + "    <listeners>\n"
-            + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener\"/>\n"
-            + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.sqlTronlinkUI\"/>\n"
-            + "    </listeners>\n");
+            + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n");
         String res = sb.toString();
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"));

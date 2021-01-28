@@ -317,6 +317,7 @@ public class AllSignatureSuccTest extends Base {
         multipage.broadcaseNow();
         boolean exist = false;
         for (int i = 0 ;i<5;i++){
+            log("findTimes:   s" + String.valueOf(i) );
             try{
                 Assert.assertTrue(multipage.isElementExist("冻结资产"));
                 Assert.assertTrue(multipage.isElementExist("冻结账户:"));
