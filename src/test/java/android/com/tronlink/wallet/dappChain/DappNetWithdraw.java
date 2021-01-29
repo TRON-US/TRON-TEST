@@ -33,8 +33,6 @@ public class  DappNetWithdraw extends Base {
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        //reset DAPP chain trun main chain
-        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -118,10 +116,11 @@ public class  DappNetWithdraw extends Base {
     @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
+        int trxCount = Integer.valueOf(removeSymbol(trx.totalBalance.getText()));
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
         TransferPage transferOut = trx.enterTransferPage();
+        TimeUnit.SECONDS.sleep(1);
         log("availableBalance_text : " + transferOut.availableBalance_text.getText());
         int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
         log( "trxCount: " + trxCount + " frozenCount: " + frozenCount + " availableBalance: " + availableBalance );
