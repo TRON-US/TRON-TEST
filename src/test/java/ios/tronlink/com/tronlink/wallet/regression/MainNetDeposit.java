@@ -43,6 +43,7 @@ public class MainNetDeposit extends BaseTest {
     @Test(groups = {"P0"},description = "TransferIn Success Recording",alwaysRun = true)
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
+        TimeUnit.SECONDS.sleep(1);
         double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println( " trcbefore：  " + trcbefore  );
         TransferPage transferIn =  trx.enterTransferInPage();
@@ -52,7 +53,9 @@ public class MainNetDeposit extends BaseTest {
         System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
-        enterTrxPage();
+//        trx.back_btn.click();
+//        enterTrxPage();
+//        TimeUnit.SECONDS.sleep(1);
         double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println( " trcafter：  " + trcafter );
         Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
