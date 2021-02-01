@@ -133,6 +133,8 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
     public WebElement btn_vote;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update")
+    public WebElement btn_voted_update;
 
 
     public void entermultiSignFromPage(){
@@ -147,7 +149,11 @@ public class VotePage extends AbstractPage {
     public void votefirstSRuseMutiSign() throws Exception{
         TimeUnit.SECONDS.sleep(1);
         firstSR.click();
-        btn_vote.click();
+        try {
+            btn_vote.click();
+        }catch (Exception ee){
+            btn_voted_update.click();
+        }
         password_input.sendKeys("1");
         bt_send.click();
         rl_bottom_next.click();
