@@ -206,7 +206,7 @@ public class DappSendTrx extends Base {
     @Test(groups = {"P0"},enabled = true,description = "Dapp chain send trx succesfully", alwaysRun = true)
     public void test0013_dappChainSendTrxSucess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
         dappChainSendTrxAmount = getAnAmount();
         transfer.sendTrx(Float.toString(dappChainSendTrxAmount));
     }
@@ -240,7 +240,7 @@ public class DappSendTrx extends Base {
     @Test(enabled = true,description = "Trx transfer balance decrease check")
     public void test0015_balanceReduceAfterSendCoin() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
         Assert.assertTrue(beforeBalance - afterBalance >= 1);
     }
 

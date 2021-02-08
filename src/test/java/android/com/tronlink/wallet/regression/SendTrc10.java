@@ -72,7 +72,7 @@ public class SendTrc10 extends Base {
         asset.mine_btn.click();
         asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.enterSendTrc10Page();
-        beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
         sendTrxAmount = getAnAmount();
         transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
@@ -157,7 +157,7 @@ public class SendTrc10 extends Base {
     public void test009_trc10BalanceReduceAfterSendCoin() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrc10Page();
-        afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
         System.out.println("beforeSendBalance:" + beforeSendBalance);
         System.out.println("afterSendBalance:" + afterSendBalance);
         Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);

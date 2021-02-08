@@ -83,7 +83,7 @@ public class DappSendTrc10 extends Base {
     @Test(groups = {"P0"},description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
       SendTrxPage transfer = enterToSendTrc10Page();
-      beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+      beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
       dappChainSendTrc10Amount = getAnAmount();
       transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
     }
@@ -166,7 +166,7 @@ public class DappSendTrc10 extends Base {
     @Test(enabled = true,description = "TRC10 transfer balance decrease check")
     public void test008_balanceReduceAfterSendTrc10() throws Exception {
       SendTrxPage transfer = enterToSendTrc10Page();
-      afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+      afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
       Assert.assertTrue(beforeBalance - afterBalance >= 1);
     }
 

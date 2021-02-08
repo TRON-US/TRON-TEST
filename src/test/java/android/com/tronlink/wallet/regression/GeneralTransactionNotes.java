@@ -61,7 +61,7 @@ public class GeneralTransactionNotes extends Base {
     @Test(enabled = true, description = "sendTrxWithNoteSuccess", alwaysRun = true)
     public void test001_sendTrxWithNoteSuccess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        beforeTRXBalance = removeSymbolFloat(transfer.balance_text.getText().split(" ")[1]);
+        beforeTRXBalance = removeSymbolFloat(transfer.balance_text.getText());
         System.out.println("beforeTRXBalance-----"+beforeTRXBalance);
         sendTrxAmount = getAnAmount();
         System.out.println("SendTRXBalance-----"+sendTrxAmount);
@@ -71,7 +71,7 @@ public class GeneralTransactionNotes extends Base {
     public void test002_sendTrx10WithNoteSuccess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.selectCoinType("trc10");
-        beforeTRC10Balance = removeSymbolFloat(transfer.balance_text.getText().split(" ")[1]);
+        beforeTRC10Balance = removeSymbolFloat(transfer.balance_text.getText());
         System.out.println("beforeTRC10Balance-----"+beforeTRC10Balance);
         sendTrc10Amount = getAnAmount();
         System.out.println("SendTRC10Balance-----"+sendTrc10Amount);
@@ -82,7 +82,7 @@ public class GeneralTransactionNotes extends Base {
     public void test003_sendTrx20WithNoteSuccess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.selectCoinType("trc20");
-        beforeTRC20Balance = removeSymbolFloat(transfer.balance_text.getText().split(" ")[1]);
+        beforeTRC20Balance = removeSymbolFloat(transfer.balance_text.getText());
         System.out.println("beforeTRC20Balance-----"+beforeTRC20Balance);
         sendTrc20Amount = getAnAmount();
         System.out.println("SendTRC20Balance-----"+sendTrc20Amount);
