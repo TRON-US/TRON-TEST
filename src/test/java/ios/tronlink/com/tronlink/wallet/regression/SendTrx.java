@@ -239,7 +239,7 @@ public class SendTrx extends BaseTest {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(),"可转账数量");
+        Float allNumber =   Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType()));//sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(),"可转账数量");
         Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertEquals(allNumber,number);
