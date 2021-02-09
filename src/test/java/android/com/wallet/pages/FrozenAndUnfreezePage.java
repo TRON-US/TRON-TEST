@@ -197,7 +197,20 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return currentCanUseTrx;
     }
 
+    public MultiSignTransactionPage frozenMultiSign() {
+        Helper.swipScreen(driver);
+        try {
+            frozenButtonClickAndConfirm();
+            freezeNow_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+            confirm_btn.click();
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new MultiSignTransactionPage(driver);
 
+    }
 
     public void frozenTheEnergy() {
         //swipToFrozenBtnDisplay();
@@ -230,8 +243,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public void frozenButtonClickAndConfirm() throws Exception{
-        freeze_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        freeze_btn.click();
         try{
             unfreezeInfoConfirm_btn.click();
         }catch (Exception e){

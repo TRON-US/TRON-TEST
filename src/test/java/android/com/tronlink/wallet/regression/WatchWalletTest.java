@@ -71,8 +71,8 @@ public class WatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         TimeUnit.SECONDS.sleep(3);
-        Helper.swipScreen(DRIVER);
         frozen.energy_btn.click();
+        Helper.swipScreenLitte(DRIVER);
         frozen.freezeCount_input.sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
@@ -89,8 +89,8 @@ public class WatchWalletTest extends Base {
     public void test003_frozenBandwidthQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        Helper.swipScreen(DRIVER);
         frozen.bandwidth_btn.click();
+        Helper.swipScreenLitte(DRIVER);
         frozen.freezeCount_input.sendKeys("1");
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();

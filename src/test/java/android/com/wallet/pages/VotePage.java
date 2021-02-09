@@ -23,13 +23,34 @@ public class VotePage extends AbstractPage {
     }
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/caim_reward")
+    public WebElement caim_reward;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/get_votes")
+    public WebElement get_votes;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/title")
     public WebElement voteTitle_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_batch_vote")
+    public WebElement tv_batch_vote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_canuse_trx")
+    public WebElement tv_canuse_trx;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_canuse_votes")
+    public WebElement tv_canuse_votes;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
+    public WebElement tv_common_right2;
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]")
+    public WebElement firstSR;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/reset")
     public WebElement reset_btn;
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    public WebElement rl_bottom_next;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
     public WebElement et_input;
@@ -99,6 +120,48 @@ public class VotePage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/total_vote")
     public WebElement total_vote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_clear")
+    public WebElement rl_clear;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
+    public WebElement et_address;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/v_common_title")
+    public WebElement v_common_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
+    public WebElement btn_vote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update")
+    public WebElement btn_voted_update;
+
+
+    public void entermultiSignFromPage(){
+        tv_common_right2.click();
+    }
+
+    public void changeFromeAddress(String mutaddr){
+        rl_clear.click();
+        et_address.sendKeys(mutaddr);
+        confirmBan.click();
+    }
+    public void votefirstSRuseMutiSign() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        firstSR.click();
+        try {
+            btn_vote.click();
+        }catch (Exception ee){
+            btn_voted_update.click();
+        }
+        password_input.sendKeys("1");
+        bt_send.click();
+        rl_bottom_next.click();
+        password_input.sendKeys("Test0001");
+        bt_send.click();
+        TimeUnit.SECONDS.sleep(5);
+    }
+
 
     public boolean getHits(){
         boolean hits = false;

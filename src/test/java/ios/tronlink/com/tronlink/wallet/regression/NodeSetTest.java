@@ -17,12 +17,21 @@ public class NodeSetTest extends BaseTest {
         MinePage mine = assetPage.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         NodeSetPage nodeSetPage = setting.enterNodeSetPage();
-        Helper.TapLocationOffset(DRIVER,nodeSetPage.MainChain_btn,10,10);
+        nodeSetPage.enterSettingPageMainChain();
         TimeUnit.SECONDS.sleep(1);
         log("已经点击过:MainChain");
         return new NodeSetHelperPage(DRIVER);
     }
-
+    public NodeSetHelperPage enterNodeSettingPagingDAppChain() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage mine = assetPage.enterMinePage();
+        SettingPage setting = mine.enterSettingPage();
+        NodeSetPage nodeSetPage = setting.enterNodeSetPage();
+        nodeSetPage.enterSettingPageDAppChain();
+        TimeUnit.SECONDS.sleep(1);
+        log("已经点击过:DAppChain");
+        return new NodeSetHelperPage(DRIVER);
+    }
 
     @Test(description = "Test enter add note", alwaysRun = true)
     public void test01_enterAddnoteTest() throws Exception {
@@ -47,32 +56,35 @@ public class NodeSetTest extends BaseTest {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.portwrong());
     }
-//    @Test(description = "Test  add note page haveSolidity Node", alwaysRun = true)
-//    public void test05_AddnotePageHaveSolidityNode() throws Exception {
-//        NodeSetHelperPage page = enterNodeSettingPaging();
-//        Assert.assertTrue(page.haveSolidity());
-//    }
-//
-//    @Test(description = "Test  add Solidity node", alwaysRun = true)
-//    public void test06_AddSoliditynodeSuccess() throws Exception {
-//        NodeSetHelperPage page = enterNodeSettingPaging();
-//        Assert.assertTrue(page.addSolidityNode());
-//    }
-//    @Test(description = "Test  add Soliditynote  IP wrong", alwaysRun = true)
-//    public void test07_AddSoliditynoteIPwrong() throws Exception {
-//        NodeSetHelperPage page = enterNodeSettingPaging();
-//        Assert.assertTrue(page.ipwrongSolidity());
-//    }
-//    @Test(description = "Test  add Solidity note  port wrong", alwaysRun = true)
-//    public void test08_AddSoliditynotePortwrong() throws Exception {
-//        NodeSetHelperPage page = enterNodeSettingPaging();
-//        Assert.assertTrue(page.portwrongSolidity());
-//    }
+
     @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
-    public void test09_noteDeleteSuccess() throws Exception {
+    public void test05_noteDeleteSuccess() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.deleteNode());
     }
+    @Test(groups = {"P0"},description = "TestDAppChain  add note", alwaysRun = true)
+    public void test06_AddnoteSuccessDAppChain() throws Exception {
+        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+        Assert.assertTrue(page.addNote());
+    }
+    @Test(description = "TestDAppChain  add note  IP wrong", alwaysRun = true)
+    public void test07_AddnoteIPwrongDAppChain() throws Exception {
+        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+        Assert.assertTrue(page.ipwrong());
+    }
+    @Test(description = "TestDAppChain  add note  port wrong", alwaysRun = true)
+    public void test08_AddnotePortwrongDAppChain() throws Exception {
+        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+        Assert.assertTrue(page.portwrong());
+    }
+
+    @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
+    public void test09_noteDeleteSuccessDAppChain() throws Exception {
+        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+        Assert.assertTrue(page.deleteNode());
+    }
+
+
 
 
 }

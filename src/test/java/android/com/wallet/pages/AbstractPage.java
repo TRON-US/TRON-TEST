@@ -1,15 +1,33 @@
 package android.com.wallet.pages;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
+
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public abstract class AbstractPage {
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    public  WebElement confirmBan;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
+    public WebElement cancelBtn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    public WebElement backBtn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    public WebElement bt_send;
 
     public AndroidDriver<?> driver;
 
@@ -72,4 +90,28 @@ public abstract class AbstractPage {
        return driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
 
     }
+
+    public void clickOffsetElement(WebElement wele){
+        int x = wele.getLocation().getX();
+        int y = wele.getLocation().getY();
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        action.press(PointOption.point(x+20,y+14)).release().perform();
+    }
+    public void clickElementCenter(WebElement wele){
+        int x = wele.getLocation().getX();
+        int y = wele.getLocation().getY();
+        int width = wele.getSize().getWidth();
+        int hight = wele.getSize().getHeight();
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        action.press(PointOption.point(x+width/2,y+hight/2)).release().perform();
+    }
+
+    public void printLocation(WebElement wl){
+        int x = wl.getLocation().getX();
+        int y = wl.getLocation().getY();
+        int width = wl.getSize().getWidth();
+        int hight = wl.getSize().getHeight();
+        System.out.println("x: " + x + " y: " + y + " width: " + width + " hight: "+ hight);
+    }
+
 }

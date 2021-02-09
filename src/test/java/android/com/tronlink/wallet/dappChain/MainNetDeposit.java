@@ -45,6 +45,7 @@ public class MainNetDeposit extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+
     }
 
 
@@ -67,11 +68,6 @@ public class MainNetDeposit extends Base {
 
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
-/*        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseMainChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();*/
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         return asset.enterTrxPage();

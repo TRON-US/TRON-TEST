@@ -41,7 +41,8 @@ public class AddPermissionPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_key_address")
     public List<WebElement> address_input;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_key_address")
+    public WebElement addressinput;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_weight")
     public WebElement weight_input;
@@ -113,6 +114,7 @@ public class AddPermissionPage extends AbstractPage {
         conf_btn.click();
         TimeUnit.SECONDS.sleep(1);
         threshold_input.sendKeys("1");
+        Helper.swipScreenLitte(driver);
         TimeUnit.SECONDS.sleep(1);
         address_input.get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         weight_input.sendKeys("1");
@@ -142,6 +144,7 @@ public class AddPermissionPage extends AbstractPage {
 
     public void inputInfoWithoutPermission(String signName){
         permissionName_input.sendKeys(signName);
+        Helper.swipScreenLitte(driver);
         threshold_input.sendKeys("1");
         address_input.get(0).sendKeys("THph9K2M2nLvkianrMGswRhz5hjSA9fuH7");
         weight_input.sendKeys("1");

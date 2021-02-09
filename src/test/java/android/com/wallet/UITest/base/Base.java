@@ -1,5 +1,7 @@
 package android.com.wallet.UITest.base;
 
+import android.com.wallet.pages.AssetPage;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 
@@ -386,5 +388,11 @@ public class Base {
         String realNumber = StringUtils.substringAfterLast(content,lastString);
         return  removeSymbolFloat(realNumber.trim());
 
+    }
+
+
+    public void setToDAppChain() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.changeChainToDappChain();
     }
 }

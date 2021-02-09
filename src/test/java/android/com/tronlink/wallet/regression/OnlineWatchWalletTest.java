@@ -355,7 +355,7 @@ public class OnlineWatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-
+    //线上账户缺钱，不足以支付100TRX
     @Test(groups = {"P0"},enabled = true,description = "Online muliSignature QRCode", alwaysRun = true)
     public void test013_onlineMuliSignatureQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);

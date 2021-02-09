@@ -278,14 +278,7 @@ public class Helper {
             findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
             swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
             findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-            try {
-                //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc").click();
-            } catch (Exception e) {
 
-            }
 
             findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
             findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);

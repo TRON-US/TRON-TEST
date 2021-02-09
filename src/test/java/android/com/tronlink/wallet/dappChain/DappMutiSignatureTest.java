@@ -20,10 +20,11 @@ public class DappMutiSignatureTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
+        } catch (Exception e){}
     }
 
 
@@ -61,66 +62,33 @@ public class DappMutiSignatureTest extends Base {
                 multiSign.delSign();
             }
         }
-//        while(exist == false && tries < 5) {
-//            tries++;
-//            try {
-//                //multiSign.mulSign_span.isDisplayed();
-//                System.out.println("delete a mulSign");
-//                Helper.swipeLeftScreen(DRIVER);
-//                Helper.swipeLeftScreen(DRIVER);
-//                multiSign.delSign();
-//            }catch (Exception e){}
-//        }
+
     }
 
 
     public MultiSignManagerPage enterMultiSignManagerPageWithDappChain() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
-        ////////////////////////////////////////////
-        SettingPage settingPage = mine.enterSettingPage();
-        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
-        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
-        mine = settingPage.enterMinePage();
-        ////////////////////////////////////////////
         MyPursePage myPursePage = mine.enterMyPursePage();
         MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
         return MultiSignManager;
     }
 
-
-
-
-    //public method. enter the MultiSignManagerPage
-    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        ////////////////////////////////////////////
-//        SettingPage settingPage = mine.enterSettingPage();
-//        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
-//        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
-//        mine = settingPage.enterMinePage();
-        ////////////////////////////////////////////
-        MyPursePage myPursePage = mine.enterMyPursePage();
-        MultiSignManagerPage MultiSignManager = myPursePage.enterMultiSignManagerPage();
-        return MultiSignManager;
-    }
-
-
-    @Test(enabled = true,description = "MutiSignature Question Content Test", alwaysRun = true)
-    public void test001_MutiSignatureQuestionContentTest() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
-        String content = multiSignManager.questionClick();
-        System.out.println("MutiSignature question content is : " + content);
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(content.contains("Active"));
-    }
+//
+//    @Test(enabled = true,description = "MutiSignature Question Content Test", alwaysRun = true)
+//    public void test001_MutiSignatureQuestionContentTest() throws Exception {
+//        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
+//        String content = multiSignManager.questionClick();
+//        System.out.println("MutiSignature question content is : " + content);
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(content.contains("Active"));
+//    }
 
 
     @Test(groups = {"P0"},enabled = true,description = "MutiSignature Test", alwaysRun = true)
     public void test002_mutiSignature() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         //del before sign
         delSignData(multiSignManager);
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
@@ -135,12 +103,8 @@ public class DappMutiSignatureTest extends Base {
     @Parameters({"address"})
     @Test(groups = {"P0"},enabled = true,description = "Modify signature Test", alwaysRun = true)
     public void test003_modifySignature(String address) throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
-        //multiSignManager = modifyPermission.modify(address);
-        //String signName = multiSignManager.permissionName_text.getText();
-        //System.out.println("get modify mulSign name is : " + signName);
-        //Assert.assertEquals(signName, "active_est");
         Assert.assertTrue(modifyPermission.title_text.isDisplayed());
     }
 
@@ -149,7 +113,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(groups = {"P0"},enabled = true,description = "delete signature Test", alwaysRun = true)
     public void test005_delSignature() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         String signName = multiSignManager.permissionName_text.getText();
         multiSignManager.delSign();
         Assert.assertNotEquals(signName, multiSignManager.permissionName_text.getText());
@@ -158,7 +122,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "signature Name Is Null", alwaysRun = true)
     public void test006_signatureNameIsNull() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         Helper.swipScreen(DRIVER);
         add.confirm_btn.click();
@@ -171,7 +135,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "signature Name Is too long", alwaysRun = true)
     public void test007_signatureNameIsSoLong() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.permissionName_input.sendKeys("TXtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
         TimeUnit.SECONDS.sleep(1);
@@ -182,7 +146,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "signature without choise Permission", alwaysRun = true)
     public void test008_signatureWithoutPermission() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.inputInfoWithoutPermission("AutoTest");
         String tip = add.operations_tip.getText();
@@ -192,7 +156,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "signature threshold > 100", alwaysRun = true)
     public void test009_thresholdTooLarge() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.threshold_input.sendKeys("101");
         //add.inputInfoWithoutPermission("AutoTest");
@@ -205,7 +169,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "signature threshold Is 0", alwaysRun = true)
     public void test010_thresholdIsZero() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.threshold_input.sendKeys("0");
         //add.inputInfoWithoutPermission("AutoTest");
@@ -217,8 +181,9 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "signature with error Adress", alwaysRun = true)
     public void test011_errorAdress() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
+        Helper.swipScreenLitte(add.driver);
         add.address_input.get(0).sendKeys("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
         TimeUnit.SECONDS.sleep(2);
         String tip = add.addkey_tip.getText();
@@ -228,7 +193,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "Adress Is Null", alwaysRun = true)
     public void test012_AdressIsNull() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         Helper.swipScreen(DRIVER);
         add.confirm_btn.click();
@@ -240,7 +205,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "two Adress is equals", alwaysRun = true)
     public void test013_adressIsEquals() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         //add.address_input.sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
         add.inputSameAddress();
@@ -252,7 +217,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "password is null", alwaysRun = true)
     public void test014_passwordIsNull() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.inputInfo("AutoTest");
         add.send_btn.click();
@@ -263,7 +228,7 @@ public class DappMutiSignatureTest extends Base {
 
     @Test(enabled = true,description = "password is wrong", alwaysRun = true)
     public void test015_passwordIsWrong() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManager = enterMultiSignManagerPageWithDappChain();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.inputInfo("AutoTest");
         add.password_input.sendKeys("error_password");

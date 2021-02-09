@@ -77,32 +77,6 @@ public class SettingTest extends Base {
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
     }
 
-    @Test(description = "choose DAppChain", alwaysRun = true)
-    public void test004_Node_Setting() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        NodeSetPage node = setting.enterNodeSetPage();
-        InternalNodeSetPage internal = node.enterDappChainNodeSettingPage();
-        System.out.println("internal:" + internal.title_text.getText());
-        Assert.assertTrue("节点设置".contains(internal.title_text.getText())
-            || "Node Settings".contains(internal.title_text.getText()) );
-
-    }
-
-    @Test(description = "choose mainChain", alwaysRun = true)
-    public void test005_Node_Setting() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        NodeSetPage node = setting.enterNodeSetPage();
-        InternalNodeSetPage internal = node.enterMainChainNodeSettingPage();
-        System.out.println("internal:" + internal.title_text.getText());
-        Assert.assertTrue("节点设置".contains(internal.title_text.getText())
-            || "Node Settings".contains(internal.title_text.getText()) );
-
-    }
-
     @Test(description = "Currency Test")
     public void test006_currencyTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -114,19 +88,6 @@ public class SettingTest extends Base {
         Assert.assertTrue(currencyList.get(1).getText().contains("USD"));
     }
 
-    @Test(description = "Developer options Test", alwaysRun = true)
-    public void test007_developerOptions() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        String developer = setting.testnode_text.getText();
-        setting.trunDeveloperOptions();
-        TimeUnit.SECONDS.sleep(8);
-        mine = asset.enterMinePage();
-        setting = mine.enterSettingPage();
-        String developerNow = setting.testnode_text.getText();
-        Assert.assertNotEquals(developer, developerNow);
-    }
 
     @Test(description = "choose Sever Sigapor", alwaysRun = true)
     public void test008_Sever_Setting() throws Exception{

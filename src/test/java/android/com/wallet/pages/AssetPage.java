@@ -218,6 +218,17 @@ public class AssetPage extends AbstractPage {
     public WebElement saveQR_btn;
 
 
+    public void changeChainToDappChain() throws Exception{
+        if(!currChain_name.getText().contains("DAppChain")){
+            MinePage mine = enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            nodeSet.enterSettingPageChoiseDappChain();
+            TimeUnit.SECONDS.sleep(8);
+        }
+    }
+
+
     public void waitShieldDataSynFinished() {
         Long startSynTime = System.currentTimeMillis();
         Long currentSynTime;

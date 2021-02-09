@@ -27,7 +27,7 @@ public class NodeSetHelperPage extends AbstractPage {
     @FindBy(name = "black path")
     public WebElement backBtn;
 
-    @FindBy(id = "addNewNodeBtn")
+    @FindBy(id = "添加自定义节点")
     public WebElement addNewNodeBtn;
 
     @FindBy(id = "comfirmBtn")
@@ -56,7 +56,7 @@ public class NodeSetHelperPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         addNewNodeBtn.click();
         try {
-            driver.findElementByName("节点类型").getLocation();
+            driver.findElementByName("添加自定义节点").getLocation();
             return true;
         }catch (Exception e){
             return false;
@@ -78,7 +78,7 @@ public class NodeSetHelperPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);//必须这么用,因为要等待页面跳转
         try {
 
-            driver.findElementByName("节点类型").getLocation();
+            driver.findElementByName("节点IP").getLocation();
             log("没有退出页面");
             return false;
         }catch (Exception e){

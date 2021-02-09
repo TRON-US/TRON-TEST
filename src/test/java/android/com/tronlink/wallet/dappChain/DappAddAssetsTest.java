@@ -20,6 +20,11 @@ public class DappAddAssetsTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlinkpro.wallet");
+        } catch (Exception e){}
     }
 
     @AfterMethod(alwaysRun = true)
@@ -43,22 +48,10 @@ public class DappAddAssetsTest extends Base {
     @Test(description = "Dapp chain add assert", alwaysRun = true)
     public void test002_addAsset() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        ///////////////////////////////////////////
-        MinePage mine = asset.enterMinePage();
-        SettingPage settingPage = mine.enterSettingPage();
-        NodeSetPage nodeSetPage = settingPage.enterNodeSetPage();
-        settingPage = nodeSetPage.enterSettingPageChoiseDappChain();
-        mine = settingPage.enterMinePage();
-        asset = mine.enterAssetPage();
-        ////////////////////////////////////////////
         AddAssertPage addAssert = asset.enterAddAssertPage();
         SearchAssertPage searchAssert = addAssert.enterSearchAssertPage();
         searchAssert.addAssert_input.sendKeys("1000029");
-        //searchAssert.openAssert();
         TimeUnit.SECONDS.sleep(3);
-        //addAssert = searchAssert.enterAddAssertPage();
-        //addAssert.mainPageAssetManage_tab.get(1).click();
-        //Assert.assertTrue(addAssert.myNewAddAsset_btn.isDisplayed());
         Assert.assertTrue(searchAssert.search_btn.isDisplayed());
     }
 
@@ -69,8 +62,6 @@ public class DappAddAssetsTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         AddAssertPage addAssert = asset.enterAddAssertPage();
         addAssert.mainPageAssetManage_tab.get(1).click();
-        //addAssert.removeAsset();
-        //Assert.assertFalse(addAssert.switchFirst_btn.isSelected());
         Assert.assertTrue(addAssert.mainPageAssetManage_tab.get(1).isDisplayed());
     }
 

@@ -144,8 +144,6 @@ public class ColdWalletTest extends Base {
         ColdSettingPage coldSetting = coldMine.enterSettingPage();
         Assert.assertTrue(coldSetting.languane_btn.isEnabled());
         Assert.assertTrue(coldSetting.currency_btn.isEnabled());
-        Assert.assertTrue(coldSetting.developerOptions_btn.isEnabled());
-        //Assert.assertTrue(coldSetting.changeTool_btn.isEnabled());
 
     }
 

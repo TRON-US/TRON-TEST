@@ -25,6 +25,9 @@ public class AbstractPage {
     public IOSDriver<?> driver;
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 
+    public WebElement queding_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确定'");
+    }
 
     public AbstractPage(IOSDriver<?> driver) {
         this.driver = driver;

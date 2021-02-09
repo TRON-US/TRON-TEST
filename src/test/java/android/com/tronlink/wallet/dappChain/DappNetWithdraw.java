@@ -33,8 +33,6 @@ public class  DappNetWithdraw extends Base {
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        //reset DAPP chain trun main chain
-        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -46,6 +44,11 @@ public class  DappNetWithdraw extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
+        try {
+            DRIVER.closeApp();
+            DRIVER.activateApp("com.tronlinkpro.wallet");
+        } catch (Exception e){}
     }
 
 
@@ -55,18 +58,6 @@ public class  DappNetWithdraw extends Base {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}
-    }
-
-    //reset app turn to MainChain
-    public void changeToMainChain() {
-        try {
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            nodeSet.enterSettingPageChoiseMainChain();
-            TimeUnit.SECONDS.sleep(1);
-        } catch (Exception e) {
-        }
-
     }
 
 
@@ -80,11 +71,7 @@ public class  DappNetWithdraw extends Base {
 
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception {
-        SettingPage set = enterSettingPage();
-        NodeSetPage nodeSet = set.enterNodeSetPage();
-        set = nodeSet.enterSettingPageChoiseDappChain();
-        MinePage mine = set.enterMinePage();
-        AssetPage asset = mine.enterAssetPage();
+        AssetPage asset = new AssetPage(DRIVER);
         return asset.enterTrxPage();
     }
 
@@ -129,10 +116,11 @@ public class  DappNetWithdraw extends Base {
     @Test(enabled = true,description = "Check Available Balance", alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
+        int trxCount = Integer.valueOf(removeSymbol(trx.totalBalance.getText()));
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
         TransferPage transferOut = trx.enterTransferPage();
+        TimeUnit.SECONDS.sleep(1);
         log("availableBalance_text : " + transferOut.availableBalance_text.getText());
         int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
         log( "trxCount: " + trxCount + " frozenCount: " + frozenCount + " availableBalance: " + availableBalance );

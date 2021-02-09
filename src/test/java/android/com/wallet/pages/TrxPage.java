@@ -64,6 +64,8 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
     public WebElement balance_text;
 
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
+    public WebElement totalBalance;
   //@FindBy(id = "com.tronlinkpro.wallet:id/send")
   //public WebElement send_btn;
 
@@ -74,13 +76,11 @@ public class TrxPage extends AbstractPage {
 
     public TransferPage enterTransferPage() throws Exception {
         transferIn_btn.click();
-        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new TransferPage(driver);
     }
 
     public TransferPage enterSendPage() throws Exception {
       send_btn.click();
-      driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
       return new TransferPage(driver);
     }
 
@@ -89,7 +89,6 @@ public class TrxPage extends AbstractPage {
 
     public AssetPage enterAssetPage() throws Exception {
         back_btn.click();
-        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         return new AssetPage(driver);
     }
 

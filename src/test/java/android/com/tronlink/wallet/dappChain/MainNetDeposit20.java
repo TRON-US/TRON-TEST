@@ -71,9 +71,7 @@ public class MainNetDeposit20 extends Base {
     //enter TRXPage
     public TrxPage enterTrc20Page() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
-        Helper.swipScreen(asset.driver);
-        TimeUnit.SECONDS.sleep(3);
+        Helper.swipScreenLitte(asset.driver);
         return asset.enterTrx20Page();
     }
 
