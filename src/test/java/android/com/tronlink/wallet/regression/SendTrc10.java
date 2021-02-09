@@ -77,60 +77,60 @@ public class SendTrc10 extends Base {
         transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
 
-    @Test(enabled = true, description = "input max send number", alwaysRun = true)
-    public void test002_inputMaxSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("max");
-        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
-    }
-
-    //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
-    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
-    public void test003_inputNotEnoughBandWidthSendMax10NumberUNActive() throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"),"可转账数量");
-        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"tronlink_token");
-        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
-        Assert.assertEquals(allNumber,number);
-        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
-    }
-
-    //max 未激活的显示
-    @Test(enabled = true, description = "test004_inputHaveBandWidthSendMax10NumberToUNActive")
-    public void test004_inputHaveBandWidthSendMax10NumberToUNActive() throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"), "可转账数量");
-        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "tronlink_token");
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
-        Assert.assertEquals(allNumber, number);
-        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
-
-
-    }
-
-    @Parameters({"privateKey"})
-    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-    public void test005_inputMixSendNumber(String privateKey) throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(privateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("mix");
-        String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.contains("转账金额需大于 0") || centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-    }
-
-
-    @Test(enabled = true, description = "input too Much trc10 send number", alwaysRun = true)
-    public void test006_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("tooMuch");
-        String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-    }
+//    @Test(enabled = true, description = "input max send number", alwaysRun = true)
+//    public void test002_inputMaxSendNumber() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrc10("max");
+//        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
+//    }
+//
+//    //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
+//    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
+//    public void test003_inputNotEnoughBandWidthSendMax10NumberUNActive() throws Exception {
+//        DRIVER.resetApp();
+//        new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"),"可转账数量");
+//        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"tronlink_token");
+//        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
+//        Assert.assertEquals(allNumber,number);
+//        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
+//    }
+//
+//    //max 未激活的显示
+//    @Test(enabled = true, description = "test004_inputHaveBandWidthSendMax10NumberToUNActive")
+//    public void test004_inputHaveBandWidthSendMax10NumberToUNActive() throws Exception {
+//        DRIVER.resetApp();
+//        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"), "可转账数量");
+//        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "tronlink_token");
+//        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
+//        Assert.assertEquals(allNumber, number);
+//        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
+//
+//
+//    }
+//
+//    @Parameters({"privateKey"})
+//    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
+//    public void test005_inputMixSendNumber(String privateKey) throws Exception {
+//        DRIVER.resetApp();
+//        new Helper().getSign(privateKey,DRIVER);
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrc10("mix");
+//        String centent = transfer.formatErrorHits_text.getText();
+//        Assert.assertTrue(centent.contains("转账金额需大于 0") || centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+//    }
+//
+//
+//    @Test(enabled = true, description = "input too Much trc10 send number", alwaysRun = true)
+//    public void test006_inputTooMuchSendNumber() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrc10("tooMuch");
+//        String centent = transfer.formatErrorHits_text.getText();
+//        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+//    }
 
 
     @Test(enabled = true, description = "trc10 check 10name", alwaysRun = true)

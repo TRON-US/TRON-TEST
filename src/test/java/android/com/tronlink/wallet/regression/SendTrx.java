@@ -114,15 +114,15 @@ public class SendTrx extends Base {
 //    }
 
 
-    @Parameters({"address"})
-    @Test(enabled = true, description = "input Receiving address same as send address", alwaysRun = true)
-    public void test005_inputReceivingAddressSameAsSend(String address) throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendKey(transfer.receiveAddress_text, address);
-        String hits = transfer.formatErrorHits_text.getText();
-        log("hits: " + hits);
-        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同")  || hits.contains("cannot be the same"));
-    }
+//    @Parameters({"address"})
+//    @Test(enabled = true, description = "input Receiving address same as send address", alwaysRun = true)
+//    public void test005_inputReceivingAddressSameAsSend(String address) throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendKey(transfer.receiveAddress_text, address);
+//        String hits = transfer.formatErrorHits_text.getText();
+//        log("hits: " + hits);
+//        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同")  || hits.contains("cannot be the same"));
+//    }
 
 
     @Test(enabled = true, description = "input Null Receiving address", alwaysRun = true)
@@ -167,25 +167,26 @@ public class SendTrx extends Base {
         Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
 
     }
-    @Parameters({"privateKey"})
-    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-    public void test010_inputMixSendNumber(String privateKey) throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(privateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrx("mix");
-        String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-    }
+
+//    @Parameters({"privateKey"})
+//    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
+//    public void test010_inputMixSendNumber(String privateKey) throws Exception {
+//        DRIVER.resetApp();
+//        new Helper().getSign(privateKey,DRIVER);
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrx("mix");
+//        String centent = transfer.formatErrorHits_text.getText();
+//        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+//    }
 
 
-    @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
-    public void test011_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrx("tooMuch");
-        String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-    }
+//    @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
+//    public void test011_inputTooMuchSendNumber() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrx("tooMuch");
+//        String centent = transfer.formatErrorHits_text.getText();
+//        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+//    }
 
 
     @Test(enabled = true, description = "password error", alwaysRun = true)
