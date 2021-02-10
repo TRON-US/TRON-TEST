@@ -223,10 +223,12 @@ public class DappSendTrx extends Base {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(1).click();
-                //todo 转出转入记录中没有最新数据
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-                if (Float.toString(dappChainSendTrxAmount).substring(0, 5)
-                    .equals(tranferInCount.substring(1, 6))) {
+
+                String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
+                System.out.println("tranferCount: " + tranfercount);
+                System.out.println("dappChainSendTrxAmount: " + dappChainSendTrxAmount);
+                if (tranfercount
+                    .equals(dappChainSendTrxAmount)) {
                     exist = true;
                     break;
                 }

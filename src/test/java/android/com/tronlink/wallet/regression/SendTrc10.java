@@ -148,9 +148,11 @@ public class SendTrc10 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trx = asset.enterTrx10Page();
         trx.tranfer_tab.get(1).click();
-        System.out.println(trx.tranferIncount_text.get(1).getText());
-        String tranferInCount = trx.tranferIncount_text.get(1).getText().substring(1);
-        Assert.assertTrue(Float.toString(sendTrxAmount).substring(0, 5).equals(tranferInCount.substring(0, 5)));
+        String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
+        System.out.println("tranferCount: " + tranfercount);
+        System.out.println("sendTrxAmount: " + sendTrxAmount);
+        Assert.assertTrue(Float.toString(sendTrxAmount).equals(tranfercount));
+
     }
 
     @Test(enabled = true, description = "Trc10 transfer balance decrease check")
@@ -189,33 +191,37 @@ public class SendTrc10 extends Base {
     @Parameters({"address"})
     @Test(enabled = true, description = "Trc10 transaction detail info test", alwaysRun = true)
     public void test012_trc10TransactionDetailInfo(String address) throws Exception {
+
+
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
-        Assert.assertEquals(transactionInfo.sendAddress_text.getText(), address);
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(), receiverAddress);
-        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(), 64);
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
-
+        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
+        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
-        Assert.assertEquals(detailPageSendAmount.substring(1, 7), String.valueOf(sendTrxAmount).substring(0, 6));
+        String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+
+        Helper.swipScreenLitte(asset.driver);
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2021"));
+        Assert.assertTrue(sendIcon.contains("-"));
+        Assert.assertEquals(detailPageSendAmount.substring(1),String.valueOf(sendTrxAmount));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
                 > Long.valueOf(currentMainNetBlockNum));
-
-        Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-
-        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(), "带宽");
+        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+
+
     }
 
 
     @Parameters({"address"})
     @Test(enabled = true, description = "Trc10 receive transaction detail info test", alwaysRun = true)
     public void test013_trc10ReceiveTransactionDetailInfo(String address) throws Exception {
+
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
         System.out.println(transactionInfo.title_amount_test.getText());
@@ -223,18 +229,19 @@ public class SendTrc10 extends Base {
         String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(receiveIcon.contains("+"));
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(), address);
-        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(), 64);
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains("TRX"));
+        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
+        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
+
+        Helper.swipScreenLitte(transactionInfo.driver);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
                 > Long.valueOf(currentMainNetBlockNum));
-        Helper.swipScreen(transactionInfo.driver);
-        TimeUnit.SECONDS.sleep(1);
+        System.out.println("transaction_time_text:" + transactionInfo.transaction_time_text.getText());
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(), "带宽");
+        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
     }
 

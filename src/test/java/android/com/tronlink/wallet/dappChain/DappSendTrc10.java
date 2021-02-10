@@ -148,14 +148,15 @@ public class DappSendTrc10 extends Base {
           trx = arret.enterTrx10Page();
           trx.tranfer_tab.get(1).click();
           //todo 转出转入记录中没有最新数据
-          String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-          System.out.println("dappChainSendTrc10Amount:" + dappChainSendTrc10Amount);
-          System.out.println("tranferInCount:" + tranferInCount);
-          if (Float.toString(dappChainSendTrc10Amount).substring(0, 5)
-              .equals(tranferInCount.substring(1, 6))) {
-            exist = true;
-            break;
-          }
+            String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
+            System.out.println("tranferCount: " + tranfercount);
+            System.out.println("dappChainSendTrxAmount: " + dappChainSendTrc10Amount);
+            if (tranfercount
+                    .equals(dappChainSendTrc10Amount)) {
+                exist = true;
+                break;
+            }
+
         } catch (Exception e) {
           System.out.println(e);
         }
