@@ -160,8 +160,8 @@ public class autoCreateiOSP0Xml {
 
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         classNameList = findNameList(classNameList,testCaseDir,1);
-        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/shieldTransaction";
-        classNameList = findNameList(classNameList,testCaseDir,1);
+//        testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/shieldTransaction";
+//        classNameList = findNameList(classNameList,testCaseDir,1);
         Integer deviceIndex = 0;
 //        List<List<String>> classContent = new ArrayList<>();
 
