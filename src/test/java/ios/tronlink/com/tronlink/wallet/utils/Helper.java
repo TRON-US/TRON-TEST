@@ -285,8 +285,8 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-                DRIVER.findElementById("normalWallet").click();
+//                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+//                DRIVER.findElementById("normalWallet").click();
                 break;
             }
             case coldWallet:
@@ -295,8 +295,8 @@ public class Helper {
                 DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
-                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-                DRIVER.findElementById("normalWallet").click();
+//                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+//                DRIVER.findElementById("normalWallet").click();
                 break;
             }
             case shieldWallet:
