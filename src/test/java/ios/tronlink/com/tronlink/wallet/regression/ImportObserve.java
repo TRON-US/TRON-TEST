@@ -18,8 +18,7 @@ public class ImportObserve extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
         assetPage.addWallet_btn.click();
-        waiteTime();
-        DRIVER.findElementById("normalWallet").click();
+
         waiteTime();
         DRIVER.findElementByName("观察钱包").click();
         TimeUnit.SECONDS.sleep(2);

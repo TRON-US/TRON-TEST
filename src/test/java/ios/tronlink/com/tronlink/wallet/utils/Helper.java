@@ -245,8 +245,7 @@ public class Helper {
             case normal:
             {
                 addwalletBtn.click();
-                driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-                driver.findElementById("normalWallet").click();
+
                 break;
             }
             case coldShieldWallet:
@@ -259,8 +258,6 @@ public class Helper {
             case coldWallet:
             {
                 addwalletBtn.click();
-                driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-                DRIVER.findElementById("normalWallet").click();
                 break;
             }
             case shieldWallet:

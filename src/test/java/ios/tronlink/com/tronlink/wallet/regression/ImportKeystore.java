@@ -17,8 +17,6 @@ public class ImportKeystore extends BaseTest {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
-        DRIVER.findElementById("normalWallet").click();
-        waiteTime();
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
     }
@@ -26,8 +24,7 @@ public class ImportKeystore extends BaseTest {
     public ImportKeystorePage mypurpustokeystore(MyPursePage page){
         waiteTime();
         page.addwallet.click();
-        waiteTime();
-        DRIVER.findElementById("normalWallet").click();
+
         waiteTime();
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
