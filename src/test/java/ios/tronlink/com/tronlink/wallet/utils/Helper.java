@@ -105,30 +105,30 @@ public class Helper {
     }
 
     public static boolean isElementExist(IOSDriver driver,String name) {
-       try {
-           driver.findElementByName(name);
-           System.out.println("IsFindByName: "+name);
-           return  true;
-       }catch (org.openqa.selenium.NoSuchElementException ex){
-           try {
-               driver.findElementById(name);
-               System.out.println("IsFindById: "+name);
+        try {
+            driver.findElementByName(name);
+            System.out.println("IsFindByName: "+name);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            try {
+                driver.findElementById(name);
+                System.out.println("IsFindById: "+name);
 
-               return  true;
-           }catch (org.openqa.selenium.NoSuchElementException eex){
-               try {
-                   if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
-                       System.out.println("IsFindByBtn: "+name);
-                       return  true;
-                   }else {
-                       return  false;
-                   }
-               }catch (org.openqa.selenium.NoSuchElementException e){
-                   System.out.println("NotFound: "+name);
-                   return  false;
-               }
-           }
-       }
+                return  true;
+            }catch (org.openqa.selenium.NoSuchElementException eex){
+                try {
+                    if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
+                        System.out.println("IsFindByBtn: "+name);
+                        return  true;
+                    }else {
+                        return  false;
+                    }
+                }catch (org.openqa.selenium.NoSuchElementException e){
+                    System.out.println("NotFound: "+name);
+                    return  false;
+                }
+            }
+        }
     }
     public static boolean containElement(WebElement wl,String name) {
         try {
@@ -231,10 +231,10 @@ public class Helper {
 
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
-         if(!isElementExist(DRIVER,"home manager")){
-             System.out.println("=================\n Need to import first Wallet \n ================");
-             importFirstWallet(type,privateKey,"Auto_test","Test0001");
-         }
+        if(!isElementExist(DRIVER,"home manager")){
+            System.out.println("=================\n Need to import first Wallet \n ================");
+            importFirstWallet(type,privateKey,"Auto_test","Test0001");
+        }
     }
     //导入正常的,需要报错信息不能使用此方法
     public void importMoreWallet(importType type,String privateKey,String name,String pass,IOSDriver driver) throws Exception{
@@ -282,8 +282,13 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-//                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-//                DRIVER.findElementById("normalWallet").click();
+                try {
+                    DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                    DRIVER.findElementById("normalWallet").click();
+                }catch (Exception nooutput){
+
+                }
+
                 break;
             }
             case coldWallet:
@@ -292,8 +297,13 @@ public class Helper {
                 DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
-//                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-//                DRIVER.findElementById("normalWallet").click();
+                try {
+                    DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                    DRIVER.findElementById("normalWallet").click();
+                }catch (Exception nooutput){
+
+                }
+
                 break;
             }
             case shieldWallet:
