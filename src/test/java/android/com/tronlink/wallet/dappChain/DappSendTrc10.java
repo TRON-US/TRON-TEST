@@ -88,30 +88,30 @@ public class DappSendTrc10 extends Base {
       transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
     }
 
-//    @Test(description = "input max send number", alwaysRun = true)
-//    public void test002_inputMaxSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrc10Page();
-//        transfer.sendAllTrc10("max");
-//        Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
-//    }
-//
-//
-//    @Test(description = "input mix send number", alwaysRun = true)
-//    public void test003_inputMixSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrc10Page();
-//        transfer.sendAllTrc10("mix");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-//    }
-//
-//
-//    @Test(description = "input too Much TRX send number", alwaysRun = true)
-//    public void test004_inputTooMuchSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrc10Page();
-//        transfer.sendAllTrc10("tooMuch");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-//    }
+    @Test(description = "input max send number", alwaysRun = true)
+    public void test002_inputMaxSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrc10Page();
+        transfer.sendAllTrc10("max");
+        Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
+    }
+
+
+    @Test(description = "input mix send number", alwaysRun = true)
+    public void test003_inputMixSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrc10Page();
+        transfer.sendAllTrc10("mix");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    }
+
+
+    @Test(description = "input too Much TRX send number", alwaysRun = true)
+    public void test004_inputTooMuchSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrc10Page();
+        transfer.sendAllTrc10("tooMuch");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+    }
 
 
     @Test(description = "trc10 check 10name", alwaysRun = true)
