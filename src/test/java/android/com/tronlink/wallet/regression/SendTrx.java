@@ -87,49 +87,65 @@ public class SendTrx extends Base {
 
 
 
-//    @Test(enabled = true, description = "input Privatekey to Receiving address", alwaysRun = true)
-//    public void test002_inputPrivatekey() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
-//        String hits = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
-//    }
+    @Test(enabled = true, description = "input Privatekey to Receiving address", alwaysRun = true)
+    public void test002_inputPrivatekey() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
+        String hits = transfer.formatErrorHits_text.getText();
+        log("hits: " + hits);
+        Assert.assertTrue(hits.equals("钱包地址格式不正确") || hits.equals("Wrong format"));
+    }
 
 
-//    @Test(enabled = true, description = "input error address to Receiving address", alwaysRun = true)
-//    public void test003_inputErrorAddress() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
-//        String hits = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
-//    }
+    @Test(enabled = true, description = "input error address to Receiving address", alwaysRun = true)
+    public void test003_inputErrorAddress() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
+        String hits = transfer.formatErrorHits_text.getText();
+        log("hits: " + hits);
+        Assert.assertTrue(hits.equals("钱包地址格式不正确") || hits.equals("Wrong format"));
+    }
+
+//开发
+    @Test(enabled = true, description = "input not active Receiving address", alwaysRun = true)
+    public void test004_inputNotActiveAddress() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
+//        transfer.sendKey(transfer.tranferCount_text, "1");
+//        transfer.swipScreenLitte();
+//        transfer.send_btn.click();
+        String hits = transfer.note_text.getText();
+        log("hits: " + hits);
+        Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));
+    }
 
 
-//    @Test(enabled = true, description = "input not active Receiving address", alwaysRun = true)
-//    public void test004_inputNotActiveAddress() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
-//        String hits = transfer.note_text.getText();
-//        Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));
-//    }
-
-
-//    @Parameters({"address"})
-//    @Test(enabled = true, description = "input Receiving address same as send address", alwaysRun = true)
-//    public void test005_inputReceivingAddressSameAsSend(String address) throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, address);
-//        String hits = transfer.formatErrorHits_text.getText();
-//        log("hits: " + hits);
-//        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同")  || hits.contains("cannot be the same"));
-//    }
+    @Parameters({"address"})
+    @Test(enabled = true, description = "input Receiving address same as send address", alwaysRun = true)
+    public void test005_inputReceivingAddressSameAsSend(String address) throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, address);
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
+        String hits = transfer.formatErrorHits_text.getText();
+        log("hits: " + hits);
+        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同")  || hits.contains("cannot be the same"));
+    }
 
 
     @Test(enabled = true, description = "input Null Receiving address", alwaysRun = true)
     public void test006_inputNullReceivingAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
         Assert.assertFalse(transfer.send_btn.isEnabled()); //send btn can click
     }
 
@@ -169,25 +185,25 @@ public class SendTrx extends Base {
 
     }
 
-//    @Parameters({"privateKey"})
-//    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-//    public void test010_inputMixSendNumber(String privateKey) throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(privateKey,DRIVER);
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrx("mix");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-//    }
+    @Parameters({"privateKey"})
+    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
+    public void test010_inputMixSendNumber(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrx("mix");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    }
 
 
-//    @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
-//    public void test011_inputTooMuchSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrx("tooMuch");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-//    }
+    @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
+    public void test011_inputTooMuchSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrx("tooMuch");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+    }
 
 
     @Test(enabled = true, description = "password error", alwaysRun = true)
@@ -195,6 +211,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("1");
+        transfer.swipScreenLitte();
         transfer.send_btn.click();
         transfer.transferNow_btn.click();
         transfer.InputPasswordConfim_btn.sendKeys("forget_password");
@@ -207,6 +224,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("1");
+        transfer.swipScreenLitte();
         transfer.send_btn.click();
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
@@ -217,6 +235,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.swipScreenLitte();
         transfer.send_btn.click();
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
@@ -248,6 +267,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.swipScreenLitte();
         transfer.send_btn.click();
         waiteTime();
         String content = transfer.bandwidth_text.getText();
@@ -317,11 +337,12 @@ public class SendTrx extends Base {
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
 
-        Helper.swipScreenLitte(transactionInfo.driver);
+        transactionInfo.swipScreenLitte();
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
                 > Long.valueOf(currentMainNetBlockNum));
         System.out.println("transaction_time_text:" + transactionInfo.transaction_time_text.getText());
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+        transactionInfo.swipScreenLitte();
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");

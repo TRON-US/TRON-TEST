@@ -77,12 +77,12 @@ public class SendTrc10 extends Base {
         transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
 
-//    @Test(enabled = true, description = "input max send number", alwaysRun = true)
-//    public void test002_inputMaxSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc10("max");
-//        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
-//    }
+    @Test(enabled = true, description = "input max send number", alwaysRun = true)
+    public void test002_inputMaxSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrc10("max");
+        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
+    }
 //
 //    //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
 //    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")

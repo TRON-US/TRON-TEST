@@ -71,35 +71,35 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
-//    @Test(groups = {"P0"},enabled = true,description = "SendTrc20 success test")
-//    public void test001_sendTrc20Success() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        SendTrxPage transfer = asset.enterSendTrxPage();
-//        double trc20Before = transfer.getTrc20Amount();
-//        sendTrc20Amount = getAnAmount();
-//        System.out.println("sendTrc20Amount : " + sendTrc20Amount);
-//        String trc20SendAmount = Float.toString(sendTrc20Amount);
-//        SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
-//        stsp.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-//        TimeUnit.SECONDS.sleep(5);
-//        transfer = asset.enterSendTrxPage();
-//        double trc20After = transfer.getTrc20Amount();
-//        for (int i =  0 ; i< 8 ;i++){
-//            System.out.println("第"+i + "次\n trc20After: " + trc20After + " trc20SendAmount: " + trc20SendAmount + " trc20Before: " + trc20Before);
-//            System.out.println(trc20Before - Double.parseDouble(trc20SendAmount));
-//            System.out.println(trc20After);
-//            if (String.valueOf(trc20After).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount)))  ){
-//                log("equal!!!");
-//                break;
-//            }
-//            transfer.back_bt.click();
-//            TimeUnit.SECONDS.sleep(5);
-//            transfer = asset.enterSendTrxPage();
-//            trc20After = transfer.getTrc20Amount();
-//        }
-//        Assert.assertTrue(String.valueOf(trc20After).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount))) );
-//
-//    }
+    @Test(groups = {"P0"},enabled = true,description = "SendTrc20 success test")
+    public void test001_sendTrc20Success() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
+        double trc20Before = transfer.getTrc20Amount();
+        sendTrc20Amount = getAnAmount();
+        System.out.println("sendTrc20Amount : " + sendTrc20Amount);
+        String trc20SendAmount = Float.toString(sendTrc20Amount);
+        SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
+        stsp.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(5);
+        transfer = asset.enterSendTrxPage();
+        double trc20After = transfer.getTrc20Amount();
+        for (int i =  0 ; i< 8 ;i++){
+            System.out.println("第"+i + "次\n trc20After: " + trc20After + " trc20SendAmount: " + trc20SendAmount + " trc20Before: " + trc20Before);
+            System.out.println(trc20Before - Double.parseDouble(trc20SendAmount));
+            System.out.println(trc20After);
+            if (String.valueOf(trc20After).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount)))  ){
+                log("equal!!!");
+                break;
+            }
+            transfer.back_bt.click();
+            TimeUnit.SECONDS.sleep(5);
+            transfer = asset.enterSendTrxPage();
+            trc20After = transfer.getTrc20Amount();
+        }
+        Assert.assertTrue(String.valueOf(trc20After).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount))) );
+
+    }
 
 //    @Test(enabled = true,description = "input max send number")
 //    public void test002_inputMaxSendNumber() throws Exception {

@@ -108,14 +108,14 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement back_bt;
 
-    @FindBy(xpath = "//*[@text='(1000002)']")
+    @FindBy(xpath = "//*[@text='1000002']")
     public WebElement trc10_btn;
 
 
 //    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
 //    public WebElement trc20_btn;
 
-    @FindBy(xpath = "//*[@text='(TCCc****5n71)']")
+    @FindBy(xpath = "//*[@text='TCCc...5n71']")
     public WebElement trc20_btn;
 
 
@@ -166,6 +166,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_delete")
     public WebElement tv_delete;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_logo")
+    public WebElement token_itemIV;
+
 
     public SendTrxSuccessPage enterSendTrxSuccessPage() {
         confirm_btn.click();
@@ -175,9 +178,17 @@ public class SendTrxPage extends AbstractPage {
 
     public String trxCount = "";
 
+    public WebElement  trx_btn() {
+        return  token_itemIV;
+    }
+
+    public WebElement  trc10_btn() {
+        return findElementByText("1000002");
+    }
+
     public WebElement trc20_btn() {
         try {
-            return findElementByText("(TCCc****5n71)");
+            return findElementByText("TCCc...5n71");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -186,12 +197,12 @@ public class SendTrxPage extends AbstractPage {
 
         try {
 
-            return findElementByText("(TXkd****NfD7)");
+            return findElementByText("TXkd...NfD7");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
 
-            return findElementByText("(TXkd****NfD7)");
+            return findElementByText("TXkd...NfD7");
 
         }
 
@@ -365,10 +376,6 @@ public class SendTrxPage extends AbstractPage {
         //calculate trx
         switch (value) {
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":
@@ -476,7 +483,7 @@ public class SendTrxPage extends AbstractPage {
             case "10":
                 token_btn.click();
                 TimeUnit.SECONDS.sleep(3);
-                trc10_btn.click();
+                trc10_btn().click();
         }
     }
 
