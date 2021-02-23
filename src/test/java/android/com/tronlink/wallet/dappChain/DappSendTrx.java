@@ -92,41 +92,50 @@ public class DappSendTrx extends Base {
     }
 
 
-//    @Test(enabled = true,description = "Input Privatekey to Receiving address", alwaysRun = true)
-//    public void test0001_inputPrivatekey() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
-//        String hits = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
-//    }
-//
-//
-//    @Test(enabled = true,description = "Input error address to Receiving address", alwaysRun = true)
-//    public void test0002_inputErrorAddress() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
-//        String hits = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
-//    }
-//
-//
-//    @Test(enabled = true,description = "Input not active Receiving address", alwaysRun = true)
-//    public void test0003_inputNotActiveAddress() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
-//        String hits = transfer.note_text.getText();
-//        Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));
-//    }
-//
-//
-//    @Parameters({"address"})
-//    @Test(enabled = true,description = "Input Receiving address same as send address", alwaysRun = true)
-//    public void test0004_inputReceivingAddressSameAsSend(String address) throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendKey(transfer.receiveAddress_text, address);
-//        String hits = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同") || hits.equals("发送账户与接收账户不能相同") || hits.contains("cannot be the same"));
-//    }
+    @Test(enabled = true,description = "Input Privatekey to Receiving address", alwaysRun = true)
+    public void test0001_inputPrivatekey() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
+        String hits = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(hits.equals("钱包地址格式不正确") || hits.equals("Wrong format"));
+    }
+
+
+    @Test(enabled = true,description = "Input error address to Receiving address", alwaysRun = true)
+    public void test0002_inputErrorAddress() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
+        String hits = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(hits.equals("钱包地址格式不正确") || hits.equals("Wrong format"));
+    }
+
+
+    @Test(enabled = true,description = "Input not active Receiving address", alwaysRun = true)
+    public void test0003_inputNotActiveAddress() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
+        String hits = transfer.note_text.getText();
+        Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));
+    }
+
+
+    @Parameters({"address"})
+    @Test(enabled = true,description = "Input Receiving address same as send address", alwaysRun = true)
+    public void test0004_inputReceivingAddressSameAsSend(String address) throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendKey(transfer.receiveAddress_text, address);
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
+        String hits = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(hits.equals("转出账户和接收账户不能相同") || hits.equals("发送账户与接收账户不能相同") || hits.contains("cannot be the same"));
+    }
 
 
     @Test(enabled = true,description = "Input Null Receiving address", alwaysRun = true)
@@ -138,23 +147,23 @@ public class DappSendTrx extends Base {
     }
 
 
-//
-//    @Test(enabled = true,description = "Input mix send number", alwaysRun = true)
-//    public void test0007_inputMixSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrx("mix");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-//    }
-//
-//
-//    @Test(enabled = true,description = "Input too Much TRX send number", alwaysRun = true)
-//    public void test0008_inputTooMuchSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrx("tooMuch");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-//    }
+
+    @Test(enabled = true,description = "Input mix send number", alwaysRun = true)
+    public void test0007_inputMixSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrx("mix");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    }
+
+
+    @Test(enabled = true,description = "Input too Much TRX send number", alwaysRun = true)
+    public void test0008_inputTooMuchSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrx("tooMuch");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+    }
 
 
     @Test(enabled = true,description = "Password error", alwaysRun = true)
