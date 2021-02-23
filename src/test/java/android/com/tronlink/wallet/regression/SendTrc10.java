@@ -69,9 +69,8 @@ public class SendTrc10 extends Base {
     @Test(groups = {"P0"}, enabled = true, description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        asset.mine_btn.click();
-        asset.assetsMain_btn.click();
         SendTrxPage transfer = asset.enterSendTrc10Page();
+        Assert.assertTrue(transfer.tvName_text.getText().contains("tronlink_token"));
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
         sendTrxAmount = getAnAmount();
         transfer.sendTrc10(Float.toString(sendTrxAmount));
@@ -83,63 +82,49 @@ public class SendTrc10 extends Base {
         transfer.sendAllTrc10("max");
         Assert.assertTrue(transfer.transferNow_btn.isEnabled());
     }
-//
-//    //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
-//    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
-//    public void test003_inputNotEnoughBandWidthSendMax10NumberUNActive() throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"),"可转账数量");
-//        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"tronlink_token");
-//        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
-//        Assert.assertEquals(allNumber,number);
-//        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
-//    }
-//
-//    //max 未激活的显示
-//    @Test(enabled = true, description = "test004_inputHaveBandWidthSendMax10NumberToUNActive")
-//    public void test004_inputHaveBandWidthSendMax10NumberToUNActive() throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("10"), "可转账数量");
-//        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "tronlink_token");
-//        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
-//        Assert.assertEquals(allNumber, number);
-//        Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
-//
-//
-//    }
-//
-//    @Parameters({"privateKey"})
-//    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
-//    public void test005_inputMixSendNumber(String privateKey) throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(privateKey,DRIVER);
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc10("mix");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.contains("转账金额需大于 0") || centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
-//    }
-//
-//
-//    @Test(enabled = true, description = "input too Much trc10 send number", alwaysRun = true)
-//    public void test006_inputTooMuchSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc10("tooMuch");
-//        String centent = transfer.formatErrorHits_text.getText();
-//        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
-//    }
+
+    //使用一个没有足够冻结能量的账户,点击转账会出现激活消耗的0.1trx
+    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
+    public void test003_inputNotEnoughBandWidthSendMax10NumberUNActive() throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
+        Float number =  Float.parseFloat(removeSymbolFloat(transfer.real_money.getText()));
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
+        Assert.assertEquals(allNumber,number);
+    }
+
+    //max 未激活的显示
+    @Test(enabled = true, description = "test004_inputHaveBandWidthSendMax10NumberToUNActive")
+    public void test004_inputHaveBandWidthSendMax10NumberToUNActive() throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
+        Float number =  Float.parseFloat(removeSymbolFloat(transfer.real_money.getText()));
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
+        Assert.assertEquals(allNumber, number);
+    }
+
+    @Parameters({"privateKey"})
+    @Test(enabled = true, description = "input mix send number", alwaysRun = true)
+    public void test005_inputMixSendNumber(String privateKey) throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(privateKey,DRIVER);
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrc10("mix");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.contains("转账金额需大于 0") || centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    }
 
 
-    @Test(enabled = true, description = "trc10 check 10name", alwaysRun = true)
-    public void test007_check10Name() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage trxPage = asset.enterTrx10Page();
-        SendTrxPage sendTrxPage = trxPage.enterSendTrc10Page();
-        //TransferPage transferPage = trxPage.enterTransferPage();
-        Assert.assertTrue(sendTrxPage.tvName_text.getText().contains("token"));
+    @Test(enabled = true, description = "input too Much trc10 send number", alwaysRun = true)
+    public void test006_inputTooMuchSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrc10("tooMuch");
+        String centent = transfer.formatErrorHits_text.getText();
+        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
 
 
@@ -171,6 +156,7 @@ public class SendTrc10 extends Base {
         SendTrxPage transfer = asset.enterSendTrc10Page();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.swipScreenLitte();
         transfer.send_btn.click();
         waiteTime();
         String content = transfer.bandwidth_text.getText();
@@ -185,7 +171,7 @@ public class SendTrc10 extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.contains("转账 TRC10 通证") || transactionType.contains("TRC10") || transactionType.equals("transfer TRC10 token"));
+        Assert.assertTrue(transactionType.contains("TRC10 通证转账") || transactionType.contains("TRC10") || transactionType.equals("transfer TRC10 token"));
     }
 
     @Parameters({"address"})
@@ -202,18 +188,17 @@ public class SendTrc10 extends Base {
         System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
-
         Helper.swipScreenLitte(asset.driver);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2021"));
         Assert.assertTrue(sendIcon.contains("-"));
         Assert.assertEquals(detailPageSendAmount.substring(1),String.valueOf(sendTrxAmount));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
                 > Long.valueOf(currentMainNetBlockNum));
+        Helper.swipScreenLitte(asset.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
         String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
-
 
     }
 
@@ -229,7 +214,7 @@ public class SendTrc10 extends Base {
         String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Assert.assertTrue(receiveIcon.contains("+"));
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains("TRX"));
+        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(""));
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);

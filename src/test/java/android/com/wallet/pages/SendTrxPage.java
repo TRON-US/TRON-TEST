@@ -396,10 +396,6 @@ public class SendTrxPage extends AbstractPage {
         selectTokenType("10");
         switch (value) {
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":

@@ -118,9 +118,6 @@ public class SendTrx extends Base {
     public void test004_inputNotActiveAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
-//        transfer.sendKey(transfer.tranferCount_text, "1");
-//        transfer.swipScreenLitte();
-//        transfer.send_btn.click();
         String hits = transfer.note_text.getText();
         log("hits: " + hits);
         Assert.assertTrue(hits.contains("账户未激活") || hits.contains("Address not activated"));

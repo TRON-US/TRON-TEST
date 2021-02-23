@@ -20,7 +20,7 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         try {
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
             }
@@ -254,11 +254,11 @@ public class AssetPage extends AbstractPage {
     //enter AddAssert Page
     public AddAssertPage enterAddAssertPage() {
         try {
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
-                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 //TimeUnit.SECONDS.sleep(1);
             }
         } catch (Exception e) {

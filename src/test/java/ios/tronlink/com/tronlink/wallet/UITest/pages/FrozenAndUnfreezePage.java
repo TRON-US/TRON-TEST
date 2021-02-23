@@ -164,7 +164,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
         try {
             detailsAndRules_btn.click();
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             //TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
 
