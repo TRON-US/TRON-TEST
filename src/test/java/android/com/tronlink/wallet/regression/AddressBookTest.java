@@ -54,55 +54,55 @@ public class AddressBookTest extends Base {
         }
     }
 
-    @Test(enabled = true,description = "Address book page test", alwaysRun = true)
-    public void test001_enterAddressBookPage() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
-        Assert.assertTrue(addressBookPage.addressBook_title.getText().equals("地址本")
-            || addressBookPage.addressBook_title.getText().equalsIgnoreCase("Address Book"));
-        Assert.assertTrue(addressBookPage.addAddressBook_btn.isEnabled());
-    }
-
-    @Test(groups = {"P0"},enabled = true,description = "Add address book test", alwaysRun = true)
-    public void test002_addAddressBook() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
-        addressBookPage.addAddressBook_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(addressBookPage.addressBook_title.getText().equals("添加地址")
-            || addressBookPage.addressBook_title.getText().equalsIgnoreCase("Add Address"));
-
-
-        addressBookPage.save_btn.click();
-        Assert.assertTrue(addressBookPage.nameError_info.getText().equalsIgnoreCase("Please enter a name")
-        || addressBookPage.nameError_info.getText().equals("请输入名称"));
-
-        Random rand = new Random();
-        addressName = "addressBook-" + rand.nextInt(1000);
-        addressBookPage.addName_input.sendKeys(addressName);
-
-        addressBookPage.save_btn.click();
-        Assert.assertTrue(addressBookPage.addressError_info.getText().equalsIgnoreCase("Please enter an address")
-            || addressBookPage.addressError_info.getText().equals("请输入地址"));
-
-        addressBookPage.addAddress_input.sendKeys(addressString);
-        addressBookPage.addNote_input.sendKeys(addressString);
-        addressBookPage.save_btn.click();
-    }
-
-    @Test(enabled = true,description = "Address information test", alwaysRun = true)
-    public void test003_checkAddressInformation() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
-        Assert.assertTrue(addressBookPage.name_display.getText().equals(addressName));
-        Assert.assertTrue(addressBookPage.address_display.getText().equals(addressString));
-        Assert.assertTrue(addressBookPage.note_display.getText().equals(addressString));
-        Assert.assertTrue(addressBookPage.edit_btn.isEnabled());
-        Assert.assertTrue(addressBookPage.copy_btn.isEnabled());
-    }
+//    @Test(enabled = true,description = "Address book page test", alwaysRun = true)
+//    public void test001_enterAddressBookPage() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage minePage = asset.enterMinePage();
+//        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
+//        Assert.assertTrue(addressBookPage.addressBook_title.getText().equals("地址本")
+//            || addressBookPage.addressBook_title.getText().equalsIgnoreCase("Address Book"));
+//        Assert.assertTrue(addressBookPage.addAddressBook_btn.isEnabled());
+//    }
+//
+//    @Test(groups = {"P0"},enabled = true,description = "Add address book test", alwaysRun = true)
+//    public void test002_addAddressBook() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage minePage = asset.enterMinePage();
+//        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
+//        addressBookPage.addAddressBook_btn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(addressBookPage.addressBook_title.getText().equals("添加地址")
+//            || addressBookPage.addressBook_title.getText().equalsIgnoreCase("Add Address"));
+//
+//
+//        addressBookPage.save_btn.click();
+//        Assert.assertTrue(addressBookPage.nameError_info.getText().equalsIgnoreCase("Please enter a name")
+//        || addressBookPage.nameError_info.getText().equals("请输入名称"));
+//
+//        Random rand = new Random();
+//        addressName = "addressBook-" + rand.nextInt(1000);
+//        addressBookPage.addName_input.sendKeys(addressName);
+//
+//        addressBookPage.save_btn.click();
+//        Assert.assertTrue(addressBookPage.addressError_info.getText().equalsIgnoreCase("Please enter an address")
+//            || addressBookPage.addressError_info.getText().equals("请输入地址"));
+//
+//        addressBookPage.addAddress_input.sendKeys(addressString);
+//        addressBookPage.addNote_input.sendKeys(addressString);
+//        addressBookPage.save_btn.click();
+//    }
+//
+//    @Test(enabled = true,description = "Address information test", alwaysRun = true)
+//    public void test003_checkAddressInformation() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage minePage = asset.enterMinePage();
+//        AddressBookPage addressBookPage = minePage.enterAddressBookPage();
+//        Assert.assertTrue(addressBookPage.name_display.getText().equals(addressName));
+//        Assert.assertTrue(addressBookPage.address_display.getText().equals(addressString));
+//        Assert.assertTrue(addressBookPage.note_display.getText().equals(addressString));
+//        Assert.assertTrue(addressBookPage.edit_btn.isEnabled());
+//        Assert.assertTrue(addressBookPage.copy_btn.isEnabled());
+//    }
 
     @Test(enabled = true,description = "Send coin use address book test", alwaysRun = true)
     public void test004_sendCoinUseAddressBook() throws Exception {
@@ -110,7 +110,8 @@ public class AddressBookTest extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.addressBook_btn.click();
         transfer.addressName_display.click();
-        Assert.assertTrue(transfer.receiveAddress_text.getText().equals(addressString));
+        Assert.assertTrue(transfer.receiveAddress_text.getText().contains("addressBook-"));
+        Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("转出账户和接收账户不能相同"));
     }
 
     @Test(enabled = true,description = "Freeze use address book test", alwaysRun = true)
@@ -163,18 +164,6 @@ public class AddressBookTest extends Base {
         addressBookPage.addNote_input.sendKeys(shieldAddress);
         addressBookPage.save_btn.click();
     }
-
-//    @Test(enabled = true,description = "Send trz use shield address book test", alwaysRun = true)
-//    public void test008_sendTrzUseShieldAddressBook() throws Exception {
-//        //AssetPage asset = new AssetPage(DRIVER);
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.addressBook_btn.click();
-//        transfer.addressName_display.click();
-//        Assert.assertTrue(transfer.receiveAddress_text.getText().equals(shieldAddress));
-//        Assert.assertTrue(transfer.note_text.getText().contains("匿名"));
-//        Assert.assertTrue(transfer.note_text.getText().contains("地址"));
-//
-//    }
 
 
     public SendTrxPage enterToSendTrxPage() {
