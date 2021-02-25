@@ -38,7 +38,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeTextView")
     public WebElement textview;
 
-    @FindBy(name = "ic arrow drop")
+    @FindBy(name = "vote getRight arrow")
     public WebElement token_btn;
 
     @FindBy(name = "全部")
