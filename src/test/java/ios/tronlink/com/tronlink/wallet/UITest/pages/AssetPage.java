@@ -59,15 +59,6 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "titleLabel")
     public List<WebElement> titleLabel;
 
-    @FindBy(id = "scanBlockView")
-    public WebElement scanBlockView;
-
-    @FindBy(id = "shieldIV")
-    public WebElement shieldIV;
-
-    @FindBy(name = "转账")
-    public WebElement transfer_btn;
-
     @FindBy(name = "收款")
     public WebElement receipt_btn;
 
@@ -120,10 +111,6 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
-
-    @FindBy(name = "testAssetIssue_1567077083240")
-    public WebElement myNewAddAsset_text;
-
     @FindBy(id = "市场")
     public WebElement market_Tab_Button;
 
@@ -135,23 +122,6 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(name = "home manager")
     public WebElement addWallet_btn;
-
-    @FindBy(id = "com.tronlink.wallet:id/assets")
-    public WebElement assetsMain_btn;
-
-
-    @FindBy(xpath = "//*[@text='TRX']")
-    public WebElement trx_btn;
-
-
-    @FindBy(xpath = "//*[@text='TRX']")
-    public List<WebElement> trx20_btn;
-
-    @FindBy(id = "com.tronlink.wallet:id/rl_send")
-    public WebElement assets_btn;
-
-    @FindBy(xpath = "//*[@text='tronlink_token']")
-    public WebElement trx10_btn;
 
     @FindBy(name = "trxLabel")
     public WebElement trxValue;
@@ -173,7 +143,9 @@ public class AssetPage extends AbstractPage {
     public WebElement blockSyncName;
 
 
-
+    public WebElement transfer_btn(){
+       return driver.findElementByIosNsPredicate("label == \"转账\" AND name == \"转账\" AND type == \"XCUIElementTypeButton\"");
+    }
 
     public VotePage enterVotePage() {
         try {
@@ -220,7 +192,7 @@ public class AssetPage extends AbstractPage {
     //enter transfer Page
     public TransferPage enterTransportPage() {
         try {
-            transfer_btn.click();
+            transfer_btn().click();
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -291,19 +263,19 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterSendTrxPage() throws Exception {
         waiteTime();
-        transfer_btn.click();
+        transfer_btn().click();
         return new SendTrxPage(driver);
     }
     public SendTrxPage enterSendTrzPage() throws Exception {
         waiteTime();
-        transfer_btn.click();
+        transfer_btn().click();
         for (int i = 0; i < 5; i++) {
             if(Helper.contentTexts(titleLabel,"转出账户")){
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(10);
                 log("\n第" + i + "次 等待同步中....");
-                transfer_btn.click();
+                transfer_btn().click();
             }
         }
         return new SendTrxPage(driver);
