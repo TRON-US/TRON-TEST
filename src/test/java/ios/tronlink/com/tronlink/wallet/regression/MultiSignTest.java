@@ -18,12 +18,6 @@ public class MultiSignTest extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
         System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
-//        DRIVER.closeApp();
-//        log("开始移除app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-//        log("开始安装app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//        log("开始导入ownerPrivatekey");
         DRIVER.closeApp();
         DRIVER.launchApp();
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
@@ -114,36 +108,24 @@ public class MultiSignTest extends Base {
 
     }
 
-    @Parameters({"multiSignAddress"})
-    @Test(description = "valued sign address is right",alwaysRun = true)
-    public void test001_ValueSignAddressIsRight(String multiSignAddress) throws Exception{
-        System.out.println("test_001ValueSignAddressIsRight:");
-        MultiSignManagerPage managerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(managerPage.ownerAllkeys().contains(multiSignAddress));
-    }
+//    @Parameters({"multiSignAddress"})
+//    @Test(description = "valued sign address is right",alwaysRun = true)
+//    public void test001_ValueSignAddressIsRight(String multiSignAddress) throws Exception{
+//        System.out.println("test_001ValueSignAddressIsRight:");
+//        MultiSignManagerPage managerPage = enterMultiSignManagerPage();
+//        Assert.assertTrue(managerPage.ownerAllkeys().contains(multiSignAddress));
+//    }
 
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "add sign account", alwaysRun = true)
     public void test002_addSignAccountSuccess(String multiSignPrivateKey) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        assetPage.addWallet_btn.click();
-        waiteTime();
-        DRIVER.findElementByName("私钥").click();
-        waiteTime();
-        ImportPrivateKeyPage importPrivateKey = new ImportPrivateKeyPage(DRIVER);
-        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(multiSignPrivateKey);
-        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("Signed");
-        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-        waiteTime();
-        setPwdAgain.pwd_input.sendKeys("Test0001");
-        Helper.tapWhitePlace(DRIVER);
-        setPwdAgain.getComplish_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        new Helper().importMoreWallet(Helper.importType.normal,multiSignPrivateKey,"Signed","Test0001",assetPage.driver);
+        TimeUnit.SECONDS.sleep(1);
         String trxtext = assetPage.getTrxCount();
         log("value:" + trxtext);
-        Assert.assertTrue(Double.parseDouble(trxtext) < 100);
+        Assert.assertTrue(Float.parseFloat(removeSymbolFloat(trxtext)) < 100);
 
     }
 

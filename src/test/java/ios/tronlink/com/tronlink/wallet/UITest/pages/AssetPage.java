@@ -335,7 +335,7 @@ public class AssetPage extends AbstractPage {
 
     public String getTrxCount() throws Exception {
         waiteTime();
-        String trxCount = trxValue.getText().split(" ")[0];
+        String trxCount =  trxValue.getText().split(" ")[0];
         return trxCount;
     }
 
@@ -446,6 +446,7 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
 
     }
+
 
 
     public void waitShieldDataSynFinished() {
