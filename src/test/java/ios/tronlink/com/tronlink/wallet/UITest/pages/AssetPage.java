@@ -71,6 +71,9 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "收款")
     public WebElement receipt_btn;
 
+    @FindBy(name = "闪兑")
+    public WebElement swap_btn;
+
     @FindBy(id = "chainNameLabel")
     public WebElement chainNameLabel;
 
@@ -381,6 +384,12 @@ public class AssetPage extends AbstractPage {
         market_Tab_Button.click();
         TimeUnit.SECONDS.sleep(1);
         return new MarketPage(driver);
+    }
+
+    public SwapPage enterSwapPage() throws  Exception {
+        swap_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new SwapPage(driver);
     }
 
     public ReceiptPage enterReceiptPage() {

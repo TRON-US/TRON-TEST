@@ -43,28 +43,20 @@ public class AssetsPageTest extends BaseTest {
 
 
 
-//    @Test(description = "Assert vote test", alwaysRun = true)
-//    public void test004_gotovotePage() throws Exception {
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        VotePage receiptPage = assetPage.enterVotePage();
-//        Assert.assertEquals(receiptPage.vote_title.getText(), "投票");
-//    }
-
-    @Test(description = "Assert add assseet test", alwaysRun = true)
-    public void test005_gotoAssetPage() throws Exception {
+    @Test(description = "Assert vote test", alwaysRun = true)
+    public void test004_56gotovotePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        AddAssertPage receiptPage = assetPage.enterAddAssertPage();
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertEquals(receiptPage.title.getText(), "资产");
+        VotePage secondPage = assetPage.enterVotePage();
+        Assert.assertTrue(Helper.isElementExist(secondPage.driver,"投票"));
+        secondPage.whiteBackBtn.click();
+        AddAssertPage assassetPage = assetPage.enterAddAssertPage();
+        Assert.assertTrue(Helper.isElementExist(assassetPage.driver,"资产管理"));
+        secondPage.blackBackBtn.click();
+        SwapPage receiptPage = assetPage.enterSwapPage();
+        Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"闪兑"));
     }
 
-//    @Test(description = "Assert energy rent test",alwaysRun = true)
-//    public void test006_gotoRentPage() throws Exception {
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        EnergyRentPage receiptPage = assetPage.entereneryRantage();
-//        TimeUnit.SECONDS.sleep(3);
-//        Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"租用记录"));
-//    }
+
 
     @Test(enabled = true,description = "assets total amount test", alwaysRun = true)
     public void test007_AssetsTotalAmountTest() throws Exception {
