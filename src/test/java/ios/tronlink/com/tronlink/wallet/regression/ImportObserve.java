@@ -18,8 +18,12 @@ public class ImportObserve extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         waiteTime();
         assetPage.addWallet_btn.click();
-
         waiteTime();
+        try {
+            DRIVER.findElementById("normalWallet").click();
+        }catch (Exception ee){
+            log(" removed in nile");
+        }
         DRIVER.findElementByName("观察钱包").click();
         TimeUnit.SECONDS.sleep(2);
         return new ObservePage(DRIVER);
