@@ -232,15 +232,16 @@ public class DappSendTrx extends Base {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(1).click();
-
                 String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
-                System.out.println("tranferCount: " + tranfercount);
-                System.out.println("dappChainSendTrxAmount: " + dappChainSendTrxAmount);
-                if (tranfercount
-                    .equals(dappChainSendTrxAmount)) {
+                System.out.println("tranferCount: " + tranfercount + "length: " + tranfercount.length() );
+                System.out.println("dappChainSendTrxAmount: " + dappChainSendTrxAmount + "length: " + String.valueOf(dappChainSendTrxAmount).length()  );
+                System.out.println(tranfercount.contentEquals(String.valueOf(dappChainSendTrxAmount)));
+                if (tranfercount.contentEquals(String.valueOf(dappChainSendTrxAmount)))
+                {
                     exist = true;
                     break;
                 }
+
             } catch (Exception e) {
                 System.out.println(e);
             }
