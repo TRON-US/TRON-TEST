@@ -434,6 +434,11 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         addWallet_btn.click();
         waiteTime();
+        try {
+            driver.findElementById("normalWallet").click();
+        }catch (Exception ee){
+            log(" removed in nile");
+        }
         driver.findElementById("观察钱包").click();
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
