@@ -144,7 +144,7 @@ public class AssetPage extends AbstractPage {
 
 
     public WebElement transfer_btn(){
-       return driver.findElementByIosNsPredicate("label == \"转账\" AND name == \"转账\" AND type == \"XCUIElementTypeButton\"");
+       return driver.findElementByIosNsPredicate("name == '转账' AND type == 'XCUIElementTypeButton'");
     }
 
     public VotePage enterVotePage() {

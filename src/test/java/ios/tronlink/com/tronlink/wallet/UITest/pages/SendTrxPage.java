@@ -117,7 +117,7 @@ public class SendTrxPage extends AbstractPage {
 //        return  cells.get(1);
 
         try {
-            return driver.findElementById("TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
+            return driver.findElementById("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -126,11 +126,11 @@ public class SendTrxPage extends AbstractPage {
 
         try {
 
-            return driver.findElementById("TRX (TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
+            return driver.findElementById("TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
-            return driver.findElementById("TRX (TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
+            return driver.findElementById("TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7");
 
         }
 
@@ -140,7 +140,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
 //        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
 //        return  cells.get(2);
-        return driver.findElementById("tronlink_token (1000002)");
+        return driver.findElementById("1000002");
     }
 
     public void swip(){
