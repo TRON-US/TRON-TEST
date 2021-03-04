@@ -18,20 +18,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class AssetsPageTest extends Base {
 
-//    @BeforeClass
-//    public void setUpBeforeClass() throws Exception {
-//        setUp();
-//        //Base.getSign(privateKey);
-//    }
-
-//    @Parameters({"privateKey"})
-//    @BeforeMethod()
-//    public void setUpBefore(String privateKey) throws Exception{
-//        DRIVER.closeApp();
-//        DRIVER.launchApp();
-//        getSign(privateKey);
-//    }
-
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -48,7 +34,6 @@ public class AssetsPageTest extends Base {
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        //Base.tearDownAfterClass();
         try {
             DRIVER.quit();
         } catch (Exception e) {
