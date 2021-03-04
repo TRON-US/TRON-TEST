@@ -407,17 +407,7 @@ public class AssetPage extends AbstractPage {
     }
 
     public AddAssertPage enterAddAssertPage(){
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//            // if page display AD , cloese the AD
-//            if (ad_pic.isDisplayed()){
-//                adClose_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         addAssert_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new AddAssertPage(driver);
     }
 
