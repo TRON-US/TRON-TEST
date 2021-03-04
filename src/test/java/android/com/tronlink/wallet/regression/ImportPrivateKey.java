@@ -147,18 +147,7 @@ public class ImportPrivateKey extends Base {
     @Parameters({"privateKey"})
     @Test(description = "Wallet The same name but different capitalization", alwaysRun = true)
     public void test009_sameNameButDifferentCapitalization(String privateKey) throws Exception {
-//        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-//        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-//        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("auto_case");
-//        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-//        AssetPage asset = setPwdAgain.enterAssetPage("Test0001");
-//        MinePage mine = asset.enterMinePage();
-//        MyPursePage myPurse = mine.enterMyPursePage();
-//        AddwalletPage addwallet = myPurse.enterAddwalletPage();
-//        importPrivateKey = addwallet.enterImportPrivateKeyPage();
-//        setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-//        setPwd = setName.enterPrivateKeySetPwdPage("AUTO_CASE");
-//        Assert.assertTrue(setPwd.pwd_title.isDisplayed());
+
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         MyPursePage myPursePage = minePage.enterMyPursePage();
