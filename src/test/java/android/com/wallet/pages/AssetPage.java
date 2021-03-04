@@ -224,7 +224,13 @@ public class AssetPage extends AbstractPage {
             SettingPage set = mine.enterSettingPage();
             NodeSetPage nodeSet = set.enterNodeSetPage();
             nodeSet.enterSettingPageChoiseDappChain();
-            TimeUnit.SECONDS.sleep(8);
+            TimeUnit.SECONDS.sleep(2);
+            try {
+                driver.closeApp();
+                driver.activateApp("com.tronlinkpro.wallet");
+            } catch (Exception e){}
+            TimeUnit.SECONDS.sleep(6);
+
         }
     }
 

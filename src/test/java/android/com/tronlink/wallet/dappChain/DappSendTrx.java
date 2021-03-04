@@ -44,10 +44,6 @@ public class DappSendTrx extends Base {
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
         setToDAppChain();
-        try {
-            DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
     }
 
 

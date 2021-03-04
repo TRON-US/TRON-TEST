@@ -257,8 +257,13 @@ public class SendTrc20 extends Base {
       Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
       Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
       Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-      String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
-      Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
+      String recorders = transactionInfo.resouce_cost.getText();
+      String bandwidth = StringUtils.substringBeforeLast(recorders,"带宽");
+      String energy = StringUtils.substringBeforeLast(StringUtils.substringAfterLast(recorders,"带宽"),"能量");
+      log( " bandwidth : " + bandwidth + " energy: "+ energy);
+      Assert.assertTrue(Integer.parseInt(bandwidth.trim()) >= 0);
+      Assert.assertTrue(Integer.parseInt(energy.trim()) >= 0);
+
   }
 
 

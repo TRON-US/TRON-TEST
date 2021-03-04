@@ -34,11 +34,8 @@ public class DappSendTrc10 extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
-//      setToDAppChain();
-        try {
-            DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
-        } catch (Exception e){}
+        setToDAppChain();
+
     }
 
 
@@ -139,7 +136,10 @@ public class DappSendTrc10 extends Base {
 
     @Test(enabled = true,description = "Dapp chain send TRC10 recording")
     public void test007_dappChainSendTrc10Recording() throws Exception {
-        TrxPage trx = enterTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        Helper.swipScreenLitte(asset.driver);
+        TrxPage trx = asset.enterTrx10Page();
+
         int tries = 0;
         Boolean exist = false;
         while (exist == false && tries++ < 5) {
