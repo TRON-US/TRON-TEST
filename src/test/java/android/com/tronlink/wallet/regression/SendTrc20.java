@@ -208,7 +208,7 @@ public class SendTrc20 extends Base {
       Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
       Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
       System.out.println(transactionInfo.title_amount_test.getText());
-      String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+//      String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
       String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
       Helper.swipScreenLitte(asset.driver);
       Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2021"));
