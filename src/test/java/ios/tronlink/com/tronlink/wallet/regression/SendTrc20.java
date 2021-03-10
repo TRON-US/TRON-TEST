@@ -33,7 +33,11 @@ public class SendTrc20 extends BaseTest {
         TrxPage tokenpage = assetpage.enterTrx20Page();
 
         double trc20Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        SendTrxPage transfer = tokenpage.enterTransferPage();
+        System.out.println("trc20Before: " + trc20Before);
+        tokenpage.back_btn.click();
+        SendTrxPage transfer = enterToSendTrxPage();
+
+//        SendTrxPage transfer = tokenpage.enterTransferPage();
         String count = random(10, 10);
         count = Helper.getPrettyNumber(count);
         log(count);
@@ -89,7 +93,7 @@ public class SendTrc20 extends BaseTest {
         waiteTime();
         transfer.token_btn.click();
         waiteTime();
-        transfer.getTrc20Token().click();
+        transfer.clickOffsetElement(transfer.getTrc20Token());
         waiteTime();
         transfer.testfieldArray.get(2).sendKeys("1");
         TimeUnit.SECONDS.sleep(2);

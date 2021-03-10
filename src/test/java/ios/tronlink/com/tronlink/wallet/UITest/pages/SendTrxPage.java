@@ -114,19 +114,16 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement getTrc20Token() throws Exception{
         waiteTime();
-//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-//        return  cells.get(1);
-
         try {
+            System.out.println("--- find by mainChain ---");
             return driver.findElementById("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
 
         }
-
         try {
-
+            System.out.println("--- find by DappChain ---");
             return driver.findElementById("TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7");
 
         } catch (Exception e) {
@@ -139,8 +136,6 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement getTrc10Token() throws Exception{
         waiteTime();
-//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-//        return  cells.get(2);
         return driver.findElementById("1000002");
     }
 
@@ -202,7 +197,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         token_btn.click();
         waiteTime();
-        getTrc10Token().click();
+        clickOffsetElement(getTrc10Token());
         waiteTime();
         //calculate trx
         switch(value){
@@ -230,7 +225,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         token_btn.click();
         waiteTime();
-        getTrc20Token().click();
+        clickOffsetElement(getTrc20Token());
         waiteTime();
         //calculate trx
         switch(value){
@@ -407,9 +402,8 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         token_btn.click();
         waiteTime();
-        getTrc10Token().click();
+        clickOffsetElement(getTrc10Token());
         waiteTime();
-        testfieldArray.get(2).click();
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
@@ -431,8 +425,10 @@ public class SendTrxPage extends AbstractPage {
         Helper.closeKeyBoard(driver);
         waiteTime();
         token_btn.click();
-        getTrc20Token().click();
-        waiteTime();
+        clickOffsetElement(getTrc20Token());
+        System.out.println("find token an clicked");
+        TimeUnit.SECONDS.sleep(10);
+        System.out.println("testfieldArray Size: " + testfieldArray.size());
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
@@ -454,12 +450,12 @@ public class SendTrxPage extends AbstractPage {
         switch (value) {
             case "20":
                 token_btn.click();
-                getTrc20Token().click();
+                clickOffsetElement(getTrc20Token());
                 break;
             case "10":
                 token_btn.click();
                 waiteTime();
-                getTrc10Token().click();
+                clickOffsetElement(getTrc10Token());
                 break;
         }
     }

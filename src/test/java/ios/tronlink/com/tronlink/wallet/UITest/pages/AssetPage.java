@@ -19,16 +19,14 @@ public class AssetPage extends AbstractPage {
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
             }
-
         } catch (Exception e) {
             try {
                 if (adClose_btn.isDisplayed()) {
-
                     adClose_btn.click();
                 }
             } catch (Exception el) {

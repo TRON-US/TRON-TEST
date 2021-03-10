@@ -89,7 +89,7 @@ public class SendTrc10 extends BaseTest {
         waiteTime();
         transfer.token_btn.click();
         waiteTime();
-        transfer.getTrc10Token().click();
+        transfer.clickOffsetElement(transfer.getTrc10Token());
         waiteTime();
         transfer.testfieldArray.get(2).sendKeys("1");
         TimeUnit.SECONDS.sleep(2);
@@ -118,7 +118,7 @@ public class SendTrc10 extends BaseTest {
         Helper.closeKeyBoard(transfer.driver);
         waiteTime();
         transfer.token_btn.click();
-        transfer.getTrc20Token().click();
+        transfer.clickOffsetElement(transfer.getTrc20Token());
         waiteTime();
         transfer.testfieldArray.get(2).sendKeys("0.000001");
         TimeUnit.SECONDS.sleep(1);
