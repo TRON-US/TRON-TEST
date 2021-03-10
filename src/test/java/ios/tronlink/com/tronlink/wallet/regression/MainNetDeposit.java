@@ -146,7 +146,8 @@ public class MainNetDeposit extends BaseTest {
         trx.textField.click();
         trx.textField.sendKeys("0");
         Helper.tapWhitePlace(trx.driver);
-        trx.sendBtn.click();
+        trx.tranSendBtn.click();
+
         Assert.assertTrue( trx.amountErrorLabel.getText().contains("转账金额需大于 0"));
 
     }
