@@ -240,15 +240,15 @@ public class autoCreateTestngXml {
                 sb.append("        <parameter name=\"port\"  value=\"" + port++ + "\"/>\n");
                 sb.append("        <parameter name=\"udid\" value=\"" + udid + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"platformName\" value=\"" + platformName + "\"/>\n");
+                        "        <parameter name=\"platformName\" value=\"" + platformName + "\"/>\n");
                 sb.append("        <parameter name=\"platformVersion\" value= \"" + platformVersion
-                    + "\"/>\n");
+                        + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"deviceName\" value= \"" + deviceName + "\"/>\n");
+                        "        <parameter name=\"deviceName\" value= \"" + deviceName + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"noReset\" value=\"" + noReset.toString() + "\"/>\n");
+                        "        <parameter name=\"noReset\" value=\"" + noReset.toString() + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"webDriverPort\"  value=\"" + webDriverPort++ + "\"/>\n");
+                        "        <parameter name=\"webDriverPort\"  value=\"" + webDriverPort++ + "\"/>\n");
                 sb.append(
                         "        <parameter name=\"bpPort\"  value=\"" + bpPort++ + "\"/>\n");
                 sb.append(
@@ -258,50 +258,50 @@ public class autoCreateTestngXml {
                 sb.append(
                         "        <parameter name=\"xcodeSigningId\"  value=\"iPhone Developer\"/>\n");
                 sb.append(
-                    "        <parameter name=\"bundleId\"  value=\"" + "com.tronlink.hdwallet"
-                        + "\"/>\n");
+                        "        <parameter name=\"bundleId\"  value=\"" + "com.tronlink.hdwallet"
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
-                        + "\"/>\n");
+                        "        <parameter name=\"privateKey\"  value=\"" + entry.getValue()
+                                + "\"/>\n");
                 sb.append(
                         "        <parameter name=\"address\"  value=\"" + entry.getKey()
                                 + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"ownerPrivateKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
-                    + "\"/>\n");
+                        "        <parameter name=\"ownerPrivateKey\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"ownerAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "Address")
-                        + "\"/>\n");
+                        "        <parameter name=\"ownerAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.owner" + multiSignIndex.get() + "Address")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"multiSignPrivateKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
-                        + "\"/>\n");
+                        "        <parameter name=\"multiSignPrivateKey\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"multiSignAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
-                        + "\"/>\n");
+                        "        <parameter name=\"multiSignAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"witnessKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Key")
-                        + "\"/>\n");
+                        "        <parameter name=\"witnessKey\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Key")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"witnessAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Address")
-                        + "\"/>\n");
+                        "        <parameter name=\"witnessAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Address")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"witnessUrl\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
-                        + "\"/>\n");
+                        "        <parameter name=\"witnessUrl\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"shieldSK\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("IosShieldAccount.sk" + multiSignIndex.get())
-                        + "\"/>\n");
+                        "        <parameter name=\"shieldSK\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("IosShieldAccount.sk" + multiSignIndex.get())
+                                + "\"/>\n");
                 sb.append(
-                    "        <parameter name=\"shieldAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
-                        + "\"/>\n");
+                        "        <parameter name=\"shieldAddress\" value=\""
+                                + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
+                                + "\"/>\n");
                 sb.append(
                         "        <parameter name=\"publicShieldSK\" value=\""
                                 + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.privateKey" + multiSignIndex.get())
@@ -320,7 +320,7 @@ public class autoCreateTestngXml {
                     sb.append(classContent);
                 }*/
 //                if (deviceName.contains("autotest-ios")){
-                    sb.append(classContent);
+                sb.append(classContent);
 //                }else {
 //                    sb.append(classNoColdWallet);
 //                }
@@ -341,9 +341,13 @@ public class autoCreateTestngXml {
 
 
     public void beforeWrite() {
+
         StringBuilder sb = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-            + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
-            + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n");
+                + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
+                + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n"
+                + "    <listeners>\n"
+                + "        <listener class-name=\"android.com.wallet.UITest.retry.RetryListener\"/>\n"
+                + "    </listeners>\n");
         String res = sb.toString();
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"));
@@ -354,9 +358,9 @@ public class autoCreateTestngXml {
 
 
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
-        Long amount, String fromKey) {
+                                        Long amount, String fromKey) {
 //        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + fromAddress + "\ntoAddress: " + toAddress + "\namount: " + amount + "\nfromKey: " + fromKey);
-      try {
+        try {
             final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("to_address", toAddress);
@@ -411,7 +415,7 @@ public class autoCreateTestngXml {
     public static HttpResponse createConnect(String url, JsonObject requestBody) {
         try {
             httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-                connectionTimeout);
+                    connectionTimeout);
             httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
             httppost = new HttpPost(url);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
@@ -433,7 +437,7 @@ public class autoCreateTestngXml {
 
 
     public static String gettransactionsign(String httpNode, String transactionString,
-        String privateKey) {
+                                            String privateKey) {
         try {
             String requestUrl = "http://" + httpNode + "/wallet/gettransactionsign";
             JsonObject userBaseObj2 = new JsonObject();
@@ -453,7 +457,7 @@ public class autoCreateTestngXml {
         try {
             String requestUrl = "http://" + httpNode + "/wallet/broadcasttransaction";
             httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-                connectionTimeout);
+                    connectionTimeout);
             httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
             httppost = new HttpPost(requestUrl);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
