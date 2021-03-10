@@ -111,7 +111,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
-    @FindBy(id = "市场")
+    @FindBy(name = "市场")
     public WebElement market_Tab_Button;
 
     @FindBy(name = "我的")
@@ -355,6 +355,7 @@ public class AssetPage extends AbstractPage {
 
         market_Tab_Button.click();
         TimeUnit.SECONDS.sleep(1);
+        market_btn.click();
         return new MarketPage(driver);
     }
 
