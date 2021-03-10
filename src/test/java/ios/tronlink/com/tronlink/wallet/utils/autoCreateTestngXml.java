@@ -346,7 +346,7 @@ public class autoCreateTestngXml {
                 + "<!DOCTYPE suite SYSTEM \"http://testng.org/testng-1.0.dtd\">\n"
                 + "<suite name=\"ios.com.tronlink\" parallel=\"tests\" thread-count=\"" + iosDeviceNameList.size() + "\">\n"
                 + "    <listeners>\n"
-                + "        <listener class-name=\"android.com.wallet.UITest.retry.RetryListener\"/>\n"
+                + "        <listener class-name=\"ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener\"/>\n"
                 + "    </listeners>\n");
         String res = sb.toString();
         try {
