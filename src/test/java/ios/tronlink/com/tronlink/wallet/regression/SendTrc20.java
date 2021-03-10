@@ -60,7 +60,7 @@ public class SendTrc20 extends BaseTest {
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("mix");
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
     }
 
 

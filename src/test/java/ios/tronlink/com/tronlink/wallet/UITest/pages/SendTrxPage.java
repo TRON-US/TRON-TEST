@@ -409,6 +409,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         getTrc10Token().click();
         waiteTime();
+        testfieldArray.get(2).click();
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();

@@ -163,7 +163,7 @@ public class DappSendTrxTest extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("mix");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
 
     }
 
@@ -234,7 +234,8 @@ public class DappSendTrxTest extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("0.0000001");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("0.000001"));
+        transfer.send_btn.click();
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
 
     }
 

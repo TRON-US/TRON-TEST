@@ -67,7 +67,7 @@ public WebElement shieldedDetailBtn;
     @FindBy(id = "transferDepositBtn")
     public WebElement tranferInBtn;
 
-    @FindBy(id = "tokenPageSendBtn")
+    @FindBy(name = "发送")
     public WebElement sendBtn;
 
     @FindBy(id = "tokenPageReceiveBtn")
