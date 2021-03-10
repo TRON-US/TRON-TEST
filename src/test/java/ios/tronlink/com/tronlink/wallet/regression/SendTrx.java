@@ -4,6 +4,8 @@ import android.com.utils.Configuration;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -257,18 +259,22 @@ public class SendTrx extends BaseTest {
     @Parameters({ "udid"})
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
     public void test017_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
-        DRIVER.resetApp();
-        new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
+//        DRIVER.resetApp();
+//        new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(), "可转账数量");
-        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
+
+        String allnumber = removeSymbol(transfer.sendMaxCoinWithType());
+        System.out.println("allnumber : " + allnumber);
+        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
+        System.out.println("comfirmnumber : " + comfirmnumber);
+        Assert.assertEquals(allnumber, comfirmnumber);
+
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
-        Assert.assertEquals(allNumber, number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
 //        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
 //        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款地址"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 }

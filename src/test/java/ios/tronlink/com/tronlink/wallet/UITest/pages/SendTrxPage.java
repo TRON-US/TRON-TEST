@@ -97,7 +97,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "tronlink_token (1000002)")
     public WebElement TRX10Token;
 
-    @FindBy(id = "currentTRXCountLabel")
+    @FindBy(id = "trxLabel")
     public WebElement real_money;
     //
 //    @FindBy(id = "chargeLabel")

@@ -160,10 +160,12 @@ public class SendTrx extends Base {
         DRIVER.resetApp();
         new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType()));//sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(),"可转账数量");
-        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
+        String allnumber = removeSymbol(transfer.sendMaxCoinWithType());
+        System.out.println("allnumber : " + allnumber);
+        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
+        System.out.println("comfirmnumber : " + comfirmnumber);
+        Assert.assertEquals(allnumber, comfirmnumber);
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
-        Assert.assertEquals(allNumber,number);
         Assert.assertFalse(transfer.isElementExist("com.tronlinkpro.wallet:id/tv_no_bandwidth"));
 
     }
