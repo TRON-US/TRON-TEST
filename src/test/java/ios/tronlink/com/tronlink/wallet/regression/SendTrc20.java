@@ -133,15 +133,17 @@ public class SendTrc20 extends BaseTest {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType("20"),"可转账数量");
-        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
+
+        String allnumber = removeSymbol(transfer.sendMaxCoinWithType("20"));
+        System.out.println("allnumber : " + allnumber);
+        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
+        System.out.println("comfirmnumber : " + comfirmnumber);
+        Assert.assertEquals(allnumber, comfirmnumber);
+
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0");
-        Assert.assertEquals(allNumber,number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
     }
@@ -160,11 +162,10 @@ public class SendTrc20 extends BaseTest {
         Assert.assertEquals(allnumber, comfirmnumber);
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
 
+
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 }

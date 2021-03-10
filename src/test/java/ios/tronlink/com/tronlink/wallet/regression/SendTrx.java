@@ -248,8 +248,8 @@ public class SendTrx extends BaseTest {
         Assert.assertEquals(allNumber,number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
 //        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款地址"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
 //        Assert.assertFalse(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
@@ -259,8 +259,8 @@ public class SendTrx extends BaseTest {
     @Parameters({ "udid"})
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
     public void test017_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
+        DRIVER.resetApp();
+        new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
 
         String allnumber = removeSymbol(transfer.sendMaxCoinWithType());
@@ -271,10 +271,8 @@ public class SendTrx extends BaseTest {
 
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-//        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-//        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款地址"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款地址"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 }
