@@ -73,7 +73,7 @@ public class AbstractPage {
         driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
     }
     public void waiteTime() {
-        waiteTime(5);
+        waiteTime(15);
     }
 
     public void clickOffsetElement(WebElement wele){

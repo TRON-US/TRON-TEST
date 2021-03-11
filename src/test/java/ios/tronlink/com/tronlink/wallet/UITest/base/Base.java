@@ -71,14 +71,14 @@ public class Base {
     @BeforeClass(groups = {"P0"}) //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort,String xcodeSigningId,String noReset, String automationName, String xcodeOrgId,
         String bundleId) throws Exception {
-        log("我是Base类的Before");
+        log("启动app:" + deviceName);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 3) {
             tries++;
             try {
                 String url = "http://127.0.0.1:" + port + "/wd/hub";
-                System.out.println("try start driver " + tries + " times  URL: " + url + "\n");
+//                System.out.println("try start driver " + tries + " times  URL: " + url + "\n");
 
                 desiredCapabilities.setCapability("deviceName", deviceName);
                 desiredCapabilities.setCapability("platformName", platformName);
@@ -97,8 +97,8 @@ public class Base {
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());
-                System.out.println("--------------------\n"+ desiredCapabilities.toString());
-                System.out.println("\n URL: " +url+ "\n--------------------\n");
+//                System.out.println("--------------------\n"+ desiredCapabilities.toString());
+//                System.out.println("\n URL: " +url+ "\n--------------------\n");
                 URL remoteUrl = new URL(url);
                 DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
                 driver_is_start = true;

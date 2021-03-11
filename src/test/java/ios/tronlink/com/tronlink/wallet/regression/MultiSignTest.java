@@ -1,6 +1,5 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import android.com.utils.AppiumTestCase;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
@@ -17,11 +16,8 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerPrivateKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
-        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
-        DRIVER.closeApp();
-        DRIVER.launchApp();
+        log("|||||||||||||||||||||||||||||||||||||||");
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
-
     }
 
     @Parameters({"bundleId"})
@@ -61,10 +57,6 @@ public class MultiSignTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-//            System.out.println("开始移除app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//            System.out.println("开始安装app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }

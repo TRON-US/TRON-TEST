@@ -143,7 +143,7 @@ public class DappChainWithdraw10 extends BaseTest {
         log("feeNumber:"+ feeNumber.toString());
         Assert.assertTrue(feeNumber > 0 );
         Assert.assertTrue(outPage.titleText.getText().contains("转出签名"));
-        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("消耗资源"));
+//        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("消耗资源"));
         Assert.assertTrue(outPage.DappChainDepositsignTips.getText().contains("执行智能合约"));
         Assert.assertFalse( outPage.get_finish_btn().isEnabled());
         outPage.password_input.click();
@@ -164,7 +164,7 @@ public class DappChainWithdraw10 extends BaseTest {
         trx.textField.click();
         trx.textField.sendKeys("0");
         Helper.tapWhitePlace(trx.driver);
-        trx.tranSendBtn.click();
+
         Assert.assertTrue( trx.amountErrorLabel.getText().contains("转账金额需大于 0"));
 
     }

@@ -322,7 +322,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         Helper.swipScreen(driver);
         waiteTime();
-        driver.findElementsById("ic arrow drop").get(1).click();
+        driver.findElementById("ic arrow drop").click();
         waiteTime();
         driver.findElementById("active").click();
         waiteTime();

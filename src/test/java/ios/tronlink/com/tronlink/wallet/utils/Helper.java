@@ -231,8 +231,18 @@ public class Helper {
 
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
-        if(!isElementExist(DRIVER,"home manager")){
+        Boolean haveImport = isElementExist(DRIVER,"home manager");
+        System.out.println("haveImported: " + haveImport);
+        if(!haveImport){
             System.out.println("=================\n Need to import first Wallet \n ================");
+            try{
+                System.out.println("go to click alert");
+                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                driver.findElementByName("允许").click();
+                System.out.println("----alert----");
+            }catch (Exception ee){
+                System.out.println("alert Not Found!!!");
+            }
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
     }
@@ -375,7 +385,7 @@ public class Helper {
                 el = DRIVER.findElementByName(element);
                 Element_is_exist = true;
             }catch (NoSuchElementException e){
-                DRIVER.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             }
         }
         if(el != null){

@@ -253,8 +253,6 @@ public class AssetPage extends AbstractPage {
     //enter mine page
 
     public MinePage enterMinePage() throws Exception{
-        waiteTime(15);
-        mine_btn.click();
         waiteTime();
         mine_btn.click();
         return new MinePage(driver);
