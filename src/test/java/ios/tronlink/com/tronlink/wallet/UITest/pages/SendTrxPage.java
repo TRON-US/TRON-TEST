@@ -136,7 +136,7 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement getTrc10Token() throws Exception{
         waiteTime();
-        return driver.findElementById("1000002");
+        return driver.findElementById("(1000002)");
     }
 
     public void swip(){
