@@ -24,7 +24,7 @@ public class SendTrc10 extends BaseTest {
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
     }
-//
+
     @Test(description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
 
@@ -150,6 +150,7 @@ public class SendTrc10 extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
+        log("find eleTitle: " + "转账数量：" + successNumber);
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账数量："+successNumber));
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"TRC10 通证转账"));
     }

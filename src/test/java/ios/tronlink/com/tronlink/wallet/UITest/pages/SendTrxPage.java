@@ -116,7 +116,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         try {
             System.out.println("--- find by mainChain ---");
-            return driver.findElementById("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
+            return driver.findElementById("(TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -124,11 +124,11 @@ public class SendTrxPage extends AbstractPage {
         }
         try {
             System.out.println("--- find by DappChain ---");
-            return driver.findElementById("TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7");
+            return driver.findElementById("(TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
-            return driver.findElementById("TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7");
+            return driver.findElementById("(TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
 
         }
 
