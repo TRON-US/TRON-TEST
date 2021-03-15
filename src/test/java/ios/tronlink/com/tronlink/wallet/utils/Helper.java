@@ -234,12 +234,12 @@ public class Helper {
         Boolean haveImport = isElementExist(DRIVER,"home manager");
         System.out.println("haveImported: " + haveImport);
         if(!haveImport){
-            System.out.println("=================\n Need to import first Wallet \n ================");
+//            System.out.println("=================\n Need to import first Wallet \n ================");
             try{
-                System.out.println("go to click alert");
+//                System.out.println("go to click alert");
                 DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 driver.findElementByName("允许").click();
-                System.out.println("----alert----");
+//                System.out.println("----alert----");
             }catch (Exception ee){
                 System.out.println("alert Not Found!!!");
             }
@@ -379,7 +379,7 @@ public class Helper {
         Boolean Element_is_exist = false;
         WebElement el = null;
         while (!Element_is_exist && tries < 3) {
-            System.out.println("find  ("+  element  +") WElementTimes:" + tries);
+//            System.out.println("find  ("+  element  +") WElementTimes:" + tries);
             tries++;
             try {
                 el = DRIVER.findElementByName(element);
@@ -412,7 +412,7 @@ public class Helper {
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();
-                System.out.println("swip the screen...");
+//                System.out.println("swip the screen...");
             }
         }
 
