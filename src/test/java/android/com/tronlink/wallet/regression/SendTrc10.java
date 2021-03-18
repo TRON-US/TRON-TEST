@@ -90,7 +90,7 @@ public class SendTrc10 extends Base {
         new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
-        Float number =  Float.parseFloat(removeSymbolFloat(transfer.real_money.getText()));
+        String number = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertEquals(allNumber,number);
     }
@@ -102,7 +102,7 @@ public class SendTrc10 extends Base {
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
-        Float number =  Float.parseFloat(removeSymbolFloat(transfer.real_money.getText()));
+        String number = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
         Assert.assertEquals(allNumber, number);
     }
