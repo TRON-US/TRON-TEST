@@ -115,7 +115,7 @@ public class SendTrxPage extends AbstractPage {
 //    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
 //    public WebElement trc20_btn;
 
-    @FindBy(xpath = "//*[@text='(TCCc...5n71)']")
+    @FindBy(xpath = "//*[@text='(TCCcB***15n71)']")
     public WebElement trc20_btn;
 
 
@@ -188,7 +188,7 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement trc20_btn() {
         try {
-            return findElementByText("(TCCc...5n71)");
+            return findElementByText("(TCCcB***15n71)");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -197,12 +197,12 @@ public class SendTrxPage extends AbstractPage {
 
         try {
 
-            return findElementByText("(TXkd...NfD7)");
+            return findElementByText("(TXkdX***sNfD7)");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
 
-            return findElementByText("(TXkd...NfD7)");
+            return findElementByText("(TXkdX***sNfD7)");
 
         }
 
