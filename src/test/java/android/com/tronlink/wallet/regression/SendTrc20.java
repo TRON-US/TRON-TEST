@@ -77,17 +77,18 @@ public class SendTrc20 extends Base {
         SendTrxPage transfer = asset.enterSendTrxPage();
         double trc20Before = transfer.getTrc20Amount();
         sendTrc20Amount = getAnAmount();
-        System.out.println("sendTrc20Amount : " + sendTrc20Amount);
         String trc20SendAmount = Float.toString(sendTrc20Amount);
+        System.out.println("trc20SendAmount : " + trc20SendAmount);
         TrxPage trxpage = transfer.normalSendTrc20(trc20SendAmount);
         TimeUnit.SECONDS.sleep(5);
         Helper.swipeDownScreen(trxpage.driver);
-        Double afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
-
+        double afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
+        String rsoultString = "";
         for (int i =  0 ; i< 8 ;i++){
             afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
-            System.out.println("第"+i + "次\n " + " trc20Before: " + trc20Before  + " trc20SendAmount: " + trc20SendAmount +  " afterdouble: " + afterdouble );
-            if (String.valueOf(afterdouble).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount)))  ){
+            rsoultString =  String.format("%.6f" ,trc20Before - Double.parseDouble(trc20SendAmount));
+            System.out.println("第"+i + "次\n " + " trc20Before: " + trc20Before  + " trc20SendAmount: " + trc20SendAmount +  " afterdouble: " + afterdouble + " result：" +  rsoultString);
+            if (String.valueOf(afterdouble).equals(rsoultString)  ){
                 log("equal!!!");
                 break;
             }
@@ -95,16 +96,17 @@ public class SendTrc20 extends Base {
             Helper.swipeDownScreen(trxpage.driver);
 
         }
-        Assert.assertTrue(String.valueOf(afterdouble).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount))) );
+        Assert.assertTrue(String.valueOf(afterdouble).equals(rsoultString) );
 
     }
-
+//
     @Test(enabled = true,description = "input max send number")
     public void test002_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
+
     //使用一个没有trx但是又20币的账户转账20,会出现消耗trx的确认信息,点击转账后会失败
     @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
     public void test003_inputNotEnoughBandWidthSendMax20NumberUNActive() throws Exception {
@@ -114,6 +116,7 @@ public class SendTrc20 extends Base {
         transfer.sendMaxTrc20();
         Assert.assertFalse(transfer.send_btn.isEnabled());
         Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("账户未激活"));
+        log("note"+ "\n" + transfer.note_text.getText());
         Assert.assertTrue(transfer.note_text.getText().contains("账户未激活，可正常转账 TRC20 通证，但不会激活该账户。"));
 
     }

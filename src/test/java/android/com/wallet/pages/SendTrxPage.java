@@ -356,7 +356,7 @@ public class SendTrxPage extends AbstractPage {
         trc20_btn().click();
         String balance = balance_text.getText();
 
-        Double balancedouble = Double.parseDouble(prettyString(balance));
+        double balancedouble = Double.parseDouble(prettyString(balance));
 
         return balancedouble;
 //        double trc10Amount = 0;
@@ -437,6 +437,7 @@ public class SendTrxPage extends AbstractPage {
     public String sendMaxTrc20() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys(unActiveAddress);
+        tranferCount_text.click();
         selectTokenType("20");
         tvMax_btn.click();
         Helper.swipScreen(driver);
