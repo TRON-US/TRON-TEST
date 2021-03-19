@@ -92,7 +92,7 @@ public class SendTrc10 extends Base {
         Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
         String number = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
-        Assert.assertEquals(allNumber,number);
+        Assert.assertEquals(String.format("%.1f",allNumber), String.format("%.1f",Float.valueOf(number)));
     }
 
     //max 未激活的显示
@@ -104,7 +104,7 @@ public class SendTrc10 extends Base {
         Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
         String number = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
-        Assert.assertEquals(allNumber, number);
+        Assert.assertEquals(String.format("%.1f",allNumber), String.format("%.1f",Float.valueOf(number)));
     }
 
     @Parameters({"privateKey"})
