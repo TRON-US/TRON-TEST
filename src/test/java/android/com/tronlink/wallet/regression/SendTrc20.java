@@ -79,25 +79,23 @@ public class SendTrc20 extends Base {
         sendTrc20Amount = getAnAmount();
         System.out.println("sendTrc20Amount : " + sendTrc20Amount);
         String trc20SendAmount = Float.toString(sendTrc20Amount);
-        SendTrxSuccessPage stsp = transfer.normalSendTrc20(trc20SendAmount);
-        stsp.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        TrxPage trxpage = transfer.normalSendTrc20(trc20SendAmount);
         TimeUnit.SECONDS.sleep(5);
-        transfer = asset.enterSendTrxPage();
-        double trc20After = transfer.getTrc20Amount();
+        Helper.swipeDownScreen(trxpage.driver);
+        Double afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
+
         for (int i =  0 ; i< 8 ;i++){
-            System.out.println("第"+i + "次\n trc20After: " + trc20After + " trc20SendAmount: " + trc20SendAmount + " trc20Before: " + trc20Before);
-            System.out.println(trc20Before - Double.parseDouble(trc20SendAmount));
-            System.out.println(trc20After);
-            if (String.valueOf(trc20After).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount)))  ){
+            afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
+            System.out.println("第"+i + "次\n " + " trc20Before: " + trc20Before  + " trc20SendAmount: " + trc20SendAmount +  " afterdouble: " + afterdouble );
+            if (String.valueOf(afterdouble).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount)))  ){
                 log("equal!!!");
                 break;
             }
-            transfer.back_bt.click();
             TimeUnit.SECONDS.sleep(5);
-            transfer = asset.enterSendTrxPage();
-            trc20After = transfer.getTrc20Amount();
+            Helper.swipeDownScreen(trxpage.driver);
+
         }
-        Assert.assertTrue(String.valueOf(trc20After).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount))) );
+        Assert.assertTrue(String.valueOf(afterdouble).equals(String.valueOf(trc20Before - Double.parseDouble(trc20SendAmount))) );
 
     }
 

@@ -46,6 +46,13 @@ public abstract class AbstractPage {
         return driver.findElement(element);
 
     }
+    public String prettyString(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
+    }
 
     public void waiteTime(long time) {
         this.driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);

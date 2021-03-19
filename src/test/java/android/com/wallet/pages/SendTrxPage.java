@@ -322,7 +322,7 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
+    public TrxPage normalSendTrc20(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -334,8 +334,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        back_bt.click();
-        return new SendTrxSuccessPage(driver);
+        return new TrxPage(driver);
     }
 
     public double getTrc10Amount() throws Exception {
@@ -356,12 +355,16 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         trc20_btn().click();
         String balance = balance_text.getText();
-        double trc10Amount = 0;
-        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-        Matcher matcher = pattern.matcher(balance);
-        if (matcher.find())
-            trc10Amount = Double.valueOf(matcher.group(0));
-        return trc10Amount;
+
+        Double balancedouble = Double.parseDouble(prettyString(balance));
+
+        return balancedouble;
+//        double trc10Amount = 0;
+//        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
+//        Matcher matcher = pattern.matcher(balance);
+//        if (matcher.find())
+//            trc10Amount = Double.valueOf(matcher.group(0));
+//        return trc10Amount;
     }
 
 
