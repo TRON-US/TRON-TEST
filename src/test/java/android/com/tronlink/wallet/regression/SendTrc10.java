@@ -217,7 +217,7 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(""));
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        Assert.assertTrue(Float.valueOf(removeSymbol(detailPageReceiveAmount)) > 0);
+        Assert.assertTrue(Float.valueOf(removeSymbolFloat(detailPageReceiveAmount)) > 0);
 
         Helper.swipScreenLitte(transactionInfo.driver);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
