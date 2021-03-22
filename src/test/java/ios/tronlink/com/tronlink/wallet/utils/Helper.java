@@ -11,7 +11,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +25,7 @@ import io.appium.java_client.touch.offset.PointOption;
 public class Helper {
 
     public enum importType {normal,coldWallet,coldShieldWallet,shieldWallet}
+    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss ");
 
     public IOSDriver DRIVER = null;
 
@@ -231,15 +234,17 @@ public class Helper {
 
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
+        System.out.println(timeStamp.format(new Date()).toString());
         Boolean haveImport = isElementExist(DRIVER,"home manager");
-        System.out.println("haveImported: " + haveImport);
+        System.out.println(timeStamp.format(new Date()).toString());
+        System.out.println("haveImportedValue: " + haveImport);
         if(!haveImport){
-//            System.out.println("=================\n Need to import first Wallet \n ================");
+
             try{
-//                System.out.println("go to click alert");
+
                 DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 driver.findElementByName("允许").click();
-//                System.out.println("----alert----");
+
             }catch (Exception ee){
                 System.out.println("alert Not Found!!!");
             }
