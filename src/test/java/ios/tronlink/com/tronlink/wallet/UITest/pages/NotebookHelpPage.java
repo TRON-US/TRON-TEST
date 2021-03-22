@@ -42,7 +42,12 @@ public class NotebookHelpPage extends AbstractPage {
         inputAddressTF(addr);
         saveBtnClick();
     }
-
+    public void importAddressAndNameSuccess(String addr,String name) throws Exception{
+        intoAddpage();
+        inputNameTF(name);
+        inputAddressTF(addr);
+        saveBtnClick();
+    }
     public String  importWrongAddr(String addr) throws Exception{
         intoAddpage();
         inputAddressTF(addr);

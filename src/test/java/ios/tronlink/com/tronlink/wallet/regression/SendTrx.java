@@ -61,7 +61,7 @@ public class SendTrx extends BaseTest {
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
 
     }
 
@@ -166,7 +166,7 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(1).sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
 
     }
 
@@ -195,7 +195,7 @@ public class SendTrx extends BaseTest {
         transfer.sendKey(transfer.testfieldArray.get(1),"324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
     }
 
 
@@ -247,10 +247,8 @@ public class SendTrx extends BaseTest {
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertEquals(allNumber,number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-//        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
-//        Assert.assertFalse(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
     }

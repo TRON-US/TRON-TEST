@@ -35,7 +35,7 @@ public class Base {
 
     public IOSDriver<?> DRIVER;
 
-    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss ");
+    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss ");
 
     public int RetryAgainTimes = 5;
 

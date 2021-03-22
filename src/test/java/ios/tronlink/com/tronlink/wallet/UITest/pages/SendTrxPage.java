@@ -54,7 +54,7 @@ public class SendTrxPage extends AbstractPage {
     public WebElement gotoDetailBtn;
 
 
-    @FindBy(name = "立即转账")
+    @FindBy(name = "确认")
     public WebElement transferNow_btn;
 
 

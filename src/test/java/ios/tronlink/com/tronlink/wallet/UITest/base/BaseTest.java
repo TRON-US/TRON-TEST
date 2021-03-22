@@ -19,7 +19,6 @@ public class BaseTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        log("我是BaseTest类的Before");
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
 
     }

@@ -80,7 +80,7 @@ public class SendTrc20 extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.testfieldArray.get(0).sendKeys(" ");
         Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("钱包地址格式不正确"));
     }
 
 
