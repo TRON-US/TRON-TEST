@@ -63,51 +63,6 @@ public class MultiSignTest extends Base {
 
     }
 
-    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
-
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
-        MyPursePage pursePage = minePage.enterMyPursePage();
-        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
-        try {
-            if (managerPage.instructionBtn.isDisplayed()) {
-                System.out.println("\n1 times success 成功进入MultiSignMange");
-                return managerPage;
-            } else {
-                System.out.println("\n1 times fails 进入MultiSignMange");
-                System.out.println("\n2 times Try 进入MultiSignMange");
-                managerPage = pursePage.enterMultiSignManagerPageNew();
-                if (managerPage.instructionBtn.isDisplayed()) {
-                    System.out.println("\n2 times success 进入MultiSignMange");
-                }
-                return managerPage;
-            }
-        } catch (Exception e) {
-            System.out.println("\n1 times fails 进入MultiSignMange Exception");
-            System.out.println("\n2 times Try 进入MultiSignMange");
-            managerPage = pursePage.enterMultiSignManagerPage();
-            if (managerPage.instructionBtn.isDisplayed()) {
-                System.out.println("\n2 times success  进入MultiSignMange");
-            } else {
-                System.out.println("\n last try 进入MultiSignMange");
-                managerPage = pursePage.enterMultiSignManagerPageNew();
-                if (managerPage.instructionBtn.isDisplayed()) {
-                    System.out.println("\n last times success 进入MultiSignMange");
-                }
-            }
-            return managerPage;
-        }
-
-    }
-
-//    @Parameters({"multiSignAddress"})
-//    @Test(description = "valued sign address is right",alwaysRun = true)
-//    public void test001_ValueSignAddressIsRight(String multiSignAddress) throws Exception{
-//        System.out.println("test_001ValueSignAddressIsRight:");
-//        MultiSignManagerPage managerPage = enterMultiSignManagerPage();
-//        Assert.assertTrue(managerPage.ownerAllkeys().contains(multiSignAddress));
-//    }
-
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "add sign account", alwaysRun = true)
@@ -273,7 +228,8 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerAddress"})
     @Test(groups = {"P0"},description = "Add multiSignatureFeeCheck Test", alwaysRun = true)
     public void test019_multiSignatureFeeCheck(String ownerAddress) throws Exception {
-        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
         Assert.assertTrue(multiSignManagerPage.detailLabel.getText().contains("101"));
     }

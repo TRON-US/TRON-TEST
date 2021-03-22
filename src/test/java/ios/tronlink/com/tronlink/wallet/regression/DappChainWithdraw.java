@@ -161,7 +161,7 @@ public class DappChainWithdraw extends BaseTest {
         trx.textField.sendKeys("0");
         Helper.tapWhitePlace(trx.driver);
 
-        Assert.assertTrue( trx.amountErrorLabel.getText().contains("转账金额需大于 0"));
+        Assert.assertTrue( trx.amountErrorLabel.getText().contains("至少转出 10 TRX"));
 
     }
 

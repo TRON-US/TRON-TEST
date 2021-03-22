@@ -481,4 +481,35 @@ public class AssetPage extends AbstractPage {
 
     }
 
+    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
+
+        MinePage minePage = enterMinePage();
+        MyPursePage pursePage = minePage.enterMyPursePage();
+        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
+        try {
+            if (managerPage.instructionBtn.isDisplayed()) {
+                System.out.println("\n1 times success 成功进入MultiSignMange");
+                return managerPage;
+            } else {
+                managerPage = pursePage.enterMultiSignManagerPageNew();
+                if (managerPage.instructionBtn.isDisplayed()) {
+                    System.out.println("\n2 times success 成功进入MultiSignMange");
+                    return managerPage;
+                }else{
+                    managerPage = pursePage.enterMultiSignManagerPageNew();
+                    if (managerPage.instructionBtn.isDisplayed()) {
+                        System.out.println("\n3 times success 成功进入MultiSignMange");
+                        return managerPage;
+                    }else {
+                        managerPage = pursePage.enterMultiSignManagerPageNew();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log(e.getMessage());
+        }
+
+        return managerPage;
+    }
+
 }

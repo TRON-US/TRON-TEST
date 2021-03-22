@@ -301,7 +301,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
-        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").click();
+        transferNow_btn.click();
         TimeUnit.SECONDS.sleep(3);
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(3);
@@ -328,7 +328,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
-        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").click();
+        transferNow_btn.click();
         TimeUnit.SECONDS.sleep(3);
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(4);
