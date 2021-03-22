@@ -161,8 +161,8 @@ public class SendTrc10 extends BaseTest {
     public void test010_inputNotEnoughBandWidthSendMaxNumberUNActive(String udid) throws Exception {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
 
+        SendTrxPage transfer = enterToSendTrxPage();
         String allnumber = removeSymbol(transfer.sendMaxCoinWithType("10"));
         System.out.println("allnumber : " + allnumber);
         String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());

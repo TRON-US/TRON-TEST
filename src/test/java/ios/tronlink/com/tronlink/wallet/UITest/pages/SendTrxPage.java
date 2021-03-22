@@ -485,7 +485,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public boolean sendImmediatelyEnable(){
-       return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").isEnabled();
+       return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").isEnabled();
     }
 
 }
