@@ -1,7 +1,5 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import android.com.utils.Configuration;
-
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -9,7 +7,6 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.NotebookHelpPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class NoteAdrBookTest extends BaseTest {
