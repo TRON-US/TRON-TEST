@@ -115,8 +115,8 @@ public class SendTrc20 extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendMaxTrc20();
         Assert.assertFalse(transfer.send_btn.isEnabled());
-        Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("账户未激活"));
-        log("note"+ "\n" + transfer.note_text.getText());
+        Helper.swipeDownScreen(transfer.driver);
+        Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("账户未激活") );
         Assert.assertTrue(transfer.note_text.getText().contains("账户未激活，可正常转账 TRC20 通证，但不会激活该账户。"));
 
     }
