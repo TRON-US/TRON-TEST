@@ -23,17 +23,6 @@ public class BaseTest extends Base {
 
     }
 
-
-//    @AfterClass(alwaysRun = true)
-//    public void tearDownAfterClass() {
-//
-//        try {
-//            DRIVER.quit();
-//        } catch (Exception e) {
-//        }
-//
-//    }
-
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
