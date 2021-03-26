@@ -239,12 +239,12 @@ public class Helper {
         System.out.println(timeStamp.format(new Date()).toString());
         System.out.println("haveImportedValue: " + haveImport);
         if(!haveImport){
-//            try{
-//                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-//                driver.findElementByName("允许").click();
-//            }catch (Exception ee){
-//                System.out.println("alert Not Found!!!");
-//            }
+            try{
+                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                driver.findElementByName("允许").click();
+            }catch (Exception ee){
+                System.out.println("alert Not Found!!!");
+            }
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
     }
