@@ -459,7 +459,7 @@ public String getBackupKeystoreInClipboard(String password){
         System.out.println("end");
         TimeUnit.SECONDS.sleep(2);
         action.tap(PointOption.point(120,botY)).perform();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         carouselView.click();
         TimeUnit.SECONDS.sleep(1);
 

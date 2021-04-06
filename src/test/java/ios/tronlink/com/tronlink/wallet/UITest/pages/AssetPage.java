@@ -162,7 +162,7 @@ public class AssetPage extends AbstractPage {
         System.out.println("准备进入钱包管理页面");
         try {
             walletNameBtn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             System.out.println("成功进入钱包管理页面");
 
         } catch (Exception e) {
@@ -404,14 +404,15 @@ public class AssetPage extends AbstractPage {
     }
 
     public void goBackAndSeeMultiTips() throws Exception {
-        mine_btn.click();
-        asset_btn.click();
-        mine_btn.click();
-        asset_btn.click();
-        TimeUnit.SECONDS.sleep(6);
+        MyPursePage myPursePage = enterMyPursePage();
+        myPursePage.swipWalletTochangeNext();
+        enterMyPursePage();
+        myPursePage.swipWalletTochangeNext();
+        TimeUnit.SECONDS.sleep(3);
     }
 
-    public boolean isMultiSignViewShow() {
+    public boolean isMultiSignViewShow() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
         try {
             log(contentLabel.getText());
             return true;
