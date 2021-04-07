@@ -54,7 +54,7 @@ public class AddAssetsTest extends Base {
         AddAssertPage page = asset.enterAddAssertPage();
         Assert.assertTrue(page.tipview.getText().contains("可移除不需要展示的资产"));
         page.close.click();
-        Assert.assertTrue(page.et_search.getText().contains("输入名称/ID/合约地址"));
+        Assert.assertTrue(page.et_search.getText().contains("名称/ID/合约地址"));
         Assert.assertTrue(page.iv_search_icon.isEnabled());
         Assert.assertTrue(page.firstTab.getText().contains("首页资产管理"));
         Assert.assertTrue(page.secondTab.getText().contains("我的全部资产"));
@@ -63,6 +63,8 @@ public class AddAssetsTest extends Base {
         Assert.assertTrue(page.accountnumbers.size() > 1);
 
     }
+
+
 
 
 //    @Test(description = "Add Asset Page Tip Test",alwaysRun = true)
