@@ -9,6 +9,8 @@ import org.testng.annotations.*;
 import java.net.PortUnreachableException;
 import java.util.concurrent.TimeUnit;
 
+import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
+
 public class CommitteeTest extends Base {
 
     @Parameters({"witnessKey"})
@@ -37,11 +39,6 @@ public class CommitteeTest extends Base {
         }
     }
 
-    public CommitteeProposalPage enterCommitteeProposalPage(){
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        return mine.enterCommitteeProposalPage();
-    }
 
 
     @Test(enabled = true,description = "Enter Proposal Detail success test", alwaysRun = true)
@@ -78,6 +75,7 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(proposalDetailsPage.numValidVotes_btn.isDisplayed());
         Assert.assertTrue(proposalDetailsPage.createTime_text.isDisplayed());
         Assert.assertTrue(proposalDetailsPage.endTime_text.isDisplayed());
+        Helper.swipScreenLitte(proposalDetailsPage.driver);
         Assert.assertTrue(proposalDetailsPage.noApprovers_text.isDisplayed());
     }
 
@@ -129,13 +127,11 @@ public class CommitteeTest extends Base {
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         committeeProposalPage = createProposePage.createProposal();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
         proposalDetailsPage.proposalCancle_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         proposalDetailsPage.confirm_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        proposalDetailsPage.send_btn.click();
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();
         TimeUnit.SECONDS.sleep(10);
