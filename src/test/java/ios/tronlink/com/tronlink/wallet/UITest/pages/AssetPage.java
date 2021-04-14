@@ -19,16 +19,14 @@ public class AssetPage extends AbstractPage {
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         try {
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
             }
-
         } catch (Exception e) {
             try {
                 if (adClose_btn.isDisplayed()) {
-
                     adClose_btn.click();
                 }
             } catch (Exception el) {
@@ -50,6 +48,8 @@ public class AssetPage extends AbstractPage {
             }
         } catch (Exception e) {
         }
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+
     }
 
     @FindBy(id = "nameLabel")
@@ -59,17 +59,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "titleLabel")
     public List<WebElement> titleLabel;
 
-    @FindBy(id = "scanBlockView")
-    public WebElement scanBlockView;
-
-    @FindBy(id = "shieldIV")
-    public WebElement shieldIV;
-
-    @FindBy(name = "转账")
-    public WebElement transfer_btn;
-
     @FindBy(name = "收款")
     public WebElement receipt_btn;
+
+    @FindBy(name = "闪兑")
+    public WebElement swap_btn;
 
     @FindBy(id = "chainNameLabel")
     public WebElement chainNameLabel;
@@ -117,11 +111,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
-
-    @FindBy(name = "testAssetIssue_1567077083240")
-    public WebElement myNewAddAsset_text;
-
-    @FindBy(id = "市场")
+    @FindBy(name = "市场")
     public WebElement market_Tab_Button;
 
     @FindBy(name = "我的")
@@ -132,23 +122,6 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(name = "home manager")
     public WebElement addWallet_btn;
-
-    @FindBy(id = "com.tronlink.wallet:id/assets")
-    public WebElement assetsMain_btn;
-
-
-    @FindBy(xpath = "//*[@text='TRX']")
-    public WebElement trx_btn;
-
-
-    @FindBy(xpath = "//*[@text='TRX']")
-    public List<WebElement> trx20_btn;
-
-    @FindBy(id = "com.tronlink.wallet:id/rl_send")
-    public WebElement assets_btn;
-
-    @FindBy(xpath = "//*[@text='tronlink_token']")
-    public WebElement trx10_btn;
 
     @FindBy(name = "trxLabel")
     public WebElement trxValue;
@@ -170,7 +143,9 @@ public class AssetPage extends AbstractPage {
     public WebElement blockSyncName;
 
 
-
+    public WebElement transfer_btn(){
+       return driver.findElementByIosNsPredicate("name == '转账' AND type == 'XCUIElementTypeButton'");
+    }
 
     public VotePage enterVotePage() {
         try {
@@ -187,7 +162,7 @@ public class AssetPage extends AbstractPage {
         System.out.println("准备进入钱包管理页面");
         try {
             walletNameBtn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             System.out.println("成功进入钱包管理页面");
 
         } catch (Exception e) {
@@ -217,7 +192,7 @@ public class AssetPage extends AbstractPage {
     //enter transfer Page
     public TransferPage enterTransportPage() {
         try {
-            transfer_btn.click();
+            transfer_btn().click();
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -254,11 +229,11 @@ public class AssetPage extends AbstractPage {
     //enter AddAssert Page
     public AddAssertPage enterAddAssertPage() {
         try {
-            driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
-                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 //TimeUnit.SECONDS.sleep(1);
             }
         } catch (Exception e) {
@@ -278,8 +253,6 @@ public class AssetPage extends AbstractPage {
     //enter mine page
 
     public MinePage enterMinePage() throws Exception{
-        waiteTime(15);
-        mine_btn.click();
         waiteTime();
         mine_btn.click();
         return new MinePage(driver);
@@ -288,19 +261,19 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterSendTrxPage() throws Exception {
         waiteTime();
-        transfer_btn.click();
+        transfer_btn().click();
         return new SendTrxPage(driver);
     }
     public SendTrxPage enterSendTrzPage() throws Exception {
         waiteTime();
-        transfer_btn.click();
+        transfer_btn().click();
         for (int i = 0; i < 5; i++) {
             if(Helper.contentTexts(titleLabel,"转出账户")){
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(10);
                 log("\n第" + i + "次 等待同步中....");
-                transfer_btn.click();
+                transfer_btn().click();
             }
         }
         return new SendTrxPage(driver);
@@ -360,7 +333,7 @@ public class AssetPage extends AbstractPage {
 
     public String getTrxCount() throws Exception {
         waiteTime();
-        String trxCount = trxValue.getText().split(" ")[0];
+        String trxCount =  trxValue.getText().split(" ")[0];
         return trxCount;
     }
 
@@ -380,7 +353,14 @@ public class AssetPage extends AbstractPage {
 
         market_Tab_Button.click();
         TimeUnit.SECONDS.sleep(1);
+        market_btn.click();
         return new MarketPage(driver);
+    }
+
+    public SwapPage enterSwapPage() throws  Exception {
+        swap_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new SwapPage(driver);
     }
 
     public ReceiptPage enterReceiptPage() {
@@ -424,14 +404,15 @@ public class AssetPage extends AbstractPage {
     }
 
     public void goBackAndSeeMultiTips() throws Exception {
-        mine_btn.click();
-        asset_btn.click();
-        mine_btn.click();
-        asset_btn.click();
-        TimeUnit.SECONDS.sleep(6);
+        MyPursePage myPursePage = enterMyPursePage();
+        myPursePage.swipWalletTochangeNext();
+        enterMyPursePage();
+        myPursePage.swipWalletTochangeNext();
+        TimeUnit.SECONDS.sleep(3);
     }
 
-    public boolean isMultiSignViewShow() {
+    public boolean isMultiSignViewShow() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
         try {
             log(contentLabel.getText());
             return true;
@@ -453,8 +434,11 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         addWallet_btn.click();
         waiteTime();
-        driver.findElementById("normalWallet").click();
-        waiteTime();
+        try {
+            driver.findElementById("normalWallet").click();
+        }catch (Exception ee){
+            log(" removed in nile");
+        }
         driver.findElementById("观察钱包").click();
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
@@ -467,6 +451,7 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
 
     }
+
 
 
     public void waitShieldDataSynFinished() {
@@ -495,6 +480,37 @@ public class AssetPage extends AbstractPage {
             } catch (Exception e){}
         }
 
+    }
+
+    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
+
+        MinePage minePage = enterMinePage();
+        MyPursePage pursePage = minePage.enterMyPursePage();
+        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
+        try {
+            if (managerPage.instructionBtn.isDisplayed()) {
+                System.out.println("\n1 times success 成功进入MultiSignMange");
+                return managerPage;
+            } else {
+                managerPage = pursePage.enterMultiSignManagerPageNew();
+                if (managerPage.instructionBtn.isDisplayed()) {
+                    System.out.println("\n2 times success 成功进入MultiSignMange");
+                    return managerPage;
+                }else{
+                    managerPage = pursePage.enterMultiSignManagerPageNew();
+                    if (managerPage.instructionBtn.isDisplayed()) {
+                        System.out.println("\n3 times success 成功进入MultiSignMange");
+                        return managerPage;
+                    }else {
+                        managerPage = pursePage.enterMultiSignManagerPageNew();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log(e.getMessage());
+        }
+
+        return managerPage;
     }
 
 }

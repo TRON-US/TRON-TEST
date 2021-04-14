@@ -38,7 +38,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeTextView")
     public WebElement textview;
 
-    @FindBy(name = "ic arrow drop")
+    @FindBy(id = "vote getRight arrow")
     public WebElement token_btn;
 
     @FindBy(name = "全部")
@@ -54,7 +54,7 @@ public class SendTrxPage extends AbstractPage {
     public WebElement gotoDetailBtn;
 
 
-    @FindBy(name = "立即转账")
+    @FindBy(name = "确认")
     public WebElement transferNow_btn;
 
 
@@ -97,10 +97,11 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "tronlink_token (1000002)")
     public WebElement TRX10Token;
 
-    @FindBy(id = "atualTRXLabel")
+    @FindBy(id = "trxLabel")
     public WebElement real_money;
-
-    @FindBy(id = "chargeLabel")
+    //
+//    @FindBy(id = "chargeLabel")
+    @FindBy(id = "shieldedFeeLabel")
     public WebElement fee_text;
 
     @FindBy(id = "resourcesLabel")
@@ -113,24 +114,21 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement getTrc20Token() throws Exception{
         waiteTime();
-//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-//        return  cells.get(1);
-
         try {
-            return driver.findElementById("TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
+            System.out.println("--- find by mainChain ---");
+            return driver.findElementById("(TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
 
         }
-
         try {
-
-            return driver.findElementById("TRX (TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
+            System.out.println("--- find by DappChain ---");
+            return driver.findElementById("(TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
-            return driver.findElementById("TRX (TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
+            return driver.findElementById("(TXkdXbzjoLpxGAD2strP1zwjJzR6osNfD7)");
 
         }
 
@@ -138,9 +136,7 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement getTrc10Token() throws Exception{
         waiteTime();
-//        List<WebElement> cells =  driver.findElementByClassName("XCUIElementTypeTable").findElements(By.className("XCUIElementTypeCell"));
-//        return  cells.get(2);
-        return driver.findElementById("tronlink_token (1000002)");
+        return driver.findElementById("(1000002)");
     }
 
     public void swip(){
@@ -201,7 +197,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         token_btn.click();
         waiteTime();
-        getTrc10Token().click();
+        clickOffsetElement(getTrc10Token());
         waiteTime();
         //calculate trx
         switch(value){
@@ -229,7 +225,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         token_btn.click();
         waiteTime();
-        getTrc20Token().click();
+        clickOffsetElement(getTrc20Token());
         waiteTime();
         //calculate trx
         switch(value){
@@ -305,7 +301,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
-        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").click();
+        transferNow_btn.click();
         TimeUnit.SECONDS.sleep(3);
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(3);
@@ -326,13 +322,13 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         Helper.swipScreen(driver);
         waiteTime();
-        driver.findElementsById("ic arrow drop").get(1).click();
+        driver.findElementById("ic arrow drop").click();
         waiteTime();
         driver.findElementById("active").click();
         waiteTime();
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
-        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").click();
+        transferNow_btn.click();
         TimeUnit.SECONDS.sleep(3);
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(4);
@@ -406,7 +402,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         token_btn.click();
         waiteTime();
-        getTrc10Token().click();
+        clickOffsetElement(getTrc10Token());
         waiteTime();
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
@@ -429,8 +425,10 @@ public class SendTrxPage extends AbstractPage {
         Helper.closeKeyBoard(driver);
         waiteTime();
         token_btn.click();
-        getTrc20Token().click();
-        waiteTime();
+        clickOffsetElement(getTrc20Token());
+        System.out.println("find token an clicked");
+        TimeUnit.SECONDS.sleep(10);
+        System.out.println("testfieldArray Size: " + testfieldArray.size());
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
@@ -452,12 +450,12 @@ public class SendTrxPage extends AbstractPage {
         switch (value) {
             case "20":
                 token_btn.click();
-                getTrc20Token().click();
+                clickOffsetElement(getTrc20Token());
                 break;
             case "10":
                 token_btn.click();
                 waiteTime();
-                getTrc10Token().click();
+                clickOffsetElement(getTrc10Token());
                 break;
         }
     }
@@ -487,7 +485,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public boolean sendImmediatelyEnable(){
-       return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '立即转账'").isEnabled();
+       return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").isEnabled();
     }
 
 }

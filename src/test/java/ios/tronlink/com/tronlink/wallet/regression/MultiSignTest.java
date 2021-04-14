@@ -1,6 +1,5 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import android.com.utils.AppiumTestCase;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
@@ -17,17 +16,8 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerPrivateKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
-        System.out.println("pk: " + ownerPrivateKey + " udid: " + udid);
-//        DRIVER.closeApp();
-//        log("开始移除app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-//        log("开始安装app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//        log("开始导入ownerPrivatekey");
-        DRIVER.closeApp();
-        DRIVER.launchApp();
+        log("|||||||||||||||||||||||||||||||||||||||");
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
-
     }
 
     @Parameters({"bundleId"})
@@ -67,59 +57,10 @@ public class MultiSignTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-//            System.out.println("开始移除app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//            System.out.println("开始安装app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }
 
-    }
-
-    public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
-
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
-        MyPursePage pursePage = minePage.enterMyPursePage();
-        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
-        try {
-            if (managerPage.instructionBtn.isDisplayed()) {
-                System.out.println("\n1 times success 成功进入MultiSignMange");
-                return managerPage;
-            } else {
-                System.out.println("\n1 times fails 进入MultiSignMange");
-                System.out.println("\n2 times Try 进入MultiSignMange");
-                managerPage = pursePage.enterMultiSignManagerPageNew();
-                if (managerPage.instructionBtn.isDisplayed()) {
-                    System.out.println("\n2 times success 进入MultiSignMange");
-                }
-                return managerPage;
-            }
-        } catch (Exception e) {
-            System.out.println("\n1 times fails 进入MultiSignMange Exception");
-            System.out.println("\n2 times Try 进入MultiSignMange");
-            managerPage = pursePage.enterMultiSignManagerPage();
-            if (managerPage.instructionBtn.isDisplayed()) {
-                System.out.println("\n2 times success  进入MultiSignMange");
-            } else {
-                System.out.println("\n last try 进入MultiSignMange");
-                managerPage = pursePage.enterMultiSignManagerPageNew();
-                if (managerPage.instructionBtn.isDisplayed()) {
-                    System.out.println("\n last times success 进入MultiSignMange");
-                }
-            }
-            return managerPage;
-        }
-
-    }
-
-    @Parameters({"multiSignAddress"})
-    @Test(description = "valued sign address is right",alwaysRun = true)
-    public void test001_ValueSignAddressIsRight(String multiSignAddress) throws Exception{
-        System.out.println("test_001ValueSignAddressIsRight:");
-        MultiSignManagerPage managerPage = enterMultiSignManagerPage();
-        Assert.assertTrue(managerPage.ownerAllkeys().contains(multiSignAddress));
     }
 
 
@@ -127,25 +68,11 @@ public class MultiSignTest extends Base {
     @Test(groups = {"P0"},description = "add sign account", alwaysRun = true)
     public void test002_addSignAccountSuccess(String multiSignPrivateKey) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        assetPage.addWallet_btn.click();
-        waiteTime();
-        DRIVER.findElementById("normalWallet").click();
-        waiteTime();
-        DRIVER.findElementByName("私钥").click();
-        waiteTime();
-        ImportPrivateKeyPage importPrivateKey = new ImportPrivateKeyPage(DRIVER);
-        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(multiSignPrivateKey);
-        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("Signed");
-        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-        waiteTime();
-        setPwdAgain.pwd_input.sendKeys("Test0001");
-        Helper.tapWhitePlace(DRIVER);
-        setPwdAgain.getComplish_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        new Helper().importMoreWallet(Helper.importType.normal,multiSignPrivateKey,"Signed","Test0001",assetPage.driver);
+        TimeUnit.SECONDS.sleep(1);
         String trxtext = assetPage.getTrxCount();
         log("value:" + trxtext);
-        Assert.assertTrue(Double.parseDouble(trxtext) < 100);
+        Assert.assertTrue(Float.parseFloat(removeSymbolFloat(trxtext)) < 100);
 
     }
 
@@ -301,7 +228,8 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerAddress"})
     @Test(groups = {"P0"},description = "Add multiSignatureFeeCheck Test", alwaysRun = true)
     public void test019_multiSignatureFeeCheck(String ownerAddress) throws Exception {
-        MultiSignManagerPage multiSignManagerPage = enterMultiSignManagerPage();
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
         Assert.assertTrue(multiSignManagerPage.detailLabel.getText().contains("101"));
     }

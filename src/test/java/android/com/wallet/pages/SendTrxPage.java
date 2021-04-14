@@ -115,7 +115,7 @@ public class SendTrxPage extends AbstractPage {
 //    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
 //    public WebElement trc20_btn;
 
-    @FindBy(xpath = "//*[@text='(TCCc****5n71)']")
+    @FindBy(xpath = "//*[@text='(TCCcB***15n71)']")
     public WebElement trc20_btn;
 
 
@@ -166,6 +166,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_delete")
     public WebElement tv_delete;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_logo")
+    public WebElement token_itemIV;
+
 
     public SendTrxSuccessPage enterSendTrxSuccessPage() {
         confirm_btn.click();
@@ -175,9 +178,17 @@ public class SendTrxPage extends AbstractPage {
 
     public String trxCount = "";
 
+    public WebElement  trx_btn() {
+        return  token_itemIV;
+    }
+
+    public WebElement  trc10_btn() {
+        return findElementByText("(1000002)");
+    }
+
     public WebElement trc20_btn() {
         try {
-            return findElementByText("(TCCc****5n71)");
+            return findElementByText("(TCCcB***15n71)");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -186,12 +197,12 @@ public class SendTrxPage extends AbstractPage {
 
         try {
 
-            return findElementByText("(TXkd****NfD7)");
+            return findElementByText("(TXkdX***sNfD7)");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
 
-            return findElementByText("(TXkd****NfD7)");
+            return findElementByText("(TXkdX***sNfD7)");
 
         }
 
@@ -311,7 +322,7 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
+    public TrxPage normalSendTrc20(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         token_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -323,8 +334,7 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        back_bt.click();
-        return new SendTrxSuccessPage(driver);
+        return new TrxPage(driver);
     }
 
     public double getTrc10Amount() throws Exception {
@@ -345,12 +355,16 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         trc20_btn().click();
         String balance = balance_text.getText();
-        double trc10Amount = 0;
-        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-        Matcher matcher = pattern.matcher(balance);
-        if (matcher.find())
-            trc10Amount = Double.valueOf(matcher.group(0));
-        return trc10Amount;
+
+        double balancedouble = Double.parseDouble(prettyString(balance));
+
+        return balancedouble;
+//        double trc10Amount = 0;
+//        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
+//        Matcher matcher = pattern.matcher(balance);
+//        if (matcher.find())
+//            trc10Amount = Double.valueOf(matcher.group(0));
+//        return trc10Amount;
     }
 
 
@@ -365,10 +379,6 @@ public class SendTrxPage extends AbstractPage {
         //calculate trx
         switch (value) {
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":
@@ -389,10 +399,6 @@ public class SendTrxPage extends AbstractPage {
         selectTokenType("10");
         switch (value) {
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":
@@ -414,10 +420,6 @@ public class SendTrxPage extends AbstractPage {
 
         switch (value) {
             case "max":
-//                String current = balance_text.getText();
-//                int  index = current.lastIndexOf(" ");
-//                current = current.substring(index + 1,current.length());
-//                tranferCount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
             case "mix":
@@ -435,6 +437,7 @@ public class SendTrxPage extends AbstractPage {
     public String sendMaxTrc20() throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys(unActiveAddress);
+        tranferCount_text.click();
         selectTokenType("20");
         tvMax_btn.click();
         Helper.swipScreen(driver);
@@ -459,7 +462,7 @@ public class SendTrxPage extends AbstractPage {
         tvMax_btn.click();
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
-        System.out.println("allNumberText" + allNumberText);
+        System.out.println("allNumberText: " + allNumberText);
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         return allNumberText;
@@ -476,7 +479,7 @@ public class SendTrxPage extends AbstractPage {
             case "10":
                 token_btn.click();
                 TimeUnit.SECONDS.sleep(3);
-                trc10_btn.click();
+                trc10_btn().click();
         }
     }
 

@@ -126,7 +126,7 @@ public class MainNetDeposit extends BaseTest {
         log("feeNumber:"+ feeNumber.toString());
         Assert.assertTrue(feeNumber > 0 );
         Assert.assertTrue(outPage.titleText.getText().contains("转入签名"));
-        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("手续费"));
+//        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("消耗资源"));
         Assert.assertFalse( outPage.get_finish_btn().isEnabled());
         outPage.password_input.click();
         outPage.password_input.sendKeys("balabala");
@@ -146,7 +146,8 @@ public class MainNetDeposit extends BaseTest {
         trx.textField.click();
         trx.textField.sendKeys("0");
         Helper.tapWhitePlace(trx.driver);
-        Assert.assertTrue( trx.amountErrorLabel.getText().contains("格式错误"));
+
+        Assert.assertTrue( trx.amountErrorLabel.getText().contains("至少转入 10 TRX"));
 
     }
 

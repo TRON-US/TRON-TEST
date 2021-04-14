@@ -21,22 +21,12 @@ import java.util.concurrent.TimeUnit;
 
 public class CommitteeTest extends Base {
 
-    //    String privateKey = "2f5d032f395573491cb1e0684d684105ad5b5ff56db3f45f277e7928e791472a";
 
     @Parameters({"witnessKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String witnessKey, String udid) throws Exception {
         System.out.println("pk: " + witnessKey + " udid: " + udid);
-//        DRIVER.closeApp();
-//        log("开始移除app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-//        log("开始安装app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//        log("开始导入ownerPrivatekey");
-//        DRIVER.closeApp();
-        DRIVER.launchApp();
         new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
-
     }
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)

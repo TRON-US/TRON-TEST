@@ -13,6 +13,8 @@ import org.testng.annotations.Test;
 
 import org.testng.annotations.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * receipt trx test
  */
@@ -56,15 +58,16 @@ public class ReceiptTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         ReceiptPage receiptPage = asset.enterReceiptPage();
         Assert.assertEquals(receiptPage.ownerAddress_btn.getText(), address);
+        Assert.assertTrue(receiptPage.isElementExist("com.tronlinkpro.wallet:id/qr"));
+        Assert.assertTrue(receiptPage.pagetitle.getText().contains("扫描二维码向我付款"));
+        Assert.assertTrue(receiptPage.wallettitle.getText().contains("Auto-test"));
+        Assert.assertTrue(receiptPage.copy_btn.getText().contains("复制收款账户"));
+        receiptPage.copy_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(receiptPage.copy_btn.getText().contains("已复制"));
+
     }
 
-//    @Test(description = "Is the copy function normal")
-//    public void test002_copyNormal() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        ReceiptPage receiptPage =  asset.enterReceiptPage();
-//        receiptPage.copy_btn.click();
-//        Assert.assertEquals(false,receiptPage.copy_btn.isEnabled());
-//    }
 
 
 }

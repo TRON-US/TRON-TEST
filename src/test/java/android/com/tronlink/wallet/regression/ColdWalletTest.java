@@ -93,7 +93,7 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(coldAsset.coldWalletKnowledge_btn.isEnabled());
 
         coldAsset.deleteColdWalletKnowledge_btn.click();
-        coldAsset.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        coldAsset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
         Boolean knowldegeBtnIsDelete = false;
         try {
@@ -109,7 +109,7 @@ public class ColdWalletTest extends Base {
     public void test005_coldWalletAddWalletTest() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         coldAsset.addWallet_btn.click();
-        coldAsset.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        coldAsset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
         try {
             coldAsset.accountType_normalAccount.click();
@@ -122,7 +122,7 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(coldAsset.mnemonic_btn.isEnabled());
 
         coldAsset.keystore_btn.click();
-        coldAsset.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        coldAsset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Assert.assertTrue(coldAsset.privateKeyQrScan_btn.isEnabled());
     }
 

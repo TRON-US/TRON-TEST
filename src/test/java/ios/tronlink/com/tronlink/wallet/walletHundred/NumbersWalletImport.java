@@ -68,8 +68,6 @@ public class NumbersWalletImport extends BaseTest {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
-        DRIVER.findElementById("normalWallet").click();
-        waiteTime();
         DRIVER.findElementByName("私钥").click();
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);

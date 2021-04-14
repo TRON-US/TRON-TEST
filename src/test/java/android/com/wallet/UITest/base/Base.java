@@ -300,6 +300,13 @@ public class Base {
         return value;
     }
 
+    public String prettyString(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
+    }
     public String removeSymbol(String arg){
         String value = arg;
         if (arg.contains(",")){

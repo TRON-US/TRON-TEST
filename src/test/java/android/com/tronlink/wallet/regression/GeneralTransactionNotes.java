@@ -61,49 +61,49 @@ public class GeneralTransactionNotes extends Base {
     @Test(enabled = true, description = "sendTrxWithNoteSuccess", alwaysRun = true)
     public void test001_sendTrxWithNoteSuccess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        beforeTRXBalance = removeSymbolFloat(transfer.balance_text.getText().split(" ")[1]);
+        beforeTRXBalance = removeSymbolFloat(transfer.balance_text.getText());
         System.out.println("beforeTRXBalance-----"+beforeTRXBalance);
         sendTrxAmount = getAnAmount();
         System.out.println("SendTRXBalance-----"+sendTrxAmount);
         transfer.sendTrxTypeWithNotes(Float.toString(sendTrxAmount),trxnote,"trx");
     }
-    @Test(enabled = true, description = "sendTrx10WithNoteSuccess", alwaysRun = true)
-    public void test002_sendTrx10WithNoteSuccess() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.selectCoinType("trc10");
-        beforeTRC10Balance = removeSymbolFloat(transfer.balance_text.getText().split(" ")[1]);
-        System.out.println("beforeTRC10Balance-----"+beforeTRC10Balance);
-        sendTrc10Amount = getAnAmount();
-        System.out.println("SendTRC10Balance-----"+sendTrc10Amount);
-        transfer.sendTrxTypeWithNotes(Float.toString(sendTrc10Amount),trc10note,"trc10");
-    }
-
-    @Test(enabled = true, description = "sendTrx20WithNoteSuccess", alwaysRun = true)
-    public void test003_sendTrx20WithNoteSuccess() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.selectCoinType("trc20");
-        beforeTRC20Balance = removeSymbolFloat(transfer.balance_text.getText().split(" ")[1]);
-        System.out.println("beforeTRC20Balance-----"+beforeTRC20Balance);
-        sendTrc20Amount = getAnAmount();
-        System.out.println("SendTRC20Balance-----"+sendTrc20Amount);
-        transfer.sendTrxTypeWithNotes(Float.toString(sendTrc20Amount),trc20note,"trc20");
-    }
-
-    @Test(enabled = true, description = "test004_testDeleteNote", alwaysRun = true)
-    public void test004_testDeleteNote() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.swip();
-        transfer.swip();
-        waiteTime();
-        transfer.add_note.click();
-        waiteTime();
-        transfer.et_note.sendKeys("I will be delete");
-        waiteTime();
-        Assert.assertEquals(transfer.et_note.getText(),"I will be delete");
-        waiteTime();
-        transfer.tv_delete.click();
-        Assert.assertEquals(transfer.et_note.getText(),"请输入备注，不超过200字");
-    }
+//    @Test(enabled = true, description = "sendTrx10WithNoteSuccess", alwaysRun = true)
+//    public void test002_sendTrx10WithNoteSuccess() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.selectCoinType("trc10");
+//        beforeTRC10Balance = removeSymbolFloat(transfer.balance_text.getText());
+//        System.out.println("beforeTRC10Balance-----"+beforeTRC10Balance);
+//        sendTrc10Amount = getAnAmount();
+//        System.out.println("SendTRC10Balance-----"+sendTrc10Amount);
+//        transfer.sendTrxTypeWithNotes(Float.toString(sendTrc10Amount),trc10note,"trc10");
+//    }
+//
+//    @Test(enabled = true, description = "sendTrx20WithNoteSuccess", alwaysRun = true)
+//    public void test003_sendTrx20WithNoteSuccess() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.selectCoinType("trc20");
+//        beforeTRC20Balance = removeSymbolFloat(transfer.balance_text.getText());
+//        System.out.println("beforeTRC20Balance-----"+beforeTRC20Balance);
+//        sendTrc20Amount = getAnAmount();
+//        System.out.println("SendTRC20Balance-----"+sendTrc20Amount);
+//        transfer.sendTrxTypeWithNotes(Float.toString(sendTrc20Amount),trc20note,"trc20");
+//    }
+//
+//    @Test(enabled = true, description = "test004_testDeleteNote", alwaysRun = true)
+//    public void test004_testDeleteNote() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.swip();
+//        transfer.swip();
+//        waiteTime();
+//        transfer.add_note.click();
+//        waiteTime();
+//        transfer.et_note.sendKeys("I will be delete");
+//        waiteTime();
+//        Assert.assertEquals(transfer.et_note.getText(),"I will be delete");
+//        waiteTime();
+//        transfer.tv_delete.click();
+//        Assert.assertEquals(transfer.et_note.getText(),"请输入备注，不超过200字");
+//    }
 
     @Test(enabled = true, description = "test004_testInputMaxLength", alwaysRun = true)
     public void test005_testInputMaxLength() throws Exception {
@@ -139,47 +139,47 @@ public class GeneralTransactionNotes extends Base {
         Assert.assertEquals(recorderNotes,trxnote);
 
     }
-    @Parameters({"address"})
-    @Test(enabled = true, description = "Trx transaction detail 10 info note test", alwaysRun = true)
-    public void test007_trx10TransactionDetailInfo(String address) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
-        String recorderNotes = transactionInfo.tv_note.getText();
-        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.swipScreen(transactionInfo.driver);
-        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String detailPageSendAmount = recorderNumber.substring(1);
-        String sendIcon = recorderNumber.substring(0,1);
-        System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
-        Assert.assertTrue(sendIcon.equals("-"));
-        Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrc10Amount));
-        Assert.assertEquals(recorderNotes,trc10note);
-
-    }
-    //需要适当的调整UI位置来进行识别
-    @Parameters({"address"})
-    @Test(enabled = true, description = "Trx transaction detail 20 info note test", alwaysRun = true)
-    public void test008_trx20TransactionDetailInfo(String address) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
-        String recorderNotes = transactionInfo.tv_note.getText();
-
-        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.swipScreen(transactionInfo.driver);
-        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String detailPageSendAmount = recorderNumber.substring(1);
-        String sendIcon = recorderNumber.substring(0,1);
-        System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
-        Assert.assertTrue(sendIcon.equals("-"));
-        Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrc20Amount));
-        Assert.assertEquals(recorderNotes,trc20note);
-
-    }
+//    @Parameters({"address"})
+//    @Test(enabled = true, description = "Trx transaction detail 10 info note test", alwaysRun = true)
+//    public void test007_trx10TransactionDetailInfo(String address) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
+//        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+//        String recorderNotes = transactionInfo.tv_note.getText();
+//        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+//        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        Helper.swipScreen(transactionInfo.driver);
+//        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+//        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+//        String detailPageSendAmount = recorderNumber.substring(1);
+//        String sendIcon = recorderNumber.substring(0,1);
+//        System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
+//        Assert.assertTrue(sendIcon.equals("-"));
+//        Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrc10Amount));
+//        Assert.assertEquals(recorderNotes,trc10note);
+//
+//    }
+//    //需要适当的调整UI位置来进行识别
+//    @Parameters({"address"})
+//    @Test(enabled = true, description = "Trx transaction detail 20 info note test", alwaysRun = true)
+//    public void test008_trx20TransactionDetailInfo(String address) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
+//        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+//        String recorderNotes = transactionInfo.tv_note.getText();
+//
+//        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
+//        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        Helper.swipScreen(transactionInfo.driver);
+//        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
+//        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
+//        String detailPageSendAmount = recorderNumber.substring(1);
+//        String sendIcon = recorderNumber.substring(0,1);
+//        System.out.println("recorderNumber: " + recorderNumber + " sendIcon: " + sendIcon  + " detailPageSendAmount: " + detailPageSendAmount);
+//        Assert.assertTrue(sendIcon.equals("-"));
+//        Assert.assertEquals(detailPageSendAmount,String.valueOf(sendTrc20Amount));
+//        Assert.assertEquals(recorderNotes,trc20note);
+//
+//    }
 
 }

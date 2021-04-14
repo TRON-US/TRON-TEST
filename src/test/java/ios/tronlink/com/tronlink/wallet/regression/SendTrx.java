@@ -4,6 +4,8 @@ import android.com.utils.Configuration;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -59,7 +61,7 @@ public class SendTrx extends BaseTest {
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
 
     }
 
@@ -113,14 +115,14 @@ public class SendTrx extends BaseTest {
 
 
 
-    @Test(description = "input mix send number",alwaysRun = true)
-    public void test007_inputMixSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrx("mix");
-        Helper.tapWhitePlace(transfer.driver);
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
-    }
+//    @Test(description = "input mix send number",alwaysRun = true)
+//    public void test007_inputMixSendNumber() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrx("mix");
+//        Helper.tapWhitePlace(transfer.driver);
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
+//    }
 
 
 
@@ -164,7 +166,7 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(1).sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
 
     }
 
@@ -193,7 +195,7 @@ public class SendTrx extends BaseTest {
         transfer.sendKey(transfer.testfieldArray.get(1),"324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("账户不正确"));
+        Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
     }
 
 
@@ -206,7 +208,8 @@ public class SendTrx extends BaseTest {
         transfer.testfieldArray.get(2).sendKeys("0.0000001");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("0.000001"));
+        transfer.send_btn.click();
+        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
 
     }
 
@@ -239,15 +242,13 @@ public class SendTrx extends BaseTest {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(),"可转账数量");
+        Float allNumber =   Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType()));//sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(),"可转账数量");
         Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertEquals(allNumber,number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收账户"));
-        Assert.assertFalse(Helper.isElementExist(transfer.driver,"消耗资源"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
     }
@@ -259,15 +260,17 @@ public class SendTrx extends BaseTest {
         DRIVER.resetApp();
         new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber = sepRightNumberTextToFloat(transfer.sendMaxCoinWithType(), "可转账数量");
-        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
+
+        String allnumber = removeSymbol(transfer.sendMaxCoinWithType());
+        System.out.println("allnumber : " + allnumber);
+        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
+        System.out.println("comfirmnumber : " + comfirmnumber);
+        Assert.assertEquals(allnumber, comfirmnumber);
+
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
-        Assert.assertEquals(allNumber, number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"实际到账金额"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"接收账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 }

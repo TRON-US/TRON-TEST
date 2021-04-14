@@ -19,21 +19,9 @@ public class BaseTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-        log("我是BaseTest类的Before");
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
 
     }
-
-
-//    @AfterClass(alwaysRun = true)
-//    public void tearDownAfterClass() {
-//
-//        try {
-//            DRIVER.quit();
-//        } catch (Exception e) {
-//        }
-//
-//    }
 
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)

@@ -23,7 +23,11 @@ public class ReceiptPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/copy")
     public WebElement copy_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_top")
+    public WebElement pagetitle;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    public WebElement wallettitle;
 
 
 }

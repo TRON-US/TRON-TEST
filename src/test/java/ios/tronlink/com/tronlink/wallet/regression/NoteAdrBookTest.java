@@ -20,6 +20,8 @@ public class NoteAdrBookTest extends BaseTest {
         TimeUnit.SECONDS.sleep(1);
         return new NotebookHelpPage(DRIVER);
     }
+
+
     @Test(groups = {"P0"},description = "import a address into notebook",alwaysRun = true)
     public void Test01_ImportAddressIntoNoteBookSuccess() throws Exception{
         NotebookHelpPage page = enterAdrNoteBook();
@@ -70,4 +72,36 @@ public class NoteAdrBookTest extends BaseTest {
         page.deleteNoteAddress();
         Assert.assertTrue(page.isNoDate());
     }
+
+
+//    @Test(description = "test000_addressBookTest",alwaysRun = true)
+//    public void test000_addressBookFunctionTest() throws Exception {
+//        NotebookHelpPage addressBookPage =  enterAdrNoteBook();
+//
+//        int book = 1;
+//        String addressString;
+//        String addressName;
+//        while (book < 30) {
+//            if (book < 11){
+//                addressString = Configuration.getByPath("testng.conf")
+//                        .getString("androidMultiSignAccount.multiSign" + String.valueOf(book) + "Address");
+//                addressName = "addressBook-" + String.valueOf(book);
+//
+//            }else if(book < 21){
+//                addressString = Configuration.getByPath("testng.conf")
+//                        .getString("iosMultiSignAccount.multiSign" + String.valueOf(book - 10) + "Address");
+//                addressName = "addressBook-" + String.valueOf(book);
+//
+//            }else {
+//                addressString = Configuration.getByPath("testng.conf")
+//                        .getString("iosMultiSignAccount.owner" + String.valueOf(book-20) + "Address");
+//                addressName = "addressBook-" + String.valueOf(book);
+//
+//            }
+//            addressBookPage.importAddressAndNameSuccess(addressString,addressName);
+//            book++;
+//        }
+//    }
+
+
 }

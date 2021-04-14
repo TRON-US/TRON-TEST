@@ -113,14 +113,13 @@ public class MainNetDeposit20 extends Base {
         TrxPage trx = enterTrc20Page();
         int tries = 0;
         Boolean exist = false;
-        while (exist == false && tries++ < 3) {
+        while (exist == false && tries++ < 5) {
             try {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrx20Page();
                 trx.tranfer_tab.get(3).click();
                 String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-                System.out.println("tranferInCount = " + tranferInCount);
-                System.out.println("depositTrc20Amount = " + depositTrc20Amount);
+                System.out.println("tranferInCount =" + tranferInCount + " depositTrc20Amount =" + depositTrc20Amount);
                 if (Float.toString(depositTrc20Amount).substring(0,5).equals(tranferInCount.substring(1,6))) {
                     exist = true;
                     break;

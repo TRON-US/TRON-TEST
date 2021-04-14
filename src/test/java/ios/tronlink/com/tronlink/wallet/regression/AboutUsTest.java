@@ -1,6 +1,9 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 
+import android.com.utils.Configuration;
+import android.com.wallet.pages.AddressBookPage;
+
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -9,6 +12,7 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
@@ -16,6 +20,8 @@ import java.util.concurrent.TimeUnit;
  * 关于我们功能测试
  */
 public class AboutUsTest extends BaseTest {
+
+
 
 
     @Test(description = "test AboutUs test",alwaysRun = true)

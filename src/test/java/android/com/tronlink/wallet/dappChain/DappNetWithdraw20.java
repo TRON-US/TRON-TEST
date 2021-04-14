@@ -34,8 +34,6 @@ public class DappNetWithdraw20 extends Base {
 
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
-        //reset DAPP chain trun main chain
-        //changeToMainChain();
         try {
             DRIVER.quit();
         } catch (Exception e) {
@@ -48,10 +46,7 @@ public class DappNetWithdraw20 extends Base {
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
         setToDAppChain();
-        try {
-            DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
-        } catch (Exception e){}
+
     }
 
     @AfterMethod(alwaysRun = true)

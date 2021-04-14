@@ -67,8 +67,12 @@ public WebElement shieldedDetailBtn;
     @FindBy(id = "transferDepositBtn")
     public WebElement tranferInBtn;
 
+
     @FindBy(id = "tokenPageSendBtn")
     public WebElement sendBtn;
+
+    @FindBy(name = "发送")
+    public WebElement tranSendBtn;
 
     @FindBy(id = "tokenPageReceiveBtn")
     public WebElement receiveBtn;
@@ -187,12 +191,14 @@ public WebElement shieldedDetailBtn;
         waiteTime();
         Helper.swipRefreshScreen(driver);
         waiteTime();
-        driver.findElementByName(record).click();
-        waiteTime();
         try{
+            TimeUnit.SECONDS.sleep(1);
+            driver.findElementById(record).click();
+            waiteTime();
             log(driver.findElementById("headerLabel").getText());
 
         }catch (Exception e){
+
             driver.findElementByName(record).click();
             log(driver.findElementById("headerLabel").getText());
         }

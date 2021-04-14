@@ -3,8 +3,10 @@ package android.com.wallet.pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -43,6 +45,13 @@ public abstract class AbstractPage {
         new WebDriverWait(driver,30).until(ExpectedConditions.elementToBeClickable(element));
         return driver.findElement(element);
 
+    }
+    public String prettyString(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
     }
 
     public void waiteTime(long time) {
@@ -114,4 +123,17 @@ public abstract class AbstractPage {
         System.out.println("x: " + x + " y: " + y + " width: " + width + " hight: "+ hight);
     }
 
+
+
+    public  void swipScreenLitte(){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height/2))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height/3))
+                .release().perform();
+    }
 }

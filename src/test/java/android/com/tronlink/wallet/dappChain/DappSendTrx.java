@@ -44,10 +44,6 @@ public class DappSendTrx extends Base {
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
         setToDAppChain();
-        try {
-            DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
     }
 
 
@@ -96,8 +92,11 @@ public class DappSendTrx extends Base {
     public void test0001_inputPrivatekey() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
+        Assert.assertTrue(hits.equals("钱包地址格式不正确") || hits.equals("Wrong format"));
     }
 
 
@@ -105,8 +104,11 @@ public class DappSendTrx extends Base {
     public void test0002_inputErrorAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
         String hits = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(hits.equals("账户不正确") || hits.equals("Wrong format"));
+        Assert.assertTrue(hits.equals("钱包地址格式不正确") || hits.equals("Wrong format"));
     }
 
 
@@ -124,6 +126,9 @@ public class DappSendTrx extends Base {
     public void test0004_inputReceivingAddressSameAsSend(String address) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, address);
+        transfer.sendKey(transfer.tranferCount_text, "1");
+        transfer.swipScreenLitte();
+        transfer.send_btn.click();
         String hits = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(hits.equals("转出账户和接收账户不能相同") || hits.equals("发送账户与接收账户不能相同") || hits.contains("cannot be the same"));
     }
@@ -206,7 +211,7 @@ public class DappSendTrx extends Base {
     @Test(groups = {"P0"},enabled = true,description = "Dapp chain send trx succesfully", alwaysRun = true)
     public void test0013_dappChainSendTrxSucess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
         dappChainSendTrxAmount = getAnAmount();
         transfer.sendTrx(Float.toString(dappChainSendTrxAmount));
     }
@@ -223,13 +228,16 @@ public class DappSendTrx extends Base {
                 AssetPage arret = trx.enterAssetPage();
                 trx = arret.enterTrxPage();
                 trx.tranfer_tab.get(1).click();
-                //todo 转出转入记录中没有最新数据
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-                if (Float.toString(dappChainSendTrxAmount).substring(0, 5)
-                    .equals(tranferInCount.substring(1, 6))) {
+                String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
+                System.out.println("tranferCount: " + tranfercount + "length: " + tranfercount.length() );
+                System.out.println("dappChainSendTrxAmount: " + dappChainSendTrxAmount + "length: " + String.valueOf(dappChainSendTrxAmount).length()  );
+                System.out.println(tranfercount.contentEquals(String.valueOf(dappChainSendTrxAmount)));
+                if (tranfercount.contentEquals(String.valueOf(dappChainSendTrxAmount)))
+                {
                     exist = true;
                     break;
                 }
+
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -240,7 +248,7 @@ public class DappSendTrx extends Base {
     @Test(enabled = true,description = "Trx transfer balance decrease check")
     public void test0015_balanceReduceAfterSendCoin() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+        afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
         Assert.assertTrue(beforeBalance - afterBalance >= 1);
     }
 

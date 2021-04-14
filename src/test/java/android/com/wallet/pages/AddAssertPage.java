@@ -15,18 +15,32 @@ public class AddAssertPage extends AbstractPage {
         super(driver);
         this.driver = driver;
     }
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    public WebElement close;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sort_pop")
+    public WebElement tipview;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
     public WebElement addAssert_input;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_search_icon")
+    public WebElement iv_search_icon;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
-    public WebElement assertSatus_btn;
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
+    public WebElement et_search;
 
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[1]/android.widget.TextView")
+    public WebElement firstTab;
+
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[2]/android.widget.TextView")
+    public WebElement secondTab;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
     public WebElement back_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sort_type")
+    public WebElement sort_type;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_tab_title")
     public List<WebElement> mainPageAssetManage_tab;
@@ -35,9 +49,12 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
     public List<WebElement> switch_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_count")
+    public List<WebElement> accountnumbers;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
-    public WebElement switchFirst_btn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement tv_common_title;
 
 
     @FindBy(xpath = "//*[@text='ID 1000029']")

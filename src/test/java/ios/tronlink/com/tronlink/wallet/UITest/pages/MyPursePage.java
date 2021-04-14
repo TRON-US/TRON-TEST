@@ -161,15 +161,14 @@ public class MyPursePage extends AssetPage {
             int i = 2;
             while (i<6){
                 if (!isEnterMultiSingManagePage()){
-                    System.out.println("is password view show: ??\n ");
-                    if (!isunEnterchangePassword()){
+                    if (isunEnterchangePassword()){
                         System.out.println("showed,and closed ");
                         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
                     }else {
-                        System.out.println(" not show ");
+                        System.out.println("other view and back to manage");
+                        backbtn.click();
                     }
-
-                    System.out.println("\n after 1find to try"+i+" times find multiManage");
+                    System.out.println("\n after 1 find to try"+i+" times find multiManage");
                     Helper.refreshWalletScreen(driver);
                     waiteTime();
                     multiManageDoor.click();
@@ -181,63 +180,11 @@ public class MyPursePage extends AssetPage {
             }
 
         }catch (Exception e){
-            try {
-                System.out.println("\n after Exception 2 times find multiManage");
-                Helper.refreshWalletScreen(driver);
-                waiteTime();
-                multiManageDoor.click();
-                waiteTime();
-                int i = 2;
-                while (i<5){
-                    if (!isEnterMultiSingManagePage()){
-                        System.out.println("is password show: ??\n ");
-                        if (!isunEnterchangePassword()){
-                            System.out.println("showed,and closed ");
-                            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
-                        }else {
-                            System.out.println(" not show ");
-                        }
-
-                        System.out.println("\nIN Exception "+i+" times find multiManage");
-                        Helper.refreshWalletScreen(driver);
-                        waiteTime();
-                        multiManageDoor.click();
-                        waiteTime();
-                    }else {
-                        break;
-                    }
-                    i++;
-                }
-            }catch (Exception ed){
-                try {
-                    System.out.println("\nafter Exception 3 times find multiManage");
-                    Helper.refreshWalletScreen(driver);
-                    waiteTime();
-                    ManageViewCells.get(0).click();
-                    waiteTime();
-                    int i = 2;
-                    while (i<5){
-                        if (!isEnterMultiSingManagePage()){
-                            System.out.println("\nIN 2Exception"+i+" times find multiManage");
-                            Helper.refreshWalletScreen(driver);
-                            waiteTime();
-                            multiManageDoor.click();
-                            waiteTime();
-                        }else {
-                            break;
-                        }
-                        i++;
-                    }
-                }catch (Exception edd){
-                    try {
-                        System.out.println("\n4 times find multiManage");
-                        Helper.refreshWalletScreen(driver);
-                        waiteTime();
-                        multiManageDoor.click();
-                        waiteTime();
-                    }catch (Exception eddd){
-                        System.out.println(eddd);
-                    }
+            if (!isEnterMultiSingManagePage()){
+                if (isunEnterchangePassword()){
+                    driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
+                }else {
+                    backbtn.click();
                 }
             }
         }
@@ -246,7 +193,7 @@ public class MyPursePage extends AssetPage {
 
     public boolean isEnterMultiSingManagePage(){
         try{
-            System.out.println(" FIND:"+driver.findElementById("multiSig instruction").getLocation());
+            System.out.println(" FIND:"+driver.findElementById("权限管理").getLocation());
             return  true;
         }catch (Exception e){
             return false;
@@ -331,9 +278,9 @@ public class MyPursePage extends AssetPage {
     public boolean isunEnterchangePassword(){
         try{
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确定'").getText();
-            return  false;
+            return  true;
         }catch (Exception e){
-            return true;
+            return false;
         }
     }
 
@@ -512,7 +459,7 @@ public String getBackupKeystoreInClipboard(String password){
         System.out.println("end");
         TimeUnit.SECONDS.sleep(2);
         action.tap(PointOption.point(120,botY)).perform();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         carouselView.click();
         TimeUnit.SECONDS.sleep(1);
 

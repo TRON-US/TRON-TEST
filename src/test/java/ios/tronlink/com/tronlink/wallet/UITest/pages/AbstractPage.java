@@ -56,7 +56,7 @@ public class AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement whiteBackBtn;
 
-    @FindBy(id = "black path")
+    @FindBy(id = "back arrow")
     public WebElement blackBackBtn;
 
     public void log(String log) {
@@ -73,7 +73,7 @@ public class AbstractPage {
         driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
     }
     public void waiteTime() {
-        waiteTime(5);
+        waiteTime(15);
     }
 
     public void clickOffsetElement(WebElement wele){

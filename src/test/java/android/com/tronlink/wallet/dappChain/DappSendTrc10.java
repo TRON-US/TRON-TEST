@@ -21,25 +21,22 @@ public class DappSendTrc10 extends Base {
     float dappChainSendTrc10Amount;
     float beforeBalance;
     float afterBalance;
-  static String receiverAddress = Configuration.getByPath("testng.conf")
-      .getString("foundationAccount.receiverAddress");
-  static String dappNetGateWay = Configuration.getByPath("testng.conf")
-      .getString("foundationAccount.dappNetGateWay");
-  static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
-      .getString("foundationAccount.currentDappNetBlockNum");
-  static String trc10TokenName = Configuration.getByPath("testng.conf")
-      .getString("foundationAccount.trc10TokenName");
+    static String receiverAddress = Configuration.getByPath("testng.conf")
+            .getString("foundationAccount.receiverAddress");
+    static String dappNetGateWay = Configuration.getByPath("testng.conf")
+            .getString("foundationAccount.dappNetGateWay");
+    static String currentDappNetBlockNum = Configuration.getByPath("testng.conf")
+            .getString("foundationAccount.currentDappNetBlockNum");
+    static String trc10TokenName = Configuration.getByPath("testng.conf")
+            .getString("foundationAccount.trc10TokenName");
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
-      new Helper().getSign(privateKey, DRIVER);
-      setToDAppChain();
-      try {
-        DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlinkpro.wallet");
-      } catch (Exception e){}
-  }
+        new Helper().getSign(privateKey, DRIVER);
+        setToDAppChain();
+
+    }
 
 
     @AfterMethod(alwaysRun = true)
@@ -61,9 +58,9 @@ public class DappSendTrc10 extends Base {
 
     //enter SettingPage
     public SettingPage enterSettingPage() throws Exception {
-      AssetPage asset = new AssetPage(DRIVER);
-      MinePage mine = asset.enterMinePage();
-     return mine.enterSettingPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        return mine.enterSettingPage();
     }
 
     public TrxPage enterTrxPage() throws Exception {
@@ -82,10 +79,10 @@ public class DappSendTrc10 extends Base {
 
     @Test(groups = {"P0"},description = "SendTrc10 success test", alwaysRun = true)
     public void test001_sendTrc10Success() throws Exception {
-      SendTrxPage transfer = enterToSendTrc10Page();
-      beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
-      dappChainSendTrc10Amount = getAnAmount();
-      transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
+        SendTrxPage transfer = enterToSendTrc10Page();
+        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
+        dappChainSendTrc10Amount = getAnAmount();
+        transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
     }
 
     @Test(description = "input max send number", alwaysRun = true)
@@ -139,34 +136,39 @@ public class DappSendTrc10 extends Base {
 
     @Test(enabled = true,description = "Dapp chain send TRC10 recording")
     public void test007_dappChainSendTrc10Recording() throws Exception {
-      TrxPage trx = enterTrxPage();
-      int tries = 0;
-      Boolean exist = false;
-      while (exist == false && tries++ < 2) {
-        try {
-         AssetPage arret = trx.enterAssetPage();
-          trx = arret.enterTrx10Page();
-          trx.tranfer_tab.get(1).click();
-          //todo 转出转入记录中没有最新数据
-          String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-          System.out.println("dappChainSendTrc10Amount:" + dappChainSendTrc10Amount);
-          System.out.println("tranferInCount:" + tranferInCount);
-          if (Float.toString(dappChainSendTrc10Amount).substring(0, 5)
-              .equals(tranferInCount.substring(1, 6))) {
-            exist = true;
-            break;
-          }
-        } catch (Exception e) {
-          System.out.println(e);
+        AssetPage asset = new AssetPage(DRIVER);
+        Helper.swipScreenLitte(asset.driver);
+        TrxPage trx = asset.enterTrx10Page();
+
+        int tries = 0;
+        Boolean exist = false;
+        while (exist == false && tries++ < 5) {
+            try {
+                AssetPage arret = trx.enterAssetPage();
+                trx = arret.enterTrx10Page();
+                trx.tranfer_tab.get(1).click();
+
+                String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
+                System.out.println("tranferCount: " + tranfercount + "length: " + tranfercount.length() );
+                System.out.println("dappChainSendTrxAmount: " + dappChainSendTrc10Amount + "length: " + String.valueOf(dappChainSendTrc10Amount).length()  );
+                System.out.println(tranfercount.contentEquals(String.valueOf(dappChainSendTrc10Amount)));
+                if (tranfercount.contentEquals(String.valueOf(dappChainSendTrc10Amount)))
+                {
+                    exist = true;
+                    break;
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
-      }
-      Assert.assertTrue(exist);
+        Assert.assertTrue(exist);
     }
 
     @Test(enabled = true,description = "TRC10 transfer balance decrease check")
     public void test008_balanceReduceAfterSendTrc10() throws Exception {
       SendTrxPage transfer = enterToSendTrc10Page();
-      afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText().split(" ")[1]));
+      afterBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
       Assert.assertTrue(beforeBalance - afterBalance >= 1);
     }
 
@@ -193,4 +195,4 @@ public class DappSendTrc10 extends Base {
     Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
   }
 
-  }
+}

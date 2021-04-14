@@ -99,7 +99,7 @@ public class Helper {
         action.press(
             PointOption.point(width/2, height*2/5))
             .waitAction(WaitOptions.waitOptions(duration))
-            .moveTo(PointOption.point(width/2, height*4/5))
+            .moveTo(PointOption.point(width/2, height*4/5+50))
             .release().perform();
     }
 
