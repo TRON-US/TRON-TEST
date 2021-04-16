@@ -122,7 +122,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/error_address")
     public WebElement errorAddress_hits;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_current_type")
+    @FindBy(id = "com.tronlinkpro.wallet:id/select_power_type")
     public WebElement currentType_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_me")

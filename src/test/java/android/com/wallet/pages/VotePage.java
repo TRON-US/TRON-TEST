@@ -44,7 +44,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement tv_common_right2;
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]")
+    @FindBy(id = "com.tronlinkpro.wallet:id/root")
     public WebElement firstSR;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/reset")
@@ -52,7 +52,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
     public WebElement rl_bottom_next;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_vote_amount")
     public WebElement et_input;
 
 
@@ -135,6 +135,9 @@ public class VotePage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update")
     public WebElement btn_voted_update;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_cancel")
+    public WebElement voted_cancel;
 
 
     public void entermultiSignFromPage(){
