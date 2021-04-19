@@ -157,7 +157,7 @@ public class VotePage extends AbstractPage {
         }catch (Exception ee){
             btn_voted_update.click();
         }
-        password_input.sendKeys("1");
+        et_input.sendKeys("2");
         bt_send.click();
         rl_bottom_next.click();
         password_input.sendKeys("Test0001");
