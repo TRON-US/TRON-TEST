@@ -58,7 +58,7 @@ public class AddAssetsTest extends Base {
         Assert.assertTrue(page.iv_search_icon.isEnabled());
         Assert.assertTrue(page.firstTab.getText().contains("首页资产管理"));
         Assert.assertTrue(page.secondTab.getText().contains("我的全部资产"));
-        Assert.assertTrue(page.sort_type.getText().contains("按名称"));
+        Assert.assertTrue(page.sort_type.getText().contains("按价值"));
         Assert.assertTrue(page.tv_common_title.getText().contains("资产"));
         Assert.assertTrue(page.accountnumbers.size() > 1);
 

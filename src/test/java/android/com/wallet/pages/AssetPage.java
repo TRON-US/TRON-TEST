@@ -116,7 +116,7 @@ public class AssetPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bg_add_assets")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_add_assets")
     public WebElement addAssert_btn;
 
 
