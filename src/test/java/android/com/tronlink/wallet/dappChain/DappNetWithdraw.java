@@ -96,7 +96,7 @@ public class  DappNetWithdraw extends Base {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
         String info = transferOut.getTransferInfo("hits");
-        Assert.assertTrue(info.contains("转出需要执行智能合约。执行智能合约同时会消耗能量") || info.contains("requires the execution of a smart contract"));
+        Assert.assertTrue(info.contains("转出需要执行智能合约，执行智能合约同时会消耗能量。") || info.contains("requires the execution of a smart contract"));
     }
 
 
@@ -105,8 +105,10 @@ public class  DappNetWithdraw extends Base {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferPage();
         String info = transferOut.getTransferInfo("fee");
-        int count = Integer.valueOf(info);
-        Assert.assertTrue(50 <= count && count <= 500);
+        int fee = Integer.valueOf(info);
+        Assert.assertTrue(fee >= 0);
+        int bandwidth = Integer.valueOf(transferOut.bandwidth.getText().replace("带宽","").trim());
+        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
     }
 
 
