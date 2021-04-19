@@ -326,6 +326,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
     public String getAvailableTrx() {
+        swipScreenLitte();
         String availableTrx = availableTrx_text.getText();
         availableTrx = availableTrx.split(" ")[1];
         availableTrx = availableTrx.substring(0,availableTrx.length()-3);

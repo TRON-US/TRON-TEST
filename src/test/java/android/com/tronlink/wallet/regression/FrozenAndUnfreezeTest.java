@@ -179,7 +179,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         String availableTrx = frozen.getAvailableTrx();
         frozen.inputFrozenCount(removeSymbol(availableTrx));
-        Assert.assertTrue(frozen.freezeNow_btn.isDisplayed());
+        Assert.assertTrue(frozen.bt_send.isDisplayed());
     }
 
 

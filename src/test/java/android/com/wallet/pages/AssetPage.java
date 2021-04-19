@@ -125,7 +125,7 @@ public class AssetPage extends AbstractPage {
     public List<WebElement> assetsName;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_freeze")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bg_freeze")
     public WebElement freeze_btn;
 
 
