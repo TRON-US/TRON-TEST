@@ -188,7 +188,7 @@ public class SendTrxPage extends AbstractPage {
 
     public WebElement trc20_btn() {
         try {
-            return findElementByText("TCC***n71");
+            return findElementByText("TCCcB***15n71");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -197,12 +197,12 @@ public class SendTrxPage extends AbstractPage {
 
         try {
 
-            return findElementByText("TXk***fD7");
+            return findElementByText("TXkdX***sNfD7");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
 
-            return findElementByText("TXk***fD7");
+            return findElementByText("TXkdX***sNfD7");
 
         }
 
