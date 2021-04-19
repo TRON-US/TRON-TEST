@@ -270,7 +270,7 @@ public class Helper {
 
     public void importFirstWallet(importType type,String privateKey,String name,String pass) throws Exception{
 
-        DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
         switch (type){
             case normal:
@@ -278,7 +278,7 @@ public class Helper {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
                 try {
-                    DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                     DRIVER.findElementById("normalWallet").click();
                 }catch (Exception nooutput){
 
@@ -289,11 +289,11 @@ public class Helper {
             case coldWallet:
             {
                 findWebElement("冷钱包").click();
-                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
                 try {
-                    DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                     DRIVER.findElementById("normalWallet").click();
                 }catch (Exception nooutput){
 
@@ -305,7 +305,7 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-                DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 DRIVER.findElementById("shieldedWallet").click();
                 break;
             }
@@ -316,10 +316,10 @@ public class Helper {
     }
 
     public void importFirstWatchShieldWallet(String name,String nsk,String ak,String ovk,String shieldAddress) throws Exception{
-        DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         findWebElement("导入钱包").click();
         findAcceptAndClick();
-        DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         DRIVER.findElementById("shieldedWallet").click();
         importWatchShieldWallet(name, nsk, ak, ovk, shieldAddress);
 

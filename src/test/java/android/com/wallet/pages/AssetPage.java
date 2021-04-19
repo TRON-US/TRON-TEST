@@ -445,7 +445,7 @@ public class AssetPage extends AbstractPage {
     public DiscoverPage enterDiscoverPage() throws Exception{
         TimeUnit.SECONDS.sleep(3);
         discover_btn.click();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         TimeUnit.SECONDS.sleep(10);
         return new DiscoverPage(driver);
     }
@@ -513,9 +513,9 @@ public class AssetPage extends AbstractPage {
                 trz.tranfer_tab.get(0).click();
         }
 
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         trz.tranferRecordCount_text.get(1).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new TransactionDetailInfomaitonPage(driver);
     }
 
@@ -537,9 +537,9 @@ public class AssetPage extends AbstractPage {
                 trx = enterTrxPage();
         }
         trx.tranfer_tab.get(2).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         trx.tranferIncount_text.get(1).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new TransactionDetailInfomaitonPage(driver);
     }
 
@@ -561,9 +561,9 @@ public class AssetPage extends AbstractPage {
                 trx = enterTrxPage();
         }
         trx.tranfer_tab.get(3).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         trx.tranferIncount_text.get(1).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new TransactionDetailInfomaitonPage(driver);
     }
 
@@ -584,9 +584,9 @@ public class AssetPage extends AbstractPage {
                 trx = enterTrxPage();
         }
         trx.tranfer_tab.get(3).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         trx.tranferIncount_text.get(1).click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new TransactionDetailInfomaitonPage(driver);
     }
 

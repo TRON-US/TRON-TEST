@@ -93,9 +93,9 @@ public class ColdAssetPage extends AbstractPage {
 
 
     public ColdMinePage enterColdMinePage() {
-      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
       me_btn.click();
-      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
       return new ColdMinePage(driver);
     }
 

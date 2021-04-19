@@ -156,7 +156,7 @@ public class CommitteeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Assert.assertTrue(committeeProposalPage.myProposals_text.getText() != "0");
         Assert.assertTrue(committeeProposalPage.myApproved_text.getText() != "0");
     }
@@ -167,7 +167,7 @@ public class CommitteeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage myProposals = committeeProposalPage.enterMyProposals();
         Assert.assertTrue(myProposals.createProposal_btn.isEnabled());
     }

@@ -142,7 +142,7 @@ public class DappNetWithdraw10 extends Base {
 //                AssetPage arret = trx.enterAssetPage();
 //                trx = arret.enterTrx10Page();
 //                trx.tranfer_tab.get(3).click();
-//                trx.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+//                trx.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
 //                System.out.println("tranferInCount = " + tranferInCount);
 //              if (Float.toString(withdrawTrc10Amount).substring(0, 5)
