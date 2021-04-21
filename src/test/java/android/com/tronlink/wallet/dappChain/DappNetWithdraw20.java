@@ -99,7 +99,7 @@ public class DappNetWithdraw20 extends Base {
 //    @Test(enabled = true,description = "Check withdraw from dapp chain information", alwaysRun = true)
 //    public void test001_withdrawInformation() throws Exception {
 //        TrxPage trx = enterTrc20Page();
-//        TransferPage transferOut = trx.enterTransferPage();
+//        TransferPage transferOut = trx.enterTransferInPage();
 //        String info = transferOut.getTransferInfo("hits");
 //        Assert.assertTrue(info.contains("转出需要执行智能合约，执行智能合约同时会消耗能量。") || info.contains("requires the execution of a smart contract"));
 //    }
@@ -108,7 +108,7 @@ public class DappNetWithdraw20 extends Base {
 //    @Test(enabled = true,description = "Check withdraw from dapp chain fee", alwaysRun = true)
 //    public void test002_checkTransferOutFee() throws Exception {
 //        TrxPage trx = enterTrc20Page();
-//        TransferPage transferOut = trx.enterTransferPage();
+//        TransferPage transferOut = trx.enterTransferInPage();
 //        String info = transferOut.getTransferInfo("fee");
 //int fee = Integer.valueOf(info);
 //        Assert.assertTrue(fee >= 0);
@@ -121,7 +121,7 @@ public class DappNetWithdraw20 extends Base {
 //        TrxPage trx = enterTrc20Page();
 //        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
 //        System.out.println("trxCount = " + trxCount);
-//        TransferPage transferOut = trx.enterTransferPage();
+//        TransferPage transferOut = trx.enterTransferInPage();
 //        withdrawTrc20Amount = getAnAmount();
 //        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc20Amount));
 //        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));

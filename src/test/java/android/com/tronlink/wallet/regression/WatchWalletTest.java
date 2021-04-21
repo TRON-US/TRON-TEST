@@ -135,7 +135,7 @@ public class WatchWalletTest extends Base {
     public void test006_DepositQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
-        TransferPage transfer = trxPage.enterTransferPage();
+        TransferPage transfer = trxPage.enterTransferInPage();
         transfer.count_text.sendKeys("10");
         transfer.transferIn_btn.click();
         transfer.bt_send.click();
@@ -194,7 +194,7 @@ public class WatchWalletTest extends Base {
     public void test010_depositTrxQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
-        TransferPage transfer = trxPage.enterTransferPage();
+        TransferPage transfer = trxPage.enterTransferInPage();
         transfer.count_text.sendKeys("10");
         transfer.transferIn_btn.click();
         transfer.bt_send.click();

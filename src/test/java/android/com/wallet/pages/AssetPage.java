@@ -299,21 +299,16 @@ public class AssetPage extends AbstractPage {
     }
 
     public SendTrxPage enterOnlineSendTrc10Page() throws Exception {
-        TimeUnit.SECONDS.sleep(5);
-        Helper.swipScreenLitte(driver);
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        try {
-            online_trc10_btn.click();
-        } catch (Exception e) {
-            online_trc10_btn.click();
-        }
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        trc10Page_transfer_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        return new SendTrxPage(driver);
+        enterSendTrxPage();
+        SendTrxPage page = new SendTrxPage(driver);
+        page.selectTokenByName("BTT");
+        return page;
     }
 
+
+
     public SendTrxPage enterSendTrc20Page() throws  Exception {
+
 
         enterTrx20Page();
 
@@ -323,19 +318,13 @@ public class AssetPage extends AbstractPage {
         return new SendTrxPage(driver);
     }
 
-    public SendTrxPage enterOnlineSendTrc20Page() {
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        try {
-            Helper.swipScreen(driver);
-            online_trc20_btn.click();
-        } catch (Exception e) {
-            Helper.swipScreen(driver);
-            online_trc20_btn.click();
-        }
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        trc10Page_transfer_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        return new SendTrxPage(driver);
+    public SendTrxPage enterOnlineSendTrc20Page() throws Exception{
+
+        enterSendTrxPage();
+        SendTrxPage page = new SendTrxPage(driver);
+        page.selectTokenByName("WIN");
+        return page;
+
     }
 
 
@@ -414,9 +403,9 @@ public class AssetPage extends AbstractPage {
 
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             freeze_btn.click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){
             freeze_btn.click();
         }
@@ -681,44 +670,6 @@ public class AssetPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
-    public TrxPage enterOnlineTrc10Page() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
-        try {
-            mine_btn.click();
-        } catch (Exception e) {
-            mine_btn.click();
-        }
-        mine_btn.click();
-        assetsMain_btn.click();
-        //Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(1);
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        //Helper.swipScreen(driver);
-        try {
-            online_trc10_btn.click();
-        } catch (Exception e) {
-            online_trc10_btn.click();
-        }
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(2);
-        return new TrxPage(driver);
-    }
-
-
-
-
-
-    public TrxPage enterOnlineTrc20Page() throws Exception {
-        mine_btn.click();
-        assetsMain_btn.click();
-        //Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(3);
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        online_trc20_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(1);
-        return new TrxPage(driver);
-    }
 
 
 

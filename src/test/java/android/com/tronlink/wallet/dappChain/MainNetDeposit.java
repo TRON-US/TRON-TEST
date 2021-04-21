@@ -76,7 +76,7 @@ public class MainNetDeposit extends Base {
     @Test(enabled = true,description = "Check TransferIn Chain Name", alwaysRun = true)
     public void test001_checkTransferInChainName() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         String chain = transferIn.chain_text.getText();
         Assert.assertTrue(chain.equals("DAppChain"));
     }
@@ -86,14 +86,14 @@ public class MainNetDeposit extends Base {
     public void test002_depositTrxIntoDappChain() throws Exception {
         TrxPage trx = enterTrxPage();
         depositTrxAmount = getAnAmount() + 9;
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrxAmount));
     }
 
     @Test(enabled = true,description = "Check TransferIn Trx Count", alwaysRun = true)
     public void test003_checkTransferInTrx() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         String info = transferIn.getTransferInfo("trx");
         Assert.assertTrue(info.contains("10"));
     }
@@ -102,7 +102,7 @@ public class MainNetDeposit extends Base {
     @Test(enabled = true,description = "Check TransferIn Hits", alwaysRun = true)
     public void test004_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         String info = transferIn.getTransferInfo("hits");
         System.out.println("info:" + info);
         Assert.assertTrue(info.contains("转入需要执行智能合约，执行智能合约同时会消耗能量。") || info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
@@ -112,7 +112,7 @@ public class MainNetDeposit extends Base {
     @Test(enabled = true,description = "Check TransferIn Fee", alwaysRun = true)
     public void test005_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         String info = transferIn.getTransferInfo("fee");
         int fee = Integer.valueOf(info);
         Assert.assertTrue(fee >= 0);
@@ -130,7 +130,7 @@ public class MainNetDeposit extends Base {
         TrxPage trx = asset.enterTrxPage();
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
         System.out.println("frozenCount = " + frozenCount);
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         int availableBalance = Integer.valueOf(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
         System.out.println("availableBalance = " + availableBalance);
         Assert.assertTrue(trxCount == frozenCount + availableBalance);
