@@ -60,7 +60,7 @@ public class FrozenMultiSignSuccTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
         frozenAndUnfreezePage.frozenButtonClickAndConfirm();
-        frozenAndUnfreezePage.freezeNow_btn.click();
+        frozenAndUnfreezePage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(frozenAndUnfreezePage.invalidTime_input.isDisplayed());
         Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(0).getText().length() == 34);
