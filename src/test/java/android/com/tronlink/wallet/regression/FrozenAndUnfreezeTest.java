@@ -154,12 +154,14 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test0009_countRemainingAndVotingEqualTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+        System.out.println("totalTRX: " + String.format("%d",trxCount));
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
-        System.out.println("frozen.getCurrentCanUseTrx():" + frozen.getCurrentCanUseTrx());
-        int currentCanUseTrx = Integer.valueOf(removeSymbol(frozen.getCurrentCanUseTrx()));
-        System.out.println(trxCount + "......" + myVotingPower + "....." + currentCanUseTrx);
-        Assert.assertTrue(myVotingPower + currentCanUseTrx == trxCount);
+        int myVotingPower =  Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
+        System.out.println("votePower: " + String.format("%d",myVotingPower));
+        Helper.swipScreenLitte(frozen.driver);
+        int canUse = Integer.valueOf(removeSymbol(frozen.getCurrentCanUseTrx()));
+        System.out.println("canUse: " + String.format("%d",canUse));
+        Assert.assertTrue(myVotingPower + canUse == trxCount);
     }
 
 
