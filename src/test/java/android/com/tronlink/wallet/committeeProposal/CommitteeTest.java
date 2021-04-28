@@ -61,6 +61,8 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(createProposePage.proValue_ipt.get(1).getText().equals("9999"));
     }
 
+
+
     @Test(enabled = true,description = "Create proposal success", alwaysRun = true)
     public void test003_createCommitteeProposalSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
@@ -90,6 +92,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
+        MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
@@ -106,11 +109,13 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
+        MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.agree_btn.click();
+        MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
