@@ -126,7 +126,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.tranferCount_text.sendKeys("1");
         waiteTime();
         String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
-        Assert.assertEquals(feeSendNumber.trim(),"1.0");
+        Assert.assertEquals(feeSendNumber.trim(),"1");
         waiteTime();
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -453,6 +453,7 @@ public class OnlineWatchWalletTest extends Base {
         frozen.unfreezeType_btn.click();
         if(frozen.isElementExist("com.tronlinkpro.wallet:id/iv_unfreeze")){
             frozen.unfreezeTargetAddress_btn.click();
+            Helper.swipScreen(frozen.driver);
             frozen.unfreeze_btn.click();
             frozen.unfreezeInfoConfirm_btn.click();
             Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
