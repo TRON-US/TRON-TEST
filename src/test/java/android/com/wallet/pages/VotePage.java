@@ -44,7 +44,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement tv_common_right2;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/root")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_person_name")
     public WebElement firstSR;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/reset")
