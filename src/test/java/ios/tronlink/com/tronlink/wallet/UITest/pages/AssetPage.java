@@ -59,8 +59,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "titleLabel")
     public List<WebElement> titleLabel;
 
-    @FindBy(name = "收款")
+    @FindBy(name = "接收")
     public WebElement receipt_btn;
+
+    @FindBy(name = "发送")
+    public WebElement send_btn;
 
     @FindBy(name = "闪兑")
     public WebElement swap_btn;
@@ -101,11 +104,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "资产")
     public WebElement asset_btn;
 
-    @FindBy(name = "冻结/解冻")
+    @FindBy(name = "冻结")
     public WebElement frozen_btn;
 
 
-    @FindBy(name = "添加资产")
+    @FindBy(name = "home addAssetBtn")
     public WebElement addAssert_btn;
 
     @FindBy(name = "闪兑")
@@ -144,7 +147,8 @@ public class AssetPage extends AbstractPage {
 
 
     public WebElement transfer_btn(){
-       return driver.findElementByIosNsPredicate("name == '转账' AND type == 'XCUIElementTypeButton'");
+        return  driver.findElementByName("发送");
+//       return driver.findElementByIosNsPredicate("name == '发送' AND type == 'XCUIElementTypeButton'");
     }
 
     public VotePage enterVotePage() {
@@ -192,7 +196,9 @@ public class AssetPage extends AbstractPage {
     //enter transfer Page
     public TransferPage enterTransportPage() {
         try {
-            transfer_btn().click();
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            send_btn.click();
+//            transfer_btn().click();
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
             e.printStackTrace();
