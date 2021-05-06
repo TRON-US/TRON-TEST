@@ -17,6 +17,8 @@ public class ModifyPermissionPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
+    public WebElement fee_text;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_permission_name")
     public WebElement modifyPermissionName_input;
@@ -27,7 +29,8 @@ public class ModifyPermissionPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_key_address")
     public WebElement modifyAddress_input;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee_amount_bw")
+    public WebElement bandwidth;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm")
     public WebElement confirm_btn;

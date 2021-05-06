@@ -131,6 +131,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         delConfirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        bt_send.click();
         password_input.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);

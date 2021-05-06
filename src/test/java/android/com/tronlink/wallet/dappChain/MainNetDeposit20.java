@@ -80,7 +80,7 @@ public class MainNetDeposit20 extends Base {
         TrxPage trx = enterTrc20Page();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         depositTrc20Amount = getAnAmount();
         trx = transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrc20Amount));
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
@@ -91,19 +91,21 @@ public class MainNetDeposit20 extends Base {
     @Test(enabled = true,description = "Check TransferIn Hits")
     public void test002_checkTransferInHits() throws Exception {
         TrxPage trx = enterTrc20Page();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         String info = transferIn.getTransferInfo("hits");
-        Assert.assertTrue(info.contains("转入需要执行智能合约。执行智能合约同时会消耗能量") || info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
+        Assert.assertTrue(info.contains("转入需要执行智能合约，执行智能合约同时会消耗能量。") || info.equals("转入需要执行智能合约。执行智能合约同时会消耗 Energy。") || info.contains("requires the execution of a smart contract"));
     }
 
 
     @Test(enabled = true,description = "Check TransferIn Fee")
     public void test003_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrc20Page();
-        TransferPage transferIn = trx.enterTransferPage();
+        TransferPage transferIn = trx.enterTransferInPage();
         String info = transferIn.getTransferInfo("fee");
-        int count = Integer.valueOf(info);
-        Assert.assertTrue(50 <= count && count <= 900);
+        int fee = Integer.valueOf(info);
+        Assert.assertTrue(fee >= 0);
+        int bandwidth = Integer.valueOf(transferIn.bandwidth.getText().replace("带宽","").trim());
+        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
     }
 
 

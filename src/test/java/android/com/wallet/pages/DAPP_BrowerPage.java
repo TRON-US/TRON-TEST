@@ -25,7 +25,7 @@ public class DAPP_BrowerPage extends AbstractPage {
     public WebElement enterBrowser_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/middle_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement dappTtile_btn;
 
 

@@ -60,10 +60,10 @@ public class MinePage extends AbstractPage {
     //enter about us Page
     public AboutUsPage enterAboutUsPage() {
         try {
-            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             //TimeUnit.SECONDS.sleep(1);
             aboutUs_btn.click();
-            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             //TimeUnit.SECONDS.sleep(1);
 
         } catch (Exception e) {

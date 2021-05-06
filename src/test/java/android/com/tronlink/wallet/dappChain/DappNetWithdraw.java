@@ -76,7 +76,7 @@ public class  DappNetWithdraw extends Base {
     @Test(enabled = true,description = "Check transferOut Chain Name", alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String chain = transferOut.chain_text.getText();
         Assert.assertTrue(chain.equals("MainChain"));
     }
@@ -85,7 +85,7 @@ public class  DappNetWithdraw extends Base {
     @Test(enabled = true,description = "Check transferOut Trx Count", alwaysRun = true)
     public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("trx");
         Assert.assertTrue(info.contains("10"));
     }
@@ -94,19 +94,21 @@ public class  DappNetWithdraw extends Base {
     @Test(enabled = true,description = "Check transferOut Hits", alwaysRun = true)
     public void test003_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("hits");
-        Assert.assertTrue(info.contains("转出需要执行智能合约。执行智能合约同时会消耗能量") || info.contains("requires the execution of a smart contract"));
+        Assert.assertTrue(info.contains("转出需要执行智能合约，执行智能合约同时会消耗能量。") || info.contains("requires the execution of a smart contract"));
     }
 
 
     @Test(enabled = true,description = "Check transferOut Fee", alwaysRun = true)
     public void test004_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("fee");
-        int count = Integer.valueOf(info);
-        Assert.assertTrue(50 <= count && count <= 500);
+        int fee = Integer.valueOf(info);
+        Assert.assertTrue(fee >= 0);
+        int bandwidth = Integer.valueOf(transferOut.bandwidth.getText().replace("带宽","").trim());
+        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
     }
 
 
@@ -116,7 +118,7 @@ public class  DappNetWithdraw extends Base {
         TrxPage trx = asset.enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.totalBalance.getText()));
         int frozenCount = Integer.valueOf(removeSymbol(trx.freezeCount_text.getText()));
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         TimeUnit.SECONDS.sleep(1);
         log("availableBalance_text : " + transferOut.availableBalance_text.getText());
         int availableBalance = Integer.valueOf(removeSymbol(transferOut.availableBalance_text.getText().split(" ")[1]));
@@ -130,7 +132,7 @@ public class  DappNetWithdraw extends Base {
         TrxPage trx = enterTrxPage();
         int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCount = " + trxCount);
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         trx = transferOut.enterTrxPageWithTransferSuccess();
         int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println("trxCountNow = " + trxCountNow);
@@ -141,7 +143,7 @@ public class  DappNetWithdraw extends Base {
     @Test(enabled = true,description = "Check transferOut Hits", alwaysRun = true)
     public void test007_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("hits");
         Assert.assertTrue(info.contains("行智能合约") || info.contains("smart contract"));
     }
@@ -150,7 +152,7 @@ public class  DappNetWithdraw extends Base {
     @Test(groups = {"P0"},enabled = true,description = "transferOut Success Recording")
     public void test008_transferOutSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         withdrawTrxAmount = getAnAmount() + 9;
         System.out.println("withdrawTrxAmount: " + Float.toString(withdrawTrxAmount).substring(0, 5) );
         trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrxAmount));

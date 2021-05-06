@@ -38,11 +38,11 @@ public class ColdBaseTest extends Base {
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("设置")).click();
             //DRIVER.findElement(By.name("无线局域网")).click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
 //            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
             DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
             //findWebElement("无线局域网").click();
             int tries = 0;
@@ -78,14 +78,14 @@ public class ColdBaseTest extends Base {
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("设置")).click();
             //DRIVER.findElement(By.name("无线局域网")).click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
 //            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
             DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("好")).click();
-            DRIVER.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(2);
             AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
             AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);

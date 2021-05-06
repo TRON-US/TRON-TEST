@@ -76,7 +76,7 @@ public class AllSignatureSuccTest extends Base {
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
+        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -100,11 +100,12 @@ public class AllSignatureSuccTest extends Base {
         DecimalFormat df = new DecimalFormat( "0.00" );
         String str = df.format(count);
         SendTrx.trxCount = str;
+        Helper.swipScreenLitte(SendTrx.driver);
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
+        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -297,10 +298,11 @@ public class AllSignatureSuccTest extends Base {
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
         Helper.swipScreen(modifyPermission.driver);
         modifyPermission.confirm_btn.click();
-        modifyPermission.nextBtnClick();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(modifyPermission.feetext.getText().contains("TRX"));
-        Assert.assertTrue(modifyPermission.feetext.getText().contains("101"));
+        String fee = modifyPermission.fee_text.getText();
+        Assert.assertTrue(fee.contains("TRX") && fee.contains("101"));
+        int bandwidth = Integer.valueOf(modifyPermission.bandwidth.getText().replace("带宽","").trim());
+        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
+
     }
 
     @Parameters({"multiSignAddress","ownerAddress"})

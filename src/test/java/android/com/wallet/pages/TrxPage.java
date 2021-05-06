@@ -74,7 +74,7 @@ public class TrxPage extends AbstractPage {
 
 
 
-    public TransferPage enterTransferPage() throws Exception {
+    public TransferPage enterTransferInPage() throws Exception {
         transferIn_btn.click();
         return new TransferPage(driver);
     }

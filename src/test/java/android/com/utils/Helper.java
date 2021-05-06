@@ -23,6 +23,13 @@ public class Helper {
 
 
 
+    public static void tapScreen(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.tap(PointOption.point(8,200)).perform();
+    }
 
     public static void swipScreen(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
@@ -31,9 +38,9 @@ public class Helper {
 //        System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
-                PointOption.point(width/4, height*4/5))
+                PointOption.point(width/3, height*2/3))
                 .waitAction(WaitOptions.waitOptions(duration))
-                .moveTo(PointOption.point(width/4, height/5))
+                .moveTo(PointOption.point(width/3, height/5))
                 .release().perform();
     }
 

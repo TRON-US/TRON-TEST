@@ -72,7 +72,7 @@ public class ColdMinePage extends AbstractPage {
     public AnnouncementPage enterAnnouncementPage(){
         try {
             announcement_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -83,7 +83,7 @@ public class ColdMinePage extends AbstractPage {
     public MyPursePage enterWalletMananerPage(){
         try {
             walletManager_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }

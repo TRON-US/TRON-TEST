@@ -36,6 +36,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/toscan")
     public WebElement coldHadScan_next_btn;
 
+    @FindBy(id ="com.tronlinkpro.wallet:id/et_search")
+    public WebElement et_search;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement transferTtile_btn;
@@ -82,6 +84,9 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
     public WebElement fee_text;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_add_address")
+    public WebElement tv_add_address;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee_amount_bw")
     public WebElement bandwidth_text;
@@ -183,12 +188,12 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public WebElement  trc10_btn() {
-        return findElementByText("(1000002)");
+        return findElementByText("ID:1000002");
     }
 
     public WebElement trc20_btn() {
         try {
-            return findElementByText("(TCCcB***15n71)");
+            return findElementByText("TCCcB***15n71");
 
         } catch (Exception e) {
             System.out.println("no MainChain");
@@ -197,12 +202,12 @@ public class SendTrxPage extends AbstractPage {
 
         try {
 
-            return findElementByText("(TXkdX***sNfD7)");
+            return findElementByText("TXkdX***sNfD7");
 
         } catch (Exception e) {
             System.out.println("no DappChain");
 
-            return findElementByText("(TXkdX***sNfD7)");
+            return findElementByText("TXkdX***sNfD7");
 
         }
 
@@ -434,19 +439,6 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    public String sendMaxTrc20() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
-        receiveAddress_text.sendKeys(unActiveAddress);
-        tranferCount_text.click();
-        selectTokenType("20");
-        tvMax_btn.click();
-        Helper.swipScreen(driver);
-        String allNumberText = balance_text.getText();
-        System.out.println("sendMaxTrc20_allNumberText" + allNumberText);
-        send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        return allNumberText;
-    }
 
     /**
      * @param cointype 10 20 noun
@@ -459,14 +451,23 @@ public class SendTrxPage extends AbstractPage {
         if (cointype.length != 0) {
             selectTokenType(cointype[0]);
         }
-        tvMax_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
+        tvMax_btn.click();
         String allNumberText = balance_text.getText();
         System.out.println("allNumberText: " + allNumberText);
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         return allNumberText;
     }
+
+    public void selectTokenByName(String name) throws Exception{
+        token_btn.click();
+        et_search.sendKeys(name);
+        TimeUnit.SECONDS.sleep(1);
+        token_itemIV.click();
+    }
+
 
     public void selectTokenType(String value) throws Exception {
         waiteTime();

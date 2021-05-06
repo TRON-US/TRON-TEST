@@ -44,7 +44,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement tv_common_right2;
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_person_name")
     public WebElement firstSR;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/reset")
@@ -52,7 +52,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
     public WebElement rl_bottom_next;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_vote_amount")
     public WebElement et_input;
 
 
@@ -136,6 +136,9 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update")
     public WebElement btn_voted_update;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_cancel")
+    public WebElement voted_cancel;
+
 
     public void entermultiSignFromPage(){
         tv_common_right2.click();
@@ -154,7 +157,7 @@ public class VotePage extends AbstractPage {
         }catch (Exception ee){
             btn_voted_update.click();
         }
-        password_input.sendKeys("1");
+        et_input.sendKeys("2");
         bt_send.click();
         rl_bottom_next.click();
         password_input.sendKeys("Test0001");

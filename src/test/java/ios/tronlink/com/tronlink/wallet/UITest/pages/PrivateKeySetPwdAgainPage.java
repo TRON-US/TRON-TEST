@@ -22,8 +22,6 @@ public class PrivateKeySetPwdAgainPage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeButton" )
     public List<WebElement> error_hits;
 
-    @FindBy(name = "com.tronlink.wallet:id/creat")
-    public WebElement create_btn;
 
     public String  getError_hits(){
         return error_hits.get(0).getText()+error_hits.get(1).getText()+error_hits.get(2).getText();

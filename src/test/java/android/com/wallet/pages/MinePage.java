@@ -110,7 +110,7 @@ public class MinePage extends AbstractPage {
     public FriendInvitationPage enterFriendInvitationPage(){
         try {
             friendInvitation_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -121,7 +121,7 @@ public class MinePage extends AbstractPage {
     public AddressBookPage enterAddressBookPage(){
         try {
             addressBook_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -133,7 +133,7 @@ public class MinePage extends AbstractPage {
     public AnnouncementPage enterAnnouncementPage(){
         try {
             announcement_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -143,7 +143,7 @@ public class MinePage extends AbstractPage {
 
     public TransactionRecordPage enterTransactionRecordPage(){
         try {
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             transferHistory_btn.click();
         }catch (Exception e){
             System.out.println(e);
@@ -157,7 +157,7 @@ public class MinePage extends AbstractPage {
     public MyPursePage enterMyPursePage(){
         try {
             myPurse_btn.click();
-            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -183,7 +183,7 @@ public class MinePage extends AbstractPage {
 
     public AssetPage enterAssetPage() throws Exception {
         assets_btn.click();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new AssetPage(driver);
     }
 
