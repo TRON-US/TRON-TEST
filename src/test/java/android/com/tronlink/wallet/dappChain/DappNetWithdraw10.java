@@ -91,7 +91,7 @@ public class DappNetWithdraw10 extends Base {
     @Test(enabled = true,description = "Check transferOut Chain Name", alwaysRun = true)
     public void test001_checkTransferOutChainName() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String chain = transferOut.chain_text.getText();
         Assert.assertTrue(chain.equals("MainChain"));
     }
@@ -100,7 +100,7 @@ public class DappNetWithdraw10 extends Base {
     @Test(enabled = true,description = "Check transferOut Trx Count", alwaysRun = true)
     public void test002_checkTransferOutTrx() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("trx");
         Assert.assertTrue(info.contains("10"));
     }
@@ -109,19 +109,21 @@ public class DappNetWithdraw10 extends Base {
     @Test(enabled = true,description = "Check transferOut Hits", alwaysRun = true)
     public void test003_checkTransferOutHits() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("hits");
-      Assert.assertTrue(info.contains("转出需要执行智能合约。执行智能合约同时会消耗能量") || info.contains("requires the execution of a smart contract"));
+      Assert.assertTrue(info.contains("转出需要执行智能合约，执行智能合约同时会消耗能量。") || info.contains("requires the execution of a smart contract"));
     }
 
 
     @Test(enabled = true,description = "Check transferOut Fee", alwaysRun = true)
     public void test004_checkTransferOutFee() throws Exception {
         TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferPage();
+        TransferPage transferOut = trx.enterTransferInPage();
         String info = transferOut.getTransferInfo("fee");
-        int count = Integer.valueOf(info);
-        Assert.assertTrue(50 <= count && count <= 500);
+        int fee = Integer.valueOf(info);
+        Assert.assertTrue(fee >= 0);
+        int bandwidth = Integer.valueOf(transferOut.bandwidth.getText().replace("带宽","").trim());
+        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
     }
 
 
@@ -130,7 +132,7 @@ public class DappNetWithdraw10 extends Base {
 //    @Test(groups = {"P0"},enabled = true,description = "Withdraw from dappChain of Trc10 Success Recording", alwaysRun = true)
 //    public void test005_transferOutSuccessRecording() throws Exception {
 //        TrxPage trx = enterTrxPage();
-//        TransferPage transferOut = trx.enterTransferPage();
+//        TransferPage transferOut = trx.enterTransferInPage();
 //        withdrawTrc10Amount = getAnAmount();
 //        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrc10Amount));
 //        int tries = 0;
@@ -140,7 +142,7 @@ public class DappNetWithdraw10 extends Base {
 //                AssetPage arret = trx.enterAssetPage();
 //                trx = arret.enterTrx10Page();
 //                trx.tranfer_tab.get(3).click();
-//                trx.driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+//                trx.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
 //                System.out.println("tranferInCount = " + tranferInCount);
 //              if (Float.toString(withdrawTrc10Amount).substring(0, 5)

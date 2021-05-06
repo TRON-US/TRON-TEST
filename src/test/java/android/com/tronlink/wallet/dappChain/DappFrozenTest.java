@@ -148,7 +148,7 @@ public class DappFrozenTest extends Base {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         String availableTrx = frozen.getAvailableTrx();
         frozen.inputFrozenCount(removeSymbol(availableTrx));
-        Assert.assertTrue(frozen.freezeNow_btn.isDisplayed());
+        Assert.assertTrue(frozen.bt_send.isDisplayed());
     }
 
 

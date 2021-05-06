@@ -203,9 +203,9 @@ public class AssetPage extends AbstractPage {
     //ReceiptPage
     public ReceiptPage enterReceiptCoinPage() {
         try {
-            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             receipt_btn.click();
-            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,9 +215,9 @@ public class AssetPage extends AbstractPage {
     //enter FrozenAndUnfreeze Page
     public FrozenAndUnfreezePage enterFrozenAndThawingPage() {
         try {
-            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             frozen_btn.click();
-            driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             //TimeUnit.SECONDS.sleep(1);
         }catch (Exception e) {
             e.printStackTrace();

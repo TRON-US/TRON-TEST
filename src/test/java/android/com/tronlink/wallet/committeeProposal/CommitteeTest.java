@@ -9,6 +9,8 @@ import org.testng.annotations.*;
 import java.net.PortUnreachableException;
 import java.util.concurrent.TimeUnit;
 
+import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
+
 public class CommitteeTest extends Base {
 
     @Parameters({"witnessKey"})
@@ -37,11 +39,6 @@ public class CommitteeTest extends Base {
         }
     }
 
-    public CommitteeProposalPage enterCommitteeProposalPage(){
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        return mine.enterCommitteeProposalPage();
-    }
 
 
     @Test(enabled = true,description = "Enter Proposal Detail success test", alwaysRun = true)
@@ -64,6 +61,8 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(createProposePage.proValue_ipt.get(1).getText().equals("9999"));
     }
 
+
+
     @Test(enabled = true,description = "Create proposal success", alwaysRun = true)
     public void test003_createCommitteeProposalSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
@@ -78,6 +77,7 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(proposalDetailsPage.numValidVotes_btn.isDisplayed());
         Assert.assertTrue(proposalDetailsPage.createTime_text.isDisplayed());
         Assert.assertTrue(proposalDetailsPage.endTime_text.isDisplayed());
+        Helper.swipScreenLitte(proposalDetailsPage.driver);
         Assert.assertTrue(proposalDetailsPage.noApprovers_text.isDisplayed());
     }
 
@@ -92,6 +92,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
+        MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
@@ -108,11 +109,13 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
+        MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.agree_btn.click();
+        MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
@@ -129,13 +132,11 @@ public class CommitteeTest extends Base {
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         committeeProposalPage = createProposePage.createProposal();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
         proposalDetailsPage.proposalCancle_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
         proposalDetailsPage.confirm_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        proposalDetailsPage.send_btn.click();
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();
         TimeUnit.SECONDS.sleep(10);
@@ -160,7 +161,7 @@ public class CommitteeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Assert.assertTrue(committeeProposalPage.myProposals_text.getText() != "0");
         Assert.assertTrue(committeeProposalPage.myApproved_text.getText() != "0");
     }
@@ -171,7 +172,7 @@ public class CommitteeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        asset.driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage myProposals = committeeProposalPage.enterMyProposals();
         Assert.assertTrue(myProposals.createProposal_btn.isEnabled());
     }

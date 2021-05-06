@@ -77,8 +77,7 @@ public class WatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
-        frozen.freezeNow_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        frozen.confirm_btn.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -94,8 +93,7 @@ public class WatchWalletTest extends Base {
         frozen.freezeCount_input.sendKeys("1");
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
-        frozen.freezeNow_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        frozen.confirm_btn.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -111,6 +109,7 @@ public class WatchWalletTest extends Base {
         createProposePage.proValue_ipt.get(1).clear();
         createProposePage.proValue_ipt.get(1).sendKeys("9997");
         createProposePage.confirm_btn.click();
+        createProposePage.bt_send.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -136,9 +135,10 @@ public class WatchWalletTest extends Base {
     public void test006_DepositQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
-        TransferPage transfer = trxPage.enterTransferPage();
+        TransferPage transfer = trxPage.enterTransferInPage();
         transfer.count_text.sendKeys("10");
         transfer.transferIn_btn.click();
+        transfer.bt_send.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -161,21 +161,17 @@ public class WatchWalletTest extends Base {
 
 
 
-//    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
-//    public void test008_voteQRCode() throws Exception{
-//        AssetPage asset = new AssetPage(DRIVER);
-//        VotePage vote = asset.enterVotePage();
-//        vote.reset_btn.click();
-//        vote.et_input.sendKeys("1");
-//        vote.vote_btn.click();
-//        TimeUnit.SECONDS.sleep(2);
-//        try {
-//            vote.btgo_btn.click();
-//        } catch (Exception e) {
-//
-//        }
-//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-//    }
+    @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
+    public void test008_voteQRCode() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(1);
+        vote.firstSR.click();
+        vote.voted_cancel.click();
+        vote.et_input.sendKeys("1");
+        vote.bt_send.click();
+        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+    }
 
 
 
@@ -198,9 +194,10 @@ public class WatchWalletTest extends Base {
     public void test010_depositTrxQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trxPage = asset.enterTrxPage();
-        TransferPage transfer = trxPage.enterTransferPage();
+        TransferPage transfer = trxPage.enterTransferInPage();
         transfer.count_text.sendKeys("10");
         transfer.transferIn_btn.click();
+        transfer.bt_send.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -210,6 +207,8 @@ public class WatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
         frozen.unfreezeType_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        Helper.swipScreenLitte(frozen.driver);
         frozen.unfreezeTargetAddress_btn.click();
         frozen.unfreeze_btn.click();
         frozen.unfreezeInfoConfirm_btn.click();
@@ -226,26 +225,5 @@ public class WatchWalletTest extends Base {
 //    }
 
 
-//    @Test(enabled = true,description = "Public send trz to shield QR test", alwaysRun = true)
-//    public void test013_PbulicSendTrzToShieldQR() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        TimeUnit.SECONDS.sleep(3);
-//        asset.mine_btn.click();
-//        TimeUnit.SECONDS.sleep(3);
-//        asset.assetsMain_btn.click();
-//        SendTrxPage transfer = asset.publicAccountenterSendTrzPage();
-//        transfer.receiveAddress_text.sendKeys(receiverShieldAddress);
-//        transfer.tranferCount_text.sendKeys(Float.toString(getAnAmount()));
-//        transfer.swip();
-//        transfer.send_btn.click();
-//        transfer.transferNow_btn.click();
-//        while (transfer.coldHadScan_next_btn.getText().contains("冷钱包已扫描")) {
-//            Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-//            Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
-//            transfer.coldHadScan_next_btn.click();
-//        }
-//        Assert.assertTrue(transfer.coldHadScan_next_btn.getText().contains("冷钱包已签名"));
-//        Assert.assertTrue(transfer.coldHadScan_next_btn.isEnabled());
-//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-//    }
+
 }

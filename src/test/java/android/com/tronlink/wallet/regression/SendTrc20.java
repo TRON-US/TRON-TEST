@@ -113,7 +113,7 @@ public class SendTrc20 extends Base {
         DRIVER.resetApp();
         new Helper().getSign(onlyhaveTRC20privatekey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendMaxTrc20();
+        transfer.sendMaxCoinWithType("20");
         Assert.assertFalse(transfer.send_btn.isEnabled());
         Helper.swipeDownScreen(transfer.driver);
         Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("账户未激活") );
@@ -126,7 +126,7 @@ public class SendTrc20 extends Base {
         DRIVER.resetApp();
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   Float.parseFloat(removeSymbolFloat(transfer.sendMaxTrc20()));
+        Float allNumber =   Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("20")));
         Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(),"TRX") == 0);
         Assert.assertEquals(allNumber,number);

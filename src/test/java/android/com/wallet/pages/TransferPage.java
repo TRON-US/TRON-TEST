@@ -46,8 +46,8 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_right")
-    public List<WebElement> fee_text;
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
+    public WebElement fee_text;
 
 
 
@@ -78,24 +78,27 @@ public class TransferPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
     public WebElement tvName_text;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_real_money")
+    public WebElement tv_real_money;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee_amount_bw")
+    public WebElement bandwidth;
 
 
     public String getTransferInfo(String info) throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         String value = "";
         switch (info){
             case "trx":
-                value = trx_text.getText().split(" ")[0];
+                value = tv_real_money.getText().split(" ")[0];
                 break;
             case "hits":
                 value = hits_text.getText();
                 break;
             case "fee":
-                //value = fee_text.getText().split(" ")[0];
-                String feeStr = fee_text.get(1).getText();
-                value = feeStr.substring(0,feeStr.length()-2);
+                value = fee_text.getText().split(" ")[0];
                 break;
         }
         return value;
@@ -106,7 +109,7 @@ public class TransferPage extends AbstractPage {
     public TrxPage enterTrxPageWithTransferSuccess() throws Exception {
         count_text.sendKeys("10");
         transferIn_btn.click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        confirmBtn.click();
         password_input.sendKeys("Test0001");
         finish_btn.click();
         TimeUnit.SECONDS.sleep(3);
@@ -117,9 +120,9 @@ public class TransferPage extends AbstractPage {
     public TrxPage enterTrxPageWithTransferSuccess(String count) throws Exception {
         count_text.sendKeys(count);
         transferIn_btn.click();
-        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        confirmBtn.click();
         password_input.sendKeys("Test0001");
-        finish_btn.click();
+        confirmBtn.click();
         TimeUnit.SECONDS.sleep(3);
         return new TrxPage(driver);
     }

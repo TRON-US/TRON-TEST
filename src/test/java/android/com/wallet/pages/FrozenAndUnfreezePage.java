@@ -84,7 +84,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement freeze_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/freeze")
     public WebElement freezeNow_btn;
 
 
@@ -122,7 +122,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/error_address")
     public WebElement errorAddress_hits;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_current_type")
+    @FindBy(id = "com.tronlinkpro.wallet:id/select_power_type")
     public WebElement currentType_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_me")
@@ -201,10 +201,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.swipScreen(driver);
         try {
             frozenButtonClickAndConfirm();
-            freezeNow_btn.click();
             TimeUnit.SECONDS.sleep(1);
-            confirm_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            bt_send.click();
         }catch (Exception e){
             System.out.println(e);
         }
@@ -217,10 +215,10 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.swipScreen(driver);
         try {
             frozenButtonClickAndConfirm();
-            freezeNow_btn.click();
+            confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
-            confirm_btn.click();
+            bt_send.click();
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
@@ -232,10 +230,10 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.swipScreen(driver);
         try {
             frozenButtonClickAndConfirm();
-            freezeNow_btn.click();
+            confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
-            confirm_btn.click();
+            bt_send.click();
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
@@ -276,8 +274,10 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
         frozenButtonClickAndConfirm();
-        freezeNow_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         checkPasswotd_input.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(1);
         confirm_btn.click();
@@ -292,7 +292,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
         frozenButtonClickAndConfirm();
-        freezeNow_btn.click();
+        confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
         signNext_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -326,6 +326,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
     public String getAvailableTrx() {
+        swipScreenLitte();
         String availableTrx = availableTrx_text.getText();
         availableTrx = availableTrx.split(" ")[1];
         availableTrx = availableTrx.substring(0,availableTrx.length()-3);

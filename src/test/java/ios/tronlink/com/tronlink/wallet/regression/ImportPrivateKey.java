@@ -116,6 +116,8 @@ public class ImportPrivateKey extends BaseTest {
         PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
         setPwdAgain.pwd_input.sendKeys("Test0002");
         Helper.tapWhitePlace(DRIVER);
+        setPwdAgain.getComplish_btn().click();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(Helper.isElementExist(setPwdAgain.driver,"两次输入密码不一致"));
 
     }

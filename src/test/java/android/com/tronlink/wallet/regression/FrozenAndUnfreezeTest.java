@@ -10,6 +10,7 @@ import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.TransactionRecordPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import android.com.utils.Configuration;
 import org.testng.annotations.AfterClass;
 
 import org.testng.annotations.*;
@@ -30,7 +31,8 @@ public class FrozenAndUnfreezeTest extends Base {
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
     @AfterClass(alwaysRun = true)
@@ -50,6 +52,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         frozen.energy_btn.click();
+        Helper.swipScreenLitte(frozen.driver);
         frozen.freezeCount_input.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
@@ -57,24 +60,25 @@ public class FrozenAndUnfreezeTest extends Base {
         int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
-
+//
 
     /**
      * freeze Bandwidth
      */
-    @Test(groups = {"P0"},enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    @Test(groups = {"P0"}, enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
     public void test0002_freezeBandwidthSuccess() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
-        //frozen.bandwidth_btn.click();
+        Helper.swipScreenLitte(frozen.driver);
         frozen.freezeCount_input.sendKeys("1");
-//        frozen.frozenTheEnergy(); //Freeze operating
         frozen.frozenTheBandwidth();
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndUnfreezePage();
         int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
+
+
     }
 
 
@@ -150,12 +154,14 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test0009_countRemainingAndVotingEqualTrx() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         int trxCount = Integer.valueOf(removeSymbol(asset.getTrxCount()));
+        System.out.println("totalTRX: " + String.format("%d",trxCount));
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
-        System.out.println("frozen.getCurrentCanUseTrx():" + frozen.getCurrentCanUseTrx());
-        int currentCanUseTrx = Integer.valueOf(removeSymbol(frozen.getCurrentCanUseTrx()));
-        System.out.println(trxCount + "......" + myVotingPower + "....." + currentCanUseTrx);
-        Assert.assertTrue(myVotingPower + currentCanUseTrx == trxCount);
+        int myVotingPower =  Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
+        System.out.println("votePower: " + String.format("%d",myVotingPower));
+        Helper.swipScreenLitte(frozen.driver);
+        int canUse = Integer.valueOf(removeSymbol(frozen.getCurrentCanUseTrx()));
+        System.out.println("canUse: " + String.format("%d",canUse));
+        Assert.assertTrue(myVotingPower + canUse == trxCount);
     }
 
 
@@ -178,7 +184,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         String availableTrx = frozen.getAvailableTrx();
         frozen.inputFrozenCount(removeSymbol(availableTrx));
-        Assert.assertTrue(frozen.freezeNow_btn.isDisplayed());
+        Assert.assertTrue(frozen.bt_send.isDisplayed());
     }
 
 
@@ -243,4 +249,62 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertTrue(transactionType.equals("冻结资产") || transactionType.equals("Freeze Asset"));
         Assert.assertTrue(resourceType.contains("BANDWIDTH"));
     }
+
+
+//    @Test(enabled = true, description = "frozen30Account", alwaysRun = true)
+//    public void frozen30Account() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//
+//        Helper.swipScreenLitte(frozen.driver);
+//        frozen.freezeCount_input.sendKeys("1");
+//        Helper.swipScreen(frozen.driver);
+//        frozen.cleanAddress_btn.click();
+
+//        int book = 1;
+//        while (book < 11){
+//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
+//
+//            String addressString =  Configuration.getByPath("testng.conf")
+//                    .getString("androidMultiSignAccount.multiSign"+String.valueOf(book)+"Address");
+//            log("find address: " + addressString);
+//            frozen.freezeCount_input.clear();
+//            frozen.freezeCount_input.sendKeys("1");
+//            frozen.freezeAddress_input.clear();
+//            frozen.freezeAddress_input.clear();
+//            frozen.freezeAddress_input.sendKeys(addressString);
+//            frozen.frozenTheBandwidth();
+//            book++;
+//        }
+
+//        while (book < 21){
+//            log("第几个 "+String.valueOf(book)+"Address");
+//
+//                        String addressString = Configuration.getByPath("testng.conf")
+//                    .getString("androidMultiSignAccount.owner" + String.valueOf(book-10) + "Address");
+//            log("find address: " + addressString);
+//            frozen.freezeCount_input.clear();
+//            frozen.freezeCount_input.sendKeys("1");
+//            frozen.freezeAddress_input.click();
+//            frozen.freezeAddress_input.clear();
+//            frozen.freezeAddress_input.sendKeys(addressString);
+//            frozen.frozenTheBandwidth();
+//            book++;
+//        }
+//
+//        while (book < 31){
+//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
+//
+//            String addressString = Configuration.getByPath("testng.conf")
+//                    .getString("iosMultiSignAccount.owner" + String.valueOf(book-20) + "Address");
+//            log("find address: " + addressString);
+//            frozen.freezeCount_input.clear();
+//            frozen.freezeCount_input.sendKeys("1");
+//            frozen.freezeAddress_input.clear();
+//            frozen.freezeAddress_input.clear();
+//            frozen.freezeAddress_input.sendKeys(addressString);
+//            frozen.frozenTheBandwidth();
+//            book++;
+//        }
+//}
 }
