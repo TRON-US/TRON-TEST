@@ -42,8 +42,6 @@ public class TransferPage extends AbstractPage {
     @FindBy(id = "chargeText")
     public WebElement chargeText;
 
-    @FindBy(id = "titleText")
-    public WebElement titleText;
 
     @FindBy(id = "titleLabel")
     public WebElement titleLabel;

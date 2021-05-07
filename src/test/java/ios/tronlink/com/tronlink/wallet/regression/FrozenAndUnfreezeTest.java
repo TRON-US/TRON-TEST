@@ -154,8 +154,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.inputFrozenCount("1");
         frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
         Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-//        String prompt = frozen.errorAddress_hits.getText();
-//        Assert.assertTrue(prompt.contains("账户格式不正确") || prompt.contains("address format is incorrect"));
+
     }
 
 
@@ -166,8 +165,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
         Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
 
-//        String prompt = frozen.errorAddress_hits.getText();
-//        Assert.assertTrue(prompt.contains("未在TRON网络上激活") || prompt.contains("has not been activated"));
     }
 
     /**

@@ -16,7 +16,6 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerPrivateKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
-        log("|||||||||||||||||||||||||||||||||||||||");
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
     }
 
