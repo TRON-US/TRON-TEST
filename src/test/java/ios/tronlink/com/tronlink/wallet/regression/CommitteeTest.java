@@ -66,10 +66,6 @@ public class CommitteeTest extends Base {
     public void tearDownAfterClass(String udid) {
         try {
             DRIVER.closeApp();
-//            System.out.println("开始移除app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//            System.out.println("开始安装app");
-//            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
             DRIVER.quit();
         } catch (Exception e) {
         }
@@ -95,7 +91,7 @@ public class CommitteeTest extends Base {
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         String count = String.format("%.0f", Math.random() * 100000);
-        System.out.println(count);
+        System.out.println("委员会提议修改超级代表燃烧TRX值："+count);
         committeePage.change1proposal(count);
         WebElement wl = committeePage.findFirstproposalWl();
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
@@ -122,7 +118,6 @@ public class CommitteeTest extends Base {
     }
     @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
     public void test_004makeecendNewProposal() throws  Exception{
-
 
         String count = random(6,0);
         count = Helper.getPrettyNumber(count);
