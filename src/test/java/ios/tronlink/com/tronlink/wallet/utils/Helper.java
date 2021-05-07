@@ -414,7 +414,6 @@ public class Helper {
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();
-//                System.out.println("swip the screen...");
             }
         }
 
@@ -424,12 +423,22 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.print("  width: " + width + "   height:" + height + "\n");
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(width/2, height/5))
+                .release().perform();
+    }
+    public static void swipScreenLitter(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/5))
                 .release().perform();
     }
 

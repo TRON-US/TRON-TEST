@@ -36,6 +36,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
+
+
+    @FindBy(name = "timeLeftLabel")
+    public WebElement timeLeftLabel;
+
     //ad
     @FindBy(xpath = "XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeImage")
     public WebElement ad_pic;
@@ -235,8 +240,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
                 getConfirmGo_btn().click();
                 TimeUnit.SECONDS.sleep(3);
             }
-            getfreezeNow_btn().click();
             TimeUnit.SECONDS.sleep(1);
+            comfirm_btn().click();
             checkPasswotd_input.sendKeys("Test0001");
             getConfirm_btn().click();
             TimeUnit.SECONDS.sleep(3);

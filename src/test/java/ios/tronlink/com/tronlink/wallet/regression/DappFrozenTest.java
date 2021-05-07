@@ -126,13 +126,15 @@ public class DappFrozenTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getDirectionFzUfz_btn().click();
         frozen.unfreeze_btn.click();
-        if(Helper.isElementExist(frozen.driver,"预计可得")){
-            Assert.assertFalse(frozen.driver.findElementByName("预计可得").isDisplayed());
+        if (Helper.isElementExist(frozen.driver,"timeLeftLabel")) {
+            Helper.swipScreenLitter(frozen.driver);
+            Assert.assertTrue(frozen.timeLeftLabel.getText().contains("可解冻时间"));
         }else {
-            Assert.assertTrue(Helper.isElementExist(frozen.driver,"可解冻时间"));
+            Assert.assertTrue(Helper.isElementExist(frozen.driver,"解冻"));
         }
-    }
 
+    }
+//
     //Freeze Energy equals trx
     @Test(description = "Freeze Energy equals trx", alwaysRun = true)
     public void test011_freezeEnergyEqualTrx() throws Exception {
