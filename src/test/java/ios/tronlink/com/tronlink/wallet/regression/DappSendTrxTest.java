@@ -100,6 +100,7 @@ public class DappSendTrxTest extends BaseTest {
 
         double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
         System.out.println("   count:" +count + "   trcBefore:" + trcBefore + " trcafter:" + trcafter);
+        //TODO : 刷新逻辑
         Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
 
 

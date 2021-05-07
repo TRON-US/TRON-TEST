@@ -134,9 +134,28 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
-    public WebElement getTrc10Token() throws Exception{
+    public void selectToken20TRX()throws Exception {
+        inputTokenName("TRX");
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementsByName("TRX").get(2).click();
+    }
+
+    public void selectTokenByName(String name) throws Exception{
+        inputTokenName(name);
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementsByName(name).get(1).click();
+    }
+
+    public void inputTokenName(String name) throws Exception {
         waiteTime();
-        return driver.findElementById("(1000002)");
+        token_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
+    }
+
+    public WebElement getTrc10Token() throws Exception{
+        inputTokenName("tronlink_token");
+        return  driver.findElementByName("tronlink_token");
     }
 
     public void swip(){
@@ -195,9 +214,9 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
         waiteTime();
-        token_btn.click();
+        selectTokenByName("tronlink_token");
         waiteTime();
-        clickOffsetElement(getTrc10Token());
+        TimeUnit.SECONDS.sleep(4);
         waiteTime();
         //calculate trx
         switch(value){
@@ -400,10 +419,9 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         waiteTime();
-        token_btn.click();
+        selectTokenByName("tronlink_token");
         waiteTime();
-        clickOffsetElement(getTrc10Token());
-        waiteTime();
+        TimeUnit.SECONDS.sleep(4);
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
@@ -424,10 +442,8 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         waiteTime();
-        token_btn.click();
-        clickOffsetElement(getTrc20Token());
-        System.out.println("find token an clicked");
-        TimeUnit.SECONDS.sleep(10);
+        selectToken20TRX();
+        TimeUnit.SECONDS.sleep(4);
         System.out.println("testfieldArray Size: " + testfieldArray.size());
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
