@@ -171,8 +171,9 @@ public class SendTrc10 extends BaseTest {
 
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转入"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
     }
@@ -193,8 +194,9 @@ public class SendTrc10 extends BaseTest {
 
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转入"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 

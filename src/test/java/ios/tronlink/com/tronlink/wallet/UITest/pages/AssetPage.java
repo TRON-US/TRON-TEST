@@ -148,7 +148,6 @@ public class AssetPage extends AbstractPage {
 
     public WebElement transfer_btn(){
         return  driver.findElementByName("发送");
-//       return driver.findElementByIosNsPredicate("name == '发送' AND type == 'XCUIElementTypeButton'");
     }
 
     public VotePage enterVotePage() {
