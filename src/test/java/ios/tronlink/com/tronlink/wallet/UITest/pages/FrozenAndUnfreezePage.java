@@ -155,7 +155,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '继续'");
     }
     public WebElement getfreezeNow_btn(){
-        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '立即冻结'");
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
     public WebElement getDirectionFzUfz_btn(){
