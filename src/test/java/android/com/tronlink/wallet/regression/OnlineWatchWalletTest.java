@@ -126,7 +126,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.tranferCount_text.sendKeys("1");
         waiteTime();
         String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
-        Assert.assertEquals(feeSendNumber.trim(),"1");
+        Assert.assertEquals(removeSymbol(feeSendNumber.trim()),"1");
         waiteTime();
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
