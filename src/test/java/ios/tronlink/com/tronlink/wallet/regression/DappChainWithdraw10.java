@@ -85,8 +85,7 @@ public class DappChainWithdraw10 extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(transferOut.DappChainDepositsignTips.getText().contains("转出需要执行智能合约"));
-
+        Assert.assertTrue(Helper.isElementExist(transferOut.driver,"转出需要执行智能合约，智能合约同时可能会消耗能量。"));
 //转出需要执行智能合约。执行智能合约同时会消耗 Energy。
     }
 
@@ -143,8 +142,7 @@ public class DappChainWithdraw10 extends BaseTest {
         log("feeNumber:"+ feeNumber.toString());
         Assert.assertTrue(feeNumber > 0 );
         Assert.assertTrue(outPage.titleText.getText().contains("转出签名"));
-//        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("消耗资源"));
-        Assert.assertTrue(outPage.DappChainDepositsignTips.getText().contains("执行智能合约"));
+        Assert.assertTrue(Helper.isElementExist(outPage.driver,"转出需要执行智能合约，智能合约同时可能会消耗能量。"));
         Assert.assertFalse( outPage.get_finish_btn().isEnabled());
         outPage.password_input.click();
         outPage.password_input.sendKeys("balabala");

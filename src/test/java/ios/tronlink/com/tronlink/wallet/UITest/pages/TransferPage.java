@@ -22,6 +22,11 @@ public class TransferPage extends AbstractPage {
     @FindBy(name = "directionContent")
     public WebElement chain_text;
 
+    @FindBy(name = "passwordErrorLabel")
+    public WebElement passwordErrorLabel;
+
+    @FindBy(name = "blueamountErrorLabel")
+    public WebElement blueamountErrorLabel;
 
     @FindBy(className = "XCUIElementTypeTextField")
     public WebElement count_text;
@@ -40,16 +45,18 @@ public class TransferPage extends AbstractPage {
     @FindBy(id = "titleText")
     public WebElement titleText;
 
+    @FindBy(id = "titleLabel")
+    public WebElement titleLabel;
+
+
+    @FindBy(id = "trxLabel")
+    public WebElement trxLabel;
 
     @FindBy(id = "bandwidthLabel")
     public WebElement bandwidthLabel;
 
-    @FindBy(id = "bandwidthText")
+    @FindBy(id = "resourcesLabel")
     public WebElement bandwidthText;
-
-    @FindBy(id = "DappChainDepositsignTips")
-    public WebElement DappChainDepositsignTips;
-
 
 
 
@@ -84,7 +91,7 @@ public class TransferPage extends AbstractPage {
     }
     public String getvalueofBandwidthText() throws Exception{
         TimeUnit.SECONDS.sleep(2);
-        WebElement element = driver.findElementById("bandwidthText");
+        WebElement element = driver.findElementById("resourcesLabel");
         String val = element.getText().split(" ")[0];
 
         return  val;
@@ -100,7 +107,9 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        waiteTime(8);
+        comfirm_btn().click();
+        waiteTime(4);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
@@ -115,7 +124,9 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        waiteTime(8);
+        comfirm_btn().click();
+        waiteTime(4);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
@@ -131,7 +142,9 @@ public class TransferPage extends AbstractPage {
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
         get_out_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        waiteTime(8);
+        comfirm_btn().click();
+        waiteTime(4);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         TimeUnit.SECONDS.sleep(3);
@@ -142,22 +155,19 @@ public class TransferPage extends AbstractPage {
 
 
     public TrxPage enterTrxPageWithTransferOutSuccess(String count) throws Exception {
-//        TimeUnit.SECONDS.sleep(2);
         waiteTime();
         count_text.sendKeys(count);
         Helper.tapWhitePlace(driver);
-//        TimeUnit.SECONDS.sleep(3);
         waiteTime();
         get_out_btn().click();
-//        TimeUnit.SECONDS.sleep(8);
-        waiteTime(8);
+        waiteTime();
+        comfirm_btn().click();
+        waiteTime();
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
         waiteTime();
-//        TimeUnit.SECONDS.sleep(3);
         get_finish_btn().click();
-        waiteTime(8);
-//        TimeUnit.SECONDS.sleep(8);
+        waiteTime();
         return new TrxPage(driver);
     }
 

@@ -28,6 +28,9 @@ public class AbstractPage {
     public WebElement queding_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确定'");
     }
+    public WebElement comfirm_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
+    }
 
     public AbstractPage(IOSDriver<?> driver) {
         this.driver = driver;

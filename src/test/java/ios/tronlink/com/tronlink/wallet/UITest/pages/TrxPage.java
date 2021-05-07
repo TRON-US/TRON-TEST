@@ -92,6 +92,9 @@ public WebElement shieldedDetailBtn;
     @FindBy(id = "amountErrorLabel")
     public WebElement amountErrorLabel;
 
+    @FindBy(name = "blueamountErrorLabel")
+    public WebElement blueamountErrorLabel;
+
 
 
 
