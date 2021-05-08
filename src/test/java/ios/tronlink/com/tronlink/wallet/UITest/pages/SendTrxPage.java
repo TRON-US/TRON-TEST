@@ -57,6 +57,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "确认")
     public WebElement transferNow_btn;
 
+    @FindBy(name = "投票")
+    public WebElement vote_btn;
 
 
     @FindBy(className = "XCUIElementTypeSecureTextField")
@@ -307,13 +309,13 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(14);
 
         try{
-            send_btn.getText();
-            return false;
+            vote_btn.getText();
+            return true;
         }catch (Exception e){
-            return  true;
+            return  false;
         }
     }
     public boolean multiSignActiveSend(String addr) throws Exception{

@@ -67,7 +67,7 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "address scan")
     public WebElement addressClean;
 
-    @FindBy(id = "detailLabel")
+    @FindBy(id = "resourcesLabel")
     public WebElement detailLabel;
 
     public String getInstructionString() {

@@ -132,8 +132,8 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
         Assert.assertTrue(sendTrxPage.multiSignOwnerSend(ownerAddress));
-
     }
+
     @Parameters({"ownerAddress"})
     @Test(groups = {"P0"},description = "send trx sign success use active authority Test", alwaysRun = true)
     public void test009_sendSignSuccessUseOwnerActiveSuccess(String ownerAddress) throws Exception{
@@ -231,6 +231,7 @@ public class MultiSignTest extends Base {
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
         Assert.assertTrue(multiSignManagerPage.detailLabel.getText().contains("101"));
+        Assert.assertFalse( Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
     }
 
     @Parameters({"ownerAddress"})

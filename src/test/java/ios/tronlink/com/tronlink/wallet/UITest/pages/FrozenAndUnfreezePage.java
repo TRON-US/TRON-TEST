@@ -203,7 +203,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         }catch (Exception e){
             log("not show go on button");
         }
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(1);
+        comfirm_btn().click();
+        TimeUnit.SECONDS.sleep(1);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '下一步'").click();
         TimeUnit.SECONDS.sleep(1);
         checkPasswotd_input.sendKeys("Test0001");
@@ -289,14 +291,15 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(2);
         log("TextField count: " + freezeCount_input.size());
-        log("freezeCount_input.get(1):  "  + freezeCount_input.get(1).getText());
-        log("freezeCount_input.get(0):  "  + freezeCount_input.get(0).getText());
-        if (freezeCount_input.get(0).getText().contains("输入冻结资源数量")){
-            freezeCount_input.get(0).click();
-            freezeCount_input.get(0).sendKeys(count);
-        }else {
-            freezeCount_input.get(1).click();
-            freezeCount_input.get(1).sendKeys(count);
+        if (freezeCount_input.size() == 2){
+            if (freezeCount_input.get(0).getText().contains("输入冻结资源数量")){
+                freezeCount_input.get(0).click();
+                freezeCount_input.get(0).sendKeys(count);
+            }
+            if (freezeCount_input.get(1).getText().contains("输入冻结资源数量")){
+                freezeCount_input.get(1).click();
+                freezeCount_input.get(1).sendKeys(count);
+            }
         }
 
         Helper.closeKeyBoard(driver);
