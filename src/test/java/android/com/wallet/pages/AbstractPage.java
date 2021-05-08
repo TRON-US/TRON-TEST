@@ -78,25 +78,29 @@ public abstract class AbstractPage {
     public boolean isElementExist(String name) {
         try {
             driver.findElementById(name);
-            System.out.println("IsFindById: "+name);
+            System.out.println("FindById: "+name);
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
             try {
-                driver.findElementByName(name);
-                System.out.println("IsFindByName: "+name);
+                System.out.println("Not Fount by ID" + name);
+                driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+name+"\")");
+                System.out.println("FindByText: "+name);
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
-                    findElementByText(name);
-                    System.out.println("IsFindByText: "+name);
+                    System.out.println("Not Fount by Text" + name);
+                    driver.findElementByName(name);
+                    System.out.println("FindByName: "+name);
                     return  true;
                 }catch (org.openqa.selenium.NoSuchElementException xxx) {
-                    System.out.println("NotFound: " + name);
+                    System.out.println("Not Fount by Name");
                     return false;
                 }
             }
         }
     }
+
+
 
     /**
      *

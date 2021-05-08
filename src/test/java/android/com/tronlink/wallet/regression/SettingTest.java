@@ -73,8 +73,9 @@ public class SettingTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
-        dapp.testUrl();
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
+        dapp.testUrl();
+        Assert.assertTrue(dapp.isElementExist("com.tronlinkpro.wallet:id/webview"));
     }
 
     @Test(description = "Currency Test")

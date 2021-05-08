@@ -22,6 +22,8 @@ public class VotePage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    public WebElement close;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/caim_reward")
     public WebElement caim_reward;
@@ -55,9 +57,11 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_vote_amount")
     public WebElement et_input;
 
-
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_vote")
     public WebElement vote_btn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
+    public WebElement vote_page_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/surplus_available")
     public WebElement surplusAvailableVote_text;

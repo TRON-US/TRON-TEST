@@ -277,7 +277,7 @@ public class Helper {
         DRIVER.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
     }
     public void waiteTime() {
-        waiteTime(10);
+        waiteTime(15);
     }
 
     public void getSignOperate(String testPrivateKey){
