@@ -87,10 +87,7 @@ public class SendTrc10 extends BaseTest {
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(transfer.driver);
         waiteTime();
-        transfer.token_btn.click();
-        waiteTime();
-        transfer.clickOffsetElement(transfer.getTrc10Token());
-        waiteTime();
+        transfer.selectTokenByName("tronlink_token");
         transfer.testfieldArray.get(2).sendKeys("1");
         TimeUnit.SECONDS.sleep(2);
         Helper.tapWhitePlace(transfer.driver);
@@ -116,10 +113,7 @@ public class SendTrc10 extends BaseTest {
         waiteTime();
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(transfer.driver);
-        waiteTime();
-        transfer.token_btn.click();
-        transfer.clickOffsetElement(transfer.getTrc20Token());
-        waiteTime();
+        transfer.selectTokenByName("tronlink_token");
         transfer.testfieldArray.get(2).sendKeys("0.000001");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();

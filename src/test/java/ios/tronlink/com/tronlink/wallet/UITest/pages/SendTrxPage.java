@@ -67,10 +67,6 @@ public class SendTrxPage extends AbstractPage {
     public WebElement confirm_btn;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/tv_error")
-    public WebElement formatErrorHits_text;
-
-
     @FindBy(id = "transferAddressErrorLabel")
     public WebElement transferErrorLabel;
 
@@ -80,22 +76,10 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "reciptErrorLabel")
     public WebElement reciptErrorLabel;
 
-    @FindBy(id = "shieldedCurrentBalance")
-    public WebElement shieldedCurrentBalance;
-
 
     @FindBy(id = "currentTRXCountLabel")
     public WebElement balance_text;
 
-
-    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='tronlink_token (1000042)']")
-    public WebElement trc10_btn;
-
-    @FindBy(id = "TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)")
-    public WebElement TRX20Token;
-
-    @FindBy(id = "tronlink_token (1000002)")
-    public WebElement TRX10Token;
 
     @FindBy(id = "trxLabel")
     public WebElement real_money;
@@ -242,9 +226,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
         waiteTime();
-        token_btn.click();
-        waiteTime();
-        clickOffsetElement(getTrc20Token());
+        selectToken20TRX();
         waiteTime();
         //calculate trx
         switch(value){
@@ -465,13 +447,10 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         switch (value) {
             case "20":
-                token_btn.click();
-                clickOffsetElement(getTrc20Token());
+                selectToken20TRX();
                 break;
             case "10":
-                token_btn.click();
-                waiteTime();
-                clickOffsetElement(getTrc10Token());
+                selectTokenByName("tronlink_token");
                 break;
         }
     }
@@ -491,7 +470,6 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         tvMax_btn.click();
         waiteTime();
-        log("clicked");
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
         System.out.println("allNumberText" + allNumberText);
