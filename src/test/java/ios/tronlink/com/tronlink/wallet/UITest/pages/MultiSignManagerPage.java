@@ -195,6 +195,8 @@ public class MultiSignManagerPage extends AbstractPage {
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
             TimeUnit.SECONDS.sleep(3);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
+            TimeUnit.SECONDS.sleep(1);
+            comfirm_btn().click();
             TimeUnit.SECONDS.sleep(10);
             driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(3);
