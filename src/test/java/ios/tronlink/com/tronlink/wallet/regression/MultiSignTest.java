@@ -139,7 +139,9 @@ public class MultiSignTest extends Base {
     public void test009_sendSignSuccessUseOwnerActiveSuccess(String ownerAddress) throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
-        Assert.assertTrue(sendTrxPage.multiSignActiveSend(ownerAddress));
+       sendTrxPage.multiSignActiveSend(ownerAddress);
+        String walletName = assetPage.walletNameBtn.getText();
+        Assert.assertTrue(walletName.contains("Signed"));
     }
 
     @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
@@ -230,7 +232,7 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
-        Assert.assertTrue(multiSignManagerPage.detailLabel.getText().contains("101"));
+        Assert.assertTrue(multiSignManagerPage.chargeLabel.getText().contains("101"));
         Assert.assertFalse( Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
     }
 

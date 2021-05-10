@@ -70,6 +70,9 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "resourcesLabel")
     public WebElement detailLabel;
 
+    @FindBy(id = "chargeLabel")
+    public WebElement chargeLabel;
+
     public String getInstructionString() {
         instructionBtn.click();
         return instructiontextLabel.getText();
