@@ -30,18 +30,20 @@ public class AboutUsTest extends BaseTest {
         MinePage minePage =  assetPage.enterMinePage();
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
+
     }
 
     @Test(description = "test version test",alwaysRun = true)
     public void test002_versionTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.1.0"));
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"版本日志"));
         minePage.versionNote_btn.click();
         TimeUnit.SECONDS.sleep(3);
         waiteTime();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"3.6.0"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"4.0.1"));
     }
 
     @Test(description = "test versionUpdate test",alwaysRun = true)
