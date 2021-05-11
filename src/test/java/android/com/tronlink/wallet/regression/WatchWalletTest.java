@@ -216,6 +216,7 @@ public class WatchWalletTest extends Base {
         Helper.swipScreenLitte(frozen.driver);
         frozen.unfreezeTargetAddress_btn.click();
         frozen.unfreeze_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         frozen.unfreezeInfoConfirm_btn.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
