@@ -48,9 +48,8 @@ public class Base {
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "bpPort", "webDriverPort"})
     @BeforeTest(groups = {"P0"})
     public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) throws IOException {
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
         try {
-            System.out.println(port + udid);
+            System.out.println("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
             Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
             InputStreamReader isr = new InputStreamReader(process.getInputStream());
             Scanner sc = new Scanner(isr);
@@ -71,14 +70,13 @@ public class Base {
     @BeforeClass(groups = {"P0"}) //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName, String udid, String webDriverPort,String xcodeSigningId,String noReset, String automationName, String xcodeOrgId,
         String bundleId) throws Exception {
-        log("启动app:" + deviceName);
+        log("启动设备名称: " + deviceName);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 3) {
             tries++;
             try {
                 String url = "http://127.0.0.1:" + port + "/wd/hub";
-//                System.out.println("try start driver " + tries + " times  URL: " + url + "\n");
 
                 desiredCapabilities.setCapability("deviceName", deviceName);
                 desiredCapabilities.setCapability("platformName", platformName);
@@ -93,7 +91,7 @@ public class Base {
                 desiredCapabilities.setCapability("bundleId",bundleId);
                 desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId);
                 desiredCapabilities.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT,webDriverPort);
-                File appDir = new File(System.getProperty("user.dir"), ".//");
+                File appDir = new File(System.getProperty("user.dir"), "");
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());

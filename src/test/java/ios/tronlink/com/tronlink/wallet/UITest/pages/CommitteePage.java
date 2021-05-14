@@ -284,8 +284,6 @@ public class CommitteePage extends AbstractPage {
             deleteBtn.click();
             TimeUnit.SECONDS.sleep(2);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            TimeUnit.SECONDS.sleep(4);
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
             TimeUnit.SECONDS.sleep(15);
