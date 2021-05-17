@@ -196,13 +196,12 @@ public class MultiSignManagerPage extends AbstractPage {
             Helper.swipScreen(driver);
             waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='删除'").click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(8);
             comfirm_btn().click();
-            TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(1);
             driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-            TimeUnit.SECONDS.sleep(3);
             waiteTime();
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
             TimeUnit.SECONDS.sleep(3);
