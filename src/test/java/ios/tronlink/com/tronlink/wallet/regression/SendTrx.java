@@ -248,8 +248,8 @@ public class SendTrx extends BaseTest {
         Assert.assertEquals(allNumber,number);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转入"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
 
     }
@@ -271,8 +271,8 @@ public class SendTrx extends BaseTest {
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转入"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"转出"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
     }
 }
