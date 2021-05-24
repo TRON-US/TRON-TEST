@@ -224,9 +224,8 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public boolean havedaddfreezeAssetPower() {
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             haveActivedClickFunc();
-//            havedActive.click();
             TimeUnit.SECONDS.sleep(1);
 
             if (freezeAssetPower.isDisplayed()) {
