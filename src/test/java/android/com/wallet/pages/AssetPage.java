@@ -31,14 +31,14 @@ public class AssetPage extends AbstractPage {
             }
         }catch (Exception e){}
 //
-//        try {
-//            TimeUnit.SECONDS.sleep(1);
-//            // if updateview display ,close
-//            if (update_topview.isDisplayed()) {
-//                update_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            // if updateview display ,close
+            if (update_topview.isDisplayed()) {
+                update_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
 
         try {
             driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
