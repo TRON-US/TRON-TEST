@@ -26,28 +26,21 @@ public class BaseTest extends Base {
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
-        try {
-            String name = this.getClass().getSimpleName() + "." +
-                    methed.getName();
-            screenshotAction(name);
-            Map<String, Object> params = new HashMap<>();
-            params.put("bundleId", bundleId);
-            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
-        } catch (Exception e) {
-        }
 
     }
 
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId,Method method) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+
+        DRIVER.executeScript("mobile: terminateApp", params);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
             tries++;
             try {
-                Map<String, Object> params = new HashMap<>();
-                params.put("bundleId", bundleId);
                 DRIVER.executeScript("mobile: activateApp", params);
                 driver_is_start = true;
             } catch (Exception e) {

@@ -172,6 +172,22 @@ public class Helper {
             return  ismain;
         }
     }
+
+
+    public static void guaranteeShastaChain(IOSDriver driver) throws  Exception{
+        AssetPage asset = new AssetPage(driver);
+        //判断
+        if (asset.chainNameLabel.getText().contains("Shasta Testnet")){
+            return;
+        }else {
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            nodeSet.enterSettingPageChoiseShastahain();
+            return;
+        }
+    }
+
     public static boolean guaranteeDappChain(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
         if(assetFindMainChain(asset)){
@@ -277,12 +293,6 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-                try {
-                    DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                    DRIVER.findElementById("normalWallet").click();
-                }catch (Exception nooutput){
-
-                }
 
                 break;
             }
@@ -292,12 +302,7 @@ public class Helper {
                 DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
-                try {
-                    DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                    DRIVER.findElementById("normalWallet").click();
-                }catch (Exception nooutput){
 
-                }
 
                 break;
             }
@@ -305,8 +310,7 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                DRIVER.findElementById("shieldedWallet").click();
+
                 break;
             }
         }

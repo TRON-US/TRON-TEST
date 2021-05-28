@@ -174,13 +174,13 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     public void test016_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         String availableTrxOld = frozen.getAvailableTrx();
-        frozen.inputFrozenCount("10");
+        frozen.inputFrozenCount("1");
         Helper.tapWhitePlace(frozen.driver);
         frozen.frozenTheEnergy(); //Freeze operating
         TimeUnit.SECONDS.sleep(3);
         String availableTrxNew = frozen.getAvailableTrx();
         log("availableTrxOld: "+availableTrxOld + "availableTrxNew: " + availableTrxNew);
-        Assert.assertTrue(Double.parseDouble(availableTrxNew) + 10 == Double.parseDouble(availableTrxOld));
+        Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
 
     }
 

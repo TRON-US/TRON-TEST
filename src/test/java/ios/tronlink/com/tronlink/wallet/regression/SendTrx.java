@@ -36,7 +36,6 @@ public class SendTrx extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage tokenpage = asset.enterTrxPage();
         double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-
         String count = random(10,10);
         count = Helper.getPrettyNumber(count);
         log(count);

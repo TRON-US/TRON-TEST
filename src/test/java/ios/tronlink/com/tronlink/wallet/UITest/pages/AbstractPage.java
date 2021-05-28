@@ -22,6 +22,9 @@ public class AbstractPage {
     @FindBy(className = "XCUIElementTypeStaticText")
     public List<WebElement> textArray;
 
+    @FindBy(name = "white back arrow")
+    public WebElement BackBtn_White;
+
     public IOSDriver<?> driver;
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 

@@ -47,8 +47,6 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "发送")
     public WebElement send_btn;
 
-    @FindBy(name = "white back arrow")
-    public WebElement back_bt;
 
     @FindBy(id = "gotoDetailBtn")
     public WebElement gotoDetailBtn;
@@ -119,6 +117,7 @@ public class SendTrxPage extends AbstractPage {
         }
 
     }
+
 
     public void selectToken20TRX()throws Exception {
         inputTokenName("TRX");
