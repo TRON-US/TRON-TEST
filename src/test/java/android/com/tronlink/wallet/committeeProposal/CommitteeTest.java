@@ -134,7 +134,6 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
-        proposalDetailsPage.proposalCancle_btn.click();
         proposalDetailsPage.confirm_btn.click();
         proposalDetailsPage.send_btn.click();
         proposalDetailsPage.pw_input.sendKeys("Test0001");
