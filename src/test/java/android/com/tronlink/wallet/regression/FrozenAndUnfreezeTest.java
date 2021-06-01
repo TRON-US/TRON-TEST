@@ -15,6 +15,8 @@ import org.testng.annotations.AfterClass;
 
 import org.testng.annotations.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Frozen page function test
  */
@@ -47,31 +49,34 @@ public class FrozenAndUnfreezeTest extends Base {
      * Freeze Energy
      */
     @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
-    public void test0001_freezeEnergySuccess() {
+    public void test0001_freezeEnergySuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         frozen.energy_btn.click();
         Helper.swipScreenLitte(frozen.driver);
         frozen.freezeCount_input.sendKeys("1");
+        TimeUnit.SECONDS.sleep(5);
         frozen.frozenTheEnergy(); //Freeze operating
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndUnfreezePage();
         int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
-//
+
 
     /**
      * freeze Bandwidth
      */
     @Test(groups = {"P0"}, enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
-    public void test0002_freezeBandwidthSuccess() {
+    public void test0002_freezeBandwidthSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
+        frozen.bandwidth_btn.click();
         Helper.swipScreenLitte(frozen.driver);
         frozen.freezeCount_input.sendKeys("1");
+        TimeUnit.SECONDS.sleep(5);
         frozen.frozenTheBandwidth();
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndUnfreezePage();
@@ -129,24 +134,26 @@ public class FrozenAndUnfreezeTest extends Base {
     }
 
     @Test(enabled = true, description = "Energy Question Test", alwaysRun = true)
-    public void test0007_checkEnergyQuestion() {
+    public void test0007_checkBandwidthQuestion() {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.energy_btn.click();
-        Helper.swipScreenLitte(frozen.driver);
-        frozen.questionClick();
-        String questionContent = frozen.questionContent_btn.getText();
-        Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
-    }
-
-    @Test(enabled = true, description = "Bandwidth Question Test", alwaysRun = true)
-    public void test0008_checkBandwidthQuestion() {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.bandwidth_btn.click();
         Helper.swipScreenLitte(frozen.driver);
         frozen.questionClick();
         String questionContent = frozen.questionContent_btn.getText();
         Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));
+
+    }
+
+    @Test(enabled = true, description = "Bandwidth Question Test", alwaysRun = true)
+    public void test0008_checkEnergyQuestion() {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        Helper.swipScreenLitte(frozen.driver);
+        frozen.questionClick();
+        String questionContent = frozen.questionContent_btn.getText();
+        Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
+
     }
 
     //Balance in frozen mainPage equal
