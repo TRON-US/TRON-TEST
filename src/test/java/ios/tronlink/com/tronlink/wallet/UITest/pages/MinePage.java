@@ -101,6 +101,7 @@ public class MinePage extends AbstractPage {
     //enter Group page
     public GroupPage enterGroupPage() {
         try {
+            aboutUs_btn.click();
             TimeUnit.SECONDS.sleep(1);
             intoGroup_btn.click();
             TimeUnit.SECONDS.sleep(3);

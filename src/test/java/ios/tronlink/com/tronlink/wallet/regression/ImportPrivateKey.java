@@ -32,17 +32,13 @@ public class ImportPrivateKey extends BaseTest {
     @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
     public void test001_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        //test002_importPrivateKeyIsNull
         Assert.assertFalse(importPrivateKey.getNext_btn().isEnabled());
-
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
         System.out.println("/nError is:" + hits);
         Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("格式错误"));
-        //test003_importPrivateKeyIsTooLarge
         importPrivateKey.content_text.clear();
-        importPrivateKey.content_text.sendKeys("ecd4bbba178b1b0d2a123123343245463450c1e6e9108e0asdfasfddafjwijfiajsvnxzcviarjfjasfjlafcab");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(Helper.isElementExist(importPrivateKey.driver,"格式错误"));
+        String hitsT = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a123123343245463450c1e6e9108e0asdfasfddafjwijfiajsvnxzcviarjfjasfjlafcab");
+        Assert.assertTrue(hitsT.contains("Incorrect private key") || hits.contains("格式错误"));
     }
 
 
