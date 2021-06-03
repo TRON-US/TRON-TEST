@@ -35,7 +35,7 @@ public class DAPP_BrowerPage extends AbstractPage {
         try {
             url_input.sendKeys("https://sun.io");
             enterBrowser_btn.click();
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(8);
         }catch (Exception e){
             System.out.println(e);
         }
