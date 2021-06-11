@@ -108,7 +108,7 @@ public class AssetPage extends AbstractPage {
     public WebElement frozen_btn;
 
 
-    @FindBy(id = "addAssetBtn")
+    @FindBy(id = "home addAssetBtn")
     public WebElement addAssert_btn;
 
     @FindBy(name = "闪兑")

@@ -74,6 +74,7 @@ public class AssetsPageTest extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         String about = asset.assetsLabel.getText();
+        System.out.println("about number:" + about);
         String result;
         if (about.contains("$")){
             result = about.replace("≈$"," ").trim();

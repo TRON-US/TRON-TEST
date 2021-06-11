@@ -43,7 +43,7 @@ public class AboutUsTest extends BaseTest {
         minePage.versionNote_btn.click();
         TimeUnit.SECONDS.sleep(3);
         waiteTime();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.2.0"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.2.0(Build 1)"));
     }
 
     @Test(description = "test versionUpdate test",alwaysRun = true)
@@ -61,7 +61,7 @@ public class AboutUsTest extends BaseTest {
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"加入社群"));
         minePage.intoGroup_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         waiteTime();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"Twitter"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"微信"));
