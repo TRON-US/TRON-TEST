@@ -43,7 +43,7 @@ public class AboutUsTest extends BaseTest {
         minePage.versionNote_btn.click();
         TimeUnit.SECONDS.sleep(3);
         waiteTime();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.2.0(Build 1)"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"4.1.1"));
     }
 
     @Test(description = "test versionUpdate test",alwaysRun = true)

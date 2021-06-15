@@ -377,6 +377,21 @@ public class Helper {
             tapWhitePlace(DRIVER);
             findWebElement("确定").click();
             TimeUnit.SECONDS.sleep(10);
+            AssetPage assetPage = new AssetPage(DRIVER);
+            try {
+                if (assetPage.ad_pic.isDisplayed()) {
+                    assetPage.adClose_btn.click();
+                    System.out.println("已关闭广告图");
+                }
+            } catch (Exception e) {
+                try {
+                    if (assetPage.adClose_btn.isDisplayed()) {
+                        assetPage.adClose_btn.click();
+                        System.out.println("已关闭广告图");
+                    }
+                } catch (Exception el) {
+                }
+            }
         }catch (Exception e){}
     }
 
