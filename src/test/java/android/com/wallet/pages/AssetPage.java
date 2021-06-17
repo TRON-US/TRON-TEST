@@ -449,6 +449,14 @@ public class AssetPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
+    public TrxPage enterBTTPage() throws Exception {
+        waiteTime();
+        online_trc10_btn.click();
+        waiteTime();
+        return new TrxPage(driver);
+    }
+
+
     //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
     public TransactionDetailInfomaitonPage enterTransactionDetailPage(Integer type) throws Exception {
         TrxPage trx;

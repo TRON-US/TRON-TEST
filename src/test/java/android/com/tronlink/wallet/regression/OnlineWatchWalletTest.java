@@ -37,7 +37,7 @@ public class OnlineWatchWalletTest extends Base {
 
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
-        new Helper().getWatchWalletSign("TRqgwhHbfscXq3Ym3FJSFwxprpto1S4nSW", DRIVER);
+        new Helper().getWatchWalletSign("TL5oxDYUztR3bjMqChLVZKdR4dXAiJYUyo", DRIVER);
         enterOnlineAssetPage();
 
     }
@@ -372,9 +372,9 @@ public class OnlineWatchWalletTest extends Base {
     @Test(groups = {"P0"},enabled = true,description = "Online deposit QRCode", alwaysRun = true)
     public void test014_onlineDepositQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        TrxPage trxPage = asset.enterTrxPage();
+        TrxPage trxPage = asset.enterBTTPage();
         TransferPage transfer = trxPage.enterTransferInPage();
-        transfer.count_text.sendKeys("10");
+        transfer.count_text.sendKeys("1");
         transfer.transferIn_btn.click();
         transfer.bt_send.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
