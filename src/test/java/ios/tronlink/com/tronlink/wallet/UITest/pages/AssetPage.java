@@ -113,6 +113,9 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "home addAssetBtn")
     public WebElement addAssert_btn;
 
+    @FindBy(id = "home addAssetBtn")
+    public List<WebElement> addAssert_btns;
+
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
@@ -245,7 +248,11 @@ public class AssetPage extends AbstractPage {
             }
         } catch (Exception e) {
         }
-        addAssert_btn.click();
+        if (addAssert_btns.size()>1){
+            addAssert_btns.get(1).click();
+        }else {
+            addAssert_btn.click();
+        }
         return new AddAssertPage(driver);
     }
 
