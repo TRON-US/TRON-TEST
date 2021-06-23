@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ios.com.tronlink" parallel="tests" thread-count="8">
+<!--    <listeners>-->
+<!--        <listener class-name="ios.tronlink.com.tronlink.wallet.UITest.retry.RetryListener"/>-->
+<!--    </listeners>-->
+    <test name= "1fb216ca798cf08a2d01fbdc78e2cdbb05321e24">
+        <parameter name="port"  value="4725"/>
+        <parameter name="udid" value="1fb216ca798cf08a2d01fbdc78e2cdbb05321e24"/>
+        <parameter name="platformName" value="iOS"/>
+        <parameter name="platformVersion" value= "14.4"/>
+        <parameter name="deviceName" value= "iPhoneX"/>
+        <parameter name="noReset" value="true"/>
+        <parameter name="webDriverPort"  value="8100"/>
+        <parameter name="bpPort"  value="2251"/>
+        <parameter name="automationName"  value="XCUITest"/>
+        <parameter name="xcodeOrgId"  value="736VAMJ43C"/>
+        <parameter name="xcodeSigningId"  value="iPhone Developer"/>
+        <parameter name="bundleId"  value="com.tronlink.hdwallet"/>
+        <parameter name="privateKey"  value="f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d"/>
+        <parameter name="address"  value="TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm"/>
+        <parameter name="ownerPrivateKey" value="826fc86d572ba9de06f20963fcbfb44f4c397875bd4d7b36fdcb83476df33f05"/>
+        <parameter name="ownerAddress" value="TTt877vZSqYN4edizL7tZCtvXoUxCd3atp"/>
+        <parameter name="multiSignPrivateKey" value="25aa122142a52ea8ba7bdf832c39a194d498774d4f675b8bcb17280c33990a08"/>
+        <parameter name="multiSignAddress" value="TJJQZzBvtm4PPTGeg2t3tWDmr1EkJoDHTQ"/>
+        <parameter name="witnessKey" value="c74fb4d8101572041c6fab30e1602ba1ec8247e1ead19641fb985b3ed3a8261e"/>
+        <parameter name="witnessAddress" value="TUVh41otFahZVe8o8FSp8ARBWZ9Uxeg9f1"/>
+        <parameter name="witnessUrl" value="IOS-UI-Witness-001"/>
+        <parameter name="shieldSK" value="b1af49f8ff14c663297ac4e3a59af4a291830d82d2363377960bcb63cef26339"/>
+        <parameter name="shieldAddress" value="ztron1fejqkgv9nvgt9drjt3wxsdxfgc2s4nks63hnanne5s6c0s9w9ullzu473k8zq0vrm0u3yw3hg2q"/>
+        <parameter name="publicShieldSK" value="b7efa6d1dc2b9753fb566ea758942f18f1866cd2add30b67cc868c10f3b25297"/>
+        <parameter name="publicShieldAddress" value="TYZdnCqhdHVPMzRPwkka4PScnBWdJqxfvp"/>
+        <classes>
+<!--            <class name="ios.tronlink.com.tronlink.wallet.regression.AboutUsTest"></class>-->
+            <class name="ios.tronlink.com.tronlink.wallet.regression.AssetsPageTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ChangeWalletPasswordTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.CommitteeTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainWithdraw"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainWithdraw10"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappChainWithdraw20"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappFrozenTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrc10"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrc20"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrxTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.FrozenAndUnfreezeTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ImportKeystore"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ImportObserve"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ImportPrivateKey"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MainNetDeposit"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MainNetDeposit10"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MainNetDeposit20"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MarketTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MinePageTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignActiveTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MultiSignTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.MyPurseTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.NodeSetTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.NoteAdrBookTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrc10"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrc20"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.SendTrx"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.SettingTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ShastaTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.VoteTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.WatchWalletTest"></class>
+            <class name="ios.tronlink.com.tronlink.wallet.regression.ZColdWalletTest"></class>
+        </classes>
+    </test>
+</suite>

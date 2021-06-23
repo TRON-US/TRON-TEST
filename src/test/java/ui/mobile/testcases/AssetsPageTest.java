@@ -1,4 +1,7 @@
 package ui.mobile.testcases;
 
-public class AssetsPageTest {
+import ui.mobile.base.BaseTest;
+
+public class AssetsPageTest extends BaseTest {
+
 }
