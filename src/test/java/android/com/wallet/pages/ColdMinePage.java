@@ -18,28 +18,28 @@ public class ColdMinePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/wallet_manager")
+    @FindBy(id = "wallet.tronlink.global:id/wallet_manager")
     public WebElement walletManager_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/announcement")
+    @FindBy(id = "wallet.tronlink.global:id/announcement")
     public WebElement announcement_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/join_community")
+    @FindBy(id = "wallet.tronlink.global:id/join_community")
     public WebElement joinCommunity_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/help")
+    @FindBy(id = "wallet.tronlink.global:id/help")
     public WebElement howToUse_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/about")
+    @FindBy(id = "wallet.tronlink.global:id/about")
     public WebElement about_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/setting")
+    @FindBy(id = "wallet.tronlink.global:id/setting")
     public WebElement setting_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "wallet.tronlink.global:id/tv_address")
     public WebElement address_test;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    @FindBy(id = "wallet.tronlink.global:id/tv_name")
     public WebElement walletName_test;
 
 

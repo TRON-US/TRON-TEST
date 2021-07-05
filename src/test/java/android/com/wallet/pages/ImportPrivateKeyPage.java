@@ -17,22 +17,22 @@ public class ImportPrivateKeyPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_content")
+    @FindBy(id = "wallet.tronlink.global:id/et_content")
     public WebElement content_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_next")
+    @FindBy(id = "wallet.tronlink.global:id/bt_next")
     public WebElement next_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
+    @FindBy(id = "wallet.tronlink.global:id/tv_error")
     public WebElement error_hits;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "wallet.tronlink.global:id/ll_common_left")
     public WebElement back_btn;
 
 

@@ -53,7 +53,7 @@ public class DappNetWithdraw20 extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
             TimeUnit.SECONDS.sleep(1);
         }catch (Exception e){}
     }

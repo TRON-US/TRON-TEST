@@ -42,7 +42,7 @@ public class AddressBookTest extends Base {
     public void afterMethod() throws Exception {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 

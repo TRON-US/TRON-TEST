@@ -341,21 +341,21 @@ public class Base {
         try {
             TimeUnit.SECONDS.sleep(2);
             // if page display AD , cloese the AD
-            if (DRIVER.findElementById("com.tronlinkpro.wallet:id/iv_pic").isDisplayed()){
-                DRIVER.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
+            if (DRIVER.findElementById("wallet.tronlink.global:id/iv_pic").isDisplayed()){
+                DRIVER.findElementById("wallet.tronlink.global:id/iv_close").click();
                 TimeUnit.SECONDS.sleep(1);
             }
         }catch (Exception e){}
-        DRIVER.findElementById("com.tronlinkpro.wallet:id/my").click();
+        DRIVER.findElementById("wallet.tronlink.global:id/my").click();
         TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementById("com.tronlinkpro.wallet:id/setting").click();
+        DRIVER.findElementById("wallet.tronlink.global:id/setting").click();
         TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementById("com.tronlinkpro.wallet:id/node").click();
+        DRIVER.findElementById("wallet.tronlink.global:id/node").click();
         TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementsById("com.tronlinkpro.wallet:id/iv_select").get(1).click();
+        DRIVER.findElementsById("wallet.tronlink.global:id/iv_select").get(1).click();
         TimeUnit.SECONDS.sleep(1);
         //DRIVER.closeApp();
-        //DRIVER.activateApp("com.tronlinkpro.wallet");
+        //DRIVER.activateApp("wallet.tronlink.global");
         DRIVER.navigate().refresh();
         TimeUnit.SECONDS.sleep(6);
     }

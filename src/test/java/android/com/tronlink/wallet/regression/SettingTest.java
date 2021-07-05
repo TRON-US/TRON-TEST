@@ -25,7 +25,7 @@ public class SettingTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -75,7 +75,7 @@ public class SettingTest extends Base {
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
         dapp.testUrl();
-        Assert.assertTrue(dapp.isElementExist("com.tronlinkpro.wallet:id/webview"));
+        Assert.assertTrue(dapp.isElementExist("wallet.tronlink.global:id/webview"));
     }
 
     @Test(description = "Currency Test")
@@ -97,7 +97,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
         SeverSetPage sever = setting.enterSeverSetPage();
         sever.Sigapor_btn.click();
-        Assert.assertTrue(sever.isElementExist("com.tronlinkpro.wallet:id/iv_select2"));
+        Assert.assertTrue(sever.isElementExist("wallet.tronlink.global:id/iv_select2"));
 
     }
 
@@ -108,7 +108,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
         SeverSetPage sever = setting.enterSeverSetPage();
         sever.USA_btn.click();
-        Assert.assertTrue(sever.isElementExist("com.tronlinkpro.wallet:id/iv_select1"));
+        Assert.assertTrue(sever.isElementExist("wallet.tronlink.global:id/iv_select1"));
 
     }
 

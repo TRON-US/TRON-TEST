@@ -19,7 +19,7 @@ public class CommitteeTest extends Base {
         new Helper().getSign(witnessKey, DRIVER);
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -27,7 +27,7 @@ public class CommitteeTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 

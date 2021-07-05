@@ -31,7 +31,7 @@ public class ImportAccount extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -39,39 +39,39 @@ public class ImportAccount extends Base {
 
     @Test(description = "import 100 account", alwaysRun = true)
     public void test001_importWallet() throws Exception {
-        findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-        swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-        findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-        findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647");
-        findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Automation_1");
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
+        findWebElement("wallet.tronlink.global:id/tv_import").click();
+        swipUntilElementEnable("wallet.tronlink.global:id/bt_accept");
+        findWebElement("wallet.tronlink.global:id/bt_accept").click();
+        findWebElement("wallet.tronlink.global:id/cd_pk").click();
+        findWebElement("wallet.tronlink.global:id/et_content").sendKeys("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647");
+        findWebElement("wallet.tronlink.global:id/bt_next").click();
+        findWebElement("wallet.tronlink.global:id/et_name").sendKeys("Automation_1");
+        findWebElement("wallet.tronlink.global:id/creat").click();
+        findWebElement("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
+        findWebElement("wallet.tronlink.global:id/creat").click();
+        findWebElement("wallet.tronlink.global:id/creat").click();
+        findWebElement("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
+        findWebElement("wallet.tronlink.global:id/creat").click();
         System.out.println("点击完创建按钮1111");
         TimeUnit.SECONDS.sleep(3);
-//        findWebElement("com.tronlinkpro.wallet:id/tv_walletname").click();
+//        findWebElement("wallet.tronlink.global:id/tv_walletname").click();
 //        System.out.println("点击完我的钱包名称222222222");
-//        findWebElement("com.tronlinkpro.wallet:id/tv_create").click();
+//        findWebElement("wallet.tronlink.global:id/tv_create").click();
 //        System.out.println("点击完新建按钮3333333333");
         for (int i = 0;i<addressList.length;i++){
-            findWebElement("com.tronlinkpro.wallet:id/tv_walletname").click();
-            findWebElement("com.tronlinkpro.wallet:id/tv_create").click();
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            //findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys("a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(addressList[i]);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Automation_"+(i+2));
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/tv_walletname").click();
+            findWebElement("wallet.tronlink.global:id/tv_create").click();
+            findWebElement("wallet.tronlink.global:id/cd_pk").click();
+            //findWebElement("wallet.tronlink.global:id/et_content").sendKeys("a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
+            findWebElement("wallet.tronlink.global:id/et_content").sendKeys(addressList[i]);
+            findWebElement("wallet.tronlink.global:id/bt_next").click();
+            findWebElement("wallet.tronlink.global:id/et_name").sendKeys("Automation_"+(i+2));
+            findWebElement("wallet.tronlink.global:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.global:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.global:id/creat").click();
             TimeUnit.SECONDS.sleep(2);
         }
     }

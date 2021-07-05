@@ -20,147 +20,147 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_energy_arrow")
+    @FindBy(id = "wallet.tronlink.global:id/ll_energy_arrow")
     public WebElement freezeEnergyDetail_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_myfreeze")
+    @FindBy(id = "wallet.tronlink.global:id/tv_myfreeze")
     public WebElement myFreeze_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_otherfreeze")
+    @FindBy(id = "wallet.tronlink.global:id/tv_otherfreeze")
     public WebElement otherFreeze_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_totalfreeze")
+    @FindBy(id = "wallet.tronlink.global:id/tv_totalfreeze")
     public WebElement totalFreeze_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
+    @FindBy(id = "wallet.tronlink.global:id/tv_common_right2")
     public WebElement detailsAndRules_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_bandwidth_arrow")
+    @FindBy(id = "wallet.tronlink.global:id/ll_bandwidth_arrow")
     public WebElement freezeBandwidthDetail_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_myfreeze_bandwidth")
+    @FindBy(id = "wallet.tronlink.global:id/tv_myfreeze_bandwidth")
     public WebElement myFreezeBandwidth_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_otherfreeze_bandwidth")
+    @FindBy(id = "wallet.tronlink.global:id/tv_otherfreeze_bandwidth")
     public WebElement otherFreezeBandwidth_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_totalfreeze_bandwidth")
+    @FindBy(id = "wallet.tronlink.global:id/tv_totalfreeze_bandwidth")
     public WebElement totalFreezeBandwidth_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_voting_power")
+    @FindBy(id = "wallet.tronlink.global:id/tv_voting_power")
     public WebElement votingPower_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bandwidth_question")
+    @FindBy(id = "wallet.tronlink.global:id/bandwidth_question")
     public WebElement BandwidthQuestion_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/content")
+    @FindBy(id = "wallet.tronlink.global:id/content")
     public WebElement questionContent_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/select_bandwidth")
+    @FindBy(id = "wallet.tronlink.global:id/select_bandwidth")
     public WebElement bandwidth_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/select_energy")
+    @FindBy(id = "wallet.tronlink.global:id/select_energy")
     public WebElement energy_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/current_use")
+    @FindBy(id = "wallet.tronlink.global:id/current_use")
     public WebElement currentCanUse_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_freeze_count")
+    @FindBy(id = "wallet.tronlink.global:id/et_freeze_count")
     public WebElement freezeCount_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/freeze")
+    @FindBy(id = "wallet.tronlink.global:id/freeze")
     public WebElement freeze_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/freeze")
+    @FindBy(id = "wallet.tronlink.global:id/freeze")
     public WebElement freezeNow_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "wallet.tronlink.global:id/et_new_password")
     public WebElement checkPasswotd_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "wallet.tronlink.global:id/bt_send")
     public WebElement confirm_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "wallet.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/error_trx_count")
+    @FindBy(id = "wallet.tronlink.global:id/error_trx_count")
     public WebElement error_hits;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/current_use")
+    @FindBy(id = "wallet.tronlink.global:id/current_use")
     public WebElement availableTrx_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_freeze_address")
+    @FindBy(id = "wallet.tronlink.global:id/et_freeze_address")
     public WebElement freezeAddress_input;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_cancle")
+    @FindBy(id = "wallet.tronlink.global:id/iv_cancle")
     public WebElement cleanAddress_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/error_address")
+    @FindBy(id = "wallet.tronlink.global:id/error_address")
     public WebElement errorAddress_hits;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/select_power_type")
+    @FindBy(id = "wallet.tronlink.global:id/select_power_type")
     public WebElement currentType_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_me")
+    @FindBy(id = "wallet.tronlink.global:id/tv_me")
     public WebElement unfreezeType_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_all")
+    @FindBy(id = "wallet.tronlink.global:id/tv_all")
     public WebElement freezeType_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_unfreeze")
+    @FindBy(id = "wallet.tronlink.global:id/iv_unfreeze")
     public WebElement unfreezeTargetAddress_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "wallet.tronlink.global:id/tv_ok")
     public WebElement unfreezeInfoConfirm_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/unfreeze")
+    @FindBy(id = "wallet.tronlink.global:id/unfreeze")
     public WebElement unfreeze_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    @FindBy(id = "wallet.tronlink.global:id/rl_bottom_next")
     public WebElement signNext_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
+    @FindBy(id = "wallet.tronlink.global:id/tv_invalid_time")
     public WebElement invalidTime_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "wallet.tronlink.global:id/tv_address")
     public List<WebElement> signAddress_input;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_selected_name")
+    @FindBy(id = "wallet.tronlink.global:id/tv_selected_name")
     public WebElement selectSignName_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_address_book")
+    @FindBy(id = "wallet.tronlink.global:id/rl_address_book")
     public WebElement addressBook_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_name")
+    @FindBy(id = "wallet.tronlink.global:id/tv_address_name")
     public WebElement addressName_display;
 
 

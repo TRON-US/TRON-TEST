@@ -29,55 +29,55 @@ public class MinePage extends AbstractPage {
 
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
+    @FindBy(id = "wallet.tronlink.global:id/iv_pic")
     public WebElement ad_pic;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    @FindBy(id = "wallet.tronlink.global:id/iv_close")
     public WebElement adClose_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_about")
+    @FindBy(id = "wallet.tronlink.global:id/tv_about")
     public WebElement aboutUs_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/setting")
+    @FindBy(id = "wallet.tronlink.global:id/setting")
     public WebElement setting_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_friend_invitation")
+    @FindBy(id = "wallet.tronlink.global:id/tv_friend_invitation")
     public WebElement friendInvitation_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/address_book")
+    @FindBy(id = "wallet.tronlink.global:id/address_book")
     public WebElement addressBook_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/announcement")
+    @FindBy(id = "wallet.tronlink.global:id/announcement")
     public WebElement announcement_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/transfer_history")
+    @FindBy(id = "wallet.tronlink.global:id/transfer_history")
     public WebElement transferHistory_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/wallet_manager")
+    @FindBy(id = "wallet.tronlink.global:id/wallet_manager")
     public WebElement myPurse_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets")
+    @FindBy(id = "wallet.tronlink.global:id/assets")
     public WebElement assets_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/dapp")
+    @FindBy(id = "wallet.tronlink.global:id/dapp")
     public WebElement dapp_btn;
 
 
-    //com.tronlinkpro.wallet:id/commit_proposal
-    //com.tronlinkpro.wallet:id/commit_proposal
-    //com.tronlinkpro.wallet:id/committee_proposals
-    @FindBy(id = "com.tronlinkpro.wallet:id/commit_proposal")
+    //wallet.tronlink.global:id/commit_proposal
+    //wallet.tronlink.global:id/commit_proposal
+    //wallet.tronlink.global:id/committee_proposals
+    @FindBy(id = "wallet.tronlink.global:id/commit_proposal")
     public WebElement committeeProposals_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_advanced_features")
+    @FindBy(id = "wallet.tronlink.global:id/tv_advanced_features")
     public WebElement advanced_features_btn;
 
 

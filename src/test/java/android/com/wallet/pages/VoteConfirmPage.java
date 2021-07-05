@@ -16,15 +16,15 @@ public class VoteConfirmPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "wallet.tronlink.global:id/bt_go")
     public WebElement voteNow_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "wallet.tronlink.global:id/et_new_password")
     public WebElement password_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "wallet.tronlink.global:id/bt_send")
     public WebElement confirm_btn;
 
 

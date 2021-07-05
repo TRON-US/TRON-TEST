@@ -34,7 +34,7 @@ public class DappFrozenTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -195,8 +195,8 @@ public class DappFrozenTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        String transactionType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlinkpro.wallet:id/tv_contract_title")).getText();
-        String resourceType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlinkpro.wallet:id/tv_two")).getText();
+        String transactionType = transaction.transactionRecords.get(0).findElement(By.id("wallet.tronlink.global:id/tv_contract_title")).getText();
+        String resourceType = transaction.transactionRecords.get(0).findElement(By.id("wallet.tronlink.global:id/tv_two")).getText();
         System.out.println(transactionType);
         Assert.assertTrue(transactionType.equals("冻结资产") || transactionType.equals("Freeze Asset"));
         Assert.assertTrue(resourceType.contains("ENERGY"));

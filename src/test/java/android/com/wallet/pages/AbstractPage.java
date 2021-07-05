@@ -19,25 +19,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class AbstractPage {
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "wallet.tronlink.global:id/tv_ok")
     public  WebElement confirmBan;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
+    @FindBy(id = "wallet.tronlink.global:id/tv_cancle")
     public WebElement cancelBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "wallet.tronlink.global:id/ll_common_left")
     public WebElement backBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "wallet.tronlink.global:id/bt_send")
     public WebElement bt_send;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "wallet.tronlink.global:id/bt_go")
     public WebElement bt_go;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "wallet.tronlink.global:id/bt_send")
     public WebElement confirmBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "wallet.tronlink.global:id/bt_go")
     public WebElement sendBtn;
 
     public AndroidDriver<?> driver;

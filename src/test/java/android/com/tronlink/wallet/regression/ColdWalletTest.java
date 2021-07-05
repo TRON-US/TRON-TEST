@@ -43,7 +43,7 @@ public class ColdWalletTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -180,29 +180,29 @@ public class ColdWalletTest extends Base {
         waiteTime();
         coldAsset.create_wallet.click();
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_name").sendKeys("SafeTipsM");
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/et_name").sendKeys("SafeTipsM");
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/creat").click();
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/creat").click();
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/creat").click();
         TimeUnit.SECONDS.sleep(10);
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_common_left").click();
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/iv_common_left").click();
 
-        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_cold_tip")){ //不应该出现
-            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_cold_close").click();
+        if (coldAsset.isElementExist("wallet.tronlink.global:id/rl_cold_tip")){ //不应该出现
+            coldAsset.driver.findElementById("wallet.tronlink.global:id/iv_cold_close").click();
         }
 
-        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip")){
+        if (coldAsset.isElementExist("wallet.tronlink.global:id/rl_safe_tip")){
             log("开始测试关闭备份助记词提示框");
-            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
+            coldAsset.driver.findElementById("wallet.tronlink.global:id/iv_close").click();
             TimeUnit.SECONDS.sleep(1);
-            Assert.assertFalse(coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip"));
+            Assert.assertFalse(coldAsset.isElementExist("wallet.tronlink.global:id/rl_safe_tip"));
         }
 
     }
@@ -214,12 +214,12 @@ public class ColdWalletTest extends Base {
         coldAsset.tv_walletname.click();
         TimeUnit.SECONDS.sleep(5);
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/delete").click();
         TimeUnit.SECONDS.sleep(3);
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
         waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        coldAsset.driver.findElementById("wallet.tronlink.global:id/tv_ok").click();
         waiteTime();
         TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(coldAsset.tv_walletname.getText().contains("Cold-test"));

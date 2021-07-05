@@ -39,7 +39,7 @@ public class ReceiptTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -58,7 +58,7 @@ public class ReceiptTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         ReceiptPage receiptPage = asset.enterReceiptPage();
         Assert.assertEquals(receiptPage.ownerAddress_btn.getText(), address);
-        Assert.assertTrue(receiptPage.isElementExist("com.tronlinkpro.wallet:id/qr"));
+        Assert.assertTrue(receiptPage.isElementExist("wallet.tronlink.global:id/qr"));
         Assert.assertTrue(receiptPage.pagetitle.getText().contains("扫描二维码向我付款"));
         Assert.assertTrue(receiptPage.wallettitle.getText().contains("Auto-test"));
         Assert.assertTrue(receiptPage.copy_btn.getText().contains("复制收款账户"));

@@ -19,29 +19,29 @@ public class CreateProposePage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_proposals")
+    @FindBy(id = "wallet.tronlink.global:id/et_proposals")
     public List<WebElement> proValue_ipt;
 
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm")
+    @FindBy(id = "wallet.tronlink.global:id/tv_confirm")
     public WebElement confirm_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "wallet.tronlink.global:id/et_new_password")
     public WebElement password_btn;
 
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "wallet.tronlink.global:id/bt_send")
     public WebElement send_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_reset")
+    @FindBy(id = "wallet.tronlink.global:id/tv_reset")
     public WebElement reset_btn;
 
 

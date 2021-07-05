@@ -14,17 +14,17 @@ public class AddCustomNodePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_node_ip")
+    @FindBy(id = "wallet.tronlink.global:id/et_node_ip")
     public WebElement nodeIp_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_node_port")
+    @FindBy(id = "wallet.tronlink.global:id/et_node_port")
     public WebElement nodePort_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_next")
+    @FindBy(id = "wallet.tronlink.global:id/bt_next")
     public WebElement save_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_delete")
+    @FindBy(id = "wallet.tronlink.global:id/bt_delete")
     public WebElement delete_btn;
 
 

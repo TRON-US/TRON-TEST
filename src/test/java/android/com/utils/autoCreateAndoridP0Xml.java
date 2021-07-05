@@ -206,7 +206,7 @@ public class autoCreateAndoridP0Xml {
 
                 //adb = "/Users/tron/Library/Android/sdk/platform-tools/adb -s " + udid;
                 adb = "adb -s " + udid;
-                AppiumTestCase.cmdReturn(adb + " uninstall com.tronlinkpro.wallet");
+                AppiumTestCase.cmdReturn(adb + " uninstall wallet.tronlink.global");
                 System.out.print("Uninstall succesfully\n");
                 //install app
                 //AppiumTestCase.cmdReturn(adb + " install -r TronLink.apk");

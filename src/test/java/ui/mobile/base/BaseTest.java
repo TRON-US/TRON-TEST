@@ -21,7 +21,7 @@ import io.appium.java_client.touch.offset.PointOption;
 
 public class BaseTest extends Base {
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets")
+    @FindBy(id = "wallet.tronlink.global:id/assets")
     public WebElement assetsMain_btn;
 
     @Parameters({"privateKey","platformName"})
@@ -81,7 +81,7 @@ public class BaseTest extends Base {
     public void androidCloseAndActiveApp(){
         try {
             ADRIVER.closeApp();
-            ADRIVER.activateApp("com.tronlinkpro.wallet");
+            ADRIVER.activateApp("wallet.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -98,24 +98,24 @@ public class BaseTest extends Base {
 
     public void getSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Auto-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.global:id/tv_import").click();
+            swipUntilElementEnable("wallet.tronlink.global:id/bt_accept");
+            findWebElement("wallet.tronlink.global:id/bt_accept").click();
+            findWebElement("wallet.tronlink.global:id/cd_pk").click();
+            findWebElement("wallet.tronlink.global:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("wallet.tronlink.global:id/bt_next").click();
+            findWebElement("wallet.tronlink.global:id/et_name").sendKeys("Auto-test");
+            findWebElement("wallet.tronlink.global:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/creat").click();
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.global:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.global:id/creat").click();
             TimeUnit.SECONDS.sleep(3);
             //校验是否导入成功
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
+            findWebElement("wallet.tronlink.global:id/assets_name");
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println("\n-----------\n导入失败!!!!!\n");
