@@ -340,6 +340,8 @@ public class AllSignatureSuccTest extends Base {
     public void test015_VoteMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
+//        Helper.tapScreen(vote.driver);
+        TimeUnit.SECONDS.sleep(1);
         vote.votefirstSRuseMutiSign();
         Assert.assertTrue(vote.isElementExist("投票"));
     }

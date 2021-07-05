@@ -121,6 +121,7 @@ public class CommitteeTest extends Base {
         MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         String number = MyProposalsPage.approveNum_text.getText();
+        log("number" + number);
         Assert.assertTrue(number.equals("0") || number == "0");
     }
 

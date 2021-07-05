@@ -25,10 +25,8 @@ public class Helper {
 
     public static void tapScreen(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        Duration duration = Duration.ofMillis(200);
-        action.tap(PointOption.point(8,200)).perform();
+        PointOption whiteplace = PointOption.point(8,166);
+        action.tap(whiteplace).release().perform();
     }
 
     public static void swipScreen(AndroidDriver<?> driver){
