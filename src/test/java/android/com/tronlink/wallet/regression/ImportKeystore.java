@@ -52,8 +52,9 @@ public class ImportKeystore extends Base {
         keystore = myPursePage.getBackupKeystore(password);
         AddwalletPage addwalletPage = myPursePage.enterAddwalletPage();
         ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
-        String errorHits = importKeystorePage.inputErrorKeyGetHits(keystore, password + "error");
-        Assert.assertTrue(errorHits.contains("Incorrect Keystore") || errorHits.contains("Keystore 错误"));
+        String errorHits = importKeystorePage.inputErrorKeyGetHits(keystore+ "error", password );
+        log(errorHits);
+        Assert.assertTrue( errorHits.contains("Keystore 错误，请重新输入"));
     }
 
     @Test(description = "import android.com.wallet with keystore by incorrect password", alwaysRun = true)
@@ -65,7 +66,8 @@ public class ImportKeystore extends Base {
         ;
         ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
         String errorHits = importKeystorePage.inputErrorPasswordHits(keystore, password + "error");
-        Assert.assertTrue(errorHits.contains("Password does not match") || errorHits.contains("密码与 Keystore 不匹配"));
+        log(errorHits);
+        Assert.assertTrue(errorHits.contains("密码与 Keystore 不匹配，请输入原钱包的密码")||errorHits.contains("Keystore 错误，请重新输入"));
     }
 
 
