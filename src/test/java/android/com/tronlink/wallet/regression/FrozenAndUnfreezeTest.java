@@ -130,7 +130,7 @@ public class FrozenAndUnfreezeTest extends Base {
         int myFreeze = Integer.valueOf(removeSymbol(frozen.myFreeze_btn.getText()));
         int myBandwidth = Integer.valueOf(removeSymbol(frozen.myFreezeBandwidth_btn.getText()));
         int myVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
-        Assert.assertTrue(myFreeze + myBandwidth == myVotingPower);
+        Assert.assertTrue(myFreeze + myBandwidth <= myVotingPower);
     }
 
     @Test(enabled = true, description = "Energy Question Test", alwaysRun = true)
