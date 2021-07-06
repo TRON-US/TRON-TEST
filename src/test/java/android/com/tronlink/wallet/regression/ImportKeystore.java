@@ -52,7 +52,7 @@ public class ImportKeystore extends Base {
         keystore = myPursePage.getBackupKeystore(password);
         AddwalletPage addwalletPage = myPursePage.enterAddwalletPage();
         ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
-        String errorHits = importKeystorePage.inputErrorKeyGetHits(keystore+ "error", password );
+        String errorHits = importKeystorePage.inputErrorKeyGetHits("{error" + keystore + "error}", password );
         log(errorHits);
         Assert.assertTrue( errorHits.contains("Keystore 错误，请重新输入"));
     }
@@ -63,7 +63,6 @@ public class ImportKeystore extends Base {
         MinePage minePage = asset.enterMinePage();
         MyPursePage myPursePage = minePage.enterMyPursePage();
         AddwalletPage addwalletPage = myPursePage.enterAddwalletPage();
-        ;
         ImportKeystorePage importKeystorePage = addwalletPage.enterImportKeystorePage();
         String errorHits = importKeystorePage.inputErrorPasswordHits(keystore, password + "error");
         log(errorHits);

@@ -61,7 +61,7 @@ public class ImportKeystorePage extends AbstractPage {
     password_text.sendKeys(password);
     next_btn.click();
     TimeUnit.SECONDS.sleep(1);
-    return error_hits.get(1).getText();
+    return error_hits.get(0).getText();
   }
 
 
