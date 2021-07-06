@@ -75,7 +75,7 @@ public class SettingTest extends Base {
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
         dapp.testUrl();
-        Assert.assertTrue(dapp.isElementExist("wallet.tronlink.global:id/webview"));
+        dapp.findElementByText("USDT");
     }
 
     @Test(description = "Currency Test")

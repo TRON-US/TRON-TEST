@@ -180,11 +180,11 @@ public class MyPursePage extends AbstractPage {
         String keystore = "";
         try {
             Helper.swipScreen(driver);
-            backupKeystore_btn.click();
+            findElementByText("备份 Keystore").click();
             TimeUnit.SECONDS.sleep(1);
             password_et.sendKeys(password);
             confirm_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             try {
                 i_know_btn.click();
             } catch (Exception e) {
