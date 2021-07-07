@@ -134,7 +134,7 @@ public class AllSignatureSuccTest extends Base {
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
+        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
@@ -164,7 +164,7 @@ public class AllSignatureSuccTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(SendTrx.note_text.getText().contains("账户未激活"));
         log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1.0"));
+        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
         Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(1);
