@@ -151,6 +151,7 @@ public class SendTrc20 extends Base {
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
     }
+
     @Test(enabled = true, description = "BandWidthShowTest", alwaysRun = true)
     public void test007_BandWidthShowTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
@@ -163,12 +164,8 @@ public class SendTrc20 extends Base {
         transfer.swipScreenLitte();
         transfer.send_btn.click();
         waiteTime();
-        String no_bandwidthTips = transfer.no_bandwidth.getText();
-        Assert.assertTrue(no_bandwidthTips.contains("20"));
-        Assert.assertTrue(no_bandwidthTips.contains("燃烧"));
-        Assert.assertTrue(no_bandwidthTips.contains("TRX"));
-        Assert.assertTrue(no_bandwidthTips.contains("消耗能量"));
-        Assert.assertTrue(no_bandwidthTips.contains("智能合约"));
+        String no_bandwidthTips = transfer.tv_no_energy.getText();
+        Assert.assertTrue(no_bandwidthTips.contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
         String content = transfer.bandwidth_text.getText();
         String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
