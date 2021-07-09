@@ -64,9 +64,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "timeLeftLabel")
     public WebElement unfreezeTimetitle;
 
-    @FindBy(name = "assets show normal")
+    @FindBy(name = "assets_show_normal")
     public List<WebElement> freezeEnergyDetail_btn;
-
 
     @FindBy(name = "owerFreezedLabel")
     public List<WebElement> myFreeze_btn;
