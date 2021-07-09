@@ -139,7 +139,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.no_bandwidth.getText().contains("执行智能合约")&&SendTrx.no_bandwidth.getText().contains("燃烧")&&SendTrx.no_bandwidth.getText().contains("TRX"));
+        Assert.assertTrue(SendTrx.tv_no_energy.getText().contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
 
     }
 
@@ -170,7 +170,7 @@ public class AllSignatureSuccTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.no_bandwidth.getText().contains("执行智能合约")&&SendTrx.no_bandwidth.getText().contains("燃烧")&&SendTrx.no_bandwidth.getText().contains("TRX"));
+        Assert.assertTrue(SendTrx.tv_no_energy.getText().contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
     }
 
 
