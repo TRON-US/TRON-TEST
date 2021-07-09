@@ -52,13 +52,6 @@ public class ImportPrivateKey extends Base {
     }
 
 
-    @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
-    public void test001_importPrivateKeyFormatIncorrect() throws Exception {
-        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
-        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
-    }
-
 
     @Test(description = "Import PrivateKey Is NULL", alwaysRun = true)
     public void test002_importPrivateKeyIsNull() throws Exception {
@@ -70,7 +63,7 @@ public class ImportPrivateKey extends Base {
     @Test(description = "Import PrivateKey Is Too Large", alwaysRun = true)
     public void test003_importPrivateKeyIsTooLarge() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab");
+        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1ecd4bbba178b1b0d2a0c1e6e9108e0cab6767676767565645454b0d2a0c1e6e910ecd4bbba178b1b0d2a0c1e6e9108e0cab67676767675656454548e0cab6767676767565645454");
         Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }
 
@@ -158,18 +151,6 @@ public class ImportPrivateKey extends Base {
         Assert.assertTrue(setPwd.pwd_title.isDisplayed());
     }
 
-
-    @Test(description = "privateKey Is All Numbers", alwaysRun = true)
-    public void test010_privateKeyIsAllNumbers() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MinePage minePage = assetPage.enterMinePage();
-        MyPursePage myPursePage = minePage.enterMyPursePage();
-        AddwalletPage addwallet = myPursePage.enterAddwalletPage();
-        ImportPrivateKeyPage importPrivateKey = addwallet.enterImportPrivateKeyPage();
-        //ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        String hits = importPrivateKey.inputErrorKeyGetHits("1234567890");
-        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
-    }
 
 
     @Test(description = "privateKey Without Uppercase Letter", alwaysRun = true)
