@@ -49,13 +49,18 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(name = "home pop close")
     public WebElement adClose_btn;
 
+    @FindBy(name = "input_textField")
+    public WebElement inputTextField;
+
 
     @FindBy(name = "资源")
     public WebElement assert_title;
 
-    @FindBy(name = "冻结/解冻")
+    @FindBy(name = "freeze_btn")
     public WebElement freeze_btn;
 
+    @FindBy(id = "receive_source_address_textFiled")
+    public WebElement receivedTF;
 
 //    @FindBy(name = "解冻")
     @FindBy(id = "解冻")
@@ -67,7 +72,38 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(name = "assets_show_normal")
     public List<WebElement> freezeEnergyDetail_btn;
 
-    @FindBy(name = "owerFreezedLabel")
+
+
+    @FindBy(name = "energyFoldBtn")
+    public WebElement  energyFoldBtn;
+
+    @FindBy(name = "ower_frreze_energy")
+    public WebElement  freezenEnergyNumber;
+
+    @FindBy(name = "other_frreze_energy")
+    public WebElement  otherfreezenEnergyNumber;
+
+    @FindBy(name = "total_frreze_energy")
+    public WebElement  totalfreezenEnergyNumber;
+
+
+    @FindBy(name = "bandwidthFoldBtn")
+    public WebElement  bandwidthFoldBtn;
+
+    @FindBy(name = "ower_frreze_bandwidth")
+    public WebElement  freezenbandwidthNumber;
+
+    @FindBy(name = "other_frreze_bandwidth")
+    public WebElement  otherfreezenbandwidthNumber;
+
+    @FindBy(name = "total_frreze_bandwidth")
+    public WebElement  totalfreezenbandwidthNumber;
+
+    @FindBy(name = "expect_btn")
+    public WebElement  expect_btn;
+
+
+    @FindBy(name = "ower_frreze_energy")
     public List<WebElement> myFreeze_btn;
 
 
@@ -92,15 +128,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement questionContent_btn;
 
 
-
-    @FindBy(name = "com.tronlink.wallet:id/select_bandwidth")
-    public WebElement bandwidth_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/current_use")
-    public WebElement currentCanUse_btn;
-
-
     @FindBy(className = "XCUIElementTypeTextField")
     public List<WebElement> freezeCount_input;
 
@@ -119,6 +146,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement confirm_btn;
 
 
+
     @FindBy(name = "com.tronlink.wallet:id/iv_common_left")
     public WebElement back_btn;
 
@@ -127,14 +155,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement error_hits;
 
 
-    @FindBy(id = "currentLabel")
+    @FindBy(id = "current_available_label")
     public WebElement availableTrx_text;
-
-
-
-    @FindBy(name = "com.tronlink.wallet:id/iv_cancle")
-    public WebElement cleanAddress_btn;
-
 
 
     @FindBy(id = "addressErrorLabel")
@@ -158,12 +180,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public WebElement getDirectionFzUfz_btn(){
-        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结' OR name = '解冻'");
-        return list.get(0);
+        return  driver.findElementById("resource_switch_btn");
+//        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结' OR name = '解冻'");
+//        return list.get(0);
     }
     public WebElement getFreeze_btn(){
-        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结'");
-        return list.get((list.size()-1 >0)?list.size()-1:0);
+        return freeze_btn;
+//        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结'");
+//        return list.get((list.size()-1 >0)?list.size()-1:0);
     }
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
         try {
@@ -258,15 +282,16 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     public void questionClick() {
         try {
-            //swip
-            //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
-            //Helper.swipScreen(driver);
-            int x = BandwidthQuestion_btn.getLocation().getX();
-            int y = BandwidthQuestion_btn.getLocation().getY();
-            IOSTouchAction action = new IOSTouchAction(driver);
-            action.press(PointOption.point(x+50,y+10)).release().perform();
-//            BandwidthQuestion_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            expect_btn.click();
+//            //swip
+//            //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
+//            //Helper.swipScreen(driver);
+//            int x = BandwidthQuestion_btn.getLocation().getX();
+//            int y = BandwidthQuestion_btn.getLocation().getY();
+//            IOSTouchAction action = new IOSTouchAction(driver);
+//            action.press(PointOption.point(x+50,y+10)).release().perform();
+////            BandwidthQuestion_btn.click();
+//            TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -276,31 +301,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
-    public String getCurrentCanUseTrx() {
-        String currentCanUseTrx = (currentCanUse_btn.getText().split(" ")[1]);
-        currentCanUseTrx = currentCanUseTrx.substring(0,currentCanUseTrx.length()-3);
-        return currentCanUseTrx;
-    }
-
-
-
     public void inputFrozenCount(String count) throws Exception {
-        count = count.replace(" ","");
-        log("count:" + count + "  size:" + count.length());
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(2);
-        log("TextField count: " + freezeCount_input.size());
-        if (freezeCount_input.size() == 2){
-            if (freezeCount_input.get(0).getText().contains("输入冻结资源数量")){
-                freezeCount_input.get(0).click();
-                freezeCount_input.get(0).sendKeys(count);
-            }
-            if (freezeCount_input.get(1).getText().contains("输入冻结资源数量")){
-                freezeCount_input.get(1).click();
-                freezeCount_input.get(1).sendKeys(count);
-            }
-        }
-
+        inputTextField.sendKeys(count);
         Helper.closeKeyBoard(driver);
 
     }
@@ -311,22 +314,19 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         //Helper.swipScreen(driver);
         Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
         TimeUnit.SECONDS.sleep(2);
-        freezeCount_input.get(0).sendKeys("1");
-        Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
-        freezeCount_input.get(1).sendKeys("");
-        freezeCount_input.get(1).sendKeys(address);
-        Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(2);
-
+        receivedTF.sendKeys(address);
+        Helper.closeKeyBoard(driver);
+//        freezeCount_input.get(0).sendKeys("1");
+//        Helper.tapWhitePlace(driver);
+//        TimeUnit.SECONDS.sleep(2);
+//        freezeCount_input.get(1).sendKeys("");
+//        freezeCount_input.get(1).sendKeys(address);
+//        Helper.tapWhitePlace(driver);
+//        TimeUnit.SECONDS.sleep(2);
     }
 
     public String getAvailableTrx() {
-        waiteTime(10);
         String availableTrx = availableTrx_text.getText();
-        String[]   array = availableTrx.split("：");
-        availableTrx = array[1];
-        availableTrx = availableTrx.substring(0,availableTrx.length()-3);
         return availableTrx;
     }
 
