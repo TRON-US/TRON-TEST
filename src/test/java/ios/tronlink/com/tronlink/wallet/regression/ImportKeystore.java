@@ -17,11 +17,6 @@ public class ImportKeystore extends BaseTest {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
-        try {
-            DRIVER.findElementById("normalWallet").click();
-        }catch (Exception ee){
-            log(" removed in nile");
-        }
         DRIVER.findElementByName("Keystore").click();
         return new ImportKeystorePage(DRIVER);
     }
@@ -39,10 +34,8 @@ public class ImportKeystore extends BaseTest {
 
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
     public void test001_gotoimportFromeKeyStroe() throws Exception {
-
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
-        Assert.assertTrue(Helper.contentTexts(importKeystorePage.textArray,"Keystore 导入"));
-
+        Assert.assertTrue(Helper.contentTexts(importKeystorePage.textArray,"导入Keystore (步骤 1/2)"));
     }
 
     @Test(description = "test  input wrong format Keystore",alwaysRun = true)
@@ -50,24 +43,21 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.content_text.sendKeys("wrong keysotre format");
         Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("格式错误"));
-//        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"格式错误"));
-
+        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("Keystore 错误，请重新输入"));
     }
+
     @Test(description = "test  input wrong format Password",alwaysRun = true)
     public void test003_inputWrongPasswordKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(7);
         Assert.assertTrue(importKeystorePage.errorStr.getText().contains("密码错误"));
-//        Assert.assertTrue(Helper.isElementExist(importKeystorePage.driver,"密码错误"));
-
     }
+
     @Parameters({"privateKey"})
     @Test(description = "test  input haved Keystore",alwaysRun = true)
     public void test004_inputHaveExistWallet(String privateKey) throws Exception {
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
-
         AssetPage asset = new AssetPage(DRIVER);
         MyPursePage walletPage = asset.enterMyPursePage();
         oldKeystore = walletPage.getBackupKeystore("Test0001");

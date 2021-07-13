@@ -19,11 +19,6 @@ public class ImportPrivateKey extends BaseTest {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
-        try {
-            DRIVER.findElementById("normalWallet").click();
-        }catch (Exception ee){
-            log(" removed in nile");
-        }
         DRIVER.findElementByName("私钥").click();
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);
