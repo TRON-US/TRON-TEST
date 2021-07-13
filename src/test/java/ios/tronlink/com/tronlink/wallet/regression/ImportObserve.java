@@ -70,8 +70,8 @@ public class ImportObserve extends BaseTest {
         PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
         namePage.name_input.sendKeys("123456789012345");
         Helper.tapWhitePlace(DRIVER);
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(namePage.toolongname.isDisplayed());
+        Assert.assertTrue(namePage.name_input.getText().equalsIgnoreCase("12345678901234"));
+
     }
     @Test(description = "Observe Name chinese Too Long", alwaysRun = true)
     public void test006_ObserveNamechineseTooLong() throws Exception {
@@ -80,8 +80,8 @@ public class ImportObserve extends BaseTest {
         PrivateKeySetNamePage namePage = importObservePage.enterPrivateKeySetNamePage();
         namePage.setNameover("一二三四五六七超");
         Helper.tapWhitePlace(DRIVER);
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(namePage.toolongname.isDisplayed());
+        Assert.assertTrue(namePage.name_input.getText().equalsIgnoreCase("一二三四五六七"));
+
 
     }
     @Test(groups = {"P0"},description = "Observe Name Has Alerady Exist", alwaysRun = true)
