@@ -44,10 +44,10 @@ public class ImportKeystorePage extends AbstractPage {
   public void inputKeyAndPassword(String key,String password) throws Exception {
     waiteTime();
     content_text.sendKeys(key);
-    Helper.tapWhitePlace(driver);
+    Helper.closeKeyBoard(driver);
     waiteTime();
     password_text.sendKeys(password);
-    Helper.tapWhitePlace(driver);
+    Helper.closeKeyBoard(driver);
     waiteTime();
     driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
   }

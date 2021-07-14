@@ -31,10 +31,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         return asset.enterFrozenAndThawingPage();
     }
 
-    @Test(groups = {"P0"},description = "guarantee Chain in MainChain",alwaysRun = true)
-    public void test000_GuaranteeChainName() throws Exception {
-        Assert.assertTrue( Helper.guaranteeMainChain(DRIVER));
-    }
 
     @Test(description = "enter Details of the rules", alwaysRun = true)
     public void test001_enterDetailsOfTheRules()  {
@@ -47,30 +43,24 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     public void test002_FreezeEnergyDetail() {
         FrozenAndUnfreezePage frozen = interferonPage();
         waiteTime();
-        frozen.freezeEnergyDetail_btn.get(0).click();
-
-        int myFreeze = Integer.parseInt(removeSymbol(frozen.myFreeze_btn.get(0).getText().split(" ")[0]));
-        int otherFreeze = Integer.parseInt(removeSymbol(frozen.otherFreeze_btn.get(0).getText().split(" ")[0]));
-        int totalFreeze = Integer.parseInt(removeSymbol(frozen.totalFreeze_btn.get(0).getText().split(" ")[0]));
+        frozen.energyFoldBtn.click();
+        int myFreeze = Integer.parseInt(removeSymbol(frozen.freezenEnergyNumber.getText().split(" ")[0]));
+        int otherFreeze = Integer.parseInt(removeSymbol(frozen.otherfreezenEnergyNumber.getText().split(" ")[0]));
+        int totalFreeze = Integer.parseInt(removeSymbol(frozen.totalfreezenEnergyNumber.getText().split(" ")[0]));
         Assert.assertTrue(myFreeze + otherFreeze == totalFreeze);
+        //ohter test Merge
+        frozen.bandwidthFoldBtn.click();
+        int myBandwidth = Integer.parseInt(removeSymbol(frozen.freezenbandwidthNumber.getText().split(" ")[0]));
+        int otherBandwidth = Integer.parseInt(removeSymbol(frozen.otherfreezenbandwidthNumber.getText().split(" ")[0]));
+        int totalBandwidth = Integer.parseInt(removeSymbol(frozen.totalfreezenbandwidthNumber.getText().split(" ")[0]));
+        Assert.assertTrue(myBandwidth + otherBandwidth == totalBandwidth);
+
     }
 
-    @Test(description = "Bandwidth Detail detail", alwaysRun = true)
-    public void test003_BandwidthDetail() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.freezeEnergyDetail_btn.get(0).click();
-        frozen.freezeEnergyDetail_btn.get(1).click();
-        TimeUnit.SECONDS.sleep(2);
-        int myBandwidth = Integer.parseInt(removeSymbol(frozen.myFreeze_btn.get(1).getText().split(" ")[0]));
-        int otherBandwidth = Integer.parseInt(removeSymbol(frozen.otherFreeze_btn.get(1).getText().split(" ")[0]));
-        int totalBandwidth = Integer.parseInt(removeSymbol(frozen.totalFreeze_btn.get(1).getText().split(" ")[0]));
-        Assert.assertTrue(myBandwidth + otherBandwidth == totalBandwidth);
-    }
 
     @Test(description = "Energy Question Test", alwaysRun = true)
     public void test004_checkEnergyQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.getenergy_btn().click();
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取能量冻结"));
     }
@@ -87,9 +77,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.getDirectionFzUfz_btn().click();
         Assert.assertTrue(Helper.isElementExist(frozen.driver,"解冻"));
-
     }
-
 
     //Freeze Energy more than trx
     @Test(description = "Freeze Energy more than trx", alwaysRun = true)
@@ -97,13 +85,9 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.inputFrozenCount("99999999");
         TimeUnit.SECONDS.sleep(3);
-        if (Helper.isElementExist(frozen.driver,"incorrectLabel")){
-            String prompt = frozen.error_hits.getText();
-            System.out.println(prompt);
-            Assert.assertTrue(prompt.contains("TRX") && prompt.contains("不足")|| prompt.equals("Insufficient TRX"));
-        }else {
-            Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-        }
+        Helper.swipScreen(frozen.driver);
+        Assert.assertFalse(frozen.freeze_btn.isEnabled());
+
     }
 
 
@@ -175,7 +159,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         String availableTrxOld = frozen.getAvailableTrx();
         frozen.inputFrozenCount("1");
-        Helper.tapWhitePlace(frozen.driver);
         frozen.frozenTheEnergy(); //Freeze operating
         TimeUnit.SECONDS.sleep(3);
         String availableTrxNew = frozen.getAvailableTrx();
