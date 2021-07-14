@@ -50,9 +50,14 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertTrue(myFreeze + otherFreeze == totalFreeze);
         //ohter test Merge
         frozen.bandwidthFoldBtn.click();
-        int myBandwidth = Integer.parseInt(removeSymbol(frozen.freezenbandwidthNumber.getText().split(" ")[0]));
+        int myBandwidth = Integer.parseInt(removeSymbol(frozen.freezenbandwidthNumber.get(1).getText().split(" ")[0]));
         int otherBandwidth = Integer.parseInt(removeSymbol(frozen.otherfreezenbandwidthNumber.getText().split(" ")[0]));
         int totalBandwidth = Integer.parseInt(removeSymbol(frozen.totalfreezenbandwidthNumber.getText().split(" ")[0]));
+        log("-----------");
+        System.out.println(myBandwidth);
+        System.out.println(otherBandwidth);
+        System.out.println(totalBandwidth);
+        log("-----------");
         Assert.assertTrue(myBandwidth + otherBandwidth == totalBandwidth);
 
     }
@@ -61,6 +66,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     @Test(description = "Energy Question Test", alwaysRun = true)
     public void test004_checkEnergyQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
+        Helper.swipScreen(frozen.driver);
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取能量冻结"));
     }
@@ -68,6 +74,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     @Test(description = "Bandwidth Question Test", alwaysRun = true)
     public void test005_checkBandwidthQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
+        Helper.swipScreen(frozen.driver);
         frozen.getbandwidth_btn().click();
         frozen.questionClick();
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取带宽冻结"));

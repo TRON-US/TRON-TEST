@@ -91,7 +91,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement  bandwidthFoldBtn;
 
     @FindBy(name = "ower_frreze_bandwidth")
-    public WebElement  freezenbandwidthNumber;
+    public List<WebElement>  freezenbandwidthNumber;
 
     @FindBy(name = "other_frreze_bandwidth")
     public WebElement  otherfreezenbandwidthNumber;
@@ -167,10 +167,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '完成'");
     }
     public WebElement getbandwidth_btn(){
-        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '带宽'");
+        return driver.findElementById("resource_type_bandwidth_label");
+//        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '带宽'");
     }
     public WebElement getenergy_btn(){
-        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '能量'");
+        return driver.findElementById("resource_type_energy_label");
     }
     public WebElement getConfirmGo_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '继续'");
@@ -179,8 +180,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
+    public WebElement getfreezenBtnPopView(){
+
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeStaticText' AND name = '解冻'");
+
+    }
+
     public WebElement getDirectionFzUfz_btn(){
-        return  driver.findElementById("resource_switch_btn");
+        return  driver.findElementsById("resource_switch_btn").get(1);
 //        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结' OR name = '解冻'");
 //        return list.get(0);
     }
