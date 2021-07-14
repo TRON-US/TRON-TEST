@@ -18,37 +18,37 @@ public class TransactionDetailInfomaitonPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_amount")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_amount")
     public WebElement title_amount_test;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sa")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_sa")
     public WebElement sendAddress_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ra")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_ra")
     public WebElement receiverAddress_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_tn")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_tn")
     public WebElement txid_hash_test;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_bn")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_bn")
     public WebElement block_num_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_time")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_time")
     public WebElement transaction_time_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_code")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_code")
     public WebElement transaction_QRCode;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vdd")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_vdd")
     public WebElement to_tronscan_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_resource")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_resource")
     public WebElement resouce_cost;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_note")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_note")
     public WebElement tv_note;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/fee_amount")
+    @FindBy(id = "wallet.tronlink.harmony:id/fee_amount")
     public WebElement fee_coast;
 
 }

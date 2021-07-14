@@ -18,25 +18,25 @@ public class NodeSetPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "wallet.tronlink.harmony:id/ll_common_left")
     public WebElement back_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_dappchain_node_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_dappchain_node_name")
     public  WebElement dappChainName;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_dappchain_select")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_dappchain_select")
     public  WebElement dappChainBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_mainnet_node_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_mainnet_node_name")
     public  WebElement mainChainName;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_mainnet_select")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_mainnet_select")
     public  WebElement mainChainBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_shasta_node_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_shasta_node_name")
     public WebElement shastaName;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_shasta_select")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_shasta_select")
     public WebElement shastaBtn;
 
 

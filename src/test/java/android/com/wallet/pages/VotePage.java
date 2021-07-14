@@ -22,87 +22,87 @@ public class VotePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_close")
     public WebElement close;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/caim_reward")
+    @FindBy(id = "wallet.tronlink.harmony:id/caim_reward")
     public WebElement caim_reward;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/get_votes")
+    @FindBy(id = "wallet.tronlink.harmony:id/get_votes")
     public WebElement get_votes;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    @FindBy(id = "wallet.tronlink.harmony:id/title")
     public WebElement voteTitle_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_batch_vote")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_batch_vote")
     public WebElement tv_batch_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_canuse_trx")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_canuse_trx")
     public WebElement tv_canuse_trx;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_canuse_votes")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_canuse_votes")
     public WebElement tv_canuse_votes;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_common_right2")
     public WebElement tv_common_right2;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_person_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_person_name")
     public WebElement firstSR;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/reset")
+    @FindBy(id = "wallet.tronlink.harmony:id/reset")
     public WebElement reset_btn;
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_bottom_next")
     public WebElement rl_bottom_next;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_vote_amount")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_vote_amount")
     public WebElement et_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_vote")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_vote")
     public WebElement vote_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
+    @FindBy(id = "wallet.tronlink.harmony:id/btn_vote")
     public WebElement vote_page_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/surplus_available")
+    @FindBy(id = "wallet.tronlink.harmony:id/surplus_available")
     public WebElement surplusAvailableVote_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_vote_select")
+    @FindBy(id = "wallet.tronlink.harmony:id/ll_vote_select")
     public WebElement vote_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_all")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_all")
     public WebElement all_witness_item;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_me")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_me")
     public WebElement my_voted_item;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_input")
     public List<WebElement> all_witness_edit_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/address")
+    @FindBy(id = "wallet.tronlink.harmony:id/address")
     public List<WebElement> voted_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_role")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_vote_role")
     public WebElement myVoteAndAllWitnessList;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_person_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_person_name")
     public List<WebElement> myVotesNetInfoList;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_search")
     public WebElement search_edit_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "wallet.tronlink.harmony:id/bt_go")
     public WebElement btgo_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_awards")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_awards")
     public WebElement reward_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/root")
+    @FindBy(id = "wallet.tronlink.harmony:id/root")
     public List<WebElement> witness_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_input")
     public WebElement vote_number_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/vote_count")
+    @FindBy(id = "wallet.tronlink.harmony:id/vote_count")
     public WebElement witness_total_vote_text;
 
 
@@ -119,28 +119,28 @@ public class VotePage extends AbstractPage {
     @FindBy(xpath = "//*[@text='0 vote']")
     public WebElement english_availableVote_toast_null;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_new_password")
     public WebElement password_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/total_vote")
+    @FindBy(id = "wallet.tronlink.harmony:id/total_vote")
     public WebElement total_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_clear")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_clear")
     public WebElement rl_clear;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_address")
     public WebElement et_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/v_common_title")
+    @FindBy(id = "wallet.tronlink.harmony:id/v_common_title")
     public WebElement v_common_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
+    @FindBy(id = "wallet.tronlink.harmony:id/btn_vote")
     public WebElement btn_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update")
+    @FindBy(id = "wallet.tronlink.harmony:id/btn_voted_update")
     public WebElement btn_voted_update;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_cancel")
+    @FindBy(id = "wallet.tronlink.harmony:id/btn_voted_cancel")
     public WebElement voted_cancel;
 
 

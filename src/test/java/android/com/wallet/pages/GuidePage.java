@@ -17,7 +17,7 @@ public class GuidePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_import")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_import")
     public WebElement impAccount;
 
 

@@ -18,22 +18,22 @@ public class ImportKeystorePage extends AbstractPage {
   }
 
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/et_content")
+  @FindBy(id = "wallet.tronlink.harmony:id/et_content")
   public WebElement content_text;
 
 
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/et_password")
+  @FindBy(id = "wallet.tronlink.harmony:id/et_password")
   public WebElement password_text;
 
 
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/bt_next")
+  @FindBy(id = "wallet.tronlink.harmony:id/bt_next")
   public WebElement next_btn;
 
 
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
+  @FindBy(id = "wallet.tronlink.harmony:id/tv_error")
   public List<WebElement> error_hits;
 
 

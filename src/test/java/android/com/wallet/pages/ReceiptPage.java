@@ -16,17 +16,17 @@ public class ReceiptPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/address")
+    @FindBy(id = "wallet.tronlink.harmony:id/address")
     public WebElement ownerAddress_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/copy")
+    @FindBy(id = "wallet.tronlink.harmony:id/copy")
     public WebElement copy_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_top")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_top")
     public WebElement pagetitle;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    @FindBy(id = "wallet.tronlink.harmony:id/title")
     public WebElement wallettitle;
 
 

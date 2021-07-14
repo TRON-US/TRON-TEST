@@ -16,7 +16,7 @@ public class DAPP_SearchResultPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_name")
     public WebElement searchResultFirst_btn;
 
 

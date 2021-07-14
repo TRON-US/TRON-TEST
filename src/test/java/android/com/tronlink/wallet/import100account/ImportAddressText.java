@@ -41,15 +41,15 @@ public class ImportAddressText extends Base {
 
     @Test(description = "import 100 address", alwaysRun = true)
     public void test001_importAddress() throws Exception {
-        findWebElement("com.tronlinkpro.wallet:id/my").click();
-        findWebElement("com.tronlinkpro.wallet:id/address_book").click();
+        findWebElement("wallet.tronlink.harmony:id/my").click();
+        findWebElement("wallet.tronlink.harmony:id/address_book").click();
         for (int i = 0; i < addressList.length; i++) {
-            findWebElement("com.tronlinkpro.wallet:id/iv_qr").click();
+            findWebElement("wallet.tronlink.harmony:id/iv_qr").click();
 
-            findWebElement("com.tronlinkpro.wallet:id/et_address_name").sendKeys("Auto_AddressText_" + (i+1));
-            findWebElement("com.tronlinkpro.wallet:id/et_address").sendKeys(addressList[i]);
-            findWebElement("com.tronlinkpro.wallet:id/et_description").sendKeys("Description_" + (i+1));
-            findWebElement("com.tronlinkpro.wallet:id/tv_bg_right").click();
+            findWebElement("wallet.tronlink.harmony:id/et_address_name").sendKeys("Auto_AddressText_" + (i+1));
+            findWebElement("wallet.tronlink.harmony:id/et_address").sendKeys(addressList[i]);
+            findWebElement("wallet.tronlink.harmony:id/et_description").sendKeys("Description_" + (i+1));
+            findWebElement("wallet.tronlink.harmony:id/tv_bg_right").click();
             TimeUnit.SECONDS.sleep(1);
         }
     }

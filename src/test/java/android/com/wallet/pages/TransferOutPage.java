@@ -20,16 +20,16 @@
 //
 //
 //
-//    @FindBy(id = "com.tronlinkpro.wallet:id/et_count")
+//    @FindBy(id = "wallet.tronlink.harmony:id/et_count")
 //    public WebElement count_text;
 //
 //
 //
-//    @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
+//    @FindBy(id = "wallet.tronlink.harmony:id/tv_chain_name")
 //    public WebElement chain_text;
 //
 //
-//    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+//    @FindBy(id = "wallet.tronlink.harmony:id/bt_go")
 //    public WebElement transferOut_btn;
 //
 //

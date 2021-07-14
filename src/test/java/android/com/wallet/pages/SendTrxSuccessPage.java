@@ -16,11 +16,11 @@ public class SendTrxSuccessPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_count")
     public WebElement trxCount;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_common_left")
     public WebElement back_btn;
 
     public AssetPage enterSendTrxPage() throws Exception {

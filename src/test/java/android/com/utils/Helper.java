@@ -155,13 +155,13 @@ public class Helper {
     public AndroidDriver DRIVER = null;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets")
+    @FindBy(id = "wallet.tronlink.harmony:id/assets")
     public WebElement assetsMain_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_offline_sign_desc")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_offline_sign_desc")
     public WebElement coldWalletScan_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/assets_name")
     public List<WebElement> asset_list;
 
 
@@ -241,30 +241,30 @@ public class Helper {
 
     public void getCreateWallet(Boolean isNormal,String walletName,String password){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_import").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
             if (isNormal) {
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc").click();
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc").click();
             } else {
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc_shield").click();
             }
             TimeUnit.SECONDS.sleep(1);
             //点击创建钱包
-            findWebElement("com.tronlinkpro.wallet:id/cd_cw").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys(walletName);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys(password);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            //findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys(password);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/cd_cw").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys(walletName);
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys(password);
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            //findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys(password);
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(8);
-            findWebElement("com.tronlinkpro.wallet:id/iv_common_left").click();
+            findWebElement("wallet.tronlink.harmony:id/iv_common_left").click();
             TimeUnit.SECONDS.sleep(3);
             //校验是否导入成功
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
+            findWebElement("wallet.tronlink.harmony:id/assets_name");
             System.out.println("完成校验，导入成功");
         } catch (Exception e) {
             System.out.println(e);
@@ -280,27 +280,27 @@ public class Helper {
 
     public void getSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_import").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
 
 
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Auto-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/cd_pk").click();
+            findWebElement("wallet.tronlink.harmony:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("wallet.tronlink.harmony:id/bt_next").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys("Auto-test");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(1);
-            //findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            //findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(3);
             //校验是否导入成功
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
+            findWebElement("wallet.tronlink.harmony:id/assets_name");
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println("\n-----------\n导入失败!!!!!\n");
@@ -311,32 +311,32 @@ public class Helper {
     }
     public void getShieldSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_import").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
             try {
                 //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
+                // 普通账户id：wallet.tronlink.harmony:id/create_option_desc
+                //匿名账户id:wallet.tronlink.harmony:id/create_option_desc_shield
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc_shield").click();
             } catch (Exception e) {
 
             }
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Auto-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/cd_pk").click();
+            findWebElement("wallet.tronlink.harmony:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("wallet.tronlink.harmony:id/bt_next").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys("Auto-test");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(3);
             //校验是否导入成功
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
+            findWebElement("wallet.tronlink.harmony:id/assets_name");
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println(e);
@@ -347,16 +347,16 @@ public class Helper {
 
     public void  getShieldWatchWalletSignOperate(String udid,String nsk,String ak,String ovk,String shieldAddress){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_import").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
             try {
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc_shield").click();
             } catch (Exception e) {
 
             }
             //点击观察钱包
-            findWebElement("com.tronlinkpro.wallet:id/cd_ow").click();
+            findWebElement("wallet.tronlink.harmony:id/cd_ow").click();
             TimeUnit.SECONDS.sleep(1);
             DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(nsk);
             DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ak);
@@ -379,9 +379,9 @@ public class Helper {
                     DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
                     TimeUnit.SECONDS.sleep(1);
             }
-            findWebElement("com.tronlinkpro.wallet:id/btn_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Auto-shield-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/btn_next").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys("Auto-shield-test");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(3);
 
         }catch (Exception e){
@@ -401,26 +401,26 @@ public class Helper {
 
     public void  getWatchWalletSignOperate(String address){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_import").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
             try {
                 //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc").click();
+                // 普通账户id：wallet.tronlink.harmony:id/create_option_desc
+                //匿名账户id:wallet.tronlink.harmony:id/create_option_desc_shield
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc").click();
             } catch (Exception e) {
 
             }
-            findWebElement("com.tronlinkpro.wallet:id/cd_ow").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(address);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("WatchWallet");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/cd_ow").click();
+            findWebElement("wallet.tronlink.harmony:id/et_content").sendKeys(address);
+            findWebElement("wallet.tronlink.harmony:id/bt_next").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys("WatchWallet");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/iv_common_left").click();
+            findWebElement("wallet.tronlink.harmony:id/iv_common_left").click();
             TimeUnit.SECONDS.sleep(3);
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
+            findWebElement("wallet.tronlink.harmony:id/assets_name");
         }catch (Exception e){
             System.out.println(e);
         }
@@ -430,30 +430,30 @@ public class Helper {
 
     public void  getColdWalletSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_cold_wallet").click();
-            findWebElement("com.tronlinkpro.wallet:id/tv_ok").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_cold_wallet").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_ok").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
             try {
                 //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc").click();
+                // 普通账户id：wallet.tronlink.harmony:id/create_option_desc
+                //匿名账户id:wallet.tronlink.harmony:id/create_option_desc_shield
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc").click();
             } catch (Exception e) {
 
             }
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Cold-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/cd_pk").click();
+            findWebElement("wallet.tronlink.harmony:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("wallet.tronlink.harmony:id/bt_next").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys("Cold-test");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/tv_offline_sign_desc");
+            findWebElement("wallet.tronlink.harmony:id/tv_offline_sign_desc");
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(e);
@@ -463,31 +463,31 @@ public class Helper {
 
     public void  getShieldColdWalletSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_cold_wallet").click();
-            findWebElement("com.tronlinkpro.wallet:id/tv_ok").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_cold_wallet").click();
+            findWebElement("wallet.tronlink.harmony:id/tv_ok").click();
+            swipUntilElementEnable("wallet.tronlink.harmony:id/bt_accept");
+            findWebElement("wallet.tronlink.harmony:id/bt_accept").click();
             try {
                 //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
+                // 普通账户id：wallet.tronlink.harmony:id/create_option_desc
+                //匿名账户id:wallet.tronlink.harmony:id/create_option_desc_shield
+                findWebElement("wallet.tronlink.harmony:id/create_option_desc_shield").click();
             } catch (Exception e) {
                 System.out.println(e);
 
             }
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Cold-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/cd_pk").click();
+            findWebElement("wallet.tronlink.harmony:id/et_content").sendKeys(testPrivateKey);
+            findWebElement("wallet.tronlink.harmony:id/bt_next").click();
+            findWebElement("wallet.tronlink.harmony:id/et_name").sendKeys("Cold-test");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
+            findWebElement("wallet.tronlink.harmony:id/et_password").sendKeys("Test0001");
+            findWebElement("wallet.tronlink.harmony:id/creat").click();
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/tv_offline_sign_desc");
+            findWebElement("wallet.tronlink.harmony:id/tv_offline_sign_desc");
             TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(e);

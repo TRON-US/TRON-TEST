@@ -108,7 +108,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys("TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Assert.assertFalse(sendTrxPage.isElementExist("com.tronlinkpro.wallet:id/tv_note"));
+        Assert.assertFalse(sendTrxPage.isElementExist("wallet.tronlink.harmony:id/tv_note"));
     }
 
     @Test(groups = {"P0"},enabled = true,description = "onlineMultiSignatureFeeCheck", alwaysRun = true)
@@ -451,7 +451,7 @@ public class OnlineWatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.currentType_btn.click();
         frozen.unfreezeType_btn.click();
-        if(frozen.isElementExist("com.tronlinkpro.wallet:id/iv_unfreeze")){
+        if(frozen.isElementExist("wallet.tronlink.harmony:id/iv_unfreeze")){
             frozen.unfreezeTargetAddress_btn.click();
             Helper.swipScreen(frozen.driver);
             frozen.unfreeze_btn.click();

@@ -18,58 +18,58 @@ public class TrxPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_send")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_send")
     public WebElement assets_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_deposit")
+    @FindBy(id = "wallet.tronlink.harmony:id/ll_deposit")
     public WebElement transferIn_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_amount")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_trx_amount")
     public WebElement trx_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_freeze_amout")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_freeze_amout")
     public WebElement freezeCount_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_count")
     public WebElement trxTotal_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "wallet.tronlink.harmony:id/iv_common_left")
     public WebElement back_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_tab_title")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_tab_title")
     public List<WebElement> tranfer_tab;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
+    @FindBy(id = "wallet.tronlink.harmony:id/ll_transfer2")
     public WebElement tranfer10_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_balance")
     public WebElement balance_text;
 
     @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
     public WebElement totalBalance;
-  //@FindBy(id = "com.tronlinkpro.wallet:id/send")
+  //@FindBy(id = "wallet.tronlink.harmony:id/send")
   //public WebElement send_btn;
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
+  @FindBy(id = "wallet.tronlink.harmony:id/ll_transfer2")
   public WebElement send_btn;
 
 

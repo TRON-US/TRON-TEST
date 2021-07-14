@@ -25,53 +25,53 @@ public class SendTrzPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_common_title")
     public WebElement transferTtile_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_address")
     public WebElement receiveAddress_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_count")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_count")
     public WebElement tranferAmount_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/send")
+    @FindBy(id = "wallet.tronlink.harmony:id/send")
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "wallet.tronlink.harmony:id/bt_go")
     public WebElement transferNow_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "wallet.tronlink.harmony:id/et_new_password")
     public WebElement InputPasswordConfim_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "wallet.tronlink.harmony:id/bt_send")
     public WebElement confirm_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_error")
     public WebElement formatErrorHits_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_note")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_note")
     public WebElement note_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_balance")
     public WebElement balance_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_max")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_max")
     public WebElement tvMax_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_token")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_token")
     public WebElement token_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "wallet.tronlink.harmony:id/ll_common_left")
     public WebElement back_bt;
 
     @FindBy(xpath = "//*[@text='(1000042)']")
@@ -82,11 +82,11 @@ public class SendTrzPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_invalid_time")
     public WebElement invalidTime_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_address")
     public List<WebElement> signAddress_input;
 
 
@@ -96,50 +96,50 @@ public class SendTrzPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_bottom_next")
     public WebElement next_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_invalid_time")
     public WebElement enableTime_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_address")
     public List<WebElement> signAddress_text;
 
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_selected_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_selected_name")
     public WebElement selectSignName_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_name")
     public WebElement tokenName_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_addressbook_receive")
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_addressbook_receive")
     public WebElement addressBook_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_name")
+    @FindBy(id = "wallet.tronlink.harmony:id/tv_address_name")
     public WebElement addressName_display;
 
-    //com.tronlinkpro.wallet:id/shield_balance
-    @FindBy(id = "com.tronlinkpro.wallet:id/shield_balance")
+    //wallet.tronlink.harmony:id/shield_balance
+    @FindBy(id = "wallet.tronlink.harmony:id/shield_balance")
     public WebElement shieldBalance_text;
 
-    //com.tronlinkpro.wallet:id/single_limit
-    @FindBy(id = "com.tronlinkpro.wallet:id/single_limit")
+    //wallet.tronlink.harmony:id/single_limit
+    @FindBy(id = "wallet.tronlink.harmony:id/single_limit")
     public WebElement singleLimit_text;
 
-    //com.tronlinkpro.wallet:id/rl_fee
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_fee")
+    //wallet.tronlink.harmony:id/rl_fee
+    @FindBy(id = "wallet.tronlink.harmony:id/rl_fee")
     public WebElement shieldFee_text;
 
-    //com.tronlinkpro.wallet:id/toscan
-    @FindBy(id = "com.tronlinkpro.wallet:id/toscan")
+    //wallet.tronlink.harmony:id/toscan
+    @FindBy(id = "wallet.tronlink.harmony:id/toscan")
     public WebElement coldHadScan_next_btn;
 
 

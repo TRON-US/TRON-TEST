@@ -97,7 +97,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
         SeverSetPage sever = setting.enterSeverSetPage();
         sever.Sigapor_btn.click();
-        Assert.assertTrue(sever.isElementExist("com.tronlinkpro.wallet:id/iv_select2"));
+        Assert.assertTrue(sever.isElementExist("wallet.tronlink.harmony:id/iv_select2"));
 
     }
 
@@ -108,7 +108,7 @@ public class SettingTest extends Base {
         SettingPage setting = mine.enterSettingPage();
         SeverSetPage sever = setting.enterSeverSetPage();
         sever.USA_btn.click();
-        Assert.assertTrue(sever.isElementExist("com.tronlinkpro.wallet:id/iv_select1"));
+        Assert.assertTrue(sever.isElementExist("wallet.tronlink.harmony:id/iv_select1"));
 
     }
 
