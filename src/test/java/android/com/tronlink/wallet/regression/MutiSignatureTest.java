@@ -26,7 +26,7 @@ public class MutiSignatureTest extends Base {
         new Helper().getSign(privateKey, DRIVER);
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.harmony");
         }catch (Exception e){}
     }
 
@@ -34,7 +34,7 @@ public class MutiSignatureTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.harmony");
         }catch (Exception e){}
     }
 

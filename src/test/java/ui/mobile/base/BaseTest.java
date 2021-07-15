@@ -81,7 +81,7 @@ public class BaseTest extends Base {
     public void androidCloseAndActiveApp(){
         try {
             ADRIVER.closeApp();
-            ADRIVER.activateApp("com.tronlinkpro.wallet");
+            ADRIVER.activateApp("wallet.tronlink.harmony");
         }catch (Exception e){}
     }
 

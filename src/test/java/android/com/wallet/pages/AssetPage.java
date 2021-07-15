@@ -227,7 +227,7 @@ public class AssetPage extends AbstractPage {
             TimeUnit.SECONDS.sleep(2);
             try {
                 driver.closeApp();
-                driver.activateApp("com.tronlinkpro.wallet");
+                driver.activateApp("wallet.tronlink.harmony");
             } catch (Exception e){}
             TimeUnit.SECONDS.sleep(6);
 

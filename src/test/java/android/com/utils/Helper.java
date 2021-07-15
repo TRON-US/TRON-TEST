@@ -236,7 +236,7 @@ public class Helper {
         NodeSetPage nodeSetPage = setting.enterNodeSetPage();
         nodeSetPage.enterSettingPageChoiseDappChain();
         DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlinkpro.wallet");
+        DRIVER.activateApp("wallet.tronlink.harmony");
     }
 
     public void getCreateWallet(Boolean isNormal,String walletName,String password){

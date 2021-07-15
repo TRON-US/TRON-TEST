@@ -52,7 +52,7 @@ public class DiscoverTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("wallet.tronlink.harmony");
         }catch (Exception e){}
     }
 
@@ -84,7 +84,7 @@ public class DiscoverTest extends Base {
 //        enterOnlineAssetPage();
 //        try {
 //            DRIVER.closeApp();
-//            DRIVER.activateApp("com.tronlinkpro.wallet");
+//            DRIVER.activateApp("wallet.tronlink.harmony");
 //        }catch (Exception e){}
 //        AssetPage asset = new AssetPage(DRIVER);
 //        DiscoverPage discover = asset.enterDiscoverPage();

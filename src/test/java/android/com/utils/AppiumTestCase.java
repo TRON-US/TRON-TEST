@@ -375,7 +375,7 @@ public class AppiumTestCase {
         waitTargetElementAppear();
         MobileElement element = null;
         if (!resId.isEmpty()) {
-            if (resId.indexOf("com.tronlinkpro.wallet:id") != -1){
+            if (resId.indexOf("wallet.tronlink.harmony:id") != -1){
                 driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 element = (MobileElement) driver.findElementById(resId);
             }else if (resId.indexOf(".png") != -1){
@@ -514,7 +514,7 @@ public class AppiumTestCase {
         waitTargetElementAppear();
         MobileElement element = null;
         if (!elementIdOrXPath.isEmpty()) {
-            if (elementIdOrXPath.indexOf("com.tronlinkpro.wallet:id") != -1){
+            if (elementIdOrXPath.indexOf("wallet.tronlink.harmony:id") != -1){
                 element = (MobileElement) driver.findElementById(elementIdOrXPath);
             }else {
                 element = (MobileElement) driver.findElement(MobileBy.xpath(elementIdOrXPath));

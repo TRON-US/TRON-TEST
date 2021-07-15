@@ -355,7 +355,7 @@ public class Base {
         DRIVER.findElementsById("wallet.tronlink.harmony:id/iv_select").get(1).click();
         TimeUnit.SECONDS.sleep(1);
         //DRIVER.closeApp();
-        //DRIVER.activateApp("com.tronlinkpro.wallet");
+        //DRIVER.activateApp("wallet.tronlink.harmony");
         DRIVER.navigate().refresh();
         TimeUnit.SECONDS.sleep(6);
     }
