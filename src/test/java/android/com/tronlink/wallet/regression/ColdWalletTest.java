@@ -192,7 +192,7 @@ public class ColdWalletTest extends Base {
         waiteTime();
         coldAsset.driver.findElementById("wallet.tronlink.harmony:id/creat").click();
         TimeUnit.SECONDS.sleep(10);
-        coldAsset.driver.findElementById("wallet.tronlink.harmony:id/iv_common_left").click();
+        coldAsset.driver.findElementById("wallet.tronlink.harmony:id/ll_common_left").click();
 
         if (coldAsset.isElementExist("wallet.tronlink.harmony:id/rl_cold_tip")){ //不应该出现
             coldAsset.driver.findElementById("wallet.tronlink.harmony:id/iv_cold_close").click();
