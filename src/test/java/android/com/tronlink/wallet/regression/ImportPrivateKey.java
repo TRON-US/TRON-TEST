@@ -52,17 +52,10 @@ public class ImportPrivateKey extends Base {
     }
 
 
-
-    @Test(description = "Import PrivateKey Is NULL", alwaysRun = true)
-    public void test002_importPrivateKeyIsNull() throws Exception {
-        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        Assert.assertFalse(importPrivateKey.next_btn.isEnabled());
-    }
-
-
     @Test(description = "Import PrivateKey Is Too Large", alwaysRun = true)
     public void test003_importPrivateKeyIsTooLarge() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+        Assert.assertFalse(importPrivateKey.next_btn.isEnabled());
         String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1ecd4bbba178b1b0d2a0c1e6e9108e0cab6767676767565645454b0d2a0c1e6e910ecd4bbba178b1b0d2a0c1e6e9108e0cab67676767675656454548e0cab6767676767565645454");
         Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("私钥错误"));
     }

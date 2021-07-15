@@ -61,6 +61,8 @@ public class FrozenAndUnfreezeTest extends Base {
         asset = frozen.enterAssetPage();
         frozen = asset.enterFrozenAndUnfreezePage();
         int currentVotingPower = Integer.valueOf(removeSymbol(frozen.votingPower_btn.getText()));
+        System.out.println(myVotingPower);
+        System.out.println(currentVotingPower);
         Assert.assertTrue(myVotingPower + 1 == currentVotingPower);
     }
 
