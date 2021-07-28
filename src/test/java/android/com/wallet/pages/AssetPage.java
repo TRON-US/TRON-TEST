@@ -535,7 +535,8 @@ public class AssetPage extends AbstractPage {
         }
         trx.tranfer_tab.get(2).click();
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        trx.tranferIncount_text.get(1).click();
+        System.out.println(trx.tranferIncount_text.size());
+        trx.tranferIncount_text.get(1).click();//noel
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new TransactionDetailInfomaitonPage(driver);
     }

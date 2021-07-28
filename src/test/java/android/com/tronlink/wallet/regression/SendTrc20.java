@@ -165,7 +165,8 @@ public class SendTrc20 extends Base {
         transfer.send_btn.click();
         waiteTime();
         String no_bandwidthTips = transfer.tv_no_energy.getText();
-        Assert.assertTrue(no_bandwidthTips.contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
+//        TRC 20 通证转账需要执行智能合约，可能消耗能量，若能量不足则将燃烧 TRX，请保证您持有一定数量的 TRX，避免转账失败。
+        Assert.assertTrue(no_bandwidthTips.contains("执行智能合约，可能消耗能量"));//noel
         String content = transfer.bandwidth_text.getText();
         String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
@@ -176,7 +177,8 @@ public class SendTrc20 extends Base {
       AssetPage asset = new AssetPage(DRIVER);
       TrxPage trx = asset.enterTrx20Page();
       trx.tranfer_tab.get(1).click();
-      String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
+      System.out.println(trx.tranferIncount_text.size());
+      String tranferInCount = trx.tranferIncount_text.get(1).getText();
       System.out.println("now : " + tranferInCount);
       System.out.println("sendTrc20Amount : " + sendTrc20Amount);
         Assert.assertTrue(Float.toString(sendTrc20Amount).substring(0,5).equals(tranferInCount.substring(1,6)));
