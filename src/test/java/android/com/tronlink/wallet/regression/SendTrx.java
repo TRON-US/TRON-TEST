@@ -47,7 +47,7 @@ public class SendTrx extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         System.out.println("执行setUpBefore");
-//        new Helper().getSign(privateKey, DRIVER);
+        new Helper().getSign(privateKey, DRIVER);
     }
 
 
