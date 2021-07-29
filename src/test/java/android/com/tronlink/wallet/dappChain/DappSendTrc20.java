@@ -127,7 +127,7 @@ public class DappSendTrc20 extends Base {
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         String no_bandwidthTips = transfer.tv_no_energy.getText();
-        Assert.assertTrue(no_bandwidthTips.contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
+        Assert.assertTrue(no_bandwidthTips.contains("可能消耗能量"));//执行智能合约，可能消耗能量
 //TRC 20 通证，可能消耗能量，若能量不足则将燃烧 TRX，请保证您持有一定数量的 TRX，避免转账失败。
         String content = transfer.bandwidth_text.getText();
         String number = StringUtils.substringBeforeLast(content,"带宽");
