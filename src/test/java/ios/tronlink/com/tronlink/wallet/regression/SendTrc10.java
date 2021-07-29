@@ -185,8 +185,8 @@ public class SendTrc10 extends BaseTest {
         String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
         System.out.println("comfirmnumber : " + comfirmnumber);
         Assert.assertEquals(allnumber, comfirmnumber);
-
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
+        log(transfer.fee_text.getText());
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 1);
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
