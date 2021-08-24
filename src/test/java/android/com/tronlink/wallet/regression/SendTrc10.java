@@ -91,7 +91,7 @@ public class SendTrc10 extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         String allNumber  =   removeSymbolFloat(transfer.sendMaxCoinWithType("10"));
         String number = removeSymbolFloat(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"1.1");
         log("beforeMax: " + allNumber + " confirmNumber: " + number);
         Assert.assertEquals(allNumber, number);
     }

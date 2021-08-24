@@ -72,7 +72,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Assert.assertTrue(sendTrxPage.note_text.getText().contains("账户未激活")&&sendTrxPage.note_text.getText().contains("0.1"));
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("账户未激活")&&sendTrxPage.note_text.getText().contains("1.1"));
         Helper.swipScreenLitte(sendTrxPage.driver);
         sendTrxPage.tranferCount_text.sendKeys("1");
         Helper.swipScreen(DRIVER);
@@ -156,7 +156,7 @@ public class OnlineWatchWalletTest extends Base {
         Helper.swipScreen(DRIVER);
         waiteTime();
         String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
-        Assert.assertEquals(feeSendNumber.trim(),"1.1");
+        Assert.assertEquals(feeSendNumber.trim(),"2.1");
         waiteTime();
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
