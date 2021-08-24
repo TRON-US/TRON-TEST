@@ -95,8 +95,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "wallet.tronlink.global:id/bt_send")
     public WebElement confirm_btn;
 
-
-    @FindBy(id = "wallet.tronlink.global:id/iv_common_left")
+    @FindBy(id = "wallet.tronlink.global:id/ll_common_left")
     public WebElement back_btn;
 
 

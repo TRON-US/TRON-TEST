@@ -56,7 +56,7 @@ public class AddAssetsTest extends Base {
 //        page.close.click();
 //        Assert.assertTrue(page.et_search.getText().contains("名称/ID/合约地址"));
 //        Assert.assertTrue(page.iv_search_icon.isEnabled());
-        Assert.assertTrue(page.isElementExist("首页资产管理"));
+//        Assert.assertTrue(page.isElementExist("首页资产管理"));
         Assert.assertTrue(page.isElementExist("我的全部资产"));
 //        Assert.assertTrue(page.sort_type.getText().contains("按价值"));
 //        Assert.assertTrue(page.tv_common_title.getText().contains("资产"));

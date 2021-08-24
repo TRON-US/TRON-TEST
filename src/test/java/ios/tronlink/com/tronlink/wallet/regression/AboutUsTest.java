@@ -37,13 +37,14 @@ public class AboutUsTest extends BaseTest {
     public void test002_versionTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.2.0"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.3.0"));
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"版本日志"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"用户协议"));
         minePage.versionNote_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         waiteTime();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"4.1.1"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"4.2.4"));
     }
 
     @Test(description = "test versionUpdate test",alwaysRun = true)

@@ -165,9 +165,8 @@ public class SendTrx extends Base {
         String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
         System.out.println("comfirmnumber : " + comfirmnumber);
         Assert.assertEquals(allnumber, comfirmnumber);
-        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"1.1");
         Assert.assertFalse(transfer.isElementExist("wallet.tronlink.global:id/tv_no_bandwidth"));
-
     }
 
     //max 未激活的显示
@@ -178,7 +177,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber =  Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType()));
         Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 1);
         Assert.assertEquals(allNumber, number);
         Assert.assertFalse(transfer.isElementExist("wallet.tronlink.global:id/tv_no_bandwidth"));
 
