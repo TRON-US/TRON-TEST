@@ -254,7 +254,7 @@ public class autoCreateTestngXml {
                 sb.append(
                         "        <parameter name=\"automationName\"  value=\"XCUITest\"/>\n");
                 sb.append(
-                        "        <parameter name=\"xcodeOrgId\"  value=\"736VAMJ43C\"/>\n");
+                        "        <parameter name=\"xcodeOrgId\"  value=\"J7C2XD944B\"/>\n");
                 sb.append(
                         "        <parameter name=\"xcodeSigningId\"  value=\"iPhone Developer\"/>\n");
                 sb.append(
