@@ -40,6 +40,9 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
     public WebElement sendBtn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement nav_title;
+
     public AndroidDriver<?> driver;
 
     public AbstractPage(AndroidDriver<?> driver) {

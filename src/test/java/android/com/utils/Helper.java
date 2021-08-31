@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
@@ -570,5 +571,15 @@ public class Helper {
         }
         el = DRIVER.findElementById(element);
         return el;
+    }
+
+    public static boolean isElementExist(AndroidDriver<?> driver, String text) {
+        try {
+            driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+            System.out.println("IsFindByText: "+text);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            return  false;
+        }
     }
 }
