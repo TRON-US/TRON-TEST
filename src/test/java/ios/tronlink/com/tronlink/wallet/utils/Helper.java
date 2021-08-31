@@ -224,19 +224,21 @@ public class Helper {
 
     public void findAcceptAndClick(){
         try {
-            DRIVER.findElement(By.name("接受"));
-            while (!findWebElement("接受").isEnabled()) {
+            WebElement accBtn = DRIVER.findElementByName("接受");
+            while (!accBtn.isEnabled()) {
+//                while (!findWebElement("接受").isEnabled()) {
                 IOSTouchAction action = new IOSTouchAction(DRIVER);
                 int width = DRIVER.manage().window().getSize().width;
                 int height = DRIVER.manage().window().getSize().height;
-                Duration duration = Duration.ofMillis(100);
+                Duration duration = Duration.ofMillis(50);
                 action.press(
                         PointOption.point(width/2, height*4/5))
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();
             }
-            findWebElement("接受").click();
+            accBtn.click();
+//            findWebElement("接受").click();
         }catch (Exception e){
         }
     }

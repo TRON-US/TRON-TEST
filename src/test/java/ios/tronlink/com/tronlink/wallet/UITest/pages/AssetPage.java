@@ -167,7 +167,7 @@ public class AssetPage extends AbstractPage {
 
     //enter MyPurse Page
     public MyPursePage enterMyPursePage() {
-        System.out.println("准备进入钱包管理页面");
+
         try {
             walletNameBtn.click();
             TimeUnit.SECONDS.sleep(1);
@@ -175,7 +175,6 @@ public class AssetPage extends AbstractPage {
 
         } catch (Exception e) {
             System.out.println("失败进入钱包管理页面");
-
             e.printStackTrace();
         }
         return new MyPursePage(driver);
@@ -265,7 +264,6 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter mine page
-
     public MinePage enterMinePage() throws Exception{
         waiteTime();
         mine_btn.click();
@@ -448,11 +446,6 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         addWallet_btn.click();
         waiteTime();
-        try {
-            driver.findElementById("normalWallet").click();
-        }catch (Exception ee){
-            log(" removed in nile");
-        }
         driver.findElementById("观察钱包").click();
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");

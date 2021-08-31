@@ -72,7 +72,7 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Assert.assertTrue(sendTrxPage.note_text.getText().contains("账户未激活")&&sendTrxPage.note_text.getText().contains("0.1"));
+        Assert.assertTrue(sendTrxPage.note_text.getText().contains("账户未激活")&&sendTrxPage.note_text.getText().contains("1.1"));
         Helper.swipScreenLitte(sendTrxPage.driver);
         sendTrxPage.tranferCount_text.sendKeys("1");
         Helper.swipScreen(DRIVER);
@@ -152,19 +152,20 @@ public class OnlineWatchWalletTest extends Base {
         sendTrxPage.receiveAddress_text.sendKeys(unactiveAddr);
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreenLitte(sendTrxPage.driver);
-        sendTrxPage.tranferCount_text.sendKeys("1");
+        sendTrxPage.tranferCount_text.sendKeys("0.1");
         Helper.swipScreen(DRIVER);
         waiteTime();
         String feeSendNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
-        Assert.assertEquals(feeSendNumber.trim(),"1.1");
+        Assert.assertEquals(feeSendNumber.trim(),"2.1");
         waiteTime();
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"TRX");
         String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
         String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
-        Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
-        Assert.assertEquals(feeNumber.trim(),"1.1");
+        log(realNumber.trim());
+        Assert.assertTrue(realNumber.trim().equalsIgnoreCase("0.1"));
+        Assert.assertEquals(feeNumber.trim(),"2.1");
         Assert.assertTrue(Integer.parseInt(bNumber.trim()) >= 0);
         Assert.assertEquals(sendTrxPage.from_address.getText(),"TG3Bm5oPtXbyEc3K85ssMxDfFRik7A9g7A");
         Assert.assertEquals(sendTrxPage.to_address.getText(),unactiveAddr);
@@ -484,12 +485,7 @@ public class OnlineWatchWalletTest extends Base {
         SettingPage set = enterSettingPage();
         set.version_btn.click();
         set.online_version_icon.click();
-
-        try {
-            TimeUnit.SECONDS.sleep(10);
-
-        } catch (Exception e){}
-
+        TimeUnit.SECONDS.sleep(10);
         AssetPage asset = new AssetPage(DRIVER);
         return asset;
     }

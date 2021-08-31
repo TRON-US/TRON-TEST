@@ -161,9 +161,12 @@ public class SendTrx extends Base {
         new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         String allnumber = removeSymbol(transfer.sendMaxCoinWithType());
-        //临时解决方案
-        Assert.assertTrue(transfer.note_text.getText().contains("账户未激活"));
-        Assert.assertTrue(transfer.send_btn.getText().contains("发送中..."));
+        System.out.println("allnumber : " + allnumber);
+        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
+        System.out.println("comfirmnumber : " + comfirmnumber);
+        Assert.assertEquals(allnumber, comfirmnumber);
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"1.1");
+        Assert.assertFalse(transfer.isElementExist("wallet.tronlink.harmony:id/tv_no_bandwidth"));
 
 
     }
@@ -175,9 +178,11 @@ public class SendTrx extends Base {
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         Float allNumber =  Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType()));
-        //临时解决方案
-        Assert.assertTrue(transfer.note_text.getText().contains("账户未激活"));
-        Assert.assertTrue(transfer.send_btn.getText().contains("发送中..."));
+        Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
+        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 1);
+        Assert.assertEquals(allNumber, number);
+        Assert.assertFalse(transfer.isElementExist("wallet.tronlink.harmony:id/tv_no_bandwidth"));
+
 
     }
 
