@@ -130,6 +130,10 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         int size = driver.findElementsByName(name).size();
         driver.findElementsByName(name).get(size-1).click();
+        if(Helper.isElementExist(driver,"ic search")){
+            driver.findElementsByName(name).get(0).click();
+        }
+
     }
 
     public void inputTokenName(String name) throws Exception {
