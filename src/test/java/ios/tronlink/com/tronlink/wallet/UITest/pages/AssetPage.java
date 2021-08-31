@@ -18,16 +18,18 @@ public class AssetPage extends AbstractPage {
 
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
         try {
             if (ad_pic.isDisplayed()) {
                 adClose_btn.click();
+                log("已关闭广告图");
             }
         } catch (Exception e) {
             try {
                 if (adClose_btn.isDisplayed()) {
                     adClose_btn.click();
+                    System.out.println("adClose_btn:已关闭广告图");
                 }
             } catch (Exception el) {
             }
@@ -59,8 +61,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "titleLabel")
     public List<WebElement> titleLabel;
 
-    @FindBy(name = "收款")
+    @FindBy(name = "接收")
     public WebElement receipt_btn;
+
+    @FindBy(name = "发送")
+    public WebElement send_btn;
 
     @FindBy(name = "闪兑")
     public WebElement swap_btn;
@@ -101,12 +106,15 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "资产")
     public WebElement asset_btn;
 
-    @FindBy(name = "冻结/解冻")
+    @FindBy(name = "冻结")
     public WebElement frozen_btn;
 
 
-    @FindBy(name = "添加资产")
+    @FindBy(id = "home addAssetBtn")
     public WebElement addAssert_btn;
+
+    @FindBy(id = "home addAssetBtn")
+    public List<WebElement> addAssert_btns;
 
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
@@ -144,7 +152,7 @@ public class AssetPage extends AbstractPage {
 
 
     public WebElement transfer_btn(){
-       return driver.findElementByIosNsPredicate("name == '转账' AND type == 'XCUIElementTypeButton'");
+        return  driver.findElementByName("发送");
     }
 
     public VotePage enterVotePage() {
@@ -159,7 +167,7 @@ public class AssetPage extends AbstractPage {
 
     //enter MyPurse Page
     public MyPursePage enterMyPursePage() {
-        System.out.println("准备进入钱包管理页面");
+
         try {
             walletNameBtn.click();
             TimeUnit.SECONDS.sleep(1);
@@ -167,7 +175,6 @@ public class AssetPage extends AbstractPage {
 
         } catch (Exception e) {
             System.out.println("失败进入钱包管理页面");
-
             e.printStackTrace();
         }
         return new MyPursePage(driver);
@@ -192,7 +199,9 @@ public class AssetPage extends AbstractPage {
     //enter transfer Page
     public TransferPage enterTransportPage() {
         try {
-            transfer_btn().click();
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            send_btn.click();
+//            transfer_btn().click();
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -238,7 +247,11 @@ public class AssetPage extends AbstractPage {
             }
         } catch (Exception e) {
         }
-        addAssert_btn.click();
+        if (addAssert_btns.size()>1){
+            addAssert_btns.get(1).click();
+        }else {
+            addAssert_btn.click();
+        }
         return new AddAssertPage(driver);
     }
 
@@ -251,7 +264,6 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter mine page
-
     public MinePage enterMinePage() throws Exception{
         waiteTime();
         mine_btn.click();
@@ -434,11 +446,6 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         addWallet_btn.click();
         waiteTime();
-        try {
-            driver.findElementById("normalWallet").click();
-        }catch (Exception ee){
-            log(" removed in nile");
-        }
         driver.findElementById("观察钱包").click();
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");

@@ -22,11 +22,17 @@ public class AbstractPage {
     @FindBy(className = "XCUIElementTypeStaticText")
     public List<WebElement> textArray;
 
+    @FindBy(name = "white back arrow")
+    public WebElement BackBtn_White;
+
     public IOSDriver<?> driver;
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 
     public WebElement queding_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确定'");
+    }
+    public WebElement comfirm_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
     public AbstractPage(IOSDriver<?> driver) {

@@ -47,8 +47,6 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "发送")
     public WebElement send_btn;
 
-    @FindBy(name = "white back arrow")
-    public WebElement back_bt;
 
     @FindBy(id = "gotoDetailBtn")
     public WebElement gotoDetailBtn;
@@ -57,6 +55,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "确认")
     public WebElement transferNow_btn;
 
+    @FindBy(name = "投票")
+    public WebElement vote_btn;
 
 
     @FindBy(className = "XCUIElementTypeSecureTextField")
@@ -65,10 +65,6 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(name = "com.tronlink.wallet:id/bt_send")
     public WebElement confirm_btn;
-
-
-    @FindBy(name = "com.tronlink.wallet:id/tv_error")
-    public WebElement formatErrorHits_text;
 
 
     @FindBy(id = "transferAddressErrorLabel")
@@ -80,22 +76,10 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "reciptErrorLabel")
     public WebElement reciptErrorLabel;
 
-    @FindBy(id = "shieldedCurrentBalance")
-    public WebElement shieldedCurrentBalance;
-
 
     @FindBy(id = "currentTRXCountLabel")
     public WebElement balance_text;
 
-
-    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='tronlink_token (1000042)']")
-    public WebElement trc10_btn;
-
-    @FindBy(id = "TRX (TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71)")
-    public WebElement TRX20Token;
-
-    @FindBy(id = "tronlink_token (1000002)")
-    public WebElement TRX10Token;
 
     @FindBy(id = "trxLabel")
     public WebElement real_money;
@@ -134,9 +118,34 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
-    public WebElement getTrc10Token() throws Exception{
+
+    public void selectToken20TRX()throws Exception {
+        inputTokenName("TRX");
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementsByName("TRX").get(2).click();
+    }
+
+    public void selectTokenByName(String name) throws Exception{
+        inputTokenName(name);
+        TimeUnit.SECONDS.sleep(2);
+        int size = driver.findElementsByName(name).size();
+        driver.findElementsByName(name).get(size-1).click();
+        if(Helper.isElementExist(driver,"ic search")){
+            driver.findElementsByName(name).get(0).click();
+        }
+
+    }
+
+    public void inputTokenName(String name) throws Exception {
         waiteTime();
-        return driver.findElementById("(1000002)");
+        token_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
+    }
+
+    public WebElement getTrc10Token() throws Exception{
+        inputTokenName("tronlink_token");
+        return  driver.findElementByName("tronlink_token");
     }
 
     public void swip(){
@@ -195,9 +204,9 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
         waiteTime();
-        token_btn.click();
+        selectTokenByName("tronlink_token");
         waiteTime();
-        clickOffsetElement(getTrc10Token());
+        TimeUnit.SECONDS.sleep(4);
         waiteTime();
         //calculate trx
         switch(value){
@@ -223,9 +232,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(driver);
         waiteTime();
-        token_btn.click();
-        waiteTime();
-        clickOffsetElement(getTrc20Token());
+        selectToken20TRX();
         waiteTime();
         //calculate trx
         switch(value){
@@ -306,13 +313,13 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(14);
 
         try{
-            send_btn.getText();
-            return false;
+            vote_btn.getText();
+            return true;
         }catch (Exception e){
-            return  true;
+            return  false;
         }
     }
     public boolean multiSignActiveSend(String addr) throws Exception{
@@ -400,10 +407,9 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         waiteTime();
-        token_btn.click();
+        selectTokenByName("tronlink_token");
         waiteTime();
-        clickOffsetElement(getTrc10Token());
-        waiteTime();
+        TimeUnit.SECONDS.sleep(4);
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
@@ -424,10 +430,8 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.closeKeyBoard(driver);
         waiteTime();
-        token_btn.click();
-        clickOffsetElement(getTrc20Token());
-        System.out.println("find token an clicked");
-        TimeUnit.SECONDS.sleep(10);
+        selectToken20TRX();
+        TimeUnit.SECONDS.sleep(4);
         System.out.println("testfieldArray Size: " + testfieldArray.size());
         testfieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
@@ -449,13 +453,10 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         switch (value) {
             case "20":
-                token_btn.click();
-                clickOffsetElement(getTrc20Token());
+                selectToken20TRX();
                 break;
             case "10":
-                token_btn.click();
-                waiteTime();
-                clickOffsetElement(getTrc10Token());
+                selectTokenByName("tronlink_token");
                 break;
         }
     }
@@ -475,7 +476,6 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         tvMax_btn.click();
         waiteTime();
-        log("clicked");
         Helper.swipScreen(driver);
         String allNumberText = balance_text.getText();
         System.out.println("allNumberText" + allNumberText);

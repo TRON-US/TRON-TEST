@@ -53,9 +53,6 @@ public class MainNetDeposit extends BaseTest {
         System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
-//        trx.back_btn.click();
-//        enterTrxPage();
-//        TimeUnit.SECONDS.sleep(1);
         double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         System.out.println( " trcafter：  " + trcafter );
         Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
@@ -76,7 +73,6 @@ public class MainNetDeposit extends BaseTest {
         TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
         Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"转入需要执行智能合约"));
-//转入需要执行智能合约。执行智能合约同时会消耗 Energy。
     }
 
 
@@ -119,16 +115,15 @@ public class MainNetDeposit extends BaseTest {
         Assert.assertTrue(ableNumber.equals(textNumber));
         outPage.get_inter_btn().click();
         TimeUnit.SECONDS.sleep(10);
-        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.chargeText.getText().split(" ")[0]));
+        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.trxLabel.getText().split(" ")[0]));
         log("confirmNumber:"+ confirmNumber.toString() + " textNumber:" + textNumber);
         Assert.assertTrue(confirmNumber.equals(textNumber) );
         Double feeNumber = Double.parseDouble(removeSymbolNoDot(outPage.bandwidthText.getText().split(" ")[0]));
         log("feeNumber:"+ feeNumber.toString());
         Assert.assertTrue(feeNumber > 0 );
-        Assert.assertTrue(outPage.titleText.getText().contains("转入签名"));
-//        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("消耗资源"));
-        Assert.assertFalse( outPage.get_finish_btn().isEnabled());
-        outPage.password_input.click();
+        Assert.assertTrue(outPage.titleLabel.getText().contains("确认转入"));
+        Assert.assertTrue( outPage.comfirm_btn().isEnabled());
+        outPage.comfirm_btn().click();
         outPage.password_input.sendKeys("balabala");
         Helper.tapWhitePlace(outPage.driver);
         TimeUnit.SECONDS.sleep(1);

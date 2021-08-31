@@ -30,18 +30,21 @@ public class AboutUsTest extends BaseTest {
         MinePage minePage =  assetPage.enterMinePage();
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
+
     }
 
     @Test(description = "test version test",alwaysRun = true)
     public void test002_versionTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.3.0"));
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"版本日志"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"用户协议"));
         minePage.versionNote_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         waiteTime();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"3.6.0"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"4.2.4"));
     }
 
     @Test(description = "test versionUpdate test",alwaysRun = true)
@@ -59,7 +62,7 @@ public class AboutUsTest extends BaseTest {
         minePage.enterAboutUsPage();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"加入社群"));
         minePage.intoGroup_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         waiteTime();
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"Twitter"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"微信"));

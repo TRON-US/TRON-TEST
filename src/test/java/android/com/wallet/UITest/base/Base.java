@@ -60,7 +60,7 @@ public class Base {
     @BeforeTest(groups = {"P0"})
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
         try {
-            System.out.println(port+udid);
+            System.out.println("startByPort: "+port+" \nudid:"+udid);
             Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -U " + udid);
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
@@ -105,7 +105,7 @@ public class Base {
                 }
                 System.out.println("mobile: " + deviceName + " " + udid);
                 System.out.println("privateKey: " + privateKey);
-                File appDir = new File(System.getProperty("user.dir"), ".//");
+                File appDir = new File(System.getProperty("user.dir"), "");
                 File app = new File(appDir, "TronLink.apk");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());

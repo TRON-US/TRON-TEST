@@ -172,6 +172,22 @@ public class Helper {
             return  ismain;
         }
     }
+
+
+    public static void guaranteeShastaChain(IOSDriver driver) throws  Exception{
+        AssetPage asset = new AssetPage(driver);
+        //判断
+        if (asset.chainNameLabel.getText().contains("Shasta Testnet")){
+            return;
+        }else {
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            NodeSetPage nodeSet = set.enterNodeSetPage();
+            nodeSet.enterSettingPageChoiseShastahain();
+            return;
+        }
+    }
+
     public static boolean guaranteeDappChain(IOSDriver driver) throws Exception {
         AssetPage asset = new AssetPage(driver);
         if(assetFindMainChain(asset)){
@@ -208,19 +224,21 @@ public class Helper {
 
     public void findAcceptAndClick(){
         try {
-            DRIVER.findElement(By.name("接受"));
-            while (!findWebElement("接受").isEnabled()) {
+            WebElement accBtn = DRIVER.findElementByName("接受");
+            while (!accBtn.isEnabled()) {
+//                while (!findWebElement("接受").isEnabled()) {
                 IOSTouchAction action = new IOSTouchAction(DRIVER);
                 int width = DRIVER.manage().window().getSize().width;
                 int height = DRIVER.manage().window().getSize().height;
-                Duration duration = Duration.ofMillis(200);
+                Duration duration = Duration.ofMillis(50);
                 action.press(
                         PointOption.point(width/2, height*4/5))
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();
             }
-            findWebElement("接受").click();
+            accBtn.click();
+//            findWebElement("接受").click();
         }catch (Exception e){
         }
     }
@@ -277,12 +295,6 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-                try {
-                    DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                    DRIVER.findElementById("normalWallet").click();
-                }catch (Exception nooutput){
-
-                }
 
                 break;
             }
@@ -292,12 +304,7 @@ public class Helper {
                 DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
-                try {
-                    DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                    DRIVER.findElementById("normalWallet").click();
-                }catch (Exception nooutput){
 
-                }
 
                 break;
             }
@@ -305,8 +312,7 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                DRIVER.findElementById("shieldedWallet").click();
+
                 break;
             }
         }
@@ -373,6 +379,21 @@ public class Helper {
             tapWhitePlace(DRIVER);
             findWebElement("确定").click();
             TimeUnit.SECONDS.sleep(10);
+            AssetPage assetPage = new AssetPage(DRIVER);
+            try {
+                if (assetPage.ad_pic.isDisplayed()) {
+                    assetPage.adClose_btn.click();
+                    System.out.println("已关闭广告图");
+                }
+            } catch (Exception e) {
+                try {
+                    if (assetPage.adClose_btn.isDisplayed()) {
+                        assetPage.adClose_btn.click();
+                        System.out.println("已关闭广告图");
+                    }
+                } catch (Exception el) {
+                }
+            }
         }catch (Exception e){}
     }
 
@@ -414,7 +435,6 @@ public class Helper {
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();
-//                System.out.println("swip the screen...");
             }
         }
 
@@ -424,12 +444,22 @@ public class Helper {
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.print("  width: " + width + "   height:" + height + "\n");
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(width/2, height/5))
+                .release().perform();
+    }
+    public static void swipScreenLitter(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/5))
                 .release().perform();
     }
 

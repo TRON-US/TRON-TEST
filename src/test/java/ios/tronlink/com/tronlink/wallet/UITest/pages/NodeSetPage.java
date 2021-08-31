@@ -100,6 +100,22 @@ public class NodeSetPage extends AbstractPage {
         return new SettingPage(driver);
     }
 
+    public SettingPage enterSettingPageChoiseShastahain() throws Exception {
 
+        int normal = normal_first.getLocation().getY();
+        int selected = select_btn.getLocation().getY();
+        if (selected < normal ){
+            normal_list.get(0).click();
+            try {
+                queding_btn().click();
+            }catch (Exception e){
+                System.out.println("Already in");
+            }
+        }
+        waiteTime();
+        back_btn.click();
+        waiteTime();
+        return new SettingPage(driver);
+    }
 
 }

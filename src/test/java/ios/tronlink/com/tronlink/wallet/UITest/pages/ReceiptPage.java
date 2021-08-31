@@ -1,6 +1,8 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 
+import android.com.tronlink.wallet.regression.WatchWalletTest;
+
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,13 +19,15 @@ public class ReceiptPage extends AbstractPage {
     @FindBy(name = "收款")
     public WebElement title;
 
-    @FindBy(name = "com.tronlink.wallet:id/address")
-    public WebElement ownerAddress_btn;
+    @FindBy(id = "topLabel")
+    public WebElement topLabel;
 
 
-    @FindBy(name = "com.tronlink.wallet:id/copy")
+    @FindBy(name = "复制收款账户")
     public WebElement copy_btn;
 
+    @FindBy(id = "addressLabel")
+    public WebElement addressLabel;
 
 
 

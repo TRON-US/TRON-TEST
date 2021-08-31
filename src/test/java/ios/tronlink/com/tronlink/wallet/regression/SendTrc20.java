@@ -91,9 +91,7 @@ public class SendTrc20 extends BaseTest {
         transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         Helper.tapWhitePlace(transfer.driver);
         waiteTime();
-        transfer.token_btn.click();
-        waiteTime();
-        transfer.clickOffsetElement(transfer.getTrc20Token());
+        transfer.selectToken20TRX();
         waiteTime();
         transfer.testfieldArray.get(2).sendKeys("1");
         TimeUnit.SECONDS.sleep(2);
@@ -142,6 +140,7 @@ public class SendTrc20 extends BaseTest {
 
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0");
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());
@@ -161,9 +160,8 @@ public class SendTrc20 extends BaseTest {
         System.out.println("comfirmnumber : " + comfirmnumber);
         Assert.assertEquals(allnumber, comfirmnumber);
         Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 0);
-
-
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
+        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
         Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
         Assert.assertTrue(transfer.sendImmediatelyEnable());

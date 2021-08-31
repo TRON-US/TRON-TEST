@@ -121,6 +121,7 @@ public class CommitteeTest extends Base {
         MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         String number = MyProposalsPage.approveNum_text.getText();
+        log("number" + number);
         Assert.assertTrue(number.equals("0") || number == "0");
     }
 
@@ -135,7 +136,6 @@ public class CommitteeTest extends Base {
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
         proposalDetailsPage.proposalCancle_btn.click();
-        proposalDetailsPage.confirm_btn.click();
         proposalDetailsPage.send_btn.click();
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();

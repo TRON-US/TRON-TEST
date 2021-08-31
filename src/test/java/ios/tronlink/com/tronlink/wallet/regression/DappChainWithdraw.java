@@ -63,7 +63,7 @@ public class DappChainWithdraw extends BaseTest {
         successNumber = count;
         TransferPage transferOut =  trx.enterTransferOutPage();
         trx = transferOut.enterTrxPageWithTransferOutSuccess(count);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         double trxCountNow = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
         waiteTime();
         System.out.println("   old value:" + trxCount + "send Number:"+ count    + " new value:" + trxCountNow);
@@ -76,9 +76,8 @@ public class DappChainWithdraw extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(transferOut.DappChainDepositsignTips.getText().contains("转出需要执行智能合约"));
-//        Assert.assertTrue(Helper.contentTexts(transferOut.textArray,"转出需要执行智能合约"));
-//转出需要执行智能合约。执行智能合约同时会消耗 Energy。
+        Assert.assertTrue(Helper.isElementExist(transferOut.driver,"转出需要执行智能合约，智能合约同时可能会消耗能量。"));
+
     }
 
 
@@ -115,7 +114,7 @@ public class DappChainWithdraw extends BaseTest {
         TrxPage trx = enterTrxPage();
         TransferPage transferOut = trx.enterTransferOutPage();
         transferOut.inputAndTapToTransferOut();
-        Assert.assertTrue(transferOut.chargeText.getText().contains("10"));
+        Assert.assertTrue(transferOut.trxLabel.getText().contains("10"));
 
     }
 
@@ -132,35 +131,38 @@ public class DappChainWithdraw extends BaseTest {
         Assert.assertTrue(ableNumber.equals(textNumber));
         outPage.get_out_btn().click();
         TimeUnit.SECONDS.sleep(10);
-        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.chargeText.getText().split(" ")[0]));
+        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.trxLabel.getText().split(" ")[0]));
         log("confirmNumber:"+ confirmNumber.toString() + " textNumber:" + textNumber);
         Assert.assertTrue(confirmNumber.equals(textNumber) );
         Double feeNumber = Double.parseDouble(removeSymbolNoDot(outPage.bandwidthText.getText().split(" ")[0]));
         log("feeNumber:"+ feeNumber.toString());
         Assert.assertTrue(feeNumber > 0 );
-        Assert.assertTrue(outPage.titleText.getText().contains("转出签名"));
-//        Assert.assertTrue(outPage.bandwidthLabel.getText().contains("消耗资源"));
-        Assert.assertTrue(outPage.DappChainDepositsignTips.getText().contains("执行智能合约"));
-        Assert.assertFalse( outPage.get_finish_btn().isEnabled());
+        Assert.assertTrue(outPage.titleLabel.getText().contains("确认转出"));
+        Assert.assertTrue(Helper.isElementExist(outPage.driver,"转出需要执行智能合约，智能合约同时可能会消耗能量。"));
+        Assert.assertTrue( outPage.comfirm_btn().isEnabled());
+        outPage.comfirm_btn().click();
         outPage.password_input.click();
         outPage.password_input.sendKeys("balabala");
         Helper.tapWhitePlace(outPage.driver);
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue( outPage.get_finish_btn().isEnabled());
+//        outPage.get_finish_btn().click();
+//        Assert.assertTrue(outPage.passwordErrorLabel.getText().contains("密码错误"));
 
     }
 
 
 
-    @Test(description = "input mix send number",alwaysRun = true)
-    public void test007_inputMixSendNumber() throws Exception {
+    @Test(description = "input min send number",alwaysRun = true)
+    public void test007_inputMinSendNumber() throws Exception {
         TrxPage trx = enterTrxPage();
         trx.enterTransferOutPage();
         waiteTime();
-        trx.textField.click();
+//        trx.textField.click();
         trx.textField.sendKeys("0");
-        Helper.tapWhitePlace(trx.driver);
-
+        Helper.closeKeyBoard(trx.driver);
+        TimeUnit.SECONDS.sleep(1);
+        log("|"+trx.amountErrorLabel.getText()+"|");
         Assert.assertTrue( trx.amountErrorLabel.getText().contains("至少转出 10 TRX"));
 
     }

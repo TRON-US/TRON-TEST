@@ -50,7 +50,7 @@ public class AssetsPageTest extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(secondPage.driver,"投票"));
         secondPage.whiteBackBtn.click();
         AddAssertPage assassetPage = assetPage.enterAddAssertPage();
-        Assert.assertTrue(Helper.isElementExist(assassetPage.driver,"资产"));
+        Assert.assertTrue(Helper.isElementExist(assassetPage.driver,"我的全部资产"));
         secondPage.blackBackBtn.click();
         SwapPage receiptPage = assetPage.enterSwapPage();
         Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"闪兑"));
@@ -74,6 +74,7 @@ public class AssetsPageTest extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         String about = asset.assetsLabel.getText();
+        System.out.println("about number:" + about);
         String result;
         if (about.contains("$")){
             result = about.replace("≈$"," ").trim();

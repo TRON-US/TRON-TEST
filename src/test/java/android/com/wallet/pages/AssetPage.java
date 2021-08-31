@@ -31,14 +31,14 @@ public class AssetPage extends AbstractPage {
             }
         }catch (Exception e){}
 //
-//        try {
-//            TimeUnit.SECONDS.sleep(1);
-//            // if updateview display ,close
-//            if (update_topview.isDisplayed()) {
-//                update_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            // if updateview display ,close
+            if (update_topview.isDisplayed()) {
+                update_btn.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
 
         try {
             driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
@@ -448,6 +448,14 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         return new TrxPage(driver);
     }
+
+    public TrxPage enterBTTPage() throws Exception {
+        waiteTime();
+        online_trc10_btn.click();
+        waiteTime();
+        return new TrxPage(driver);
+    }
+
 
     //入参0，为代表进入trx 详细交易页面；入参1，为代表进入trc10详细交易页面；入参2，为代表进入trc20详细交易页面
     public TransactionDetailInfomaitonPage enterTransactionDetailPage(Integer type) throws Exception {

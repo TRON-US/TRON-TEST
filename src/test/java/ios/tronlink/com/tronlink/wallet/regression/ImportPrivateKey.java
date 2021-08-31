@@ -19,11 +19,6 @@ public class ImportPrivateKey extends BaseTest {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
-        try {
-            DRIVER.findElementById("normalWallet").click();
-        }catch (Exception ee){
-            log(" removed in nile");
-        }
         DRIVER.findElementByName("私钥").click();
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);
@@ -32,32 +27,23 @@ public class ImportPrivateKey extends BaseTest {
     @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
     public void test001_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        //test002_importPrivateKeyIsNull
         Assert.assertFalse(importPrivateKey.getNext_btn().isEnabled());
-
-        String hits = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
-        System.out.println("/nError is:" + hits);
-        Assert.assertTrue(hits.contains("Incorrect private key") || hits.contains("格式错误"));
-        //test003_importPrivateKeyIsTooLarge
-        importPrivateKey.content_text.clear();
-        importPrivateKey.content_text.sendKeys("ecd4bbba178b1b0d2a123123343245463450c1e6e9108e0asdfasfddafjwijfiajsvnxzcviarjfjasfjlafcab");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(Helper.isElementExist(importPrivateKey.driver,"格式错误"));
+        String hitsT = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a123123343245463450c1e6e9108e0asdfasfddafjwijfiajsvnxzcviarjfjasfjlafcab");
+        Assert.assertTrue(hitsT.contains("Incorrect private key") || hitsT.contains("私钥错误"));
     }
 
 
     @Test(description = "PrivateKey Name Too Long", alwaysRun = true)
-    public void test004_privateKeyNameTooLong() throws Exception {
+    public void test002_privateKeyNameTooLong() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         setName.name_input.sendKeys("123456789012345");
         Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(setName.toolongname.isDisplayed());
-        //test005_privateKeychineseNameTooLong
+        Assert.assertTrue(setName.name_input.getText().equalsIgnoreCase("12345678901234"));
         setName.name_input.clear();
         setName.name_input.sendKeys("一二三四五六七超");
         Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(setName.toolongname.isDisplayed());
+        Assert.assertTrue(setName.name_input.getText().equalsIgnoreCase("一二三四五六七"));
         //test006_PrivateKeywalletNameHasAleradyExist
         setName.name_input.clear();
         setName.name_input.sendKeys("Auto_test");
@@ -73,7 +59,7 @@ public class ImportPrivateKey extends BaseTest {
 
 
     @Test(description = "Password without uppercase letter", alwaysRun = true)
-    public void test008_PrivateKeypasswordWithoutUppercaseLetter() throws Exception {
+    public void test003_PrivateKeypasswordWithoutUppercaseLetter() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
@@ -109,7 +95,7 @@ public class ImportPrivateKey extends BaseTest {
 
 
     @Test(description = "Two Password Is diffent", alwaysRun = true)
-    public void test014_PrivateKeytwoPasswordDiffent() throws Exception {
+    public void test004_PrivateKeytwoPasswordDiffent() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
         PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);

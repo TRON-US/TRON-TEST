@@ -60,7 +60,7 @@ public class CustomNodeSettingTest extends Base {
         InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
         mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
         Assert.assertNotEquals(mainnetBeforeNodeNum,0);
-        Assert.assertTrue(checkIpFormat(internalNodeSetPage.firstIP.getText()));
+        Assert.assertTrue(checkIpFormat(internalNodeSetPage.firstIpByID.getText()));
         Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
         Assert.assertTrue(port > 0 && port < 65536 );
         waiteTime();

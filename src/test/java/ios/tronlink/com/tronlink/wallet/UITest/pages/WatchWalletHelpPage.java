@@ -28,7 +28,8 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
         TimeUnit.SECONDS.sleep(4);
-
+        comfirm_btn().click();
+        TimeUnit.SECONDS.sleep(4);
     }
     public void send10token() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
@@ -45,7 +46,8 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
         TimeUnit.SECONDS.sleep(4);
-
+        comfirm_btn().click();
+        TimeUnit.SECONDS.sleep(4);
     }
 
     public void frozenTRX() throws Exception {
@@ -60,9 +62,8 @@ public class WatchWalletHelpPage extends AbstractPage {
             waiteTime();
             frozenAndUnfreezePage.getConfirmGo_btn().click();
         }
-        waiteTime();
-        frozenAndUnfreezePage.getfreezeNow_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
+        comfirm_btn().click();
     }
 
     public void frozenTRXbandwidth() throws Exception {
@@ -77,9 +78,8 @@ public class WatchWalletHelpPage extends AbstractPage {
             waiteTime();
             frozenAndUnfreezePage.getConfirmGo_btn().click();
         }
-        waiteTime();
-        frozenAndUnfreezePage.getfreezeNow_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
+        comfirm_btn().click();
     }
     public void makeApropos() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
@@ -96,7 +96,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(4);
-
+        comfirm_btn().click();
     }
     public void makemultiSign() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
@@ -159,9 +159,9 @@ public class WatchWalletHelpPage extends AbstractPage {
         Helper.closeKeyBoard(driver);//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(8);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(1);
 
     }
     public void maketransferIn() throws Exception {
@@ -174,7 +174,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
         page.get_inter_btn().click();
         TimeUnit.SECONDS.sleep(8);
-
+        comfirm_btn().click();
     }
     public void maketransferIn10Token() throws Exception {
         AssetPage assetPage = new AssetPage(driver);

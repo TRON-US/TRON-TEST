@@ -16,7 +16,6 @@ public class MultiSignTest extends Base {
     @Parameters({"ownerPrivateKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
-        log("|||||||||||||||||||||||||||||||||||||||");
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
     }
 
@@ -133,14 +132,16 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
         Assert.assertTrue(sendTrxPage.multiSignOwnerSend(ownerAddress));
-
     }
+
     @Parameters({"ownerAddress"})
     @Test(groups = {"P0"},description = "send trx sign success use active authority Test", alwaysRun = true)
     public void test009_sendSignSuccessUseOwnerActiveSuccess(String ownerAddress) throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
-        Assert.assertTrue(sendTrxPage.multiSignActiveSend(ownerAddress));
+       sendTrxPage.multiSignActiveSend(ownerAddress);
+        String walletName = assetPage.walletNameBtn.getText();
+        Assert.assertTrue(walletName.contains("Signed"));
     }
 
     @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
@@ -231,7 +232,8 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
-        Assert.assertTrue(multiSignManagerPage.detailLabel.getText().contains("101"));
+        Assert.assertTrue(multiSignManagerPage.chargeLabel.getText().contains("101"));
+        Assert.assertFalse( Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
     }
 
     @Parameters({"ownerAddress"})

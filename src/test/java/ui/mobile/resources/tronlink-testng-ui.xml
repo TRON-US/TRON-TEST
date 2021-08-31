@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="android.com.tronlink" parallel="tests" thread-count="1">
+<!--    <listeners>-->
+<!--        <listener class-name="android.com.wallet.UITest.retry.RetryListener"/>-->
+<!--    </listeners>-->
+    <test name= "3DN7N16C17007683">
+        <parameter name="port"  value="4800"/>
+
+<!--        <parameter name="udid" value="3DN7N16C17007683"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value= "6"/>-->
+<!--        <parameter name="deviceName" value= "VNS-AL00 "/>-->
+
+
+        <parameter name="udid" value="98895a453650504c36"/>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="platformVersion" value= "9"/>
+        <parameter name="deviceName" value= "dreamqltezm"/>
+
+<!--                <parameter name="udid" value="d94d4ea"/>-->
+<!--                <parameter name="platformName" value="Android"/>-->
+<!--                <parameter name="platformVersion" value= "9"/>-->
+<!--                <parameter name="deviceName" value= "platina"/>-->
+
+<!--        <parameter name="noReset" value="false"/>-->
+        <parameter name="noReset" value="true"/>
+
+        <parameter name="systemPort"  value="8200"/>
+        <parameter name="address"  value="TEtG9fnVi2qythiog6owPrg4sD9rwFBQBN"/>
+        <parameter name="privateKey"  value="8f3839e21b4ada348da3d85ccc72e1f1898a39b877f0f6f5b35137588a344345"/>
+        <parameter name="ownerPrivateKey" value="9a2ba173645be8d37a82084f984ba873fbcf817b589c62a59b3ba1494c3406e0"/>
+        <parameter name="ownerAddress" value="TAmcSdACbyUFfdxmv9Ca9GtXypq1RmAaFk"/>
+        <parameter name="multiSignPrivateKey" value="cefba96470224724bde255f3402fca3d67b6c7c5d34deb7a8524c9482c58fe8b"/>
+        <parameter name="multiSignAddress" value="TTizC3eZsckTsp6MTNK6tF1QYntFpHu7Wm"/>
+        <parameter name="witnessKey" value="978c0a1832fd091c60dff74f9bca04dca39ec118480880f2a7ed2c90b5908640"/>
+        <parameter name="witnessAddress" value="TDkSQtBhZx7Ua8qvenM4zuH52u2BsYTwzc"/>
+        <parameter name="witnessUrl" value="Android-UI-Witness-002"/>
+
+<!--        <parameter name="address"  value="TKEH31jJ2YQ3Bteh1ngjwdT8667ztyYPSp"/>-->
+<!--        <parameter name="privateKey"  value="223f2e4a3010286540d3c119d2a1d55b1d54248f63f1c4d9ccfbd0d105ab15c7"/>-->
+<!--        <parameter name="ownerPrivateKey" value="8fba85314275232c5fc3ab1e1958a9ba3bb7391898822886945744b26396019f"/>-->
+<!--        <parameter name="ownerAddress" value="TSUnS4AmSb2x7B6MfgNKem9mJqK8YWSdsc"/>-->
+<!--        <parameter name="multiSignPrivateKey" value="4a0dc8e1fd01f32798d8bb8d8cf6e0f2c0306802fcea3e2ae0abd71cb7043871"/>-->
+<!--        <parameter name="multiSignAddress" value="THfB9Xz9mU7et4mFGcg5x8cCbf3oD1Lax1"/>-->
+<!--        <parameter name="witnessKey" value="3d16a04b7d01712667b40cb7f4c9bbe73ca111ac14a13a4f8e12a7f557d2c89c"/>-->
+<!--        <parameter name="witnessAddress" value="TEDguVMSsFw3HSizQXFK1BsrGWeuRMNN7t"/>-->
+<!--        <parameter name="witnessUrl" value="Android-UI-Witness-001"/>-->
+        <parameter name="shieldSK" value="054e0fe55167e2983afe92027b547739bea5e2c2d0fefe689edd093bc56e201a"/>
+        <parameter name="shieldAddress" value="ztron1gsw4mh6hrzey02087cr7f3ny6szvwefvdlzdyta3n2d5yaxnf4jqkz5mfdfqre8dggl6xzrh9rj"/>
+<!--        <packages>-->
+<!--            <package name="android.com.tronlink.wallet.regression.*"></package>-->
+<!--            <package name="android.com.tronlink.wallet.committeeProposal.*"></package>-->
+<!--            <package name="android.com.tronlink.wallet.multiSignatureTransaction.*"></package>-->
+<!--            <package name="android.com.tronlink.wallet.dappChain.*"></package>-->
+<!--        </packages>-->
+        <classes>
+<!--            <class name="android.com.tronlink.wallet.regression.OnlineWatchWalletTest"></class>-->
+<!--            <class name="android.com.tronlink.wallet.committeeProposal.CommitteeTest"></class>-->
+<!--            <class name="android.com.tronlink.wallet.regression.OnlineWatchWalletTest"></class>-->
+            <class name="android.com.tronlink.wallet.regression.WatchWalletTest"></class>
+
+        </classes>
+    </test>
+
+<!--    <test name= "98895a453650504c36">-->
+<!--    <parameter name="port"  value="4801"/>-->
+
+<!--            <parameter name="udid" value="98895a453650504c36"/>-->
+<!--            <parameter name="platformName" value="Android"/>-->
+<!--            <parameter name="platformVersion" value= "9"/>-->
+<!--            <parameter name="deviceName" value= "dreamqltezm"/>-->
+<!--    <parameter name="noReset" value="true"/>-->
+<!--        <parameter name="systemPort"  value="8201"/>-->
+<!--        <parameter name="address"  value="TEtG9fnVi2qythiog6owPrg4sD9rwFBQBN"/>-->
+<!--        <parameter name="privateKey"  value="8f3839e21b4ada348da3d85ccc72e1f1898a39b877f0f6f5b35137588a344345"/>-->
+<!--        <parameter name="ownerPrivateKey" value="9a2ba173645be8d37a82084f984ba873fbcf817b589c62a59b3ba1494c3406e0"/>-->
+<!--        <parameter name="ownerAddress" value="TAmcSdACbyUFfdxmv9Ca9GtXypq1RmAaFk"/>-->
+<!--        <parameter name="multiSignPrivateKey" value="cefba96470224724bde255f3402fca3d67b6c7c5d34deb7a8524c9482c58fe8b"/>-->
+<!--        <parameter name="multiSignAddress" value="TTizC3eZsckTsp6MTNK6tF1QYntFpHu7Wm"/>-->
+<!--        <parameter name="witnessKey" value="978c0a1832fd091c60dff74f9bca04dca39ec118480880f2a7ed2c90b5908640"/>-->
+<!--        <parameter name="witnessAddress" value="TDkSQtBhZx7Ua8qvenM4zuH52u2BsYTwzc"/>-->
+<!--        <parameter name="witnessUrl" value="Android-UI-Witness-002"/>-->
+<!--        <classes>-->
+<!--            <class name="android.com.tronlink.wallet.regression.AddAssetsTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!--    <test name= "d94d4ea">-->
+<!--        <parameter name="port"  value="4801"/>-->
+<!--        <parameter name="udid" value="d94d4ea"/>-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="platformVersion" value= "9"/>-->
+<!--        <parameter name="deviceName" value= "platina"/>-->
+<!--        <parameter name="noReset" value="false"/>-->
+<!--&lt;!&ndash;        <parameter name="noReset" value="true"/>&ndash;&gt;-->
+
+<!--        <parameter name="systemPort"  value="8201"/>-->
+<!--        <parameter name="address"  value="TEtG9fnVi2qythiog6owPrg4sD9rwFBQBN"/>-->
+<!--        <parameter name="privateKey"  value="8f3839e21b4ada348da3d85ccc72e1f1898a39b877f0f6f5b35137588a344345"/>-->
+<!--        <parameter name="ownerPrivateKey" value="9a2ba173645be8d37a82084f984ba873fbcf817b589c62a59b3ba1494c3406e0"/>-->
+<!--        <parameter name="ownerAddress" value="TAmcSdACbyUFfdxmv9Ca9GtXypq1RmAaFk"/>-->
+<!--        <parameter name="multiSignPrivateKey" value="cefba96470224724bde255f3402fca3d67b6c7c5d34deb7a8524c9482c58fe8b"/>-->
+<!--        <parameter name="multiSignAddress" value="TTizC3eZsckTsp6MTNK6tF1QYntFpHu7Wm"/>-->
+<!--        <parameter name="witnessKey" value="978c0a1832fd091c60dff74f9bca04dca39ec118480880f2a7ed2c90b5908640"/>-->
+<!--        <parameter name="witnessAddress" value="TDkSQtBhZx7Ua8qvenM4zuH52u2BsYTwzc"/>-->
+<!--        <parameter name="witnessUrl" value="Android-UI-Witness-002"/>-->
+<!--        <parameter name="shieldSK" value="b83bcd9ef44e3f22c77081e273f23ba6faab50992688d709f40605cb595ed6b8"/>-->
+<!--        <parameter name="shieldAddress" value="ztron1yvw3rkrflwmcvcfug998mngtl29y8yhd4c69d6dx82v64p0zmpetsztll5kjkv889pa3g9hpgtz"/>-->
+
+<!--        <classes>-->
+<!--            <class name="android.com.tronlink.wallet.regression.OnlineWatchWalletTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

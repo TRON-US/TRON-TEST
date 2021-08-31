@@ -165,9 +165,14 @@ public class WatchWalletTest extends Base {
     public void test008_voteQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        TimeUnit.SECONDS.sleep(1);
+        try {
+            vote.close.click();
+        }catch (Exception e){
+            log("not found pop view");
+        }
         vote.firstSR.click();
-        vote.voted_cancel.click();
+        TimeUnit.SECONDS.sleep(1);
+        vote.vote_page_btn.click();
         vote.et_input.sendKeys("1");
         vote.bt_send.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -211,6 +216,7 @@ public class WatchWalletTest extends Base {
         Helper.swipScreenLitte(frozen.driver);
         frozen.unfreezeTargetAddress_btn.click();
         frozen.unfreeze_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         frozen.unfreezeInfoConfirm_btn.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }

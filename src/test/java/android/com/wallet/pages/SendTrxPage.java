@@ -97,6 +97,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_no_bandwidth")
     public WebElement no_bandwidth;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_no_energy")
+    public WebElement tv_no_energy;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
     public WebElement balance_text;
@@ -311,21 +313,21 @@ public class SendTrxPage extends AbstractPage {
     }
 
 
-    public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        trc10_btn.click();
-        tranferCount_text.sendKeys(number);
-        swip();
-        send_btn.click();
-        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        back_bt.click();
-        return new SendTrxSuccessPage(driver);
-    }
+//    public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
+//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        token_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        trc10_btn.click();
+//        tranferCount_text.sendKeys(number);
+//        swip();
+//        send_btn.click();
+//        transferNow_btn.click();
+//        InputPasswordConfim_btn.sendKeys("Test0001");
+//        confirm_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        back_bt.click();
+//        return new SendTrxSuccessPage(driver);
+//    }
 
     public TrxPage normalSendTrc20(String number) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -342,18 +344,18 @@ public class SendTrxPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
-    public double getTrc10Amount() throws Exception {
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        trc10_btn.click();
-        String balance = balance_text.getText();
-        double trc10Amount = 0;
-        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-        Matcher matcher = pattern.matcher(balance);
-        if (matcher.find())
-            trc10Amount = Double.valueOf(matcher.group(0));
-        return trc10Amount;
-    }
+//    public double getTrc10Amount() throws Exception {
+//        token_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        trc10_btn.click();
+//        String balance = balance_text.getText();
+//        double trc10Amount = 0;
+//        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
+//        Matcher matcher = pattern.matcher(balance);
+//        if (matcher.find())
+//            trc10Amount = Double.valueOf(matcher.group(0));
+//        return trc10Amount;
+//    }
 
     public double getTrc20Amount() throws Exception {
         token_btn.click();
@@ -474,13 +476,12 @@ public class SendTrxPage extends AbstractPage {
         switch (value) {
             case "20":
                 token_btn.click();
-                TimeUnit.SECONDS.sleep(3);
+                et_search.sendKeys("TRX");
+                TimeUnit.SECONDS.sleep(1);
                 trc20_btn().click();
                 break;
             case "10":
-                token_btn.click();
-                TimeUnit.SECONDS.sleep(3);
-                trc10_btn().click();
+                selectTokenByName("tronlink_token");
         }
     }
 

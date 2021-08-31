@@ -27,10 +27,10 @@ public class InternalNodeSetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/li_bottom_button")
     public WebElement addNoteBottom;
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
+    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
     public WebElement firstIP;
 
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView[2]")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_port")
     public WebElement firstPort;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
