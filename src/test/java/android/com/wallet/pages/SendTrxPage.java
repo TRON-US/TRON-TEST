@@ -97,7 +97,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "wallet.tronlink.global:id/tv_no_bandwidth")
     public WebElement no_bandwidth;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_no_energy")
+    @FindBy(id = "wallet.tronlink.global:id/tv_no_energy")
     public WebElement tv_no_energy;
 
     @FindBy(id = "wallet.tronlink.global:id/tv_balance")

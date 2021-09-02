@@ -18,19 +18,29 @@ public class MinePage extends AbstractPage {
     public MinePage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//            // if page display AD , cloese the AD
-//            if (ad_pic.isDisplayed()){
-//                adClose_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
-
     }
+
+
+
+
+    @FindBy(id = "wallet.tronlink.global:id/log")
+    public WebElement logItem;
+
+    @FindBy(id = "wallet.tronlink.global:id/update")
+    public WebElement updateItem;
+
+    @FindBy(id = "wallet.tronlink.global:id/user_agreement")
+    public WebElement userAgreement;
+
+    @FindBy(id = "wallet.tronlink.global:id/join_community")
+    public WebElement joinCommunity;
+
+    @FindBy(id = "wallet.tronlink.global:id/tv_content")
+    public WebElement tv_content;
 
     @FindBy(id = "wallet.tronlink.global:id/iv_pic")
     public WebElement ad_pic;
+    
 
 
     @FindBy(id = "wallet.tronlink.global:id/iv_close")
@@ -80,8 +90,36 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "wallet.tronlink.global:id/tv_advanced_features")
     public WebElement advanced_features_btn;
 
+    @FindBy(id = "wallet.tronlink.global:id/tv_en")
+    public WebElement enTelegramID;
 
+    @FindBy(id = "wallet.tronlink.global:id/tv_twitter")
+    public WebElement tv_twitter;
 
+    @FindBy(id = "wallet.tronlink.global:id/tv_wechat")
+    public WebElement tv_wechat;
+
+    public void enterLogPage(){
+        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"版本日志\")").click();
+//        logItem.click();
+    }
+
+    public void enterUpdatePage(){
+        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"版本更新\")").click();
+
+//        updateItem.click();
+    }
+    public void enterUserAgreementPage(){
+        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"用户协议\")").click();
+
+//        userAgreement.click();
+    }
+
+    public void enterjoinCommunityPage(){
+        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"加入社群\")").click();
+
+//        joinCommunity.click();
+    }
     //enter about us Page
     public AboutUsPage enterAboutUsPage(){
         try {
