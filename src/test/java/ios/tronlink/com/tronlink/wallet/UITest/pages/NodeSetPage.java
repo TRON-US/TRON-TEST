@@ -25,13 +25,13 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(name = "设置")
     public WebElement title;
 
-    @FindBy(name =  "TRON 主网")
+    @FindBy(id =  "TRON 主网")
     public WebElement MainChain_btn;
 
-    @FindBy(name =  "DAppChain 主网")
+    @FindBy(id =  "DAppChain 主网")
     public WebElement DAppChain_btn;
 
-    @FindBy(name =  "TRON Shasta 测试网")
+    @FindBy(id =  "TRON Shasta 测试网")
     public WebElement Shasta_btn;
 
     @FindBy(id = "node setting select normal")
@@ -43,22 +43,30 @@ public class NodeSetPage extends AbstractPage {
     @FindBy(id = "node setting select normal")
     public WebElement normal_first;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+    public WebElement xMainChain;
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+    public WebElement xShasta;
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
+    public WebElement xDappChain;
 //    @FindBy(className = "XCUIElementTypeButton")
 //    public List<WebElement> buttonArray;  //原来有5个后来定位有时候顺序不一致
 
     public NodeSetDetailPage enterSettingPageShasta() throws Exception {
-        clickOffsetElement(Shasta_btn);
+        xShasta.click();
         return new NodeSetDetailPage(driver);
     }
 
 
     public NodeSetDetailPage enterSettingPageDAppChain() throws Exception {
-        clickOffsetElement(DAppChain_btn);
+        xDappChain.click();
         return new NodeSetDetailPage(driver);
     }
 
-    public NodeSetDetailPage enterSettingPageMainChain() throws Exception {
-        clickOffsetElement(MainChain_btn);
+    public NodeSetDetailPage enterSettingPageMainChain() {
+        xMainChain.click();
         return new NodeSetDetailPage(driver);
     }
 
