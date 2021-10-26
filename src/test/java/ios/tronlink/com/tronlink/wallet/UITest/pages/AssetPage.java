@@ -54,6 +54,7 @@ public class AssetPage extends AbstractPage {
 
     }
 
+
     @FindBy(id = "nameLabel")
     public List<WebElement> nameLabels;
 
@@ -150,6 +151,10 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "blockSyncName")//块同步中...
     public WebElement blockSyncName;
 
+    public ImportPage enterImportPage(){
+        addWallet_btn.click();
+        return new ImportPage(driver);
+    }
 
     public WebElement transfer_btn(){
         return  driver.findElementByName("发送");
