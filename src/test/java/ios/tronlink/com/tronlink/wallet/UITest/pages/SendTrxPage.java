@@ -293,13 +293,9 @@ public class SendTrxPage extends AbstractPage {
 
     public boolean multiSignUIChanged(String addr) throws Exception{
         enterSendTextField(addr);
+        Helper.swipScreenLitter(driver);
+        return driver.findElementById("leftTimeTipTitleLabel").getText().contains("H(≤24H)");
 
-        try{
-            log(driver.findElementById("权限").getText());
-            return true;
-        }catch (Exception e){
-            return  false;
-        }
     }
     public boolean multiSignOwnerSend(String addr) throws Exception{
         enterSendTextField(addr);
