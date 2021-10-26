@@ -37,7 +37,6 @@ public class SendTrc20 extends BaseTest {
         tokenpage.back_btn.click();
         SendTrxPage transfer = enterToSendTrxPage();
 
-//        SendTrxPage transfer = tokenpage.enterTransferPage();
         String count = random(10, 10);
         count = Helper.getPrettyNumber(count);
         log(count);

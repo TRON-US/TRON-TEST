@@ -122,7 +122,7 @@ public class SendTrxPage extends AbstractPage {
     public void selectToken20TRX()throws Exception {
         inputTokenName("TRX");
         TimeUnit.SECONDS.sleep(1);
-        driver.findElementsByName("TRX").get(2).click();
+        driver.findElementsByName("TRX").get(1).click();
     }
 
     public void selectTokenByName(String name) throws Exception{
