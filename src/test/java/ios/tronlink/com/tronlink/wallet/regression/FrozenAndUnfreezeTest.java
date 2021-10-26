@@ -71,20 +71,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取能量冻结"));
     }
 
-//    @Test(description = "Bandwidth Question Test", alwaysRun = true)
-//    public void test005_checkBandwidthQuestion() {
-//        FrozenAndUnfreezePage frozen = interferonPage();
-//        Helper.swipScreen(frozen.driver);
-//        frozen.getbandwidth_btn().click();
-//        frozen.questionClick();
-//        Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取带宽冻结"));
-//    }
-    @Test(description = "ChangeFreezeUnfreeze Test", alwaysRun = true)
-    public void test006_checkBandwidthQuestion() {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.getDirectionFzUfz_btn().click();
-        Assert.assertTrue(Helper.isElementExist(frozen.driver,"解冻"));
-    }
+
 
     //Freeze Energy more than trx
     @Test(description = "Freeze Energy more than trx", alwaysRun = true)

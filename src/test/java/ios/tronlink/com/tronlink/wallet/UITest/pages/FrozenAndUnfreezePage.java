@@ -36,7 +36,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
-
+    @FindBy(id = "resource_type_bandwidth_btn")
+    public WebElement resource_type_bandwidth_btn;
 
     @FindBy(name = "timeLeftLabel")
     public WebElement timeLeftLabel;
@@ -159,8 +160,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement availableTrx_text;
 
 
-    @FindBy(id = "addressErrorLabel")
-    public WebElement errorAddress_hits;
+    @FindBy(id = "resource_switch_btn")
+    public WebElement resource_switch_btn;
 
 
     public WebElement getConfirm_btn(){
@@ -288,20 +289,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public void questionClick() {
-        try {
-            expect_btn.click();
-//            //swip
-//            //Helper.scrollToElementUntilVisible(driver,BandwidthQuestion_btn);
-//            //Helper.swipScreen(driver);
-//            int x = BandwidthQuestion_btn.getLocation().getX();
-//            int y = BandwidthQuestion_btn.getLocation().getY();
-//            IOSTouchAction action = new IOSTouchAction(driver);
-//            action.press(PointOption.point(x+50,y+10)).release().perform();
-////            BandwidthQuestion_btn.click();
-//            TimeUnit.SECONDS.sleep(2);
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        expect_btn.click();
 
     }
 
