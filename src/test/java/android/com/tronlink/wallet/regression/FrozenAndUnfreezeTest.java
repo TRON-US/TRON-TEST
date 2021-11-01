@@ -242,7 +242,7 @@ public class FrozenAndUnfreezeTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
         String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.contains("请重新填写接收地址") || prompt.contains("has not been activated"));
+        Assert.assertTrue(prompt.contains("激活"));
     }
 
     @Test(groups = {"P0"},enabled = true, description = "Freeze transaction record test", alwaysRun = true)
@@ -314,4 +314,6 @@ public class FrozenAndUnfreezeTest extends Base {
 //            book++;
 //        }
 //}
+
+
 }
