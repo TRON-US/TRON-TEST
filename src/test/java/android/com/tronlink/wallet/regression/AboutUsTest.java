@@ -59,9 +59,10 @@ public class AboutUsTest extends Base {
         MinePage mine = asset.enterMinePage();
         mine.enterAboutUsPage();
         TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
         mine.enterLogPage();
         TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"4.3.0(2021.08.20)"));
+        Assert.assertTrue(Helper.isElementExist(mine.driver,"4.4.0(2021.10.08)"));
         Assert.assertTrue(mine.nav_title.getText().contains("版本日志"));
         mine.backBtn.click();
         mine.enterUpdatePage();
@@ -71,6 +72,7 @@ public class AboutUsTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(mine.nav_title.getText().contains("用户协议"));
         mine.backBtn.click();
+        TimeUnit.SECONDS.sleep(1);
         mine.enterjoinCommunityPage();
         Assert.assertTrue(mine.nav_title.getText().contains("加入社群"));
         Assert.assertTrue(Helper.isElementExist(mine.driver,"Telegram 电报群"));
@@ -79,9 +81,6 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(mine.tv_twitter.getText().contains("https://twitter.com/TronLinkWallet"));
         Assert.assertTrue(Helper.isElementExist(mine.driver,"微信"));
         Assert.assertTrue(mine.tv_wechat.getText().contains("tronlink"));
-        mine.backBtn.click();
-        Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
-
     }
 
 }

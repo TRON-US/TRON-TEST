@@ -98,7 +98,6 @@ public class MinePage extends AbstractPage {
 
     public void enterLogPage(){
         driver.findElementByAndroidUIAutomator("new UiSelector().text(\"版本日志\")").click();
-//        logItem.click();
     }
 
     public void enterUpdatePage(){
@@ -118,7 +117,9 @@ public class MinePage extends AbstractPage {
 //        joinCommunity.click();
     }
     //enter about us Page
-    public AboutUsPage enterAboutUsPage(){
+    public AboutUsPage enterAboutUsPage() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        Helper.swipScreenLitte(driver);
         try {
             aboutUs_btn.click();
         }catch (Exception e){
