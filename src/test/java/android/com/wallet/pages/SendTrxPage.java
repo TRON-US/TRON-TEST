@@ -232,10 +232,11 @@ public class SendTrxPage extends AbstractPage {
         tranferCount_text.sendKeys(sendAmount);
         swip();
         send_btn.click();
-        transferNow_btn.click();
+        findElementByText("确认").click();
+//        transferNow_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         confirm_btn.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(1);
         return new SendTrxSuccessPage(driver);
     }
 

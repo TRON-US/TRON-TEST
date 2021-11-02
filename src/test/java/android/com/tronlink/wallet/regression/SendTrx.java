@@ -83,6 +83,7 @@ public class SendTrx extends Base {
         sendTrxAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+sendTrxAmount);
         transfer.sendTrx(Float.toString(sendTrxAmount));
+        Assert.assertTrue(assertToast("交易提交成功"));
     }
 
 

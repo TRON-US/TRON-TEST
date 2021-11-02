@@ -21,7 +21,12 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -125,123 +130,16 @@ public class Base {
 
 
 
-//    public  void setUp() throws Exception {
-//        //String[] deviceInfo = getDeviceInfo();
-//        File appDir = new File(System.getProperty("user.dir"), ".//");
-//        File app = new File(appDir, "TronLink.apk");
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        //capabilities.setCapability("deviceName", "CLB0218A10004233");
-//        capabilities.setCapability("deviceName", "CLB0218A10004233");
-//        capabilities.setCapability("platformName", "Android");
-//        capabilities.setCapability("platformVersion", "9");
-//        //capabilities.setCapability("UninstallAfterCloseApp", true);
-//        capabilities.setCapability("appPackage", "com.tronlink.wallet");//包名
-//        capabilities.setCapability("appActivity", "com.tron.android.com.wallet.bussiness.welcome.WelcomeActivity");
-//        capabilities.setCapability("unicodeKeyboard", true); // 输入中文
-//        capabilities.setCapability("resetKeyboard", true);
-//        capabilities.setCapability("noReset", false);
-//        capabilities.setCapability("autoGrantPermissions", true);
-//        capabilities.setCapability("noSign","true"); //with appium no sign again
-//        //capabilities.setCapability("app", app.getAbsolutePath());
-//        capabilities.setCapability("app", app.getAbsolutePath());
-//        //create driver object
-//        DRIVER = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-//    }
-
-
-//    //导签名、密码
-//    public  void getSign(String testPrivateKey) throws Exception{
-//        findWebElement("com.tronlink.wallet:id/tv_import").click();
-//        //TimeUnit.SECONDS.sleep(3);
-//        while (findWebElement("com.tronlink.wallet:id/bt_accept").isEnabled() == false) {
-//            AndroidTouchAction action = new AndroidTouchAction(DRIVER);
-//            int width = DRIVER.manage().window().getSize().width;
-//            int height = DRIVER.manage().window().getSize().height;
-//            //System.out.print("   " + width + "   " + height);
-//            Duration duration = Duration.ofMillis(200);
-//            action.press(
-//                    PointOption.point(width/2, height*4/5))
-//                    .waitAction(WaitOptions.waitOptions(duration))
-//                    .moveTo(PointOption.point(width/2, height/5))
-//                    .release().perform();
-//        }
-//        findWebElement("com.tronlink.wallet:id/bt_accept").click();
-//        findWebElement("com.tronlink.wallet:id/cd_pk").click();
-//        findWebElement("com.tronlink.wallet:id/et_content").sendKeys(testPrivateKey);
-//        findWebElement("com.tronlink.wallet:id/bt_next").click();
-//        findWebElement("com.tronlink.wallet:id/et_name").sendKeys("Auto-test");
-//        findWebElement("com.tronlink.wallet:id/creat").click();
-//        findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
-//        findWebElement("com.tronlink.wallet:id/creat").click();
-//        findWebElement("com.tronlink.wallet:id/creat").click();
-//        findWebElement("com.tronlink.wallet:id/et_password").sendKeys("Test0001");
-//        findWebElement("com.tronlink.wallet:id/creat").click();
-//
-//    }
-
-
-//    /**
-//     * 找元素加固，如果没有找到元素，则再找5次，每次停留2S
-//     * @param element
-//     * @return WebElement
-//     * @throws Exception
-//     */
-//    public  WebElement findWebElement(String element) throws Exception {
-//        int tries = 0;
-//        Boolean Element_is_exist = false;
-//        WebElement el = null;
-//        while (!Element_is_exist && tries < 5) {
-//            tries++;
-//            try {
-//                el = DRIVER.findElementById(element);
-//            }catch (NoSuchElementException e){
-//                Element_is_exist = true;
-//                TimeUnit.SECONDS.sleep(2);
-//            }
-//        }
-//        el = DRIVER.findElementById(element);
-////        DRIVER.findElementById(element)
-////        WebElement el = null;
-////        try {
-////             el = DRIVER.findElementById(element);
-////        }catch (NoSuchElementException e){
-////            while (!Element_is_exist && tries < 5) {
-////                tries++;
-////                TimeUnit.SECONDS.sleep(1);
-////                if (DRIVER.findElementById(element).isDisplayed()) {
-////                    Element_is_exist = true;
-////                    return el;
-////                }
-////            }
-////            System.err.println("Base.java try 5 times not found element: " + element);
-////        }
-//        return el;
-//    }
-
-
-
-    public  void tearDownclass() {
-        //writeLog("关闭app");
+    public void DeviceRestart(){
         DRIVER.closeApp();
-        //writeLog("启动app");
-        DRIVER.launchApp();
+        DRIVER.launchApp();//   DRIVER.activateApp("com.tronlinkpro.wallet");
     }
-
-
-
-    public  void tearDownAfterClass() {
-        //DRIVER.quit();
+    public void DeviceQuit(){
+        DRIVER.quit();
     }
-
-
-
-    public  void tearDownWithoutQuit() {
-        //writeLog("remove App");
-        //DRIVER.removeApp("com.tronlink.wallet");
-        DRIVER.closeApp();
-        DRIVER.launchApp();
+    public void DeviceLaunch(){
+        DRIVER.launchApp();//   DRIVER.activateApp("com.tronlinkpro.wallet");
     }
-
 
 
     public void log(String log) {
@@ -402,4 +300,19 @@ public class Base {
         AssetPage asset = new AssetPage(DRIVER);
         asset.changeChainToDappChain();
     }
+
+    public boolean assertToast(String toast){
+        try {
+            WebDriverWait wait = new WebDriverWait(DRIVER,20);
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'"+toast+"')]")));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+
+
+    }
+
+
 }

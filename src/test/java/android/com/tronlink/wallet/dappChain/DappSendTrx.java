@@ -214,6 +214,7 @@ public class DappSendTrx extends Base {
         beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
         dappChainSendTrxAmount = getAnAmount();
         transfer.sendTrx(Float.toString(dappChainSendTrxAmount));
+        Assert.assertTrue(assertToast("交易提交成功"));
     }
 
 
