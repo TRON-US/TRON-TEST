@@ -9,6 +9,7 @@ import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.SearchAssertPage;
 
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -18,6 +19,11 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 
 /**
  * add asset test
@@ -48,93 +54,35 @@ public class AddAssetsTest extends Base {
         }
     }
 
-    @Test(description = "Add Asset Page Tip Test",alwaysRun = true)
-    public void test001_AddAssetPageTipTest() throws Exception{
+    @Test(description = "Add Asset Page Test",alwaysRun = true)
+    public void test001_AddAssetPageTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         AddAssertPage page = asset.enterAddAssertPage();
-//        Assert.assertTrue(page.tipview.getText().contains("可移除不需要展示的资产"));
-//        page.close.click();
-//        Assert.assertTrue(page.et_search.getText().contains("名称/ID/合约地址"));
-//        Assert.assertTrue(page.iv_search_icon.isEnabled());
-//        Assert.assertTrue(page.isElementExist("首页资产管理"));
-        Assert.assertTrue(page.isElementExist("我的全部资产"));
-//        Assert.assertTrue(page.sort_type.getText().contains("按价值"));
-//        Assert.assertTrue(page.tv_common_title.getText().contains("资产"));
-//        Assert.assertTrue(page.accountnumbers.size() > 1);
+        Assert.assertTrue(page.isTextExist("我的全部资产"));
+        Assert.assertTrue(page.isTextExist("TRX"));
+        page.findElementByText("收藏品").click();
+        Assert.assertTrue(page.isTextExist("TNFT"));
 
     }
+    @Test(description = "Add Asset Test",alwaysRun = true)
+    public void test002_AddAssetTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        AddAssertPage page = asset.enterAddAssertPage();
+        page.addAssert_input.click();
+        page.addAssert_input.sendKeys("axeo");
+        page.AddButton.click();
+        Assert.assertTrue(assertToast("已添加到首页"));
+    }
 
-
-
-
-//    @Test(description = "Add Asset Page Tip Test",alwaysRun = true)
-//    public void test000_addressbook30Test() throws Exception{
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage page = asset.enterMinePage();
-//        AddressBookPage addressBookPage = page.enterAddressBookPage();
-//
-//        int book = 11;
-//        while (book < 11){
-//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
-//
-//            String addressString =  Configuration.getByPath("testng.conf")
-//                    .getString("androidMultiSignAccount.multiSign"+String.valueOf(book)+"Address");
-//            log("find address: " + addressString);
-//
-//            addressBookPage.addAddressBook_btn.click();
-//            TimeUnit.SECONDS.sleep(2);
-//
-//            Random rand = new Random();
-//            String addressName = "address-" + String.valueOf(book);
-//            addressBookPage.addName_input.sendKeys(addressName);
-//            addressBookPage.addAddress_input.sendKeys(addressString);
-////            addressBookPage.addNote_input.sendKeys(addressString);
-//            addressBookPage.save_btn.click();
-//            book++;
-//        }
-//
-//        while (book < 21){
-//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
-//
-//                        String addressString = Configuration.getByPath("testng.conf")
-//                    .getString("iosMultiSignAccount.multiSign" + String.valueOf(book-10) + "Address");
-//            log("find address: " + addressString);
-//
-//            addressBookPage.addAddressBook_btn.click();
-//            TimeUnit.SECONDS.sleep(2);
-//
-//            Random rand = new Random();
-//            String addressName = "address-" + String.valueOf(book);
-//            addressBookPage.addName_input.sendKeys(addressName);
-//            addressBookPage.addAddress_input.sendKeys(addressString);
-////            addressBookPage.addNote_input.sendKeys(addressString);
-//            addressBookPage.save_btn.click();
-//            book++;
-//        }
-//
-//        while (book < 31){
-//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
-//
-//            String addressString = Configuration.getByPath("testng.conf")
-//                    .getString("iosMultiSignAccount.owner" + String.valueOf(book-20) + "Address");
-//            log("find address: " + addressString);
-//
-//            addressBookPage.addAddressBook_btn.click();
-//            TimeUnit.SECONDS.sleep(2);
-//
-//            Random rand = new Random();
-//            String addressName = "address-" +String.valueOf(book);
-//            addressBookPage.addName_input.sendKeys(addressName);
-//            addressBookPage.addAddress_input.sendKeys(addressString);
-////            addressBookPage.addNote_input.sendKeys(addressString);
-//            addressBookPage.save_btn.click();
-//            book++;
-//        }
-//
-//    }
-
-
-
+    @Test(description = "remove Asset Test",alwaysRun = true)
+    public void test003_removeAssetTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        AndroidTouchAction act = new AndroidTouchAction(DRIVER);
+        WebElement el = asset.findElementByText("AXE");
+        act.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(el))).perform();
+        Assert.assertTrue(asset.isTextExist("确认将AXE移出首页吗？"));
+        asset.findElementByText("移出").click();
+    }
 
 
 }

@@ -27,8 +27,6 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_search_icon")
     public WebElement iv_search_icon;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
-    public WebElement et_search;
 
     @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[1]/android.widget.TextView")
     public WebElement firstTab;
@@ -45,6 +43,8 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_tab_title")
     public List<WebElement> mainPageAssetManage_tab;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
+    public WebElement AddButton;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
     public List<WebElement> switch_btn;

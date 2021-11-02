@@ -81,19 +81,16 @@ public abstract class AbstractPage {
     public boolean isElementExist(String name) {
         try {
             driver.findElementById(name);
-            System.out.println("FindById: "+name);
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
             try {
-                System.out.println("Not Fount by Text" + name);
+                System.out.println("Not Fount by ID" + name);
                 driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+name+"\")");
-                System.out.println("FindByText: "+name);
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
                     System.out.println("Not Fount by Text" + name);
                     driver.findElementByName(name);
-                    System.out.println("FindByName: "+name);
                     return  true;
                 }catch (org.openqa.selenium.NoSuchElementException xxx) {
                     System.out.println("Not Fount by Name");
@@ -103,6 +100,15 @@ public abstract class AbstractPage {
         }
     }
 
+    public boolean isTextExist(String text) {
+        try {
+            driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            System.out.println("Not Fount by Text" + text);
+            return false;
+        }
+    }
 
 
     /**
