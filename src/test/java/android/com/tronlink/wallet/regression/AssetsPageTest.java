@@ -44,7 +44,7 @@ public class AssetsPageTest extends Base {
     public void test001_AssetsTotalAmountTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        String about = asset.trxtotalvalue.getText();
+        String about = asset.trxValue.getText();
         String result = sepLeftNumberTextToString(about,"TRX").trim();
         Double number = Double.parseDouble(removeSymbolFloat(result));
         System.out.println("Total number:" + number);
