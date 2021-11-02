@@ -22,23 +22,23 @@ public class AssetPage extends AbstractPage {
     public AssetPage(AndroidDriver<?> driver) {
         super(driver);
         this.driver = driver;
-        try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()){
-                adClose_btn.click();
-                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            }
-        }catch (Exception e){}
+//        try {
+//            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+//            // if page display AD , cloese the AD
+//            if (ad_pic.isDisplayed()){
+//                adClose_btn.click();
+//                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+//            }
+//        }catch (Exception e){}
 //
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            // if updateview display ,close
-            if (update_topview.isDisplayed()) {
-                update_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//            // if updateview display ,close
+//            if (update_topview.isDisplayed()) {
+//                update_btn.click();
+//                TimeUnit.SECONDS.sleep(1);
+//            }
+//        }catch (Exception e){}
 
         try {
             driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
@@ -64,6 +64,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/top")
     public WebElement update_topview;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/asset_status")
+    public WebElement eyesButton;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
@@ -77,8 +79,6 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_money_value")
     public WebElement abountmoneyvalue;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_value")
-    public WebElement trxtotalvalue;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
@@ -132,6 +132,9 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/my")
     public WebElement mine_btn;
+
+
+
 
 
 
