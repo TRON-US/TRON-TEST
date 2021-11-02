@@ -20,6 +20,8 @@ public class MinePage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
+    public WebElement online_version_icon;
 
     @FindBy(id = " com.tronlinkpro.wallet:id/log")
     public WebElement logItem;

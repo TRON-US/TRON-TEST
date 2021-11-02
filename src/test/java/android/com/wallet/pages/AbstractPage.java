@@ -85,7 +85,7 @@ public abstract class AbstractPage {
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
             try {
-                System.out.println("Not Fount by ID" + name);
+                System.out.println("Not Fount by Text" + name);
                 driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+name+"\")");
                 System.out.println("FindByText: "+name);
                 return  true;
