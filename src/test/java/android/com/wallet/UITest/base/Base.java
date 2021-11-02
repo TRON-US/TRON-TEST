@@ -3,7 +3,10 @@ package android.com.wallet.UITest.base;
 import android.com.wallet.pages.AssetPage;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -23,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -314,5 +318,11 @@ public class Base {
 
     }
 
+
+    public void longPress(String text){
+        AndroidTouchAction act = new AndroidTouchAction(DRIVER);
+        WebElement el = DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+        act.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(el))).perform();
+    }
 
 }
