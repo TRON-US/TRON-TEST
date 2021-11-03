@@ -91,8 +91,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement checkPasswotd_input;
 
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
     public WebElement confirm_btn;
 
 
