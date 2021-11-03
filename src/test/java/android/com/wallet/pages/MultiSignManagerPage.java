@@ -19,7 +19,7 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
 
-//    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+//    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
 //    public WebElement addPermission_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_add")

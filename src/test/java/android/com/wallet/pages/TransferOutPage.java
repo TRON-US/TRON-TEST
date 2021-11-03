@@ -29,7 +29,7 @@
 //    public WebElement chain_text;
 //
 //
-//    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+//    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
 //    public WebElement transferOut_btn;
 //
 //

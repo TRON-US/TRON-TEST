@@ -16,7 +16,7 @@ public class VoteConfirmPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement voteNow_btn;
 
 

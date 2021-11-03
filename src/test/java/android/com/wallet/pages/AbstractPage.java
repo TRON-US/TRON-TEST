@@ -31,13 +31,13 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement bt_send;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement bt_go;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirmBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement sendBtn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
