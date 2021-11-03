@@ -120,17 +120,6 @@ public class SendTrc20 extends Base {
         Assert.assertTrue(transfer.note_text.getText().contains("账户未激活，可正常转账 TRC20 通证，但不会激活该账户。"));
 
     }
-    //使用一个带宽充足账户转给未激活地址20,手续费trx是0,不转账!!
-    @Test(enabled = true,description = "test004_inputHaveBandWidthSendMax20NumberToUNActive")
-    public void test004_inputHaveBandWidthSendMax20NumberToUNActive() throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =   Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("20")));
-        Float number =  sepLeftNumberTextToFloat(transfer.real_money.getText(),"TRX");
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(),"TRX") == 0);
-        Assert.assertEquals(allNumber,number);
-    }
 
     @Parameters({"privateKey"})
     @Test(enabled = true,description = "input mix send number")
@@ -163,11 +152,9 @@ public class SendTrc20 extends Base {
         waiteTime();
         transfer.swipScreenLitte();
         transfer.send_btn.click();
-        waiteTime();
-        String no_bandwidthTips = transfer.tv_no_energy.getText();
-        Assert.assertTrue(no_bandwidthTips.contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
         String content = transfer.bandwidth_text.getText();
-        String number = StringUtils.substringBeforeLast(content,"带宽");
+        String number = StringUtils.substringBeforeLast(content,"能量");
+        number = StringUtils.substringAfterLast(number,"+");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
     }
 
