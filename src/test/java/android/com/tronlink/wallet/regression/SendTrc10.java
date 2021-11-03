@@ -73,6 +73,7 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(transfer.tvName_text.getText().contains("tronlink_token"));
         beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
         sendTrxAmount = getAnAmount();
+        log("sendTrxAmount" + sendTrxAmount);
         transfer.sendTrc10(Float.toString(sendTrxAmount));
     }
 
@@ -102,11 +103,13 @@ public class SendTrc10 extends Base {
         DRIVER.resetApp();
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
-        String number = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        log("fee: " + transfer.fee_text.getText());
+        String allNumber =    removeSymbolFloat(transfer.sendMaxCoinWithType("10"));
+        String number = removeSymbolFloat(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
+        log("fee: " + transfer.fee_text.getText() );
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"≈1");
-        Assert.assertEquals(String.format("%.1f",allNumber), String.format("%.1f",Float.valueOf(number)));
+        log("allNumber: "+ allNumber +"number: " + number);
+        Assert.assertEquals(allNumber,number);
+
     }
 
     @Parameters({"privateKey"})
@@ -162,6 +165,7 @@ public class SendTrc10 extends Base {
         transfer.send_btn.click();
         waiteTime();
         String content = transfer.bandwidth_text.getText();
+        content = content.replace("≈","");
         String number = StringUtils.substringBeforeLast(content, "带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
     }
