@@ -91,7 +91,7 @@ public class SendTrc10 extends Base {
         SendTrxPage transfer = enterToSendTrxPage();
         String allNumber  =   removeSymbolFloat(transfer.sendMaxCoinWithType("10"));
         String number = removeSymbolFloat(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"1.1");
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"≈1.1");
         log("beforeMax: " + allNumber + " confirmNumber: " + number);
         Assert.assertEquals(allNumber, number);
     }
@@ -105,7 +105,7 @@ public class SendTrc10 extends Base {
         Float allNumber =    Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType("10")));
         String number = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
         log("fee: " + transfer.fee_text.getText());
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 1);
+        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"≈1");
         Assert.assertEquals(String.format("%.1f",allNumber), String.format("%.1f",Float.valueOf(number)));
     }
 
@@ -228,7 +228,9 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
         Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+        String content = transactionInfo.resouce_cost.getText();
+        content = content.replace("≈","");
+        String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
     }
 
