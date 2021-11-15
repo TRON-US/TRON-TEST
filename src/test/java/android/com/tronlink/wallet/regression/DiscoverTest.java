@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class DiscoverTest extends Base {
 
     //    List<String> dappNameList = new ArrayList<>();
-    String[] dappNameList = {"Poloni DEX","TRONSCAN","TRONLENDING","JustSwap","Bankroll","zkWrapper","JUST","SUN"};
+    String[] dappNameList = {"Poloni DEX","TRONSCAN","TRONLENDING","SunSwap","Bankroll","zkWrapper","JUST","SUN"};
     int dappListIndex = 0;
 
     @Parameters({"privateKey"})
