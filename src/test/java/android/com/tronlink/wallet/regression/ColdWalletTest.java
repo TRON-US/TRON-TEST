@@ -155,7 +155,7 @@ public class ColdWalletTest extends Base {
         coldSetting.languane_btn.click();
         List<WebElement> languageList = coldSetting.language_list;
         List<WebElement> selectList = coldSetting.selected_btn;
-        Assert.assertTrue(languageList.get(0).getText().contains("英文"));
+        Assert.assertTrue(languageList.get(0).getText().contains("English"));
         Assert.assertTrue(languageList.get(1).getText().contains("简体中文"));
         selectList.get(1).click();
         TimeUnit.SECONDS.sleep(3);
