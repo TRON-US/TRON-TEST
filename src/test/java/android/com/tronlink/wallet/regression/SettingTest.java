@@ -75,7 +75,7 @@ public class SettingTest extends Base {
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
         dapp.testUrl();
-        dapp.findElementByText("USDT");
+        dapp.findElementByText("SUN");
     }
 
     @Test(description = "Currency Test")
