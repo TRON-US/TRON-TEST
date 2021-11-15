@@ -108,8 +108,8 @@ public class WatchWalletTest extends Base {
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         createProposePage.proValue_ipt.get(1).clear();
         createProposePage.proValue_ipt.get(1).sendKeys("9997");
+        createProposePage.Creatconfirm_btn.click();
         createProposePage.confirm_btn().click();
-        createProposePage.bt_send.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -221,14 +221,14 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-//    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
-//    public void test012_WithdrawRewardQRCode() throws Exception{
-//        AssetPage asset = new AssetPage(DRIVER);
-//        VotePage vote = asset.enterVotePage();
-//        vote.reward_btn.click();
-//        vote.btgo_btn.click();
-//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-//    }
+    @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
+    public void test012_WithdrawRewardQRCode() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        vote.reward_btn.click();
+        vote.confirm_btn().click();
+        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+    }
 
 
 

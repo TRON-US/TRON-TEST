@@ -41,7 +41,7 @@ public class TransferPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
     public WebElement transferIn_btn;
 
 
