@@ -75,9 +75,6 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
@@ -104,9 +101,6 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
@@ -133,13 +127,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.tv_no_energy.getText().contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
 
     }
 
@@ -163,14 +153,10 @@ public class AllSignatureSuccTest extends Base {
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(SendTrx.note_text.getText().contains("账户未激活"));
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.tv_no_energy.getText().contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
     }
 
 
