@@ -63,16 +63,7 @@ public class MutiSignatureTest extends Base {
                 multiSign.delSign();
             }
         }
-//        while(exist == false && tries < 5) {
-//            tries++;
-//            try {
-//                //multiSign.mulSign_span.isDisplayed();
-//                System.out.println("delete a mulSign");
-//                Helper.swipeLeftScreen(DRIVER);
-//                Helper.swipeLeftScreen(DRIVER);
-//                multiSign.delSign();
-//            }catch (Exception e){}
-//        }
+
     }
 
     //public method. enter the MultiSignManagerPage
@@ -104,7 +95,6 @@ public class MutiSignatureTest extends Base {
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
         TimeUnit.SECONDS.sleep(3);
-        //Assert.assertEquals(signName,multiSignManager.permissionName_text.getText());
         Assert.assertTrue(multiSignManager.permissionName_text.isDisplayed());
     }
 
@@ -115,10 +105,6 @@ public class MutiSignatureTest extends Base {
     public void test003_modifySignature(String address) throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
-        //multiSignManager = modifyPermission.modify(address);
-        //String signName = multiSignManager.permissionName_text.getText();
-        //System.out.println("get modify mulSign name is : " + signName);
-        //Assert.assertEquals(signName, "active_est");
         Assert.assertTrue(modifyPermission.title_text.isDisplayed());
     }
 
@@ -128,9 +114,6 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.permissionName_input.sendKeys("active");
-        //TimeUnit.SECONDS.sleep(1);
-        //String tip = add.tip_hits.getText();
-        //Assert.assertTrue(tip.contains("请更换名称") || tip.contains("one permission with this"));
         Assert.assertTrue(add.permissionName_input.isDisplayed());
     }
 
@@ -229,7 +212,6 @@ public class MutiSignatureTest extends Base {
     public void test014_adressIsEquals() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        //add.address_input.sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
         add.inputSameAddress();
         TimeUnit.SECONDS.sleep(1);
         String tip = add.addkey_tip.getText();
