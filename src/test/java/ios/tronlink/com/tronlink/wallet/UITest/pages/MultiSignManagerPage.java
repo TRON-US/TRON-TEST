@@ -45,7 +45,7 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "TRX 转账")
     public WebElement trxTranPower;
 
-    @FindBy(id = "冻结资产")
+    @FindBy(id = "质押资产")
     public WebElement freezeAssetPower;
 
     @FindBy(id = "thresholdTextField")
@@ -293,7 +293,7 @@ public class MultiSignManagerPage extends AbstractPage {
         System.out.println("进入编辑权限页面 clicked");
         waiteTime();
         freezeAssetPower.click();
-        System.out.println("点击添加冻结资产 clicked");
+        System.out.println("点击添加质押资产 clicked");
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");

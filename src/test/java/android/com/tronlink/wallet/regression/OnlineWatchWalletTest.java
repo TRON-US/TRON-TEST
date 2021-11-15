@@ -459,7 +459,7 @@ public class OnlineWatchWalletTest extends Base {
             frozen.unfreezeInfoConfirm_btn.click();
             Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
         }else {
-            log("未到解冻时间!!");
+            log("未到解锁时间!!");
         }
 
     }

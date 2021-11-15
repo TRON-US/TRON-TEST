@@ -321,7 +321,7 @@ public class AllSignatureSuccTest extends Base {
         for (int i = 0 ;i<5;i++){
             log("findTimes:   s" + String.valueOf(i) );
             try{
-                Assert.assertTrue(multipage.isElementExist("冻结资产"));
+                Assert.assertTrue(multipage.isElementExist("质押资产"));
                 Assert.assertTrue(multipage.isElementExist("冻结账户:"));
                 Assert.assertTrue(multipage.isElementExist(ownerAddress));
                 exist = true;

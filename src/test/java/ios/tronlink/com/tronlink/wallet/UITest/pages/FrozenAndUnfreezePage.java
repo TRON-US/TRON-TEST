@@ -64,7 +64,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement receivedTF;
 
 //    @FindBy(name = "解冻")
-    @FindBy(id = "解冻")
+    @FindBy(id = "解锁")
     public WebElement unfreeze_btn;
 
     @FindBy(id = "timeLeftLabel")

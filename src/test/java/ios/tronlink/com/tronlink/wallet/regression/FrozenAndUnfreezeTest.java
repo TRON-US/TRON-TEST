@@ -36,7 +36,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     public void test001_enterDetailsOfTheRules()  {
         FrozenAndUnfreezePage frozen = interferonPage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
-        Assert.assertTrue(Helper.contentTexts(detailsAndRules.textArray,"冻结解冻细则"));
+        Assert.assertTrue(Helper.contentTexts(detailsAndRules.textArray,"质押解锁细则"));
     }
 
     @Test(description = "Freeze energy detail", alwaysRun = true)
