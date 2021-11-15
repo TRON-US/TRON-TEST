@@ -297,7 +297,7 @@ public class AllSignatureSuccTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
         Helper.swipScreen(modifyPermission.driver);
-        modifyPermission.confirm_btn.click();
+        modifyPermission.confirm_btn().click();
         String fee = modifyPermission.fee_text.getText();
         Assert.assertTrue(fee.contains("TRX") && fee.contains("101"));
         int bandwidth = Integer.valueOf(modifyPermission.bandwidth.getText().replace("带宽","").trim());

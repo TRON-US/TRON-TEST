@@ -331,7 +331,7 @@ public class OnlineWatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
-        frozen.confirm_btn.click();
+        frozen.confirm_btn().click();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -349,7 +349,7 @@ public class OnlineWatchWalletTest extends Base {
         frozen.freezeCount_input.sendKeys("1");
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
-        frozen.confirm_btn.click();
+        frozen.confirm_btn().click();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }

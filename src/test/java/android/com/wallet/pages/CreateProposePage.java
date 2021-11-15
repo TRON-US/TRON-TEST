@@ -52,7 +52,7 @@ public class CreateProposePage extends AbstractPage {
     public CommitteeProposalPage createProposal() throws Exception {
         proValue_ipt.get(1).clear();
         proValue_ipt.get(1).sendKeys("9997");
-        confirm_btn.click();
+        confirm_btn().click();
         TimeUnit.SECONDS.sleep(1);
         send_btn.click();
         password_btn.sendKeys("Test0001");

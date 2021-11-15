@@ -149,7 +149,7 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         Helper.swipScreen(DRIVER);
-        add.confirm_btn.click();
+        add.confirm_btn().click();
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreenToTop(DRIVER);
         String tip = add.tip_hits.getText();
@@ -218,7 +218,7 @@ public class MutiSignatureTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         Helper.swipScreen(DRIVER);
-        add.confirm_btn.click();
+        add.confirm_btn().click();
         TimeUnit.SECONDS.sleep(1);
         String tip = add.addkey_tip.getText();
         Assert.assertTrue(tip.equals("请填写正确的地址") || tip.contains("enter the correct address"));

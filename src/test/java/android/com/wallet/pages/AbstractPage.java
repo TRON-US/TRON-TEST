@@ -122,6 +122,11 @@ public abstract class AbstractPage {
 
     }
 
+    public WebElement confirm_btn() {
+
+        return findElementByText("确认");
+
+    }
     public void clickOffsetElement(WebElement wele){
         int x = wele.getLocation().getX();
         int y = wele.getLocation().getY();
