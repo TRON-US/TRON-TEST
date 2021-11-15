@@ -176,7 +176,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         SendTrx.send_btn.click();
-        SendTrx.transferNow_btn.click();
+        SendTrx.confirm_btn().click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(SendTrx.invalidTime_input.isDisplayed());
         Assert.assertTrue(SendTrx.signAddress_input.get(0).getText().length() == 34);
@@ -247,7 +247,6 @@ public class AllSignatureSuccTest extends Base {
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test", alwaysRun = true)
     public void test010_signOptions(String multiSignPrivateKey) throws Exception {
-
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         MyPursePage myPurse = minePage.enterMyPursePage();
@@ -283,11 +282,10 @@ public class AllSignatureSuccTest extends Base {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
         Helper.swipScreen(modifyPermission.driver);
-        modifyPermission.confirm_btn().click();
+        modifyPermission.confirm_btn.click();
         String fee = modifyPermission.fee_text.getText();
         Assert.assertTrue(fee.contains("TRX") && fee.contains("101"));
-        int bandwidth = Integer.valueOf(modifyPermission.bandwidth.getText().replace("带宽","").trim());
-        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
+
 
     }
 
@@ -308,7 +306,7 @@ public class AllSignatureSuccTest extends Base {
             log("findTimes:   s" + String.valueOf(i) );
             try{
                 Assert.assertTrue(multipage.isElementExist("质押资产"));
-                Assert.assertTrue(multipage.isElementExist("冻结账户:"));
+                Assert.assertTrue(multipage.isElementExist("质押账户:"));
                 Assert.assertTrue(multipage.isElementExist(ownerAddress));
                 exist = true;
                 break;
@@ -321,16 +319,15 @@ public class AllSignatureSuccTest extends Base {
 
     }
 
-    @Parameters({"multiSignAddress","ownerAddress"})
-    @Test(description = "test014_VoteMultiSignCheck", alwaysRun = true)
-    public void test015_VoteMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-//        Helper.tapScreen(vote.driver);
-        TimeUnit.SECONDS.sleep(1);
-        vote.votefirstSRuseMutiSign();
-        Assert.assertTrue(vote.isElementExist("投票"));
-    }
+//    @Parameters({"multiSignAddress","ownerAddress"})
+//    @Test(description = "test014_VoteMultiSignCheck", alwaysRun = true)
+//    public void test015_VoteMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        TimeUnit.SECONDS.sleep(1);
+//        vote.votefirstSRuseMutiSign();
+//        Assert.assertTrue(vote.isElementExist("投票"));
+//    }
 
 
 

@@ -36,7 +36,6 @@ public class ModifyPermissionPage extends AbstractPage {
     public WebElement confirm_btn;
 
 
-
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement password_input;
 
