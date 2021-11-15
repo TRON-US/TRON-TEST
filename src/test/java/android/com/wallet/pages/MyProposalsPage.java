@@ -28,9 +28,11 @@ public class MyProposalsPage extends AbstractPage {
 
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/button_confirm")
+    public WebElement button_confirm;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement send_btn;
-
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_proposals_id")

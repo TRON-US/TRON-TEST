@@ -26,7 +26,7 @@ public class CreateProposePage extends AbstractPage {
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm")
-    public WebElement confirm_btn;
+    public WebElement Creatconfirm_btn;
 
 
 
@@ -52,9 +52,9 @@ public class CreateProposePage extends AbstractPage {
     public CommitteeProposalPage createProposal() throws Exception {
         proValue_ipt.get(1).clear();
         proValue_ipt.get(1).sendKeys("9997");
-        confirm_btn().click();
+        Creatconfirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        send_btn.click();
+        confirm_btn().click();
         password_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(5);
