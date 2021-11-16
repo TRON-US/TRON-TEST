@@ -51,22 +51,22 @@ public class FrozenMultiSignSuccTest extends Base {
     }
 
 
-    @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "Sign Address Is Exists", alwaysRun = true)
-    public void test002_signAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
-        Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
-        TimeUnit.SECONDS.sleep(1);
-        frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
-        frozenAndUnfreezePage.frozenButtonClickAndConfirm();
-        frozenAndUnfreezePage.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(frozenAndUnfreezePage.invalidTime_input.isDisplayed());
-        Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(0).getText().length() == 34);
-        Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(1).isDisplayed());
-        Assert.assertTrue(frozenAndUnfreezePage.selectSignName_text.isDisplayed());
-    }
+//    @Parameters({"ownerPrivateKey","multiSignAddress"})
+//    @Test(description = "Sign Address Is Exists", alwaysRun = true)
+//    public void test002_signAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
+//        Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
+//        TimeUnit.SECONDS.sleep(1);
+//        frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
+//        frozenAndUnfreezePage.frozenButtonClickAndConfirm();
+//        frozenAndUnfreezePage.confirm_btn().click();
+//        TimeUnit.SECONDS.sleep(1);
+////        Assert.assertTrue(frozenAndUnfreezePage.invalidTime_input.isDisplayed());
+////        Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(0).getText().length() == 34);
+////        Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(1).isDisplayed());
+////        Assert.assertTrue(frozenAndUnfreezePage.selectSignName_text.isDisplayed());
+//    }
 
 
     @Parameters({"ownerPrivateKey","multiSignAddress"})

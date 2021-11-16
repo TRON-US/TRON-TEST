@@ -127,6 +127,12 @@ public abstract class AbstractPage {
         return findElementByText("确认");
 
     }
+
+    public WebElement finish_btn() {
+
+        return findElementByText("完成");
+
+    }
     public void clickOffsetElement(WebElement wele){
         int x = wele.getLocation().getX();
         int y = wele.getLocation().getY();

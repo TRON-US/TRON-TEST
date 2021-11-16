@@ -291,13 +291,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
         frozenButtonClickAndConfirm();
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        signNext_btn.click();
+        confirm_btn().click();
+//        confirm_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        signNext_btn.click();
         TimeUnit.SECONDS.sleep(2);
         checkPasswotd_input.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(1);
-        confirm_btn.click();
+        finish_btn().click();
     }
 
 
