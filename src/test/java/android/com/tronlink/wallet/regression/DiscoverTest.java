@@ -64,7 +64,7 @@ public class DiscoverTest extends Base {
             TimeUnit.SECONDS.sleep(2);
             System.out.println("DAppName:" + dappNameInSearchResult  + " index: " + i);
             Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(findName) ||
-                    dappNameInSearchResult.contains(findName));
+                    dappNameInSearchResult.toLowerCase().contains(findName.toLowerCase()));
             dappListIndex++;
             dapp_search_page.iv_delete.click();
         }
