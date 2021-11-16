@@ -61,7 +61,7 @@ public class AboutUsTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
         mine.enterLogPage();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(6);
         Assert.assertTrue(Helper.isElementExist(mine.driver,"4.4.0(2021.10.08)"));
         Assert.assertTrue(mine.nav_title.getText().contains("版本日志"));
         mine.backBtn.click();
