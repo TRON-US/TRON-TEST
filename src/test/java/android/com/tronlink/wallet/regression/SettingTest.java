@@ -74,8 +74,8 @@ public class SettingTest extends Base {
         MinePage mine = asset.enterMinePage();
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
-        dapp.testUrl();
-        dapp.findElementByText("SUN");
+//        dapp.testUrl();
+//        dapp.findElementByText("SUN");
     }
 
     @Test(description = "Currency Test")
