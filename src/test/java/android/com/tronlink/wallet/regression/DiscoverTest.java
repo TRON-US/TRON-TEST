@@ -71,21 +71,6 @@ public class DiscoverTest extends Base {
 
 
 
-    public AssetPage enterOnlineAssetPage() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        mine.findElementByText("自用测试").click();
-        mine.findElementByText("切换版本").click();
-        mine.online_version_icon.click();
-        TimeUnit.SECONDS.sleep(5);
-        if(asset.isElementExist("线上版本")){
-            DeviceRestart();
-            TimeUnit.SECONDS.sleep(2);
-        }
-        return asset;
-    }
-
-
 
 
 }
