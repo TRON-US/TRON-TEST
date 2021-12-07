@@ -14,7 +14,6 @@ public class QRodeEPage extends AbstractPage {
     }
 
 
-
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr3")
     public WebElement QRcode_text;
 

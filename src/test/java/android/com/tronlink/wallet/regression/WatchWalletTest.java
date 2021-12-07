@@ -77,7 +77,7 @@ public class WatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
-        frozen.confirm_btn().click();
+//        frozen.confirm_btn().click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -93,7 +93,7 @@ public class WatchWalletTest extends Base {
         frozen.freezeCount_input.sendKeys("1");
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
-        frozen.confirm_btn().click();
+//        frozen.confirm_btn().click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
