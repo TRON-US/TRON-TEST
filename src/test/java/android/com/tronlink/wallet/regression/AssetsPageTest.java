@@ -77,13 +77,14 @@ public class AssetsPageTest extends Base {
         Assert.assertTrue(asset.isTextExist("收款"));
         asset.driver.navigate().back();
         asset.findElementByText("闪兑").click();
-        Assert.assertTrue(asset.isTextExist("行情"));
+        Assert.assertTrue(asset.isTextExist("闪兑"));
         asset.driver.navigate().back();
         asset.findElementByText("质押").click();
         Assert.assertTrue(asset.isTextExist("资源"));
         asset.driver.navigate().back();
         asset.findElementByText("投票").click();
-        TimeUnit.SECONDS.sleep(1);
+        asset.driver.navigate().back();
+        asset.findElementByText("投票").click();
         Assert.assertTrue(asset.isTextExist("投票"));
         asset.driver.navigate().back();
         Assert.assertTrue(asset.isTextExist("收藏品"));
