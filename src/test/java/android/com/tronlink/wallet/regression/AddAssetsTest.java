@@ -54,16 +54,16 @@ public class AddAssetsTest extends Base {
         }
     }
 
-    @Test(description = "Add Asset Page Test",alwaysRun = true)
-    public void test001_AddAssetPageTest() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        AddAssertPage page = asset.enterAddAssertPage();
-        Assert.assertTrue(page.isTextExist("我的全部资产"));
-        Assert.assertTrue(page.isTextExist("TRX"));
-        page.findElementByText("收藏品").click();
-        Assert.assertTrue(page.isTextExist("TNFT"));
-
-    }
+//    @Test(description = "Add Asset Page Test",alwaysRun = true)
+//    public void test001_AddAssetPageTest() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        AddAssertPage page = asset.enterAddAssertPage();
+//        Assert.assertTrue(page.isTextExist("我的全部资产"));
+//        Assert.assertTrue(page.isTextExist("TRX"));
+//        page.findElementByText("收藏品").click();
+//        Assert.assertTrue(page.isTextExist("TNFT"));
+//
+//    }
     @Test(description = "Add Asset Test",alwaysRun = true)
     public void test002_AddAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
@@ -82,6 +82,7 @@ public class AddAssetsTest extends Base {
         act.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(el))).perform();
         Assert.assertTrue(asset.isTextExist("确认将AXE移出首页吗？"));
         asset.findElementByText("移出").click();
+        Assert.assertFalse(asset.isElementExist("AXE"));
     }
 
 

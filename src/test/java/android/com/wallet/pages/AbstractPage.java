@@ -84,16 +84,16 @@ public abstract class AbstractPage {
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
             try {
-                System.out.println("Not Fount by ID" + name);
+                System.out.println("Not Fount by ID: " + name);
                 driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+name+"\")");
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
-                    System.out.println("Not Fount by Text" + name);
+                    System.out.println("Not Fount by Text: " + name);
                     driver.findElementByName(name);
                     return  true;
                 }catch (org.openqa.selenium.NoSuchElementException xxx) {
-                    System.out.println("Not Fount by Name");
+                    System.out.println("Not Fount by Name!");
                     return false;
                 }
             }
