@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.abandon;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
