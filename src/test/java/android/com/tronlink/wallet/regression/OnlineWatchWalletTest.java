@@ -38,7 +38,7 @@ public class OnlineWatchWalletTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
         new Helper().getWatchWalletSign("TL5oxDYUztR3bjMqChLVZKdR4dXAiJYUyo", DRIVER);
-//        enterOnlineAssetPage();
+        enterOnlineAssetPage();
 
     }
 
@@ -188,13 +188,13 @@ public class OnlineWatchWalletTest extends Base {
         waiteTime();
         sendTrxPage.token_btn.click();
         waiteTime();
-        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"BTT\")").click();
+        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"BTTOLD\")").click();
         waiteTime();
         sendTrxPage.tranferCount_text.sendKeys("1");
         Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
-        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"BTT");
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"BTTOLD");
         String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
         String bNumber = StringUtils.substringBeforeLast(sendTrxPage.bandwidth_text.getText(),"带宽");
         Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
@@ -220,7 +220,7 @@ public class OnlineWatchWalletTest extends Base {
         waiteTime();
         sendTrxPage.token_btn.click();
         waiteTime();
-        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"BTT\")").click();
+        sendTrxPage.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"BTTOLD\")").click();
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         Assert.assertTrue(sendTrxPage.note_text.getText().contains("1.1")&&sendTrxPage.note_text.getText().contains("激活"));
@@ -229,7 +229,7 @@ public class OnlineWatchWalletTest extends Base {
         Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
-        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"BTT");
+        String realNumber = StringUtils.substringBeforeLast(sendTrxPage.real_money.getText(),"BTTOLD");
         String feeNumber = StringUtils.substringBeforeLast(sendTrxPage.fee_text.getText(),"TRX");
         feeNumber = feeNumber.replace("≈","");
         Assert.assertTrue(Integer.parseInt(realNumber.trim()) == 1);
