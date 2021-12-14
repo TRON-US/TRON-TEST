@@ -76,54 +76,50 @@ public class CommitteePage extends AbstractPage {
     @FindBy(id = "totalVoteValue")
     public WebElement totalVoteValue;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
+    public WebElement confirmButton;
 
     public void change1proposal(String pro) throws Exception{
-            TimeUnit.SECONDS.sleep(2);
-            textfieldList.get(1).clear();
-            textfieldList.get(1).clear();
-            textfieldList.get(1).sendKeys("");
-            textfieldList.get(1).sendKeys(pro);
-            Helper.tapWhitePlace(driver);
-            waiteTime();
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            TimeUnit.SECONDS.sleep(3);
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            passwordTF.sendKeys("Test0001");
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(6);
-            //XCUIElementTypeButton name
-            //XCUIElementTypeStaticText
+        TimeUnit.SECONDS.sleep(1);
+        textfieldList.get(1).clear();
+        textfieldList.get(1).sendKeys("");
+        textfieldList.get(1).sendKeys(pro);
+        Helper.closeKeyBoard(driver);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        TimeUnit.SECONDS.sleep(5);
+        log("开始找第二个确认");
+        confirmButton.click();
+        log("开始输入密码");
+        passwordTF.sendKeys("Test0001");
+        Helper.closeKeyBoard(driver);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+        TimeUnit.SECONDS.sleep(6);
 
     }
     public void change2proposal(String pro) throws Exception{
         waiteTime();
         textfieldList.get(2).clear();
-        textfieldList.get(2).clear();
         textfieldList.get(2).sendKeys("");
         textfieldList.get(2).sendKeys(pro);
-        Helper.tapWhitePlace(driver);
-        waiteTime();
+        Helper.closeKeyBoard(driver);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(4);
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        TimeUnit.SECONDS.sleep(5);
+        log("开始找第二个确认");
+        confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(6);
-        //XCUIElementTypeButton name
-        //XCUIElementTypeStaticText
-
     }
     public void change0proposal(String pro) throws Exception{
         waiteTime();
-        textfieldList.get(0).clear();
         textfieldList.get(0).clear();
         textfieldList.get(0).sendKeys("");
         textfieldList.get(0).sendKeys(pro);
         Helper.tapWhitePlace(driver);
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(4);
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        TimeUnit.SECONDS.sleep(5);
+        confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(6);
@@ -149,14 +145,14 @@ public class CommitteePage extends AbstractPage {
 
 
     public WebElement findFirstproposalWl( ) throws Exception {
-            TimeUnit.SECONDS.sleep(3);
-            log("try 进入我发起的提议");
-            enterMyProposal();
-            log("success 进入我发起的提议");
-            TimeUnit.SECONDS.sleep(3);
-            waiteTime(10);
-            List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
-            return wls.get(0);
+        TimeUnit.SECONDS.sleep(3);
+        log("try 进入我发起的提议");
+        enterMyProposal();
+        log("success 进入我发起的提议");
+        TimeUnit.SECONDS.sleep(3);
+        waiteTime(10);
+        List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
+        return wls.get(0);
     }
     public WebElement findFirstAgreedroposalWl( ) throws Exception {
         TimeUnit.SECONDS.sleep(3);

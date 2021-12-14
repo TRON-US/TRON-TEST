@@ -32,19 +32,31 @@ public class AdvanceFuncPage extends AbstractPage {
     @FindBy(name = "助记词转换工具")
     public WebElement mnemTools_btn;
 
+    @FindBy(id = "myProposalsValue")
+    public WebElement myProposalsValue;
 
     @FindBy(name =  "钱包数据迁移")
     public WebElement walletExport_btn;
 
+    @FindBy(name = "暂无数据")
+    public WebElement tempTagName;
 
     public CommitteePage enterCommitteePage() {
         try {
-            TimeUnit.SECONDS.sleep(2);
-            waiteTime(15);
             commiteeBtn.click();
-            TimeUnit.SECONDS.sleep(20);
+            boolean tempTag = true;
+            while(tempTag){
+                try {
+                    log(tempTagName.getText());
+                    TimeUnit.SECONDS.sleep(1);
+                }catch (Exception le){
+                    tempTag = false;
+                }
+            }
+//            TimeUnit.SECONDS.sleep(20);
         } catch (Exception e) {
             new Base().log("committee_btn button not found");
+            //暂无数据
         }
         return new CommitteePage(driver);
     }

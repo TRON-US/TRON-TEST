@@ -151,9 +151,7 @@ public class MinePage extends AbstractPage {
 
     public AdvanceFuncPage enterAdvancePage() {
         try {
-            TimeUnit.SECONDS.sleep(3);
             advanceFunc_btn.click();
-
         } catch (Exception e) {
             System.out.println(e);
         }
