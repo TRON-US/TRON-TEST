@@ -154,7 +154,7 @@ public class SendTrc20 extends Base {
         transfer.send_btn.click();
         String content = transfer.bandwidth_text.getText();
         String number = StringUtils.substringBeforeLast(content,"能量");
-        if (number.contains("k")){
+        if (number.contains("K")){
             number = number.replace("K","");
         }
         number = StringUtils.substringAfterLast(number,"+");
