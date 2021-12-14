@@ -68,7 +68,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         Helper.swipScreen(frozen.driver);
         frozen.questionClick();
-        Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取能量冻结"));
+        Assert.assertTrue(frozen.questionContent_btn.getText().contains("获取能量"));
     }
 
 
@@ -156,6 +156,8 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.frozenTheEnergy(); //Freeze operating
         TimeUnit.SECONDS.sleep(3);
         String availableTrxNew = frozen.getAvailableTrx();
+        availableTrxOld = availableTrxOld.replace(",","");
+        availableTrxNew = availableTrxNew.replace(",","");
         log("availableTrxOld: "+availableTrxOld + "availableTrxNew: " + availableTrxNew);
         Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
 

@@ -107,7 +107,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "资产")
     public WebElement asset_btn;
 
-    @FindBy(name = "冻结")
+    @FindBy(name = "质押")
     public WebElement frozen_btn;
 
 
@@ -228,14 +228,7 @@ public class AssetPage extends AbstractPage {
 
     //enter FrozenAndUnfreeze Page
     public FrozenAndUnfreezePage enterFrozenAndThawingPage() {
-        try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            frozen_btn.click();
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            //TimeUnit.SECONDS.sleep(1);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        frozen_btn.click();
         return new FrozenAndUnfreezePage(driver);
     }
 
