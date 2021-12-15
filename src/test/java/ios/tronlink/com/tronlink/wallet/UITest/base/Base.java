@@ -37,17 +37,16 @@ public class Base {
 
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss ");
 
-    public int RetryAgainTimes = 5;
+    public int RetryAgainTimes = 3;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-
-    public String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
 
 
     //setUp
     @Parameters({"port", "platformName", "platformVersion", "deviceName", "udid", "bpPort", "webDriverPort"})
     @BeforeTest(groups = {"P0"})
     public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) throws IOException {
+
         try {
             System.out.println("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
             Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
@@ -56,10 +55,10 @@ public class Base {
             StringBuffer sb = new StringBuffer();
             sb.append(sc.next());
             System.out.println(sb.toString());
-            System.out.println("\n startServer  Success \n" );
+            System.out.println("\n server  Start \n" );
 
         } catch (Exception e) {
-            System.out.println("\n startServer  Fail \n" );
+            System.out.println("\n server  Fail \n" );
             e.printStackTrace();
         }
     }
@@ -83,7 +82,7 @@ public class Base {
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("automationName", automationName);
-                desiredCapabilities.setCapability("newCommandTimeout", 500);
+                desiredCapabilities.setCapability("newCommandTimeout", 1000);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
                 desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
@@ -94,16 +93,16 @@ public class Base {
                 File appDir = new File(System.getProperty("user.dir"), "");
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
-                System.out.println(app.getAbsoluteFile());
+//                System.out.println(app.getAbsoluteFile());
 //                System.out.println("--------------------\n"+ desiredCapabilities.toString());
 //                System.out.println("\n URL: " +url+ "\n--------------------\n");
                 URL remoteUrl = new URL(url);
                 DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
-                System.out.println("setUp DRIVER success");
+                System.out.println(" driver Start");
 
             } catch (Exception e) {
-                System.out.println("setUp DRIVER fail");
+                System.out.println(" driver Fail");
                 System.out.println(e);
                 TimeUnit.SECONDS.sleep(1);
             }
@@ -113,15 +112,12 @@ public class Base {
 
 
     public void tearDownclass() {
-        //writeLog("关闭app");
         DRIVER.closeApp();
-        //writeLog("启动app");
         DRIVER.launchApp();
     }
 
 
     public void tearDownAfterClass() {
-        //DRIVER.quit();
     }
 
 

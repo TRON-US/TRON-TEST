@@ -19,7 +19,7 @@ public class ColdWalletHelpPage extends AbstractPage {
     @FindBy(id = "walletNameLabel")
     public WebElement walletNameLabel;
 
-    @FindBy(id = "recieveLabel")
+    @FindBy(name = "冷钱包3")
     public WebElement recieveLabel;
 
     @FindBy(id = "offlineLabel")
@@ -32,7 +32,7 @@ public class ColdWalletHelpPage extends AbstractPage {
     @FindBy(name = "资产")
     public WebElement AssetBtn;
 
-    @FindBy(name = "我")
+    @FindBy(name = "我的")
     public WebElement MineBtn;
 
     @FindBy(name = "home manager")
@@ -41,7 +41,7 @@ public class ColdWalletHelpPage extends AbstractPage {
     @FindBy(name = "冷钱包的使用说明")
     public WebElement coldWallettitle;
 
-    @FindBy(name = "私钥导入")
+    @FindBy(name = "私钥")
     public WebElement importtitle;
 
     @FindBy(name = "助记词")
