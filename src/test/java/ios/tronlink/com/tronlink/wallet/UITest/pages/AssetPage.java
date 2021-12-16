@@ -4,6 +4,7 @@ import io.appium.java_client.ios.IOSDriver;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -150,6 +151,12 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(id = "blockSyncName")//块同步中...
     public WebElement blockSyncName;
+
+    @FindBy(name = "home walletName arrow")
+    public WebElement walletArrow;
+
+    @FindBy(name = "WalletManageMenuView")
+    public WebElement activePath;
 
     public ImportPage enterImportPage(){
         addWallet_btn.click();
@@ -475,7 +482,6 @@ public class AssetPage extends AbstractPage {
                 Helper.refreshWalletScreen(driver);
                 TimeUnit.SECONDS.sleep(10);
                 arr = blockNumberLabel.getText().split("/");
-
                 log("arr[0]:"+arr[0] + "  arr[1]:"+ arr[1] + "\n");
 //                currentSynTime = System.currentTimeMillis();
                 //同步大于十分钟，强制退出
@@ -488,34 +494,50 @@ public class AssetPage extends AbstractPage {
     }
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
-
-        MinePage minePage = enterMinePage();
-        MyPursePage pursePage = minePage.enterMyPursePage();
-        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
-        try {
-            if (managerPage.instructionBtn.isDisplayed()) {
-                System.out.println("\n1 times success 成功进入MultiSignMange");
-                return managerPage;
-            } else {
-                managerPage = pursePage.enterMultiSignManagerPageNew();
-                if (managerPage.instructionBtn.isDisplayed()) {
-                    System.out.println("\n2 times success 成功进入MultiSignMange");
-                    return managerPage;
-                }else{
-                    managerPage = pursePage.enterMultiSignManagerPageNew();
-                    if (managerPage.instructionBtn.isDisplayed()) {
-                        System.out.println("\n3 times success 成功进入MultiSignMange");
-                        return managerPage;
-                    }else {
-                        managerPage = pursePage.enterMultiSignManagerPageNew();
-                    }
-                }
-            }
-        } catch (Exception e) {
-            log(e.getMessage());
-        }
-
-        return managerPage;
+        return  fasternterMultiSignManagerPage();
+//        MinePage minePage = enterMinePage();
+//        MyPursePage pursePage = minePage.enterMyPursePage();
+//        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
+//        try {
+//            if (managerPage.instructionBtn.isDisplayed()) {
+//                System.out.println("\n1 times success 成功进入MultiSignMange");
+//                return managerPage;
+//            } else {
+//                managerPage = pursePage.enterMultiSignManagerPageNew();
+//                if (managerPage.instructionBtn.isDisplayed()) {
+//                    System.out.println("\n2 times success 成功进入MultiSignMange");
+//                    return managerPage;
+//                }else{
+//                    managerPage = pursePage.enterMultiSignManagerPageNew();
+//                    if (managerPage.instructionBtn.isDisplayed()) {
+//                        System.out.println("\n3 times success 成功进入MultiSignMange");
+//                        return managerPage;
+//                    }else {
+//                        managerPage = pursePage.enterMultiSignManagerPageNew();
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            log(e.getMessage());
+//        }
+//
+//        return managerPage;
     }
+
+    public MultiSignManagerPage fasternterMultiSignManagerPage() throws Exception {
+        waiteTime();
+        walletArrow.click();
+        log("walletArrow ed");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(activePath.getLocation());
+        System.out.println(activePath.getRect());
+        Helper.TapLocationOffset(driver,activePath,100,100);
+        log("activePath ed");
+        TimeUnit.SECONDS.sleep(3);
+        return new MultiSignManagerPage(driver);
+
+
+    }
+
 
 }

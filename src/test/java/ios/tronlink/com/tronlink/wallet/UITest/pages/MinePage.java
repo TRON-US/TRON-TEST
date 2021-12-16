@@ -59,23 +59,16 @@ public class MinePage extends AbstractPage {
 
     //enter about us Page
     public AboutUsPage enterAboutUsPage() {
-        try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            //TimeUnit.SECONDS.sleep(1);
-            aboutUs_btn.click();
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            //TimeUnit.SECONDS.sleep(1);
-
-        } catch (Exception e) {
-            new Base().log("aboutUs_btn button not found");
-        }
+        waiteTime();
+        Helper.swipScreenLitter(driver);
+        aboutUs_btn.click();
         return new AboutUsPage(driver);
     }
 
     public CommitteePage enterCommitteePage() {
         try {
             TimeUnit.SECONDS.sleep(3);
-            waiteTime(15);
+            waiteTime();
             committee_btn.click();
             TimeUnit.SECONDS.sleep(20);
         } catch (Exception e) {
@@ -100,15 +93,11 @@ public class MinePage extends AbstractPage {
 
     //enter Group page
     public GroupPage enterGroupPage() {
-        try {
-            aboutUs_btn.click();
-            TimeUnit.SECONDS.sleep(1);
-            intoGroup_btn.click();
-            TimeUnit.SECONDS.sleep(3);
 
-        } catch (Exception e) {
-            new Base().log("intoGroup_btn button not found");
-        }
+            Helper.swipScreenLitter(driver);
+            aboutUs_btn.click();
+            intoGroup_btn.click();
+
         return new GroupPage(driver);
     }
 

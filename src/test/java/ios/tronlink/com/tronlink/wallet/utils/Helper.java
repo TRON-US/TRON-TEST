@@ -229,6 +229,7 @@ public class Helper {
 
 
     public void findAcceptAndClick(){
+        DRIVER.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {
             WebElement accBtn = DRIVER.findElementByName("接受");
             while (!accBtn.isEnabled()) {
@@ -244,7 +245,9 @@ public class Helper {
             }
             accBtn.click();
         }catch (Exception e){
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
     }
 
     public void  importWatchShieldWallet(String udid,String nsk,String ak,String ovk,String shieldAddress,IOSDriver driver) throws Exception{
@@ -262,7 +265,6 @@ public class Helper {
         System.out.println("Imported: " + haveImport);
         if(!haveImport){
             DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-//            driver.findElementByName("接受").click();
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
     }
@@ -295,7 +297,6 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-
                 break;
             }
             case coldWallet:
@@ -303,15 +304,12 @@ public class Helper {
                 findWebElement("冷钱包").click();
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
-
-
                 break;
             }
             case shieldWallet:
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-
                 break;
             }
         }
