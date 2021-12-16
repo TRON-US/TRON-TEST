@@ -232,7 +232,7 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
-        Assert.assertTrue(multiSignManagerPage.chargeLabel.getText().contains("101"));
+        Assert.assertTrue(Helper.isElementExist(multiSignManagerPage.driver,"≈ 101 TRX"));
         Assert.assertFalse( Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
     }
 

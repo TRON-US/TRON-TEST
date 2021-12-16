@@ -80,6 +80,8 @@ public class ShastaTest extends BaseTest {
         frozen.frozenTheEnergy(); //Freeze operating
         TimeUnit.SECONDS.sleep(3);
         String availableTrxNew = frozen.getAvailableTrx();
+        availableTrxOld = availableTrxOld.replace(",","");
+        availableTrxNew = availableTrxNew.replace(",","");
         log("availableTrxOld: "+availableTrxOld + "availableTrxNew: " + availableTrxNew);
         Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
     }

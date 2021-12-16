@@ -193,6 +193,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 //        return list.get(0);
     }
     public WebElement getFreeze_btn(){
+//        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '质押'");
+
         return freeze_btn;
 //        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结'");
 //        return list.get((list.size()-1 >0)?list.size()-1:0);
@@ -222,10 +224,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         driver.findElementByClassName("XCUIElementTypeTextField").clear();
         driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(addr);
         Helper.closeKeyBoard(driver);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
-        TimeUnit.SECONDS.sleep(1);
+        log("确认已点击");
         inputFrozenCount("20");
+        Helper.swipScreenLitter(driver);
         getFreeze_btn().click();
         TimeUnit.SECONDS.sleep(1);
         try{
@@ -235,7 +238,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
             log("not show go on button");
         }
         TimeUnit.SECONDS.sleep(1);
-        comfirm_btn().click();
+        getfreezeNow_btn().click();
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '下一步'").click();
         TimeUnit.SECONDS.sleep(1);
@@ -274,7 +277,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
                 TimeUnit.SECONDS.sleep(3);
             }
             TimeUnit.SECONDS.sleep(1);
-            comfirm_btn().click();
+            getfreezeNow_btn().click();
             checkPasswotd_input.sendKeys("Test0001");
             getConfirm_btn().click();
             TimeUnit.SECONDS.sleep(3);
@@ -298,9 +301,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     public void inputFrozenCount(String count) throws Exception {
         Helper.swipScreen(driver);
+        log("begain input");
         inputTextField.sendKeys(count);
+        log("input over");
+        TimeUnit.SECONDS.sleep(1);
         Helper.closeKeyBoard(driver);
-
+        log("keyboard is hide");
     }
 
 
@@ -311,13 +317,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         receivedTF.sendKeys(address);
         Helper.closeKeyBoard(driver);
-//        freezeCount_input.get(0).sendKeys("1");
-//        Helper.tapWhitePlace(driver);
-//        TimeUnit.SECONDS.sleep(2);
-//        freezeCount_input.get(1).sendKeys("");
-//        freezeCount_input.get(1).sendKeys(address);
-//        Helper.tapWhitePlace(driver);
-//        TimeUnit.SECONDS.sleep(2);
+
     }
 
     public String getAvailableTrx() {
@@ -331,7 +331,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         freezeCount_input.get(0).sendKeys("10");
 
         TimeUnit.SECONDS.sleep(1);
-        freeze_btn.click();
+        getFreeze_btn().click();
         TimeUnit.SECONDS.sleep(1);
         freezeNow_btn.click();
         TimeUnit.SECONDS.sleep(2);

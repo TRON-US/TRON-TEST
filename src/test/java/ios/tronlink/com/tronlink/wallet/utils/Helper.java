@@ -95,10 +95,15 @@ public class Helper {
         try {
             driver.findElementByName("Done").click();
         }catch (Exception e){
-            System.out.println("not found keyboard done");
-            TouchAction action = new TouchAction(driver);
-            PointOption whiteplace = PointOption.point(6,200);
-            action.tap(whiteplace).perform().release();
+            try {
+                driver.findElementByName("完成").click();
+
+            }catch (Exception el){
+                System.out.println("not found keyboard done");
+                TouchAction action = new TouchAction(driver);
+                PointOption whiteplace = PointOption.point(8,200);
+                action.tap(whiteplace).perform().release();
+            }
         }
 
     }
