@@ -66,7 +66,7 @@ public class AppiumTestCase {
     public  String voteSlectionInputId = "com.tronlinkpro.wallet:id/et_input";
     public  String voteInputQuantityXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[3]/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText";
     public  Long voteQuantity = 2L;
-    public  String voteNowId = "com.tronlinkpro.wallet:id/bt_go";
+    public  String voteNowId = "com.tronlinkpro.wallet:id/btn_asset_confirm";
     public  String addAssetId = "com.tronlinkpro.wallet:id/rl_add_assets";
     public  String enter_NameIdContractAddress_InputBox_id = "com.tronlinkpro.wallet:id/et_search";
     public  String energyOptionIconId = "com.tronlinkpro.wallet:id/tv_energy";
@@ -87,7 +87,7 @@ public class AppiumTestCase {
     public  String balance = "com.tronlinkpro.wallet:id/tv_balance";
     public  String walletBalance = "com.tronlinkpro.wallet:id/tv_blance";
     public  String freezeIconId = "com.tronlinkpro.wallet:id/freeze";
-    public  String freezeNowIconId = "com.tronlinkpro.wallet:id/bt_go";
+    public  String freezeNowIconId = "com.tronlinkpro.wallet:id/btn_asset_confirm";
     public  String freezeRuleId = "com.tronlinkpro.wallet:id/tv_common_right2";
     public  String freezeDoc1Id = "com.tronlinkpro.wallet:id/doc0_spe";
     public  String freezeEnergyDetailId = "com.tronlinkpro.wallet:id/ll_energy_arrow";
@@ -100,7 +100,7 @@ public class AppiumTestCase {
     public  String totalFreezeBandwidthAmountId = "com.tronlinkpro.wallet:id/tv_totalfreeze_bandwidth";
     public  String votingPowerInFreezeId = "com.tronlinkpro.wallet:id/tv_voting_power";
     public  String sendCoinButtonId = "com.tronlinkpro.wallet:id/send";
-    public  String transferNowId = "com.tronlinkpro.wallet:id/bt_go";
+    public  String transferNowId = "com.tronlinkpro.wallet:id/btn_asset_confirm";
     public  String transactionConfirmButtonId = "com.tronlinkpro.wallet:id/bt_send";
     public  String transactionConfirmInputPasswordId = "com.tronlinkpro.wallet:id/et_new_password";
     public  String receiveAddressId = "com.tronlinkpro.wallet:id/et_address";
@@ -146,14 +146,14 @@ public class AppiumTestCase {
     public  String mutliSignatureManagementId = "com.tronlinkpro.wallet:id/rl_sign_manager";
     public  String mutliSignQuestionId = "com.tronlinkpro.wallet:id/iv_qr";
     public  String mutliSignQuestionContentXPath = "/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.TextView";
-    public  String mutliSignAddPermissionId = "com.tronlinkpro.wallet:id/bt_go";
+    public  String mutliSignAddPermissionId = "com.tronlinkpro.wallet:id/btn_asset_confirm";
     public  String activeScreenMoreId = "com.tronlinkpro.wallet:id/ll_more";
     public  String modifyPermissionsId = "com.tronlinkpro.wallet:id/ll_edit";
     public  String deletePermissionId = "com.tronlinkpro.wallet:id/ll_delete";
     public  String deletePermissionConfirmId = "com.tronlinkpro.wallet:id/tv_ok";
     public  String deletePermissionCancelId = "com.tronlinkpro.wallet:id/tv_cancle";
     public  String permissionOperationId = "com.tronlinkpro.wallet:id/fl_operations";
-    public  String addPermissionId = "com.tronlinkpro.wallet:id/bt_go";
+    public  String addPermissionId = "com.tronlinkpro.wallet:id/btn_asset_confirm";
     public  String permissionNameInputId = "com.tronlinkpro.wallet:id/et_permission_name";
     public  String trxTransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.TextView";
     public  String trc10TransferOperationInAddPermissionXPath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.RelativeLayout/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.TextView";
@@ -229,7 +229,7 @@ public class AppiumTestCase {
     public  String setting_dapp_change = "com.tronlinkpro.wallet:id/ll_select";
     public  String common_left = "com.tronlinkpro.wallet:id/ll_common_left";
     public  String assetsList = "com.tronlinkpro.wallet:id/rl_main";
-    public  String withdrawButton = "com.tronlinkpro.wallet:id/bt_go";
+    public  String withdrawButton = "com.tronlinkpro.wallet:id/btn_asset_confirm";
 
     public  String language_title = "com.tronlinkpro.wallet:id/title";
     public  String moneyValue = "com.tronlinkpro.wallet:id/tv_money_value";

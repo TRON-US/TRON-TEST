@@ -20,6 +20,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr3")
+    public WebElement QRcodeImage;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_energy_arrow")
     public WebElement freezeEnergyDetail_btn;
 
@@ -91,8 +94,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement checkPasswotd_input;
 
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
     public WebElement confirm_btn;
 
 
@@ -114,7 +116,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_cancle")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_delete")
     public WebElement cleanAddress_btn;
 
 
@@ -134,7 +136,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_unfreeze")
     public WebElement unfreezeTargetAddress_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
     public WebElement unfreezeInfoConfirm_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/unfreeze")
@@ -215,10 +217,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.swipScreen(driver);
         try {
             frozenButtonClickAndConfirm();
-            confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
-            bt_send.click();
+            finish_btn().click();
             TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             System.out.println(e);
@@ -230,7 +231,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.swipScreen(driver);
         try {
             frozenButtonClickAndConfirm();
-            confirm_btn.click();
             TimeUnit.SECONDS.sleep(1);
             checkPasswotd_input.sendKeys("Test0001");
             bt_send.click();
@@ -274,9 +274,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
         frozenButtonClickAndConfirm();
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        confirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
         checkPasswotd_input.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(1);
@@ -292,13 +289,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.sendKeys(count);
         frozenButtonClickAndConfirm();
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        signNext_btn.click();
+        confirm_btn().click();
         TimeUnit.SECONDS.sleep(2);
         checkPasswotd_input.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(1);
-        confirm_btn.click();
+        finish_btn().click();
     }
 
 
@@ -335,21 +330,6 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
-    public void inputFrozenCount1() throws Exception{
-        Helper.scrollToElementUntilVisible(driver,freeze_btn);
-        TimeUnit.SECONDS.sleep(1);
-        freezeCount_input.sendKeys("10");
-
-        TimeUnit.SECONDS.sleep(1);
-        freeze_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        freezeNow_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        checkPasswotd_input.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-
-    }
 
 
 

@@ -10,36 +10,27 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 
-/**
- * 关于我们功能测试
- */
-//public class ZColdWalletTest extends BaseTest {
-//
 
 public class ZColdWalletTest extends ColdBaseTest {
 
     @Test(groups = {"P0"},enabled = true,description = "Cold wallet asset page test", alwaysRun = true)
-    public void test001_enterColdWallet() throws Exception {
+    public void test001_enterColdWallet() {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         Assert.assertTrue(coldHelper.AssetBtn.isEnabled());
         Assert.assertTrue(coldHelper.MineBtn.isEnabled());
-        Assert.assertTrue(coldHelper.recieveLabel.isDisplayed());
-        Assert.assertTrue(coldHelper.offlineLabel.isDisplayed());
+        Assert.assertTrue(coldHelper.recieveLabel.getText().contains("接收"));
+        Assert.assertTrue(coldHelper.offlineLabel.getText().contains("离线签名"));
         Assert.assertTrue(coldHelper.AddWalletBtn.isEnabled());
         Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即扫描'").isEnabled());
-
     }
-
 
     @Parameters({"address"})
     @Test(groups = {"P0"},enabled = true,description = "Cold wallet receive test", alwaysRun = true)
-    public void test002_coldWalletCanReceiveTrx(String address) throws Exception {
+    public void test002_coldWalletCanReceiveTrx(String address)  {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         coldHelper.recieveLabel.click();
-        waiteTime();
-        Helper.swipScreen(DRIVER);
-        Assert.assertTrue(coldHelper.addressLabel.getText().equals(address));
-        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款账户'").isEnabled());
+        Assert.assertTrue(coldHelper.addressLabel.getText().contains(address));
+        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制'").isEnabled());
     }
 
     @Test(enabled = true,description = "Cold wallet knowledge test", alwaysRun = true)
@@ -56,12 +47,10 @@ public class ZColdWalletTest extends ColdBaseTest {
     public void test005_coldWalletAddWalletTest() throws Exception {
         ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
         coldHelper.AddWalletBtn.click();
-        waiteTime();
-        Assert.assertTrue(coldHelper.importtitle.isEnabled());
-        Assert.assertTrue(coldHelper.memtitle.isEnabled());
-        Assert.assertTrue(coldHelper.Keystorettitle.isEnabled());
-        Assert.assertTrue(coldHelper.createttitle.isEnabled());
-
+        Assert.assertTrue(coldHelper.importtitle.getText().contains("私钥"));
+        Assert.assertTrue(coldHelper.memtitle.getText().contains("助记词"));
+        Assert.assertTrue(coldHelper.Keystorettitle.getText().contains("Keystore"));
+        Assert.assertTrue(coldHelper.createttitle.getText().contains("创建钱包"));
     }
 
     @Test(enabled = true,description = "Cold wallet manager test", alwaysRun = true)
@@ -104,48 +93,6 @@ public class ZColdWalletTest extends ColdBaseTest {
         Assert.assertEquals(toolsPage.title.getText(),"助记词转换工具");
     }
 
-    @Test(description = " ColdWallet Developer options On Test",alwaysRun = true)
-    public void test011_ColdWalletDeveloperOnOptions() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        setting.trunDeveloperOptions();
-        String developerNow = setting.connected_title.getText();
-        Assert.assertTrue(developerNow.contains("Shasta"));
-    }
-    @Test(description = " ColdWallet Developer options Off Test",alwaysRun = true)
-    public void test012_ColdWalletDeveloperOffOptions() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        SettingPage setting = mine.enterSettingPage();
-        setting.trunOffDeveloperOptions();
-        String developerNow = setting.disconnected_title.getText();
-        Assert.assertEquals(developerNow,"未选择");
-    }
-
-//    @Parameters({"shieldSK"})
-//    @Test(groups = {"P0"},description = "ShieldWallet Import",alwaysRun = true)
-//    public void test013_ColdWalletShieldWalletImport(String shieldSK) throws Exception {
-//        ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
-//        new Helper().importMoreWallet(Helper.importType.coldShieldWallet,shieldSK,"shieldCold","Test0001",coldHelper.driver);
-//        Assert.assertTrue(coldHelper.AssetBtn.isEnabled());
-//        Assert.assertTrue(coldHelper.MineBtn.isEnabled());
-//        Assert.assertTrue(coldHelper.recieveLabel.isDisplayed());
-//        Assert.assertTrue(coldHelper.offlineLabel.isDisplayed());
-//        Assert.assertTrue(coldHelper.AddWalletBtn.isEnabled());
-//        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即扫描'").isEnabled());
-//    }
-
-//    @Parameters({"shieldAddress"})
-//    @Test(groups = {"P0"},enabled = true,description = "shield Cold wallet receive test", alwaysRun = true)
-//    public void test014_coldShieldWalletCanReceiveTrx(String shieldAddress) throws Exception {
-//        ColdWalletHelpPage coldHelper = new ColdWalletHelpPage(DRIVER);
-//        coldHelper.recieveLabel.click();
-//        waiteTime();
-//        Helper.swipScreen(DRIVER);
-//        Assert.assertTrue(coldHelper.addressLabel.getText().equals(shieldAddress));
-//        Assert.assertTrue(coldHelper.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '复制收款账户'").isEnabled());
-//    }
 
     @Test(groups = {"P0"},enabled = true,description = "Shield Cold wallet knowledge test", alwaysRun = true)
     public void test015_coldShieldWalletKnowledgeTest() throws Exception {

@@ -20,7 +20,7 @@ public class MultiSignActiveTest extends BaseTest {
     @Test(description = "MultiSignature Question Content Test", alwaysRun = true)
     public void test001_MultiSignatureQuestionContentTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
+        MultiSignManagerPage multiSignManagerPage = assetPage.fasternterMultiSignManagerPage();
         Assert.assertTrue(multiSignManagerPage.getInstructionString().contains("Active"));
     }
 

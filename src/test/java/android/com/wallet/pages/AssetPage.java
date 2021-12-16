@@ -169,7 +169,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='tronlink_token']")
     public WebElement trx10_btn;
 
-    @FindBy(xpath = "//*[@text='BTT']")
+    @FindBy(xpath = "//*[@text='BTTOLD']")
     public WebElement online_trc10_btn;
 
     @FindBy(xpath = "//*[@text='USDT']")

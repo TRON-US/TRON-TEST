@@ -46,7 +46,7 @@ public class SettingTest extends Base {
         List<WebElement> languageList = setting.language_list;
         List<WebElement> selectList = setting.selected_btn;
         beforeLanguage = languageList.get(0).getText();
-        Assert.assertTrue(languageList.get(0).getText().contains("英文"));
+        Assert.assertTrue(languageList.get(0).getText().contains("English"));
         Assert.assertTrue(languageList.get(1).getText().contains("简体中文"));
         selectList.get(0).click();
         TimeUnit.SECONDS.sleep(3);
@@ -62,7 +62,7 @@ public class SettingTest extends Base {
         List<WebElement> selectList = setting.selected_btn;
         beforeLanguage = languageList.get(0).getText();
         Assert.assertTrue(languageList.get(0).getText().contains("English"));
-        Assert.assertTrue(languageList.get(1).getText().contains("Simplified Chinese"));
+        Assert.assertTrue(languageList.get(1).getText().contains("简体中文"));
         selectList.get(1).click();
         TimeUnit.SECONDS.sleep(3);
 
@@ -74,8 +74,8 @@ public class SettingTest extends Base {
         MinePage mine = asset.enterMinePage();
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
         Assert.assertEquals("DApp 浏览器", dapp.dappTtile_btn.getText());
-        dapp.testUrl();
-        dapp.findElementByText("USDT");
+//        dapp.testUrl();
+//        dapp.findElementByText("SUN");
     }
 
     @Test(description = "Currency Test")

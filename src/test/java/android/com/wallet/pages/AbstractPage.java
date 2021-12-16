@@ -31,13 +31,13 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement bt_send;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement bt_go;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirmBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement sendBtn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
@@ -84,16 +84,16 @@ public abstract class AbstractPage {
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
             try {
-                System.out.println("Not Fount by ID" + name);
+                System.out.println("Not Fount by ID: " + name);
                 driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+name+"\")");
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
-                    System.out.println("Not Fount by Text" + name);
+                    System.out.println("Not Fount by Text: " + name);
                     driver.findElementByName(name);
                     return  true;
                 }catch (org.openqa.selenium.NoSuchElementException xxx) {
-                    System.out.println("Not Fount by Name");
+                    System.out.println("Not Fount by Name!");
                     return false;
                 }
             }
@@ -122,6 +122,17 @@ public abstract class AbstractPage {
 
     }
 
+    public WebElement confirm_btn() {
+
+        return findElementByText("确认");
+
+    }
+
+    public WebElement finish_btn() {
+
+        return findElementByText("完成");
+
+    }
     public void clickOffsetElement(WebElement wele){
         int x = wele.getLocation().getX();
         int y = wele.getLocation().getY();

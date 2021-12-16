@@ -26,8 +26,7 @@ import org.testng.annotations.Test;
  */
 public class DiscoverTest extends Base {
 
-    //    List<String> dappNameList = new ArrayList<>();
-    String[] dappNameList = {"Poloni DEX","TRONSCAN","TRONLENDING","JustSwap","Bankroll","zkWrapper","JUST","SUN"};
+    String[] dappNameList = {"TRONSCAN","TRONLENDING","SunSwap","Bankroll","zkWrapper","JUST","SUN"};
     int dappListIndex = 0;
 
     @Parameters({"privateKey"})
@@ -64,27 +63,12 @@ public class DiscoverTest extends Base {
             TimeUnit.SECONDS.sleep(2);
             System.out.println("DAppName:" + dappNameInSearchResult  + " index: " + i);
             Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(findName) ||
-                    dappNameInSearchResult.contains(findName));
+                    dappNameInSearchResult.toLowerCase().contains(findName.toLowerCase()));
             dappListIndex++;
             dapp_search_page.iv_delete.click();
         }
     }
 
-
-
-    public AssetPage enterOnlineAssetPage() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        mine.findElementByText("自用测试").click();
-        mine.findElementByText("切换版本").click();
-        mine.online_version_icon.click();
-        TimeUnit.SECONDS.sleep(5);
-        if(asset.isElementExist("线上版本")){
-            DeviceRestart();
-            TimeUnit.SECONDS.sleep(2);
-        }
-        return asset;
-    }
 
 
 

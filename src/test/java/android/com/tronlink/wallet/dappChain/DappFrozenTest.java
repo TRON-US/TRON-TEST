@@ -159,7 +159,7 @@ public class DappFrozenTest extends Base {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.inputFrozenCount("0");
         String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.contains("最小冻结数量为") || prompt.contains("Minimum freeze is"));
+        Assert.assertTrue(prompt.contains("最小质押数量为") || prompt.contains("Minimum freeze is"));
     }
 
 
@@ -169,7 +169,7 @@ public class DappFrozenTest extends Base {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.inputFrozenCount("");
         String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.contains("最小冻结数量为") || prompt.contains("Minimum freeze is"));
+        Assert.assertTrue(prompt.contains("最小质押数量为") || prompt.contains("Minimum freeze is"));
     }
 
 
@@ -198,7 +198,7 @@ public class DappFrozenTest extends Base {
         String transactionType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlinkpro.wallet:id/tv_contract_title")).getText();
         String resourceType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlinkpro.wallet:id/tv_two")).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.equals("冻结资产") || transactionType.equals("Freeze Asset"));
+        Assert.assertTrue(transactionType.equals("质押资产") || transactionType.equals("Freeze Asset"));
         Assert.assertTrue(resourceType.contains("ENERGY"));
     }
 

@@ -19,7 +19,7 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
 
-//    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+//    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
 //    public WebElement addPermission_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_add")
@@ -96,7 +96,7 @@ public class MultiSignManagerPage extends AbstractPage {
     public AddPermissionPage enterAddPermissionPage(){
         try {
             addPermission_btn.click();
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
             System.out.println(1);
         }
@@ -131,7 +131,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         delConfirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        bt_send.click();
+        findElementByText("确认").click();
         password_input.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);

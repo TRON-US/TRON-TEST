@@ -19,19 +19,24 @@ public class BaseTest extends Base {
     @Parameters({"privateKey"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
+        log("setUpBefore");
+
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
+        log("setUpBefore---Over");
 
     }
 
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
-
+    log("afterMethod");
     }
 
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId,Method method) throws Exception {
+        log("beforeMethod");
+
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
 

@@ -19,133 +19,94 @@ public class ColdBaseTest extends Base {
     @Parameters({"privateKey","bundleId","udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId,String udid) throws Exception {
-
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
 //        DRIVER.closeApp();
-//        log("开始移除app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-//        log("开始安装app");
-//        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//        log("开始导入ownerPrivatekey");
-        DRIVER.closeApp();
-        DRIVER.launchApp();
-
-        log("我是类之间BaseTest的BeforeClass");
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("bundleId", bundleId);
+
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
-            //DRIVER.closeApp();
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("设置")).click();
-            //DRIVER.findElement(By.name("无线局域网")).click();
-            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            DRIVER.findElement(By.name("无线局域网")).click();
             TimeUnit.SECONDS.sleep(2);
-//            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
             DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
-            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            TimeUnit.SECONDS.sleep(2);
-            //findWebElement("无线局域网").click();
-            int tries = 0;
-            Boolean driver_is_start = false;
-            while (!driver_is_start && tries < 5) {
-                tries++;
-                try {
-                    Map<String, Object> params1 = new HashMap<>();
-                    params1.put("bundleId", bundleId);
-                    DRIVER.executeScript("mobile: activateApp", params1);
-                    //DRIVER.launchApp();
-                    driver_is_start = true;
-                } catch (Exception e) {
-                    System.out.println(e);
-                    TimeUnit.SECONDS.sleep(2);
-                }
-            }
+//            TimeUnit.SECONDS.sleep(2);
+            DRIVER.navigate().back();
         } catch (Exception e) {
         }
-
+        log("网络设置完成");
+        DRIVER.executeScript("mobile: activateApp", params);
         new Helper().importFirstWallet(Helper.importType.coldWallet,privateKey,DRIVER);
-//        new Helper().getColdSign(privateKey, DRIVER);
+        log("已经导入完成----BeforeClass");
     }
 
     @Parameters({"bundleId","udid"})
     @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String bundleId,String udid) {
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+//        DRIVER.closeApp();
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
-            //DRIVER.closeApp();
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("设置")).click();
-            //DRIVER.findElement(By.name("无线局域网")).click();
-            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            DRIVER.findElement(By.name("无线局域网")).click();
             TimeUnit.SECONDS.sleep(2);
-//            DRIVER.findElementByIosNsPredicate("label CONTAINS '飞行模式' AND name == '飞行模式' AND enabled == true").click();
             DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
-            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            TimeUnit.SECONDS.sleep(2);
-            DRIVER.findElement(By.name("好")).click();
-            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            TimeUnit.SECONDS.sleep(2);
-            AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
-            AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-            DRIVER.quit();
+//            TimeUnit.SECONDS.sleep(2);
+            DRIVER.navigate().back();
         } catch (Exception e) {
         }
+        DRIVER.quit();
 
     }
 
-    @Parameters({"bundleId"})
-    @AfterMethod(groups = {"P0"},alwaysRun = true)
-    public void afterMethod(Method methed, String bundleId) throws Exception {
-        try {
-
-            String name = this.getClass().getSimpleName() + "." +
-                    methed.getName();
-            screenshotAction(name);
-            Map<String, Object> params = new HashMap<>();
-            params.put("bundleId", bundleId);
-            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
-            //DRIVER.closeApp();
-        } catch (Exception e) {
-        }
-
-    }
-
+    //    @Parameters({"bundleId"})
+//    @BeforeMethod(groups = {"P0"},alwaysRun = true)
+//    public void beforeMethod(String bundleId,Method method) throws Exception {
+//        log("BeforeMethod");
+//        DRIVER.launchApp();
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
+//
+//    }
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
-    public void beforeMethod(String bundleId) throws Exception {
+    public void beforeMethod(String bundleId,Method method) throws Exception {
+        log("beforeMethod");
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
             tries++;
             try {
-                Map<String, Object> params = new HashMap<>();
-                params.put("bundleId", bundleId);
                 DRIVER.executeScript("mobile: activateApp", params);
-                //DRIVER.launchApp();
                 driver_is_start = true;
             } catch (Exception e) {
                 System.out.println(e);
                 TimeUnit.SECONDS.sleep(2);
             }
         }
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
+
     }
-
-
-    //    @AfterMethod(alwaysRun = true)
-//    public void afterMethod(Method methed) throws Exception {
+    @Parameters({"bundleId"})
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
+    public void afterMethod(Method method, String bundleId)  {
+        log("AfterMethod");
 //        try {
-//
-//            String name = this.getClass().getSimpleName() + "." +
-//                    methed.getName();
-//            screenshotAction(name);
 //            DRIVER.closeApp();
-//            DRIVER.launchApp();
+//            DRIVER.activateApp(bundleId);
+//
 //        } catch (Exception e) {
 //        }
-//
-//    }
+
+    }
+
 
 
 }

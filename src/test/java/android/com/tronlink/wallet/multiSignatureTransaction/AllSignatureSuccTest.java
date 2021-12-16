@@ -75,9 +75,6 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
@@ -104,9 +101,6 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
@@ -133,13 +127,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.tv_no_energy.getText().contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
 
     }
 
@@ -163,14 +153,10 @@ public class AllSignatureSuccTest extends Base {
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(SendTrx.note_text.getText().contains("账户未激活"));
-        log(SendTrx.fee_text.getText());
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("TRX"));
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
-        Assert.assertTrue(SendTrx.tv_no_energy.getText().contains("此交易需消耗能量，如您的能量不足，会额外燃烧TRX来获得能量。请保证拥有足够的能量或TRX，以避免交易失败。"));
     }
 
 
@@ -190,7 +176,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(str);
         Helper.swipScreen(DRIVER);
         SendTrx.send_btn.click();
-        SendTrx.transferNow_btn.click();
+        SendTrx.confirm_btn().click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(SendTrx.invalidTime_input.isDisplayed());
         Assert.assertTrue(SendTrx.signAddress_input.get(0).getText().length() == 34);
@@ -261,7 +247,6 @@ public class AllSignatureSuccTest extends Base {
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "sign options Test", alwaysRun = true)
     public void test010_signOptions(String multiSignPrivateKey) throws Exception {
-
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         MyPursePage myPurse = minePage.enterMyPursePage();
@@ -300,8 +285,7 @@ public class AllSignatureSuccTest extends Base {
         modifyPermission.confirm_btn.click();
         String fee = modifyPermission.fee_text.getText();
         Assert.assertTrue(fee.contains("TRX") && fee.contains("101"));
-        int bandwidth = Integer.valueOf(modifyPermission.bandwidth.getText().replace("带宽","").trim());
-        Assert.assertTrue(bandwidth >= 50 && bandwidth <= 900);
+
 
     }
 
@@ -321,8 +305,8 @@ public class AllSignatureSuccTest extends Base {
         for (int i = 0 ;i<5;i++){
             log("findTimes:   s" + String.valueOf(i) );
             try{
-                Assert.assertTrue(multipage.isElementExist("冻结资产"));
-                Assert.assertTrue(multipage.isElementExist("冻结账户:"));
+                Assert.assertTrue(multipage.isElementExist("质押资产"));
+                Assert.assertTrue(multipage.isElementExist("质押账户:"));
                 Assert.assertTrue(multipage.isElementExist(ownerAddress));
                 exist = true;
                 break;
@@ -335,16 +319,15 @@ public class AllSignatureSuccTest extends Base {
 
     }
 
-    @Parameters({"multiSignAddress","ownerAddress"})
-    @Test(description = "test014_VoteMultiSignCheck", alwaysRun = true)
-    public void test015_VoteMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        VotePage vote = asset.enterVotePage();
-//        Helper.tapScreen(vote.driver);
-        TimeUnit.SECONDS.sleep(1);
-        vote.votefirstSRuseMutiSign();
-        Assert.assertTrue(vote.isElementExist("投票"));
-    }
+//    @Parameters({"multiSignAddress","ownerAddress"})
+//    @Test(description = "test014_VoteMultiSignCheck", alwaysRun = true)
+//    public void test015_VoteMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        VotePage vote = asset.enterVotePage();
+//        TimeUnit.SECONDS.sleep(1);
+//        vote.votefirstSRuseMutiSign();
+//        Assert.assertTrue(vote.isElementExist("投票"));
+//    }
 
 
 

@@ -115,7 +115,8 @@ public class MultiSignTransactionPage extends AbstractPage {
     public void sign() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         sign_btn.click();
-        bt_send.click();
+        confirm_btn().click();
+//        bt_send.click();
         password_input.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(2);

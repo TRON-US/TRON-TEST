@@ -1,6 +1,7 @@
 package android.com.wallet.UITest.base;
 
 import android.com.wallet.pages.AssetPage;
+import android.com.wallet.pages.MinePage;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
@@ -323,6 +324,20 @@ public class Base {
         AndroidTouchAction act = new AndroidTouchAction(DRIVER);
         WebElement el = DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
         act.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(el))).perform();
+    }
+
+    public AssetPage enterOnlineAssetPage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        mine.findElementByText("自用测试").click();
+        mine.findElementByText("切换版本").click();
+        mine.online_version_icon.click();
+        TimeUnit.SECONDS.sleep(5);
+        if(asset.isElementExist("线上版本")){
+            DeviceRestart();
+            TimeUnit.SECONDS.sleep(2);
+        }
+        return asset;
     }
 
 }

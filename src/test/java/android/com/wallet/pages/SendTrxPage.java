@@ -60,7 +60,7 @@ public class SendTrxPage extends AbstractPage {
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement transferNow_btn;
 
 
@@ -70,16 +70,16 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirm_btn;
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_from_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/transfer_out_address")
     public WebElement from_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/receiving_address")
     public WebElement to_address;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
     public WebElement formatErrorHits_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_real_money")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_info_subtitle")
     public WebElement real_money;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
@@ -88,7 +88,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_add_address")
     public WebElement tv_add_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee_amount_bw")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_consume_resource")
     public WebElement bandwidth_text;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_note")

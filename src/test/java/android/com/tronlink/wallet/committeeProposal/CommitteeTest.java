@@ -92,7 +92,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
-        MyProposalsPage.send_btn.click();
+        MyProposalsPage.confirm_btn().click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
@@ -109,13 +109,13 @@ public class CommitteeTest extends Base {
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
-        MyProposalsPage.send_btn.click();
+        MyProposalsPage.button_confirm.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.agree_btn.click();
-        MyProposalsPage.send_btn.click();
+        MyProposalsPage.button_confirm.click();
         asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
@@ -136,10 +136,10 @@ public class CommitteeTest extends Base {
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         ProposalDetailsPage proposalDetailsPage = MyProposalsPage.enterpProposalDetailsPage();
         proposalDetailsPage.proposalCancle_btn.click();
-        proposalDetailsPage.send_btn.click();
+        proposalDetailsPage.button_confirm.click();
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(12);
         String proposalStatus = proposalDetailsPage.proposals_state_btn.getText();
         Assert.assertTrue(proposalStatus.equals("已取消"));
     }

@@ -95,10 +95,15 @@ public class Helper {
         try {
             driver.findElementByName("Done").click();
         }catch (Exception e){
-            System.out.println("not found keyboard done");
-            TouchAction action = new TouchAction(driver);
-            PointOption whiteplace = PointOption.point(6,200);
-            action.tap(whiteplace).perform().release();
+            try {
+                driver.findElementByName("完成").click();
+
+            }catch (Exception el){
+                System.out.println("not found keyboard done");
+                TouchAction action = new TouchAction(driver);
+                PointOption whiteplace = PointOption.point(8,200);
+                action.tap(whiteplace).perform().release();
+            }
         }
 
     }
@@ -109,26 +114,31 @@ public class Helper {
     }
 
     public static boolean isElementExist(IOSDriver driver,String name) {
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {
             driver.findElementByName(name);
             System.out.println("IsFindByName: "+name);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
             try {
                 driver.findElementById(name);
                 System.out.println("IsFindById: "+name);
-
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
                     if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
                         System.out.println("IsFindByBtn: "+name);
+                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                         return  true;
                     }else {
+                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                         return  false;
                     }
                 }catch (org.openqa.selenium.NoSuchElementException e){
                     System.out.println("NotFound: "+name);
+                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                     return  false;
                 }
             }
@@ -224,14 +234,14 @@ public class Helper {
 
 
     public void findAcceptAndClick(){
+        DRIVER.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {
             WebElement accBtn = DRIVER.findElementByName("接受");
             while (!accBtn.isEnabled()) {
-//                while (!findWebElement("接受").isEnabled()) {
                 IOSTouchAction action = new IOSTouchAction(DRIVER);
                 int width = DRIVER.manage().window().getSize().width;
                 int height = DRIVER.manage().window().getSize().height;
-                Duration duration = Duration.ofMillis(50);
+                Duration duration = Duration.ofMillis(30);
                 action.press(
                         PointOption.point(width/2, height*4/5))
                         .waitAction(WaitOptions.waitOptions(duration))
@@ -239,9 +249,10 @@ public class Helper {
                         .release().perform();
             }
             accBtn.click();
-//            findWebElement("接受").click();
         }catch (Exception e){
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
     }
 
     public void  importWatchShieldWallet(String udid,String nsk,String ak,String ovk,String shieldAddress,IOSDriver driver) throws Exception{
@@ -256,14 +267,9 @@ public class Helper {
         System.out.println(timeStamp.format(new Date()).toString());
         Boolean haveImport = isElementExist(DRIVER,"home manager");
         System.out.println(timeStamp.format(new Date()).toString());
-        System.out.println("haveImportedValue: " + haveImport);
+        System.out.println("Imported: " + haveImport);
         if(!haveImport){
-            try{
-                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                driver.findElementByName("允许").click();
-            }catch (Exception ee){
-                System.out.println("alert Not Found!!!");
-            }
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
     }
@@ -296,24 +302,19 @@ public class Helper {
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-
                 break;
             }
             case coldWallet:
             {
                 findWebElement("冷钱包").click();
-                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                 DRIVER.findElement(By.name("选择此模式")).click();
                 findAcceptAndClick();
-
-
                 break;
             }
             case shieldWallet:
             {
                 findWebElement("导入钱包").click();
                 findAcceptAndClick();
-
                 break;
             }
         }
@@ -367,11 +368,9 @@ public class Helper {
             DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
-            DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
-            DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
             DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
             tapWhitePlace(DRIVER);
             findWebElement("下一步").click();
@@ -380,21 +379,21 @@ public class Helper {
             tapWhitePlace(DRIVER);
             findWebElement("确定").click();
             TimeUnit.SECONDS.sleep(10);
-            AssetPage assetPage = new AssetPage(DRIVER);
-            try {
-                if (assetPage.ad_pic.isDisplayed()) {
-                    assetPage.adClose_btn.click();
-                    System.out.println("已关闭广告图");
-                }
-            } catch (Exception e) {
-                try {
-                    if (assetPage.adClose_btn.isDisplayed()) {
-                        assetPage.adClose_btn.click();
-                        System.out.println("已关闭广告图");
-                    }
-                } catch (Exception el) {
-                }
-            }
+//            AssetPage assetPage = new AssetPage(DRIVER);
+//            try {
+//                if (assetPage.ad_pic.isDisplayed()) {
+//                    assetPage.adClose_btn.click();
+//                    System.out.println("已关闭广告图");
+//                }
+//            } catch (Exception e) {
+//                try {
+//                    if (assetPage.adClose_btn.isDisplayed()) {
+//                        assetPage.adClose_btn.click();
+//                        System.out.println("已关闭广告图");
+//                    }
+//                } catch (Exception el) {
+//                }
+//            }
         }catch (Exception e){}
     }
 

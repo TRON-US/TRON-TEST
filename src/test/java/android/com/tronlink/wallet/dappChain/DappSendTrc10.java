@@ -191,7 +191,9 @@ public class DappSendTrc10 extends Base {
     Helper.swipScreen(transactionInfo.driver);
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-    String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
+    String content = transactionInfo.resouce_cost.getText();
+    content = content.replace("≈","");
+    String number = StringUtils.substringBeforeLast(content,"带宽");
     Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
   }
 

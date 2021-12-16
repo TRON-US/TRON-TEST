@@ -85,6 +85,7 @@ public class MultiSignRecodPage extends AbstractPage {
     public void signSuccess() throws Exception {
         signBtns.get(0).click();
         TimeUnit.SECONDS.sleep(2);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         password_input.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(8);
@@ -142,6 +143,7 @@ public class MultiSignRecodPage extends AbstractPage {
         waiteTime();
         signBtns.get(0).click();
         waiteTime();
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         password_input.sendKeys("Test000");
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(3);

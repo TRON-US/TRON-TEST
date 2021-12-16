@@ -39,7 +39,7 @@ public class SendTrzPage extends AbstractPage {
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement transferNow_btn;
 
 

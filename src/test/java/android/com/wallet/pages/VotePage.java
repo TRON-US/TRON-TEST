@@ -90,11 +90,15 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
     public WebElement search_edit_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement btgo_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_awards")
+    @FindBy(id = "com.tronlinkpro.wallet:id/caim_reward")
     public WebElement reward_btn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
+    public WebElement confirm_btn;
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/root")
     public List<WebElement> witness_list;

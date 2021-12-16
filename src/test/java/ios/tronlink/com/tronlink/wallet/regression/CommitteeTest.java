@@ -87,9 +87,9 @@ public class CommitteeTest extends Base {
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(15);
+//        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
-        TimeUnit.SECONDS.sleep(9);
+        TimeUnit.SECONDS.sleep(5);
         String count = String.format("%.0f", Math.random() * 100000);
         System.out.println("委员会提议修改超级代表燃烧TRX值："+count);
         committeePage.change1proposal(count);

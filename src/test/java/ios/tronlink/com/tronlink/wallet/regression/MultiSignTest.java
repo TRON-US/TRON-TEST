@@ -232,7 +232,7 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
-        Assert.assertTrue(multiSignManagerPage.chargeLabel.getText().contains("101"));
+        Assert.assertTrue(Helper.isElementExist(multiSignManagerPage.driver,"≈ 101 TRX"));
         Assert.assertFalse( Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
     }
 
@@ -264,7 +264,7 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.goBackAndSeeMultiTips();
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
-        Assert.assertTrue(multiSignRecodPage.getListString(multiSignRecodPage.typeLabels).contains("冻结资产"));
+        Assert.assertTrue(multiSignRecodPage.getListString(multiSignRecodPage.typeLabels).contains("质押资产"));
     }
 
     @Test(description = " multiSign sign Frozen  Test", alwaysRun = true)

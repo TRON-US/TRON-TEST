@@ -120,7 +120,7 @@ public class AddPermissionPage extends AbstractPage {
         weight_input.sendKeys("1");
         Helper.swipScreen(driver);
         confirm_btn.click();
-        send_btn.click();
+        findElementByText("确认").click();
         TimeUnit.SECONDS.sleep(1);
     }
 
@@ -133,6 +133,7 @@ public class AddPermissionPage extends AbstractPage {
             password_input.sendKeys("Test0001");
             send_btn.click();
             TimeUnit.SECONDS.sleep(2);
+            System.out.println("------------");
         }catch (Exception e){
             System.out.println(e);
         }
