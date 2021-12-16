@@ -20,6 +20,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr3")
+    public WebElement QRcodeImage;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_energy_arrow")
     public WebElement freezeEnergyDetail_btn;
 
