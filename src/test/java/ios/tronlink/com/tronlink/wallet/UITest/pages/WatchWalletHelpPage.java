@@ -55,6 +55,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         FrozenAndUnfreezePage frozenAndUnfreezePage = assetPage.enterFrozenAndThawingPage();
         frozenAndUnfreezePage.getenergy_btn().click();
         frozenAndUnfreezePage.inputFrozenCount("1");
+        Helper.swipScreenLitter(driver);
         waiteTime();
         frozenAndUnfreezePage.getFreeze_btn().click();
         waiteTime();
