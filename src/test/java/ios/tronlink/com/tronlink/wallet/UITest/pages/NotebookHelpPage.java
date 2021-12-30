@@ -51,7 +51,7 @@ public class NotebookHelpPage extends AbstractPage {
     public String  importWrongAddr(String addr) throws Exception{
         intoAddpage();
         inputAddressTF(addr);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return driver.findElementById("textlabel").getText();
     }
     public String  inportNullName() throws Exception{
