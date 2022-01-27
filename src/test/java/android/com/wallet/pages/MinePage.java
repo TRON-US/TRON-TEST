@@ -23,6 +23,9 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
     public WebElement online_version_icon;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    public WebElement userAgreementBackBtn;
+
     @FindBy(id = " com.tronlinkpro.wallet:id/log")
     public WebElement logItem;
 
@@ -45,6 +48,8 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
     public WebElement adClose_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
+    public WebElement userAgreementTitle;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_about")
     public WebElement aboutUs_btn;
@@ -115,7 +120,7 @@ public class MinePage extends AbstractPage {
     //enter about us Page
     public AboutUsPage enterAboutUsPage() throws Exception{
         TimeUnit.SECONDS.sleep(1);
-        Helper.swipScreenLitte(driver);
+        Helper.swipScreen(driver);
         try {
             aboutUs_btn.click();
         }catch (Exception e){

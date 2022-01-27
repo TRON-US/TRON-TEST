@@ -70,11 +70,10 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(Helper.isElementExist(mine.driver,"波宝"));
         mine.enterUserAgreementPage();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(mine.nav_title.getText().contains("用户协议"));
-        mine.backBtn.click();
+        Assert.assertTrue(mine.userAgreementTitle.getText().contains("用户协议"));
+        mine.userAgreementBackBtn.click();
         TimeUnit.SECONDS.sleep(1);
         mine.enterjoinCommunityPage();
-        Assert.assertTrue(mine.nav_title.getText().contains("加入社群"));
         Assert.assertTrue(Helper.isElementExist(mine.driver,"Telegram 电报群"));
         Assert.assertTrue(mine.enTelegramID.getText().contains("https://t.me/TronLink"));
         Assert.assertTrue(Helper.isElementExist(mine.driver,"Twitter"));
