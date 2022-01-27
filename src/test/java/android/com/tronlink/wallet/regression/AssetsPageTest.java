@@ -111,6 +111,7 @@ public class AssetsPageTest extends Base {
     public void test005_AssetTabChangeTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         Assert.assertTrue(asset.isTextExist("TRX"));
+        Helper.swipScreenLitte(asset.driver);
         Assert.assertTrue(asset.isTextExist("tronlink_token"));
         asset.findElementByText("收藏品").click();
         TimeUnit.SECONDS.sleep(1);
