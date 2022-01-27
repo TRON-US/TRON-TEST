@@ -59,9 +59,10 @@ public class AddressBookTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         AddressBookPage addressBookPage = minePage.enterAddressBookPage();
-        Assert.assertTrue(addressBookPage.addressBook_title.getText().equals("地址本")
+        Assert.assertTrue(addressBookPage.nav_title.getText().equals("地址本")
             || addressBookPage.addressBook_title.getText().equalsIgnoreCase("Address Book"));
         Assert.assertTrue(addressBookPage.addAddressBook_btn.isEnabled());
+
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Add address book test", alwaysRun = true)

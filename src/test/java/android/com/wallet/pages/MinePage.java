@@ -104,19 +104,13 @@ public class MinePage extends AbstractPage {
 
     public void enterUpdatePage(){
         driver.findElementByAndroidUIAutomator("new UiSelector().text(\"版本更新\")").click();
-
-//        updateItem.click();
     }
     public void enterUserAgreementPage(){
         driver.findElementByAndroidUIAutomator("new UiSelector().text(\"用户协议\")").click();
-
-//        userAgreement.click();
     }
 
     public void enterjoinCommunityPage(){
         driver.findElementByAndroidUIAutomator("new UiSelector().text(\"加入社群\")").click();
-
-//        joinCommunity.click();
     }
     //enter about us Page
     public AboutUsPage enterAboutUsPage() throws Exception{
@@ -201,7 +195,6 @@ public class MinePage extends AbstractPage {
         }
         return new MyPursePage(driver);
     }
-
 
     public CommitteeProposalPage enterCommitteeProposalPage(){
         try {

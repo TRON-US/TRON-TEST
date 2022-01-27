@@ -43,7 +43,7 @@ public class MyPursePage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_password")
+    @FindBy(id = "com.tronlinkpro.wallet:id/change_password")
     public WebElement walletPassword_btn;
 
 
@@ -63,7 +63,7 @@ public class MyPursePage extends AbstractPage {
     public WebElement shield_account_type;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_keystore2")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_keystore")
     public WebElement backupKeystore_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_privatekey")
@@ -179,8 +179,7 @@ public class MyPursePage extends AbstractPage {
     public String getBackupKeystore(String password) {
         String keystore = "";
         try {
-            Helper.swipScreen(driver);
-            findElementByText("备份 Keystore").click();
+            backupKeystore_btn.click();
             TimeUnit.SECONDS.sleep(1);
             password_et.sendKeys(password);
             confirm_btn.click();

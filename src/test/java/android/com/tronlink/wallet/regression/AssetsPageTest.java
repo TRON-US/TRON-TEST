@@ -70,10 +70,10 @@ public class AssetsPageTest extends Base {
     @Test(description = "five button can click",alwaysRun = true)
     public void test003_fivemainButtonPathchick() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        asset.findElementByText("发送").click();
+        asset.findElementByText("转账").click();
         Assert.assertTrue(asset.isTextExist("转账"));
         asset.driver.navigate().back();
-        asset.findElementByText("接收").click();
+        asset.findElementByText("收款").click();
         Assert.assertTrue(asset.isTextExist("收款"));
         asset.driver.navigate().back();
         asset.findElementByText("闪兑").click();
@@ -83,6 +83,7 @@ public class AssetsPageTest extends Base {
         Assert.assertTrue(asset.isTextExist("资源"));
         asset.driver.navigate().back();
         asset.findElementByText("投票").click();
+        asset.driver.navigate().back();
         asset.driver.navigate().back();
         asset.findElementByText("投票").click();
         Assert.assertTrue(asset.isTextExist("投票"));

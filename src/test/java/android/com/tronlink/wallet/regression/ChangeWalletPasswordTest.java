@@ -46,8 +46,7 @@ public class ChangeWalletPasswordTest extends Base {
 
     public WalletPasswordPage walletPasswordPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        MyPursePage myPursePage = minePage.enterMyPursePage();
+        MyPursePage myPursePage = asset.enterMyPursePage();
         WalletPasswordPage walletPasswordPage = myPursePage.enterwalletPasswordPage();
         return walletPasswordPage;
     }

@@ -41,10 +41,10 @@ public class ColdAssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_nonet_tip_close")
     public WebElement deleteColdWalletKnowledge_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_assets")
     public WebElement asset_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/my")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_my")
     public WebElement me_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_copy")
@@ -65,8 +65,11 @@ public class ColdAssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/cd_kt2")
     public WebElement keystore_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cd_cw")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_create")
     public WebElement createWallet_btn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_import")
+    public WebElement importWallet_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_mm")
     public WebElement mnemonic_btn;
@@ -93,9 +96,7 @@ public class ColdAssetPage extends AbstractPage {
 
 
     public ColdMinePage enterColdMinePage() {
-      driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
       me_btn.click();
-      driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
       return new ColdMinePage(driver);
     }
 

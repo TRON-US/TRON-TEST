@@ -50,18 +50,17 @@ public class Base {
 
     private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
-    public  int RetryAgainTimes = 6;
+    public  int RetryAgainTimes = 3;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-    public String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
 
     public static AtomicInteger systemAtomicPort = new AtomicInteger(8200);
-    //@Test(retryAnalyzer = TestRetryAnalyzer.class)
 
+    @Parameters({ "deviceName"})
     @BeforeMethod
-    public void testStart(Method method) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
+    public void testStart(Method method,String deviceName) {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName() + " Device: " + deviceName);
     }
 
 
@@ -77,6 +76,8 @@ public class Base {
             StringBuffer sb = new StringBuffer();
             sb.append(sc.next());
             System.out.println(sb.toString());
+            System.out.println("appium setup  success");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,6 +87,7 @@ public class Base {
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey","noReset"})
     @BeforeClass(groups = {"P0"}) //Increase stability(because some case star setup error)
     public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey,String noReset)throws Exception {
+        TimeUnit.SECONDS.sleep(2);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -107,19 +109,18 @@ public class Base {
                 desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("recreateChromeDriverSessions", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
-                //desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemAtomicPort.addAndGet(1));
+                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+//                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemAtomicPort.addAndGet(1));
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-                if (systemAtomicPort.get() == 8299) {
-                    systemAtomicPort.set(8200);
-                }
+//                if (systemAtomicPort.get() == 8299) {
+//                    systemAtomicPort.set(8200);
+//                }
                 System.out.println("mobile: " + deviceName + " " + udid);
                 System.out.println("privateKey: " + privateKey);
                 File appDir = new File(System.getProperty("user.dir"), "");
                 File app = new File(appDir, "TronLink.apk");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 System.out.println(app.getAbsoluteFile());
-                //desiredCapabilities.setCapability("app", "/Users/tron/Documents/tronlink_task/testnet_release.apk");
                 URL remoteUrl = new URL(url);
                 DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;

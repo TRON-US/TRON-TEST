@@ -91,9 +91,7 @@ public class ColdWalletTest extends Base {
     public void test004_coldWalletDeleteKnowledgeBtnTest() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         Assert.assertTrue(coldAsset.coldWalletKnowledge_btn.isEnabled());
-
         coldAsset.deleteColdWalletKnowledge_btn.click();
-        coldAsset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
         Boolean knowldegeBtnIsDelete = false;
         try {
@@ -109,21 +107,9 @@ public class ColdWalletTest extends Base {
     public void test005_coldWalletAddWalletTest() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         coldAsset.addWallet_btn.click();
-        coldAsset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
-        try {
-            coldAsset.accountType_normalAccount.click();
-        } catch (Exception e) {
-
-        }
-        Assert.assertTrue(coldAsset.privateKey_btn.isEnabled());
         Assert.assertTrue(coldAsset.createWallet_btn.isEnabled());
-        Assert.assertTrue(coldAsset.keystore_btn.isEnabled());
-        Assert.assertTrue(coldAsset.mnemonic_btn.isEnabled());
+        Assert.assertTrue(coldAsset.importWallet_btn.isEnabled());
 
-        coldAsset.keystore_btn.click();
-        coldAsset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        Assert.assertTrue(coldAsset.privateKeyQrScan_btn.isEnabled());
     }
 
 
@@ -133,8 +119,7 @@ public class ColdWalletTest extends Base {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         ColdMinePage coldMine = coldAsset.enterColdMinePage();
         coldMine.walletManager_btn.click();
-        coldMine.address_test.getText().equals(addressString);
-        coldMine.walletName_test.getText().contains("Cold");
+        Assert.assertTrue(coldMine.nav_title.getText().contains("钱包详情"));
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Cold wallet setting test", alwaysRun = true)
@@ -172,59 +157,59 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(currencyList.get(1).getText().contains("USD"));
     }
 
-    @Test(enabled = true,description = "coldWalletCloseSafeTipsTest", alwaysRun = true)
-    public void test010_coldWalletCloseSafeTipsTest() throws Exception {
-        ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
-        waiteTime();
-        coldAsset.addWallet_btn.click();
-        waiteTime();
-        coldAsset.create_wallet.click();
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_name").sendKeys("SafeTipsM");
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
-        TimeUnit.SECONDS.sleep(10);
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/ll_common_left").click();
+//    @Test(enabled = true,description = "coldWalletCloseSafeTipsTest", alwaysRun = true)
+//    public void test010_coldWalletCloseSafeTipsTest() throws Exception {
+//        ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
+//        waiteTime();
+//        coldAsset.addWallet_btn.click();
+//        waiteTime();
+//        coldAsset.create_wallet.click();
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_name").sendKeys("SafeTipsM");
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
+//        TimeUnit.SECONDS.sleep(10);
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/ll_common_left").click();
+//
+//        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_cold_tip")){ //不应该出现
+//            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_cold_close").click();
+//        }
+//
+//        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip")){
+//            log("开始测试关闭备份助记词提示框");
+//            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
+//            TimeUnit.SECONDS.sleep(1);
+//            Assert.assertFalse(coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip"));
+//        }
+//
+//    }
 
-        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_cold_tip")){ //不应该出现
-            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_cold_close").click();
-        }
-
-        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip")){
-            log("开始测试关闭备份助记词提示框");
-            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
-            TimeUnit.SECONDS.sleep(1);
-            Assert.assertFalse(coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip"));
-        }
-
-    }
-
-    @Test(enabled = true,description = "coldWalletDeleteSafeTipsWallet", alwaysRun = true)
-    public void test011_coldWalletDeleteSafeTipsWallet() throws Exception {
-        ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
-        waiteTime();
-        coldAsset.tv_walletname.click();
-        TimeUnit.SECONDS.sleep(5);
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
-        TimeUnit.SECONDS.sleep(3);
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        waiteTime();
-        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
-        waiteTime();
-        TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(coldAsset.tv_walletname.getText().contains("Cold-test"));
-
-    }
+//    @Test(enabled = true,description = "coldWalletDeleteSafeTipsWallet", alwaysRun = true)
+//    public void test011_coldWalletDeleteSafeTipsWallet() throws Exception {
+//        ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
+//        waiteTime();
+//        coldAsset.tv_walletname.click();
+//        TimeUnit.SECONDS.sleep(5);
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
+//        TimeUnit.SECONDS.sleep(3);
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+//        waiteTime();
+//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+//        waiteTime();
+//        TimeUnit.SECONDS.sleep(5);
+//        Assert.assertTrue(coldAsset.tv_walletname.getText().contains("Cold-test"));
+//
+//    }
 
 
 

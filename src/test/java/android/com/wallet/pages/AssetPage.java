@@ -125,25 +125,22 @@ public class AssetPage extends AbstractPage {
     public List<WebElement> assetsName;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bg_freeze")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_freeze_unfreeze")
     public WebElement freeze_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/my")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_my")
     public WebElement mine_btn;
 
 
 
-
-
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/app1")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_discovery")
     public WebElement discover_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_assets")
     public WebElement assetsMain_btn;
 
 
@@ -154,16 +151,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
     public WebElement trz_btn;
 
-
-/*    @FindBy(xpath = "//*[@text='TRX']")
-    public List<WebElement> trx20_btn;*/
-
     @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
     public List<WebElement> asset_names;
-
-    //com.tronlinkpro.wallet:id/rl_main
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
-    public List<WebElement> trx20_btn;
 
 
     @FindBy(xpath = "//*[@text='tronlink_token']")
@@ -181,10 +170,6 @@ public class AssetPage extends AbstractPage {
     //com.tronlinkpro.wallet:id/iv_renzheng
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_renzheng")
     public List<WebElement> trx10_icon_btns;
-
-    //@FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
-    //public List<WebElement> trx10_btn;
-
 
 
 
@@ -216,9 +201,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/address")
     public WebElement shieldAddress_text;
 
-    //com.tronlinkpro.wallet:id/tv_common_right2
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement saveQR_btn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_detail")
+    public WebElement enterWalletManageBtn;
 
 
     public void changeChainToDappChain() throws Exception{
@@ -685,8 +672,7 @@ public class AssetPage extends AbstractPage {
 
 
     public MyPursePage enterMyPursePage() throws Exception {
-        walletName_text.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        enterWalletManageBtn.click();
         return new MyPursePage(driver);
     }
 

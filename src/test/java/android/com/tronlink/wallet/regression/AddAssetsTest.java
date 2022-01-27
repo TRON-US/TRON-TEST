@@ -54,16 +54,16 @@ public class AddAssetsTest extends Base {
         }
     }
 
-//    @Test(description = "Add Asset Page Test",alwaysRun = true)
-//    public void test001_AddAssetPageTest() throws Exception{
-//        AssetPage asset = new AssetPage(DRIVER);
-//        AddAssertPage page = asset.enterAddAssertPage();
-//        Assert.assertTrue(page.isTextExist("我的全部资产"));
-//        Assert.assertTrue(page.isTextExist("TRX"));
-//        page.findElementByText("收藏品").click();
-//        Assert.assertTrue(page.isTextExist("TNFT"));
-//
-//    }
+    @Test(description = "Enter Asset Page Test",alwaysRun = true)
+    public void test001_EnterAddAssetPageTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        AddAssertPage page = asset.enterAddAssertPage();
+        Assert.assertTrue(page.nav_title.getText().contains("我的全部资产"));
+        Assert.assertTrue(page.right_title.getText().contains("自定义通证"));
+        Assert.assertTrue(page.hidasset.getText().contains("隐藏小额资产"));
+        Assert.assertTrue(page.right_title.getText().contains("自定义通证"));
+
+    }
     @Test(description = "Add Asset Test",alwaysRun = true)
     public void test002_AddAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
@@ -77,6 +77,7 @@ public class AddAssetsTest extends Base {
     @Test(description = "remove Asset Test",alwaysRun = true)
     public void test003_removeAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
+        Helper.swipScreenLitte(asset.driver);
         AndroidTouchAction act = new AndroidTouchAction(DRIVER);
         WebElement el = asset.findElementByText("AXE");
         act.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(el))).perform();

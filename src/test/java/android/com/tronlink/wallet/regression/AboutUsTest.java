@@ -62,7 +62,7 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
         mine.enterLogPage();
         TimeUnit.SECONDS.sleep(6);
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"4.4.0(2021.10.08)"));
+        Assert.assertTrue(Helper.isElementExist(mine.driver,"4.5.1(2022.01.25)"));
         Assert.assertTrue(mine.nav_title.getText().contains("版本日志"));
         mine.backBtn.click();
         mine.enterUpdatePage();
@@ -79,8 +79,7 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(mine.enTelegramID.getText().contains("https://t.me/TronLink"));
         Assert.assertTrue(Helper.isElementExist(mine.driver,"Twitter"));
         Assert.assertTrue(mine.tv_twitter.getText().contains("https://twitter.com/TronLinkWallet"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"微信"));
-        Assert.assertTrue(mine.tv_wechat.getText().contains("tronlink"));
+
     }
 
 }
