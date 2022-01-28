@@ -84,9 +84,7 @@ public class MinePage extends AbstractPage {
     public WebElement dapp_btn;
 
 
-    //com.tronlinkpro.wallet:id/commit_proposal
-    //com.tronlinkpro.wallet:id/commit_proposal
-    //com.tronlinkpro.wallet:id/committee_proposals
+
     @FindBy(id = "com.tronlinkpro.wallet:id/commit_proposal")
     public WebElement committeeProposals_btn;
 
@@ -203,22 +201,22 @@ public class MinePage extends AbstractPage {
 
     public CommitteeProposalPage enterCommitteeProposalPage(){
         try {
-            TimeUnit.SECONDS.sleep(3);
+            Helper.swipScreenLitte(driver);
+            TimeUnit.SECONDS.sleep(1);
             advanced_features_btn.click();
             TimeUnit.SECONDS.sleep(2);
             committeeProposals_btn.click();
-            //committeeProposals_btn.click();
-            driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(14);
         }catch (Exception e){
             System.out.println(e);
         }
         return new CommitteeProposalPage(driver);
     }
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_assets")
+    public WebElement assetsMain_btn;
 
     public AssetPage enterAssetPage() throws Exception {
-        assets_btn.click();
+        assetsMain_btn.click();
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new AssetPage(driver);
     }

@@ -16,6 +16,7 @@ public class CommitteeTest extends Base {
     @Parameters({"witnessKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String witnessKey) throws Exception {
+        DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         new Helper().getSign(witnessKey, DRIVER);
         try {
             DRIVER.closeApp();

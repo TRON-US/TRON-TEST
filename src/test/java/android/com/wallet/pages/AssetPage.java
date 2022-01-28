@@ -86,8 +86,8 @@ public class AssetPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_send")
-    public WebElement assets_btn;
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_send")
+    public WebElement transfer_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_safe_tip")
     public WebElement safe_tip;
@@ -97,9 +97,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(id="com.tronlinkpro.wallet:id/iv_vote")
     public WebElement vote_btn;
 
-
-
-    @FindBy(id="com.tronlinkpro.wallet:id/appmarket")
+    @FindBy(id="com.tronlinkpro.wallet:id/ll_tab_market")
     public WebElement market_btn;
 
     @FindBy(id="com.tronlinkpro.wallet:id/tv_market")
@@ -125,17 +123,17 @@ public class AssetPage extends AbstractPage {
     public List<WebElement> assetsName;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_freeze_unfreeze")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_freeze")
     public WebElement freeze_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_my")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_my")
     public WebElement mine_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_discovery")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_discovery")
     public WebElement discover_btn;
 
 
@@ -259,17 +257,12 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterSendTrxPage() {
         waiteTime();
-        assets_btn.click();
+        transfer_btn.click();
         waiteTime();
         return new SendTrxPage(driver);
     }
 
-    public SendTrzPage enterSendTrzPage() {
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        assets_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        return new SendTrzPage(driver);
-    }
+
 
 
     public SendTrxPage enterSendTrc10Page() {
@@ -408,12 +401,9 @@ public class AssetPage extends AbstractPage {
     public MinePage enterMinePage(){
         try {
             TimeUnit.SECONDS.sleep(2);
-            waiteTime();
             mine_btn.click();
         } catch (Exception e ){
-
-            findElementByText("我的").click();
-            System.out.println("find by name 我的");
+            System.out.println( e );
         }
 
         return new MinePage(driver);

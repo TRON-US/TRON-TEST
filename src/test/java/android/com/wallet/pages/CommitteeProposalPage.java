@@ -119,17 +119,10 @@ public class CommitteeProposalPage extends AbstractPage {
     }
 
 
-//    public void approveProposal() throws Exception {
-//        agree_btn.click();
-//        TimeUnit.SECONDS.sleep(2);
-//
-//    }
-
 
     public ProposalDetailsPage enterpProposalDetailsPage() throws Exception {
-        TimeUnit.SECONDS.sleep(3);
         proposalId_text.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         return new ProposalDetailsPage(driver);
     }
 

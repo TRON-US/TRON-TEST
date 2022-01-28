@@ -18,8 +18,6 @@ public class TrzPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_send")
-    public WebElement assets_btn;
 
 
 
