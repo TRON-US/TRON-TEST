@@ -22,7 +22,7 @@ public class TrxPage extends AbstractPage {
     public WebElement assets_btn;
 
 
-
+//TODO: not locationed
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_deposit")
     public WebElement transferIn_btn;
 

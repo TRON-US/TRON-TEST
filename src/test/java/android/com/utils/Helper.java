@@ -90,10 +90,10 @@ public class Helper {
 //        System.out.print("4/5上拉到1/5    " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
-            PointOption.point(width/2, height*4/5))
-            .waitAction(WaitOptions.waitOptions(duration))
-            .moveTo(PointOption.point(width/2, height/5))
-            .release().perform();
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height/5))
+                .release().perform();
     }
 
     public static void swipeDownScreen(AndroidDriver<?> driver){
@@ -103,10 +103,10 @@ public class Helper {
 //        System.out.print("2/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
-            PointOption.point(width/2, height*2/5))
-            .waitAction(WaitOptions.waitOptions(duration))
-            .moveTo(PointOption.point(width/2, height*4/5+50))
-            .release().perform();
+                PointOption.point(width/2, height*2/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*4/5+50))
+                .release().perform();
     }
 
 
@@ -187,32 +187,29 @@ public class Helper {
 
 
     public void getCreateWalletSign(Boolean isNormal, String walletName,
-        String password,AndroidDriver driver){
+                                    String password,AndroidDriver driver){
         this.DRIVER = driver;
         getCreateWallet(isNormal,walletName,password);
     }
 
-    public void getWatchWalletSign(String address,AndroidDriver driver){
+    public void getWatchWalletSign(String address,AndroidDriver driver) throws Exception{
+
         this.DRIVER = driver;
+        waiteTime();
         try {
             walletNameSwitch_btn.isDisplayed();
+            System.out.println("已导入");
         }catch (Exception e){
             getWatchWalletSignOperate(address);
+
         }
     }
 
-    public void getShieldWatchWalletSign(String udid,String nsk,String ak,String ovk,String shieldAddress,AndroidDriver driver){
-        this.DRIVER = driver;
-        try {
-            walletNameSwitch_btn.isDisplayed();
-        }catch (Exception e){
-            getShieldWatchWalletSignOperate(udid,nsk,ak,ovk,shieldAddress);
-        }
-    }
 
 
     public void getColdWalletSign(String privateKey,AndroidDriver driver){
         this.DRIVER = driver;
+        waiteTime();
         try {
             walletNameSwitch_btn.isDisplayed();
         }catch (Exception e){
@@ -340,6 +337,22 @@ public class Helper {
     }
 
 
+    public void  getWatchWalletSignOperate(String address) throws Exception{
+        TimeUnit.SECONDS.sleep(5);
+        findWebElement("com.tronlinkpro.wallet:id/tv_observation").click();
+        swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
+        findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+        TimeUnit.SECONDS.sleep(1);
+
+        findWebElement("com.tronlinkpro.wallet:id/add_watch_address").sendKeys(address);
+
+        findWebElement("com.tronlinkpro.wallet:id/add_watch_name").clear();
+        findWebElement("com.tronlinkpro.wallet:id/add_watch_name").sendKeys("WatchWallet");
+        findWebElement("com.tronlinkpro.wallet:id/add_watch_wallet").click();
+        TimeUnit.SECONDS.sleep(2);
+
+    }
+
 
     public void getShieldSignOperate(String testPrivateKey){
         try {
@@ -425,29 +438,12 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(DRIVER);
         int width = DRIVER.manage().window().getSize().width;
         action.press(PointOption.point(width/2,(a.getLocation().getY() + b.getLocation().getY())/2))
-            .release().perform();
+                .release().perform();
     }
 
 
 
 
-    public void  getWatchWalletSignOperate(String address){
-        try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_observation").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-
-            findWebElement("com.tronlinkpro.wallet:id/add_watch_address").sendKeys(address);
-
-            findWebElement("com.tronlinkpro.wallet:id/add_watch_name").clear();
-            findWebElement("com.tronlinkpro.wallet:id/add_watch_name").sendKeys("WatchWallet");
-            findWebElement("com.tronlinkpro.wallet:id/add_watch_wallet").click();
-            TimeUnit.SECONDS.sleep(1);
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
 
 
 
@@ -517,10 +513,10 @@ public class Helper {
             System.out.print("  " + width + "   " + height);
             Duration duration = Duration.ofMillis(200);
             action.press(
-                PointOption.point(width/2, height*4/5))
-                .waitAction(WaitOptions.waitOptions(duration))
-                .moveTo(PointOption.point(width/2, height/5))
-                .release().perform();
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
         }
     }
 
@@ -546,21 +542,7 @@ public class Helper {
 
 
     public WebElement findWebElement(String element) throws Exception {
-//        int tries = 0;
-//        Boolean Element_is_exist = false;
-        WebElement el = null;
-//        while (!Element_is_exist && tries < 3) {
-//            tries++;
-//            try {
-//                el = DRIVER.findElementById(element);
-//                Element_is_exist = true;
-//            }catch (NoSuchElementException e){
-//                //Element_is_exist = false;
-//                TimeUnit.SECONDS.sleep(2);
-//            }
-//        }
-        el = DRIVER.findElementById(element);
-        return el;
+        return DRIVER.findElementById(element);
     }
 
     public static boolean isElementExist(AndroidDriver<?> driver, String text) {
