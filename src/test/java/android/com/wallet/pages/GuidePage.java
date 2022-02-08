@@ -99,5 +99,32 @@ public class GuidePage extends AbstractPage {
     }
 
 
+    public ImportRoutePage enterImportPage() throws Exception{
+        importBtn.click();
+        swipUntilElementEnable(accBtn);
+        accBtn.click();
+        return new ImportRoutePage(driver);
+    }
+
+    public ImportRoutePage enterImportPageNone() throws Exception{
+        importBtn.click();
+        return new ImportRoutePage(driver);
+    }
+
+    public ImportRoutePage enterCreatePage() throws Exception{
+        creatBtn.click();
+        return new ImportRoutePage(driver);
+    }
+
+    public ImportRoutePage enterObservationPage() throws Exception{
+        observationBtn.click();
+        return new ImportRoutePage(driver);
+    }
+
+    public ImportRoutePage enterLedgerPage() throws Exception{
+        ledgerBtn.click();
+        return new ImportRoutePage(driver);
+    }
+
 
 }

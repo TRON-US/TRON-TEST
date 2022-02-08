@@ -117,9 +117,11 @@ public class MyPursePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/editText")
     public WebElement shieldAddress_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_know")
-    public WebElement i_know_btn;
+//    @FindBy(id = "com.tronlinkpro.wallet:id/bt_know")
+//    public WebElement i_know_btn;
 
+    @FindBy(xpath = "//*[@text='显示 Keystore']")
+    public WebElement i_know_btn;
 
 
 
@@ -176,14 +178,13 @@ public class MyPursePage extends AbstractPage {
 
 
 
-    public String getBackupKeystore(String password) {
+    public String getBackupKeystore(String password) throws Exception{
         String keystore = "";
-        try {
             backupKeystore_btn.click();
             TimeUnit.SECONDS.sleep(1);
             password_et.sendKeys(password);
             confirm_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(3);
             try {
                 i_know_btn.click();
             } catch (Exception e) {
@@ -192,9 +193,7 @@ public class MyPursePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(1);
             keystore = keystore_text.getText();
             done_btn.click();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+
         return keystore;
     }
 

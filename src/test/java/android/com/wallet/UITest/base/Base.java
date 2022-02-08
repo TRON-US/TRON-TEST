@@ -1,5 +1,6 @@
 package android.com.wallet.UITest.base;
 
+import android.com.utils.AppiumTestCase;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.MinePage;
 
@@ -7,7 +8,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import io.appium.java_client.touch.offset.PointOption;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -17,6 +20,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +48,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Base {
 
-
+    public static String useKeyPassword = "Test0001";
 
     public  AndroidDriver<?> DRIVER;
 
@@ -124,6 +128,7 @@ public class Base {
                 URL remoteUrl = new URL(url);
                 DRIVER = new AndroidDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
+                waiteTime();
                 System.out.println("setUp DRIVER success");
             }catch (Exception e){
                 System.out.println(e);
@@ -321,6 +326,7 @@ public class Base {
     }
 
 
+
     public void longPress(String text){
         AndroidTouchAction act = new AndroidTouchAction(DRIVER);
         WebElement el = DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
@@ -339,6 +345,19 @@ public class Base {
             TimeUnit.SECONDS.sleep(2);
         }
         return asset;
+    }
+
+
+    public void wifiClose(String udid) throws Exception{
+        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi disable");
+    }
+
+    public void wifiOpen(String udid) throws Exception{
+        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi enable");
+    }
+
+    public void closeKeyboard(String udid) throws Exception{
+        AppiumTestCase.cmdReturn("adb -s " + udid + " input keyevent 111");
     }
 
 }

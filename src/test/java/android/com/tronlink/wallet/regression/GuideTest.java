@@ -114,7 +114,7 @@ public class GuideTest extends Base {
     @Test(alwaysRun = true)
     public void test004_coldModeTestOffLineTest(String udid) throws Exception{
         GuidePage guide = new GuidePage(DRIVER);
-        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi disable");
+        wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
         guide.switchBtn.click();
         Assert.assertTrue(guide.title.getText().contains("冷钱包模式描述"));
@@ -123,7 +123,7 @@ public class GuideTest extends Base {
         guide.cancelBtn.click();
         TimeUnit.SECONDS.sleep(1);
         guide.switchBtn.click();
-        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi enable");
+        wifiOpen(udid);
         TimeUnit.SECONDS.sleep(3);
 
     }
@@ -132,7 +132,7 @@ public class GuideTest extends Base {
     @Test(alwaysRun = true)
     public void test005_coldModeInfoTest(String udid) throws Exception{
         GuidePage guide = new GuidePage(DRIVER);
-        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi disable");
+        wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
         guide.switchBtn.click();
         guide.modeconfirmBtn.click();
@@ -143,7 +143,7 @@ public class GuideTest extends Base {
         Assert.assertTrue(guide.importBtn.getText().contains("导入账户"));
         Assert.assertTrue(guide.creatBtn.getText().contains("创建钱包"));
         guide.switchBtn.click();
-        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi enable");
+        wifiOpen(udid);
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(guide.observationBtn.getText().contains("观察钱包"));
         Assert.assertTrue(guide.ledgerBtn.getText().contains("Ledger"));

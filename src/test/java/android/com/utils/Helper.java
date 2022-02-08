@@ -149,7 +149,6 @@ public class Helper {
 
         }
 
-
     }
 
 
@@ -280,30 +279,28 @@ public class Helper {
     public void getSignOperate(String testPrivateKey){
         try {
             findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-
+            try {
+                swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
+                findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            }catch (Exception el){
+                System.out.println("not the first time import");
+            }
             findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(testPrivateKey);
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
             swipScreenLitte(DRIVER);
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").clear();
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").sendKeys("Auto-test");
-
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
-
-
-
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
             TimeUnit.SECONDS.sleep(6);
-            //校验是否导入成功
             System.out.println("开始校验是否导入成功");
             findWebElement("com.tronlinkpro.wallet:id/tv_walletname");
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
-            System.out.println("\n-----------\n导入失败!!!!!\n");
-
-            System.out.println(e);
+            System.out.println("\n-----------\n导入失败!!!!!\n" + e + "\n--------------------!!!!!\n");
+//            System.out.println(e);
+//            System.out.println("\n--------------------!!!!!\n");
         }
 
     }
@@ -548,9 +545,9 @@ public class Helper {
     public static boolean isElementExist(AndroidDriver<?> driver, String text) {
         try {
             driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
-            System.out.println("IsFindByText: "+text);
+            System.out.println("isFindByText: "+text);
             return  true;
-        }catch (org.openqa.selenium.NoSuchElementException ex){
+        }catch (Exception ex){
             return  false;
         }
     }

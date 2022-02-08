@@ -1,5 +1,7 @@
 package android.com.wallet.pages;
 
+import android.com.utils.Helper;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.ios.IOSTouchAction;
@@ -162,7 +164,22 @@ public abstract class AbstractPage {
         System.out.println("x: " + x + " y: " + y + " width: " + width + " hight: "+ hight);
     }
 
+    public void swipUntilElementEnable(WebElement element) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        System.out.print("  " + width + "   " + height);
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        Duration duration = Duration.ofMillis(300);
 
+        while (! element.isEnabled()) {
+            action.press(
+                    PointOption.point(width/2, height*4/5))
+                    .waitAction(WaitOptions.waitOptions(duration))
+                    .moveTo(PointOption.point(width/2, height/5))
+                    .release().perform();
+        }
+    }
 
     public  void swipScreenLitte(){
         AndroidTouchAction action = new AndroidTouchAction(driver);
@@ -175,4 +192,30 @@ public abstract class AbstractPage {
                 .moveTo(PointOption.point(width/2, height/3))
                 .release().perform();
     }
+
+    public void deleteWallet() throws Exception{
+        driver.findElementById("com.tronlinkpro.wallet:id/iv_detail").click();
+        Helper.swipScreen(driver);
+        driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
+        driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+        driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+    public void deleteWalletNone() throws Exception{
+        driver.findElementById("com.tronlinkpro.wallet:id/iv_detail").click();
+        Helper.swipScreen(driver);
+        driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
+        driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+    public void deleteColdWallet() throws Exception{
+        driver.findElementById("com.tronlinkpro.wallet:id/tv_title").click();
+        Helper.swipScreen(driver);
+        driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
+        driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
+        driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
 }

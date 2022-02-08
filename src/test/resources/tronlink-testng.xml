@@ -4,18 +4,32 @@
     <listeners>
         <listener class-name="android.com.wallet.UITest.retry.RetryListener"/>
     </listeners>
-    <test name= "CLB0218A10004233">
+    <test name= "8VT0221608005387">
         <parameter name="port"  value="4800"/>
-        <parameter name="udid" value="CLB0218A10004233"/>
+        <parameter name="udid" value="8VT0221608005387"/>
         <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value= "9"/>
-        <parameter name="deviceName" value= "EML-AL00"/>
-        <parameter name="noReset" value="false"/>
+        <parameter name="platformVersion" value= "10"/>
+        <parameter name="deviceName" value= "NOH-AL00"/>
+        <parameter name="noReset" value="true"/>
         <parameter name="systemPort"  value="8200"/>
-        <parameter name="address"  value="TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb"/>
-        <parameter name="privateKey"  value="a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026"/>
-        <packages>
-            <package name="android.com.tronlink.wallet.regression.*"></package>
-        </packages>
+        <parameter name="address"  value="TMhGDU7NiXwckCW64PqAvWFuC2kR1WSF5J"/>
+        <parameter name="privateKey"  value="11c7013416aac83fd6070abb8ffceb0ad102d9f87dfc9c98308b0fd47e8c3a1a"/>
+        <parameter name="ownerPrivateKey" value="8fba85314275232c5fc3ab1e1958a9ba3bb7391898822886945744b26396019f"/>
+        <parameter name="ownerAddress" value="TSUnS4AmSb2x7B6MfgNKem9mJqK8YWSdsc"/>
+        <parameter name="multiSignPrivateKey" value="4a0dc8e1fd01f32798d8bb8d8cf6e0f2c0306802fcea3e2ae0abd71cb7043871"/>
+        <parameter name="multiSignAddress" value="THfB9Xz9mU7et4mFGcg5x8cCbf3oD1Lax1"/>
+        <parameter name="witnessKey" value="3d16a04b7d01712667b40cb7f4c9bbe73ca111ac14a13a4f8e12a7f557d2c89c"/>
+        <parameter name="witnessAddress" value="TEDguVMSsFw3HSizQXFK1BsrGWeuRMNN7t"/>
+        <parameter name="witnessUrl" value="Android-UI-Witness-001"/>
+        <parameter name="shieldSK" value="054e0fe55167e2983afe92027b547739bea5e2c2d0fefe689edd093bc56e201a"/>
+        <parameter name="shieldAddress" value="ztron1gsw4mh6hrzey02087cr7f3ny6szvwefvdlzdyta3n2d5yaxnf4jqkz5mfdfqre8dggl6xzrh9rj"/>
+<!--        <packages>-->
+<!--            <package name="android.com.tronlink.wallet.regression.*"></package>-->
+<!--            <package name="android.com.tronlink.wallet.committeeProposal.*"></package>-->
+<!--            <package name="android.com.tronlink.wallet.multiSignatureTransaction.*"></package>-->
+<!--        </packages>-->
+        <classes>
+            <class name="android.com.tronlink.wallet.regression.ImportWalletTest"></class>
+        </classes>
     </test>
 </suite>
