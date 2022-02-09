@@ -195,7 +195,7 @@ public class SendTrc10 extends Base {
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
         String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
         Helper.swipScreenLitte(asset.driver);
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2021"));
+        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2022"));
         Assert.assertTrue(sendIcon.contains("-"));
         Assert.assertEquals(detailPageSendAmount.substring(1),String.valueOf(sendTrxAmount));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())

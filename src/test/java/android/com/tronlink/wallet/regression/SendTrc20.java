@@ -158,7 +158,7 @@ public class SendTrc20 extends Base {
             number = number.replace("K","");
         }
         number = StringUtils.substringAfterLast(number,"+");
-        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
+        Assert.assertTrue(Double.parseDouble(number.trim()) > 0);
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Trc20 transfer success recording")
@@ -196,12 +196,10 @@ public class SendTrc20 extends Base {
       Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
       Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
       System.out.println(transactionInfo.title_amount_test.getText());
-//      String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
       String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
       Helper.swipScreenLitte(asset.driver);
-      Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2021"));
+      Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2022"));
       Assert.assertTrue(sendIcon.contains("-"));
-//      Assert.assertEquals(detailPageSendAmount.substring(1),String.valueOf(sendTrc20Amount));
       Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
               > Long.valueOf(currentMainNetBlockNum));
       Helper.swipScreenLitte(asset.driver);

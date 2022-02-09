@@ -62,7 +62,6 @@ public class InternalNodeSetPage extends AbstractPage {
 
 
     public AddCustomNodePage enterAddCustomNodePage() throws Exception{
-//        clickOffsetElement(addNote_btn);
         addNote_btn.click();
         TimeUnit.SECONDS.sleep(3);
         return new AddCustomNodePage(driver);

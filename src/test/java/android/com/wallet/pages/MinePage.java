@@ -68,6 +68,8 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/announcement")
     public WebElement announcement_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/about")
+    public WebElement abuoutus_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/transfer_history")
     public WebElement transferHistory_btn;
@@ -167,8 +169,8 @@ public class MinePage extends AbstractPage {
     //enter FriendInvitation Page
     public AnnouncementPage enterAnnouncementPage(){
         try {
+            swipScreenLitte();
             announcement_btn.click();
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println(e);
         }
@@ -178,7 +180,6 @@ public class MinePage extends AbstractPage {
 
     public TransactionRecordPage enterTransactionRecordPage(){
         try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             transferHistory_btn.click();
         }catch (Exception e){
             System.out.println(e);
