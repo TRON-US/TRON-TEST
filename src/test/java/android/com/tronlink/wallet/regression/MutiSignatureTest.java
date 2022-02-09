@@ -91,7 +91,7 @@ public class MutiSignatureTest extends Base {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         //del before sign
-        delSignData(multiSignManager);
+//        delSignData(multiSignManager);
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
         TimeUnit.SECONDS.sleep(3);
