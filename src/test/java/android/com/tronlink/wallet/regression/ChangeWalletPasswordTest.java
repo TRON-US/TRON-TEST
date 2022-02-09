@@ -68,27 +68,7 @@ public class ChangeWalletPasswordTest extends Base {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    @Test(groups = {"P0"},description = "input correct password", alwaysRun = true)
-    public void test0003InputIncorrectPassword() throws Exception {
-        WalletPasswordPage walletPasswordPage = walletPasswordPage();
-        walletPasswordPage.changePassword(oldPassword, newPassword, newPassword);
-        TimeUnit.SECONDS.sleep(3);
-        MyPursePage myPurse = new MyPursePage(DRIVER);
-        keystore = myPurse.getBackupKeystore(newPassword);
-        Assert.assertTrue(myPurse.getExitst());
-        TimeUnit.SECONDS.sleep(1);
-    }
 
-    @Test(description = "input incorrect password", alwaysRun = true)
-    public void test0004InputIncorrectPassword() throws Exception {
-        WalletPasswordPage walletPasswordPage = walletPasswordPage();
-        walletPasswordPage.changePassword(newPassword, newPassword, newPassword);
-        TimeUnit.SECONDS.sleep(3);
-        MyPursePage myPursePage = new MyPursePage(DRIVER);
-        keystore = myPursePage.getBackupKeystore(oldPassword);
-        Assert.assertTrue(keystore.isEmpty());
-        TimeUnit.SECONDS.sleep(1);
-    }
 
     @Test(description = "input incorrect password", alwaysRun = true)
     public void test0005InputCorrectPassword() throws Exception {
