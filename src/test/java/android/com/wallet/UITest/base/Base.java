@@ -331,6 +331,19 @@ public class Base {
         AppiumTestCase.cmdReturn("adb -s " + udid + " input keyevent 111");
     }
 
+    public boolean isElementTextExist(String text) {
+        try {
+            DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            System.out.println("Not Fount by Text" + text);
+            return false;
+        }
+    }
+
+
+
+
 //    public void swapClickUntilElementTextShow(String text) throws Exception {
 //        int i = 10 ;
 //        while (i>0) {

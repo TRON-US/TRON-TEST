@@ -46,11 +46,12 @@ public class AboutUsTest extends Base {
         MinePage mine = asset.enterMinePage();
         mine.enterAboutUsPage();
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"波宝"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"版本日志"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"版本更新"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"用户协议"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"加入社群"));
+        Assert.assertTrue(isElementTextExist("波宝"));
+        Assert.assertTrue(isElementTextExist("波宝"));
+        Assert.assertTrue(isElementTextExist("版本日志"));
+        Assert.assertTrue(isElementTextExist("版本更新"));
+        Assert.assertTrue(isElementTextExist("用户协议"));
+        Assert.assertTrue(isElementTextExist("加入社群"));
     }
 
     @Test(description = "SecendPageEnterTest",alwaysRun = true)
@@ -62,21 +63,21 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
         mine.enterLogPage();
         TimeUnit.SECONDS.sleep(6);
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"4.5.1(2022.01.25)"));
+        Assert.assertTrue(isElementTextExist("4.5.1(2022.01.25)"));
         Assert.assertTrue(mine.nav_title.getText().contains("版本日志"));
         mine.backBtn.click();
         mine.enterUpdatePage();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"波宝"));
+        Assert.assertTrue(isElementTextExist("波宝"));
         mine.enterUserAgreementPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(mine.userAgreementTitle.getText().contains("用户协议"));
         mine.userAgreementBackBtn.click();
         TimeUnit.SECONDS.sleep(1);
         mine.enterjoinCommunityPage();
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"Telegram 电报群"));
+        Assert.assertTrue(isElementTextExist("Telegram 电报群"));
         Assert.assertTrue(mine.enTelegramID.getText().contains("https://t.me/TronLink"));
-        Assert.assertTrue(Helper.isElementExist(mine.driver,"Twitter"));
+        Assert.assertTrue(isElementTextExist("Twitter"));
         Assert.assertTrue(mine.tv_twitter.getText().contains("https://twitter.com/TronLinkWallet"));
 
     }

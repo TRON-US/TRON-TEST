@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
 
+    public  static String apkPackageName = "com.tronlinkpro.wallet";
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
     public  WebElement confirmBan;
@@ -33,14 +34,11 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement bt_send;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
-    public WebElement bt_go;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirmBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
-    public WebElement sendBtn;
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement nav_title;
@@ -52,6 +50,7 @@ public abstract class AbstractPage {
     public WebElement hidasset;
 
     public AndroidDriver<?> driver;
+
 
     public AbstractPage(AndroidDriver<?> driver) {
 
@@ -217,5 +216,15 @@ public abstract class AbstractPage {
         driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
         TimeUnit.SECONDS.sleep(3);
     }
+
+    public String longidWithID(String ids){
+        return "com.tronlinkpro.wallet:id/" + ids ;
+    }
+
+    public WebElement findByShotId(String ids){
+        return driver.findElementById(longidWithID(ids));
+    }
+
+
 
 }

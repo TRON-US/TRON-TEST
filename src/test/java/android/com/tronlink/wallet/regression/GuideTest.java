@@ -107,7 +107,7 @@ public class GuideTest extends Base {
         Assert.assertTrue(guide.noticeTitle.getText().contains("当前设备已连接网络，请关闭网络后，再进行创建或导入"));
         Assert.assertTrue(guide.knowBtn.getText().contains("我知道了"));
         guide.knowBtn.click();
-        Assert.assertFalse( Helper.isElementExist(DRIVER,"冷钱包模式描述"));
+        Assert.assertFalse( isElementTextExist("冷钱包模式描述"));
     }
 
     @Parameters({"udid"})

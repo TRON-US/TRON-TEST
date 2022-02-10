@@ -34,7 +34,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/3, height*2/3))
@@ -47,7 +46,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.println("4/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/2))
@@ -60,7 +58,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.println("2/5上拉到1/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*2/5))
@@ -74,7 +71,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.print("1/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height/5))
@@ -87,7 +83,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.print("4/5上拉到1/5    " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*4/5))
@@ -100,7 +95,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.print("2/5下拉到4/5   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width/2, height*2/5))
@@ -115,8 +109,6 @@ public class Helper {
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
         int height = driver.manage().window().getSize().height;
-//        System.out.println("swip the screen left");
-//        System.out.print("   " + width + "   " + height);
         Duration duration = Duration.ofMillis(200);
         action.press(
                 PointOption.point(width*4/5, height/2))
@@ -175,22 +167,6 @@ public class Helper {
         }
     }
 
-    public void getShieldSign(String testPrivateKey,AndroidDriver driver){
-        this.DRIVER = driver;
-        try {
-            walletNameSwitch_btn.isDisplayed();
-        }catch (Exception e){
-            getShieldSignOperate(testPrivateKey);
-        }
-    }
-
-
-    public void getCreateWalletSign(Boolean isNormal, String walletName,
-                                    String password,AndroidDriver driver){
-        this.DRIVER = driver;
-        getCreateWallet(isNormal,walletName,password);
-    }
-
     public void getWatchWalletSign(String address,AndroidDriver driver) throws Exception{
 
         this.DRIVER = driver;
@@ -215,16 +191,6 @@ public class Helper {
             getColdWalletSignOperate(privateKey);
         }
     }
-
-    public void getShieldColdWalletSign(String privateSk,AndroidDriver driver){
-        this.DRIVER = driver;
-        try {
-            walletNameSwitch_btn.isDisplayed();
-        }catch (Exception e){
-            getShieldColdWalletSignOperate(privateSk);
-        }
-    }
-
 
 
     public void changeDappchain() throws Exception{
@@ -254,7 +220,6 @@ public class Helper {
             findWebElement("com.tronlinkpro.wallet:id/creat").click();
             findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys(password);
             findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            //findWebElement("com.tronlinkpro.wallet:id/creat").click();
             findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys(password);
             findWebElement("com.tronlinkpro.wallet:id/creat").click();
             TimeUnit.SECONDS.sleep(8);
@@ -299,8 +264,7 @@ public class Helper {
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println("\n-----------\n导入失败!!!!!\n" + e + "\n--------------------!!!!!\n");
-//            System.out.println(e);
-//            System.out.println("\n--------------------!!!!!\n");
+
         }
 
     }
@@ -350,136 +314,12 @@ public class Helper {
 
     }
 
-
-    public void getShieldSignOperate(String testPrivateKey){
-        try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-            try {
-                //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
-            } catch (Exception e) {
-
-            }
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Auto-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(3);
-            //校验是否导入成功
-            System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
-            System.out.println("完成校验，导入成功");
-        }catch (Exception e){
-            System.out.println(e);
-        }
-
-    }
-
-
-    public void  getShieldWatchWalletSignOperate(String udid,String nsk,String ak,String ovk,String shieldAddress){
-        try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-            try {
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
-            } catch (Exception e) {
-
-            }
-            //点击观察钱包
-            findWebElement("com.tronlinkpro.wallet:id/cd_ow").click();
-            TimeUnit.SECONDS.sleep(1);
-            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(nsk);
-            DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ak);
-            switch (udid) {
-                //大屏幕手机单独处理
-                case "d94d4ea":
-                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ovk);
-                    TimeUnit.SECONDS.sleep(1);
-                    swipScreenFromTopToBottom(DRIVER);
-                    swipScreenFromTopToBottom(DRIVER);
-                    TimeUnit.SECONDS.sleep(1);
-                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[4]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
-                    break;
-                default:
-                    TimeUnit.SECONDS.sleep(1);
-                    swipScreenFromTopToBottom(DRIVER);
-                    swipScreenFromTopToBottom(DRIVER);
-                    TimeUnit.SECONDS.sleep(1);
-                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(ovk);
-                    DRIVER.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText")).sendKeys(shieldAddress);
-                    TimeUnit.SECONDS.sleep(1);
-            }
-            findWebElement("com.tronlinkpro.wallet:id/btn_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Auto-shield-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(3);
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
     public void tapBetweenTwoElement(WebElement a, WebElement b) throws Exception{
         AndroidTouchAction action = new AndroidTouchAction(DRIVER);
         int width = DRIVER.manage().window().getSize().width;
         action.press(PointOption.point(width/2,(a.getLocation().getY() + b.getLocation().getY())/2))
                 .release().perform();
     }
-
-
-
-
-
-
-
-
-    public void  getShieldColdWalletSignOperate(String testPrivateKey){
-        try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_cold_wallet").click();
-            findWebElement("com.tronlinkpro.wallet:id/tv_ok").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-            try {
-                //新增匿名账户页面
-                // 普通账户id：com.tronlinkpro.wallet:id/create_option_desc
-                //匿名账户id:com.tronlinkpro.wallet:id/create_option_desc_shield
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
-            } catch (Exception e) {
-                System.out.println(e);
-
-            }
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Cold-test");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/tv_offline_sign_desc");
-            TimeUnit.SECONDS.sleep(2);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
-
-
 
 
     public void swipUntilElementEnable(String id) throws Exception{
@@ -501,7 +341,6 @@ public class Helper {
 
     public void swipUntilElementDisplayed(String id) throws Exception{
         TimeUnit.SECONDS.sleep(1);
-        //while (findWebElement(id).isEnabled() == false) {
         while (!findWebElement(id).isDisplayed()) {
             AndroidTouchAction action = new AndroidTouchAction(DRIVER);
             int width = DRIVER.manage().window().getSize().width;
@@ -521,7 +360,6 @@ public class Helper {
     public void swipUntilElementEnable(String id,AndroidDriver<?> driver) throws Exception{
         this.DRIVER = driver;
         TimeUnit.SECONDS.sleep(1);
-        //while (findWebElement(id).isEnabled() == false) {
         while (!findWebElement(id).isEnabled()) {
             AndroidTouchAction action = new AndroidTouchAction(DRIVER);
             int width = DRIVER.manage().window().getSize().width;
