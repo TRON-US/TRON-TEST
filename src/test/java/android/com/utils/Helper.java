@@ -482,7 +482,6 @@ public class Helper {
 
 
 
-
     public void swipUntilElementEnable(String id) throws Exception{
         TimeUnit.SECONDS.sleep(1);
         int width = DRIVER.manage().window().getSize().width;

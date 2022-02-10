@@ -58,9 +58,6 @@ public class Base {
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-
-    public static AtomicInteger systemAtomicPort = new AtomicInteger(8200);
-
     @Parameters({ "deviceName"})
     @BeforeMethod
     public void testStart(Method method,String deviceName) {
@@ -114,11 +111,8 @@ public class Base {
                 desiredCapabilities.setCapability("recreateChromeDriverSessions", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
-//                desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemAtomicPort.addAndGet(1));
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-//                if (systemAtomicPort.get() == 8299) {
-//                    systemAtomicPort.set(8200);
-//                }
+
                 System.out.println("mobile: " + deviceName + " " + udid);
                 System.out.println("privateKey: " + privateKey);
                 File appDir = new File(System.getProperty("user.dir"), "");
@@ -143,13 +137,13 @@ public class Base {
 
     public void DeviceRestart(){
         DRIVER.closeApp();
-        DRIVER.launchApp();//   DRIVER.activateApp("com.tronlinkpro.wallet");
+        DRIVER.launchApp();
     }
     public void DeviceQuit(){
         DRIVER.quit();
     }
     public void DeviceLaunch(){
-        DRIVER.launchApp();//   DRIVER.activateApp("com.tronlinkpro.wallet");
+        DRIVER.launchApp();
     }
 
 
@@ -163,7 +157,6 @@ public class Base {
     public  List<String> getDevicesInfo() throws IOException {
         List<String> list = new ArrayList<>();
         Process proc = Runtime.getRuntime().exec("adb devices");
-        //Process proc = Runtime.getRuntime().exec("ideviceinfo");
         BufferedInputStream bis = new BufferedInputStream(proc.getInputStream());
         BufferedReader br = new BufferedReader(new InputStreamReader(bis));
         String line = null;
@@ -246,28 +239,6 @@ public class Base {
     }
 
 
-    public  void changeDappchain() throws Exception{
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (DRIVER.findElementById("com.tronlinkpro.wallet:id/iv_pic").isDisplayed()){
-                DRIVER.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        }catch (Exception e){}
-        DRIVER.findElementById("com.tronlinkpro.wallet:id/my").click();
-        TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementById("com.tronlinkpro.wallet:id/setting").click();
-        TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementById("com.tronlinkpro.wallet:id/node").click();
-        TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementsById("com.tronlinkpro.wallet:id/iv_select").get(1).click();
-        TimeUnit.SECONDS.sleep(1);
-        //DRIVER.closeApp();
-        //DRIVER.activateApp("com.tronlinkpro.wallet");
-        DRIVER.navigate().refresh();
-        TimeUnit.SECONDS.sleep(6);
-    }
 
     public void waiteTime(long time) {
         DRIVER.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
@@ -360,4 +331,16 @@ public class Base {
         AppiumTestCase.cmdReturn("adb -s " + udid + " input keyevent 111");
     }
 
+//    public void swapClickUntilElementTextShow(String text) throws Exception {
+//        int i = 10 ;
+//        while (i>0) {
+//            try {
+//                DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\"" + text + "\")").click();
+//                break;
+//            } catch (Exception e) {
+//                //swaplitter
+//                i--;
+//            }
+//        }
+//    }
 }

@@ -16,13 +16,6 @@ import org.testng.annotations.*;
 public class SearchTest extends Base {
 
 
-//    @Parameters({"privateKey"})
-//    @BeforeMethod()
-//    public void setUpBefore(String privateKey) throws Exception{
-//        DRIVER.closeApp();
-//        DRIVER.launchApp();
-//        getSign(privateKey);
-//    }
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)

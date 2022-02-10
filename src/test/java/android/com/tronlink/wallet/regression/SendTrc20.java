@@ -214,9 +214,7 @@ public class SendTrc20 extends Base {
           Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
 
       }
-
       String LRnumber = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
-//      String Rnumber = StringUtils.substringAfterLast(LRnumber,"带宽");
       Assert.assertTrue(Integer.parseInt(LRnumber.trim()) > 0);
 
   }

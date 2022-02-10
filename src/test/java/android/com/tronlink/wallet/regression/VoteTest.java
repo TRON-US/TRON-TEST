@@ -24,14 +24,6 @@ import java.util.concurrent.TimeUnit;
 public class VoteTest extends Base {
 
 
-//    @Parameters({"privateKey"})
-//    @BeforeMethod()
-//    public void setUpBefore(String privateKey) throws Exception{
-//        DRIVER.closeApp();
-//        DRIVER.launchApp();
-//        getSign(privateKey);
-//    }
-
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
