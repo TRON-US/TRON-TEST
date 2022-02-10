@@ -17,10 +17,8 @@ import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.MyPursePage;
 
 public class ChangeWalletPasswordTest extends Base {
-    String keystore = "";
     String oldPassword = "Test0001";
     String newPassword = "Admin1234";
-    String confirmPassword = "Admin1234";
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
@@ -51,31 +49,62 @@ public class ChangeWalletPasswordTest extends Base {
         return walletPasswordPage;
     }
 
-
-    @Test(description = "Input correct password", alwaysRun = true)
-    public void test0001InputCorrectPassword() throws Exception {
-        WalletPasswordPage walletPasswordPage = walletPasswordPage();
-        walletPasswordPage.changePassword(oldPassword, oldPassword, oldPassword);
-        TimeUnit.SECONDS.sleep(1);
-    }
-
     @Test(description = "Input dont match password", alwaysRun = true)
-    public void test0002InputIncorrectPassword() throws Exception {
+    public void test001InputIncorrectPassword() throws Exception {
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
-        walletPasswordPage.changePassword(oldPassword, newPassword, oldPassword);
+        walletPasswordPage.changePassword(oldPassword, "Test00011", newPassword);
         String error = walletPasswordPage.error.getText();
         Assert.assertTrue(error.equals("Password does not match") || error.equals("两次密码不一致"));
-        TimeUnit.SECONDS.sleep(1);
     }
 
 
-
-    @Test(description = "input incorrect password", alwaysRun = true)
-    public void test0005InputCorrectPassword() throws Exception {
+    @Test(description = "Input correct password", alwaysRun = true)
+    public void test002ChangePassword() throws Exception {
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
         walletPasswordPage.changePassword(oldPassword, newPassword, newPassword);
+        TimeUnit.SECONDS.sleep(5);
+        MyPursePage purse = new MyPursePage(DRIVER);
+        walletPasswordPage =  purse.enterwalletPasswordPage();
+        walletPasswordPage.changePassword(oldPassword, newPassword, newPassword);
         String error = walletPasswordPage.error.getText();
-        Assert.assertTrue(error.equals("incorrect password") || error.equals("密码错误"));
-        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(error.equals("密码错误"));
+
     }
+
+    @Test(description = "input incorrect password", alwaysRun = true)
+    public void test003InputOldPasswordTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MyPursePage pursePage= asset.enterMyPursePage();
+        pursePage.findByShotId("rl_privatekey").click();
+        pursePage.findByShotId("et_password").sendKeys(oldPassword);
+        pursePage.findByShotId("tv_ok").click();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(isElementTextExist("钱包详情"));
+        pursePage.findByShotId("rl_keystore").click();
+        pursePage.findByShotId("et_password").sendKeys(oldPassword);
+        pursePage.findByShotId("tv_ok").click();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(isElementTextExist("钱包详情"));
+    }
+
+    @Test(description = "input incorrect password", alwaysRun = true)
+    public void test004InputNewPasswordTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MyPursePage pursePage= asset.enterMyPursePage();
+        pursePage.findByShotId("rl_privatekey").click();
+        pursePage.findByShotId("et_password").sendKeys(newPassword);
+        pursePage.findByShotId("tv_ok").click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(isElementTextExist("备份私钥"));
+        pursePage.backBtn.click();
+        pursePage.findByShotId("rl_keystore").click();
+        pursePage.findByShotId("et_password").sendKeys(newPassword);
+        pursePage.findByShotId("tv_ok").click();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(isElementTextExist("备份 Keystore"));
+    }
+
+
+
+
 }
