@@ -137,11 +137,19 @@ public class Base {
 
     public void DeviceRestart(){
         DRIVER.closeApp();
+        DRIVER.activateApp("com.tronlinkpro.wallet");
+//        DRIVER.launchApp();
+    }
+
+    // 在配置文件未reset时候才会reset
+    public void DeviceReSet(){
+        DRIVER.closeApp();
         DRIVER.launchApp();
     }
     public void DeviceQuit(){
         DRIVER.quit();
     }
+
     public void DeviceLaunch(){
         DRIVER.launchApp();
     }
@@ -340,7 +348,22 @@ public class Base {
             return false;
         }
     }
+    public String longidWithID(String ids){
+        return "com.tronlinkpro.wallet:id/" + ids ;
+    }
 
+    public WebElement findByShotId(String ids){
+        return DRIVER.findElementById(longidWithID(ids));
+    }
+
+    public boolean isElementShotId(String ids) {
+        try {
+            findByShotId(ids);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            return false;
+        }
+    }
 
 
 

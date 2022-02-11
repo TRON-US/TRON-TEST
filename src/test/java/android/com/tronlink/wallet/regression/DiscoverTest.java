@@ -44,10 +44,9 @@ public class DiscoverTest extends Base {
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         DeviceQuit();
-
     }
 
-    @Test(enabled = true,description = "Online dapp list search test",alwaysRun = true)
+    @Test(description = "Online dapp list search test",alwaysRun = true)
     public void test001_onlineDappListSearch() throws Exception {
         AssetPage asset =  enterOnlineAssetPage();
         DiscoverPage discover = asset.enterDiscoverPage();
@@ -69,8 +68,21 @@ public class DiscoverTest extends Base {
         }
     }
 
+    @Test(alwaysRun = true)
+    public void test002_historyEnableTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        DiscoverPage discover = asset.enterDiscoverPage();
+        discover.findByShotId("imageview").click();
+        Assert.assertTrue(discover.nav_title.getText().contains("历史记录"));
+        discover.backBtn.click();
+        Assert.assertTrue(discover.findByShotId("tv_title").getText().contains("DApp"));
+    }
 
-
-
-
+    @Test(alwaysRun = true)
+    public void test003_elementExistedText() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        DiscoverPage discover = asset.enterDiscoverPage();
+        Assert.assertTrue(isElementShotId("banner_image"));
+        Assert.assertTrue(discover.findByShotId("tv_discovery").getText().contains("发现"));
+    }
 }
