@@ -44,22 +44,99 @@ public class MineTest extends Base {
     }
 
 
+
     @Test(description = "Friend invitation Test", alwaysRun = true)
-    public void test001_friendInvitation() throws Exception {
+    public void test001_friendInvitationTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         FriendInvitationPage friendInvitation = minePage.enterFriendInvitationPage();
-        Assert.assertTrue(friendInvitation.friendInvitation_title.isDisplayed());
+        Assert.assertTrue(friendInvitation.friendInvitation_title.getText().contains("好友邀请"));
     }
 
 
     @Test(description = "Announcement Test", alwaysRun = true)
-    public void test002_bulletin() throws Exception {
+    public void test002_AnnouncementTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         AnnouncementPage announcement = minePage.enterAnnouncementPage();
-        Assert.assertTrue(announcement.announcementPage_title.isDisplayed());
+        Assert.assertTrue(announcement.announcementPage_title.getText().contains("公告"));
     }
 
+     @Test(alwaysRun = true)
+     public void test003_publicWalletManageTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         MinePage minePage = asset.enterMinePage();
+         Assert.assertTrue(minePage.findByShotId("tv_wallet_manager").getText().contains("公开账户管理"));
+         minePage.findByShotId("tv_wallet_manager").click();
+         Assert.assertTrue(minePage.nav_title.getText().contains("钱包详情"));
+     }
+
+    @Test(alwaysRun = true)
+    public void test004_shieldWalletManageTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        Assert.assertTrue(minePage.findByShotId("tv_shield_wallet").getText().contains("匿名账户管理"));
+        minePage.findByShotId("tv_shield_wallet").click();
+        Assert.assertTrue(minePage.findByShotId("content").getText().contains("当前无匿名账户，是否新建？"));
+        Assert.assertTrue(isElementShotId("btn_cancel"));
+        Assert.assertTrue(isElementShotId("btn_confirm"));
+        minePage.findByShotId("btn_cancel").click();
+        Assert.assertFalse(isElementTextExist("创建"));
+    }
+
+     @Test(alwaysRun = true)
+     public void test005_addressbookTests() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         MinePage minePage = asset.enterMinePage();
+         Assert.assertTrue(isElementTextExist("地址本"));
+         minePage.findElementByText("地址本").click();
+         Assert.assertTrue(minePage.nav_title.getText().contains("地址本"));
+
+     }
+
+      @Test(alwaysRun = true)
+      public void test006_advanceTest()  {
+          AssetPage asset = new AssetPage(DRIVER);
+          MinePage minePage = asset.enterMinePage();
+          Assert.assertTrue(isElementTextExist("高级功能"));
+          minePage.findElementByText("高级功能").click();
+          Assert.assertTrue(minePage.nav_title.getText().contains("高级功能"));
+      }
+    @Test(alwaysRun = true)
+    public void test007_settingTest()  {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        Helper.swipScreen(minePage.driver);
+        Assert.assertTrue(isElementTextExist("高级功能"));
+        minePage.findElementByText("高级功能").click();
+        Assert.assertTrue(minePage.nav_title.getText().contains("高级功能"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test008_helpingTest()  {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        Helper.swipScreen(minePage.driver);
+        Assert.assertTrue(isElementTextExist("帮助中心"));
+        minePage.findElementByText("帮助中心").click();
+        Assert.assertTrue(minePage.nav_title.getText().contains("帮助中心"));
+    }
+
+     @Test(alwaysRun = true)
+     public void test009_bellTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         MinePage minePage = asset.enterMinePage();
+         findByShotId("rl_bell").click();
+         Assert.assertTrue(minePage.nav_title.getText().contains("消息中心"));
+
+     }
+
+    @Test(description = " test010_minePageNavTest" , alwaysRun = true)
+    public void test010_minePageNavTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.enterMinePage();
+        Assert.assertTrue(isElementShotId("ic_my_wallet"));
+        Assert.assertTrue(isElementTextExist("我的钱包"));
+    }
 
 }
