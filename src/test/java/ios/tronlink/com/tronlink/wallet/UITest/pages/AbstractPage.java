@@ -1,5 +1,6 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -62,6 +63,23 @@ public class AbstractPage {
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(260, 100))
                 .release().perform();
+    }
+
+    public  void closeKeyBoard()  throws Exception{
+        try {
+            driver.findElementByName("Done").click();
+        }catch (Exception e){
+            try {
+                driver.findElementByName("完成").click();
+
+            }catch (Exception el){
+                System.out.println("not found keyboard done");
+                TouchAction action = new TouchAction(driver);
+                PointOption whiteplace = PointOption.point(8,200);
+                action.tap(whiteplace).perform().release();
+            }
+        }
+
     }
 
     @FindBy(name = "white back arrow")

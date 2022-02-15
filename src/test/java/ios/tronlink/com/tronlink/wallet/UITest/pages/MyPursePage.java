@@ -34,7 +34,7 @@ public class MyPursePage extends AssetPage {
     @FindBy(id = "carouselView")
     public  WebElement carouselView;
 
-    @FindBy(id = "钱包密码")
+    @FindBy(name = "修改密码")
     public WebElement walletPassword_btn;
 
     @FindBy(name = "******")
@@ -216,62 +216,7 @@ public class MyPursePage extends AssetPage {
     }
 
     public WalletPasswordPage enterwalletPasswordPage() throws Exception {
-        System.out.println("开始尝试进入修改页面：");
-        Helper.refreshWalletScreen(driver);
-        TimeUnit.SECONDS.sleep(5);
-        try{
-            walletPassword_btn.click();
-            int i = 2;
-            while (i<6){
-                if (!isPaswordChangePage()){
-                    System.out.println("is password view show: ??\n ");
-                    if (!isunEnterchangePassword()){
-                        System.out.println("showed,and closed ");
-                        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='取消'").click();
-                    }else {
-                        System.out.println(" not show ");
-                    }
-
-                    System.out.println("\n after 1 find to try"+i+" times find walletPassword");
-                    Helper.refreshWalletScreen(driver);
-                    TimeUnit.SECONDS.sleep(2);
-                    walletPassword_btn.click();
-                    TimeUnit.SECONDS.sleep(1);
-                }else {
-                    break;
-                }
-                i++;
-            }
-
-        }catch (Exception e){
-            try{
-                walletPassword_btn.click();
-                System.out.println("walletPasswordSec_btn  2 ");
-            }catch (Exception el){
-                Helper.refreshWalletScreen(driver);
-                try{
-                    walletPassword_btn.click();
-                    System.out.println("walletPassword2_btn  3");
-                }catch (Exception ee){
-                    try{
-                        walletPassword_btn.click();
-                        System.out.println("walletPasswordSec2_btn  4");
-                    }catch (Exception le){
-                        Helper.refreshWalletScreen(driver);
-                        TimeUnit.SECONDS.sleep(4);
-                        try {
-                            walletPassword_btn.click();
-                            System.out.println("walletPassword3_btn  5");
-                        }catch (Exception lls){
-                            walletPassword_btn.click();
-                            System.out.println("walletPasswordSec3_btn  6");
-                        }
-                    }
-
-                }
-            }
-        }
-        System.out.println("进入钱包修改页面 ");
+        walletPassword_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new WalletPasswordPage(driver);
     }

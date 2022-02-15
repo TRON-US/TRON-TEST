@@ -181,7 +181,8 @@ public class AssetPage extends AbstractPage {
     public MyPursePage enterMyPursePage() {
 
         try {
-            walletNameBtn.click();
+            trxValue.click();
+//            walletNameBtn.click();
             TimeUnit.SECONDS.sleep(1);
             System.out.println("成功进入钱包管理页面");
 

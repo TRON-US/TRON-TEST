@@ -60,15 +60,13 @@ public class WalletPasswordPage extends AbstractPage {
     public void changePassword(String oldpw,String newpw,String confirmpw) throws Exception{
         TimeUnit.SECONDS.sleep(2);
         oldPassword_et.sendKeys(oldpw);
-        TouchAction action = new TouchAction(driver);
-        PointOption whiteplace = PointOption.point(10,160);
-        action.tap(whiteplace).perform();
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         newPassword_et.sendKeys(newpw);
-        action.tap(whiteplace).perform();
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         confirmPassword_et.sendKeys(confirmpw);
-        action.tap(whiteplace).perform().release();
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         ok_btn.click();
         TimeUnit.SECONDS.sleep(2);
