@@ -67,7 +67,7 @@ public class AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement whiteBackBtn;
 
-    @FindBy(id = "black path")
+    @FindBy(name = "back arrow")
     public WebElement blackBackBtn;
 
     public void log(String log) {

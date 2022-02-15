@@ -63,10 +63,10 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "titleLabel")
     public List<WebElement> titleLabel;
 
-    @FindBy(name = "接收")
+    @FindBy(name = "收款")
     public WebElement receipt_btn;
 
-    @FindBy(name = "发送")
+    @FindBy(name = "转账")
     public WebElement send_btn;
 
     @FindBy(name = "闪兑")

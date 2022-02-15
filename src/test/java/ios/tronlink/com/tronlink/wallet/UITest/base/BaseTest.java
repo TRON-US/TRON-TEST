@@ -20,7 +20,6 @@ public class BaseTest extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         log("setUpBefore");
-
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
         log("setUpBefore---Over");
 
@@ -36,7 +35,6 @@ public class BaseTest extends Base {
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId,Method method) throws Exception {
         log("beforeMethod");
-
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
 
