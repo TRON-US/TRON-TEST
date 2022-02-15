@@ -87,7 +87,6 @@ public class CommitteeTest extends Base {
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
-//        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(5);
         String count = String.format("%.0f", Math.random() * 100000);

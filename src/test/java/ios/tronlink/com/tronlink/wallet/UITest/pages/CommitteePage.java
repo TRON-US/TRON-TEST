@@ -93,7 +93,7 @@ public class CommitteePage extends AbstractPage {
         passwordTF.sendKeys("Test0001");
         Helper.closeKeyBoard(driver);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(10);
 
     }
     public void change2proposal(String pro) throws Exception{
@@ -108,7 +108,7 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(10);
     }
     public void change0proposal(String pro) throws Exception{
         waiteTime();
@@ -122,7 +122,7 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(10);
 
 
     }
