@@ -10,21 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 public class FrozenAndUnfreezeTest extends BaseTest {
 
-    //enter TRXPage
-    public TrxPage enterTrxPage() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.assetFindMainChain(asset)){
-            return asset.enterTrxPage();
-        }else{
-            MinePage mine = asset.enterMinePage();
-            SettingPage set = mine.enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseMainChain();
-            mine  = set.enterMinePage();
-            asset = mine.enterAssetPage();
-            return asset.enterTrxPage();
-        }
-    }
 
     public FrozenAndUnfreezePage interferonPage(){
         AssetPage asset = new AssetPage(DRIVER);
@@ -64,7 +49,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
 
 
     @Test(description = "Energy Question Test", alwaysRun = true)
-    public void test004_checkEnergyQuestion() {
+    public void test003_checkEnergyQuestion() {
         FrozenAndUnfreezePage frozen = interferonPage();
         Helper.swipScreen(frozen.driver);
         frozen.questionClick();
@@ -75,7 +60,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
 
     //Freeze Energy more than trx
     @Test(description = "Freeze Energy more than trx", alwaysRun = true)
-    public void test008_freezeEnergyMoreThanTrx() throws Exception {
+    public void test004_freezeEnergyMoreThanTrx() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.inputFrozenCount("99999999");
         TimeUnit.SECONDS.sleep(3);
@@ -83,20 +68,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertFalse(frozen.freeze_btn.isEnabled());
 
     }
-
-//
-//    // Freeze Change to Unfreeze
-//    @Test(description = "Freeze Change to Unfreeze", alwaysRun = true)
-//    public void test010_freezeEnergyChangetoUnfreeze()  {
-//        FrozenAndUnfreezePage frozen = interferonPage();
-//        frozen.getDirectionFzUfz_btn().click();
-//        frozen.unfreeze_btn.click();
-//        if(Helper.isElementExist(frozen.driver,"预计可得")){
-//            Assert.assertFalse(frozen.driver.findElementByName("预计可得").isDisplayed());
-//        }else {
-//            Assert.assertTrue(Helper.isElementExist(frozen.driver,"可解冻时间"));
-//        }
-//    }
 
     //Freeze Energy equals trx
     @Test(description = "Freeze Energy equals trx", alwaysRun = true)
