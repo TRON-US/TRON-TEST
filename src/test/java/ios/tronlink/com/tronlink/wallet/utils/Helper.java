@@ -2,6 +2,7 @@ package ios.tronlink.com.tronlink.wallet.utils;
 
 
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidElement;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.NodeSetPage;
@@ -255,17 +256,12 @@ public class Helper {
         DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
     }
 
-    public void  importWatchShieldWallet(String udid,String nsk,String ak,String ovk,String shieldAddress,IOSDriver driver) throws Exception{
-        this.DRIVER = driver;
-        if(!isElementExist(DRIVER,"home manager")) {
-            importFirstWatchShieldWallet("WSW",nsk,ak,ovk,shieldAddress);
-        }
-    }
+
 
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
         System.out.println(timeStamp.format(new Date()).toString());
-        Boolean haveImport = isElementExist(DRIVER,"home manager");
+        Boolean haveImport = isElementExist(DRIVER,"walletName");
         System.out.println(timeStamp.format(new Date()).toString());
         System.out.println("Imported: " + haveImport);
         if(!haveImport){
@@ -276,7 +272,7 @@ public class Helper {
     //导入正常的,需要报错信息不能使用此方法
     public  void importMoreWallet(importType type,String privateKey,String name,String pass,IOSDriver driver) throws Exception{
         this.DRIVER = driver;
-        WebElement addwalletBtn = driver.findElementById("home manager");
+        WebElement addwalletBtn = driver.findElementById("walletName");
         switch (type){
             case normal:
             case coldWallet: {
@@ -294,9 +290,7 @@ public class Helper {
     }
 
     public void importFirstWallet(importType type,String privateKey,String name,String pass) throws Exception{
-
         DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
         switch (type){
             case normal:
             {
@@ -311,12 +305,7 @@ public class Helper {
                 findAcceptAndClick();
                 break;
             }
-            case shieldWallet:
-            {
-                findWebElement("导入钱包").click();
-                findAcceptAndClick();
-                break;
-            }
+
         }
 
         importUsePrivateKey(privateKey,name,pass);
@@ -364,22 +353,29 @@ public class Helper {
     public void importUsePrivateKey(String privatekey,String name,String pass){
         try {
             DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-            findWebElement("私钥").click();
-            DRIVER.findElementByClassName("XCUIElementTypeTextView").sendKeys(privatekey);
-            tapWhitePlace(DRIVER);
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(privatekey);
+            closeKeyBoard(DRIVER);
             findWebElement("下一步").click();
+            swipScreenLitter(DRIVER);
+            TimeUnit.SECONDS.sleep(1);
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").clear();
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
-            tapWhitePlace(DRIVER);
-            findWebElement("下一步").click();
-            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
-            tapWhitePlace(DRIVER);
-            findWebElement("下一步").click();
-            TimeUnit.SECONDS.sleep(5);
-            DRIVER.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(pass);
-            tapWhitePlace(DRIVER);
-            findWebElement("确定").click();
+            closeKeyBoard(DRIVER);
+            WebElement pass1 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
+            WebElement pass2 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
+            pass1.sendKeys(pass);
+            closeKeyBoard(DRIVER);
+            pass2.sendKeys(pass);
+            closeKeyBoard(DRIVER);
+            findWebElement("导入私钥").click();
             TimeUnit.SECONDS.sleep(10);
-//            AssetPage assetPage = new AssetPage(DRIVER);
+            AssetPage assetPage = new AssetPage(DRIVER);
+            try {
+                if (DRIVER.findElementByName("备份资产").isDisplayed()){
+                    DRIVER.findElementByName("备份资产").click();
+                    assetPage.blackBackBtn.click();
+                }
+            }catch (Exception es){}
 //            try {
 //                if (assetPage.ad_pic.isDisplayed()) {
 //                    assetPage.adClose_btn.click();
@@ -402,7 +398,6 @@ public class Helper {
         Boolean Element_is_exist = false;
         WebElement el = null;
         while (!Element_is_exist && tries < 3) {
-//            System.out.println("find  ("+  element  +") WElementTimes:" + tries);
             tries++;
             try {
                 el = DRIVER.findElementByName(element);

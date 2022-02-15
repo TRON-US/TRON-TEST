@@ -49,6 +49,11 @@ public class AbstractPage {
 
     }
 
+    public WebElement findByPredicate(String type,String name){
+        return driver.findElementByIosNsPredicate("type= " + type + " AND name = "+ name + " ");
+
+    }
+
     public void swipToLeave(){
         IOSTouchAction action = new IOSTouchAction(driver);
         Duration duration = Duration.ofMillis(200);
@@ -62,7 +67,7 @@ public class AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement whiteBackBtn;
 
-    @FindBy(id = "back arrow")
+    @FindBy(id = "black path")
     public WebElement blackBackBtn;
 
     public void log(String log) {

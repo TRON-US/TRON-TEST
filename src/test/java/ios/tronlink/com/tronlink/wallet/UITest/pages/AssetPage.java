@@ -121,10 +121,10 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
-    @FindBy(name = "市场")
+    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[3]")
     public WebElement market_Tab_Button;
 
-    @FindBy(name = "我的")
+    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
     public WebElement mine_btn;
 
     @FindBy(id = "com.tronlink.wallet:id/app1")
@@ -269,7 +269,7 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter mine page
-    public MinePage enterMinePage() throws Exception{
+    public MinePage enterMinePage() {
         waiteTime();
         mine_btn.click();
         return new MinePage(driver);
