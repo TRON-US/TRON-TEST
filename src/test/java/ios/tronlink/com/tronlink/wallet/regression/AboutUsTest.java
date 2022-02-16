@@ -23,7 +23,7 @@ public class AboutUsTest extends BaseTest {
 
 
     @Test(description = "test version test",alwaysRun = true)
-    public void test002_versionTest() throws Exception {
+    public void test001_versionTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         Helper.swipScreenLitter(minePage.driver);
@@ -41,7 +41,7 @@ public class AboutUsTest extends BaseTest {
     }
 
     @Test(description = "test enterGroup test" ,alwaysRun = true)
-    public void test004_enterGroupTest() throws Exception {
+    public void test002_enterGroupTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage =  assetPage.enterMinePage();
         minePage.enterAboutUsPage();
