@@ -146,8 +146,6 @@ public class DappChainWithdraw extends BaseTest {
         Helper.tapWhitePlace(outPage.driver);
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue( outPage.get_finish_btn().isEnabled());
-//        outPage.get_finish_btn().click();
-//        Assert.assertTrue(outPage.passwordErrorLabel.getText().contains("密码错误"));
 
     }
 
