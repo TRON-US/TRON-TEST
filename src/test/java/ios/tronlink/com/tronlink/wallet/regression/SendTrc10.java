@@ -104,27 +104,6 @@ public class SendTrc10 extends BaseTest {
     }
 
 
-
-
-    @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
-    public void test007_BandWidthShowTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        waiteTime();
-        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.closeKeyBoard(transfer.driver);
-        transfer.selectTokenByName("tronlink_token");
-        transfer.testfieldArray.get(2).sendKeys("0.000001");
-        TimeUnit.SECONDS.sleep(1);
-        waiteTime();
-        Helper.tapWhitePlace(transfer.driver);
-        transfer.send_btn.click();
-        waiteTime();
-        String content = transfer.resourcesLabel.getText();
-        String number = StringUtils.substringBeforeLast(content, "带宽");
-        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
-    }
-
     @Parameters({ "address"})
     @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
     public void test008_CheckOutNumberInRecordTrx10(String address) throws Exception {
@@ -149,50 +128,6 @@ public class SendTrc10 extends BaseTest {
         Assert.assertTrue( Helper.isElementExist(transaction.driver,"TRC10 通证转账"));
     }
 
-    //使用一个没有足够冻结带宽的账户,点击转账会出现激活消耗的0.1trx
-    @Parameters({ "udid"})
-    @Test(enabled = true,description = "test008_inputNotEnoughBandWidthSendMaxNumberUNActive")
-    public void test010_inputNotEnoughBandWidthSendMaxNumberUNActive(String udid) throws Exception {
-        DRIVER.resetApp();
-        new Helper().importFirstWallet(Helper.importType.normal,TRXandTRC10InNileprivateKey,DRIVER);
-
-        SendTrxPage transfer = enterToSendTrxPage();
-        String allnumber = removeSymbol(transfer.sendMaxCoinWithType("10"));
-        System.out.println("allnumber : " + allnumber);
-        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        System.out.println("comfirmnumber : " + comfirmnumber);
-        Assert.assertEquals(allnumber, comfirmnumber);
-
-//        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"0.1");
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
-        Assert.assertTrue(transfer.sendImmediatelyEnable());
-
-    }
-
-    //max 未激活的显示
-    @Parameters({ "udid"})
-    @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
-    public void test011_inputHaveBandWidthSendMaxNumberToUNActive(String udid) throws Exception {
-        DRIVER.resetApp();
-        new Helper().importFirstWallet(Helper.importType.normal,haveBandwidthprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-
-        String allnumber = removeSymbol(transfer.sendMaxCoinWithType("10"));
-        System.out.println("allnumber : " + allnumber);
-        String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        System.out.println("comfirmnumber : " + comfirmnumber);
-        Assert.assertEquals(allnumber, comfirmnumber);
-        log(transfer.fee_text.getText());
-        Assert.assertTrue(sepLeftNumberTextToFloat(transfer.fee_text.getText(), "TRX") == 1);
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"手续费"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"消耗资源"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"付款账户"));
-        Assert.assertTrue(Helper.isElementExist(transfer.driver,"收款账户"));
-        Assert.assertTrue(transfer.sendImmediatelyEnable());
-    }
 
 
 }
