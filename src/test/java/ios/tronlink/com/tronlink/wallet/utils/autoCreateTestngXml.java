@@ -7,6 +7,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 
+import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -74,28 +76,29 @@ public class autoCreateTestngXml {
         httpClient = new DefaultHttpClient(pccm);
     }
 
+    public   List<String> GetIosDeviceNameList(String cmd) throws IOException {
+        Process process = Runtime.getRuntime().exec(cmd);
+        InputStreamReader isr=new InputStreamReader(process.getInputStream());
+        Scanner s=new Scanner(isr);
+        List<String> deviceNamesList = new ArrayList<>();
+        String str;
+        while(s.hasNext()){
+            str = s.next();
+//            if (str.equals("List")||str.equals("of")||str.equals("devices")||str.equals("attached")||str.equals("device")||str.equals("unauthorized")){
+//                continue;
+//            }
+            deviceNamesList.add(str);
+        }
+        return deviceNamesList;
+    }
+
 
     @BeforeClass
     public void beforeClass() throws IOException{
-        //新增的class，如果只有一套账号，只能在一个手机跑的话，就把class名添加到singleClassNameList列表里。
-        //singleClassNameList.add("");
+        List<String> devicelist = GetIosDeviceNameList("idevice_id -l");
+        System.out.println("-----------------\n" + devicelist + "\n-----------------\n");
+        iosDeviceNameList = devicelist;
         dirList.add("regression");
-//        dirList.add("multiSign");
-        iosDeviceNameList.add("38afae054a2740c4f3e7835564b82cb1bdec6cc8");
-        iosDeviceNameList.add("1fb216ca798cf08a2d01fbdc78e2cdbb05321e24");
-        iosDeviceNameList.add("7d7e0ff85f9f971f61c677d1968c7399771f99d0");
-        iosDeviceNameList.add("00008020-001661EE0C88003A");
-        iosDeviceNameList.add("21e8a9d6537ec8c019f460045f0bd62dad418e3e");
-        iosDeviceNameList.add("00008020-001E202E2288002E");
-        iosDeviceNameList.add("a64acfa6c4ce4881357b1668dba9c52f24b2b28d");
-        iosDeviceNameList.add("f6c579c9d216e741babe109d04536b19acc542f8");
-/*        String udid;
-        for (int i = 0; i < iosDeviceNameList.size();i++) {
-            udid = iosDeviceNameList.get(i);
-            if (isConnectToTaskMacViaUsb(udid)){
-                iosDeviceUdidList.add(udid);
-            }
-        }*/
         beforeWrite();
     }
 
@@ -165,7 +168,6 @@ public class autoCreateTestngXml {
 
     }
 
-
     @Test(enabled = true)
     public void createXml() throws IOException {
         HashMap<String,String> testAccountList = new HashMap<>();
@@ -183,18 +185,19 @@ public class autoCreateTestngXml {
 
         StringBuilder sb = new StringBuilder();
         String deviceList = AppiumTestCase.cmdReturn("idevice_id -l");
-
-
+        System.out.println("----------------------------");
+        System.out.println(deviceList);
+        System.out.println("----------------------------");
         String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
-
+        taskClassNameList= taskSingleClassNameList;
 
 //        String extendSingleClassContent = "";
 //        for (int i = 0; i < taskSingleClassNameList.size();i++) {
 //            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
 //        }
 
-        taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
+//        taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
@@ -217,11 +220,9 @@ public class autoCreateTestngXml {
 //        System.out.println("\nclassNoColdWallet " +classNoColdWallet);
 
 
-        System.out.println("classContent " +classContent);
+//        System.out.println("classContent " +classContent);
 
-        boolean singleClassHasSetToSingleDevice = false;
 
-        {
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
             for (Iterator<String> it = iosDeviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
                 HashMap.Entry<String, String> entry = entries.next();
@@ -312,29 +313,25 @@ public class autoCreateTestngXml {
                                 + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
-                //autotest-ios can
-/*                if (!singleClassHasSetToSingleDevice) {
-                    singleClassHasSetToSingleDevice = true;
-                    sb.append(extendSingleClassContent);
-                } else {
-                    sb.append(classContent);
-                }*/
-//                if (deviceName.contains("autotest-ios")){
                 sb.append(classContent);
-//                }else {
-//                    sb.append(classNoColdWallet);
-//                }
                 sb.append("        </classes>\n");
                 sb.append("    </test>\n");
+                String res = sb.toString();
+                System.out.println("----------------------------\nft111ag: \n----------------------------");
+                System.out.println(res);
                 it.remove();
             }
-        }
+
 
         sb.append("</suite>");
         String res = sb.toString();
+        System.out.println("----------------------------\nftag: \n----------------------------");
+        System.out.println(res);
+
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"), StandardOpenOption.APPEND);
         } catch (IOException e) {
+            System.out.println("----------------------------\nfail to write: \n----------------------------");
             e.printStackTrace();
         }
     }
