@@ -101,49 +101,7 @@ public class MainNetDeposit10 extends BaseTest {
     }
 
 
-    @Test(description = "input max send number",alwaysRun = true)
-    public void test006_inputMaxSendNumber() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage outPage = trx.enterTransferInPage();
-        waiteTime();
-        trx.maxBtn.click();
-        waiteTime();
-        Double ableNumber =  Double.parseDouble(removeSymbolNoDot(trx.amountDesContent.getText().split(" ")[1]));
-        Double textNumber =  Double.parseDouble(removeSymbolNoDot(trx.textField.getText()));
-        log("ableNumber:"+ ableNumber.toString() + " textNumber:" + textNumber);
-        Assert.assertTrue(ableNumber.equals(textNumber));
-        outPage.get_inter_btn().click();
-        TimeUnit.SECONDS.sleep(10);
-        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.trxLabel.getText().split(" ")[0]));
-        log("confirmNumber:"+ confirmNumber.toString() + " textNumber:" + textNumber);
-        Assert.assertTrue(confirmNumber.equals(textNumber) );
-        Double feeNumber = Double.parseDouble(removeSymbolNoDot(outPage.bandwidthText.getText().split(" ")[0]));
-        log("feeNumber:"+ feeNumber.toString());
-        Assert.assertTrue(feeNumber > 0 );
-        Assert.assertTrue(outPage.titleLabel.getText().contains("确认转入"));
-        Assert.assertTrue( outPage.comfirm_btn().isEnabled());
-        outPage.comfirm_btn().click();
-        outPage.password_input.click();
-        outPage.password_input.sendKeys("balabala");
-        Helper.tapWhitePlace(outPage.driver);
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue( outPage.get_finish_btn().isEnabled());
 
-    }
-
-
-    @Test(description = "input mix send number",alwaysRun = true)
-    public void test007_inputMixSendNumber() throws Exception {
-        TrxPage trx = enterTrxPage();
-        trx.enterTransferInPage();
-        waiteTime();
-        trx.textField.click();
-        trx.textField.sendKeys("0");
-        Helper.tapWhitePlace(trx.driver);
-
-        Assert.assertTrue( trx.amountErrorLabel.getText().contains("转账金额需大于 0"));
-
-    }
 
     @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
