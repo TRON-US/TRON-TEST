@@ -73,7 +73,7 @@ public class NodeSetHelperPage extends AbstractPage {
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("5000");
         waiteTime();
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         comfirmBtn.click();
         TimeUnit.SECONDS.sleep(2);//必须这么用,因为要等待页面跳转
         try {
@@ -127,7 +127,7 @@ public class NodeSetHelperPage extends AbstractPage {
         addNewNodeBtn.click();
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         return  driver.findElementById("errorStr").getText().contains("请输入正确的 IP 格式");
     }
 
@@ -136,7 +136,7 @@ public class NodeSetHelperPage extends AbstractPage {
         addNewNodeBtn.click();
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("65555");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         return  driver.findElementById("errorStr").getText().contains("请输入正确的端口格式");
     }
 
@@ -159,7 +159,7 @@ public class NodeSetHelperPage extends AbstractPage {
         driver.findElementsByClassName("XCUIElementTypeCell").get(1).click();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192.168.1.1");
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("5000");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         comfirmBtn.click();
         TimeUnit.SECONDS.sleep(1);
         try {
@@ -183,7 +183,7 @@ public class NodeSetHelperPage extends AbstractPage {
         driver.findElementsByClassName("XCUIElementTypeCell").get(1).click();
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         return  driver.findElementById("errorStr").getText().contains("请输入正确的 IP 格式");
     }
 
@@ -196,7 +196,7 @@ public class NodeSetHelperPage extends AbstractPage {
         driver.findElementsByClassName("XCUIElementTypeCell").get(1).click();
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("65555");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         return  driver.findElementById("errorStr").getText().contains("请输入正确的端口格式");
     }
 

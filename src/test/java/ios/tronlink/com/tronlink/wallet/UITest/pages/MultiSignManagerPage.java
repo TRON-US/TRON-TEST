@@ -129,7 +129,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         driver.findElementsById("addressInputTF").get(0).sendKeys(address);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         System.out.println("addressInputTF have inputed");
         TimeUnit.SECONDS.sleep(1);
         return getAllerrors();
@@ -145,9 +145,9 @@ public class MultiSignManagerPage extends AbstractPage {
         addAddrHoldBtn.click();
         TimeUnit.SECONDS.sleep(1);
         driver.findElementsById("addressInputTF").get(0).sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         driver.findElementsById("addressInputTF").get(1).sendKeys("TKG4UtDejJfAQx3FsyAUs86cpcRzYcijth");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         return getAllerrors();
 
     }
@@ -160,7 +160,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         thresholdTextField.sendKeys(amount);
-        Helper.closeKeyBoard(driver); 
+        closeKeyBoard();
         System.out.println("总threahold clicked");
         TimeUnit.SECONDS.sleep(1);
         return getAllerrors();
@@ -173,7 +173,7 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         activeNameTF.sendKeys("TXtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE");
         System.out.println("添加权限名称 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
 
         return getAllerrors();
@@ -247,7 +247,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         activeNameTF.sendKeys(name);
         System.out.println("添加权限名称 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         Helper.swipScreen(driver);
         waiteTime();
         activeContentEditBtn.click();
@@ -261,14 +261,14 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应阈值 clicked");
         waiteTime();
-        Helper.closeKeyBoard(driver);//
+        closeKeyBoard();//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(3);
@@ -286,7 +286,7 @@ public class MultiSignManagerPage extends AbstractPage {
         haveActivedClickFunc();
         System.out.println("添加权限 clicked");
         waiteTime();
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         Helper.swipScreen(driver);
         waiteTime();
         activeContentEditBtn.click();
@@ -356,7 +356,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         activeNameTF.sendKeys("testActive");
         System.out.println("添加权限名称 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         Helper.swipScreen(driver);
         waiteTime();
         activeContentEditBtn.click();
@@ -370,13 +370,13 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应权重 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
@@ -396,7 +396,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         activeNameTF.sendKeys("testActive");
         System.out.println("添加权限名称 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         Helper.swipScreen(driver);
         waiteTime();
         activeContentEditBtn.click();
@@ -410,13 +410,13 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应权重 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
@@ -433,7 +433,7 @@ public class MultiSignManagerPage extends AbstractPage {
         addressClean.click();
         waiteTime();
         driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("into addPermission");
@@ -445,7 +445,7 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         activeNameTF.sendKeys("func");
         System.out.println("添加权限名称 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         Helper.swipScreen(driver);
         waiteTime();
         activeContentEditBtn.click();
@@ -459,14 +459,14 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
         thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应阈值 clicked");
         waiteTime();
-        Helper.closeKeyBoard(driver);//
+        closeKeyBoard();//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(3);

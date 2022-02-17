@@ -5,6 +5,7 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class WatchWalletHelpPage extends AbstractPage {
@@ -22,9 +23,9 @@ public class WatchWalletHelpPage extends AbstractPage {
         SendTrxPage trxPage = assetPage.enterSendTrxPage();
         waiteTime();
         trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         trxPage.testfieldArray.get(2).sendKeys("1");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
         TimeUnit.SECONDS.sleep(4);
@@ -40,9 +41,9 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
         SendTrxPage trxPage = new SendTrxPage(driver);
         trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         trxPage.testfieldArray.get(2).sendKeys("1");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
         TimeUnit.SECONDS.sleep(4);
@@ -93,11 +94,17 @@ public class WatchWalletHelpPage extends AbstractPage {
         committeePage.textfieldList.get(2).click();
         committeePage.textfieldList.get(2).clear();
         committeePage.textfieldList.get(2).sendKeys("0.21");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(4);
-        comfirm_btn().click();
+        TimeUnit.SECONDS.sleep(7);
+        log("开始点击确认页的 确认");
+        List<WebElement> list = (List<WebElement>) driver.findElementsByName("确认");
+        System.out.println(list.size());
+        int max = list.size();
+        list.get(max-1).click();
+
+//        comfirm_btn().click();
     }
     public void makemultiSign() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
@@ -136,7 +143,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         managerPage.activeNameTF.sendKeys("duoActive");
         System.out.println("添加权限名称 clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         Helper.swipScreen(driver);
         TimeUnit.SECONDS.sleep(2);
         managerPage.activeContentEditBtn.click();
@@ -150,14 +157,14 @@ public class WatchWalletHelpPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         managerPage.thresholdTextField.sendKeys("1");
         System.out.println("总threahold clicked");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(1);
         driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
         System.out.println("输入地址 clicked");
         driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
         System.out.println("地址对应阈值 clicked");
         TimeUnit.SECONDS.sleep(3);
-        Helper.closeKeyBoard(driver);//
+        closeKeyBoard();//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(8);
@@ -171,7 +178,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         TransferPage page = trxPage.enterTransferInPage();
         waiteTime();
         page.count_text.sendKeys("10");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         page.get_inter_btn().click();
         TimeUnit.SECONDS.sleep(8);
@@ -186,7 +193,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         TransferPage page = trxPage.enterTransferInPage();
         TimeUnit.SECONDS.sleep(2);
         page.count_text.sendKeys("10");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
         page.get_inter_btn().click();
         TimeUnit.SECONDS.sleep(8);
@@ -198,7 +205,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         TransferPage page = trxPage.enterTransferOutPage();
         waiteTime();
         page.count_text.sendKeys("10");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         page.get_out_btn().click();
         TimeUnit.SECONDS.sleep(3);

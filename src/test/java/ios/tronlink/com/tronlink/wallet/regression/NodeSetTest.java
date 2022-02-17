@@ -67,22 +67,22 @@ public class NodeSetTest extends BaseTest {
         NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
         Assert.assertTrue(page.addNote());
     }
-    @Test(description = "TestDAppChain  add note  IP wrong", alwaysRun = true)
-    public void test07_AddnoteIPwrongDAppChain() throws Exception {
-        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
-        Assert.assertTrue(page.ipwrong());
-    }
-    @Test(description = "TestDAppChain  add note  port wrong", alwaysRun = true)
-    public void test08_AddnotePortwrongDAppChain() throws Exception {
-        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
-        Assert.assertTrue(page.portwrong());
-    }
-
-    @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
-    public void test09_noteDeleteSuccessDAppChain() throws Exception {
-        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
-        Assert.assertTrue(page.deleteNode());
-    }
+//    @Test(description = "TestDAppChain  add note  IP wrong", alwaysRun = true)
+//    public void test07_AddnoteIPwrongDAppChain() throws Exception {
+//        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+//        Assert.assertTrue(page.ipwrong());
+//    }
+//    @Test(description = "TestDAppChain  add note  port wrong", alwaysRun = true)
+//    public void test08_AddnotePortwrongDAppChain() throws Exception {
+//        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+//        Assert.assertTrue(page.portwrong());
+//    }
+//
+//    @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
+//    public void test09_noteDeleteSuccessDAppChain() throws Exception {
+//        NodeSetHelperPage page = enterNodeSettingPagingDAppChain();
+//        Assert.assertTrue(page.deleteNode());
+//    }
 
 
 

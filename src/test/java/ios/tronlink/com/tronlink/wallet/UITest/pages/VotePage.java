@@ -146,7 +146,7 @@ public class VotePage extends AbstractPage {
         log("will input num:" + intToString(num));
         driver.findElementById("voteField").click();
         driver.findElementById("voteField").sendKeys(intToString(num));
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         voteactionBtn.click();
     }
 

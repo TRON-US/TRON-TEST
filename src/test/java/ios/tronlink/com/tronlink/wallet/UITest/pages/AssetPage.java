@@ -450,16 +450,21 @@ public class AssetPage extends AbstractPage {
         waiteTime();
         addWallet_btn.click();
         waiteTime();
-        driver.findElementById("观察钱包").click();
+        driver.findElementById("添加观察钱包").click();
         waiteTime();
-        driver.findElementByClassName("XCUIElementTypeTextView").sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
-        Helper.closeKeyBoard(driver);
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
-        waiteTime();
-        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys("WatchWallet");
-        Helper.closeKeyBoard(driver);
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'").click();
-        TimeUnit.SECONDS.sleep(2);
+
+        List<WebElement> Secure = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeTextField");
+        if (Secure.size() > 1) {
+            Secure.get(0).sendKeys("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe");
+            Secure.get(1).click();
+            driver.findElementByName("清除文本").click();
+            Secure.get(1).sendKeys("WatchWallet");
+            closeKeyBoard();
+            driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND label = '添加观察钱包'").click();
+            TimeUnit.SECONDS.sleep(2);
+
+        }
+
 
     }
 

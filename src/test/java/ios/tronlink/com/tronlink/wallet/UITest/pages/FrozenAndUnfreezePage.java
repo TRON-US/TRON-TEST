@@ -223,7 +223,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByClassName("XCUIElementTypeTextField").clear();
         driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(addr);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         log("确认已点击");
@@ -305,7 +305,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         inputTextField.sendKeys(count);
         log("input over");
         TimeUnit.SECONDS.sleep(1);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         log("keyboard is hide");
     }
 
@@ -316,7 +316,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
         TimeUnit.SECONDS.sleep(2);
         receivedTF.sendKeys(address);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
 
     }
 

@@ -42,14 +42,6 @@ public class WatchWalletTest extends BaseTest {
         Assert.assertTrue(helpPage.isEnterColdPage());
     }
 
-    //
-//    @Test(enabled = true, description = "Frozen Bandwidth QRCode", alwaysRun = true)
-//    public void test005_frozenBandwidthQRCode() throws Exception {
-//        WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
-//        helpPage.frozenTRXbandwidth();
-//        Assert.assertTrue(helpPage.isEnterColdPage());
-//    }
-
 
     @Test(groups = {"P0"},enabled = true, description = "create proposal QRCode", alwaysRun = true)
     public void test006_createCommitteeQRCode() throws Exception {

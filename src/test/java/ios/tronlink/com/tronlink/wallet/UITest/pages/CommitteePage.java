@@ -84,14 +84,14 @@ public class CommitteePage extends AbstractPage {
         textfieldList.get(1).clear();
         textfieldList.get(1).sendKeys("");
         textfieldList.get(1).sendKeys(pro);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(5);
         log("开始找第二个确认");
         confirmButton.click();
         log("开始输入密码");
         passwordTF.sendKeys("Test0001");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(10);
 
@@ -101,7 +101,7 @@ public class CommitteePage extends AbstractPage {
         textfieldList.get(2).clear();
         textfieldList.get(2).sendKeys("");
         textfieldList.get(2).sendKeys(pro);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(5);
         log("开始找第二个确认");

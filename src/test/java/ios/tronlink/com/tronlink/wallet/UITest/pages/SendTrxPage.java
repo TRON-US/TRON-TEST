@@ -261,7 +261,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(0).clear();
         testfieldArray.get(0).clear();
         testfieldArray.get(0).sendKeys(addr);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(4);
     }
 
@@ -270,7 +270,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).clear();
         testfieldArray.get(1).clear();
         testfieldArray.get(1).sendKeys(addr);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(4);
     }
     public void enterAmountTextField(String amount) throws Exception {
@@ -278,7 +278,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(2).clear();
         testfieldArray.get(2).clear();
         testfieldArray.get(2).sendKeys(amount);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(1);
     }
     public boolean overstepAuthority(String addr) throws Exception{
@@ -351,7 +351,7 @@ public class SendTrxPage extends AbstractPage {
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         waiteTime();
         testfieldArray.get(2).sendKeys(number);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         send_btn.click();
         waiteTime();
@@ -390,7 +390,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         log("send Number IS: " + number + "  To: " + Addr);
         testfieldArray.get(2).sendKeys(number);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         send_btn.click();
         waiteTime(20);
@@ -401,7 +401,7 @@ public class SendTrxPage extends AbstractPage {
     public TrxPage sendTrx10WithNumber(String number) throws Exception{
         waiteTime();
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         selectTokenByName("tronlink_token");
         waiteTime();
@@ -424,7 +424,7 @@ public class SendTrxPage extends AbstractPage {
     public TrxPage sendTrx20WithNumber(String number) throws Exception{
         waiteTime();
         testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         waiteTime();
         selectToken20TRX();
         TimeUnit.SECONDS.sleep(4);

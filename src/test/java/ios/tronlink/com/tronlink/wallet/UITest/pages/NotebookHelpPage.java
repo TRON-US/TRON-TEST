@@ -26,11 +26,11 @@ public class NotebookHelpPage extends AbstractPage {
     }
     public void inputNameTF(String name) throws Exception{
         driver.findElementById("nameField").sendKeys(name);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
     }
     public void inputAddressTF(String addr) throws Exception{
         driver.findElementById("addressField").sendKeys(addr);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
     }
     public void saveBtnClick() throws Exception{
         driver.findElementById("rightLabel").click();
@@ -70,7 +70,7 @@ public class NotebookHelpPage extends AbstractPage {
         driver.findElementById("nameField").click();
         driver.findElementById("nameField").clear();
         driver.findElementById("nameField").sendKeys(name);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         saveBtnClick();
     }
     public void modifyNoteAddress(String name)throws Exception{
@@ -78,7 +78,7 @@ public class NotebookHelpPage extends AbstractPage {
         driver.findElementById("addressField").click();
         driver.findElementById("addressField").clear();
         driver.findElementById("addressField").sendKeys(name);
-        Helper.closeKeyBoard(driver);
+        closeKeyBoard();
         saveBtnClick();
     }
     public void deleteNoteAddress()throws Exception{

@@ -52,22 +52,7 @@ public class ShastaTest extends BaseTest {
         Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
     }
 
-    @Parameters({"address"})
-    @Test(description = "Shaster menu button success")
-    public void test002_ShastaSendbuttonGetAndFrozenButton(String address) throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendPage =   asset.enterSendTrxPage();
-        Assert.assertTrue(sendPage.send_btn.isDisplayed());
-        sendPage.BackBtn_White.click();
-        ReceiptPage receiptPage = asset.enterReceiptCoinPage();
-        Assert.assertTrue(receiptPage.title.getText().contains("收款"));
-        Assert.assertTrue(receiptPage.copy_btn.isDisplayed());
-        Assert.assertTrue(receiptPage.topLabel.getText().contains("扫描二维码向我付款"));
-        Assert.assertTrue(receiptPage.addressLabel.getText().contains(address));
-        receiptPage.BackBtn_White.click();
-        FrozenAndUnfreezePage fpage = asset.enterFrozenAndThawingPage();
-        Assert.assertTrue(fpage.assert_title.getText().contains("资源"));
-    }
+
 
     @Parameters({"address"})
     @Test(description = "test003_FrozenTestSuccess")
