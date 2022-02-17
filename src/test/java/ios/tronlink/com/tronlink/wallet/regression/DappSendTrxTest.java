@@ -88,12 +88,10 @@ public class DappSendTrxTest extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage tokenpage = asset.enterTrxPage();
         double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-
         String count = random(10,10);
         count = Helper.getPrettyNumber(count);
         log(count);
         successNumber = count;
-
         SendTrxPage transfer = tokenpage.enterTransferPage();
         transfer.sendTrxWithNumber(successNumber);
         TimeUnit.SECONDS.sleep(2);
@@ -102,8 +100,6 @@ public class DappSendTrxTest extends BaseTest {
         System.out.println("   count:" +count + "   trcBefore:" + trcBefore + " trcafter:" + trcafter);
         //TODO : 刷新逻辑
         Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
-
-
     }
 
 
@@ -111,7 +107,7 @@ public class DappSendTrxTest extends BaseTest {
     public void test002_inputErrorAddress() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendKey(transfer.testfieldArray.get(1),"TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
-        Helper.tapWhitePlace(transfer.driver);
+        closeKeyBoard();
         Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
     }
 

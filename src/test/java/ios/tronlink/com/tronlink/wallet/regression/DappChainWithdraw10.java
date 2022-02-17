@@ -122,52 +122,6 @@ public class DappChainWithdraw10 extends BaseTest {
 
     }
 
-    @Test(description = "input max send number",alwaysRun = true)
-    public void test006_inputMaxSendNumber() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage outPage = trx.enterTransferOutPage();
-        waiteTime();
-        trx.maxBtn.click();
-        waiteTime();
-        Double ableNumber =  Double.parseDouble(removeSymbolNoDot(trx.amountDesContent.getText().split(" ")[1]));
-        Double textNumber =  Double.parseDouble(removeSymbolNoDot(trx.textField.getText()));
-        log("ableNumber:"+ ableNumber.toString() + " textNumber:" + textNumber);
-        Assert.assertTrue(ableNumber.equals(textNumber));
-        outPage.get_out_btn().click();
-        TimeUnit.SECONDS.sleep(10);
-        Double confirmNumber = Double.parseDouble(removeSymbolNoDot(outPage.trxLabel.getText().split(" ")[0]));
-        log("confirmNumber:"+ confirmNumber.toString() + " textNumber:" + textNumber);
-        Assert.assertTrue(confirmNumber.equals(textNumber) );
-        Double feeNumber = Double.parseDouble(removeSymbolNoDot(outPage.bandwidthText.getText().split(" ")[0]));
-        log("feeNumber:"+ feeNumber.toString());
-        Assert.assertTrue(feeNumber > 0 );
-        Assert.assertTrue(outPage.titleLabel.getText().contains("确认转出"));
-        Assert.assertTrue(Helper.isElementExist(outPage.driver,"转出需要执行智能合约，智能合约同时可能会消耗能量。"));
-        Assert.assertTrue( outPage.comfirm_btn().isEnabled());
-        outPage.comfirm_btn().click();
-        outPage.password_input.click();
-        outPage.password_input.sendKeys("balabala");
-        Helper.tapWhitePlace(outPage.driver);
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue( outPage.get_finish_btn().isEnabled());
-
-    }
-
-
-
-    @Test(description = "input min send number",alwaysRun = true)
-    public void test007_inputMinSendNumber() throws Exception {
-        TrxPage trx = enterTrxPage();
-        trx.enterTransferOutPage();
-        waiteTime();
-//        trx.textField.click();
-        trx.textField.sendKeys("0");
-        Helper.closeKeyBoard(trx.driver);
-        Assert.assertTrue( trx.amountErrorLabel.getText().contains("转账金额需大于 0"));
-
-    }
-
-
     @Test(description = "Check OutNumberInRecord WithDraw trx10",alwaysRun = true)
     public void test008_checkOutNumberInRecordWithDrawTrx10() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);

@@ -50,7 +50,6 @@ public class ImportPrivateKey extends BaseTest {
         importPrivateKey.content_textfield.sendKeys(privateKey);
         closeKeyBoard();
         DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
-
         WebElement nextButton =  DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '导入私钥'");
 
         List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField");

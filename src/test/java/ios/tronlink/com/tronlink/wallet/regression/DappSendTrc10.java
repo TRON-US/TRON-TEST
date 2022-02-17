@@ -96,39 +96,6 @@ public class DappSendTrc10 extends BaseTest {
     }
 
 
-
-    @Test(description = "input max send number",alwaysRun = true)
-    public void test002_inputMaxSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("max");
-        transfer.transferNow_btn.click();
-        Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
-    }
-
-
-    @Test(description = "input mix send number",alwaysRun = true)
-    public void test003_inputMixSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("mix");
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
-    }
-
-
-    @Test(description = "input too Much trc10 send number",alwaysRun = true)
-    public void test004_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("tooMuch");
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("余额不足"));
-    }
-
-    @Test(description = "ssendaddressChanged test",alwaysRun = true)
-    public void test005_sendaddressChanged() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.testfieldArray.get(0).sendKeys(" ");
-        Helper.tapWhitePlace(transfer.driver);
-        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("钱包地址格式不正确"));
-    }
-
     @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
     public void test006_CheckOutNumberInRecordTrx10() throws Exception {
         log("successNumber:"+successNumber);
