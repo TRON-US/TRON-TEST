@@ -3,9 +3,12 @@ package ios.tronlink.com.tronlink.wallet.regression;
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ImportPrivateKey extends BaseTest {
@@ -19,120 +22,90 @@ public class ImportPrivateKey extends BaseTest {
         waiteTime();
         assetPage.addWallet_btn.click();
         waiteTime();
-        DRIVER.findElementByName("私钥").click();
+        DRIVER.findElementByName("导入钱包").click();
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);
     }
 
     @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
-    public void test001_importPrivateKeyFormatIncorrect() throws Exception {
+    public void test001_importPrivateKeyLengthIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
         Assert.assertFalse(importPrivateKey.getNext_btn().isEnabled());
-        String hitsT = importPrivateKey.checkPrivateKey("ecd4bbba178b1b0d2a123123343245463450c1e6e9108e0asdfasfddafjwijfiajsvnxzcviarjfjasfjlafcab");
-        Assert.assertTrue(hitsT.contains("Incorrect private key") || hitsT.contains("私钥错误"));
+        importPrivateKey.interPrivateKey("ecd4bbba178b1b0d2a123123343245463450c1e6e9108e0asdfasfddafjwijfiajsvnxzcviarjfjasfjlafcab");
+        Assert.assertTrue(isElementExist("私钥不可超出 64 位，请检查后重试"));
     }
 
-
-    @Test(description = "PrivateKey Name Too Long", alwaysRun = true)
-    public void test002_privateKeyNameTooLong() throws Exception {
+    @Test(description = "Import PrivateKey Format Incorrect", alwaysRun = true)
+    public void test002_importPrivateKeyFormatIncorrect() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        setName.name_input.sendKeys("123456789012345");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(setName.name_input.getText().equalsIgnoreCase("12345678901234"));
-        setName.name_input.clear();
-        setName.name_input.sendKeys("一二三四五六七超");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(setName.name_input.getText().equalsIgnoreCase("一二三四五六七"));
-        //test006_PrivateKeywalletNameHasAleradyExist
-        setName.name_input.clear();
-        setName.name_input.sendKeys("Auto_test");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(Helper.isElementExist(setName.driver,"钱包名称已存在"));
-        //test007_PrivateKeysameNameButDifferentCapitalization
-        setName.name_input.clear();
-        setName.name_input.sendKeys("AUto_test");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(setName.getNext_btn().isEnabled());
+        Assert.assertFalse(importPrivateKey.getNext_btn().isEnabled());
+        importPrivateKey.interPrivateKey("jljaljsdfldjsaaljsfdlkajsdkdfklsjie");
+        Assert.assertTrue(isElementExist("请输入有效的私钥、助记词或 Keystore"));
     }
-
 
 
     @Test(description = "Password without uppercase letter", alwaysRun = true)
     public void test003_PrivateKeypasswordWithoutUppercaseLetter() throws Exception {
         ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
-        setPwd.pwd_input.sendKeys("test0001");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertFalse(setPwd.getNext_btn().isEnabled());
-        //test009_PrivateKeypasswordIsTooShort
-        setPwd.pwd_input.clear();
-        setPwd.pwd_input.sendKeys("Abcd123");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertFalse(setPwd.getNext_btn().isEnabled());
-        //test010_PrivateKeypasswordIsNonumber
-        setPwd.pwd_input.clear();
-        setPwd.pwd_input.sendKeys("Abcdasdf");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertFalse(setPwd.getNext_btn().isEnabled());
-        //test011_PrivateKeypasswordIsNoLowercase
-        setPwd.pwd_input.clear();
-        setPwd.pwd_input.sendKeys("ABCDEFGHI");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertFalse(setPwd.getNext_btn().isEnabled());
-        //test012_privateKeyIsAllNumbers
-        setPwd.pwd_input.clear();
-        setPwd.pwd_input.sendKeys("1234567890");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertFalse(setPwd.getNext_btn().isEnabled());
-        //test013_privateKeyWithoutUppercaseLetter
-        setPwd.pwd_input.clear();
-        setPwd.pwd_input.sendKeys("zxcvbnm1234567");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertFalse(setPwd.getNext_btn().isEnabled());
+        importPrivateKey.content_textfield.sendKeys(privateKey);
+        closeKeyBoard();
+        DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
+
+        WebElement nextButton =  DRIVER.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '导入私钥'");
+
+        List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField");
+        if (Secure.size()>1){
+            Secure.get(0).sendKeys("test0001");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+            //test009_PrivateKeypasswordIsTooShort
+            Secure.get(0).clear();
+            Secure.get(0).sendKeys("Abcd123");
+            Secure.get(1).clear();
+            Secure.get(1).sendKeys("Abcd123");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+            //test010_PrivateKeypasswordIsNonumber
+            Secure.get(0).clear();
+            Secure.get(0).sendKeys("Abcdasdf");
+            Secure.get(1).clear();
+            Secure.get(1).sendKeys("Abcdasdf");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+            //test011_PrivateKeypasswordIsNoLowercase
+            Secure.get(0).clear();
+            Secure.get(0).sendKeys("ABCDEFGHI");
+            Secure.get(1).clear();
+            Secure.get(1).sendKeys("ABCDEFGHI");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+            //test012_privateKeyIsAllNumbers
+            Secure.get(0).clear();
+            Secure.get(0).sendKeys("1234567890");
+            Secure.get(1).clear();
+            Secure.get(1).sendKeys("1234567890");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+            //test013_privateKeyWithoutUppercaseLetter
+            Secure.get(0).clear();
+            Secure.get(0).sendKeys("zxcvbnm1234567");
+            Secure.get(1).clear();
+            Secure.get(1).sendKeys("zxcvbnm1234567");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+
+            Secure.get(0).clear();
+            Secure.get(0).sendKeys("Test0001");
+            Secure.get(1).clear();
+            Secure.get(1).sendKeys("Test0002");
+            closeKeyBoard();
+            Assert.assertFalse(nextButton.isEnabled());
+            Assert.assertTrue(isElementExist(" 两次输入密码不一致"));
+
+        }
+
+
     }
 
 
-    @Test(description = "Two Password Is diffent", alwaysRun = true)
-    public void test004_PrivateKeytwoPasswordDiffent() throws Exception {
-        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
-        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-        setPwdAgain.pwd_input.sendKeys("Test0002");
-        Helper.tapWhitePlace(DRIVER);
-        setPwdAgain.getComplish_btn().click();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(Helper.isElementExist(setPwdAgain.driver,"两次输入密码不一致"));
-
-    }
-    //todo: none test add
-
-
-//    @Test(description = "test import privateKey Success",alwaysRun = true)
-//    public  void test015_PrivateKeyNameSetSuccess() throws Exception {
-//        ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-//        PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(privateKey);
-//        PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage(wallet);
-//        PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-//        setPwdAgain.pwd_input.sendKeys("Test0001");
-//        Helper.tapWhitePlace(DRIVER);
-//        setPwdAgain.getComplish_btn().click();
-//        TimeUnit.SECONDS.sleep(3);
-//        System.out.println(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]);
-//        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) == 0);
-//    }
-//
-//    @Test(description = "test Delete Wallet  password",alwaysRun = true)
-//    public void  test016_testDeletePrivateKeywalletSuccess() throws InterruptedException {
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        MinePage minePage =  assetPage.enterMinePage();
-//        MyPursePage walletPage = minePage.enterMyPursePage();
-//        walletPage.deletWallet("Test0001");
-//        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(Helper.isElementExist(DRIVER,"冷钱包"));
-//
-////        Assert.assertTrue(Integer.parseInt(DRIVER.findElementByName("trxLabel").getText().split(" ")[0]) != 0);
-//    }
 }

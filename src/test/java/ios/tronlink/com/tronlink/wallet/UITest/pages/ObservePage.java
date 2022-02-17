@@ -17,7 +17,7 @@ public class ObservePage extends  AbstractPage {
 
     }
 
-    @FindBy(className = "XCUIElementTypeTextView")
+    @FindBy(className = "XCUIElementTypeTextField")
     public WebElement input_content;
 
 
@@ -33,16 +33,16 @@ public class ObservePage extends  AbstractPage {
     }
 
     public WebElement getNext_btn(){
-        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'");
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '添加观察钱包'");
     }
 
     public void inputAddreseString(String address) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         input_content.sendKeys(address);
-        Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(3);
-        getNext_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        closeKeyBoard();
+//        TimeUnit.SECONDS.sleep(3);
+//        getNext_btn().click();
+//        TimeUnit.SECONDS.sleep(2);
     }
 
     public PrivateKeySetNamePage enterPrivateKeySetNamePage() throws Exception {

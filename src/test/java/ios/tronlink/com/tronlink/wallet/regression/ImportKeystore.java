@@ -14,78 +14,51 @@ public class ImportKeystore extends BaseTest {
     String oldKeystore;
     public ImportKeystorePage getImportKeystorePage(){
         AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
         assetPage.addWallet_btn.click();
-        waiteTime();
-        DRIVER.findElementByName("Keystore").click();
+        DRIVER.findElementByName("导入钱包").click();
         return new ImportKeystorePage(DRIVER);
     }
 
-    public ImportKeystorePage mypurpustokeystore(MyPursePage page){
-        waiteTime();
-        page.addwallet.click();
-
-        waiteTime();
-        DRIVER.findElementByName("Keystore").click();
-        return new ImportKeystorePage(DRIVER);
-
-    }
 
 
     @Test(description = "test goto ImportFromKeyStore",alwaysRun = true)
     public void test001_gotoimportFromeKeyStroe() throws Exception {
-        ImportKeystorePage importKeystorePage = getImportKeystorePage();
-        Assert.assertTrue(Helper.contentTexts(importKeystorePage.textArray,"导入Keystore (步骤 1/2)"));
+        getImportKeystorePage();
+        Assert.assertTrue(isElementExist("导入钱包"));
+        Assert.assertTrue(isElementExist("Import Create Nav Scan"));
+        Assert.assertTrue(isElementExist("下一步"));
     }
 
     @Test(description = "test  input wrong format Keystore",alwaysRun = true)
     public void test002_inputWrongFormatKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
-        importKeystorePage.content_text.sendKeys("wrong keysotre format");
-        Helper.tapWhitePlace(DRIVER);
-        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("Keystore 错误，请重新输入"));
+        importKeystorePage.content_text.sendKeys("wrongkeystoreformatwrongkeystoreformat");
+        closeKeyBoard();
+        Assert.assertTrue(isElementExist("请输入有效的私钥、助记词或 Keystore"));
     }
 
     @Test(description = "test  input wrong format Password",alwaysRun = true)
     public void test003_inputWrongPasswordKeystore() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
-        TimeUnit.SECONDS.sleep(7);
-        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("密码错误"));
-    }
-
-    @Parameters({"privateKey"})
-    @Test(description = "test  input haved Keystore",alwaysRun = true)
-    public void test004_inputHaveExistWallet(String privateKey) throws Exception {
-        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
-        AssetPage asset = new AssetPage(DRIVER);
-        MyPursePage walletPage = asset.enterMyPursePage();
-        oldKeystore = walletPage.getBackupKeystore("Test0001");
-        ImportKeystorePage importKeystorePage = mypurpustokeystore(walletPage);
-        importKeystorePage.inputKeyAndPassword(oldKeystore,"Test0001");
         TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(importKeystorePage.errorStr.getText().contains("钱包已存在"));
+        Assert.assertFalse(importKeystorePage.importBtn.isEnabled());
     }
-
-
 
     @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
     public  void test007_keystoreNameSetSuccess() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
-        PrivateKeySetNamePage setNamePage = importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
-        setNamePage.name_input.sendKeys("willbedelete");
-        Helper.tapWhitePlace(DRIVER);
-        setNamePage.driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确定'").click();
-        TimeUnit.SECONDS.sleep(3);
+        importKeystorePage.enterPrivateKeySetNamePage(keystore,"Test0002");
+        TimeUnit.SECONDS.sleep(5);
         AssetPage assetPage = new AssetPage(DRIVER);
-        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("willbedelete"));
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("name"));
     }
 
     @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
     public void  test008_testDeletewalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();
-        walletPage.deletWallet("Qqqqqqq1");
+        walletPage.deletWallet("Test0002");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
     }

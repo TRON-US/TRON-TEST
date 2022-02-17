@@ -160,11 +160,12 @@ public class AssetPage extends AbstractPage {
 
     public ImportPage enterImportPage(){
         addWallet_btn.click();
+        driver.findElementByName("导入钱包").click();
         return new ImportPage(driver);
     }
 
     public WebElement transfer_btn(){
-        return  driver.findElementByName("发送");
+        return  driver.findElementByName("转账");
     }
 
     public VotePage enterVotePage() {
@@ -179,12 +180,9 @@ public class AssetPage extends AbstractPage {
 
     //enter MyPurse Page
     public MyPursePage enterMyPursePage() {
-
         try {
             trxValue.click();
-//            walletNameBtn.click();
             TimeUnit.SECONDS.sleep(1);
-            System.out.println("成功进入钱包管理页面");
 
         } catch (Exception e) {
             System.out.println("失败进入钱包管理页面");
@@ -279,7 +277,7 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterSendTrxPage() throws Exception {
         waiteTime();
-        transfer_btn().click();
+        send_btn.click();
         return new SendTrxPage(driver);
     }
     public SendTrxPage enterSendTrzPage() throws Exception {

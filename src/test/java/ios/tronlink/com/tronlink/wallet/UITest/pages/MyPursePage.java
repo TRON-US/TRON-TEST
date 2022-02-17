@@ -46,7 +46,7 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "titleLabel")
     public List<WebElement> titleLabels;
 
-    @FindBy(name = "备份 Keystore")
+    @FindBy(name = "备份Keystore")
     public WebElement backkeystore_btn;
 
     @FindBy(name = "删除钱包")
@@ -231,41 +231,20 @@ public class MyPursePage extends AssetPage {
     }
 
 
-    public String getBackupKeystore(String password){
+    public String getBackupKeystore(String password) throws Exception{
         String keystore = "";
-        try {
-            Helper.swipScreen(driver);
-            waiteTime();
-            try{
-                backkeystore_btn.click();
-            }catch (Exception e){
-                Helper.swipScreen(driver);
-                try{
-                    backkeystore_btn.click();
-                }catch (Exception el){
-                    Helper.swipRefreshScreen(driver);
-                    backkeystore_btn.click();
-                }
-
-            }
-            TimeUnit.SECONDS.sleep(1);
-            waiteTime();
-            password_et.sendKeys(password);
-            waiteTime();
-            WebElement confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
-            confirm_btn.click();
-            TimeUnit.SECONDS.sleep(2);
-            driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '我知道了'").click();
-            TimeUnit.SECONDS.sleep(2);
-            waiteTime();
-            keystore = keystore_text.getText();
-            log("keystore: " + keystore);
-            waiteTime();
-            done_btn.click();
-            TimeUnit.SECONDS.sleep(1);
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        backkeystore_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        password_et.sendKeys(password);
+        WebElement confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+        confirm_btn.click();
+        TimeUnit.SECONDS.sleep(6);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '显示Keystore'").click();
+        TimeUnit.SECONDS.sleep(1);
+        keystore = keystore_text.getText();
+        log("keystore: " + keystore);
+        done_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         return keystore;
     }
 
@@ -335,20 +314,13 @@ public String getBackupKeystoreInClipboard(String password){
 //    }
 
     public void deletWallet (String password) throws Exception{
-        WebElement  confirm_btn;
         Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(5);
-
-        findWebElement("删除钱包").click();
-
-        System.out.println("deletewallet_btn");
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '删除钱包'").click();
         TimeUnit.SECONDS.sleep(2);
         password_et.sendKeys(password);
-        TimeUnit.SECONDS.sleep(2);
-        confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-
+        TimeUnit.SECONDS.sleep(1);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'").click();
+        TimeUnit.SECONDS.sleep(3);
     }
 
     public boolean deleteObserveWallet(){

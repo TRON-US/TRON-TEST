@@ -72,33 +72,33 @@ public class NumbersWalletImport extends BaseTest {
         TimeUnit.SECONDS.sleep(2);
         return new ImportPrivateKeyPage(DRIVER);
     }
-
-    @Test(description = "Import 100 wallet in wallet", alwaysRun = false)
-    public void test001_Import100Wallet() throws Exception {
-        List<String> array = readFile("src/test/resources/100privatekeyios.txt");
-
-        for (int i = 0; i < array.size(); i++) {
-            ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
-            PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(array.get(i));
-            System.out.println("\nsetName.getError_hits():" + setName.getError_hits());
-            if (setName.getError_hits().contains("钱包已存在")) {
-                System.out.println("\nWallet Exist: " + array.get(i) + "第" + i + "个");
-                DRIVER.closeApp();
-                DRIVER.launchApp();
-                continue;
-            }
-            PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("Auto_add_" + i);
-            PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
-            TimeUnit.SECONDS.sleep(1);
-            setPwdAgain.pwd_input.sendKeys("Test0001");
-            Helper.tapWhitePlace(DRIVER);
-            setPwdAgain.getComplish_btn().click();
-            TimeUnit.SECONDS.sleep(4);
-
-        }
-
-
-    }
+//
+//    @Test(description = "Import 100 wallet in wallet", alwaysRun = false)
+//    public void test001_Import100Wallet() throws Exception {
+//        List<String> array = readFile("src/test/resources/100privatekeyios.txt");
+//
+//        for (int i = 0; i < array.size(); i++) {
+//            ImportPrivateKeyPage importPrivateKey = enterImportPrivateKeyPage();
+//            PrivateKeySetNamePage setName = importPrivateKey.enterPrivateKeySetNamePage(array.get(i));
+//            System.out.println("\nsetName.getError_hits():" + setName.getError_hits());
+//            if (setName.getError_hits().contains("钱包已存在")) {
+//                System.out.println("\nWallet Exist: " + array.get(i) + "第" + i + "个");
+//                DRIVER.closeApp();
+//                DRIVER.launchApp();
+//                continue;
+//            }
+//            PrivateKeySetPwdPage setPwd = setName.enterPrivateKeySetPwdPage("Auto_add_" + i);
+//            PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
+//            TimeUnit.SECONDS.sleep(1);
+//            setPwdAgain.pwd_input.sendKeys("Test0001");
+//            Helper.tapWhitePlace(DRIVER);
+//            setPwdAgain.getComplish_btn().click();
+//            TimeUnit.SECONDS.sleep(4);
+//
+//        }
+//
+//
+//    }
 
 
     public List<String> readFile(String fileName) {

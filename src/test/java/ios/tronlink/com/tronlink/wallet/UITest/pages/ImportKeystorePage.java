@@ -18,7 +18,7 @@ public class ImportKeystorePage extends AbstractPage {
     this.driver = driver;
   }
 
-  @FindBy(className = "XCUIElementTypeTextView")
+  @FindBy(className = "XCUIElementTypeTextField")
   public WebElement content_text;
 
 
@@ -26,7 +26,8 @@ public class ImportKeystorePage extends AbstractPage {
   @FindBy(className = "XCUIElementTypeSecureTextField")
   public WebElement password_text;
 
-
+  @FindBy(name = "导入Keystore")
+  public WebElement importBtn;
 
   @FindBy(name = "com.tronlink.wallet:id/tv_error")
   public List<WebElement> error_hits;
@@ -42,14 +43,16 @@ public class ImportKeystorePage extends AbstractPage {
   }
 
   public void inputKeyAndPassword(String key,String password) throws Exception {
-    waiteTime();
     content_text.sendKeys(key);
-    Helper.closeKeyBoard(driver);
-    waiteTime();
-    password_text.sendKeys(password);
-    Helper.closeKeyBoard(driver);
-    waiteTime();
+    closeKeyBoard();
     driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
+    content_text.click();
+    driver.findElementByName("清除文本").click();
+    content_text.sendKeys("name");
+    closeKeyBoard();
+    password_text.sendKeys(password);
+    closeKeyBoard();
+    driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '导入Keystore'").click();
   }
 
 
