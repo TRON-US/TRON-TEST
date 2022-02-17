@@ -19,22 +19,22 @@ public class AssetPage extends AbstractPage {
 
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        waiteTime(5);
         this.driver = driver;
-        try {
-            if (ad_pic.isDisplayed()) {
-                adClose_btn.click();
-                log("已关闭广告图");
-            }
-        } catch (Exception e) {
-            try {
-                if (adClose_btn.isDisplayed()) {
-                    adClose_btn.click();
-                    System.out.println("adClose_btn:已关闭广告图");
-                }
-            } catch (Exception el) {
-            }
-        }
+//        try {
+//            if (ad_pic.isDisplayed()) {
+//                adClose_btn.click();
+//                log("已关闭广告图");
+//            }
+//        } catch (Exception e) {
+//            try {
+//                if (adClose_btn.isDisplayed()) {
+//                    adClose_btn.click();
+//                    System.out.println("adClose_btn:已关闭广告图");
+//                }
+//            } catch (Exception el) {
+//            }
+//        }
 //        }
 //        try {
 //            // if updateview display ,close
@@ -45,13 +45,13 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 //
         try {
-            if (mutisign_tipview.isDisplayed()) {
+            if (mutisign_closebtn.isDisplayed()) {
                 mutisign_closebtn.click();
                 System.out.println("启动后,关闭多签提示view");
             }
         } catch (Exception e) {
         }
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        waiteTime();
 
     }
 
@@ -143,8 +143,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "nameLabel")
     public List<WebElement> cellArray;
 
-    @FindBy(id = "walletName")
+    @FindBy(name = "walletName")
     public WebElement walletNameBtn;
+
+    @FindBy(name = "home walletName arrow")
+    public WebElement changeWalletBtn;
 
     @FindBy(id = "blockNumberLabel")//块数量
     public WebElement blockNumberLabel;
@@ -499,47 +502,27 @@ public class AssetPage extends AbstractPage {
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
         return  fasternterMultiSignManagerPage();
-//        MinePage minePage = enterMinePage();
-//        MyPursePage pursePage = minePage.enterMyPursePage();
-//        MultiSignManagerPage managerPage = pursePage.enterMultiSignManagerPageNew();
-//        try {
-//            if (managerPage.instructionBtn.isDisplayed()) {
-//                System.out.println("\n1 times success 成功进入MultiSignMange");
-//                return managerPage;
-//            } else {
-//                managerPage = pursePage.enterMultiSignManagerPageNew();
-//                if (managerPage.instructionBtn.isDisplayed()) {
-//                    System.out.println("\n2 times success 成功进入MultiSignMange");
-//                    return managerPage;
-//                }else{
-//                    managerPage = pursePage.enterMultiSignManagerPageNew();
-//                    if (managerPage.instructionBtn.isDisplayed()) {
-//                        System.out.println("\n3 times success 成功进入MultiSignMange");
-//                        return managerPage;
-//                    }else {
-//                        managerPage = pursePage.enterMultiSignManagerPageNew();
-//                    }
-//                }
-//            }
-//        } catch (Exception e) {
-//            log(e.getMessage());
-//        }
-//
-//        return managerPage;
+
     }
 
     public MultiSignManagerPage fasternterMultiSignManagerPage() throws Exception {
         waiteTime();
-        walletArrow.click();
+        trxValue.click();
         log("walletArrow ed");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println(activePath.getLocation());
-        System.out.println(activePath.getRect());
-        Helper.TapLocationOffset(driver,activePath,100,100);
-        log("activePath ed");
+        driver.findElementByName("权限管理").click();
         TimeUnit.SECONDS.sleep(3);
         return new MultiSignManagerPage(driver);
 
+
+    }
+
+    public void swipWalletTochange(String name) throws Exception{
+        clickOffsetElement(walletNameBtn);
+        TimeUnit.SECONDS.sleep(1);
+
+        clickOffsetElement(driver.findElementByName(name));
+        TimeUnit.SECONDS.sleep(1);
 
     }
 

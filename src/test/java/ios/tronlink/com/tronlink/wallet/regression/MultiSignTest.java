@@ -3,11 +3,14 @@ package ios.tronlink.com.tronlink.wallet.regression;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -69,47 +72,7 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         new Helper().importMoreWallet(Helper.importType.normal,multiSignPrivateKey,"Signed","Test0001",assetPage.driver);
         TimeUnit.SECONDS.sleep(1);
-        String trxtext = assetPage.getTrxCount();
-        log("value:" + trxtext);
-        Assert.assertTrue(Float.parseFloat(removeSymbolFloat(trxtext)) < 100);
-
-    }
-
-    @Test(description = "change account", alwaysRun = true)
-    public void test003_swipChangeAccountSuccess() throws Exception {
-            AssetPage assetPage = new AssetPage(DRIVER);
-            waiteTime();
-            String oldName = assetPage.walletNameBtn.getText();
-            log("\nfrom Wallet: " + oldName );
-            MyPursePage myPursePage = assetPage.enterMyPursePage();
-            myPursePage.swipWalletTochangeNext();
-            log("\nfrom Wallet: " + oldName + "  to Wallet " + assetPage.walletNameBtn.getText());
-            Assert.assertFalse(assetPage.walletNameBtn.getText().contains(oldName));
-    }
-
-    @Test(description = "swip account address is change", alwaysRun = true)
-    public void test004_swipAccountAddressChange() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        String oldName = assetPage.walletNameBtn.getText();
-        MyPursePage myPursePage = assetPage.enterMyPursePage();
-        myPursePage.swipWalletTochangeNext();
-        log("\nfrom Wallet: " + oldName + "  to Wallet " + assetPage.walletNameBtn.getText());
-        Assert.assertFalse(assetPage.walletNameBtn.getText().contains(oldName));
-    }
-
-    @Test(description = "make account address to Signed", alwaysRun = true)
-    public void test005_makeAccountToSigned() throws Exception{
-        AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        String oldName = assetPage.walletNameBtn.getText();
-        if (oldName.contains("Signed")){
-            Assert.assertTrue(true);
-        }else {
-            MyPursePage myPursePage = assetPage.enterMyPursePage();
-            myPursePage.swipWalletTochangeNext();
-            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
-        }
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
     }
 
     @Test(groups = {"P0"},description = "send trx overstep one’s authority Test", alwaysRun = true)
@@ -147,37 +110,42 @@ public class MultiSignTest extends Base {
     @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
     public void test010_makeAccountToOwner() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        String oldName = assetPage.walletNameBtn.getText();
-        if (oldName.contains("Auto_test")){
-            Assert.assertTrue(true);
-        }else {
-            MyPursePage myPursePage = assetPage.enterMyPursePage();
-            myPursePage.swipWalletTochangeNext();
-            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
-        }
+        assetPage.swipWalletTochange("Auto_test");
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
     }
 
     @Test(description = "show multiSign Tips Test", alwaysRun = true)
     public void test011_showMultiSignTipsTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(assetPage.isMultiSignViewShow());
     }
 
     @Test(description = " multiSign Title Test", alwaysRun = true)
     public void test012_multiSignTitleTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
-        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
-        Assert.assertTrue(multiSignRecodPage.typeLabels.get(0).getText().contains("TRX 转账"));
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
+        assetPage.enterMultiSignRecordView();
+        List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+        System.out.println(Secure.size());
+        for (int i = 0 ; i<Secure.size();i++){
+            System.out.println(Secure.get(i).getText());
+            if (Secure.get(i).getText().contains("TRX 转账")){
+                Assert.assertTrue(true);
+                break;
+            }
+        }
 
     }
 
     @Test(description = " multiSign Deal numbers Test", alwaysRun = true)
     public void test013_multiSignDealNumbersTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
         Assert.assertTrue(multiSignRecodPage.getwaitingCellsCount() >= 2);
     }
@@ -185,7 +153,8 @@ public class MultiSignTest extends Base {
     @Test(description = " multiSign Wrong Password Test", alwaysRun = true)
     public void test014_multiSignWrongPasswordTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
         Assert.assertTrue(multiSignRecodPage.signWrongPass());
 
@@ -194,7 +163,8 @@ public class MultiSignTest extends Base {
     @Test(groups = {"P0"},description = " multiSign sign Owner success Test", alwaysRun = true)
     public void test015_multiSignSuccessTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
         int beforeNumber = multiSignRecodPage.getwaitingCellsCount();
         log("beforeNumber:"+ beforeNumber);
@@ -208,15 +178,9 @@ public class MultiSignTest extends Base {
     @Test(groups = {"P0"},description = "make account address to Signed", alwaysRun = true)
     public void test017_makeAccountToSigned() throws Exception{
         AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        String oldName = assetPage.walletNameBtn.getText();
-        if (oldName.contains("Signed")){
-            Assert.assertTrue(true);
-        }else {
-            MyPursePage myPursePage = assetPage.enterMyPursePage();
-            myPursePage.swipWalletTochangeNext();
-            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
-        }
+        assetPage.swipWalletTochange("Signed");
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
+
     }
 
     @Test(description = "frozenPage have MultiSigned", alwaysRun = true)
@@ -233,7 +197,7 @@ public class MultiSignTest extends Base {
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.addActiveBeforeConfirm(ownerAddress);
         Assert.assertTrue(Helper.isElementExist(multiSignManagerPage.driver,"≈ 101 TRX"));
-        Assert.assertFalse( Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
+        Assert.assertFalse(Helper.isElementExist(multiSignManagerPage.driver,"余额不足"));
     }
 
     @Parameters({"ownerAddress"})
@@ -248,29 +212,33 @@ public class MultiSignTest extends Base {
     @Test(groups = {"P0"},description = "make account address to Owner", alwaysRun = true)
     public void test021_makeAccountToOwner() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        waiteTime();
-        String oldName = assetPage.walletNameBtn.getText();
-        if (oldName.contains("Auto_test")) {
-            Assert.assertTrue(true);
-        } else {
-            MyPursePage myPursePage = assetPage.enterMyPursePage();
-            myPursePage.swipWalletTochangeNext();
-            Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
-        }
+        assetPage.swipWalletTochange("Auto_test");
+        Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
+
     }
 
     @Test(groups = {"P0"},description = " multiSign  is Frozen Test", alwaysRun = true)
     public void test022_multiSignTitleTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
-        MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
-        Assert.assertTrue(multiSignRecodPage.getListString(multiSignRecodPage.typeLabels).contains("质押资产"));
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
+        assetPage.enterMultiSignRecordView();
+        List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+        System.out.println(Secure.size());
+        for (int i = 0 ; i<Secure.size();i++){
+            System.out.println(Secure.get(i).getText());
+            if (Secure.get(i).getText().contains("质押资产")){
+                Assert.assertTrue(true);
+                break;
+            }
+        }
     }
 
     @Test(description = " multiSign sign Frozen  Test", alwaysRun = true)
     public void test023_multiSignFrozenSuccessTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.goBackAndSeeMultiTips();
+        assetPage.swipWalletTochange("Signed");
+        assetPage.swipWalletTochange("Auto_test");
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
         int beforeNumber = multiSignRecodPage.getwaitingCellsCount();
         log("beforeNumber:"+ beforeNumber);

@@ -272,20 +272,8 @@ public class Helper {
     //导入正常的,需要报错信息不能使用此方法
     public  void importMoreWallet(importType type,String privateKey,String name,String pass,IOSDriver driver) throws Exception{
         this.DRIVER = driver;
-        WebElement addwalletBtn = driver.findElementById("walletName");
-        switch (type){
-            case normal:
-            case coldWallet: {
-                addwalletBtn.click();
-                try {
-                    driver.findElementById("normalWallet").click();
-                }catch (Exception nooutput){
-
-                }
-                break;
-            }
-        }
-
+        driver.findElementByName("home manager").click();
+        driver.findElementByName("导入钱包").click();
         importUsePrivateKey(privateKey,name,pass);
     }
 

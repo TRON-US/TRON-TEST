@@ -27,8 +27,10 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
+import io.appium.java_client.touch.offset.PointOption;
 
 
 public class Base {
@@ -313,6 +315,56 @@ public class Base {
         DRIVER.launchApp();
 
     }
+    public  boolean isElementExist( String name) {
+        IOSDriver driver = DRIVER;
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            driver.findElementByName(name);
+            System.out.println("IsFindByName: "+name);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            try {
+                driver.findElementById(name);
+                System.out.println("IsFindById: "+name);
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                return  true;
+            }catch (org.openqa.selenium.NoSuchElementException eex){
+                try {
+                    if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
+                        System.out.println("IsFindByBtn: "+name);
+                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                        return  true;
+                    }else {
+                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                        return  false;
+                    }
+                }catch (org.openqa.selenium.NoSuchElementException e){
+                    System.out.println("NotFound: "+name);
+                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                    return  false;
+                }
+            }
+        }
+    }
 
+    public  void closeKeyBoard()  throws Exception{
+        IOSDriver driver = DRIVER;
+
+        try {
+            driver.findElementByName("Done").click();
+        }catch (Exception e){
+            try {
+                driver.findElementByName("完成").click();
+
+            }catch (Exception el){
+                System.out.println("not found keyboard done");
+                TouchAction action = new TouchAction(driver);
+                PointOption whiteplace = PointOption.point(8,200);
+                action.tap(whiteplace).perform().release();
+            }
+        }
+
+    }
 
 }
