@@ -49,14 +49,16 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_transfer_address")
     public WebElement transferAddress_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_input_address")
     public WebElement receiveAddress_text;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_next")
+    public WebElement next_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_count")
     public WebElement tranferCount_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement send_btn;
 
 
@@ -67,9 +69,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement InputPasswordConfim_btn;
 
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
     public WebElement confirm_btn;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/transfer_out_address")
     public WebElement from_address;
 
@@ -138,17 +140,6 @@ public class SendTrxPage extends AbstractPage {
         Helper.swipScreen(driver);
     }
 
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
-    public WebElement next_btn;
-
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
-    public WebElement enableTime_text;
-
-
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
-    public List<WebElement> signAddress_text;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_selected_name")
@@ -229,13 +220,12 @@ public class SendTrxPage extends AbstractPage {
 
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
-        swip();
         send_btn.click();
-        findElementByText("确认").click();
-//        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
         confirm_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        send_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new SendTrxSuccessPage(driver);
     }
@@ -247,7 +237,7 @@ public class SendTrxPage extends AbstractPage {
         send_btn.click();
         transferNow_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
+        send_btn.click();
         TimeUnit.SECONDS.sleep(5);
         back_bt.click();
         return new SendTrxSuccessPage(driver);

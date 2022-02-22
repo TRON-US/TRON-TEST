@@ -50,6 +50,8 @@ public class AssetPage extends AbstractPage {
         }catch (Exception e){}
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
+    public WebElement banlance_trx_page;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_deal_sign_tip")
     public WebElement mutisign_tipview;
@@ -169,7 +171,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_renzheng")
     public List<WebElement> trx10_icon_btns;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_renzheng")
+    public WebElement vip_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
     public WebElement currChain_name;
@@ -205,6 +208,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_detail")
     public WebElement enterWalletManageBtn;
 
+    @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
+    public WebElement trxSendBottomBtn ;
 
     public void changeChainToDappChain() throws Exception{
         if(!currChain_name.getText().contains("DAppChain")){
@@ -262,8 +267,12 @@ public class AssetPage extends AbstractPage {
         return new SendTrxPage(driver);
     }
 
+    public SendTrxPage trxSendTrxPage() {
+        trxSendBottomBtn.click();
+        return new SendTrxPage(driver);
+    }
 
-
+//*[@resource-id="com.tronlinkpro.wallet:id/ll_transfer2"]/android.widget.ImageView[1]
 
     public SendTrxPage enterSendTrc10Page() {
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);

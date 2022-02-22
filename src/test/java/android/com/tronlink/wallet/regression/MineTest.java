@@ -102,15 +102,7 @@ public class MineTest extends Base {
           minePage.findElementByText("高级功能").click();
           Assert.assertTrue(minePage.nav_title.getText().contains("高级功能"));
       }
-    @Test(alwaysRun = true)
-    public void test007_settingTest()  {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        Helper.swipScreen(minePage.driver);
-        Assert.assertTrue(isElementTextExist("高级功能"));
-        minePage.findElementByText("高级功能").click();
-        Assert.assertTrue(minePage.nav_title.getText().contains("高级功能"));
-    }
+
 
     @Test(alwaysRun = true)
     public void test008_helpingTest()  {

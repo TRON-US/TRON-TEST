@@ -71,27 +71,25 @@ public class SendTrx extends Base {
 
     public SendTrxPage enterToSendTrxPage() {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
+        asset.vip_btn.click();
+        beforeSendBalance = Integer.valueOf(removeSymbol(asset.banlance_trx_page.getText()));
+        SendTrxPage transfer = asset.trxSendTrxPage();
         return transfer;
     }
 
     @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
-        System.out.println("beforeSendBalance-----"+beforeSendBalance);
         sendTrxAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+sendTrxAmount);
         transfer.sendTrx(Float.toString(sendTrxAmount));
         Assert.assertTrue(assertToast("交易提交成功"));
     }
-
-
-
+    
     @Test(enabled = true, description = "input Privatekey to Receiving address", alwaysRun = true)
     public void test002_inputPrivatekey() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
         transfer.sendKey(transfer.tranferCount_text, "1");
         transfer.swipScreenLitte();
@@ -104,7 +102,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "input error address to Receiving address", alwaysRun = true)
     public void test003_inputErrorAddress() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
         transfer.sendKey(transfer.tranferCount_text, "1");
         transfer.swipScreenLitte();
@@ -117,7 +116,8 @@ public class SendTrx extends Base {
 //开发
     @Test(enabled = true, description = "input not active Receiving address", alwaysRun = true)
     public void test004_inputNotActiveAddress() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, "TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
         String hits = transfer.note_text.getText();
         log("hits: " + hits);
@@ -128,7 +128,8 @@ public class SendTrx extends Base {
     @Parameters({"address"})
     @Test(enabled = true, description = "input Receiving address same as send address", alwaysRun = true)
     public void test005_inputReceivingAddressSameAsSend(String address) throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendKey(transfer.receiveAddress_text, address);
         transfer.sendKey(transfer.tranferCount_text, "1");
         transfer.swipScreenLitte();
@@ -141,7 +142,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "input Null Receiving address", alwaysRun = true)
     public void test006_inputNullReceivingAddress() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendKey(transfer.tranferCount_text, "1");
         transfer.swipScreenLitte();
         Assert.assertFalse(transfer.send_btn.isEnabled()); //send btn can click
@@ -150,7 +152,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "input max send number", alwaysRun = true)
     public void test007_inputMaxSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendAllTrx("max");
         Assert.assertTrue(transfer.transferNow_btn.isDisplayed());
     }
@@ -160,7 +163,8 @@ public class SendTrx extends Base {
     public void test008_inputNotEnoughBandWidthSendMaxNumberUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         String allnumber = removeSymbol(transfer.sendMaxCoinWithType());
         System.out.println("allnumber : " + allnumber);
         String comfirmnumber = removeSymbol(StringUtils.substringBeforeLast(transfer.real_money.getText(),"TRX").trim());
@@ -176,7 +180,8 @@ public class SendTrx extends Base {
     public void test009_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         Float allNumber =  Float.parseFloat(removeSymbolFloat(transfer.sendMaxCoinWithType()));
         Float number = sepLeftNumberTextToFloat(transfer.real_money.getText(), "TRX");
         Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"≈1");
@@ -190,7 +195,8 @@ public class SendTrx extends Base {
     public void test010_inputMixSendNumber(String privateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(privateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendAllTrx("mix");
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
@@ -199,7 +205,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
     public void test011_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendAllTrx("tooMuch");
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
@@ -208,7 +215,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "password error", alwaysRun = true)
     public void test012_passwordError() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("1");
         transfer.swipScreenLitte();
@@ -221,7 +229,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "Receiving address trim", alwaysRun = true)
     public void test013_receivingAddressTrim() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("1");
         transfer.swipScreenLitte();
@@ -232,7 +241,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "Receiving Minimum Trx", alwaysRun = true)
     public void test014_sendMinimumTrx() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.swipScreenLitte();
@@ -243,7 +253,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "check trx name", alwaysRun = true)
     public void test015_sendTrxCheckName() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         Assert.assertTrue(transfer.tvName_text.getText().contains("TRX"));
     }
 
@@ -264,7 +275,8 @@ public class SendTrx extends Base {
 
     @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
     public void test018_BandWidthShowTest() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.swipScreenLitte();
@@ -279,7 +291,8 @@ public class SendTrx extends Base {
 
     @Test(groups = {"P0"},enabled = true,description = "Trx transfer balance decrease check")
     public void test019_balanceReduceAfterSendCoin() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
         afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
         System.out.println("beforeSendBalance:" + beforeSendBalance);
         System.out.println("afterSendBalance:" + afterSendBalance);
