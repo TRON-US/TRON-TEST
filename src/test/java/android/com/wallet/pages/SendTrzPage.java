@@ -251,7 +251,7 @@ public class SendTrzPage extends AbstractPage {
 //                tranferAmount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
-            case "mix":
+            case "min":
                 tranferAmount_text.sendKeys("0");
                 break;
             case "tooMuch":
@@ -276,7 +276,7 @@ public class SendTrzPage extends AbstractPage {
 //                tranferAmount_text.sendKeys(current);
                 tvMax_btn.click();
                 break;
-            case "mix":
+            case "min":
                 tranferAmount_text.sendKeys("0");
                 break;
             case "tooMuch":
@@ -303,7 +303,7 @@ public class SendTrzPage extends AbstractPage {
 ////                tranferAmount_text.sendKeys(current);
 //                tvMax_btn.click();
 //                break;
-//            case "mix":
+//            case "min":
 //                tranferAmount_text.sendKeys("0");
 //                break;
 //            case "tooMuch":

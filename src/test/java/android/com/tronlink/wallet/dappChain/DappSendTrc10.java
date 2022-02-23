@@ -93,10 +93,10 @@ public class DappSendTrc10 extends Base {
     }
 
 
-    @Test(description = "input mix send number", alwaysRun = true)
+    @Test(description = "input min send number", alwaysRun = true)
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrc10Page();
-        transfer.sendAllTrc10("mix");
+        transfer.sendAllTrc10("min");
         String centent = transfer.formatErrorHits_text.getText();
         Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
     }

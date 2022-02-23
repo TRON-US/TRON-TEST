@@ -72,7 +72,8 @@ public class TrxPage extends AbstractPage {
   @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
   public WebElement send_btn;
 
-
+    @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
+    public WebElement trxSendBottomBtn ;
 
     public TransferPage enterTransferInPage() throws Exception {
         transferIn_btn.click();
@@ -84,7 +85,10 @@ public class TrxPage extends AbstractPage {
       return new TransferPage(driver);
     }
 
-
+    public SendTrxPage trxSendTrxPage() {
+        trxSendBottomBtn.click();
+        return new SendTrxPage(driver);
+    }
 
 
     public AssetPage enterAssetPage() throws Exception {

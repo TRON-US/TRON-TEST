@@ -40,7 +40,7 @@ public class TransactionRecordPage extends AbstractPage {
     public WebElement freezeDetail;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_one")
-    public List<WebElement> voteDetailList;
+    public List<WebElement> descTextList;
 
 
 }

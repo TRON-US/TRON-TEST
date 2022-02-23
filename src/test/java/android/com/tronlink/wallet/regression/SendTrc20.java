@@ -122,12 +122,12 @@ public class SendTrc20 extends Base {
     }
 
     @Parameters({"privateKey"})
-    @Test(enabled = true,description = "input mix send number")
+    @Test(enabled = true,description = "input min send number")
     public void test005_inputMixSendNumber(String privateKey) throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(privateKey,DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc20("mix");
+        transfer.sendAllTrc20("min");
         String centent = transfer.formatErrorHits_text.getText();
       Assert.assertTrue(centent.contains("转账金额需大于 0") ||centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
     }

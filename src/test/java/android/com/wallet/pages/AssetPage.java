@@ -20,8 +20,11 @@ public class AssetPage extends AbstractPage {
 
 
     public AssetPage(AndroidDriver<?> driver) {
+
         super(driver);
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+
 //        try {
 //            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //            // if page display AD , cloese the AD
@@ -41,13 +44,19 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 
         try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            // if mutisignview display ,close
-            if (mutisign_tipview.isDisplayed()) {
-                mutisign_closebtn.click();
-                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            if (isTextExist("下次再说")) {
+                findElementByText("下次再说").click();
             }
         }catch (Exception e){}
+
+        try {
+            if (mutisign_tipview.isDisplayed()) {
+                mutisign_closebtn.click();
+            }
+        }catch (Exception e){}
+
+
+
     }
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
@@ -56,12 +65,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_deal_sign_tip")
     public WebElement mutisign_tipview;
 
-
-
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_sign_close")
     public WebElement mutisign_closebtn;
-
-
 
     @FindBy(id = "com.tronlinkpro.wallet:id/top")
     public WebElement update_topview;
@@ -73,7 +78,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
     public WebElement update_btn;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
+    public WebElement tv_main_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
     public WebElement ad_pic;
@@ -261,9 +267,7 @@ public class AssetPage extends AbstractPage {
 
 
     public SendTrxPage enterSendTrxPage() {
-        waiteTime();
         transfer_btn.click();
-        waiteTime();
         return new SendTrxPage(driver);
     }
 
@@ -431,18 +435,14 @@ public class AssetPage extends AbstractPage {
 
 
     public TrxPage enterTrxPage() throws Exception {
-        waiteTime();
         Helper.scrollToElementUntilVisible(driver,trx_btn);
-        waiteTime();
         trx_btn.click();
-        waiteTime();
         return new TrxPage(driver);
     }
 
     public TrxPage enterBTTPage() throws Exception {
-        waiteTime();
+        Helper.scrollToElementUntilVisible(driver,online_trc10_btn);
         online_trc10_btn.click();
-        waiteTime();
         return new TrxPage(driver);
     }
 
@@ -467,11 +467,9 @@ public class AssetPage extends AbstractPage {
                 trx = enterTrxPage();
         }
         waiteTime();
-        trx.tranfer_tab.get(1).click();
-        waiteTime();
-        trx.tranferIncount_text.get(1).click();
-        waiteTime();
-        TimeUnit.SECONDS.sleep(3);
+        findElementByText("转账").click();
+        findByShotId("address").click();
+        TimeUnit.SECONDS.sleep(2);
         return new TransactionDetailInfomaitonPage(driver);
     }
 

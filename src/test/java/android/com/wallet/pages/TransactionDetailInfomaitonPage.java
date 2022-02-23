@@ -18,6 +18,9 @@ public class TransactionDetailInfomaitonPage extends AbstractPage {
     }
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_contract_type")
+    public WebElement contractType;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_amount")
     public WebElement title_amount_test;
 
@@ -50,5 +53,16 @@ public class TransactionDetailInfomaitonPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/fee_amount")
     public WebElement fee_coast;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_sa_copy")
+    public WebElement send_copy;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_ra_copy")
+    public WebElement revice_copy;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_hash_copy")
+    public WebElement hash_copy ;
+
+
 
 }

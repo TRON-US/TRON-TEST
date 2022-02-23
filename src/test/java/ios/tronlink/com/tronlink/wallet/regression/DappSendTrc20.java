@@ -106,10 +106,10 @@ public class DappSendTrc20 extends BaseTest {
 //    }
 //
 //
-//    @Test(description = "input mix send number", alwaysRun = true)
+//    @Test(description = "input min send number", alwaysRun = true)
 //    public void test003_inputMixSendNumber() throws Exception {
 //        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc20("mix");
+//        transfer.sendAllTrc20("min");
 //        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("格式错误"));
 //    }
 //
