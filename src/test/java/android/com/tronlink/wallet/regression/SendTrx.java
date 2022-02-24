@@ -142,7 +142,6 @@ public class SendTrx extends Base {
         SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendAllTrx("min");
         Assert.assertTrue(isElementTextExist("   转账金额需大于 0"));
-
     }
 
 
@@ -152,9 +151,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.sendAllTrx("tooMuch");
         Assert.assertTrue(isElementTextExist("   转账数量不可大于可用数量。"));
-
     }
-
 
     @Test(enabled = true, description = "password error", alwaysRun = true)
     public void test008_passwordError() throws Exception {
@@ -177,7 +174,6 @@ public class SendTrx extends Base {
         transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
         Assert.assertTrue(transfer.next_btn.isEnabled());
     }
-
 
 
     @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
@@ -279,7 +275,6 @@ public class SendTrx extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         asset.enterSendTrxPage();
         asset.findElementByText("发起多签转账").click();
-
         asset.findElementByText("多重签名转账").click();
         Assert.assertTrue(asset.tv_main_title.getText().contains("多重签名转账"));
     }
@@ -288,14 +283,11 @@ public class SendTrx extends Base {
     public void test016_NotFreezeBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(notFreezenBandWidthAddressPrivateKey,DRIVER);
-
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
-
         transfer.receiveAddress_text.sendKeys(unActiveAddress);
         findByShotId("search_result_view").click();
         Assert.assertTrue(isElementTextExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
-
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
@@ -312,16 +304,13 @@ public class SendTrx extends Base {
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
-
         transfer.receiveAddress_text.sendKeys(unActiveAddress);
         findByShotId("search_result_view").click();
         Assert.assertTrue(isElementTextExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
-
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
-
         String content = transfer.fee_text.getText();
         Assert.assertTrue(content.contains("≈1 TRX"));
 

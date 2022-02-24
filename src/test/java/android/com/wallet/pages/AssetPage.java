@@ -59,6 +59,9 @@ public class AssetPage extends AbstractPage {
 
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    public WebElement tv_count;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
     public WebElement banlance_trx_page;
 
@@ -264,6 +267,42 @@ public class AssetPage extends AbstractPage {
 
     }
 
+    public TrxPage enterTrx20Page() throws Exception {
+
+        Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(1);
+
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        System.out.printf("asset_names.size() :  " +  asset_names.size());
+        for (int i = 1; i < asset_names.size(); i++) {
+            System.out.printf("asset_names item " + i + "  :  " +  asset_names.get(i).getText());
+
+            if (asset_names.get(i).getText().contains("TRX")){
+                System.out.println("从第" + i + "个找到了 TRX20币");
+                asset_names.get(i).click();
+                break;
+            }
+        }
+
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        return new TrxPage(driver);
+
+    }
+
+
+    public TrxPage enterTrx10Page() throws Exception {
+        Helper.swipScreen(driver);
+        try {
+            waiteTime();
+            trx10_btn.click();
+        } catch (Exception e) {
+            if (trx10_icon_btns.size() > 2){
+                trx10_icon_btns.get(1).click();
+            }
+        }
+        TimeUnit.SECONDS.sleep(2);
+        return new TrxPage(driver);
+    }
 
 
     public SendTrxPage enterSendTrxPage() {
@@ -617,54 +656,6 @@ public class AssetPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
-    public TrxPage enterTrx20Page() throws Exception {
-
-        Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(1);
-
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        System.out.printf("asset_names.size() :  " +  asset_names.size());
-        for (int i = 1; i < asset_names.size(); i++) {
-            System.out.printf("asset_names item " + i + "  :  " +  asset_names.get(i).getText());
-
-            if (asset_names.get(i).getText().contains("TRX")){
-                System.out.println("从第" + i + "个找到了 TRX20币");
-                asset_names.get(i).click();
-                break;
-            }
-        }
-
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        return new TrxPage(driver);
-
-    }
-
-
-    public TrxPage enterTrx10Page() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
-        try {
-            waiteTime();
-            mine_btn.click();
-        } catch (Exception e) {
-        }
-        waiteTime();
-        assetsMain_btn.click();
-        Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(1);
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        Helper.swipScreen(driver);
-        try {
-            waiteTime();
-            trx10_btn.click();
-        } catch (Exception e) {
-            if (trx10_icon_btns.size() > 2){
-                trx10_icon_btns.get(1).click();
-            }
-        }
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(2);
-        return new TrxPage(driver);
-    }
 
 
 

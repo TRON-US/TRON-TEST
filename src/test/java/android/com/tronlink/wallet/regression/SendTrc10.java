@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -17,40 +18,42 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class SendTrc10 extends Base {
-    Random rand = new Random();
-    float sendTrxAmount;
-    int beforeSendBalance;
-    int afterSendBalance;
     static String receiverAddress = Configuration.getByPath("testng.conf")
             .getString("foundationAccount.receiverAddress");
     static String currentMainNetBlockNum = Configuration.getByPath("testng.conf")
             .getString("foundationAccount.currentMainNetBlockNum");
-    static String trc10TokenName = Configuration.getByPath("testng.conf")
-            .getString("foundationAccount.trc10TokenName");
-    static String TRXandTRC10InNileprivateKey = Configuration.getByPath("testng.conf")
+    static String notFreezenBandWidthAddressPrivateKey = Configuration.getByPath("testng.conf")
             .getString("HaveTRXandTRC10InNile.privateKey1");
+    static String unActiveAddressprivateKey = Configuration.getByPath("testng.conf")
+            .getString("unActiveAddressInNile.privateKey1");
+    static String unActiveAddress = Configuration.getByPath("testng.conf")
+            .getString("unActiveAddressInNile.Address1");
     static String haveBandwidthprivateKey = Configuration.getByPath("testng.conf")
             .getString("HaveBandWidthInNile.privateKey1");
+    float sendTrxAmount;
+    float beforeSendBalance;
+    float afterSendBalance;
+
+
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         System.out.println("执行setUpBefore");
         new Helper().getSign(privateKey, DRIVER);
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
-        } catch (Exception e) {
-        }
+        }catch (Exception e){}
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -59,184 +62,226 @@ public class SendTrc10 extends Base {
     }
 
 
-    public SendTrxPage enterToSendTrxPage() {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        return transfer;
-    }
 
-
-    @Test(groups = {"P0"}, enabled = true, description = "SendTrc10 success test", alwaysRun = true)
-    public void test001_sendTrc10Success() throws Exception {
+    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
+    public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrc10Page();
-        Assert.assertTrue(transfer.tvName_text.getText().contains("tronlink_token"));
-        beforeSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
+        TrxPage page =  asset.enterTrx10Page();
+        beforeSendBalance = Float.valueOf(prettyString(asset.tv_count.getText()));
+        SendTrxPage transfer = page.trxSendTrxPage();
         sendTrxAmount = getAnAmount();
-        log("sendTrxAmount" + sendTrxAmount);
-        transfer.sendTrc10(Float.toString(sendTrxAmount));
+        System.out.println("sendTrxAmount-----"+sendTrxAmount);
+        transfer.sendTrx(Float.toString(sendTrxAmount));
+        Assert.assertTrue(assertToast("交易提交成功"));
+        TimeUnit.SECONDS.sleep(2);
+        afterSendBalance  = Float.valueOf(prettyString(asset.tv_count.getText()));
+        System.out.println(beforeSendBalance);
+        System.out.println(sendTrxAmount);
+        System.out.println(afterSendBalance);
+        Assert.assertTrue(beforeSendBalance == sendTrxAmount + afterSendBalance);
     }
+
 
     @Test(enabled = true, description = "input max send number", alwaysRun = true)
-    public void test002_inputMaxSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("max");
-        Assert.assertTrue(transfer.transferNow_btn.isEnabled());
-    }
-
-    //使用一个没有足够冻结能量的账户,点击转账会出现激活消耗的0.1trx
-    @Test(enabled = true,description = "test003_inputNotEnoughBandWidthSendMax20NumberUNActive")
-    public void test003_inputNotEnoughBandWidthSendMax10NumberUNActive() throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(TRXandTRC10InNileprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        String allNumber  =   removeSymbolFloat(transfer.sendMaxCoinWithType("10"));
-        String number = removeSymbolFloat(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"≈1.1");
-        log("beforeMax: " + allNumber + " confirmNumber: " + number);
-        Assert.assertEquals(allNumber, number);
-    }
-
-    //max 未激活的显示
-    @Test(enabled = true, description = "test004_inputHaveBandWidthSendMax10NumberToUNActive")
-    public void test004_inputHaveBandWidthSendMax10NumberToUNActive() throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        String allNumber =    removeSymbolFloat(transfer.sendMaxCoinWithType("10"));
-        String number = removeSymbolFloat(StringUtils.substringBeforeLast(transfer.real_money.getText(),"tronlink_token").trim());
-        log("fee: " + transfer.fee_text.getText() );
-        Assert.assertEquals(sepLeftNumberTextToString(transfer.fee_text.getText(),"TRX"),"≈1");
-        log("allNumber: "+ allNumber +"number: " + number);
-        Assert.assertEquals(allNumber,number);
-
+    public void test005_inputMaxSendNumber() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.next_btn.click();
+        Assert.assertTrue(!transfer.send_btn.isEnabled());
+        transfer.tvMax_btn.click();
+        Assert.assertTrue(transfer.send_btn.isEnabled());
     }
 
     @Parameters({"privateKey"})
     @Test(enabled = true, description = "input min send number", alwaysRun = true)
-    public void test005_inputMixSendNumber(String privateKey) throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(privateKey,DRIVER);
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("min");
-        String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.contains("转账金额需大于 0") || centent.equals("转账金额需大于0") || centent.contains("greater than 0"));
+    public void test006_inputMixSendNumber(String privateKey) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.sendAllTrx("min");
+        Assert.assertTrue(isElementTextExist("   转账金额需大于 0"));
     }
 
 
-    @Test(enabled = true, description = "input too Much trc10 send number", alwaysRun = true)
-    public void test006_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("tooMuch");
-        String centent = transfer.formatErrorHits_text.getText();
-        Assert.assertTrue(centent.equals("余额不足") || centent.equals("insufficient balance"));
+    @Test(enabled = true, description = "input too Much TRX send number", alwaysRun = true)
+    public void test007_inputTooMuchSendNumber() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.sendAllTrx("tooMuch");
+        Assert.assertTrue(isElementTextExist("   转账数量不可大于可用数量。"));
+    }
+
+    @Test(enabled = true, description = "password error", alwaysRun = true)
+    public void test008_passwordError() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.next_btn.click();
+        transfer.tranferCount_text.sendKeys("1");
+        transfer.send_btn.click();
+        transfer.confirm_btn.click();
+        transfer.InputPasswordConfim_btn.sendKeys("forget_password");
+        transfer.send_btn.click();
+        Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("密码错误"));
+    }
+
+    @Test(enabled = true, description = "Receiving address trim", alwaysRun = true)
+    public void test009_receivingAddressTrim() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        Assert.assertTrue(transfer.next_btn.isEnabled());
     }
 
 
-    @Test(groups = {"P0"}, enabled = true, description = "Trc10 transfer success recording")
-    public void test008_trc10TransferInSuccessRecording() throws Exception {
+    @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
+    public void test010_transferInSuccessRecording() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage trx = asset.enterTrx10Page();
-        trx.tranfer_tab.get(1).click();
-        String tranfercount = trx.tranferIncount_text.get(1).getText().substring(1);
-        System.out.println("tranferCount: " + tranfercount);
-        System.out.println("sendTrxAmount: " + sendTrxAmount);
-        Assert.assertTrue(Float.toString(sendTrxAmount).equals(tranfercount));
+        boolean find = false;
+        for (WebElement item: trx.tranferIncount_text
+        ) {
+            if (item.getText().contains("-" + Float.toString(sendTrxAmount))){
+                find = true;
+                break;
+            }else {
+                find = false;
+            }
+        }
+        Assert.assertTrue(find);
 
     }
 
-    @Test(enabled = true, description = "Trc10 transfer balance decrease check")
-    public void test009_trc10BalanceReduceAfterSendCoin() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrc10Page();
-        afterSendBalance = Integer.valueOf(removeSymbol(transfer.balance_text.getText()));
-        System.out.println("beforeSendBalance:" + beforeSendBalance);
-        System.out.println("afterSendBalance:" + afterSendBalance);
-        Assert.assertTrue(beforeSendBalance - afterSendBalance >= 1);
-    }
-
-    @Test(enabled = true, description = "test015_BandWidthShowTest", alwaysRun = true)
-    public void test010_BandWidthShowTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrc10Page();
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        transfer.tranferCount_text.sendKeys("0.000001");
-        transfer.swipScreenLitte();
-        transfer.send_btn.click();
-        waiteTime();
-        String content = transfer.bandwidth_text.getText();
-        content = content.replace("≈","");
-        String number = StringUtils.substringBeforeLast(content, "带宽");
-        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
-    }
-
-    @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
-    public void test011_transactionRecord() throws Exception {
+    @Test(groups = {"P0"},enabled = true, description = "Trx transfer history record test", alwaysRun = true)
+    public void test011_MinePageTransactionRecord() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        String transactionType = transaction.transactionTypeList.get(0).getText();
+        Assert.assertTrue(isElementTextExist("TRC10 通证转账"));
+        String transactionType = transaction.descTextList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.contains("TRC10 通证转账") || transactionType.contains("TRC10") || transactionType.equals("transfer TRC10 token"));
+        Assert.assertTrue( transactionType.contains( Float.toString(sendTrxAmount)));
     }
 
+
     @Parameters({"address"})
-    @Test(enabled = true, description = "Trc10 transaction detail info test", alwaysRun = true)
-    public void test012_trc10TransactionDetailInfo(String address) throws Exception {
-
-
+    @Test(groups = {"P0"},enabled = true, description = "Trx transaction detail info test", alwaysRun = true)
+    public void test012_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
         String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
-        String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+        Assert.assertTrue(detailPageSendAmount.contains(Float.toString(sendTrxAmount)));
+        Assert.assertTrue(detailPageSendAmount.contains("-"));
+        Assert.assertTrue(transactionInfo.contractType.getText().contains("TRC10 通证转账"));
         Helper.swipScreenLitte(asset.driver);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2022"));
-        Assert.assertTrue(sendIcon.contains("-"));
-        Assert.assertEquals(detailPageSendAmount.substring(1),String.valueOf(sendTrxAmount));
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
                 > Long.valueOf(currentMainNetBlockNum));
-        Helper.swipScreenLitte(asset.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-        String number = StringUtils.substringBeforeLast(transactionInfo.resouce_cost.getText(),"带宽");
-        Assert.assertTrue(Integer.parseInt(number.trim()) > 0);
-
+        Assert.assertTrue(transactionInfo.resouce_cost.getText().contains("带宽") && transactionInfo.resouce_cost.getText().contains("能量"));
+        Assert.assertTrue(transactionInfo.send_copy.isDisplayed());
+        Assert.assertTrue(transactionInfo.revice_copy.isDisplayed());
+        Assert.assertTrue(transactionInfo.hash_copy.isDisplayed());
     }
 
 
     @Parameters({"address"})
-    @Test(enabled = true, description = "Trc10 receive transaction detail info test", alwaysRun = true)
-    public void test013_trc10ReceiveTransactionDetailInfo(String address) throws Exception {
-
+    @Test(enabled = true, description = "test013_confirmInfoShowTest", alwaysRun = true)
+    public void test013_confirmInfoShowTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(1);
-        System.out.println(transactionInfo.title_amount_test.getText());
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-        String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
-        String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
-        Assert.assertTrue(receiveIcon.contains("+"));
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(""));
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
-        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        Assert.assertTrue(Float.valueOf(removeSymbolFloat(detailPageReceiveAmount)) > 0);
-
-        Helper.swipScreenLitte(transactionInfo.driver);
-        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
-                > Long.valueOf(currentMainNetBlockNum));
-        System.out.println("transaction_time_text:" + transactionInfo.transaction_time_text.getText());
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());
-        String content = transactionInfo.resouce_cost.getText();
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.next_btn.click();
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String content = transfer.bandwidth_text.getText();
         content = content.replace("≈","");
         String number = StringUtils.substringBeforeLast(content,"带宽");
-        Assert.assertTrue(Integer.parseInt(number.trim()) >= 0);
+        Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
+        log("------\n" + findByShotId("tv_info_subtitle").getText() + "\n--------");
+        Assert.assertTrue(findByShotId("tv_info_subtitle").getText().contains("0.000001") && findByShotId("tv_info_subtitle").getText().contains("tronlink_token"));
+        Assert.assertTrue(findByShotId("tv_wallet_name").getText().contains("Auto-test"));
+        Assert.assertTrue(findByShotId("transfer_out_address_title").getText().contains("转出账户"));
+        Assert.assertTrue(findByShotId("transfer_out_name").getText().contains("当前账户"));
+        Assert.assertTrue(findByShotId("receiving_address_title").getText().contains("接收账户"));
+        Assert.assertTrue(findByShotId("tv_resource_consume_left").getText().contains("消耗资源"));
+        Assert.assertTrue(findByShotId("transfer_out_address").getText().contains(address));
+        Assert.assertTrue(findByShotId("tv_chain_name").getText().contains("Mainnet"));
+// 加个tokenid 验证
     }
 
+
+
+    @Test(enabled = true)
+    public void test014_uNActiveAddressToSend() throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(unActiveAddressprivateKey,DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        page.trxSendTrxPage();
+        Assert.assertTrue(isElementTextExist("当前账户未激活，无法转账。请转入TRX 激活账户。"));
+        Assert.assertTrue(isElementTextExist("发起多签转账"));
+        Assert.assertTrue(isElementTextExist("确认"));
+    }
+
+
+    @Test(enabled = true)
+    public void test015_uNActiveAddressActionFunctionTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        page.trxSendTrxPage();
+        asset.findElementByText("发起多签转账").click();
+        asset.findElementByText("多重签名转账").click();
+        Assert.assertTrue(asset.tv_main_title.getText().contains("多重签名转账"));
+    }
+
+    @Test(enabled = true)
+    public void test016_NotFreezeBandWidthSendMaxNumberToUNActive() throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(notFreezenBandWidthAddressPrivateKey,DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer =  page.trxSendTrxPage();
+        transfer.receiveAddress_text.sendKeys(unActiveAddress);
+        findByShotId("search_result_view").click();
+        Assert.assertTrue(isElementTextExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
+        transfer.next_btn.click();
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String content = transfer.fee_text.getText();
+        Assert.assertTrue(content.contains("1.1") && content.contains("TRX"));
+
+    }
+
+
+    @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
+    public void test017_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
+        DRIVER.resetApp();
+        new Helper().getSign(haveBandwidthprivateKey,DRIVER);
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx10Page();
+        SendTrxPage transfer =  page.trxSendTrxPage();
+        transfer.receiveAddress_text.sendKeys(unActiveAddress);
+        findByShotId("search_result_view").click();
+        Assert.assertTrue(isElementTextExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
+        transfer.next_btn.click();
+        transfer.tranferCount_text.sendKeys("0.000001");
+        transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        String content = transfer.fee_text.getText();
+        Assert.assertTrue(content.contains("≈1 TRX"));
+
+    }
 
 }
