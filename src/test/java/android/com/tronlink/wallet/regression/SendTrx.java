@@ -95,27 +95,33 @@ public class SendTrx extends Base {
         Assert.assertTrue(beforeSendBalance == sendTrxAmount + afterSendBalance);
     }
 
-    @Parameters({"address"})
+    @Parameters({"address","udid"})
     @Test(enabled = true, description = "input Privatekey to Receiving address", alwaysRun = true)
-    public void test002_03_04_inputPrivatekey(String address) throws Exception {
+    public void test002_03_04_inputPrivatekey(String address,String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        keyboardSogou(udid);
         SendTrxPage transfer = asset.enterSendTrxPage();
         transfer.receiveAddress_text.click();
         transfer.receiveAddress_text.sendKeys("324a2052e491e99026442d81df4d2777292840c1b3949e20696c49096c6bacb0");
-
+        DRIVER.hideKeyboard();
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确"));
         transfer.inputStepOneDelete.click();
         transfer.receiveAddress_text.sendKeys("TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8a");
-
+        transfer.receiveAddress_text.click();
+        DRIVER.hideKeyboard();
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确"));
         transfer.inputStepOneDelete.click();
         transfer.receiveAddress_text.sendKeys("TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
-
+        transfer.receiveAddress_text.click();
+        DRIVER.hideKeyboard();
         Assert.assertTrue(isElementTextExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
         transfer.inputStepOneDelete.click();
         transfer.receiveAddress_text.sendKeys(address);
-
+        transfer.receiveAddress_text.click();
+        DRIVER.hideKeyboard();
         Assert.assertTrue(findByShotId("error_view").getText().contains("接收账户与转出账户相同"));
+        keyboardUnicode(udid);
+
     }
 
     @Test(enabled = true, description = "input max send number", alwaysRun = true)
@@ -227,7 +233,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(transactionInfo.hash_copy.isDisplayed());
     }
 
-    //1
+    1
     @Parameters({"address"})
     @Test(enabled = true, description = "test013_confirmInfoShowTest", alwaysRun = true)
     public void test013_confirmInfoShowTest(String address) throws Exception {
@@ -237,14 +243,14 @@ public class SendTrx extends Base {
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
-
+        TimeUnit.SECONDS.sleep(2);
         String content = transfer.bandwidth_text.getText();
         content = content.replace("≈","");
         String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
         log("------\n" + findByShotId("tv_info_subtitle").getText() + "\n--------");
         Assert.assertTrue(findByShotId("tv_info_subtitle").getText().contains("0.000001") && findByShotId("tv_info_subtitle").getText().contains("TRX"));
-        Assert.assertTrue(findByShotId("tv_wallet_name").getText().contains("Auto_Test"));
+        Assert.assertTrue(findByShotId("tv_wallet_name").getText().contains("Auto-test"));
         Assert.assertTrue(findByShotId("transfer_out_address_title").getText().contains("转出账户"));
         Assert.assertTrue(findByShotId("transfer_out_name").getText().contains("当前账户"));
         Assert.assertTrue(findByShotId("receiving_address_title").getText().contains("接收账户"));
@@ -267,14 +273,14 @@ public class SendTrx extends Base {
         Assert.assertTrue(isElementTextExist("确认"));
     }
 
-    //1
+
     @Test(enabled = true)
     public void test015_uNActiveAddressActionFunctionTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         asset.enterSendTrxPage();
-        asset.findElementByText("确认").click();
-        asset.enterSendTrxPage();
         asset.findElementByText("发起多签转账").click();
+
+        asset.findElementByText("多重签名转账").click();
         Assert.assertTrue(asset.tv_main_title.getText().contains("多重签名转账"));
     }
 
@@ -299,7 +305,7 @@ public class SendTrx extends Base {
 
     }
 
-    //1
+
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
     public void test017_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();

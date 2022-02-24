@@ -339,6 +339,14 @@ public class Base {
         AppiumTestCase.cmdReturn("adb -s " + udid + " input keyevent 111");
     }
 
+    public void keyboardSogou(String udid) throws Exception{
+        AppiumTestCase.cmdReturn("adb -s " + udid + " shell settings put secure default_input_method com.sohu.inputmethod.sogou/.SogouIME");
+    }
+
+    public void keyboardUnicode(String udid) throws Exception{
+        AppiumTestCase.cmdReturn("adb -s " + udid + " shell settings put secure default_input_method io.appium.settings/.UnicodeIME");
+    }
+
     public boolean isElementTextExist(String text) {
         try {
             DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");

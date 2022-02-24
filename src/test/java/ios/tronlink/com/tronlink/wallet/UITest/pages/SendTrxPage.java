@@ -186,7 +186,7 @@ public class SendTrxPage extends AbstractPage {
             case "max":
                 tvMax_btn.click();
                 break;
-            case "mix":
+            case "min":
                 testfieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
@@ -213,7 +213,7 @@ public class SendTrxPage extends AbstractPage {
             case "max":
                 tvMax_btn.click();
                 break;
-            case "mix":
+            case "min":
                 testfieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
@@ -240,7 +240,7 @@ public class SendTrxPage extends AbstractPage {
 
                 tvMax_btn.click();
                 break;
-            case "mix":
+            case "min":
                 testfieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":

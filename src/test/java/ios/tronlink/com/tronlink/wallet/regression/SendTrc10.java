@@ -55,10 +55,10 @@ public class SendTrc10 extends BaseTest {
     }
 
 
-    @Test(description = "input mix send number", alwaysRun = true)
+    @Test(description = "input min send number", alwaysRun = true)
     public void test003_inputMixSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrc10("mix");
+        transfer.sendAllTrc10("min");
         Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
     }
 
