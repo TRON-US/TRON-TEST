@@ -233,7 +233,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(transactionInfo.hash_copy.isDisplayed());
     }
 
-    1
+
     @Parameters({"address"})
     @Test(enabled = true, description = "test013_confirmInfoShowTest", alwaysRun = true)
     public void test013_confirmInfoShowTest(String address) throws Exception {
