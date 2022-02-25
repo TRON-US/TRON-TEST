@@ -36,9 +36,12 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         }
     }
 
+    @Parameters({"udid"})
     @AfterClass(alwaysRun = true)
-    public void tearDownAfterClass() {
+    public void tearDownAfterClass(String udid) {
         try {
+            wifiOpen(udid);
+            TimeUnit.SECONDS.sleep(3);
             DRIVER.quit();
         } catch (Exception e) {
         }

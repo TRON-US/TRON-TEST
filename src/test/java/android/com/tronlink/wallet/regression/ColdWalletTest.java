@@ -33,7 +33,7 @@ public class ColdWalletTest extends Base {
     @Parameters({"privateKey","address","udid"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey,String address,String udid) throws Exception {
-        AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi disable");
+        wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
         new Helper().getColdWalletSign(privateKey, DRIVER);
         addressString = address;
@@ -52,7 +52,7 @@ public class ColdWalletTest extends Base {
     public void tearDownAfterClass(String udid) {
         //Base.tearDownAfterClass();
         try {
-            AppiumTestCase.cmdReturn("adb -s " + udid + " shell svc wifi enable");
+            wifiOpen(udid);
             TimeUnit.SECONDS.sleep(3);
             DRIVER.quit();
         } catch (Exception e) {
