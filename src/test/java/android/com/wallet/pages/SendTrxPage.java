@@ -61,6 +61,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement send_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
+    public WebElement tv_multi_sign;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement transferNow_btn;
@@ -468,14 +470,15 @@ public class SendTrxPage extends AbstractPage {
         return trxCount;
     }
 
-    public void inputFormAddress(String address) {
-        waiteTime();
-        transferAddress_deleteBtn.click();
-        waiteTime();
-        transferAddress_text.sendKeys(address);
-        waiteTime();
+    public void inputFormAddress(String address) throws Exception{
+        tv_multi_sign.click();
+        TimeUnit.SECONDS.sleep(2);
+        receiveAddress_text.sendKeys(address);
     }
 
+    public void goToSecondPage(){
+        next_btn.click();
+    }
 
 
 

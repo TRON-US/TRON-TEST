@@ -4,6 +4,9 @@ import android.com.utils.Configuration;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.*;
+
+import net.bytebuddy.implementation.bytecode.Throw;
+
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -60,24 +63,24 @@ public class AllSignatureSuccTest extends Base {
     @Parameters({"ownerAddress","address"})
     @Test(description = "test001_sendTrxMultiSignActiveFeeCheck ", alwaysRun = true)
     public void test001_sendTrxMultiSignActiveFeeCheck(String ownerAddress,String address) throws Exception {
+            AssetPage asset = new AssetPage(DRIVER);
+            SendTrxPage SendTrx = asset.enterSendTrxPage();
+            SendTrx.inputFormAddress(ownerAddress);
+            SendTrx.goToSecondPage();
+            TimeUnit.SECONDS.sleep(1);
+            SendTrx.receiveAddress_text.sendKeys(address);
+            TimeUnit.SECONDS.sleep(1);
+            SendTrx.goToSecondPage();
+            Random random = new Random();
+            float count = random.nextFloat();
+            DecimalFormat df = new DecimalFormat( "0.00" );
+            String str = df.format(count);
+            SendTrx.trxCount = str;
+            SendTrx.tranferCount_text.sendKeys(str);
+            SendTrx.send_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage SendTrx = asset.enterSendTrxPage();
-        SendTrx.inputFormAddress(ownerAddress);
-        TimeUnit.SECONDS.sleep(3);
-        SendTrx.receiveAddress_text.sendKeys(address);
-        TimeUnit.SECONDS.sleep(3);
-        Random random = new Random();
-        float count = random.nextFloat();
-        DecimalFormat df = new DecimalFormat( "0.00" );
-        String str = df.format(count);
-        SendTrx.trxCount = str;
-        SendTrx.tranferCount_text.sendKeys(str);
-        Helper.swipScreen(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
-        SendTrx.send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
     }
 
 
@@ -85,13 +88,15 @@ public class AllSignatureSuccTest extends Base {
     @Parameters({"ownerAddress"})
     @Test(description = "test002_sendTrxMultiSignUnActiveFeeCheck ", alwaysRun = true)
     public void test002_sendTrxMultiSignUnActiveFeeCheck(String ownerAddress) throws Exception {
-
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
-        TimeUnit.SECONDS.sleep(3);
+        SendTrx.goToSecondPage();
+        TimeUnit.SECONDS.sleep(1);
         SendTrx.receiveAddress_text.sendKeys(unActiveAddress);
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
+        SendTrx.goToSecondPage();
+
         Random random = new Random();
         float count = random.nextFloat();
         DecimalFormat df = new DecimalFormat( "0.00" );
@@ -99,8 +104,6 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.trxCount = str;
         Helper.swipScreenLitte(SendTrx.driver);
         SendTrx.tranferCount_text.sendKeys(str);
-        Helper.swipScreen(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
         SendTrx.send_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
@@ -114,11 +117,15 @@ public class AllSignatureSuccTest extends Base {
 
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage SendTrx = asset.enterSendTrxPage();
-        SendTrx.inputFormAddress( ownerAddress);
-        TimeUnit.SECONDS.sleep(3);
+        SendTrx.inputFormAddress(ownerAddress);
+        SendTrx.goToSecondPage();
+        TimeUnit.SECONDS.sleep(1);
         SendTrx.receiveAddress_text.sendKeys(address);
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
+
         SendTrx.selectCoinType("trc20");
+        SendTrx.goToSecondPage();
+
         Random random = new Random();
         float count = random.nextFloat();
         DecimalFormat df = new DecimalFormat( "0.00" );
