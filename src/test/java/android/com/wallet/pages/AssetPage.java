@@ -214,7 +214,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement saveQR_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_detail")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_value")
     public WebElement enterWalletManageBtn;
 
     @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
