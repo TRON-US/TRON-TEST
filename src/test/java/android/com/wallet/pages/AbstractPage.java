@@ -18,7 +18,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+
+
 public abstract class AbstractPage {
+
 
     public  static String apkPackageName = "com.tronlinkpro.wallet";
 
@@ -38,7 +41,8 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirmBtn;
 
-
+@FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
+public WebElement btn_confirm;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement nav_title;

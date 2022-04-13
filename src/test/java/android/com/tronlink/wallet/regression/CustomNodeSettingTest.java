@@ -1,26 +1,28 @@
 package android.com.tronlink.wallet.regression;
-
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AddCustomNodePage;
 import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.DAPP_BrowerPage;
 import android.com.wallet.pages.InternalNodeSetPage;
 import android.com.wallet.pages.MinePage;
 import android.com.wallet.pages.NodeSetPage;
 import android.com.wallet.pages.SettingPage;
-import java.util.List;
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+enum  ChainType
+{
+    MainChain, DAppChain, Shasta;
+}
+
 
 /**
  * setting function test
@@ -32,6 +34,7 @@ public class CustomNodeSettingTest extends Base {
     Integer dappnetAftereNodeNum;
     String mainNetCustomIp = "";
     String dappNetCustomIp = "";
+
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -54,103 +57,75 @@ public class CustomNodeSettingTest extends Base {
         }
     }
 
-    @Test(enabled = true,description = "Node setting of main chain page test")
-    public void test001_NodeSettingOfMainChainTest() throws Exception {
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
-        mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
-        Assert.assertNotEquals(mainnetBeforeNodeNum,0);
-        Assert.assertTrue(checkIpFormat(internalNodeSetPage.firstIpByID.getText()));
-        Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
-        Assert.assertTrue(port > 0 && port < 65536 );
-        waiteTime();
-        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("节点设置"));
+    @Test(alwaysRun = true)
+    public void test001_SettingPageAboutNode() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SettingPage sett = asset.enterMinePage().enterSettingPage();
+        Assert.assertTrue(sett.network_setting_title.getText().contains("网络设置"));
+        Assert.assertTrue(sett.tv_network_name.getText().contains("TRON 主网"));
+        Assert.assertTrue(sett.tv_node_speed.getText().contains("ms"));
     }
 
+    @Test(alwaysRun = true)
+    public void test002_ChangeNodeTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SettingPage sett = asset.enterMinePage().enterSettingPage();
+        sett.changNetWorkTo("Shasta");
+        TimeUnit.SECONDS.sleep(6);
+        sett = asset.enterMinePage().enterSettingPage();
+        Assert.assertTrue(sett.tv_network_name.getText().contains("TRON Shasta 测试网"));
+        sett.changNetWorkTo("DAppChain");
+        TimeUnit.SECONDS.sleep(6);
+        sett = asset.enterMinePage().enterSettingPage();
+        Assert.assertTrue(sett.tv_network_name.getText().contains("DAppChain 主网"));
+        sett.changNetWorkTo("MainChain");
+        Assert.assertTrue(assertToast("已切换到TRON 主网"));
 
-    @Test(enabled = true,description = "Add custom node to mainNet test")
-    public void test002_AddCustomNodeToMainNetTest() throws Exception {
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
-        mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
-        AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
+    }
+
+     @Test(alwaysRun = true)
+     public void test003_AddCustomNodeTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         SettingPage sett = asset.enterMinePage().enterSettingPage();
+         sett.tv_node_speed.click();
+        AddCustomNodePage addCustomNodePage = sett.enterAddCustomNodePage();
         mainNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(mainNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
-        internalNodeSetPage = addCustomNodePage.saveNode();
-        mainnetAfterNodeNum = internalNodeSetPage.content_list.size();
-        System.out.println("mainnetBeforeNodeNum:" + mainnetBeforeNodeNum);
-        System.out.println("mainnetAfterNodeNum:" + mainnetAfterNodeNum);
-        Assert.assertTrue(mainnetAfterNodeNum == mainnetBeforeNodeNum + 1);
-    }
+         addCustomNodePage.saveNode();
+         TimeUnit.SECONDS.sleep(8);
+        boolean find = false;
+         for (int i = 0 ; i<sett.node_ips.size();i++){
+             String ips = sett.node_ips.get(i).getText();
+             System.out.println(ips);
+             if (ips.contains(mainNetCustomIp)){
+                 find = true;
+             }
+         }
+         Assert.assertTrue(find);
 
-    @Test(enabled = true,description = "Delete custom node from mainNet test")
-    public void test003_DeleteCustomNodeFromMainNetTest() throws Exception {
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalMainChainPage();
-        mainnetBeforeNodeNum = internalNodeSetPage.content_list.size();
-        AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterEditCustomNodePage();
-        internalNodeSetPage = addCustomNodePage.deleteNode();
-        Integer currentNodeNum = internalNodeSetPage.content_list.size();
-        Assert.assertTrue(currentNodeNum + 1 == mainnetBeforeNodeNum);
+     }
+      @Test(alwaysRun = true)
+      public void test004_EditCustomNodeTest() throws Exception {
+          AssetPage asset = new AssetPage(DRIVER);
+          SettingPage sett = asset.enterMinePage().enterSettingPage();
+          sett.tv_node_speed.click();
+          AddCustomNodePage editPage =sett.enterEditCustomNodePage();
+          editPage.nodeIp_input.clear();
+          mainNetCustomIp = createRandomIp();
+          editPage.nodeIp_input.sendKeys(mainNetCustomIp);
+          editPage.saveNode();
+          Assert.assertTrue(assertToast("修改成功"));
+      }
 
-    }
-
-
-    @Test(enabled = true,description = "Node setting of dapp chain page test")
-    public void test004_NodeSettingOfDappChainTest() throws Exception {
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
-        int nodeNumber = internalNodeSetPage.content_list.size();
-        Assert.assertNotEquals(nodeNumber,0);
-        Assert.assertTrue(checkIpFormat(internalNodeSetPage.firstIP.getText()));
-        Integer port = Integer.valueOf(internalNodeSetPage.firstPort.getText());
-        Assert.assertTrue(port > 0 && port < 65536 );
-        waiteTime();
-        Assert.assertTrue(internalNodeSetPage.title_text.getText().contains("节点设置"));
-    }
-
-
-    @Test(enabled = true,description = "Add custom node to dappNet test")
-    public void test005_AddCustomNodeToDappNetTest() throws Exception {
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
-        dappnetBeforeNodeNum = internalNodeSetPage.content_list.size();
-        AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterAddCustomNodePage();
-        dappNetCustomIp = createRandomIp();
-        addCustomNodePage.nodeIp_input.sendKeys(dappNetCustomIp);
-        addCustomNodePage.nodePort_input.sendKeys("50051");
-        internalNodeSetPage = addCustomNodePage.saveNode();
-        dappnetAftereNodeNum = internalNodeSetPage.content_list.size();
-        System.out.println("dappnetBeforeNodeNum:" + dappnetBeforeNodeNum);
-        System.out.println("dappnetAftereNodeNum:" + dappnetAftereNodeNum);
-        Assert.assertTrue(dappnetAftereNodeNum == dappnetBeforeNodeNum + 1);
-    }
-
-
-    @Test(enabled = true,description = "Delete custom node in dappNet test")
-    public void test006_DeleteCustomNodeFromDappNetTest() throws Exception {
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        InternalNodeSetPage internalNodeSetPage = nodeSetPage.enterInternalDAppChainPage();
-        dappnetBeforeNodeNum = internalNodeSetPage.content_list.size();
-        AddCustomNodePage addCustomNodePage = internalNodeSetPage.enterEditCustomNodePage();
-        internalNodeSetPage = addCustomNodePage.deleteNode();
-        Integer currentNodeNum = internalNodeSetPage.content_list.size();
-        Assert.assertTrue(currentNodeNum + 1 == dappnetBeforeNodeNum);
-    }
-
-    @Test(enabled = true ,description ="Show Tips of choise other ip")
-    public  void test007_ShowTipsOfChoiseOtherIP() throws Exception{
-        NodeSetPage nodeSetPage = enterNodeSettingPage();
-        nodeSetPage.enterSettingPageChoiseMainChain();
-        InternalNodeSetPage nodeipsetting =  nodeSetPage.enterDappChainNodeSettingPage();
-        nodeipsetting.firstIpByID.click();
-        Assert.assertTrue(nodeipsetting.tipContent.getText().contains("DAppChain"));
-        nodeipsetting.cancelBtn.click();
-        nodeipsetting.backBtn.click();
-        nodeipsetting = nodeSetPage.enterShastaNodeSettingPage();
-        nodeipsetting.firstIpByID.click();
-        Assert.assertTrue(nodeipsetting.tipContent.getText().contains("Shasta"));
+    @Test(alwaysRun = true)
+    public void test005_DeleteCustomNodeTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SettingPage sett = asset.enterMinePage().enterSettingPage();
+        sett.tv_node_speed.click();
+        AddCustomNodePage editPage =sett.enterEditCustomNodePage();
+        editPage.deleteNode();
+        Assert.assertTrue(assertToast("删除成功"));
     }
 
 

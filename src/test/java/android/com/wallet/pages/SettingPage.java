@@ -10,6 +10,8 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class SettingPage extends AbstractPage {
 
+
+
     public AndroidDriver<?> driver;
 
     public SettingPage(AndroidDriver<?> driver) {
@@ -31,6 +33,17 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/title")
     public List<WebElement> currency_list;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/network_setting_title")
+    public WebElement network_setting_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_network_name")
+    public WebElement tv_network_name;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_speed")
+    public WebElement tv_node_speed;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/server_name")
+    public WebElement server_name_speed;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/testnode")
     public WebElement developerOptions_btn;
@@ -65,19 +78,32 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/money")
     public WebElement currency_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/root")
-    public List<WebElement> chain_list;
+    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
+    public List<WebElement> node_ips;
 
     //com.tronlinkpro.wallet:id/select_online
     @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
     public WebElement online_version_icon;
 
-
+@FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
+public WebElement btn_add_node;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_advanced_features")
     public WebElement advanced_features_btn;
 
+@FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_shasta")
+public WebElement li_node_name_shasta;
 
+@FindBy(id = "com.tronlinkpro.wallet:id/li_node_name")
+public WebElement li_node_name;
 
+@FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_dappchain")
+public WebElement li_node_name_dappchain;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
+    public WebElement addNote_btn;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_node_edit")
+    public WebElement iv_node_edit;
 
 //    public void switchLanguage(String language){
 //        try {
@@ -92,6 +118,17 @@ public class SettingPage extends AbstractPage {
 //        }
 //    }
 
+    public AddCustomNodePage enterAddCustomNodePage() throws Exception{
+        addNote_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new AddCustomNodePage(driver);
+    }
+
+public AddCustomNodePage enterEditCustomNodePage() throws Exception{
+    iv_node_edit.click();
+    TimeUnit.SECONDS.sleep(1);
+    return new AddCustomNodePage(driver);
+}
 
     //turn Developer options
     public void trunDeveloperOptions(){
@@ -104,7 +141,31 @@ public class SettingPage extends AbstractPage {
             System.out.println(e);
         }
     }
+//        MainChain, DAppChain, Shasta;
+    public void changNetWorkTo(String type) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        tv_network_name.click();
+        switch (type){
+            case "Shasta":
+                System.out.println("Shasta");
+                li_node_name_shasta.click();
+                btn_confirm.click();
+                break;
 
+            case "MainChain":
+                System.out.println("MainChain");
+                li_node_name.click();
+                break;
+            case "DAppChain":
+                System.out.println("DAppChain");
+                li_node_name_dappchain.click();
+                btn_confirm.click();
+                break;
+            default:
+                System.out.println("default");
+                li_node_name.click();
+        }
+    }
 
 
 

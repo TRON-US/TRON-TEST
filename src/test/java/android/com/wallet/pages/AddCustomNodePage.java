@@ -29,17 +29,14 @@ public class AddCustomNodePage extends AbstractPage {
 
 
 
-    public InternalNodeSetPage saveNode() throws Exception{
+    public void saveNode() throws Exception{
         save_btn.click();
-        TimeUnit.SECONDS.sleep(10);
-        return new InternalNodeSetPage(driver);
     }
 
 
-    public InternalNodeSetPage deleteNode() throws Exception{
+    public void deleteNode() throws Exception{
         delete_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        return new InternalNodeSetPage(driver);
+
     }
 
 
