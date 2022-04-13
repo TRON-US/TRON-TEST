@@ -83,40 +83,40 @@ public class CustomNodeSettingTest extends Base {
 
     }
 
-     @Test(alwaysRun = true)
-     public void test003_AddCustomNodeTest() throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         SettingPage sett = asset.enterMinePage().enterSettingPage();
-         sett.tv_node_speed.click();
+    @Test(alwaysRun = true)
+    public void test003_AddCustomNodeTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SettingPage sett = asset.enterMinePage().enterSettingPage();
+        sett.tv_node_speed.click();
         AddCustomNodePage addCustomNodePage = sett.enterAddCustomNodePage();
         mainNetCustomIp = createRandomIp();
         addCustomNodePage.nodeIp_input.sendKeys(mainNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
-         addCustomNodePage.saveNode();
-         TimeUnit.SECONDS.sleep(8);
+        addCustomNodePage.saveNode();
+        TimeUnit.SECONDS.sleep(8);
         boolean find = false;
-         for (int i = 0 ; i<sett.node_ips.size();i++){
-             String ips = sett.node_ips.get(i).getText();
-             System.out.println(ips);
-             if (ips.contains(mainNetCustomIp)){
-                 find = true;
-             }
-         }
-         Assert.assertTrue(find);
+        for (int i = 0 ; i<sett.node_ips.size();i++){
+            String ips = sett.node_ips.get(i).getText();
+            System.out.println(ips);
+            if (ips.contains(mainNetCustomIp)){
+                find = true;
+            }
+        }
+        Assert.assertTrue(find);
 
-     }
-      @Test(alwaysRun = true)
-      public void test004_EditCustomNodeTest() throws Exception {
-          AssetPage asset = new AssetPage(DRIVER);
-          SettingPage sett = asset.enterMinePage().enterSettingPage();
-          sett.tv_node_speed.click();
-          AddCustomNodePage editPage =sett.enterEditCustomNodePage();
-          editPage.nodeIp_input.clear();
-          mainNetCustomIp = createRandomIp();
-          editPage.nodeIp_input.sendKeys(mainNetCustomIp);
-          editPage.saveNode();
-          Assert.assertTrue(assertToast("修改成功"));
-      }
+    }
+    @Test(alwaysRun = true)
+    public void test004_EditCustomNodeTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SettingPage sett = asset.enterMinePage().enterSettingPage();
+        sett.tv_node_speed.click();
+        AddCustomNodePage editPage =sett.enterEditCustomNodePage();
+        editPage.nodeIp_input.clear();
+        mainNetCustomIp = createRandomIp();
+        editPage.nodeIp_input.sendKeys(mainNetCustomIp);
+        editPage.saveNode();
+        Assert.assertTrue(assertToast("修改成功"));
+    }
 
     @Test(alwaysRun = true)
     public void test005_DeleteCustomNodeTest() throws Exception {
@@ -128,22 +128,22 @@ public class CustomNodeSettingTest extends Base {
         Assert.assertTrue(assertToast("删除成功"));
     }
 
-
-    //reset app turn to MainChain
-    public NodeSetPage enterNodeSettingPage() {
-        try {
-            AssetPage asset = new AssetPage(DRIVER);
-            MinePage mine = asset.enterMinePage();
-            SettingPage set = mine.enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            TimeUnit.SECONDS.sleep(1);
-            return nodeSet;
-        } catch (Exception e) {
+    @Test(alwaysRun = true)
+    public void test006_SwitchSeverFromAutoToSelect() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SettingPage sett = asset.enterMinePage().enterSettingPage();
+        sett.server_name_speed.click();
+        if(isElementShotId("tv_node_name")){
+            sett.switch_button.click();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertFalse(isElementShotId("tv_node_name"));
+        }else {
+            sett.switch_button.click();
+            TimeUnit.SECONDS.sleep(2);
+            Assert.assertTrue(isElementShotId("tv_node_name"));
         }
 
-        return null;
     }
-
     public boolean checkIpFormat(String ipStr) {
         String[] ip = ipStr.split(".");
         for (int i = 0; i < ip.length;i++) {

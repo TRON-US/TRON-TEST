@@ -23,6 +23,8 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/languane")
     public WebElement languane_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/switch_button")
+    public WebElement switch_button;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/selected")
     public List<WebElement> selected_btn;
@@ -48,6 +50,8 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/testnode")
     public WebElement developerOptions_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_name")
+    public WebElement tv_node_name;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_testnode")
     public WebElement testnode_text;
@@ -85,19 +89,19 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
     public WebElement online_version_icon;
 
-@FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
-public WebElement btn_add_node;
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
+    public WebElement btn_add_node;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_advanced_features")
     public WebElement advanced_features_btn;
 
-@FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_shasta")
-public WebElement li_node_name_shasta;
+    @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_shasta")
+    public WebElement li_node_name_shasta;
 
-@FindBy(id = "com.tronlinkpro.wallet:id/li_node_name")
-public WebElement li_node_name;
+    @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name")
+    public WebElement li_node_name;
 
-@FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_dappchain")
-public WebElement li_node_name_dappchain;
+    @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_dappchain")
+    public WebElement li_node_name_dappchain;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
     public WebElement addNote_btn;
@@ -124,11 +128,11 @@ public WebElement li_node_name_dappchain;
         return new AddCustomNodePage(driver);
     }
 
-public AddCustomNodePage enterEditCustomNodePage() throws Exception{
-    iv_node_edit.click();
-    TimeUnit.SECONDS.sleep(1);
-    return new AddCustomNodePage(driver);
-}
+    public AddCustomNodePage enterEditCustomNodePage() throws Exception{
+        iv_node_edit.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new AddCustomNodePage(driver);
+    }
 
     //turn Developer options
     public void trunDeveloperOptions(){
@@ -141,7 +145,7 @@ public AddCustomNodePage enterEditCustomNodePage() throws Exception{
             System.out.println(e);
         }
     }
-//        MainChain, DAppChain, Shasta;
+    //        MainChain, DAppChain, Shasta;
     public void changNetWorkTo(String type) throws Exception{
         TimeUnit.SECONDS.sleep(1);
         tv_network_name.click();
