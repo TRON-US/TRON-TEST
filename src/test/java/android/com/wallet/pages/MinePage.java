@@ -82,8 +82,8 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/assets")
     public WebElement assets_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/dapp")
-    public WebElement dapp_btn;
+//    @FindBy(id = "com.tronlinkpro.wallet:id/dapp")
+//    public WebElement dapp_btn;
 
 
 
@@ -226,7 +226,7 @@ public class MinePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
         advanced_features_btn.click();
         TimeUnit.SECONDS.sleep(1);
-        dapp_btn.click();
+        findElementByText("DApp 浏览器").click();
         return new DAPP_BrowerPage(driver);
     }
 

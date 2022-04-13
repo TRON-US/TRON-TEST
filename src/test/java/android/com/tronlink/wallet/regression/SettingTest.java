@@ -76,6 +76,7 @@ public class SettingTest extends Base {
         Assert.assertTrue(dapp.dappTtile_btn.getText().contains("DApp 浏览器"));
     }
 
+
     @Test(description = "Currency Test")
     public void test006_currencyTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);

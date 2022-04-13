@@ -20,7 +20,7 @@ public class SettingPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/languane")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_language")
     public WebElement languane_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/switch_button")
