@@ -2,8 +2,10 @@ package android.com.tronlink.wallet.regression;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
+import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.GuidePage;
 import android.com.wallet.pages.ImportRoutePage;
+import android.com.wallet.pages.MyPursePage;
 
 
 import org.testng.Assert;
@@ -131,7 +133,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         TimeUnit.SECONDS.sleep(3);
         guide.switchBtn.click();
         guide.modeconfirmBtn.click();
-        ImportRoutePage impage = guide.enterImportPageNone();
+        ImportRoutePage impage = guide.enterImportPage();
         impage.importContent.sendKeys(privatekeystr);
         impage.NextBtn.click();
         impage.passwordInput.sendKeys(useKeyPassword);

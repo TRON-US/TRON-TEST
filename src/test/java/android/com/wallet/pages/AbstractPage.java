@@ -197,7 +197,8 @@ public WebElement btn_confirm;
     }
 
     public void deleteWallet() throws Exception{
-        driver.findElementById("com.tronlinkpro.wallet:id/iv_detail").click();
+        driver.findElementById("com.tronlinkpro.wallet:id/tv_trx_value").click();
+        TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
         driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
@@ -206,7 +207,8 @@ public WebElement btn_confirm;
     }
 
     public void deleteWalletNone() throws Exception{
-        driver.findElementById("com.tronlinkpro.wallet:id/iv_detail").click();
+        driver.findElementById("com.tronlinkpro.wallet:id/tv_trx_value").click();
+        TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
         driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
@@ -214,6 +216,7 @@ public WebElement btn_confirm;
     }
     public void deleteColdWallet() throws Exception{
         driver.findElementById("com.tronlinkpro.wallet:id/tv_title").click();
+        TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
         driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
