@@ -222,6 +222,7 @@ public class Base {
         if (arg.contains(",")){
             value = arg.replace(",","");
         }
+        value.trim();
         if (arg.contains(".")){
             String[] intValue = value.split("\\.");
             value = intValue[0];

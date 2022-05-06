@@ -436,14 +436,11 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    public FrozenAndUnfreezePage enterFrozenAndUnfreezePage(){
-        try {
+    public FrozenAndUnfreezePage enterFrozenAndUnfreezePage() throws Exception{
+
             TimeUnit.SECONDS.sleep(1);
             freeze_btn.click();
-            TimeUnit.SECONDS.sleep(1);
-        }catch (Exception e){
-            freeze_btn.click();
-        }
+
         return new FrozenAndUnfreezePage(driver);
     }
 
