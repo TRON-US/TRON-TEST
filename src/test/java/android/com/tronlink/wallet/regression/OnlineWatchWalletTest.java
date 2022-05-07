@@ -282,7 +282,7 @@ public class OnlineWatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(5);
         frozen.energy_btn.click();
         Helper.swipScreenLitte(frozen.driver);
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
@@ -301,7 +301,7 @@ public class OnlineWatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(5);
         frozen.bandwidth_btn.click();
         Helper.swipScreenLitte(frozen.driver);
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
 //        frozen.confirm_btn().click();

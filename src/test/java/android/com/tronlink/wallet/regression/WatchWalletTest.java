@@ -72,7 +72,7 @@ public class WatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         frozen.energy_btn.click();
         Helper.swipScreenLitte(DRIVER);
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
@@ -89,7 +89,7 @@ public class WatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.bandwidth_btn.click();
         Helper.swipScreenLitte(DRIVER);
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         Helper.swipScreen(DRIVER);
         frozen.frozenButtonClickAndConfirm();
 //        frozen.confirm_btn().click();

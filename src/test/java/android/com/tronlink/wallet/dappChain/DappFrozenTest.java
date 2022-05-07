@@ -70,7 +70,7 @@ public class DappFrozenTest extends Base {
     public void test0001_freezeBandwidthSuccess() throws Exception {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.bandwidth_btn.click();
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         frozen.frozenTheBandwidth(); //Freeze operating
     }
 
@@ -81,7 +81,7 @@ public class DappFrozenTest extends Base {
     public void test0002_freezeEnergySuccess() throws Exception {
         FrozenAndUnfreezePage frozen = enterFreezePage();
         frozen.energy_btn.click();
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         frozen.frozenTheEnergy(); //Freeze operating
     }
 
