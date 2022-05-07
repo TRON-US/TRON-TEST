@@ -303,7 +303,7 @@ public class AllSignatureSuccTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.energy_btn.click();
         Helper.swipScreenLitte(frozen.driver);
-        frozen.freezeCount_input.sendKeys("1");
+        frozen.et_amount.sendKeys("1");
         MultiSignTransactionPage multipage = frozen.frozenMultiSign(); //Freeze operating
         Assert.assertTrue(multipage.isElementExist(multiSignAddress));
         Assert.assertTrue(multipage.tv_invalid_time.getText().contains("24"));

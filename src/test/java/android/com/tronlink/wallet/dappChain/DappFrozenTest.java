@@ -88,8 +88,7 @@ public class DappFrozenTest extends Base {
     @Test(enabled = true,description = "Dapp chain freeze page details check", alwaysRun = true)
     public void test0003_enterDetailsOfTheRules() throws Exception {
         FrozenAndUnfreezePage frozen = enterFreezePage();
-        DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
-        Assert.assertTrue(detailsAndRules.detailsAndRules_title.isDisplayed());
+
     }
 
     @Test(enabled = true,description = "Dapp chain freeze energy detail check", alwaysRun = true)
