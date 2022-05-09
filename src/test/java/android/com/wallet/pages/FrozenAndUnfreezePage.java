@@ -41,7 +41,7 @@ public WebElement tv_stake_energy;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
-    public WebElement detailsAndRules_btn;
+    public WebElement tv_common_right2;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_bandwidth_arrow")
     public WebElement freezeBandwidthDetail_btn;
@@ -93,6 +93,8 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_next")
     public WebElement btn_next;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title2")
+    public WebElement tv_common_title2;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement checkPasswotd_input;
@@ -177,6 +179,9 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement bt_send;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    public WebElement tv_address;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_result")
     public WebElement tv_result;
 
@@ -200,6 +205,37 @@ public WebElement tv_stake_energy;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_buttons")
     public WebElement rl_buttons;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_tutorial")
+    public WebElement tv_tutorial;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/root")
+    public WebElement root;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement tv_common_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tip2")
+    public WebElement iv_tip2;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_content")
+    public WebElement tv_content;
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_stake_unstake")
+    public WebElement tv_stake_unstake;
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
+    public WebElement tv_multi_sign;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/error_view")
+    public WebElement error_view;
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_select")
+    public WebElement iv_select;
+
     public void enterDetailsAndRulesPage() {
         iv_common_title2.click();
     }
@@ -358,8 +394,15 @@ public WebElement tv_stake_energy;
         TimeUnit.SECONDS.sleep(2);
     }
 
+    public void  interMultiSignGuidePage() throws Exception{
+        tv_common_right2.click();
+        tv_tutorial.click();
+    }
 
 
+    public void toUnfreezePage(){
+        tv_stake_unstake.click();
+    }
 
 
 }

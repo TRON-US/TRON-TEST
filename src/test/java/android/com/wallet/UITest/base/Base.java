@@ -157,7 +157,7 @@ public class Base {
 
     public void log(String log) {
         String time = timeStamp.format(new Date()).toString();
-        System.out.println(time + ": " + log);
+        System.out.println(time + "  ---> : " + log);
     }
 
 
@@ -367,9 +367,12 @@ public class Base {
 
     public boolean isElementShotId(String ids) {
         try {
+            waiteTime(3);
             findByShotId(ids);
+            waiteTime();
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
+            waiteTime();
             return false;
         }
     }

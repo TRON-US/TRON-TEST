@@ -13,6 +13,11 @@ import org.testng.annotations.Test;
 import android.com.wallet.UITest.base.Base;
 
 public class DappFrozenTest extends Base {
+
+    private String password = "Test0001";
+    private String otherAddress = "TLVh1FcdR57fukbFZL7DgjYY6VW9WRdNzt";
+
+
     @AfterClass(alwaysRun = true)
     public void tearDownAfterClass() {
         //reset DAPP chain trun main chain
@@ -62,143 +67,142 @@ public class DappFrozenTest extends Base {
         MinePage mine = asset.enterMinePage();
         return mine.enterSettingPage();
     }
-
     /**
-     * freeze Bandwidth
+     * Freeze Energy
      */
-    @Test(enabled = true,description = "Dapp chain freeze bandwidth Success", alwaysRun = true)
-    public void test0001_freezeBandwidthSuccess() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.bandwidth_btn.click();
-        frozen.et_amount.sendKeys("1");
-        frozen.frozenTheBandwidth(); //Freeze operating
-    }
-
-    /**
-     * freeze Bandwidth
-     */
-    @Test(enabled = true,description = "Dapp chain freeze energy success", alwaysRun = true)
-    public void test0002_freezeEnergySuccess() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.energy_btn.click();
-        frozen.et_amount.sendKeys("1");
-        frozen.frozenTheEnergy(); //Freeze operating
-    }
-
-    @Test(enabled = true,description = "Dapp chain freeze page details check", alwaysRun = true)
-    public void test0003_enterDetailsOfTheRules() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-
-    }
-
-    @Test(enabled = true,description = "Dapp chain freeze energy detail check", alwaysRun = true)
-    public void test0004_FreezeEnergyDetail() throws Exception{
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.freezeEnergyDetail_btn.click();
-        int myFreeze = Integer.valueOf(removeSymbol(frozen.myFreeze_btn.getText()));
-        int otherFreeze = Integer.valueOf(removeSymbol(frozen.otherFreeze_btn.getText()));
-        int totalFreeze = Integer.valueOf(removeSymbol(frozen.totalFreeze_btn.getText()));
-        Assert.assertTrue(myFreeze + otherFreeze == totalFreeze);
-    }
-
-    @Test(enabled = true,description = "Dapp chain freeze bandwidth detail check", alwaysRun = true)
-    public void test0005_BandwidthDetail() throws Exception{
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.freezeBandwidthDetail_btn.click();
-        int myBandwidth = Integer.valueOf(removeSymbol(frozen.myFreezeBandwidth_btn.getText()));
-        int otherBandwidth = Integer.valueOf(removeSymbol(frozen.otherFreezeBandwidth_btn.getText()));
-        int totalBandwidth = Integer.valueOf(removeSymbol(frozen.totalFreezeBandwidth_btn.getText()));
-        Assert.assertTrue(myBandwidth + otherBandwidth == totalBandwidth);
-    }
-
-    @Test(enabled = true,description = "Dapp chain energy question Test", alwaysRun = true)
-    public void test0006_checkEnergyQuestion() throws Exception{
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.energy_btn.click();
-        Helper.swipScreenLitte(frozen.driver);
-        frozen.questionClick();
-        String questionContent = frozen.questionContent_btn.getText();
-        Assert.assertTrue(questionContent.contains("Energy") || questionContent.contains("能量"));
-    }
-
-    @Test(enabled = true,description = "Dapp chain bandwidth question Test", alwaysRun = true)
-    public void test0007_checkBandwidthQuestion() throws Exception{
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.bandwidth_btn.click();
-        Helper.swipScreenLitte(frozen.driver);
-        frozen.questionClick();
-        String questionContent = frozen.questionContent_btn.getText();
-        Assert.assertTrue(questionContent.contains("Bandwidth") || questionContent.contains("带宽"));
-    }
-
-    //Freeze Energy more than trx
-    @Test(enabled = true,description = "Dapp chain freeze energy more than trx", alwaysRun = true)
-    public void test0008_freezeEnergyMoreThanTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.inputFrozenCount("99999999");
-        String prompt = frozen.error_hits.getText();
-        System.out.println("prompt:" + prompt);
-        Assert.assertTrue(prompt.equals("TRX不足") || prompt.equals("Insufficient TRX") || prompt.equals("可用 TRX 不足"));
-    }
-
-
-    //Freeze Energy equals trx
-    @Test(enabled = true,description = "Dapp chain freeze energy with all balance", alwaysRun = true)
-    public void test0009_freezeEnergyMoreThanTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        String availableTrx = frozen.getAvailableTrx();
-        frozen.inputFrozenCount(removeSymbol(availableTrx));
-        Assert.assertTrue(frozen.bt_send.isDisplayed());
-    }
-
-
-    //Freeze Energy with 0 trx
-    @Test(enabled = true,description = "Dapp chain freeze energy with zero trx", alwaysRun = true)
-    public void test0010_freezeEnergyZeroTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.inputFrozenCount("0");
-        String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.contains("最小质押数量为") || prompt.contains("Minimum freeze is"));
-    }
-
-
-    //Freeze Energy with null trx
-    @Test(enabled = true,description = "Dapp chain freeze energy with empty input", alwaysRun = true)
-    public void test0011_freezeEnergyNullTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.inputFrozenCount("");
-        String prompt = frozen.error_hits.getText();
-        Assert.assertTrue(prompt.contains("最小质押数量为") || prompt.contains("Minimum freeze is"));
-    }
-
-
-    @Test(enabled = true,description = "Dapp chain freeze Energy with Error Receiving Address", alwaysRun = true)
-    public void test0012_freezeEnergyErrorReceivingAddress() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
-        String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.contains("地址格式不正确") || prompt.contains("address format is incorrect"));
-    }
-
-
-    @Test(enabled = true,description = "Dapp chain freeze energy with non-active receiver Address", alwaysRun = true)
-    public void test0013_freezeEnergyNotActiveReceivingAddress() throws Exception {
-        FrozenAndUnfreezePage frozen = enterFreezePage();
-        frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
-        String prompt = frozen.errorAddress_hits.getText();
-        Assert.assertTrue(prompt.contains("请重新填写接收地址") || prompt.contains("has not been activated"));
-    }
-
-    @Test(enabled = true, description = "Dapp chain freeze transaction record test", alwaysRun = true)
-    public void test0014_dappChainFreezeTransactionRecord() throws Exception {
+    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+    public void test0001_freezeEnergySuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        String transactionType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlinkpro.wallet:id/tv_contract_title")).getText();
-        String resourceType = transaction.transactionRecords.get(0).findElement(By.id("com.tronlinkpro.wallet:id/tv_two")).getText();
-        System.out.println(transactionType);
-        Assert.assertTrue(transactionType.equals("质押资产") || transactionType.equals("Freeze Asset"));
-        Assert.assertTrue(resourceType.contains("ENERGY"));
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.frozenTheEnergy(); //Freeze operating
+        frozen.et_amount.sendKeys("1");
+        frozen.confirmTransferPage();
+        frozen.btn_confirm.click();
+        frozen.inputPassword(password);
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+        Assert.assertTrue(frozen.tv_right_first.getText().contains("能量"));
+
+    }
+
+    /**
+     * freeze Bandwidth
+     */
+    @Test(groups = {"P0"}, enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    public void test002_freezeBandwidthSuccess() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.frozenTheBandwidth(); //Freeze operating
+        frozen.et_amount.sendKeys("1");
+        frozen.confirmTransferPage();
+        frozen.btn_confirm.click();
+        frozen.inputPassword(password);
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+        Assert.assertTrue(frozen.tv_right_first.getText().contains("带宽"));
+
+    }
+
+
+    /**
+     * Freeze Energy Other
+     */
+    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+    public void test003_freezeEnergyOtherSuccess() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.frozenTheEnergy(); //Freeze operating
+        frozen.et_amount.sendKeys("1");
+        frozen.inputOtherAddress(otherAddress);
+        frozen.btn_confirm.click();
+        frozen.inputPassword(password);
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+        Assert.assertTrue(frozen.tv_right_first.getText().contains("能量"));
+
+    }
+
+    /**
+     * freeze Bandwidth Other
+     */
+    @Test(groups = {"P0"}, enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    public void test004_freezeBandwidthOtherSuccess() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.frozenTheBandwidth(); //Freeze operating
+        frozen.et_amount.sendKeys("1");
+        frozen.inputOtherAddress(otherAddress);
+        frozen.btn_confirm.click();
+        frozen.inputPassword(password);
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+        Assert.assertTrue(frozen.tv_right_first.getText().contains("带宽"));
+
+    }
+
+
+    @Test(enabled = true, description = "Freeze Details of the rules", alwaysRun = true)
+    public void test005_enterDetailsOfTheRules() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.enterDetailsAndRulesPage();
+        Assert.assertTrue(frozen.doc0_spe.getText().contains("1. 质押 TRX 可以选择获得带宽或者能量中的一种，同时可以获得投票权，质押 1 TRX 可以获得 1 个投票权。"));
+        frozen.btn_know_it.click();
+        Assert.assertFalse(isElementShotId("btn_know_it"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test006_multiSignGuideTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.interMultiSignGuidePage();
+        Assert.assertTrue(frozen.tv_common_title.getText().contains("使用教程"));
+    }
+
+
+    @Test(alwaysRun = true)
+    public void test007_multiSignListTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.tv_common_right2.click();
+        frozen.iv_tip2.click();
+        Assert.assertTrue(frozen.tv_content.getText().contains("您拥有控制权限的多签账户"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test008_unFreezeTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.toUnfreezePage();
+        Assert.assertTrue(frozen.tv_multi_sign.getText().contains("多重签名解锁"));
+        Assert.assertTrue(frozen.error_view.getText().contains("解锁会减少您的资源和投票权，并使您当前的投票全部被取消"));
+        Assert.assertFalse(frozen.btn_next.isEnabled());
+        frozen.iv_select.click();
+        Assert.assertTrue(frozen.tv_content.getText().contains("可解锁时间"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test009_PageNumberTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        Assert.assertTrue(frozen.tv_common_title2.getText().contains("(1/2)"));
+        frozen.et_amount.sendKeys("1");
+        frozen.freeze_btn.click();
+        Assert.assertTrue(frozen.tv_common_title2.getText().contains("(2/2)"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test010_PageNumberMultiSignTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.tv_common_right2.click();
+        Assert.assertTrue(frozen.tv_common_title2.getText().contains("(1/3)"));
+        frozen.tv_address.click();
+        frozen.btn_next.click();
+        Assert.assertTrue(frozen.tv_common_title2.getText().contains("(2/3)"));
+        frozen.et_amount.sendKeys("1");
+        frozen.freeze_btn.click();
+        Assert.assertTrue(frozen.tv_common_title2.getText().contains("(3/3)"));
     }
 
 }
