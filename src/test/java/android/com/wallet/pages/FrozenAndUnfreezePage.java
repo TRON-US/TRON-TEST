@@ -162,7 +162,8 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public List<WebElement> signAddress_input;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/et_input_address")
+    public WebElement et_input_address;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_selected_name")
     public WebElement selectSignName_text;
@@ -197,6 +198,8 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_know_it")
     public WebElement btn_know_it;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_buttons")
+    public WebElement rl_buttons;
     public void enterDetailsAndRulesPage() {
         iv_common_title2.click();
     }
@@ -244,13 +247,6 @@ public WebElement tv_stake_energy;
         tv_stake_energy.click();
     }
 
-    public void confirmTransferPage() throws Exception{
-        freeze_btn.click();
-        chk_stake_amount.click();
-        btn_next.click();
-        TimeUnit.SECONDS.sleep(2);
-
-    }
     public void frozenTheBandwidth() {
         tv_stake_bandwidth.click();
     }
@@ -344,8 +340,23 @@ public WebElement tv_stake_energy;
     }
 
 
+    public void confirmTransferPage() throws Exception{
+        freeze_btn.click();
+        chk_stake_amount.click();
+        btn_next.click();
+        TimeUnit.SECONDS.sleep(2);
+
+    }
 
 
+    public void inputOtherAddress(String address) throws Exception{
+        freeze_btn.click();
+        rl_buttons.click();
+        et_input_address.sendKeys(address);
+        chk_stake_amount.click();
+        btn_next.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
 
 
 
