@@ -24,7 +24,8 @@ public class AssetPage extends AbstractPage {
         super(driver);
         this.driver = driver;
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-//        try {
+        {
+            //        try {
 //            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //            // if page display AD , cloese the AD
 //            if (ad_pic.isDisplayed()){
@@ -42,32 +43,34 @@ public class AssetPage extends AbstractPage {
 //            }
 //        }catch (Exception e){}
 
-        try {
-            if (isTextExist("我知道了")) {
-                findElementByText("我知道了").click();
-            }
-        }catch (Exception e){
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
         }
 
-        try {
-            if (isTextExist("下次再说")) {
-                findElementByText("下次再说").click();
-            }
-        }catch (Exception e){
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
-        }
-
-        try {
-            if (mutisign_tipview.isDisplayed()) {
-                mutisign_closebtn.click();
-            }
-        }catch (Exception e){
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
-        }
+//        try {
+//            if (isTextExist("我知道了")) {
+//                findElementByText("我知道了").click();
+//            }
+//        }catch (Exception e){
+//            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+//
+//        }
+//
+//        try {
+//            if (isTextExist("下次再说")) {
+//                findElementByText("下次再说").click();
+//            }
+//        }catch (Exception e){
+//            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+//
+//        }
+//
+//        try {
+//            if (mutisign_tipview.isDisplayed()) {
+//                mutisign_closebtn.click();
+//            }
+//        }catch (Exception e){
+//            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+//
+//        }
 
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
@@ -222,7 +225,7 @@ public class AssetPage extends AbstractPage {
     public WebElement chainCurrent_blockNum;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/assets_count")
-    public WebElement trz_balance;
+    public WebElement assets_count;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/address")
     public WebElement shieldAddress_text;
@@ -236,12 +239,16 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
     public WebElement trxSendBottomBtn ;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/network")
+    public WebElement network;
+
     public void changeChainToDappChain() throws Exception{
         if(!currChain_name.getText().contains("DAppChain")){
             MinePage mine = enterMinePage();
             SettingPage set = mine.enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            nodeSet.enterSettingPageChoiseDappChain();
+            network.click();
+            findElementByText("DAppChain 主网").click();
+            findElementByText("确认切换").click();
             TimeUnit.SECONDS.sleep(2);
             try {
                 driver.closeApp();

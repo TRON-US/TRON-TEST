@@ -77,13 +77,13 @@ public class DappSendTrc10 extends Base {
         return transfer;
     }
 
-    @Test(groups = {"P0"},description = "SendTrc10 success test", alwaysRun = true)
-    public void test001_sendTrc10Success() throws Exception {
-        SendTrxPage transfer = enterToSendTrc10Page();
-        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
-        dappChainSendTrc10Amount = getAnAmount();
-        transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
-    }
+//    @Test(groups = {"P0"},description = "SendTrc10 success test", alwaysRun = true)
+//    public void test001_sendTrc10Success() throws Exception {
+//        SendTrxPage transfer = enterToSendTrc10Page();
+//        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
+//        dappChainSendTrc10Amount = getAnAmount();
+//        transfer.sendTrc10(Float.toString(dappChainSendTrc10Amount));
+//    }
 
     @Test(description = "input max send number", alwaysRun = true)
     public void test002_inputMaxSendNumber() throws Exception {
@@ -183,11 +183,11 @@ public class DappSendTrc10 extends Base {
     Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
     Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
     Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-    System.out.println(transactionInfo.title_amount_test.getText());
-    System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-    String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+    System.out.println(transactionInfo.tv_amount.getText());
+    System.out.println(transactionInfo.tv_amount.getText().split(" ")[1]);
+    String detailPageSendAmount = transactionInfo.tv_amount.getText().split(" ")[0];
     Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(dappChainSendTrc10Amount).substring(0,6));
-    Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+    Assert.assertTrue(transactionInfo.tv_amount.getText().contains(trc10TokenName));
     Helper.swipScreen(transactionInfo.driver);
     Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
     Assert.assertTrue(transactionInfo.to_tronscan_btn.isEnabled());

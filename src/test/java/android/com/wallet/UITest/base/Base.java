@@ -8,9 +8,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
-import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
-import io.appium.java_client.touch.offset.PointOption;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -20,7 +18,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,19 +27,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 //@Listeners(RetryListener.class)
 
@@ -202,6 +194,25 @@ public class Base {
         }
     }
 
+    public String removeNegative(String arg){
+        String value = arg;
+        if (arg.contains("-")){
+            value = arg.replace("-","");
+        }
+        if (arg.contains("+")){
+            value = arg.replace("+","");
+        }
+        return value;
+    }
+
+    public String removeSymbolString(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
+    }
+
     public String removeSymbolFloat(String arg){
         String value = arg;
         if (arg.contains(",")){
@@ -230,13 +241,13 @@ public class Base {
         return value;
     }
 
-    public float getAnAmount() {
+    public Double getAnAmount() {
         Random rand = new Random();
         String amountStr = Float.toString(rand.nextFloat() + 1);
         while (amountStr.length() != 8) {
             amountStr = Float.toString(rand.nextFloat() + 1);
         }
-        return Float.valueOf(amountStr);
+        return Double.valueOf(amountStr);
     }
 
 
@@ -262,6 +273,13 @@ public class Base {
         return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
 
     }
+
+    public Double sepLeftNumberTextToDouble(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        return  Double.parseDouble(removeNegative(removeSymbolFloat(realNumber.trim())));
+    }
+
+
     public Integer sepLeftNumberTextToInter(String content,String lastString){
         String realNumber = StringUtils.substringBeforeLast(content,lastString);
         return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));

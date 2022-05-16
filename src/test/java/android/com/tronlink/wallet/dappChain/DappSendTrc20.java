@@ -80,14 +80,14 @@ public class DappSendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(groups = {"P0"},description = "Dapp chain send TRC20 success test", alwaysRun = true)
-    public void test001_sendTrc20Success() throws Exception {
-        SendTrxPage transfer = enterToSendTrc20Page();
-        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
-        dappChainSendTrc20Amount = getAnAmount();
-        System.out.println("DAppChain Send TRC20 : " + dappChainSendTrc20Amount);
-        transfer.sendTrc20(Float.toString(dappChainSendTrc20Amount));
-    }
+//    @Test(groups = {"P0"},description = "Dapp chain send TRC20 success test", alwaysRun = true)
+//    public void test001_sendTrc20Success() throws Exception {
+//        SendTrxPage transfer = enterToSendTrc20Page();
+//        beforeBalance = Float.valueOf(removeSymbol(transfer.balance_text.getText()));
+//        dappChainSendTrc20Amount = getAnAmount();
+//        System.out.println("DAppChain Send TRC20 : " + dappChainSendTrc20Amount);
+//        transfer.sendTrc20(Float.toString(dappChainSendTrc20Amount));
+//    }
 
     @Test(description = "Input max send number")
     public void test002_inputMaxSendNumber() throws Exception {
@@ -176,10 +176,10 @@ public class DappSendTrc20 extends Base {
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText()) > Long.valueOf(currentDappNetBlockNum));
-        System.out.println(transactionInfo.title_amount_test.getText().split(" ")[0]);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+        System.out.println(transactionInfo.tv_amount.getText().split(" ")[0]);
+        String detailPageSendAmount = transactionInfo.tv_amount.getText().split(" ")[0];
         Assert.assertEquals(detailPageSendAmount.substring(1,7),String.valueOf(dappChainSendTrc20Amount).substring(0,6));
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
+        Assert.assertTrue(transactionInfo.tv_amount.getText().contains(trc20TokenName));
         Helper.swipScreenLitte(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());

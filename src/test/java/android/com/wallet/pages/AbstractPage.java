@@ -37,6 +37,8 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement bt_send;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_done")
+    public WebElement btn_done;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirmBtn;
@@ -46,6 +48,9 @@ public WebElement btn_confirm;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement nav_title;
+    
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
+    public WebElement tv_main_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right")
     public WebElement right_title;

@@ -75,18 +75,18 @@ public class MainNetDeposit20 extends Base {
         return asset.enterTrx20Page();
     }
 
-    @Test(groups = {"P0"},enabled = true,description = "Deposit TRC20 Success and checkout available trx", alwaysRun = true)
-    public void test001_checkAvailableBalance() throws Exception {
-        TrxPage trx = enterTrc20Page();
-        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCount = " + trxCount);
-        TransferPage transferIn = trx.enterTransferInPage();
-        depositTrc20Amount = getAnAmount();
-        trx = transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrc20Amount));
-        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println("trxCountNow = " + trxCountNow);
-        Assert.assertTrue(trxCount >= trxCountNow);
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Deposit TRC20 Success and checkout available trx", alwaysRun = true)
+//    public void test001_checkAvailableBalance() throws Exception {
+//        TrxPage trx = enterTrc20Page();
+//        int trxCount = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+//        System.out.println("trxCount = " + trxCount);
+//        TransferPage transferIn = trx.enterTransferInPage();
+//        depositTrc20Amount = getAnAmount();
+//        trx = transferIn.enterTrxPageWithTransferSuccess(Float.toString(depositTrc20Amount));
+//        int trxCountNow = Integer.valueOf(removeSymbol(trx.trxTotal_text.getText()));
+//        System.out.println("trxCountNow = " + trxCountNow);
+//        Assert.assertTrue(trxCount >= trxCountNow);
+//    }
 
     @Test(enabled = true,description = "Check TransferIn Hits")
     public void test002_checkTransferInHits() throws Exception {
@@ -144,9 +144,9 @@ public class MainNetDeposit20 extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentDappNetBlockNum));
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String recorderNumber = transactionInfo.tv_amount.getText().split(" ")[0];
         String detailPageSendAmount = recorderNumber.substring(1);
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
+        Assert.assertTrue(transactionInfo.tv_amount.getText().contains(trc20TokenName));
         Assert.assertEquals(detailPageSendAmount.substring(0,6),String.valueOf(depositTrc20Amount).substring(0,6));
         Helper.swipScreen(transactionInfo.driver);
         Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());

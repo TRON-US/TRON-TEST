@@ -149,35 +149,35 @@ public class  DappNetWithdraw extends Base {
     }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "transferOut Success Recording")
-    public void test008_transferOutSuccessRecording() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage transferOut = trx.enterTransferInPage();
-        withdrawTrxAmount = getAnAmount() + 9;
-        System.out.println("withdrawTrxAmount: " + Float.toString(withdrawTrxAmount).substring(0, 5) );
-        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrxAmount));
-        int tries = 0;
-        Boolean exist = false;
-        while (exist == false && tries++ < 10) {
-            try {
-                AssetPage arret = trx.enterAssetPage();
-                trx = arret.enterTrxPage();
-                trx.tranfer_tab.get(3).click();
-                //todo 转出转入记录中没有最新数据
-                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
-                System.out.println(" tranferInCount:" + tranferInCount.substring(0, 6));
-                if (Float.toString(withdrawTrxAmount).substring(0, 5)
-                    .equals(tranferInCount.substring(1, 6))) {
-                    exist = true;
-                    break;
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            TimeUnit.SECONDS.sleep(6);
-        }
-        Assert.assertTrue(exist);
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "transferOut Success Recording")
+//    public void test008_transferOutSuccessRecording() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage transferOut = trx.enterTransferInPage();
+//        withdrawTrxAmount = getAnAmount() + 9;
+//        System.out.println("withdrawTrxAmount: " + Float.toString(withdrawTrxAmount).substring(0, 5) );
+//        trx = transferOut.enterTrxPageWithTransferSuccess(Float.toString(withdrawTrxAmount));
+//        int tries = 0;
+//        Boolean exist = false;
+//        while (exist == false && tries++ < 10) {
+//            try {
+//                AssetPage arret = trx.enterAssetPage();
+//                trx = arret.enterTrxPage();
+//                trx.tranfer_tab.get(3).click();
+//                //todo 转出转入记录中没有最新数据
+//                String tranferInCount = trx.tranferIncount_text.get(1).getText().split(" ")[0];
+//                System.out.println(" tranferInCount:" + tranferInCount.substring(0, 6));
+//                if (Float.toString(withdrawTrxAmount).substring(0, 5)
+//                    .equals(tranferInCount.substring(1, 6))) {
+//                    exist = true;
+//                    break;
+//                }
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//            TimeUnit.SECONDS.sleep(6);
+//        }
+//        Assert.assertTrue(exist);
+//    }
 
 
 
@@ -186,7 +186,7 @@ public class  DappNetWithdraw extends Base {
     public void test009_DappNetWithdrawTrxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterWithdrawTransactionDetailPage(0);
-        String recordNumber = transactionInfo.title_amount_test.getText();
+        String recordNumber = transactionInfo.tv_amount.getText();
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         //尼罗河测链gateway
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),dappNetGateWay);

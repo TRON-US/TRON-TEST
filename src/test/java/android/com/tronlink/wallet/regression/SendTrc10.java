@@ -63,23 +63,23 @@ public class SendTrc10 extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
-    public void test001_sendTrxSuccess() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrx10Page();
-        beforeSendBalance = Float.valueOf(prettyString(asset.tv_count.getText()));
-        SendTrxPage transfer = page.trxSendTrxPage();
-        sendTrxAmount = getAnAmount();
-        System.out.println("sendTrxAmount-----"+sendTrxAmount);
-        transfer.sendTrx(Float.toString(sendTrxAmount));
-        Assert.assertTrue(assertToast("交易提交成功"));
-        TimeUnit.SECONDS.sleep(2);
-        afterSendBalance  = Float.valueOf(prettyString(asset.tv_count.getText()));
-        System.out.println(beforeSendBalance);
-        System.out.println(sendTrxAmount);
-        System.out.println(afterSendBalance);
-        Assert.assertTrue(beforeSendBalance == sendTrxAmount + afterSendBalance);
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
+//    public void test001_sendTrxSuccess() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrx10Page();
+//        beforeSendBalance = Float.valueOf(prettyString(asset.tv_count.getText()));
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        sendTrxAmount = getAnAmount();
+//        System.out.println("sendTrxAmount-----"+sendTrxAmount);
+//        transfer.sendTrx(Float.toString(sendTrxAmount));
+//        Assert.assertTrue(assertToast("交易提交成功"));
+//        TimeUnit.SECONDS.sleep(2);
+//        afterSendBalance  = Float.valueOf(prettyString(asset.tv_count.getText()));
+//        System.out.println(beforeSendBalance);
+//        System.out.println(sendTrxAmount);
+//        System.out.println(afterSendBalance);
+//        Assert.assertTrue(beforeSendBalance == sendTrxAmount + afterSendBalance);
+//    }
 
 
     @Test(enabled = true, description = "input max send number", alwaysRun = true)
@@ -177,7 +177,7 @@ public class SendTrc10 extends Base {
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
         Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        String detailPageSendAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String detailPageSendAmount = transactionInfo.tv_amount.getText().split(" ")[0];
         Assert.assertTrue(detailPageSendAmount.contains(Float.toString(sendTrxAmount)));
         Assert.assertTrue(detailPageSendAmount.contains("-"));
         Assert.assertTrue(transactionInfo.contractType.getText().contains("TRC10 通证转账"));

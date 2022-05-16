@@ -71,34 +71,34 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(groups = {"P0"},enabled = true,description = "SendTrc20 success test")
-    public void test001_sendTrc20Success() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        double trc20Before = transfer.getTrc20Amount();
-        sendTrc20Amount = getAnAmount();
-        String trc20SendAmount = Float.toString(sendTrc20Amount);
-        System.out.println("trc20SendAmount : " + trc20SendAmount);
-        TrxPage trxpage = transfer.normalSendTrc20(trc20SendAmount);
-        TimeUnit.SECONDS.sleep(5);
-        Helper.swipeDownScreen(trxpage.driver);
-        double afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
-        String rsoultString = "";
-        for (int i =  0 ; i< 8 ;i++){
-            afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
-            rsoultString =  String.format("%.6f" ,trc20Before - Double.parseDouble(trc20SendAmount));
-            System.out.println("第"+i + "次\n " + " trc20Before: " + trc20Before  + " trc20SendAmount: " + trc20SendAmount +  " afterdouble: " + afterdouble + " result：" +  rsoultString);
-            if (String.valueOf(afterdouble).equals(rsoultString)  ){
-                log("equal!!!");
-                break;
-            }
-            TimeUnit.SECONDS.sleep(5);
-            Helper.swipeDownScreen(trxpage.driver);
-
-        }
-        Assert.assertTrue(String.valueOf(afterdouble).equals(rsoultString) );
-
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "SendTrc20 success test")
+//    public void test001_sendTrc20Success() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage transfer = asset.enterSendTrxPage();
+//        double trc20Before = transfer.getTrc20Amount();
+//        sendTrc20Amount = getAnAmount();
+//        String trc20SendAmount = Float.toString(sendTrc20Amount);
+//        System.out.println("trc20SendAmount : " + trc20SendAmount);
+//        TrxPage trxpage = transfer.normalSendTrc20(trc20SendAmount);
+//        TimeUnit.SECONDS.sleep(5);
+//        Helper.swipeDownScreen(trxpage.driver);
+//        double afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
+//        String rsoultString = "";
+//        for (int i =  0 ; i< 8 ;i++){
+//            afterdouble = Double.parseDouble(prettyString(trxpage.trxTotal_text.getText()));
+//            rsoultString =  String.format("%.6f" ,trc20Before - Double.parseDouble(trc20SendAmount));
+//            System.out.println("第"+i + "次\n " + " trc20Before: " + trc20Before  + " trc20SendAmount: " + trc20SendAmount +  " afterdouble: " + afterdouble + " result：" +  rsoultString);
+//            if (String.valueOf(afterdouble).equals(rsoultString)  ){
+//                log("equal!!!");
+//                break;
+//            }
+//            TimeUnit.SECONDS.sleep(5);
+//            Helper.swipeDownScreen(trxpage.driver);
+//
+//        }
+//        Assert.assertTrue(String.valueOf(afterdouble).equals(rsoultString) );
+//
+//    }
 //
     @Test(enabled = true,description = "input max send number")
     public void test002_inputMaxSendNumber() throws Exception {
@@ -195,8 +195,8 @@ public class SendTrc20 extends Base {
       Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
       Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
       Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-      System.out.println(transactionInfo.title_amount_test.getText());
-      String sendIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+      System.out.println(transactionInfo.tv_amount.getText());
+      String sendIcon = transactionInfo.tv_amount.getText().split(" ")[0];
       Helper.swipScreenLitte(asset.driver);
       Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2022"));
       Assert.assertTrue(sendIcon.contains("-"));
@@ -224,12 +224,12 @@ public class SendTrc20 extends Base {
   public void test011_trc20ReceiveTransactionDetailInfo(String address) throws Exception {
       AssetPage asset = new AssetPage(DRIVER);
       TransactionDetailInfomaitonPage transactionInfo = asset.enterReceiverTransactionDetailPage(2);
-      System.out.println(transactionInfo.title_amount_test.getText());
-      System.out.println(transactionInfo.title_amount_test.getText().split(" ")[1]);
-      String detailPageReceiveAmount = transactionInfo.title_amount_test.getText().split(" ")[0];
-      String receiveIcon = transactionInfo.title_amount_test.getText().split(" ")[0];
+      System.out.println(transactionInfo.tv_amount.getText());
+      System.out.println(transactionInfo.tv_amount.getText().split(" ")[1]);
+      String detailPageReceiveAmount = transactionInfo.tv_amount.getText().split(" ")[0];
+      String receiveIcon = transactionInfo.tv_amount.getText().split(" ")[0];
       Assert.assertTrue(receiveIcon.contains("+"));
-      Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc20TokenName));
+      Assert.assertTrue(transactionInfo.tv_amount.getText().contains(trc20TokenName));
       Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),address);
       Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
       Assert.assertTrue(Float.valueOf(removeSymbolFloat(detailPageReceiveAmount)) > 0);

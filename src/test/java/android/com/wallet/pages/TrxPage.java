@@ -26,12 +26,18 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_deposit")
     public WebElement transferIn_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_price_trx")
+    public WebElement rl_price_trx;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_action")
+    public WebElement ll_action;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_amount")
     public WebElement trx_text;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_freeze_amout")
+    public WebElement tv_freeze_amout;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_freeze_amout")
     public WebElement freezeCount_text;
@@ -62,7 +68,8 @@ public class TrxPage extends AbstractPage {
     public WebElement tranfer10_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
-    public WebElement balance_text;
+    public WebElement tv_balance;
+
 
     @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
     public WebElement totalBalance;

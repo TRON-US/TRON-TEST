@@ -17,12 +17,16 @@ public class TransactionDetailInfomaitonPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_contract_type_top")
+    public WebElement tv_contract_type_top;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_contract_type")
     public WebElement contractType;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_amount")
-    public WebElement title_amount_test;
+    public WebElement tv_amount;
+
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_sa")
     public WebElement sendAddress_text;

@@ -32,6 +32,14 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/net_error")
+    public WebElement net_error;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_transaction_info")
+    public WebElement btn_transaction_info;
+
     //com.tronlinkpro.wallet:id/toscan
     @FindBy(id = "com.tronlinkpro.wallet:id/toscan")
     public WebElement coldHadScan_next_btn;
@@ -67,6 +75,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
     public WebElement transferNow_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_account")
+    public WebElement tv_account;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement InputPasswordConfim_btn;
@@ -175,6 +185,10 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
+    public TransactionDetailInfomaitonPage enterTransationDetailPage(){
+        btn_transaction_info.click();
+        return new TransactionDetailInfomaitonPage(driver);
+    }
 
     public String trxCount = "";
 
@@ -208,7 +222,10 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
-
+    public void normalSendStepOne(){
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        next_btn.click();
+    }
 
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");

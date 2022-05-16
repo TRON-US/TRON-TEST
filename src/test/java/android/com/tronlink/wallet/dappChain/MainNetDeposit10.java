@@ -75,14 +75,14 @@ public class MainNetDeposit10 extends Base {
         Assert.assertTrue(chain.equals("DAppChain"));
     }
 
-    @Test(groups = {"P0"},enabled = true,description = "Deposit TRC10 to Dapp Chain succesfully", alwaysRun = true)
-    public void test0002_depositTrc10ToDappChainSuccess() throws Exception {
-        TrxPage trx = enterTrxPage();
-        TransferPage depositTrc10 = trx.enterTransferInPage();
-        depositTrc10Amount = getAnAmount();
-        log("depositTrc10Amount: " + String.valueOf(depositTrc10Amount));
-        depositTrc10.enterTrxPageWithTransferSuccess(Float.toString(depositTrc10Amount));
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Deposit TRC10 to Dapp Chain succesfully", alwaysRun = true)
+//    public void test0002_depositTrc10ToDappChainSuccess() throws Exception {
+//        TrxPage trx = enterTrxPage();
+//        TransferPage depositTrc10 = trx.enterTransferInPage();
+//        depositTrc10Amount = getAnAmount();
+//        log("depositTrc10Amount: " + String.valueOf(depositTrc10Amount));
+//        depositTrc10.enterTrxPageWithTransferSuccess(Float.toString(depositTrc10Amount));
+//    }
     @Test(enabled = true,description = "Check TransferIn Trc10 Count", alwaysRun = true)
     public void test0003_checkTransferInTrc10() throws Exception {
         TrxPage trx = enterTrxPage();
@@ -160,9 +160,9 @@ public class MainNetDeposit10 extends Base {
         Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
             > Long.valueOf(currentDappNetBlockNum) );
         Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String recorderNumber = transactionInfo.tv_amount.getText().split(" ")[0];
         String detailPageSendAmount = recorderNumber.substring(1);
-        Assert.assertTrue(transactionInfo.title_amount_test.getText().contains(trc10TokenName));
+        Assert.assertTrue(transactionInfo.tv_amount.getText().contains(trc10TokenName));
         log("----");
         log(detailPageSendAmount.substring(0,6));
         log(String.valueOf(depositTrc10Amount).substring(0,6));

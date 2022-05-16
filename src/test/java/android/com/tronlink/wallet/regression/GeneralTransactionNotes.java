@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 public class GeneralTransactionNotes extends Base {
 
      String beforeTRXBalance ;
-     float sendTrxAmount;
+     Double sendTrxAmount;
      String beforeTRC10Balance ;
      float sendTrc10Amount;
      String beforeTRC20Balance ;
@@ -65,7 +65,7 @@ public class GeneralTransactionNotes extends Base {
         System.out.println("beforeTRXBalance-----"+beforeTRXBalance);
         sendTrxAmount = getAnAmount();
         System.out.println("SendTRXBalance-----"+sendTrxAmount);
-        transfer.sendTrxTypeWithNotes(Float.toString(sendTrxAmount),trxnote,"trx");
+        transfer.sendTrxTypeWithNotes(Double.toString(sendTrxAmount),trxnote,"trx");
     }
 //    @Test(enabled = true, description = "sendTrx10WithNoteSuccess", alwaysRun = true)
 //    public void test002_sendTrx10WithNoteSuccess() throws Exception {
@@ -124,7 +124,7 @@ public class GeneralTransactionNotes extends Base {
     public void test006_trxTransactionDetailInfo(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(0);
-        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+        String recorderNumber = transactionInfo.tv_amount.getText().split(" ")[0];
         String recorderNotes = transactionInfo.tv_note.getText();
         Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
         Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -144,7 +144,7 @@ public class GeneralTransactionNotes extends Base {
 //    public void test007_trx10TransactionDetailInfo(String address) throws Exception {
 //        AssetPage asset = new AssetPage(DRIVER);
 //        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
-//        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+//        String recorderNumber = transactionInfo.tv_amount.getText().split(" ")[0];
 //        String recorderNotes = transactionInfo.tv_note.getText();
 //        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
 //        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -165,7 +165,7 @@ public class GeneralTransactionNotes extends Base {
 //    public void test008_trx20TransactionDetailInfo(String address) throws Exception {
 //        AssetPage asset = new AssetPage(DRIVER);
 //        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(2);
-//        String recorderNumber = transactionInfo.title_amount_test.getText().split(" ")[0];
+//        String recorderNumber = transactionInfo.tv_amount.getText().split(" ")[0];
 //        String recorderNotes = transactionInfo.tv_note.getText();
 //
 //        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
