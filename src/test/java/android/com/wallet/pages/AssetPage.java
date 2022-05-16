@@ -23,8 +23,7 @@ public class AssetPage extends AbstractPage {
 
         super(driver);
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 //        try {
 //            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //            // if page display AD , cloese the AD
@@ -44,20 +43,37 @@ public class AssetPage extends AbstractPage {
 //        }catch (Exception e){}
 
         try {
+            if (isTextExist("我知道了")) {
+                findElementByText("我知道了").click();
+            }
+        }catch (Exception e){
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+
+        }
+
+        try {
             if (isTextExist("下次再说")) {
                 findElementByText("下次再说").click();
             }
-        }catch (Exception e){}
+        }catch (Exception e){
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+
+        }
 
         try {
             if (mutisign_tipview.isDisplayed()) {
                 mutisign_closebtn.click();
             }
-        }catch (Exception e){}
+        }catch (Exception e){
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
+        }
+
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
 
     }
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public WebElement tv_count;

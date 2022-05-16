@@ -73,9 +73,9 @@ public class autoCreateTestngXml {
     @BeforeClass
     public void beforeClass() throws IOException{
         try {
-            packagesNameList.add("<package name=\"android.com.tronlink.wallet.regression.*\"></package>");
-            packagesNameList.add("<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>");
-            packagesNameList.add("<package name=\"android.com.tronlink.wallet.multiSignatureTransaction.*\"></package>");
+            packagesNameList.add("<package name=\"android.com.tronlink.wallet.mainTest.*\"></package>");
+//            packagesNameList.add("<package name=\"android.com.tronlink.wallet.committeeProposal.*\"></package>");
+//            packagesNameList.add("<package name=\"android.com.tronlink.wallet.multiSignatureTransaction.*\"></package>");
 //            packagesNameList.add("<package name=\"android.com.tronlink.wallet.dappChain.*\"></package>");
             //packagesNameList.add("<package name=\"android.com.tronlink.wallet.manualTest.*\"></package>");
             deviceNameList = AppiumTestCase.getDeviceList(adb + " devices");

@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.mainTest;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
@@ -53,7 +53,6 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(isElementTextExist("官方网站"));
         Assert.assertTrue(isElementTextExist("Telegram"));
         Assert.assertTrue(isElementTextExist("Twitter"));
-
     }
 
     @Test(description = "SecendPageEnterTest",alwaysRun = true)
@@ -65,12 +64,13 @@ public class AboutUsTest extends Base {
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
         mine.enterLogPage();
         TimeUnit.SECONDS.sleep(6);
-        Assert.assertTrue(isElementTextExist("4.5.1(2022.01.25)"));
+        Assert.assertTrue(isElementTextExist("4.6.4(2022.05.06)"));
         Assert.assertTrue(mine.nav_title.getText().contains("版本日志"));
-        mine.backBtn.click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(mine.userAgreementTitle.getText().contains("用户协议"));
-        Assert.assertTrue(isElementTextExist("更新于2022年1月4日"));
+//        mine.backBtn.click();
+//        TimeUnit.SECONDS.sleep(4);
+//        mine.userAgreement.click();
+//        Assert.assertTrue(mine.userAgreementTitle.getText().contains("用户协议"));
+//        Assert.assertTrue(isElementTextExist("更新于2022年1月4日"));
 
     }
 
