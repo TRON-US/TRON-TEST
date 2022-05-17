@@ -26,6 +26,9 @@ public abstract class AbstractPage {
 
     public  static String apkPackageName = "com.tronlinkpro.wallet";
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/toscan")
+    public WebElement toscan;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
     public  WebElement confirmBan;
 

@@ -230,6 +230,11 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
     }
 
+//    public void  watchWalletSend(String type){
+//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        selectCoinType(type);
+//    }
+
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         next_btn.click();

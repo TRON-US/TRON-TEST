@@ -179,7 +179,7 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
     public WebElement trz_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_token_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
     public List<WebElement> asset_names;
 
 
@@ -293,7 +293,6 @@ public class AssetPage extends AbstractPage {
     public TrxPage enterTrx20Page() throws Exception {
 
         Helper.slideAssetTokenScreen(driver);
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         System.out.printf("asset_names.size() :  " +  asset_names.size());
         for (int i = 1; i < asset_names.size(); i++) {
             System.out.printf("asset_names item " + i + "  :  " +  asset_names.get(i).getText());
@@ -363,12 +362,8 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterSendTrc20Page() throws  Exception {
 
-
         enterTrx20Page();
-
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         trc10Page_transfer_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
     }
 
@@ -408,9 +403,7 @@ public class AssetPage extends AbstractPage {
 
     public VotePage enterVotePage(){
         try {
-            TimeUnit.SECONDS.sleep(3);
             vote_btn.click();
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }catch (Exception e) {
             e.printStackTrace();
         }

@@ -82,6 +82,10 @@ public class TrxPage extends AbstractPage {
     @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
     public WebElement trxSendBottomBtn ;
 
+    public WebElement transferIn_btn(){
+        return  findElementByText("转链");
+    }
+
     public TransferPage enterTransferInPage() throws Exception {
         transferIn_btn.click();
         return new TransferPage(driver);

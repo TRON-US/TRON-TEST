@@ -22,7 +22,7 @@ public class WatchWalletTest extends Base {
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
 
-        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
+//        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
 
     }
 
@@ -54,10 +54,10 @@ public class WatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");
-        Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
-        sendTrxPage.transferNow_btn.click();
+        sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -69,14 +69,10 @@ public class WatchWalletTest extends Base {
     public void test002_frozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        TimeUnit.SECONDS.sleep(3);
-        frozen.energy_btn.click();
-        Helper.swipScreenLitte(DRIVER);
+        frozen.frozenTheEnergy(); //Freeze operating
         frozen.et_amount.sendKeys("1");
-        TimeUnit.SECONDS.sleep(1);
-        Helper.swipScreen(DRIVER);
-        frozen.frozenButtonClickAndConfirm();
-//        frozen.confirm_btn().click();
+        frozen.confirmTransferPage();
+        frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -87,17 +83,12 @@ public class WatchWalletTest extends Base {
     public void test003_frozenBandwidthQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.bandwidth_btn.click();
-        Helper.swipScreenLitte(DRIVER);
+        frozen.frozenTheBandwidth(); //Freeze operating
         frozen.et_amount.sendKeys("1");
-        Helper.swipScreen(DRIVER);
-        frozen.frozenButtonClickAndConfirm();
-//        frozen.confirm_btn().click();
+        frozen.confirmTransferPage();
+        frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
-
-
-
 
     @Test(enabled = true,description = "create proposal QRCode", alwaysRun = true)
     public void test004_createCommitteeQRCode() throws Exception{
@@ -106,27 +97,24 @@ public class WatchWalletTest extends Base {
         CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         createProposePage.proValue_ipt.get(1).clear();
-        createProposePage.proValue_ipt.get(1).sendKeys("9997");
+        createProposePage.proValue_ipt.get(1).sendKeys("9919");
         createProposePage.Creatconfirm_btn.click();
-        createProposePage.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
+        createProposePage.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-
-
-
-    @Test(enabled = true,description = "muliSignature QRCode", alwaysRun = true)
-    public void test005_muliSignatureQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        MyPursePage myPursePage = mine.enterMyPursePage();
-        MultiSignManagerPage multiSignManager = myPursePage.enterMultiSignManagerPage();
-        AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-        add.inputInfo("AutoTest_0001");
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "muliSignature QRCode", alwaysRun = true)
+//    public void test005_muliSignatureQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage mine = asset.enterMinePage();
+//        MyPursePage myPursePage = mine.enterMyPursePage();
+//        MultiSignManagerPage multiSignManager = myPursePage.enterMultiSignManagerPage();
+//        AddPermissionPage add = multiSignManager.enterAddPermissionPage();
+//        add.inputInfo("AutoTest_0001");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
 
@@ -149,10 +137,10 @@ public class WatchWalletTest extends Base {
         TimeUnit.SECONDS.sleep(5);
         SendTrxPage sendTrxPage  = asset.enterSendTrc10Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");
-        Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
-        sendTrxPage.transferNow_btn.click();
+        sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -184,10 +172,10 @@ public class WatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrc20Page();
         sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");
-        Helper.swipScreen(DRIVER);
         sendTrxPage.send_btn.click();
-        sendTrxPage.transferNow_btn.click();
+        sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -198,14 +186,11 @@ public class WatchWalletTest extends Base {
     public void test011_UnfreezeQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.currentType_btn.click();
-        frozen.unfreezeType_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        Helper.swipScreenLitte(frozen.driver);
-        frozen.unfreezeTargetAddress_btn.click();
-        frozen.unfreeze_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        frozen.unfreezeInfoConfirm_btn.click();
+        frozen.toUnfreezePage();
+        frozen.ll_container.click();
+        frozen.btn_next.click();
+        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
+        frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -213,8 +198,11 @@ public class WatchWalletTest extends Base {
     public void test012_WithdrawRewardQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        vote.reward_btn.click();
-        vote.confirm_btn().click();
+        vote.caim_reward.click();
+        TimeUnit.SECONDS.sleep(4);
+        Assert.assertTrue(vote.btn_confirm.getText().contains("生成交易二维码"));
+        vote.btn_confirm.click();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 

@@ -19,6 +19,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_container")
+    public WebElement ll_container;
+
 @FindBy(id = "com.tronlinkpro.wallet:id/tv_stake_energy")
 public WebElement tv_stake_energy;
 
