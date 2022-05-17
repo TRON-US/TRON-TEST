@@ -102,6 +102,14 @@ public class WatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
+     @Test(alwaysRun = true)
+     public void test005_NotActivedShow() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+         sendTrxPage.receiveAddress_text.sendKeys("TV7xNv1n8or37qrSqCoPyqo26QRTxMzYUi");
+         Assert.assertTrue(sendTrxPage.error_view.getText().contains("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
+     }
+
 //    @Test(enabled = true,description = "muliSignature QRCode", alwaysRun = true)
 //    public void test005_muliSignatureQRCode() throws Exception{
 //        AssetPage asset = new AssetPage(DRIVER);

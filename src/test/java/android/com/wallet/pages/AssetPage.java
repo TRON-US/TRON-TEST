@@ -352,8 +352,8 @@ public class AssetPage extends AbstractPage {
     }
 
     public SendTrxPage enterOnlineSendTrc10Page() throws Exception {
-        enterSendTrxPage();
-        SendTrxPage page = new SendTrxPage(driver);
+
+        SendTrxPage page  = enterSendTrxPage();
         page.selectTokenByName("BTT");
         return page;
     }
@@ -369,8 +369,8 @@ public class AssetPage extends AbstractPage {
 
     public SendTrxPage enterOnlineSendTrc20Page() throws Exception{
 
-        enterSendTrxPage();
-        SendTrxPage page = new SendTrxPage(driver);
+
+        SendTrxPage page = enterSendTrxPage();
         page.selectTokenByName("WIN");
         return page;
 

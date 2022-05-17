@@ -32,7 +32,8 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/error_view")
+    public WebElement error_view;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/net_error")
     public WebElement net_error;
@@ -101,6 +102,9 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
     public WebElement fee_text;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_book")
+    public WebElement tv_address_book;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_add_address")
     public WebElement tv_add_address;
@@ -458,11 +462,17 @@ public class SendTrxPage extends AbstractPage {
         return allNumberText;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_symbol")
+    public WebElement tv_symbol;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    public WebElement assets_name;
+
     public void selectTokenByName(String name) throws Exception{
-        token_btn.click();
+        tv_symbol.click();
         et_search.sendKeys(name);
         TimeUnit.SECONDS.sleep(1);
-        token_itemIV.click();
+        assets_name.click();
     }
 
 
