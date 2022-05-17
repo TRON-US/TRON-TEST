@@ -21,9 +21,7 @@ public class WatchWalletTest extends Base {
 
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
-
-//        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
-
+        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
     }
 
 
