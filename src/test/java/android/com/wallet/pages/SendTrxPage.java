@@ -32,6 +32,9 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/confirm")
+    public WebElement confirm;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/error_view")
     public WebElement error_view;
 
@@ -64,6 +67,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_next")
     public WebElement next_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_next")
+    public WebElement btn_next;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/et_count")
     public WebElement tranferCount_text;
 
@@ -72,6 +78,12 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement bt_send;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_content")
+    public WebElement tv_trans_content;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_type")
+    public WebElement tv_trans_type;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
     public WebElement tv_multi_sign;
@@ -146,6 +158,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='(TCCcB***15n71)']")
     public WebElement trc20_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    public WebElement rl_bottom_next;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
     public WebElement invalidTime_input;
@@ -174,7 +188,7 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_name")
     public WebElement addressName_display;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_add_note")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_add_note")
     public WebElement add_note;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_note")
@@ -283,10 +297,10 @@ public class SendTrxPage extends AbstractPage {
 
     public void selectCoinType(String type) throws Exception {
         switch (type) {
-            case "trc10":
+            case "10":
                 selectTokenType("10");
                 break;
-            case "trc20":
+            case "20":
                 selectTokenType("20");
                 break;
             default:
@@ -468,6 +482,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
     public WebElement assets_name;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    public List<WebElement> assets_names;
+
     public void selectTokenByName(String name) throws Exception{
         tv_symbol.click();
         et_search.sendKeys(name);
@@ -480,17 +497,25 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         switch (value) {
             case "20":
-                token_btn.click();
+                tv_symbol.click();
                 et_search.sendKeys("TRX");
                 TimeUnit.SECONDS.sleep(1);
-                trc20_btn().click();
+                for (int i = 0; i < 3; i++) {
+                    if (assets_names.get(i).getText().equalsIgnoreCase("TRX")){
+                        assets_names.get(i).click();
+                        return;
+                    }
+                }
                 break;
             case "10":
                 selectTokenByName("tronlink_token");
+                break;
+            default:
+                System.out.println("choice TRX");
         }
     }
 
-    public AssetPage sendRamonTrxSuccess(String revAddress) throws Exception {
+    public AssetPage  sendRamonTrxSuccess(String revAddress) throws Exception {
         receiveAddress_text.sendKeys(revAddress);
         Random random = new Random();
         float count = random.nextFloat();

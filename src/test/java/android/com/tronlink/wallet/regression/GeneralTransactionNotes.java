@@ -70,7 +70,7 @@ public class GeneralTransactionNotes extends Base {
 //    @Test(enabled = true, description = "sendTrx10WithNoteSuccess", alwaysRun = true)
 //    public void test002_sendTrx10WithNoteSuccess() throws Exception {
 //        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.selectCoinType("trc10");
+//        transfer.selectCoinType("10");
 //        beforeTRC10Balance = removeSymbolFloat(transfer.balance_text.getText());
 //        System.out.println("beforeTRC10Balance-----"+beforeTRC10Balance);
 //        sendTrc10Amount = getAnAmount();
@@ -81,7 +81,7 @@ public class GeneralTransactionNotes extends Base {
 //    @Test(enabled = true, description = "sendTrx20WithNoteSuccess", alwaysRun = true)
 //    public void test003_sendTrx20WithNoteSuccess() throws Exception {
 //        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.selectCoinType("trc20");
+//        transfer.selectCoinType("20");
 //        beforeTRC20Balance = removeSymbolFloat(transfer.balance_text.getText());
 //        System.out.println("beforeTRC20Balance-----"+beforeTRC20Balance);
 //        sendTrc20Amount = getAnAmount();
