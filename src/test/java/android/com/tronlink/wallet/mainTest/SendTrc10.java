@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.mainTest;
 
 import android.com.utils.Configuration;
 import android.com.wallet.UITest.base.Base;
@@ -63,23 +63,7 @@ public class SendTrc10 extends Base {
 
 
 
-//    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
-//    public void test001_sendTrxSuccess() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        TrxPage page =  asset.enterTrx10Page();
-//        beforeSendBalance = Float.valueOf(prettyString(asset.tv_count.getText()));
-//        SendTrxPage transfer = page.trxSendTrxPage();
-//        sendTrxAmount = getAnAmount();
-//        System.out.println("sendTrxAmount-----"+sendTrxAmount);
-//        transfer.sendTrx(Float.toString(sendTrxAmount));
-//        Assert.assertTrue(assertToast("交易提交成功"));
-//        TimeUnit.SECONDS.sleep(2);
-//        afterSendBalance  = Float.valueOf(prettyString(asset.tv_count.getText()));
-//        System.out.println(beforeSendBalance);
-//        System.out.println(sendTrxAmount);
-//        System.out.println(afterSendBalance);
-//        Assert.assertTrue(beforeSendBalance == sendTrxAmount + afterSendBalance);
-//    }
+
 
 
     @Test(enabled = true, description = "input max send number", alwaysRun = true)
@@ -111,7 +95,7 @@ public class SendTrc10 extends Base {
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.sendAllTrx("tooMuch");
-        Assert.assertTrue(isElementTextExist("   转账数量不可大于可用数量。"));
+        Assert.assertTrue(isElementTextExist("   转账数量不可大于可用数量"));
     }
 
     @Test(enabled = true, description = "password error", alwaysRun = true)
@@ -139,58 +123,7 @@ public class SendTrc10 extends Base {
     }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Trx transfer success recording")
-    public void test010_transferInSuccessRecording() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage trx = asset.enterTrx10Page();
-        boolean find = false;
-        for (WebElement item: trx.tranferIncount_text
-        ) {
-            if (item.getText().contains("-" + Float.toString(sendTrxAmount))){
-                find = true;
-                break;
-            }else {
-                find = false;
-            }
-        }
-        Assert.assertTrue(find);
 
-    }
-
-    @Test(groups = {"P0"},enabled = true, description = "Trx transfer history record test", alwaysRun = true)
-    public void test011_MinePageTransactionRecord() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-        Assert.assertTrue(isElementTextExist("TRC10 通证转账"));
-        String transactionType = transaction.descTextList.get(0).getText();
-        System.out.println(transactionType);
-        Assert.assertTrue( transactionType.contains( Float.toString(sendTrxAmount)));
-    }
-
-
-    @Parameters({"address"})
-    @Test(groups = {"P0"},enabled = true, description = "Trx transaction detail info test", alwaysRun = true)
-    public void test012_trxTransactionDetailInfo(String address) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TransactionDetailInfomaitonPage transactionInfo = asset.enterTransactionDetailPage(1);
-        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),receiverAddress);
-        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
-        String detailPageSendAmount = transactionInfo.tv_amount.getText().split(" ")[0];
-        Assert.assertTrue(detailPageSendAmount.contains(Float.toString(sendTrxAmount)));
-        Assert.assertTrue(detailPageSendAmount.contains("-"));
-        Assert.assertTrue(transactionInfo.contractType.getText().contains("TRC10 通证转账"));
-        Helper.swipScreenLitte(asset.driver);
-        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("2022"));
-        Assert.assertTrue(Long.valueOf(transactionInfo.block_num_text.getText())
-                > Long.valueOf(currentMainNetBlockNum));
-        Assert.assertTrue(transactionInfo.transaction_QRCode.isDisplayed());
-        Assert.assertTrue(transactionInfo.resouce_cost.getText().contains("带宽") && transactionInfo.resouce_cost.getText().contains("能量"));
-        Assert.assertTrue(transactionInfo.send_copy.isDisplayed());
-        Assert.assertTrue(transactionInfo.revice_copy.isDisplayed());
-        Assert.assertTrue(transactionInfo.hash_copy.isDisplayed());
-    }
 
 
     @Parameters({"address"})
@@ -217,33 +150,10 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(findByShotId("tv_resource_consume_left").getText().contains("消耗资源"));
         Assert.assertTrue(findByShotId("transfer_out_address").getText().contains(address));
         Assert.assertTrue(findByShotId("tv_chain_name").getText().contains("Mainnet"));
-// 加个tokenid 验证
     }
 
 
 
-    @Test(enabled = true)
-    public void test014_uNActiveAddressToSend() throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(unActiveAddressprivateKey,DRIVER);
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrx10Page();
-        page.trxSendTrxPage();
-        Assert.assertTrue(isElementTextExist("当前账户未激活，无法转账。请转入TRX 激活账户。"));
-        Assert.assertTrue(isElementTextExist("发起多签转账"));
-        Assert.assertTrue(isElementTextExist("确认"));
-    }
-
-
-    @Test(enabled = true)
-    public void test015_uNActiveAddressActionFunctionTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrx10Page();
-        page.trxSendTrxPage();
-        asset.findElementByText("发起多签转账").click();
-        asset.findElementByText("多重签名转账").click();
-        Assert.assertTrue(asset.tv_main_title.getText().contains("多重签名转账"));
-    }
 
     @Test(enabled = true)
     public void test016_NotFreezeBandWidthSendMaxNumberToUNActive() throws Exception {

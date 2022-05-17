@@ -198,14 +198,14 @@ public class Base {
         return value;
     }
 
-    public float getAnAmount() {
+    public Double getAnAmount() {
         Random rand = new Random();
-        String amountStr = Float.toString(rand.nextFloat() + 1);
+        String amountStr = Double.toString(rand.nextFloat() + 1);
         while (amountStr.length() != 6) {
             amountStr = Float.toString(rand.nextFloat() + 1);
         }
         log("\ngetAnAmount() amountStr: " + amountStr);
-        return Float.valueOf(amountStr);
+        return Double.valueOf(amountStr);
     }
 
     // random a 6 decimal places digital, return String
