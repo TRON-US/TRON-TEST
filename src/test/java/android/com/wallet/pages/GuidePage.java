@@ -62,6 +62,9 @@ public class GuidePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_import")
     public WebElement importBtn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_import")
+    public WebElement rl_import;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_create")
     public WebElement creatBtn;
 
@@ -101,8 +104,10 @@ public class GuidePage extends AbstractPage {
 
     public ImportRoutePage enterImportPage() throws Exception{
         importBtn.click();
-        swipUntilElementEnable(accBtn);
-        accBtn.click();
+        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+            swipUntilElementEnable(accBtn);
+            accBtn.click();
+        }
         return new ImportRoutePage(driver);
     }
 

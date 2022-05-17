@@ -1,4 +1,4 @@
-package android.com.tronlink.wallet.regression;
+package android.com.tronlink.wallet.mainTest;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
@@ -106,7 +106,9 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         impage.creatBtn.click();
         TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(impage.toptitle.getText().contains("创建成功"));
-        impage.laterBackup.click();
+        Assert.assertTrue(impage.bt_success.getText().contains("备份钱包"));
+        impage.iv_common_left.click();
+        Assert.assertTrue(impage.tv_backup.getText().contains("立即备份"));
         impage.deleteWallet();
         Assert.assertTrue(impage.title.getText().contains("波场支持"));
     }
@@ -123,8 +125,6 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
 
     }
 
-
-
     @Parameters({"udid"})
     @Test( alwaysRun = true)
     public void test007_coldImportPrivateKeyTest(String udid) throws Exception {
@@ -136,6 +136,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         ImportRoutePage impage = guide.enterImportPage();
         impage.importContent.sendKeys(privatekeystr);
         impage.NextBtn.click();
+        Helper.slideAssetTokenScreen(DRIVER);
         impage.passwordInput.sendKeys(useKeyPassword);
         impage.passwordInputAgain.sendKeys(useKeyPassword);
         impage.NextBtn.click();
@@ -178,6 +179,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         ImportRoutePage impage = guide.enterImportPageNone();
         impage.importContent.sendKeys(mem);
         impage.NextBtn.click();
+        Helper.slideAssetTokenScreen(DRIVER);
         impage.passwordInput.sendKeys(useKeyPassword);
         impage.passwordInputAgain.sendKeys(useKeyPassword);
         TimeUnit.SECONDS.sleep(1);
@@ -202,12 +204,14 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         guide.switchBtn.click();
         guide.modeconfirmBtn.click();
         ImportRoutePage impage = guide.enterCreatePage();
+        Helper.slideAssetTokenScreen(DRIVER);
         impage.passwordCreatInput.sendKeys(useKeyPassword);
         impage.passwordCreatInputAgain.sendKeys(useKeyPassword);
         impage.creatBtn.click();
         TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(impage.toptitle.getText().contains("创建成功"));
-        impage.laterBackup.click();
+        Assert.assertTrue(impage.bt_success.getText().contains("备份钱包"));
+        impage.iv_common_left.click();
         impage.deleteColdWallet();
         Assert.assertTrue(impage.title.getText().contains("波场支持"));
         guide.switchBtn.click();

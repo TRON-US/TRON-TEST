@@ -40,7 +40,7 @@ public class OnlineWatchWalletTest extends Base {
         new Helper().getWatchWalletSign("TL5oxDYUztR3bjMqChLVZKdR4dXAiJYUyo", DRIVER);
         enterOnlineAssetPage();
     }
-    
+
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
