@@ -69,6 +69,9 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement send_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    public WebElement bt_send;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
     public WebElement tv_multi_sign;
 
@@ -388,6 +391,27 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
+    public void sendTokenMin(String type, String udid) throws Exception {
+        TimeUnit.SECONDS.sleep(2);
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        switch (type) {
+            case "20":
+                selectTokenType("20");
+                break;
+            case "10":
+                selectTokenType("10");
+                break;
+            case "trx":
+                selectTokenType("trx");
+                break;
+        }
+        keyboardSogou(udid);
+        tranferCount_text.sendKeys("0");
+        driver.hideKeyboard();
+        keyboardUnicode(udid);
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     public void sendAllTrc20(String value) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
@@ -404,8 +428,6 @@ public class SendTrxPage extends AbstractPage {
                 tranferCount_text.sendKeys("9999999999");
                 break;
         }
-        Helper.swipScreen(driver);
-        send_btn.click();
         TimeUnit.SECONDS.sleep(1);
     }
 

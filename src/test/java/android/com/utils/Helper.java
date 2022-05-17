@@ -30,6 +30,18 @@ public class Helper {
         action.tap(whiteplace).release().perform();
     }
 
+    public static void slideAssetTokenScreen(AndroidDriver<?> driver){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/3, height*3/4))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/3, height/2))
+                .release().perform();
+    }
+
     public static void swipScreen(AndroidDriver<?> driver){
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
