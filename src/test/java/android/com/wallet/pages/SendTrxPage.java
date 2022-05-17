@@ -185,6 +185,8 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_addressbook_receive")
     public WebElement addressBook_btn;
 
+
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address_name")
     public WebElement addressName_display;
 

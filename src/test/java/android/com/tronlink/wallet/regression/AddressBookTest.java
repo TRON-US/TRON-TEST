@@ -109,7 +109,7 @@ public class AddressBookTest extends Base {
     public void test004_sendCoinUseAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.addressBook_btn.click();
+        transfer.addressBookTab().click();
         transfer.addressName_display.click();
         Assert.assertTrue(transfer.receiveAddress_text.getText().contains("addressBook-"));
         Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("转出账户和接收账户不能相同"));
@@ -119,8 +119,11 @@ public class AddressBookTest extends Base {
     public void test005_FreezeUseAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.scrollToBottom();
-        frozen.addressBook_btn.click();
+        frozen.frozenTheEnergy(); //Freeze operating
+        frozen.et_amount.sendKeys("1");
+        frozen.btn_confirm.click();
+        frozen.rl_buttons.click();
+        frozen.addressBookTab().click();
         frozen.addressName_display.click();
         Assert.assertTrue(frozen.freezeAddress_input.getText().equals(addressString));
     }

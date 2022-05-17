@@ -23,6 +23,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
 
+    public WebElement addressBookTab() {
+        return findElementByText("地址本");
+    }
 
     public  static String apkPackageName = "com.tronlinkpro.wallet";
 
