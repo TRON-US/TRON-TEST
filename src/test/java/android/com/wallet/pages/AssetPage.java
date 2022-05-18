@@ -77,6 +77,8 @@ public class AssetPage extends AbstractPage {
 
     }
 
+@FindBy(id = "com.tronlinkpro.wallet:id/title")
+public WebElement title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public WebElement tv_count;

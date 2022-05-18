@@ -68,6 +68,9 @@ public WebElement btn_confirm;
     @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
     public WebElement et_new_password;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/confirm")
+    public WebElement confirm;
+
     public void inputPopViewPassword(String password){
         et_new_password.sendKeys(password);
         bt_send.click();

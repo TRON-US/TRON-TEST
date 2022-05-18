@@ -62,8 +62,8 @@ public class AddAssetsTest extends Base {
         Assert.assertTrue(page.right_title.getText().contains("自定义通证"));
         Assert.assertTrue(page.hidasset.getText().contains("隐藏小额资产"));
         Assert.assertTrue(page.right_title.getText().contains("自定义通证"));
-
     }
+
     @Test(description = "Add Asset Test",alwaysRun = true)
     public void test002_AddAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
@@ -77,12 +77,13 @@ public class AddAssetsTest extends Base {
     @Test(description = "remove Asset Test",alwaysRun = true)
     public void test003_removeAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(5);
         Helper.swipScreenLitte(asset.driver);
         AndroidTouchAction act = new AndroidTouchAction(DRIVER);
         WebElement el = asset.findElementByText("AXE");
         act.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(el))).perform();
-        Assert.assertTrue(asset.isTextExist("确认将AXE移出首页吗？"));
-        asset.findElementByText("移出").click();
+        Assert.assertTrue(asset.title.getText().contains("确认将AXE移出首页吗？"));
+        asset.confirm.click();
         Assert.assertFalse(asset.isElementExist("AXE"));
     }
 
