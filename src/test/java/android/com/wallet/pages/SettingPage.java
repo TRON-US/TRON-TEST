@@ -91,8 +91,7 @@ public class SettingPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
     public WebElement btn_add_node;
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_advanced_features")
-    public WebElement advanced_features_btn;
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_shasta")
     public WebElement li_node_name_shasta;

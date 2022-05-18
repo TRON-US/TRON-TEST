@@ -94,7 +94,7 @@ public class MinePage extends AbstractPage {
     public WebElement committeeProposals_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_advanced_features")
+    @FindBy(id = "com.tronlinkpro.wallet:id/advanced_features")
     public WebElement advanced_features_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_en")
