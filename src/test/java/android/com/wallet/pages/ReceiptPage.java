@@ -15,6 +15,8 @@ public class ReceiptPage extends AbstractPage {
     }
 
 
+@FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+public WebElement tv_address;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/address")
     public WebElement ownerAddress_btn;
@@ -23,11 +25,13 @@ public class ReceiptPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/copy")
     public WebElement copy_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_top")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_scan_qr_and_pay")
     public WebElement pagetitle;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_wallet_name")
     public WebElement wallettitle;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_receive_watchonly")
+    public WebElement tv_receive_watchonly;
 
 }

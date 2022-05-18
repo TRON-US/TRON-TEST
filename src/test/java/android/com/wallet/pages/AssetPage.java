@@ -45,6 +45,9 @@ public class AssetPage extends AbstractPage {
 
         }
 
+
+
+
 //        try {
 //            if (isTextExist("我知道了")) {
 //                findElementByText("我知道了").click();
@@ -392,11 +395,23 @@ public WebElement title;
     }
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
+    public WebElement iv_wallet_manager;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/observation_title")
+    public WebElement observation_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
+    public WebElement add_watch_address;
 
-
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_wallet")
+    public WebElement add_watch_wallet;
+    public void addWatchWallet(String address){
+        iv_wallet_manager.click();
+        observation_title.click();
+        add_watch_address.sendKeys(address);
+        add_watch_wallet.click();
+    }
 
 
 
@@ -424,14 +439,6 @@ public WebElement title;
     }
 
     public ReceiptPage enterReceiptPage(){
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//            // if page display AD , cloese the AD
-//            if (ad_pic.isDisplayed()){
-//                adClose_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
         receipt_btn.click();
         return new ReceiptPage(driver);
     }

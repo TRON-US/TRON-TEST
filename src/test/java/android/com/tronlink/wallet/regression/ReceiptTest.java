@@ -49,17 +49,25 @@ public class ReceiptTest extends Base {
     public void test001_ckeckReceiptTrxAddress(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         ReceiptPage receiptPage = asset.enterReceiptPage();
-        Assert.assertEquals(receiptPage.ownerAddress_btn.getText(), address);
+        Assert.assertEquals(receiptPage.tv_address.getText(), address);
         Assert.assertTrue(receiptPage.isElementExist("com.tronlinkpro.wallet:id/qr"));
         Assert.assertTrue(receiptPage.pagetitle.getText().contains("扫描二维码向我付款"));
         Assert.assertTrue(receiptPage.wallettitle.getText().contains("Auto-test"));
-        Assert.assertTrue(receiptPage.copy_btn.getText().contains("复制收款账户"));
         receiptPage.copy_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(receiptPage.copy_btn.getText().contains("已复制"));
-
+        Assert.assertTrue(assertToast("已复制"));
     }
 
 
+     @Test(alwaysRun = true)
+     public void test002_watchWalletTitle() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         asset.addWatchWallet("THmxT8BKeXSKd4Zu4HJN3hXPVC1xiNhEnX");
+         ReceiptPage receiptPage = asset.enterReceiptPage();
+         Assert.assertEquals(receiptPage.tv_address.getText(), "THmxT8BKeXSKd4Zu4HJN3hXPVC1xiNhEnX");
+         Assert.assertTrue(receiptPage.isElementExist("com.tronlinkpro.wallet:id/qr"));
+         Assert.assertTrue(receiptPage.tv_receive_watchonly.getText().contains("观察钱包"));
+         receiptPage.copy_btn.click();
+         Assert.assertTrue(assertToast("已复制"));
+     }
 
 }
