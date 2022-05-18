@@ -177,14 +177,15 @@ public class FrozenAndUnfreezeTest extends Base {
     public void test010_PageNumberMultiSignTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.tv_common_right2.click();
-        Assert.assertTrue(frozen.tv_common_title2.getText().contains("(1/3)"));
-        frozen.tv_address.click();
-        frozen.btn_next.click();
+        frozen.enterMultiSign();
+        Assert.assertTrue(frozen.tv_step.getText().contains("(1/3)"));
+        frozen.selectFirstOwnerAddress();
+        frozen.gotoMultiPageTwo();
         Assert.assertTrue(frozen.tv_common_title2.getText().contains("(2/3)"));
-        frozen.et_amount.sendKeys("1");
-        frozen.freeze_btn.click();
+        frozen.stakeEnergyWithAmount("1");
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(frozen.tv_common_title2.getText().contains("(3/3)"));
+
     }
 
 
