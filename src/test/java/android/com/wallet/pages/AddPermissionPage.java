@@ -21,7 +21,8 @@ public class AddPermissionPage extends AbstractPage {
         this.driver = driver;
     }
 
-
+@FindBy(id = "com.tronlinkpro.wallet:id/tv_info_title")
+public WebElement tv_info_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_permission_name")
     public WebElement permissionName_input;
@@ -120,7 +121,8 @@ public class AddPermissionPage extends AbstractPage {
         weight_input.sendKeys("1");
         Helper.swipScreen(driver);
         confirm_btn.click();
-        findElementByText("确认").click();
+        TimeUnit.SECONDS.sleep(1);
+        btn_confirm.click();
         TimeUnit.SECONDS.sleep(1);
     }
 

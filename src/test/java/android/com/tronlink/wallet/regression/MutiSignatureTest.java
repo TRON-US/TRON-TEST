@@ -87,11 +87,9 @@ public class MutiSignatureTest extends Base {
 
 
     @Test(groups = {"P0"},description = "Add MutiSignature Test", alwaysRun = true)
-    public void test002_mutiSignature() throws Exception {
+    public void test002_multiSignAddSuccessTest() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
-        //del before sign
-//        delSignData(multiSignManager);
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
         TimeUnit.SECONDS.sleep(3);
@@ -216,7 +214,7 @@ public class MutiSignatureTest extends Base {
         TimeUnit.SECONDS.sleep(1);
         String tip = add.addkey_tip.getText();
         System.out.println("tip:" + tip);
-        Assert.assertTrue(tip.contains("该地址与已添加的地址重复") || tip.contains("key重复") || tip.contains("has been added"));
+        Assert.assertTrue(tip.contains("该地址与已添加的地址重复") );
     }
 
 
@@ -249,7 +247,7 @@ public class MutiSignatureTest extends Base {
         TransactionRecordPage transaction = mine.enterTransactionRecordPage();
         String transactionType = transaction.transactionTypeList.get(0).getText();
         System.out.println(transactionType);
-        Assert.assertTrue(transactionType.equals("更新账户权限")  || transactionType.equals("更新账号权限") || transactionType.contains("Update"));
+        Assert.assertTrue(transactionType.contains("更新账户权限"));
     }
 
 
