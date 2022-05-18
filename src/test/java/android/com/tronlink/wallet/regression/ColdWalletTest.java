@@ -5,6 +5,7 @@ import android.com.utils.AppiumTestCase;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AddAssertPage;
+import android.com.wallet.pages.AnnouncementPage;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.ColdAssetPage;
 import android.com.wallet.pages.ColdMinePage;
@@ -157,61 +158,35 @@ public class ColdWalletTest extends Base {
         Assert.assertTrue(currencyList.get(1).getText().contains("USD"));
     }
 
-//    @Test(enabled = true,description = "coldWalletCloseSafeTipsTest", alwaysRun = true)
-//    public void test010_coldWalletCloseSafeTipsTest() throws Exception {
-//        ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
-//        waiteTime();
-//        coldAsset.addWallet_btn.click();
-//        waiteTime();
-//        coldAsset.create_wallet.click();
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_name").sendKeys("SafeTipsM");
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/creat").click();
-//        TimeUnit.SECONDS.sleep(10);
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/ll_common_left").click();
-//
-//        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_cold_tip")){ //不应该出现
-//            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_cold_close").click();
-//        }
-//
-//        if (coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip")){
-//            log("开始测试关闭备份助记词提示框");
-//            coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
-//            TimeUnit.SECONDS.sleep(1);
-//            Assert.assertFalse(coldAsset.isElementExist("com.tronlinkpro.wallet:id/rl_safe_tip"));
-//        }
-//
-//    }
+    @Test(alwaysRun = true)
+    public void test010_shieldWalletManageTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        Assert.assertTrue(minePage.findByShotId("tv_shield_wallet").getText().contains("匿名账户管理"));
+        minePage.findByShotId("tv_shield_wallet").click();
+        Assert.assertTrue(minePage.findByShotId("content").getText().contains("当前无匿名账户，是否新建？"));
+        Assert.assertTrue(isElementShotId("btn_cancel"));
+        Assert.assertTrue(isElementShotId("btn_confirm"));
+        minePage.findByShotId("btn_cancel").click();
+        Assert.assertFalse(isElementTextExist("创建"));
+    }
 
-//    @Test(enabled = true,description = "coldWalletDeleteSafeTipsWallet", alwaysRun = true)
-//    public void test011_coldWalletDeleteSafeTipsWallet() throws Exception {
-//        ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
-//        waiteTime();
-//        coldAsset.tv_walletname.click();
-//        TimeUnit.SECONDS.sleep(5);
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
-//        TimeUnit.SECONDS.sleep(3);
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-//        waiteTime();
-//        coldAsset.driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
-//        waiteTime();
-//        TimeUnit.SECONDS.sleep(5);
-//        Assert.assertTrue(coldAsset.tv_walletname.getText().contains("Cold-test"));
-//
-//    }
+    @Test(alwaysRun = true)
+    public void test011_advanceTest()  {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        Assert.assertTrue(isElementTextExist("高级功能"));
+        minePage.findElementByText("高级功能").click();
+        Assert.assertTrue(minePage.nav_title.getText().contains("高级功能"));
+    }
 
-
+    @Test(description = "Announcement Test", alwaysRun = true)
+    public void test012_AnnouncementTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage minePage = asset.enterMinePage();
+        minePage.enterAnnouncementPage();
+        Assert.assertTrue(assertToast("冷钱包不支持此功能"));
+    }
 
 
     }

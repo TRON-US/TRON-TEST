@@ -16,7 +16,7 @@ public class ColdSettingPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/languane")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_language")
     public WebElement languane_btn;
 
 
@@ -62,7 +62,7 @@ public class ColdSettingPage extends AbstractPage {
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/money")
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_money")
     public WebElement currency_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/root")
