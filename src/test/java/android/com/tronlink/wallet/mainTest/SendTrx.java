@@ -106,7 +106,7 @@ public class SendTrx extends Base {
             TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
             Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRX 转账"));
             Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
-            Assert.assertTrue(detailAmount == sendAmount);
+            Assert.assertEquals(detailAmount,sendAmount);
             Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
         }
 

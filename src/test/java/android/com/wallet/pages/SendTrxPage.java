@@ -419,6 +419,8 @@ public class SendTrxPage extends AbstractPage {
     public void sendTokenMin(String type, String udid) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        next_btn.click();
+
         switch (type) {
             case "20":
                 selectTokenType("20");
@@ -437,21 +439,22 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
+
     public void sendAllTrc20(String value) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        next_btn.click();
         selectTokenType("20");
 
         switch (value) {
             case "max":
                 tvMax_btn.click();
                 break;
-            case "min":
-                tranferCount_text.sendKeys("0");
-                break;
             case "tooMuch":
                 tranferCount_text.sendKeys("9999999999");
                 break;
+            default:
+                System.out.println("Send min to use sendTokenMin Func");
         }
         TimeUnit.SECONDS.sleep(1);
     }

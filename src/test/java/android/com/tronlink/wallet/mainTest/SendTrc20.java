@@ -73,7 +73,6 @@ public class SendTrc20 extends Base {
 
     @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
     public void test001_sendTrc20Success() throws Exception {
-
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx20Page();
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
@@ -84,7 +83,8 @@ public class SendTrc20 extends Base {
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(2);
         transfer.btn_done.click();
-        Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
+        asset.enterTrx20Page();
+        Double afterValue =  Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
         Assert.assertTrue(beforeValue == sendAmount + afterValue);
     }
@@ -94,27 +94,31 @@ public class SendTrc20 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx20Page();
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
-        System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
         System.out.println("sendAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(2);
-        while (transfer.btn_transaction_info.isEnabled()){
-            TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
-            Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRX 转账"));
-            Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
-            Assert.assertTrue(detailAmount == sendAmount);
-            Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+        for (int i = 0; i < 5; i++) {
+            if(transfer.btn_transaction_info.isEnabled()){
+                TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
+                Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRC20 通证转账"));
+                Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
+                System.out.println("detailAmount-----"+ detailAmount);
+                Assert.assertEquals(detailAmount,sendAmount);
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(2);
+            }
         }
-
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test003_availableAmountInTransfer() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx20Page();
-        Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
+        Double avValue =  Double.parseDouble(removeSymbolString(asset.tv_count.getText()));
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.normalSendStepOne();
         Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
@@ -127,7 +131,7 @@ public class SendTrc20 extends Base {
     public void test004_inputMaxSendNumber() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrc20("max");
-        Assert.assertTrue(transfer.bt_send.isDisplayed());
+        Assert.assertTrue(transfer.bt_send.isEnabled());
     }
 
     @Parameters({"privateKey","udid"})
