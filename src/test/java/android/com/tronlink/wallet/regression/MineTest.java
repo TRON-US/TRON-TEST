@@ -66,8 +66,8 @@ public class MineTest extends Base {
      public void test003_publicWalletManageTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          MinePage minePage = asset.enterMinePage();
-         Assert.assertTrue(minePage.findByShotId("tv_wallet_manager").getText().contains("公开账户管理"));
-         minePage.findByShotId("tv_wallet_manager").click();
+         Assert.assertTrue(minePage.wallet_manager.getText().contains("公开账户管理"));
+         minePage.wallet_manager.click();
          Assert.assertTrue(minePage.nav_title.getText().contains("钱包详情"));
      }
 
