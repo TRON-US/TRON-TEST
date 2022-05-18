@@ -276,6 +276,7 @@ public class Base {
 
     public Double sepLeftNumberTextToDouble(String content,String lastString){
         String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        realNumber = prettyString(realNumber);
         realNumber = realNumber.replace("+","");
         realNumber = realNumber.replace("-","");
         return  Double.parseDouble(removeNegative(removeSymbolFloat(realNumber.trim())));

@@ -19,6 +19,75 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_step")
+    public WebElement tv_step;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_account")
+    public WebElement tv_account;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
+    public WebElement tv_main_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_under_control_tips")
+    public WebElement tv_under_control_tips;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_available_amount")
+    public WebElement tv_available_amount;
+
+    public void enterMultiSign(){
+        tv_common_right2.click();
+    }
+
+    public void inputMultiAddress(String address){
+        et_input_address.sendKeys(address);
+    }
+    public void selectFirstOwnerAddress(){
+        tv_address.click();
+    }
+
+    public void gotoMultiPageTwo(){
+        btn_next.click();
+    }
+
+    public void stakeEnergyWithAmount(String amount){
+        tv_stake_energy.click();
+        et_amount.sendKeys(amount);
+        btn_next_step.click();
+    }
+
+    public void stakeBandWidthWithAmount(String amount){
+        tv_stake_bandwidth.click();
+        et_amount.sendKeys(amount);
+        btn_next_step.click();
+    }
+
+    public void stakeWithThisAddress() throws Exception{
+        chk_stake_amount.click();
+        btn_next.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    public void stakeConfirm(){
+        btn_confirm.click();
+    }
+
+    public void multiSignOptionSign(){
+        rl_bottom_next.click();
+    }
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_content")
+    public WebElement tv_trans_content;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_type")
+    public WebElement tv_trans_type;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/resource_type")
+    public WebElement resource_type;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    public WebElement rl_bottom_next;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_container")
     public WebElement ll_container;
 
@@ -87,7 +156,8 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/et_amount")
     public WebElement et_amount;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_next_step")
+    public WebElement btn_next_step;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_next_step")
     public WebElement freeze_btn;

@@ -16,10 +16,10 @@ public class FrozenMultiSignSuccTest extends Base {
 
 
 
-    @Parameters({"ownerPrivateKey"})
+    @Parameters({"multiSignPrivateKey"})
     @BeforeClass(alwaysRun = true)
-    public void setUpBefore(String ownerPrivateKey) throws Exception {
-        new Helper().getSign(ownerPrivateKey, DRIVER);
+    public void setUpBefore(String multiSignPrivateKey) throws Exception {
+        new Helper().getSign(multiSignPrivateKey, DRIVER);
     }
 
 
@@ -50,75 +50,80 @@ public class FrozenMultiSignSuccTest extends Base {
         }
     }
 
+    @Parameters({"ownerAddress"})
+     @Test(alwaysRun = true)
+     public void test001_FrozenEnergySuccess(String ownerAddress) throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+         frozen.enterMultiSign();
+         frozen.inputMultiAddress(ownerAddress);
+         frozen.gotoMultiPageTwo();
+         frozen.stakeEnergyWithAmount("1");
+         frozen.stakeWithThisAddress();
+         frozen.stakeConfirm();
+         frozen.multiSignOptionSign();
+         frozen.inputPopViewPassword("Test0001");
+         TimeUnit.SECONDS.sleep(5);
+         Assert.assertTrue(frozen.tv_trans_content.getText().contains("1"));
+        Assert.assertTrue(frozen.tv_trans_type.getText().contains("质押资产"));
+        Assert.assertTrue(frozen.resource_type.getText().contains("能量"));
 
-//    @Parameters({"ownerPrivateKey","multiSignAddress"})
-//    @Test(description = "Sign Address Is Exists", alwaysRun = true)
-//    public void test002_signAddressIsExists(String ownerPrivateKey,String multiSignAddress) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
-//        Helper.scrollToElementUntilVisible(DRIVER,frozenAndUnfreezePage.freeze_btn);
-//        TimeUnit.SECONDS.sleep(1);
-//        frozenAndUnfreezePage.freezeCount_input.sendKeys("5");
-//        frozenAndUnfreezePage.frozenButtonClickAndConfirm();
-//        frozenAndUnfreezePage.confirm_btn().click();
-//        TimeUnit.SECONDS.sleep(1);
-////        Assert.assertTrue(frozenAndUnfreezePage.invalidTime_input.isDisplayed());
-////        Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(0).getText().length() == 34);
-////        Assert.assertTrue(frozenAndUnfreezePage.signAddress_input.get(1).isDisplayed());
-////        Assert.assertTrue(frozenAndUnfreezePage.selectSignName_text.isDisplayed());
-//    }
+     }
 
-
-    @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "send trx sign success options Test", alwaysRun = true)
-    public void test005_sendTrxOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
+    @Parameters({"ownerAddress"})
+    @Test(alwaysRun = true)
+    public void test002_FrozenBandWidthSuccess(String ownerAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
-        frozenAndUnfreezePage.forzenSign("5");
-        TimeUnit.SECONDS.sleep(3);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.enterMultiSign();
+        frozen.inputMultiAddress(ownerAddress);
+        frozen.gotoMultiPageTwo();
+        frozen.stakeEnergyWithAmount("1");
+        frozen.stakeWithThisAddress();
+        frozen.stakeConfirm();
+        frozen.multiSignOptionSign();
+        frozen.inputPopViewPassword("Test0001");
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(frozen.tv_trans_content.getText().contains("1"));
+        Assert.assertTrue(frozen.tv_trans_type.getText().contains("质押资产"));
+        Assert.assertTrue(frozen.resource_type.getText().contains("能量"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test003_ControlViewTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.enterMultiSign();
+        Assert.assertTrue(frozen.tv_tutorial.getText().contains("使用教程"));
+        Assert.assertTrue(frozen.tv_main_title.getText().contains("多重签名质押"));
+        Assert.assertTrue(frozen.tv_step.getText().contains("(1/3)"));
+        Assert.assertTrue(frozen.tv_account.getText().contains("控制账户列表"));
+        Assert.assertTrue(frozen.tv_address.getText().contains("T"));
     }
 
 
+     @Test(alwaysRun = true)
+     public void test004_multiSignTipsTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+         frozen.enterMultiSign();
+         frozen.selectFirstOwnerAddress();
+         frozen.gotoMultiPageTwo();
+         Assert.assertTrue(frozen.tv_under_control_tips.getText().contains("当前正在操作")&&frozen.tv_under_control_tips.getText().contains("账户的质押"));
+     }
 
+     @Test(alwaysRun = true)
+     public void test005_AmountNotEqualTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+         Double amountOne =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
+         frozen.enterMultiSign();
+         frozen.selectFirstOwnerAddress();
+         frozen.gotoMultiPageTwo();
+         Double amountTwo =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
+        Assert.assertNotEquals(amountOne,amountTwo);
+     }
 
-    @Parameters({"ownerPrivateKey","multiSignAddress"})
-    @Test(description = "send trx sign success two times options Test", alwaysRun = true)
-    public void test006_sendTrxTwoTimesOptions(String ownerPrivateKey,String multiSignAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozenAndUnfreezePage = asset.enterFrozenAndUnfreezePage();
-        frozenAndUnfreezePage.forzenSign("5");
-        TimeUnit.SECONDS.sleep(3);
-    }
-
-
-
-    @Parameters({"multiSignPrivateKey"})
-    @Test(description = "sign options Test", alwaysRun = true)
-    public void test007_signOptions(String multiSignPrivateKey) throws Exception {
-        DRIVER.resetApp();
-        new Helper().getSign(multiSignPrivateKey, DRIVER);
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        MyPursePage myPurse = minePage.enterMyPursePage();
-        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-        multiSignTransactionPage.sign();
-        TimeUnit.SECONDS.sleep(3);
-    }
-
-
-
-    @Parameters({"multiSignPrivateKey"})
-    @Test(description = "Sign options Test check TRX", alwaysRun = true)
-    public void test008_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        MyPursePage myPurse = minePage.enterMyPursePage();
-        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-        Assert.assertTrue(multiSignTransactionPage.transConten_text.getText() != null);
-        Assert.assertTrue(multiSignTransactionPage.transFrom_text.getText().length() == 34);
-        Assert.assertTrue(multiSignTransactionPage.invaTime_text.isDisplayed());
-
-    }
 
 
 
