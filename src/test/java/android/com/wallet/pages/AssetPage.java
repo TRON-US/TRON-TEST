@@ -356,7 +356,6 @@ public WebElement title;
     public SendTrxPage enterOnlineSendTrc10Page() throws Exception {
 
         SendTrxPage page  = enterSendTrxPage();
-        page.selectTokenByName("BTT");
         return page;
     }
 
@@ -373,7 +372,6 @@ public WebElement title;
 
 
         SendTrxPage page = enterSendTrxPage();
-        page.selectTokenByName("WIN");
         return page;
 
     }

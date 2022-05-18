@@ -130,12 +130,8 @@ public class OnlineWatchWalletTest extends Base {
     @Test(groups = {"P0"},enabled = true,description = "Online send trc10 QRCode", alwaysRun = true)
     public void test006_onlineTrc10QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc10Page();
-        sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("1");
-        sendTrxPage.send_btn.click();
-        sendTrxPage.confirm_btn.click();
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        sendTrxPage.SendTokenWithNameAmountWatch("1","BTT");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -144,12 +140,9 @@ public class OnlineWatchWalletTest extends Base {
     @Test(groups = {"P0"},enabled = true,description = "Online trc20 QRCode", alwaysRun = true)
     public void test007_onlineTrc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendTrxPage  = asset.enterOnlineSendTrc20Page();
-        sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("0.00001");
-        sendTrxPage.send_btn.click();
-        sendTrxPage.confirm_btn.click();
+        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+        sendTrxPage.SendTokenWithNameAmountWatch("0.00001","WIN");
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
