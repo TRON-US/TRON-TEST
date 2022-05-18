@@ -80,7 +80,7 @@ public class AssetsPageTest extends Base {
         Assert.assertTrue(asset.isTextExist("闪兑"));
         asset.driver.navigate().back();
         asset.findElementByText("质押").click();
-        Assert.assertTrue(asset.isTextExist("资源"));
+        Assert.assertTrue(asset.isTextExist("质押"));
         asset.driver.navigate().back();
         asset.findElementByText("投票").click();
         asset.driver.navigate().back();
