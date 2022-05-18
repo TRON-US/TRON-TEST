@@ -32,8 +32,14 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+    public WebElement addressBookTab(){
+        return  findElementByText("地址本");
+    }
     @FindBy(id = "com.tronlinkpro.wallet:id/confirm")
     public WebElement confirm;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    public WebElement tv_name;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/error_view")
     public WebElement error_view;

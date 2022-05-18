@@ -75,7 +75,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         rl_bottom_next.click();
     }
 
+    public void toSelectAddress(){
+        rl_buttons.click();
+    }
 
+@FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+public WebElement tv_name;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_content")
     public WebElement tv_trans_content;
 
@@ -456,6 +461,7 @@ public WebElement tv_stake_energy;
         TimeUnit.SECONDS.sleep(2);
 
     }
+
 
 
     public void inputOtherAddress(String address) throws Exception{

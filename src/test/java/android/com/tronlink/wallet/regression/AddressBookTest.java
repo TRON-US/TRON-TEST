@@ -34,7 +34,7 @@ public class AddressBookTest extends Base {
     @Parameters({"privateKey","address"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey,String address) throws Exception {
-        addressString = address;
+        addressString = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
         new Helper().getSign(privateKey, DRIVER);
     }
 
@@ -81,7 +81,7 @@ public class AddressBookTest extends Base {
         || addressBookPage.nameError_info.getText().equals("请输入名称"));
 
         Random rand = new Random();
-        addressName = "addressBook-" + rand.nextInt(1000);
+        addressName = "Book" + rand.nextInt(10);
         addressBookPage.addName_input.sendKeys(addressName);
 
         addressBookPage.save_btn.click();
@@ -110,22 +110,16 @@ public class AddressBookTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.addressBookTab().click();
-        transfer.addressName_display.click();
-        Assert.assertTrue(transfer.receiveAddress_text.getText().contains("addressBook-"));
-        Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("转出账户和接收账户不能相同"));
+        Assert.assertTrue(transfer.tv_name.getText().contains(addressName));
     }
 
     @Test(enabled = true,description = "Freeze use address book test", alwaysRun = true)
     public void test005_FreezeUseAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheEnergy(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.btn_confirm.click();
-        frozen.rl_buttons.click();
-        frozen.addressBookTab().click();
-        frozen.addressName_display.click();
-        Assert.assertTrue(frozen.freezeAddress_input.getText().equals(addressString));
+        frozen.stakeEnergyWithAmount("1");
+        frozen.toSelectAddress();
+        Assert.assertTrue(frozen.tv_name.getText().equals(addressName));
     }
 
 
@@ -159,11 +153,11 @@ public class AddressBookTest extends Base {
         AddressBookPage addressBookPage = minePage.enterAddressBookPage();
         addressBookPage.addAddressBook_btn.click();
         TimeUnit.SECONDS.sleep(2);
-        
+
         Random rand = new Random();
         addressName = "shield-" + rand.nextInt(1000);
         addressBookPage.addName_input.sendKeys(addressName);
-        
+
         addressBookPage.addAddress_input.sendKeys(shieldAddress);
         addressBookPage.addNote_input.sendKeys(shieldAddress);
         addressBookPage.save_btn.click();
