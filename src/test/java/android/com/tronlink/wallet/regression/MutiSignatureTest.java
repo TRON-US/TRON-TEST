@@ -118,10 +118,15 @@ public class MutiSignatureTest extends Base {
 
     @Test(groups = {"P0"},description = "delete signature Test", alwaysRun = true)
     public void test005_delSignature() throws Exception {
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
-        String signName = multiSignManager.permissionName_text.getText();
-        multiSignManager.delSign();
-        Assert.assertNotEquals(signName, multiSignManager.permissionName_text.getText());
+        MultiSignManagerPage manager = enterMultiSignManagerPage();
+        manager.swipLeftTimes();
+        String signName = manager.permissionName_text.getText();
+        manager.delSign();
+        String newName =  manager.permissionName_text.getText();
+        System.out.println(signName);
+        System.out.println(newName);
+
+        Assert.assertNotEquals(signName,newName);
     }
 
 

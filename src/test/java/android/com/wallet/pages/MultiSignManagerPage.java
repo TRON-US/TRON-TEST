@@ -119,22 +119,17 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
     public void delSign() throws Exception{
-        Helper.swipeLeftScreen(driver);
-        Helper.swipeLeftScreen(driver);
-        more_btn.click();
+
+        iv_more.click();
         TimeUnit.SECONDS.sleep(2);
-        try {
-            delConfirmC_btn.click();
-        }catch (Exception e){
-            delConfirmE_btn.click();
-        }
+        findElementByText("删除权限").click();
         TimeUnit.SECONDS.sleep(1);
         delConfirm_btn.click();
         TimeUnit.SECONDS.sleep(1);
         findElementByText("确认").click();
         password_input.sendKeys("Test0001");
         send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(6);
     }
 
 
@@ -142,18 +137,17 @@ public class MultiSignManagerPage extends AbstractPage {
         return "active";
     }
 
-
-    public ModifyPermissionPage enterModifyPermissionPage() throws Exception {
+    public void  swipLeftTimes(){
         for (int i=0;i<=7;i++){
             Helper.swipeLeftScreen(driver);
         }
-        more_btn.click();
+    }
+
+    public ModifyPermissionPage enterModifyPermissionPage() throws Exception {
+        swipLeftTimes();
+        iv_more.click();
         TimeUnit.SECONDS.sleep(2);
-        try {
-            modifyConfirmC_btn.click();
-        }catch (Exception e){
-            modifyConfirmE_btn.click();
-        }
+        findElementByText("修改权限").click();
         TimeUnit.SECONDS.sleep(1);
         return new ModifyPermissionPage(driver);
     }
@@ -161,9 +155,7 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
     public ModifyPermissionPage enterModifyPage() throws Exception {
-        for (int i=0;i<=7;i++){
-            Helper.swipeLeftScreen(driver);
-        }
+        swipLeftTimes();
         TimeUnit.SECONDS.sleep(1);
         iv_more.click();
         TimeUnit.SECONDS.sleep(1);
