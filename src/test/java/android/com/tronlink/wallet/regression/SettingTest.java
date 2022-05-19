@@ -73,7 +73,9 @@ public class SettingTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         DAPP_BrowerPage dapp = mine.enterDAPP_BrowerPage();
-        Assert.assertTrue(dapp.dappTtile_btn.getText().contains("DApp 浏览器"));
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(dapp.dappTtile_btn.getText());
+        Assert.assertTrue(dapp.dappTtile_btn.getText().contains("DApp"));
     }
 
 
