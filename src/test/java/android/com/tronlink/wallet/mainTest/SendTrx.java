@@ -145,7 +145,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test005_Amount() throws Exception {
+    public void test005_trxFreezeValueAndUsedValueTotalTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         Double TotalValue = Double.valueOf(prettyString(asset.tv_count.getText()));

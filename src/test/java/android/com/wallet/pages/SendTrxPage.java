@@ -261,6 +261,8 @@ public class SendTrxPage extends AbstractPage {
 //        selectCoinType(type);
 //    }
 
+
+
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
         receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
         next_btn.click();
@@ -270,6 +272,31 @@ public class SendTrxPage extends AbstractPage {
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
+        return new SendTrxSuccessPage(driver);
+    }
+
+    public SendTrxSuccessPage sendTrcTokenWithCurrent(String sendAmount) throws Exception {
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        next_btn.click();
+        tranferCount_text.sendKeys(sendAmount);
+        send_btn.click();
+        confirm_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new SendTrxSuccessPage(driver);
+    }
+
+    public SendTrxSuccessPage sendTrc20(String number) throws Exception {
+        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        next_btn.click();
+        tranferCount_text.sendKeys(number);
+        send_btn.click();
+        confirm_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
+//        back_bt.click();
         return new SendTrxSuccessPage(driver);
     }
 
@@ -304,33 +331,6 @@ public class SendTrxPage extends AbstractPage {
 
 
 
-    public SendTrxSuccessPage sendTrc10(String number) throws Exception {
-
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        next_btn.click();
-        tranferCount_text.sendKeys(number);
-        send_btn.click();
-        confirm_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        return new SendTrxSuccessPage(driver);
-    }
-
-
-
-    public SendTrxSuccessPage sendTrc20(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
-        next_btn.click();
-        tranferCount_text.sendKeys(number);
-        send_btn.click();
-        confirm_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        send_btn.click();
-        TimeUnit.SECONDS.sleep(4);
-//        back_bt.click();
-        return new SendTrxSuccessPage(driver);
-    }
 
     public void selectCoinType(String type) throws Exception {
         switch (type) {

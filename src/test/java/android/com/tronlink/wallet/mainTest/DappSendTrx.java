@@ -101,7 +101,7 @@ public class DappSendTrx extends Base {
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(4);
                     transfer.btn_done.click();
-                    TimeUnit.SECONDS.sleep(35);
+                    TimeUnit.SECONDS.sleep(44);
                     Helper.swipeDownScreen(transfer.driver);
                     TimeUnit.SECONDS.sleep(1);
                     Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));

@@ -201,10 +201,10 @@ public WebElement title;
     public WebElement public_account_trz_btn;
 
     //com.tronlinkpro.wallet:id/iv_renzheng
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_renzheng")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_official_image")
     public List<WebElement> trx10_icon_btns;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_renzheng")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_official_image")
     public WebElement vip_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
@@ -343,16 +343,8 @@ public WebElement title;
     public SendTrxPage enterSendTrc10Page() {
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Helper.swipScreenLitte(driver);
-        try {
-            trx10_btn.click();
-        } catch (Exception e) {
-            if (trx10_icon_btns.size() > 2){
-                trx10_icon_btns.get(1).click();
-            }
-        }
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        findElementByText("tronlink_token").click();
         trc10Page_transfer_btn.click();
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         return new SendTrxPage(driver);
     }
 

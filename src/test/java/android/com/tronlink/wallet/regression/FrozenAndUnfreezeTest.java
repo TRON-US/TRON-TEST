@@ -169,7 +169,8 @@ public class FrozenAndUnfreezeTest extends Base {
           FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
           Assert.assertTrue(frozen.tv_common_title2.getText().contains("(1/2)"));
           frozen.et_amount.sendKeys("1");
-          frozen.freeze_btn.click();
+          frozen.btn_next_step.click();
+          TimeUnit.SECONDS.sleep(1);
           Assert.assertTrue(frozen.tv_common_title2.getText().contains("(2/2)"));
       }
 
