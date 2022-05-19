@@ -102,23 +102,25 @@ public class FrozenMultiSignSuccTest extends Base {
     }
 
 
+    @Parameters({"ownerAddress"})
      @Test(alwaysRun = true)
-     public void test004_multiSignTipsTest() throws Exception {
+     public void test004_multiSignTipsTest(String ownerAddress) throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
          frozen.enterMultiSign();
-         frozen.selectFirstOwnerAddress();
+         frozen.inputMultiAddress(ownerAddress);
          frozen.gotoMultiPageTwo();
          Assert.assertTrue(frozen.tv_under_control_tips.getText().contains("当前正在操作")&&frozen.tv_under_control_tips.getText().contains("账户的质押"));
      }
 
+     @Parameters({"ownerAddress"})
      @Test(alwaysRun = true)
-     public void test005_AmountNotEqualTest() throws Exception {
+     public void test005_AmountNotEqualTest(String ownerAddress) throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
          Double amountOne =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
          frozen.enterMultiSign();
-         frozen.selectFirstOwnerAddress();
+         frozen.inputMultiAddress(ownerAddress);
          frozen.gotoMultiPageTwo();
          TimeUnit.SECONDS.sleep(1);
          Double amountTwo =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");

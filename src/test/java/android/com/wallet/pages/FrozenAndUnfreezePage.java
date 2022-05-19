@@ -41,9 +41,8 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public void inputMultiAddress(String address){
         et_input_address.sendKeys(address);
     }
-    public void selectFirstOwnerAddress(){
-        tv_address.click();
-    }
+
+
 
     public void gotoMultiPageTwo(){
         btn_next.click();
@@ -259,6 +258,9 @@ public WebElement tv_stake_energy;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public WebElement tv_address;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    public List<WebElement> tv_addresss;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_result")
     public WebElement tv_result;

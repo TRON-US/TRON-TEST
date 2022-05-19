@@ -174,13 +174,14 @@ public class FrozenAndUnfreezeTest extends Base {
           Assert.assertTrue(frozen.tv_common_title2.getText().contains("(2/2)"));
       }
 
+    @Parameters({"ownerAddress"})
     @Test(alwaysRun = true)
-    public void test010_PageNumberMultiSignTest() throws Exception {
+    public void test010_PageNumberMultiSignTest(String ownerAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.enterMultiSign();
         Assert.assertTrue(frozen.tv_step.getText().contains("(1/3)"));
-        frozen.selectFirstOwnerAddress();
+        frozen.inputMultiAddress(ownerAddress);
         frozen.gotoMultiPageTwo();
         Assert.assertTrue(frozen.tv_common_title2.getText().contains("(2/3)"));
         frozen.stakeEnergyWithAmount("1");
