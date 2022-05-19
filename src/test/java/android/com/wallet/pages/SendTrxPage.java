@@ -280,6 +280,7 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();

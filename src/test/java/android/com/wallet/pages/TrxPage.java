@@ -47,7 +47,8 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public WebElement trxTotal_text;
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    public WebElement tv_count;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
     public WebElement back_btn;

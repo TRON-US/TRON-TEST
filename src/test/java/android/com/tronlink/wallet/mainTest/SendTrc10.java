@@ -60,10 +60,69 @@ public class SendTrc10 extends Base {
         } catch (Exception e) {
         }
     }
+    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
+    public void test001_sendTrxSuccess() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage pageToken =  asset.enterTrx10Page();
+        Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
+        SendTrxPage transfer =  pageToken.trxSendTrxPage();
+        Double sendAmount = getAnAmount();
+        transfer.sendTrcTokenWithCurrent(Double.toString(sendAmount));
+        TimeUnit.SECONDS.sleep(3);
+        transfer.btn_done.click();
+        asset.enterTrx10Page();
+        Double afterValue =  Double.valueOf(prettyString(asset.tv_count.getText()));
+        System.out.println("afterSendBalance-----"+afterValue);        System.out.println("beforeSendBalance-----"+ beforeValue);        System.out.println("sendTrxAmount-----"+ sendAmount);
+        Assert.assertTrue(beforeValue == sendAmount + afterValue);
+    }
 
+    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    public void test002_sendTrxDetailSuccess() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer =  asset.enterSendTrc10Page();
+        Double sendAmount = getAnAmount();
+        System.out.println("sendTrxAmount-----"+ sendAmount);
+        transfer.sendTrx(Double.toString(sendAmount));
+        TimeUnit.SECONDS.sleep(2);
 
+        for (int i = 0; i < 5; i++) {
+            if(transfer.btn_transaction_info.isEnabled()){
+                TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
+                Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRC10 通证转账"));
+                Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"tronlink_token");
+                Assert.assertEquals(detailAmount,sendAmount);
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(2);
+            }
+        }
 
+    }
 
+    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    public void test003_transferTherePart() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer =  asset.enterSendTrc10Page();
+        Assert.assertTrue(isElementShotId("tv_address"));
+        transfer.findElementByText("地址本").click();
+        Assert.assertTrue(transfer.net_error.getText().contains("暂无其他地址"));
+        transfer.findElementByText("我的账户").click();
+        Assert.assertTrue(transfer.net_error.getText().contains("暂无其他账户"));
+    }
+
+    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    public void test004_availableAmountInTransfer() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage pageToken =  asset.enterTrx10Page();
+        Double avValue =  Double.parseDouble(removeSymbolString(pageToken.tv_count.getText()));
+        SendTrxPage transfer = pageToken.trxSendTrxPage();
+        transfer.normalSendStepOne();
+        Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
+        System.out.println(avValue);
+        System.out.println(stepOneValue);
+        Assert.assertEquals(avValue,stepOneValue);
+    }
 
 
     @Test(enabled = true, description = "input max send number", alwaysRun = true)
@@ -80,7 +139,7 @@ public class SendTrc10 extends Base {
 
     @Parameters({"privateKey"})
     @Test(enabled = true, description = "input min send number", alwaysRun = true)
-    public void test006_inputMixSendNumber(String privateKey) throws Exception {
+    public void test006_inputMinSendNumber(String privateKey) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();

@@ -135,7 +135,7 @@ public class SendTrx extends Base {
     public void test004_availableAmountInTransfer() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
-        Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
+        Double avValue =  Double.parseDouble(removeSymbolString(page.tv_count.getText()));
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.normalSendStepOne();
         Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
