@@ -120,7 +120,9 @@ public class FrozenMultiSignSuccTest extends Base {
          frozen.enterMultiSign();
          frozen.selectFirstOwnerAddress();
          frozen.gotoMultiPageTwo();
+         TimeUnit.SECONDS.sleep(1);
          Double amountTwo =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
+         System.out.println(amountOne +" " +  amountTwo);
         Assert.assertNotEquals(amountOne,amountTwo);
      }
 
