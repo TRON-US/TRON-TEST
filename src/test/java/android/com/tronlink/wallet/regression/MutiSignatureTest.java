@@ -89,11 +89,16 @@ public class MutiSignatureTest extends Base {
     @Test(groups = {"P0"},description = "Add MutiSignature Test", alwaysRun = true)
     public void test002_multiSignAddSuccessTest() throws Exception {
         String signName = "AutoTest-" + System.currentTimeMillis();
-        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
+        AssetPage assetPage = new AssetPage(DRIVER);
+        assetPage.enterMyPursePage();
+        MultiSignManagerPage multiSignManager = assetPage.enterActiveChangePage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         multiSignManager = add.addPermission(signName);
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(multiSignManager.permissionName_text.isDisplayed());
+        TimeUnit.SECONDS.sleep(7);
+        multiSignManager.swipLeftTimes();
+        String currentName = multiSignManager.permissionName_text.getText();
+        System.out.println(currentName  + "   " + signName );
+        Assert.assertTrue(currentName.contains(signName));
     }
 
 
@@ -125,8 +130,8 @@ public class MutiSignatureTest extends Base {
         String newName =  manager.permissionName_text.getText();
         System.out.println(signName);
         System.out.println(newName);
-
         Assert.assertNotEquals(signName,newName);
+
     }
 
 

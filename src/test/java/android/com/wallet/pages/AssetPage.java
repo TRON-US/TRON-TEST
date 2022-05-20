@@ -673,6 +673,13 @@ public WebElement title;
         return new MyPursePage(driver);
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/icon_permisson")
+    public WebElement icon_permisson ;
+
+    public MultiSignManagerPage enterActiveChangePage() throws Exception {
+        icon_permisson.click();
+        return new MultiSignManagerPage(driver);
+    }
 
 
 }
