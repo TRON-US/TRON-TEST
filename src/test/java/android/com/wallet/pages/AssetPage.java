@@ -405,6 +405,8 @@ public WebElement title;
         add_watch_wallet.click();
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_sort")
+    public WebElement iv_sort;
 
 
 
