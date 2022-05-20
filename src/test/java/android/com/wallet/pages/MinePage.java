@@ -106,6 +106,9 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_wechat")
     public WebElement tv_wechat;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_version")
+    public WebElement tv_version;
+
     public void enterLogPage(){
         driver.findElementByAndroidUIAutomator("new UiSelector().text(\"版本日志\")").click();
     }

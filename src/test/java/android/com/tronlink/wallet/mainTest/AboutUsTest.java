@@ -46,6 +46,7 @@ public class AboutUsTest extends Base {
         MinePage mine = asset.enterMinePage();
         mine.enterAboutUsPage();
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
+        Assert.assertTrue(mine.tv_version.getText().contains("4.7.0"));
         Assert.assertTrue(isElementTextExist("波宝"));
         Assert.assertTrue(isElementTextExist("用户协议"));
         Assert.assertTrue(isElementTextExist("版本日志"));
@@ -66,12 +67,13 @@ public class AboutUsTest extends Base {
         TimeUnit.SECONDS.sleep(6);
         Assert.assertTrue(isElementTextExist("4.6.4(2022.05.06)"));
         Assert.assertTrue(mine.nav_title.getText().contains("版本日志"));
-//        mine.backBtn.click();
-//        TimeUnit.SECONDS.sleep(4);
-//        mine.userAgreement.click();
-//        Assert.assertTrue(mine.userAgreementTitle.getText().contains("用户协议"));
-//        Assert.assertTrue(isElementTextExist("更新于2022年1月4日"));
-
+        DRIVER.navigate().back();
+        mine.findElementByText("用户协议").click();
+        Assert.assertTrue(mine.tv_title.getText().contains("用户协议"));
+        Assert.assertTrue(isElementShotId("iv_common_right"));
+        DRIVER.navigate().back();
+        mine.findElementByText("版本更新").click();
+        Assert.assertTrue(assertToast("当前已经是最新版本"));
     }
 
 }

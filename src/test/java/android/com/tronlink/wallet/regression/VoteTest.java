@@ -100,7 +100,7 @@ public class VoteTest extends Base {
          AssetPage asset = new AssetPage(DRIVER);
          VotePage vote = asset.enterVotePage();
          vote.calmReward();
-         TimeUnit.SECONDS.sleep(5);
+         TimeUnit.SECONDS.sleep(8);
          Assert.assertTrue(vote.tv_info_title.getText().contains("领取收益"));
      }
 
@@ -118,7 +118,9 @@ public class VoteTest extends Base {
        public void test007_ChangeTabVote() throws Exception {
            AssetPage asset = new AssetPage(DRIVER);
            VotePage vote = asset.enterVotePage();
+           TimeUnit.SECONDS.sleep(2);
            vote.findElementByText("我的投票").click();
+           TimeUnit.SECONDS.sleep(1);
            Helper.swipScreen(DRIVER);
            Helper.swipScreen(DRIVER);
            Assert.assertTrue(vote.no_more.getText().contains("没有更多了"));
