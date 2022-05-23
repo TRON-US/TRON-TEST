@@ -124,7 +124,7 @@ public class DappSendTrc10 extends Base {
     public void test006_BandWidthShowTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrc10Page();
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.tranferCount_text.sendKeys("0.000001");
         Helper.swipScreenLitte(transfer.driver);
         transfer.send_btn.click();

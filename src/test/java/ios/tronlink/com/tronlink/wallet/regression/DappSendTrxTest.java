@@ -178,7 +178,7 @@ public class DappSendTrxTest extends BaseTest {
     @Test(description = "password error",alwaysRun = true)
     public void test009_passwordError() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.testfieldArray.get(2).sendKeys("1");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(1);
@@ -198,7 +198,7 @@ public class DappSendTrxTest extends BaseTest {
     @Test(description = "Receiving address trim",alwaysRun = true)
     public void test010_receivingAddressTrim() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.testfieldArray.get(1).sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        transfer.testfieldArray.get(1).sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.reciptErrorLabel.getText().contains("钱包地址格式不正确"));
@@ -211,7 +211,7 @@ public class DappSendTrxTest extends BaseTest {
     public void test011_sendMinimumTrx() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(1);
-        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         TimeUnit.SECONDS.sleep(1);
         transfer.testfieldArray.get(2).sendKeys("0.000001");
         Helper.tapWhitePlace(transfer.driver);
@@ -227,7 +227,7 @@ public class DappSendTrxTest extends BaseTest {
     @Test(groups = {"P0"},description = "Receiving Minimum Extra Trx",alwaysRun = true)
     public void test012_sendMinimumTrx() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
-        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.testfieldArray.get(2).sendKeys("0.0000001");
         Helper.tapWhitePlace(transfer.driver);
         TimeUnit.SECONDS.sleep(1);

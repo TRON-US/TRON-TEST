@@ -32,7 +32,7 @@ public class OnlineWatchWalletTest extends Base {
     static String receiverShieldAddress = Configuration.getByPath("testng.conf")
         .getString("foundationAccount.shieldAddress");
 
-    static  String unactiveAddr = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+    static  String unactiveAddr = "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq";
     static  String activeAddr = "TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5";
 
     @BeforeClass(alwaysRun = true)
@@ -66,7 +66,7 @@ public class OnlineWatchWalletTest extends Base {
     public void test001_onlineSendTrxQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Assert.assertTrue(sendTrxPage.error_view.getText().contains("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
         sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");

@@ -130,7 +130,7 @@ public class SendTrc10 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.next_btn.click();
         Assert.assertTrue(!transfer.send_btn.isEnabled());
         transfer.tvMax_btn.click();
@@ -162,7 +162,7 @@ public class SendTrc10 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("1");
         transfer.send_btn.click();
@@ -177,7 +177,7 @@ public class SendTrc10 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys("  " + "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp" + "  ");
+        transfer.receiveAddress_text.sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
         Assert.assertTrue(transfer.next_btn.isEnabled());
     }
 
@@ -191,7 +191,7 @@ public class SendTrc10 extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();

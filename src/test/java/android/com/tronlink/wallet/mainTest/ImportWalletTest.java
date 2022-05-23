@@ -117,7 +117,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     public void test005_ObservationWalletTest() throws Exception {
         GuidePage page = new GuidePage(DRIVER);
         ImportRoutePage impage = page.enterObservationPage();
-        impage.watchTextField.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        impage.watchTextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         impage.watchBtn.click();
         Assert.assertTrue(impage.walletName.getText().contains("观察"));
         impage.deleteWalletNone();

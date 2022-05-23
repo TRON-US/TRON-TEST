@@ -134,7 +134,7 @@ public class GeneralTransactionNotes extends Base {
          SendTrxPage transfer = page.trxSendTrxPage();
          Double sendAmount = getAnAmount();
          System.out.println("sendTrxAmount-----"+ sendAmount);
-         transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+         transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
          transfer.next_btn.click();
          transfer.tranferCount_text.sendKeys("1");
          transfer.iv_add_note.click();
@@ -155,7 +155,7 @@ public class GeneralTransactionNotes extends Base {
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+ sendAmount);
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("1");
         transfer.iv_add_note.click();
@@ -173,7 +173,7 @@ public class GeneralTransactionNotes extends Base {
 //        String recorderNumber = transactionInfo.tv_amount.getText().split(" ")[0];
 //        String recorderNotes = transactionInfo.tv_note.getText();
 //        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-//        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
 //        Helper.swipScreen(transactionInfo.driver);
 //        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
 //        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));
@@ -195,7 +195,7 @@ public class GeneralTransactionNotes extends Base {
 //        String recorderNotes = transactionInfo.tv_note.getText();
 //
 //        Assert.assertEquals(transactionInfo.sendAddress_text.getText(),address);
-//        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        Assert.assertEquals(transactionInfo.receiverAddress_text.getText(),"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
 //        Helper.swipScreen(transactionInfo.driver);
 //        Assert.assertEquals(transactionInfo.txid_hash_test.getText().length(),64);
 //        Assert.assertTrue(transactionInfo.transaction_time_text.getText().contains("202"));

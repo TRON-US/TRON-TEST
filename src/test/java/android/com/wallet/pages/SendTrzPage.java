@@ -152,7 +152,7 @@ public class SendTrzPage extends AbstractPage {
     public String trxCount = "";
 
     public SendTrxSuccessPage normalSendTrx() throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         tranferAmount_text.sendKeys("1");
         swip();
         send_btn.click();
@@ -176,7 +176,7 @@ public class SendTrzPage extends AbstractPage {
 
 
     public SendTrxSuccessPage normalSendTrc10(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         token_btn.click();
         TimeUnit.SECONDS.sleep(1);
         trc10_btn.click();
@@ -192,7 +192,7 @@ public class SendTrzPage extends AbstractPage {
     }
 
 //    public SendTrxSuccessPage normalSendTrc20(String number) throws Exception {
-//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
 //        token_btn.click();
 //        TimeUnit.SECONDS.sleep(1);
 //        trc20_btn.click();
@@ -241,7 +241,7 @@ public class SendTrzPage extends AbstractPage {
 
 
     public void sendAllTrx(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         //calculate trx
         switch(value){
             case "max":
@@ -263,7 +263,7 @@ public class SendTrzPage extends AbstractPage {
     }
 
     public void sendAllTrc10(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         token_btn.click();
         TimeUnit.SECONDS.sleep(3);
         trc10_btn.click();
@@ -290,7 +290,7 @@ public class SendTrzPage extends AbstractPage {
 
 //    public void sendAllTrc20(String value) throws Exception {
 //        TimeUnit.SECONDS.sleep(2);
-//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
 //        token_btn.click();
 //        TimeUnit.SECONDS.sleep(3);
 //        trc20_btn.click();

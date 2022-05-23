@@ -178,7 +178,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrx(String value) throws Exception {
         waiteTime();
-        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Helper.tapWhitePlace(driver);
         waiteTime();
         //calculate trx
@@ -201,7 +201,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrc10(String value) throws Exception {
         waiteTime();
-        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Helper.tapWhitePlace(driver);
         waiteTime();
         selectTokenByName("tronlink_token");
@@ -229,7 +229,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrc20(String value) throws Exception {
         waiteTime();
-        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Helper.tapWhitePlace(driver);
         waiteTime();
         selectToken20TRX();
@@ -299,7 +299,7 @@ public class SendTrxPage extends AbstractPage {
     }
     public boolean multiSignOwnerSend(String addr) throws Exception{
         enterSendTextField(addr);
-        enterGetTextField("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        enterGetTextField("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         enterAmountTextField("1.1");
         waiteTime();
         send_btn.click();
@@ -320,7 +320,7 @@ public class SendTrxPage extends AbstractPage {
     }
     public boolean multiSignActiveSend(String addr) throws Exception{
         enterSendTextField(addr);
-        enterGetTextField("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        enterGetTextField("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         enterAmountTextField("1.2");
         waiteTime();
         Helper.swipScreen(driver);
@@ -348,7 +348,7 @@ public class SendTrxPage extends AbstractPage {
     public TrxPage sendTrxWithNumber(String number) throws Exception{
 
         waiteTime();
-        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         waiteTime();
         testfieldArray.get(2).sendKeys(number);
         closeKeyBoard();
@@ -400,7 +400,7 @@ public class SendTrxPage extends AbstractPage {
 
     public TrxPage sendTrx10WithNumber(String number) throws Exception{
         waiteTime();
-        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         waiteTime();
         selectTokenByName("tronlink_token");
@@ -423,7 +423,7 @@ public class SendTrxPage extends AbstractPage {
 
     public TrxPage sendTrx20WithNumber(String number) throws Exception{
         waiteTime();
-        testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         waiteTime();
         selectToken20TRX();

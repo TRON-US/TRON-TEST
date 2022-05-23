@@ -116,7 +116,7 @@ public class DappSendTrc20 extends Base {
     public void test006_BandWidthShowTest() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         waiteTime();
-        transfer.receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.selectTokenType("20");
         waiteTime();
         transfer.tranferCount_text.sendKeys("0.000001");

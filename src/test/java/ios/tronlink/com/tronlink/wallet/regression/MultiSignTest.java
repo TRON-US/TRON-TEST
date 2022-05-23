@@ -79,7 +79,7 @@ public class MultiSignTest extends Base {
     public void test006_sendTrxOptions() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage = assetPage.enterSendTrxPage();
-        Assert.assertTrue(sendTrxPage.overstepAuthority("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp"));
+        Assert.assertTrue(sendTrxPage.overstepAuthority("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq"));
     }
     @Parameters({"ownerAddress"})
     @Test(description = "send mutisign addr change UI Test", alwaysRun = true)

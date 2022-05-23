@@ -251,7 +251,7 @@ public class AppiumTestCase {
     public  String backupPrivateKey = "com.tronlinkpro.wallet:id/rl_privatekey";
     public  String backupKeystore = "com.tronlinkpro.wallet:id/rl_keystore";
     public  String testPrivateKey = "ecd4bbba178b1b0d2a0c1e6e9108e0cab805a2c1365c42c9eafaff104dbf1e72";
-    public  String receiverAddress = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+    public  String receiverAddress = "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq";
     public  String ownerAddress = "TMNQnpTsNHuK1NwqMf6WTBydXvNsv9p6of";
     public  String activePermissionManager1Address = "THph9K2M2nLvkianrMGswRhz5hjSA9fuH7";
     public  String activePermissionManager2Address = "TV75jZpdmP2juMe1dRwGrwpV6AMU6mr1EU";

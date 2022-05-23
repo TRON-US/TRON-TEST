@@ -87,7 +87,7 @@ public class SendTrc20 extends BaseTest {
     public void test006_passwordError() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(2);
-        transfer.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        transfer.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Helper.tapWhitePlace(transfer.driver);
         waiteTime();
         transfer.selectToken20TRX();

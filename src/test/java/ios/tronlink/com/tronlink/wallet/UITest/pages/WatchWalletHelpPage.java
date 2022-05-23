@@ -22,7 +22,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         AssetPage assetPage = new AssetPage(driver);
         SendTrxPage trxPage = assetPage.enterSendTrxPage();
         waiteTime();
-        trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        trxPage.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         trxPage.testfieldArray.get(2).sendKeys("1");
         closeKeyBoard();
@@ -40,7 +40,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         page.sendBtn.click();
         waiteTime();
         SendTrxPage trxPage = new SendTrxPage(driver);
-        trxPage.testfieldArray.get(1).sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        trxPage.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         trxPage.testfieldArray.get(2).sendKeys("1");
         closeKeyBoard();

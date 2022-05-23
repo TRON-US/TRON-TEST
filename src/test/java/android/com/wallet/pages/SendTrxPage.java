@@ -252,19 +252,19 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void normalSendStepOne(){
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
     }
 
 //    public void  watchWalletSend(String type){
-//        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
 //        selectCoinType(type);
 //    }
 
 
 
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
@@ -276,7 +276,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public SendTrxSuccessPage sendTrcTokenWithCurrent(String sendAmount) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
@@ -289,7 +289,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public SendTrxSuccessPage sendTrc20(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         tranferCount_text.sendKeys(number);
         send_btn.click();
@@ -308,7 +308,7 @@ public class SendTrxPage extends AbstractPage {
     public WebElement bt_note_remove;
 
     public SendTrxSuccessPage sendTrxWithNote(String sendAmount,String note) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         iv_add_note.click();
@@ -322,7 +322,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void SendTokenWithNameAmountWatch(String amount,String name) throws Exception{
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         selectTokenByName(name);
         tranferCount_text.sendKeys(amount);
@@ -348,7 +348,7 @@ public class SendTrxPage extends AbstractPage {
 
 
     public SendTrxSuccessPage sendTrxTypeWithNotes(String sendAmount, String notes, String type) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         selectCoinType(type);
         tranferCount_text.sendKeys(sendAmount);
@@ -364,7 +364,7 @@ public class SendTrxPage extends AbstractPage {
 
 
     public TrxPage normalSendTrc20(String number) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         token_btn.click();
         TimeUnit.SECONDS.sleep(1);
         trc20_btn().click();
@@ -415,7 +415,7 @@ public class SendTrxPage extends AbstractPage {
     }
 //no press send button
     public void sendAllTrx(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         switch (value) {
             case "max":
@@ -434,7 +434,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void sendAllTrc10(String value) throws Exception {
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         selectTokenType("10");
         switch (value) {
             case "max":
@@ -454,7 +454,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendTokenMin(String type, String udid) throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
 
         switch (type) {
@@ -478,7 +478,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrc20(String value) throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        receiveAddress_text.sendKeys("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp");
+        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         selectTokenType("20");
 

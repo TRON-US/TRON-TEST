@@ -34,7 +34,7 @@ public class AddressBookTest extends Base {
     @Parameters({"privateKey","address"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey,String address) throws Exception {
-        addressString = "TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMnFrp";
+        addressString = "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq";
         new Helper().getSign(privateKey, DRIVER);
     }
 
