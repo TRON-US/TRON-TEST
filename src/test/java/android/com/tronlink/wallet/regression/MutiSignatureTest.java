@@ -100,12 +100,24 @@ public class MutiSignatureTest extends Base {
         System.out.println(currentName  + "   " + signName );
         Assert.assertTrue(currentName.contains(signName));
     }
+    @Test(groups = {"P0"},description = "delete signature Test", alwaysRun = true)
+    public void test003_delSignature() throws Exception {
+        MultiSignManagerPage manager = enterMultiSignManagerPage();
+        manager.swipLeftTimes();
+        String signName = manager.permissionName_text.getText();
+        manager.delSign();
+        manager.swipLeftTimes();
+        String newName =  manager.permissionName_text.getText();
+        System.out.println(signName);
+        System.out.println(newName);
+        Assert.assertNotEquals(signName,newName);
 
+    }
 
     //Modify signature,Return to the before state
     @Parameters({"address"})
     @Test(groups = {"P0"},description = "Modify signature Test", alwaysRun = true)
-    public void test003_modifySignature(String address) throws Exception {
+    public void test004_modifySignature(String address) throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
         Assert.assertTrue(modifyPermission.title_text.isDisplayed());
@@ -113,7 +125,7 @@ public class MutiSignatureTest extends Base {
 
 
     @Test(description = "signature is exist", alwaysRun = true)
-    public void test004_signatureIsExist() throws Exception {
+    public void test005_signatureIsExist() throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         AddPermissionPage add = multiSignManager.enterAddPermissionPage();
         add.permissionName_input.sendKeys("active");
@@ -121,18 +133,7 @@ public class MutiSignatureTest extends Base {
     }
 
 
-    @Test(groups = {"P0"},description = "delete signature Test", alwaysRun = true)
-    public void test005_delSignature() throws Exception {
-        MultiSignManagerPage manager = enterMultiSignManagerPage();
-        manager.swipLeftTimes();
-        String signName = manager.permissionName_text.getText();
-        manager.delSign();
-        String newName =  manager.permissionName_text.getText();
-        System.out.println(signName);
-        System.out.println(newName);
-        Assert.assertNotEquals(signName,newName);
 
-    }
 
 
     @Test(description = "signature Name Is Null", alwaysRun = true)
