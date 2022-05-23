@@ -76,6 +76,7 @@ public class SendTrx extends Base {
 
 
 
+
     @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -92,6 +93,7 @@ public class SendTrx extends Base {
         Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
         Assert.assertTrue(beforeValue == sendAmount + afterValue);
+
     }
 
      @Test(alwaysRun = true)
@@ -101,7 +103,7 @@ public class SendTrx extends Base {
          MinePage page = asset.enterMinePage();
          Assert.assertTrue(isElementShotId("tv_bell"));
          page.tv_bell.click();
-         Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
+         Assert.assertTrue(page.secondContent.getText().contains(sentAmountRecoder.toString()));
          DRIVER.navigate().back();
          TimeUnit.SECONDS.sleep(1);
          Assert.assertFalse(isElementShotId("iv_red_dot"));

@@ -37,7 +37,10 @@ public class SendTrc20 extends Base {
             .getString("onlyHaveTRC20InNile.privateKey1");
     static String haveBandwidthprivateKey = Configuration.getByPath("testng.conf")
             .getString("HaveBandWidthInNile.privateKey1");
-  
+
+    public Double sentAmountRecoder;
+
+
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
@@ -79,6 +82,7 @@ public class SendTrc20 extends Base {
         System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
+        sentAmountRecoder = sendAmount;
         System.out.println("sendAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(2);
@@ -86,11 +90,25 @@ public class SendTrc20 extends Base {
         asset.enterTrx20Page();
         Double afterValue =  Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
-        Assert.assertTrue(beforeValue == sendAmount + afterValue);
+        Assert.assertEquals(beforeValue,sendAmount + afterValue);
+    }
+
+    @Test(alwaysRun = true)
+    public void test002_redDotTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        Assert.assertTrue(isElementShotId("iv_red_dot"));
+        MinePage page = asset.enterMinePage();
+        Assert.assertTrue(isElementShotId("tv_bell"));
+        page.tv_bell.click();
+        Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
+        DRIVER.navigate().back();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertFalse(isElementShotId("iv_red_dot"));
+        Assert.assertFalse(isElementShotId("tv_bell"));
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test002_sendTrc20DetailSuccess() throws Exception {
+    public void test003_sendTrc20DetailSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx20Page();
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
@@ -114,18 +132,6 @@ public class SendTrc20 extends Base {
         }
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test003_availableAmountInTransfer() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrx20Page();
-        Double avValue =  Double.parseDouble(removeSymbolString(asset.tv_count.getText()));
-        SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.normalSendStepOne();
-        Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
-        System.out.println(avValue);
-        System.out.println(stepOneValue);
-        Assert.assertEquals(avValue,stepOneValue);
-    }
 
     @Test(enabled = true,description = "input max send number")
     public void test004_inputMaxSendNumber() throws Exception {
@@ -149,6 +155,20 @@ public class SendTrc20 extends Base {
         transfer.sendAllTrc20("tooMuch");
         Assert.assertTrue(isElementTextExist("   转账数量不可大于可用数量"));
 
+    }
+
+
+    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    public void test007_availableAmountInTransfer() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page =  asset.enterTrx20Page();
+        Double avValue =  Double.parseDouble(removeSymbolString(asset.tv_count.getText()));
+        SendTrxPage transfer = page.trxSendTrxPage();
+        transfer.normalSendStepOne();
+        Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
+        System.out.println(avValue);
+        System.out.println(stepOneValue);
+        Assert.assertEquals(avValue,stepOneValue);
     }
 
 }
