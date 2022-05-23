@@ -20,6 +20,9 @@ public class MinePage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_bell")
+    public WebElement tv_bell;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/wallet_manager")
     public WebElement wallet_manager;
 
@@ -47,6 +50,8 @@ public class MinePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
     public WebElement ad_pic;
 
+    @FindBy(xpath = "//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/androidx.recyclerview.widget.RecyclerView[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.TextView[1]")
+    public WebElement firstContent;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
     public WebElement adClose_btn;

@@ -45,6 +45,10 @@ public class AssetPage extends AbstractPage {
 
         }
 
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+
+
+    }
 
 
 
@@ -75,10 +79,16 @@ public class AssetPage extends AbstractPage {
 //
 //        }
 
-        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
-
+    public SwapPage enterSwapPage(){
+        findElementByText("闪兑").click();
+        return new SwapPage(driver);
     }
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_red_dot")
+    public WebElement iv_red_dot;
+
 
 @FindBy(id = "com.tronlinkpro.wallet:id/title")
 public WebElement title;
@@ -246,6 +256,8 @@ public WebElement title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/network")
     public WebElement network;
+
+
 
     public void changeChainToDappChain() throws Exception{
         if(!currChain_name.getText().contains("DAppChain")){
