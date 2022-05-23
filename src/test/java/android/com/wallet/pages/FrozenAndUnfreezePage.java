@@ -50,15 +50,20 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     public void stakeEnergyWithAmount(String amount){
         tv_stake_energy.click();
-        et_amount.sendKeys(amount);
-        btn_next_step.click();
+        stakeAmountAndNext(amount);
     }
 
     public void stakeBandWidthWithAmount(String amount){
         tv_stake_bandwidth.click();
+        stakeAmountAndNext(amount);
+
+    }
+
+    public void stakeAmountAndNext(String amount){
         et_amount.sendKeys(amount);
         btn_next_step.click();
     }
+
 
     public void stakeWithThisAddress() throws Exception{
         chk_stake_amount.click();
