@@ -89,7 +89,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * Freeze Energy Other
      */
-    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Success", alwaysRun = true)
     public void test003_freezeEnergyOtherSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
