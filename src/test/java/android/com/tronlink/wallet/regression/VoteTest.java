@@ -54,7 +54,7 @@ public class VoteTest extends Base {
     public void test001_VoteMainPageTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        Assert.assertTrue(Integer.parseInt(prettyString(vote.tv_canuse_trx.getText()))>0);
+        Assert.assertTrue(Double.parseDouble(prettyString(vote.tv_canuse_trx.getText()))>0);
         Assert.assertTrue(vote.nav_title.getText().contains("投票"));
         Assert.assertTrue(vote.tv_common_right2.getText().contains("多重签名"));
         Assert.assertTrue(vote.tv_walletaddress.getText().contains(address));
@@ -132,7 +132,6 @@ public class VoteTest extends Base {
             VotePage vote = asset.enterVotePage();
             vote.enterFirstSR();
             Assert.assertTrue(vote.tv_sr_number.getText().contains("NO.1"));
-            Assert.assertTrue(vote.tv_address.getText().contains("TFFLWM7tmKiwGtbh2mcz2rBssoFjHjSShG"));
             Assert.assertTrue(vote.tv_voting_onsiderations.getText().contains("查看投票注意事项"));
         }
 
@@ -142,6 +141,9 @@ public class VoteTest extends Base {
              VotePage vote = asset.enterVotePage();
              vote.enterBatchPage();
              String number =prettyString(vote.vote_number_input.getText());
+             if (vote.vote_number_input.getText().contains("请输入投票数量")) {
+                 number = "1";
+             }
              vote.enterVoteNumber(number);
              vote.signActiontoDone();
              TimeUnit.SECONDS.sleep(4);
