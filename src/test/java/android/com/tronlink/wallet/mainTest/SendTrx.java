@@ -74,7 +74,14 @@ public class SendTrx extends Base {
 
     public Double sentAmountRecoder;
 
-
+    @Test(alwaysRun = true)
+    public void test000_importAddressToTestNotice() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.importPrivateKey("20ebe9fd7964058941714551820f91afbde28698e5ac8f6f8fd63ed6716f0683");
+        asset.switchToWallet("Auto-test");
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(asset.tv_walletname.getText().contains("Auto-test"));
+    }
 
 
     @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
@@ -96,13 +103,23 @@ public class SendTrx extends Base {
 
     }
 
-     @Test(alwaysRun = true)
-     public void test002_redDotTest() throws Exception {
+    @Parameters({"address"})
+    @Test(alwaysRun = true)
+     public void test002_redDotTest(String address) throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          Assert.assertTrue(isElementShotId("iv_red_dot"));
          MinePage page = asset.enterMinePage();
          Assert.assertTrue(isElementShotId("tv_bell"));
          page.tv_bell.click();
+         if (page.firstAddress.getText().contains(address)){
+             Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
+             Assert.assertTrue(page.secondTitle.getText().contains("转账成功"));
+
+         }else {
+             Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
+             Assert.assertTrue(page.secondTitle.getText().contains("收款成功"));
+         }
+         Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
          Assert.assertTrue(page.secondContent.getText().contains(sentAmountRecoder.toString()));
          DRIVER.navigate().back();
          TimeUnit.SECONDS.sleep(1);

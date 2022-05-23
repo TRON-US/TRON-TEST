@@ -222,7 +222,12 @@ public WebElement title;
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
-    public WebElement walletName_text;
+    public WebElement tv_walletname;
+
+    public void switchToWallet(String name){
+        tv_walletname.click();
+        findElementByText(name).click();
+    }
 
     @FindBy(className = "com.tronlinkpro.wallet:id/tv_walletname")
     public WebElement assetList_class;
@@ -415,6 +420,40 @@ public WebElement title;
         observation_title.click();
         add_watch_address.sendKeys(address);
         add_watch_wallet.click();
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/import_content")
+    public WebElement import_content;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_next_step")
+    public WebElement btn_next_step;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/import_wallet_name")
+    public WebElement import_wallet_name;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/import_wallet_password")
+    public WebElement import_wallet_password;
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/import_wallet_password_again")
+    public WebElement import_wallet_password_again;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/import_title")
+    public WebElement import_title;
+
+    public void importPrivateKey(String pkey) throws Exception{
+        iv_wallet_manager.click();
+        import_title.click();
+        import_content.sendKeys(pkey);
+        btn_next_step.click();
+        swipScreenLitte();
+        import_wallet_name.clear();
+        import_wallet_name.sendKeys("Received");
+        import_wallet_password.sendKeys("Test0001");
+        import_wallet_password_again.sendKeys("Test0001");
+        btn_next_step.click();
+        TimeUnit.SECONDS.sleep(6);
+
     }
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_sort")
