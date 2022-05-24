@@ -164,6 +164,7 @@ public class DappSendTrx extends Base {
         Double TotalValue = Double.valueOf(prettyString(asset.tv_count.getText()));
         Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
         Double freezeValue =  Double.parseDouble(removeSymbolString(page.tv_freeze_amout.getText()));
+        System.out.println("TotalValue:" + TotalValue);System.out.println("avValue:" + avValue);System.out.println("freezeValue:" + freezeValue);
         Assert.assertTrue(TotalValue == avValue + freezeValue);
     }
 
