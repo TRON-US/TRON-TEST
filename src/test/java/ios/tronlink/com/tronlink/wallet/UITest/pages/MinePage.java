@@ -72,7 +72,7 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "版本更新")
     public WebElement update_btn ;
     
-    @FindBy(id = "地址本")
+    @FindBy(name = "地址本")
     public WebElement addressBook_btn;
 
     public void enterAddressBook(){
@@ -101,6 +101,12 @@ public class MinePage extends AbstractPage {
         officeWeb.click();
     }
 
+
+
+    @FindBy(id = "addressBook add")
+    public WebElement bookAdd;
+
+    public void enterBookAdd(){bookAdd.click();}
     //enter about us Page
     public AboutUsPage enterAboutUsPage() {
         waiteTime();

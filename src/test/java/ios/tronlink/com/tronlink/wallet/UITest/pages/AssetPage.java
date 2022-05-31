@@ -47,13 +47,13 @@ public class AssetPage extends AbstractPage {
 
         waiteTime();
 
-        log("time1");
-        try {
-            if (ProxyBtn.isDisplayed()) {
-                ProxyBtn.click();
-            }
-        }catch (Exception e){}
-        log("time2");
+//        log("time1");
+//        try {
+//            if (ProxyBtn.isDisplayed()) {
+//                ProxyBtn.click();
+//            }
+//        }catch (Exception e){}
+//        log("time2");
 
     }
 
@@ -275,9 +275,11 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter mine page
-    public MinePage enterMinePage() {
+    public MinePage enterMinePage() throws Exception {
 
         mine_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
         return new MinePage(driver);
     }
 

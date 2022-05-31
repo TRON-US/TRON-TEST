@@ -1,8 +1,13 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
+import org.openqa.selenium.support.FindBy;
+import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.WebElement;
+
 import io.appium.java_client.ios.IOSDriver;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class NotebookHelpPage extends AbstractPage {
@@ -12,6 +17,19 @@ public class NotebookHelpPage extends AbstractPage {
         this.driver = driver;
 
     }
+
+    @FindBy(id = "保存")
+    public WebElement saveBtn ;
+
+    @FindBy(id = "nameField")
+    public WebElement nameField;
+    
+    @FindBy(id = "addressField")
+    public WebElement addressField;
+    
+    @FindBy(id = "remarkField")
+    public WebElement remarkField;
+
     //addressLabel 列表页 地址
     //copyBtn 列表页copybutton
     //editBtn 列表页  编辑按钮
@@ -19,117 +37,101 @@ public class NotebookHelpPage extends AbstractPage {
 //deleteBtn
 //textlabel  地址地方报错信息的id
 
-    public void intoAddpage()throws Exception{
+
+    public void intoAddPage()throws Exception{
         driver.findElementById("addressBook add").click();
         TimeUnit.SECONDS.sleep(1);
 
     }
     public void inputNameTF(String name) throws Exception{
-        driver.findElementById("nameField").sendKeys(name);
+        nameField.sendKeys(name);
         closeKeyBoard();
     }
     public void inputAddressTF(String addr) throws Exception{
-        driver.findElementById("addressField").sendKeys(addr);
+        addressField.sendKeys(addr);
         closeKeyBoard();
     }
-    public void saveBtnClick() throws Exception{
-        driver.findElementById("rightLabel").click();
-        TimeUnit.SECONDS.sleep(2);
+    public void inputRemarkTF(String addr) throws Exception{
+        remarkField.sendKeys(addr);
+        closeKeyBoard();
     }
+
+
+
+    public void saveBtnClick() throws Exception{
+        saveBtn.click();
+        TimeUnit.SECONDS.sleep(4);
+    }
+
+    
     public void importSuccess(String addr) throws Exception{
-        intoAddpage();
         inputNameTF("successAdr");
         inputAddressTF(addr);
         saveBtnClick();
     }
     public void importAddressAndNameSuccess(String addr,String name) throws Exception{
-        intoAddpage();
         inputNameTF(name);
         inputAddressTF(addr);
         saveBtnClick();
     }
+
+    @FindBy(id = "textlabel")
+    public List<WebElement> textlabels;
+
     public String  importWrongAddr(String addr) throws Exception{
-        intoAddpage();
         inputAddressTF(addr);
         TimeUnit.SECONDS.sleep(2);
         return driver.findElementById("textlabel").getText();
     }
     public String  inportNullName() throws Exception{
-        intoAddpage();
-        driver.findElementById("nameField").sendKeys("s");
-        driver.findElementById("nameField").clear();
+        nameField.sendKeys("s");
+        nameField.clear();
         return driver.findElementById("textlabel").getText();
     }
     public String  inputLongName() throws Exception{
-        intoAddpage();
         inputNameTF("123456789012345678901234560");
-        return driver.findElementById("nameField").getText();
+        return nameField.getText();
     }
+
     public void modifyNoteName(String name)throws Exception{
-        driver.findElementById("editBtn").click();
-        driver.findElementById("nameField").click();
-        driver.findElementById("nameField").clear();
-        driver.findElementById("nameField").sendKeys(name);
-        closeKeyBoard();
-        saveBtnClick();
-    }
-    public void modifyNoteAddress(String name)throws Exception{
-        driver.findElementById("editBtn").click();
-        driver.findElementById("addressField").click();
-        driver.findElementById("addressField").clear();
-        driver.findElementById("addressField").sendKeys(name);
-        closeKeyBoard();
-        saveBtnClick();
-    }
-    public void deleteNoteAddress()throws Exception{
-        driver.findElementById("editBtn").click();
-        driver.findElementById("deleteBtn").click();
+        editBtn.click();
         TimeUnit.SECONDS.sleep(1);
-        try{
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '删除地址'").click();
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        TimeUnit.SECONDS.sleep(2);
+        nameField.click();
+        nameField.clear();
+        nameField.sendKeys(name);
+        closeKeyBoard();
+        saveBtnClick();
     }
+    
+    @FindBy(name = "editBtn")
+    public WebElement editBtn;
 
-    public boolean isNoDate(){
-        try {
-            if(driver.findElementByName("暂无数据").getText().contains("暂无数据")){
-                return true;
-            }else {
-                return false;
-            }
-        }catch (Exception e){
-            log("note add success Or no El");
-            return false;
-        }
+    public void modifyNoteAddress(String name)throws Exception{
+        editBtn.click();
+        TimeUnit.SECONDS.sleep(1);
+        addressField.click();
+        addressField.clear();
+        addressField.sendKeys(name);
+        closeKeyBoard();
+        saveBtnClick();
     }
-    public boolean isName(String name){
-        try {
-            if(driver.findElementById("addressNameLabel").getText().contains(name)){
-                return true;
-            }else {
-                return false;
-            }
-        }catch (Exception e){
-            log("note add success Or no El");
-            return false;
-        }
+    
+    @FindBy(id = "deleteBtn")
+    public WebElement deleteBtn;
+    public void deleteNoteAddress()throws Exception{
+        editBtn.click();
+        deleteBtn.click();
+        TimeUnit.SECONDS.sleep(3);
+//        driver.findElementByName("删除地址").click();
+//        TimeUnit.SECONDS.sleep(2);
     }
+    
+    @FindBy(id = "addressNameLabel")
+    public WebElement addressNameLabel;
 
-    public boolean isAddress(String addr){
-        try {
-            if(driver.findElementById("addressLabel").getText().contains(addr)){
-                return true;
-            }else {
-                return false;
-            }
-        }catch (Exception e){
-            log("note add success Or no El");
-            return false;
-        }
-    }
+    @FindBy(id = "addressLabel")
+    public WebElement addressLabel;
+
 
 
 }

@@ -36,8 +36,8 @@ public class BaseTest extends Base {
     public void beforeMethod(String bundleId,Method method) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
-
         DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(3);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -47,7 +47,8 @@ public class BaseTest extends Base {
                 driver_is_start = true;
             } catch (Exception e) {
                 System.out.println(e);
-                TimeUnit.SECONDS.sleep(2);
+                DRIVER.executeScript("mobile: terminateApp", params);
+                TimeUnit.SECONDS.sleep(3);
             }
         }
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
