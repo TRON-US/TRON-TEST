@@ -61,6 +61,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "nameLabel")
     public List<WebElement> nameLabels;
 
+    @FindBy(name = "cashLabel")
+    public WebElement cashLabel;
 
     @FindBy(id = "titleLabel")
     public List<WebElement> titleLabel;
@@ -274,10 +276,17 @@ public class AssetPage extends AbstractPage {
         return new EnergyRentPage(driver);
     }
 
+    @FindBy(name = "我的")
+    public WebElement mine_btn_selected;
+
     //enter mine page
     public MinePage enterMinePage() throws Exception {
+        try{
+            mine_btn.click();
 
-        mine_btn.click();
+        }catch (Exception e){
+            mine_btn_selected.click();
+        }
         TimeUnit.SECONDS.sleep(3);
 
         return new MinePage(driver);

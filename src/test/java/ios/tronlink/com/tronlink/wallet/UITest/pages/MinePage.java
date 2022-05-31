@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MinePage extends AbstractPage {
@@ -17,6 +18,38 @@ public class MinePage extends AbstractPage {
         super(driver);
         this.driver = driver;
     }
+
+    @FindBy(name = "切换网络")
+    public WebElement changeNetBtn;
+
+    public void changeNet(){
+        changeNetBtn.click();
+    }
+
+    public WebElement mainBtn(){
+        return driver.findElementByIosNsPredicate("label == \"TRON 主网\"");
+    }
+    public WebElement shastaBtn(){
+        return driver.findElementByIosNsPredicate("label == \"TRON Shasta 测试网\"");
+    }
+    public WebElement DAppChainBtn(){
+        return driver.findElementByIosNsPredicate("label == \"DAppChain 主网\"");
+    }
+
+    @FindBy(name = "切换节点")
+    public WebElement nodeBtn;
+    public void enterNode(){
+        nodeBtn.click();
+    }
+
+
+    @FindBy(name = "取消")
+    public WebElement cancelBtn;
+
+    @FindBy(name = "确认")
+    public WebElement confirmBtn;
+
+
 
     @FindBy(name = "关于我们")
     public WebElement aboutUs_btn;
@@ -42,6 +75,9 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "官方网站")
     public WebElement officeWeb;
 
+    @FindBy(id = "nodeNameLabel")
+    public List<WebElement> nodeNameLabels ;
+
     @FindBy(name = "公告")
     public WebElement announcement_btn;
 
@@ -63,7 +99,7 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "版本日志")
     public WebElement versionNote_btn;
 
-    @FindBy(name = "资产")
+    @FindBy(name = "tab assets")
     public WebElement assets_btn;
 
     @FindBy(name = "委员会提议")
@@ -74,6 +110,64 @@ public class MinePage extends AbstractPage {
     
     @FindBy(name = "地址本")
     public WebElement addressBook_btn;
+
+    @FindBy(name = "货币单位")
+    public WebElement currency;
+
+    @FindBy(name = "label")
+    public WebElement label;
+
+    @FindBy(name = "centerBtn")
+    public WebElement centerBtn;
+
+
+    public WebElement cnyBtn(){
+        return driver.findElementByIosNsPredicate("label == \"CNY\"");
+    }
+
+    public WebElement usdBtn(){
+        return driver.findElementByIosNsPredicate("label == \"USD\"");
+    }
+
+    public void changeCurrency(String type){
+        if (type.contains("cny")){
+            currency.click();
+            cnyBtn().click();
+        }else {
+            currency.click();
+            usdBtn().click();
+        }
+    }
+
+
+
+    @FindBy(name = "DApp连接管理")
+    public WebElement DAppBtn;
+
+    public void enterDAppManage() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
+        DAppBtn.click();
+    }
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    public WebElement noticeBtn;
+
+    public void enterNotice() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
+        noticeBtn.click();
+    }
+    
+    @FindBy(name = "message setting close")
+    public WebElement switchBtn;
+
+    @FindBy(id = "titleLabel")
+    public WebElement titleLabel;
+
+    @FindBy(name = "关闭")
+    public WebElement closeBtn;
+
+    @FindBy(name = "系统通知权限")
+    public WebElement sysNoticeBtn;
 
     public void enterAddressBook(){
         addressBook_btn.click();
@@ -130,14 +224,7 @@ public class MinePage extends AbstractPage {
 
     //enter Setting page
     public SettingPage enterSettingPage() {
-        try {
-            Helper.swipScreen(driver);
-            waiteTime();
-            setting_btn.click();
-            waiteTime();
-        } catch (Exception e) {
-            new Base().log("setting_btn button not found");
-        }
+        setting_btn.click();
         return new SettingPage(driver);
     }
 
@@ -164,6 +251,27 @@ public class MinePage extends AbstractPage {
         return new HelpPage(driver);
     }
 
+    @FindBy(name = "语言")
+    public WebElement languagecn;
+
+    @FindBy(name = "Language")
+    public WebElement languageen;
+
+    public WebElement englishButton(){
+        return  driver.findElementByIosNsPredicate("label == \"English\"");
+    }
+    public WebElement cnButton(){
+        return  driver.findElementByIosNsPredicate("label == \"简体中文\" AND name == \"textLabel\"");
+    }
+    public void changeLanguage(String type){
+        if (type.contains("cn")){
+            languageen.click();
+            cnButton().click();
+        }else {
+            languagecn.click();
+            englishButton().click();
+        }
+    }
     //enter FriendInvitation Page
     public FriendInvitationPage enterFriendInvitationPage() {
         try {
@@ -229,7 +337,7 @@ public class MinePage extends AbstractPage {
 
     public AssetPage enterAssetPage() throws Exception {
         TimeUnit.SECONDS.sleep(1);
-        assets_btn.click();
+        driver.findElementByIosNsPredicate("label == \"tab assets\"").click();
         TimeUnit.SECONDS.sleep(1);
         return new AssetPage(driver);
     }

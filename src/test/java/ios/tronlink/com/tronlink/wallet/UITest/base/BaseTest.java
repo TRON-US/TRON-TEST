@@ -55,6 +55,13 @@ public class BaseTest extends Base {
 
     }
 
+    public void DriveReStart(String bundleId) throws Exception{
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(6);
+        DRIVER.executeScript("mobile: activateApp", params);
+    }
 
 
 
