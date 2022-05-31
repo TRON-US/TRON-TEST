@@ -28,8 +28,16 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "高级功能")
     public WebElement advanceFunc_btn;
 
+    public void enterAdv(){
+        advanceFunc_btn.click();
+    }
+
     @FindBy(name = "好友邀请")
     public WebElement friendInvitation_btn;
+
+    public void enterInvitation(){
+        friendInvitation_btn.click();
+    }
 
     @FindBy(name = "官方网站")
     public WebElement officeWeb;
@@ -43,7 +51,7 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "加入社群")
     public WebElement intoGroup_btn;
 
-    @FindBy(name = "交易记录")
+    @FindBy(name = "交易历史")
     public WebElement transferHistory_btn;
 
     @FindBy(name = "用户协议")
@@ -63,6 +71,13 @@ public class MinePage extends AbstractPage {
 
     @FindBy(name = "版本更新")
     public WebElement update_btn ;
+    
+    @FindBy(id = "地址本")
+    public WebElement addressBook_btn;
+
+    public void enterAddressBook(){
+        addressBook_btn.click();
+    }
 
     public void updateClick(){
         update_btn.click();
@@ -178,15 +193,7 @@ public class MinePage extends AbstractPage {
     }
 
     public TransactionRecordPage enterTransactionRecordPage() {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-            transferHistory_btn.click();
-            TimeUnit.SECONDS.sleep(3);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
+        transferHistory_btn.click();
         return new TransactionRecordPage(driver);
     }
 
@@ -197,6 +204,8 @@ public class MinePage extends AbstractPage {
     public void enterVersionLog(){
         versionNote_btn.click();
     }
+    
+    
 
     //enter android.com.wallet page
     public MyPursePage enterMyPursePage() {
