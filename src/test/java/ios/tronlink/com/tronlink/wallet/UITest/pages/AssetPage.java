@@ -36,14 +36,7 @@ public class AssetPage extends AbstractPage {
 //            }
 //        }
 //        }
-//        try {
-//            // if updateview display ,close
-//            if (update_topview.isDisplayed()) {
-//                update_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
-//
+
         try {
             if (mutisign_closebtn.isDisplayed()) {
                 mutisign_closebtn.click();
@@ -51,7 +44,16 @@ public class AssetPage extends AbstractPage {
             }
         } catch (Exception e) {
         }
+
         waiteTime();
+
+        log("time1");
+        try {
+            if (ProxyBtn.isDisplayed()) {
+                ProxyBtn.click();
+            }
+        }catch (Exception e){}
+        log("time2");
 
     }
 
@@ -101,6 +103,8 @@ public class AssetPage extends AbstractPage {
 
     //gotoDetailBtn
     //contentLabel
+    @FindBy(name = "我知道了")
+    public WebElement ProxyBtn;
 
     @FindBy(name = "投票")
     public WebElement vote_btn;
@@ -272,7 +276,7 @@ public class AssetPage extends AbstractPage {
 
     //enter mine page
     public MinePage enterMinePage() {
-        waiteTime();
+
         mine_btn.click();
         return new MinePage(driver);
     }

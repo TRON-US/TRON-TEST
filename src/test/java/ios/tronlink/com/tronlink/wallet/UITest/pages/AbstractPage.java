@@ -39,6 +39,26 @@ public class AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '发送'");
     }
 
+    @FindBy(id = "black path")
+    public WebElement blackBackNavBtn;
+
+    public void  navBack(){
+        blackBackNavBtn.click();
+    }
+
+    public boolean iosToast(String text){
+        try {
+            WebDriverWait wait = new WebDriverWait(driver,20);
+            //By.xpath("//*[contains(@text,'"+toast+"')]")
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.name(text)));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+    }
+
+
     public AbstractPage(IOSDriver<?> driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);

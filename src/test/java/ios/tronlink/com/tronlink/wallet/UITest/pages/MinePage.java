@@ -31,6 +31,8 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "好友邀请")
     public WebElement friendInvitation_btn;
 
+    @FindBy(name = "官方网站")
+    public WebElement officeWeb;
 
     @FindBy(name = "公告")
     public WebElement announcement_btn;
@@ -44,6 +46,8 @@ public class MinePage extends AbstractPage {
     @FindBy(name = "交易记录")
     public WebElement transferHistory_btn;
 
+    @FindBy(name = "用户协议")
+    public WebElement usersAgreement_btn;
 
     @FindBy(name = "钱包管理")
     public WebElement myPurse_btn;
@@ -56,6 +60,31 @@ public class MinePage extends AbstractPage {
 
     @FindBy(name = "委员会提议")
     public WebElement committee_btn;
+
+    @FindBy(name = "版本更新")
+    public WebElement update_btn ;
+
+    public void updateClick(){
+        update_btn.click();
+    }
+
+    public void enterOffice(){
+        Twitter.click();
+    }
+
+    @FindBy(id = "Telegram")
+    public WebElement Telegram;
+
+    public void enterTelegram(){
+        Telegram.click();
+    }
+
+    @FindBy(id = "Twitter")
+    public WebElement Twitter;
+
+    public void enterTwitter(){
+        officeWeb.click();
+    }
 
     //enter about us Page
     public AboutUsPage enterAboutUsPage() {
@@ -161,6 +190,13 @@ public class MinePage extends AbstractPage {
         return new TransactionRecordPage(driver);
     }
 
+    public void enterUsersAgreement(){
+        usersAgreement_btn.click();
+    }
+
+    public void enterVersionLog(){
+        versionNote_btn.click();
+    }
 
     //enter android.com.wallet page
     public MyPursePage enterMyPursePage() {
