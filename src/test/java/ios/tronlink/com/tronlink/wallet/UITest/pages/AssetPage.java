@@ -149,6 +149,10 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "nameLabel")
     public List<WebElement> cellArray;
 
+    @FindBy(name = "balanceLabel")
+    public List<WebElement> balanceLabelArray;
+
+
     @FindBy(name = "walletName")
     public WebElement walletNameBtn;
 
@@ -320,10 +324,10 @@ public class AssetPage extends AbstractPage {
     }
 
 
+
     public TrxPage enterTrxPage() throws Exception {
         waiteTime();
         cellArray.get(0).click();
-        waiteTime();
         return new TrxPage(driver);
     }
     public TrxPage enterPublicTrzPage() throws Exception {

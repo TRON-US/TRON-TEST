@@ -2,15 +2,13 @@ package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import android.com.utils.Configuration;
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /**
@@ -29,8 +27,20 @@ public class SendTrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(className = "XCUIElementTypeCell")
+    public WebElement firstCell;
+
+    @FindBy(name = "加入到地址本")
+    public WebElement addBook;
+
     @FindBy(className = "XCUIElementTypeTextField")
-    public List<WebElement> testfieldArray;
+    public List<WebElement> textFieldArray;
+
+    @FindBy(className = "XCUIElementTypeTextField")
+    public WebElement TextField;
+    
+    @FindBy(id = "transfer address clear")
+    public WebElement cleanBtn;
 
     @FindBy(className = "XCUIElementTypeStaticText")
     public List<WebElement> alltextArray;
@@ -58,9 +68,15 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "投票")
     public WebElement vote_btn;
 
+    @FindBy(name = "地址本")
+    public WebElement addressBook;
+    
+    @FindBy(name = "我的账户")
+    public WebElement myAccount;
+
 
     @FindBy(className = "XCUIElementTypeSecureTextField")
-    public WebElement InputPasswordConfim_btn;
+    public WebElement InputPasswordConfirm_btn;
 
 
     @FindBy(name = "com.tronlink.wallet:id/bt_send")
@@ -92,6 +108,13 @@ public class SendTrxPage extends AbstractPage {
     public WebElement resourcesLabel;
 
 
+    public void finnish(){
+        driver.findElementByIosNsPredicate("label == \"完成\" AND name == \"完成\" AND type == \"XCUIElementTypeButton\"").click();
+    }
+
+    public void detail(){
+        driver.findElementByIosNsPredicate("label == \"查看交易记录\" AND name == \"查看交易记录\" AND type == \"XCUIElementTypeButton\"").click();
+    }
 
 
 //shieldedCurrentBalance  余额  shieldedLimitHelpBtn  限额按钮  shieldedFeeLabel 手续费   shieldedLimitLabel 单笔限额
@@ -118,6 +141,11 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
+    public void addBookName(String name) throws Exception{
+        textFieldArray.get(0).sendKeys(name);
+        Helper.closeKeyBoard(driver);
+        confirmPageButtonClick();
+    }
 
     public void selectToken20TRX()throws Exception {
         inputTokenName("TRX");
@@ -153,17 +181,13 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public WebElement findsend_btn(){
-        WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '发送'");
+        WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '转账'");
         return element;
     }
 
     public void broadcastButtonClick(){
-        waiteTime();
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
-        waiteTime();
         element.click();
-        waiteTime();
-
     }
 
 
@@ -178,30 +202,30 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrx(String value) throws Exception {
         waiteTime();
-        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        Helper.tapWhitePlace(driver);
-        waiteTime();
+        TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        closeKeyBoard();
+        goToSecondPage();
         //calculate trx
         switch(value){
             case "max":
                 tvMax_btn.click();
                 break;
             case "min":
-                testfieldArray.get(2).sendKeys("0");
+                TextField.sendKeys("0");
+                closeKeyBoard();
                 break;
             case "tooMuch":
-                testfieldArray.get(2).sendKeys("9999999999");
+                Helper.refreshWalletScreen(driver);
+                TextField.sendKeys("9999999999");
+                closeKeyBoard();
                 break;
         }
-        Helper.tapWhitePlace(driver);
-        waiteTime();
-        send_btn.click();
         TimeUnit.SECONDS.sleep(3);
     }
 
     public void sendAllTrc10(String value) throws Exception {
         waiteTime();
-        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Helper.tapWhitePlace(driver);
         waiteTime();
         selectTokenByName("tronlink_token");
@@ -214,10 +238,10 @@ public class SendTrxPage extends AbstractPage {
                 tvMax_btn.click();
                 break;
             case "min":
-                testfieldArray.get(2).sendKeys("0");
+                textFieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
-                testfieldArray.get(2).sendKeys("9999999999");
+                textFieldArray.get(2).sendKeys("9999999999");
                 break;
         }
         Helper.tapWhitePlace(driver);
@@ -229,7 +253,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllTrc20(String value) throws Exception {
         waiteTime();
-        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         Helper.tapWhitePlace(driver);
         waiteTime();
         selectToken20TRX();
@@ -241,10 +265,10 @@ public class SendTrxPage extends AbstractPage {
                 tvMax_btn.click();
                 break;
             case "min":
-                testfieldArray.get(2).sendKeys("0");
+                textFieldArray.get(2).sendKeys("0");
                 break;
             case "tooMuch":
-                testfieldArray.get(2).sendKeys("9999999999");
+                textFieldArray.get(2).sendKeys("9999999999");
                 break;
         }
         Helper.tapWhitePlace(driver);
@@ -258,26 +282,24 @@ public class SendTrxPage extends AbstractPage {
 
     public void enterSendTextField(String addr) throws Exception {
         waiteTime();
-        testfieldArray.get(0).clear();
-        testfieldArray.get(0).clear();
-        testfieldArray.get(0).sendKeys(addr);
+        TextField.sendKeys(addr);
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(4);
     }
 
     public void enterGetTextField(String addr) throws Exception {
         waiteTime();
-        testfieldArray.get(1).clear();
-        testfieldArray.get(1).clear();
-        testfieldArray.get(1).sendKeys(addr);
+        textFieldArray.get(1).clear();
+        textFieldArray.get(1).clear();
+        textFieldArray.get(1).sendKeys(addr);
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(4);
     }
     public void enterAmountTextField(String amount) throws Exception {
         waiteTime();
-        testfieldArray.get(2).clear();
-        testfieldArray.get(2).clear();
-        testfieldArray.get(2).sendKeys(amount);
+        textFieldArray.get(2).clear();
+        textFieldArray.get(2).clear();
+        textFieldArray.get(2).sendKeys(amount);
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(1);
     }
@@ -306,7 +328,7 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         transferNow_btn.click();
         TimeUnit.SECONDS.sleep(3);
-        InputPasswordConfim_btn.sendKeys("Test0001");
+        InputPasswordConfirm_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(14);
@@ -333,7 +355,7 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         transferNow_btn.click();
         TimeUnit.SECONDS.sleep(3);
-        InputPasswordConfim_btn.sendKeys("Test0001");
+        InputPasswordConfirm_btn.sendKeys("Test0001");
         TimeUnit.SECONDS.sleep(4);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();
         TimeUnit.SECONDS.sleep(7);
@@ -345,20 +367,43 @@ public class SendTrxPage extends AbstractPage {
         }
     }
 
+    public void inputReceivedAddress(String addr) throws Exception {
+        TextField.sendKeys(addr);
+        closeKeyBoard();
+
+    }
+    public void inputReceivedAmount(String amount) throws Exception{
+        Helper.swipScreenLitter(driver);
+        TextField.sendKeys(amount);
+        closeKeyBoard();
+
+    }
+
+
+    @FindBy(name = "下一步")
+    public WebElement nextOne;
+
+    public void goToSecondPage(){
+        nextOne.click();
+    }
+
+    public void sendButtonClick(){
+        driver.findElementByIosNsPredicate("label == \"转账\" AND name == \"转账\" AND type == \"XCUIElementTypeButton\"").click();
+    }
+
+    public void confirmPageButtonClick(){
+        driver.findElementByIosNsPredicate("label == \"确认\" AND name == \"确认\" AND type == \"XCUIElementTypeButton\"").click();
+    }
+
     public TrxPage sendTrxWithNumber(String number) throws Exception{
 
-        waiteTime();
-        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        waiteTime();
-        testfieldArray.get(2).sendKeys(number);
-        closeKeyBoard();
-        waiteTime();
-        send_btn.click();
-        waiteTime();
-        transferNow_btn.click();
-        waiteTime();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        waiteTime();
+        inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        goToSecondPage();
+        inputReceivedAmount(number);
+        sendButtonClick();
+        TimeUnit.SECONDS.sleep(2);
+        confirmPageButtonClick();
+        InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
         TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
@@ -367,10 +412,10 @@ public class SendTrxPage extends AbstractPage {
     public TrxPage sendTrzWithNumber(String number,String Addr) throws Exception{
 
         waiteTime();
-        testfieldArray.get(1).sendKeys(Addr);
+        textFieldArray.get(1).sendKeys(Addr);
         waiteTime();
         log("send Number IS: " + number + "  To: " + Addr);
-        testfieldArray.get(2).sendKeys(number);
+        textFieldArray.get(2).sendKeys(number);
         waiteTime();
         TimeUnit.SECONDS.sleep(1);
         Helper.tapWhitePlace(driver);
@@ -378,7 +423,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime(20);
         transferNow_btn.click();
         waiteTime();
-        InputPasswordConfim_btn.sendKeys("Test0001");
+        InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
         TimeUnit.SECONDS.sleep(15);
         return new TrxPage(driver);
@@ -386,10 +431,10 @@ public class SendTrxPage extends AbstractPage {
     public QRCodePage sendTrzWatchWithNumber(String number,String Addr) throws Exception{
 
         waiteTime();
-        testfieldArray.get(1).sendKeys(Addr);
+        textFieldArray.get(1).sendKeys(Addr);
         waiteTime();
         log("send Number IS: " + number + "  To: " + Addr);
-        testfieldArray.get(2).sendKeys(number);
+        textFieldArray.get(2).sendKeys(number);
         closeKeyBoard();
         waiteTime();
         send_btn.click();
@@ -400,13 +445,13 @@ public class SendTrxPage extends AbstractPage {
 
     public TrxPage sendTrx10WithNumber(String number) throws Exception{
         waiteTime();
-        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         waiteTime();
         selectTokenByName("tronlink_token");
         waiteTime();
         TimeUnit.SECONDS.sleep(4);
-        testfieldArray.get(2).sendKeys(number);
+        textFieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         Helper.tapWhitePlace(driver);
@@ -414,7 +459,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         transferNow_btn.click();
         waiteTime();
-        InputPasswordConfim_btn.sendKeys("Test0001");
+        InputPasswordConfirm_btn.sendKeys("Test0001");
         waiteTime();
         broadcastButtonClick();
         TimeUnit.SECONDS.sleep(4);
@@ -423,13 +468,13 @@ public class SendTrxPage extends AbstractPage {
 
     public TrxPage sendTrx20WithNumber(String number) throws Exception{
         waiteTime();
-        testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         waiteTime();
         selectToken20TRX();
         TimeUnit.SECONDS.sleep(4);
-        System.out.println("testfieldArray Size: " + testfieldArray.size());
-        testfieldArray.get(2).sendKeys(number);
+        System.out.println("testfieldArray Size: " + textFieldArray.size());
+        textFieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
         Helper.tapWhitePlace(driver);
@@ -437,7 +482,7 @@ public class SendTrxPage extends AbstractPage {
         waiteTime();
         transferNow_btn.click();
         waiteTime();
-        InputPasswordConfim_btn.sendKeys("Test0001");
+        InputPasswordConfirm_btn.sendKeys("Test0001");
         waiteTime();
         broadcastButtonClick();
         TimeUnit.SECONDS.sleep(6);
@@ -464,7 +509,7 @@ public class SendTrxPage extends AbstractPage {
      */
     public String sendMaxCoinWithType(String... cointype) throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        testfieldArray.get(1).sendKeys(unActiveAddress);
+        textFieldArray.get(1).sendKeys(unActiveAddress);
         Helper.tapWhitePlace(driver);
         if (cointype.length != 0) {
             selectTokenType(cointype[0]);

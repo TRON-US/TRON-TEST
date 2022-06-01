@@ -64,11 +64,11 @@ public WebElement shieldedDetailBtn;
     @FindBy(id = "transferWithdrawBtn")
     public WebElement tranferOutBtn;
 
-    @FindBy(id = "transferDepositBtn")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeButton[3]")
     public WebElement tranferInBtn;
 
 
-    @FindBy(id = "tokenPageSendBtn")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeButton[1]")
     public WebElement sendBtn;
 
     @FindBy(name = "发送")
@@ -163,21 +163,15 @@ public WebElement shieldedDetailBtn;
     }
 
     public SendTrxPage enterTransferPage() throws Exception {
-        waiteTime();
         sendBtn.click();
-        waiteTime();
         return new SendTrxPage(driver);
     }
     public TransferPage enterTransferInPage() throws Exception {
-        waiteTime();
         tranferInBtn.click();
-        waiteTime();
         return new TransferPage(driver);
     }
     public TransferPage enterTransferOutPage() throws Exception {
-        waiteTime();
         tranferOutBtn.click();
-        waiteTime();
         return new TransferPage(driver);
     }
 

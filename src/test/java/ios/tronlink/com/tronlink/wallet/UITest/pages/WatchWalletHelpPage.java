@@ -3,7 +3,6 @@ package ios.tronlink.com.tronlink.wallet.UITest.pages;
 import io.appium.java_client.ios.IOSDriver;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,9 +21,9 @@ public class WatchWalletHelpPage extends AbstractPage {
         AssetPage assetPage = new AssetPage(driver);
         SendTrxPage trxPage = assetPage.enterSendTrxPage();
         waiteTime();
-        trxPage.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        trxPage.textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
-        trxPage.testfieldArray.get(2).sendKeys("1");
+        trxPage.textFieldArray.get(2).sendKeys("1");
         closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
@@ -40,9 +39,9 @@ public class WatchWalletHelpPage extends AbstractPage {
         page.sendBtn.click();
         waiteTime();
         SendTrxPage trxPage = new SendTrxPage(driver);
-        trxPage.testfieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        trxPage.textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
-        trxPage.testfieldArray.get(2).sendKeys("1");
+        trxPage.textFieldArray.get(2).sendKeys("1");
         closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '发送'").click();
