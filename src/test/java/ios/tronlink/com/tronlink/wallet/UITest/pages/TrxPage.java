@@ -20,7 +20,11 @@ public class TrxPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(name = "leftAmountLabel")
+    public WebElement leftAmountLabel;
 
+    @FindBy(name = "rightAmountLabel")
+    public WebElement rightAmountLabel;
 
     @FindBy(name = "转入") ////XCUIElementTypeApplication[@name="TronLink"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]
     public List<WebElement> transferIn_btnArray;

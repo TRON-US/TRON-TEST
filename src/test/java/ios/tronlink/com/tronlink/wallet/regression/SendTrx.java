@@ -133,12 +133,14 @@ public class SendTrx extends BaseTest {
     public void test007_SendPageOneAddressBookAddressTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrxPage();
+        String avNumber = page.leftAmountLabel.getText();
         SendTrxPage transfer = page.enterTransferPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.addressBook.click();
         transfer.firstCell.click();
         transfer.goToSecondPage();
         Assert.assertTrue(isElementExist("TRX"));
+        Assert.assertTrue(isElementExist(avNumber));
     }
 
 
@@ -201,7 +203,17 @@ public class SendTrx extends BaseTest {
     }
 
 
+     @Test(alwaysRun = true)
+     public void test014_AmountTotal() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         TrxPage page = asset.enterTrxPage();
+         String avNumber = page.leftAmountLabel.getText();
+         String fzNumber = page.rightAmountLabel.getText();
+         String totalNumber = page.trxTotal_text.getText();
+         Assert.assertEquals(Double.parseDouble(removeSymbolNoDot(totalNumber)),Double.parseDouble(removeSymbolNoDot(fzNumber))+Double.parseDouble(removeSymbolNoDot(avNumber)));
 
+
+     }
 
 
 }
