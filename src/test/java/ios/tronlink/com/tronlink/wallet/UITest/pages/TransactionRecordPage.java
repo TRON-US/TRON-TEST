@@ -25,14 +25,7 @@ public class TransactionRecordPage extends AbstractPage {
     @FindBy(name = "headerLabel")
     public WebElement headerLabel_text;
 
-    public Boolean isElementExist(String name){
-        try {
-            log("找到元素: " + driver.findElementById(name).getText());
-            return  true;
-        }catch (Exception e){
-            return false;
-        }
-    }
+
 
 
 

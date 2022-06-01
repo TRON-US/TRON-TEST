@@ -22,6 +22,15 @@ public class SettingPage extends AbstractPage {
     @FindBy(name = "设置")
     public WebElement title;
 
+    @FindBy(name = "切换节点")
+    public WebElement nodeEdit;
+
+    public void enterNodePage() throws Exception{
+        Helper.swipScreenLitter(driver);
+        TimeUnit.SECONDS.sleep(3);
+        nodeEdit.click();
+    }
+
     @FindBy(name = "语言")
     public WebElement languane_btn;
 
@@ -159,11 +168,11 @@ public class SettingPage extends AbstractPage {
 
 
 
+@FindBy(name = "添加自定义节点")
+public WebElement nodeAdd_btn;
 
     public NodeSetPage enterNodeSetPage() throws Exception {
-        waiteTime();
-        node_btn.click();
-        waiteTime();
+        nodeAdd_btn.click();
         return new NodeSetPage(driver);
     }
 

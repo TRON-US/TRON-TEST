@@ -122,22 +122,24 @@ public class NodeSetHelperPage extends AbstractPage {
     }
     //
 
-    public boolean ipwrong()throws Exception{
+    @FindBy(name = "errorStr")
+    public WebElement errorStr;
+    public String ipwrong()throws Exception{
         waiteTime();
         addNewNodeBtn.click();
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys("192");
         closeKeyBoard();
-        return  driver.findElementById("errorStr").getText().contains("请输入正确的 IP 格式");
+        return errorStr.getText();
     }
 
-    public boolean portwrong()throws Exception{
+    public String portwrong()throws Exception{
         waiteTime();
         addNewNodeBtn.click();
         waiteTime();
         driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys("65555");
         closeKeyBoard();
-        return  driver.findElementById("errorStr").getText().contains("请输入正确的端口格式");
+        return errorStr.getText();
     }
 
     //ic arrow drop

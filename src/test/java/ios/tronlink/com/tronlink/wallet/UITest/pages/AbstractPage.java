@@ -135,6 +135,37 @@ public class AbstractPage {
         action.press(PointOption.point(x+20,y+14)).release().perform();
     }
 
+    public  boolean isElementExist( String name) {
 
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            driver.findElementByName(name);
+            System.out.println("IsFindByName: "+name);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            try {
+                driver.findElementById(name);
+                System.out.println("IsFindById: "+name);
+                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                return  true;
+            }catch (org.openqa.selenium.NoSuchElementException eex){
+                try {
+                    if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
+                        System.out.println("IsFindByBtn: "+name);
+                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                        return  true;
+                    }else {
+                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                        return  false;
+                    }
+                }catch (org.openqa.selenium.NoSuchElementException e){
+                    System.out.println("NotFound: "+name);
+                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                    return  false;
+                }
+            }
+        }
+    }
 
 }
