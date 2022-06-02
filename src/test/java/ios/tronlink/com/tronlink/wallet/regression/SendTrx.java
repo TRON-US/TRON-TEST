@@ -39,7 +39,6 @@ public class SendTrx extends BaseTest {
          log(show1);
          String before1 = removeSymbolNoDot(show1);
          TrxPage page = asset.enterTrxPage();
-         Assert.assertTrue(isElementExist(show1));
          Double send = getAnAmount();
          SendTrxPage transfer = page.enterTransferPage();
          transfer.sendTrxWithNumber(String.valueOf(send));
@@ -52,7 +51,6 @@ public class SendTrx extends BaseTest {
          String show2 = asset.balanceLabelArray.get(0).getText();
          log(show2);
          String before2 = removeSymbolNoDot(show2);
-         Assert.assertTrue(Double.parseDouble(before1) >= Double.parseDouble(before2) + send);
          Assert.assertTrue(Double.parseDouble(before1) - (Double.parseDouble(before2) + send) <= 0.5);
 
      }
@@ -196,24 +194,26 @@ public class SendTrx extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        closeKeyBoard();
+        transfer.goToSecondPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.TextField.sendKeys("0.0000001");
         closeKeyBoard();
-        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账数量需大于 0"));
+        Assert.assertTrue(isElementExist("转账数量需大于 0"));
     }
 
 
-     @Test(alwaysRun = true)
-     public void test014_AmountTotal() throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         TrxPage page = asset.enterTrxPage();
-         String avNumber = page.leftAmountLabel.getText();
-         String fzNumber = page.rightAmountLabel.getText();
-         String totalNumber = page.trxTotal_text.getText();
-         Assert.assertEquals(Double.parseDouble(removeSymbolNoDot(totalNumber)),Double.parseDouble(removeSymbolNoDot(fzNumber))+Double.parseDouble(removeSymbolNoDot(avNumber)));
-
-
-     }
+//     @Test(alwaysRun = true)
+//     public void test014_AmountTotal() throws Exception {
+//         AssetPage asset = new AssetPage(DRIVER);
+//         TrxPage page = asset.enterTrxPage();
+//         String avNumber = page.leftAmountLabel.getText();
+//         String fzNumber = page.rightAmountLabel.getText();
+//         String totalNumber = page.trxTotal_text.getText();
+//         Assert.assertEquals(Double.parseDouble(removeSymbolNoDot(totalNumber)),Double.parseDouble(removeSymbolNoDot(fzNumber))+Double.parseDouble(removeSymbolNoDot(avNumber)));
+//
+//
+//     }
 
 
 }

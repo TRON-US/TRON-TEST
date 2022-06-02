@@ -385,6 +385,8 @@ public class SendTrxPage extends AbstractPage {
 
     public void goToSecondPage(){
         nextOne.click();
+//        driver.findElementByIosNsPredicate("label == \"下一步\" AND name == \"下一步\" AND type == \"XCUIElementTypeButton\"").click();
+
     }
 
     public void sendButtonClick(){
