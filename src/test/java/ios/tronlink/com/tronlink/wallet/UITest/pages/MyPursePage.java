@@ -30,6 +30,15 @@ public class MyPursePage extends AssetPage {
 
     //WalletManageMenuView  menu 的UICollectionView  里面的内容对应的id 为 ManageViewCell
 
+    @FindBy(name = "多重签名交易")
+    public WebElement multiSignBtn;
+
+    public MultiSignRecodPage enterMultiSignRecordView() throws Exception {
+        multiSignBtn.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new MultiSignRecodPage(driver);
+    }
+
 
     @FindBy(id = "carouselView")
     public  WebElement carouselView;

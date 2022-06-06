@@ -2,7 +2,7 @@ package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
-import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -122,7 +122,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.confirmDeposit().click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(isElementExist("1 票"));
-        frozen.comfirm_btn().click();
+        frozen.confirm_btn().click();
         frozen.frozenInputPassword();
         Assert.assertTrue(isElementExist("质押成功"));
         Assert.assertTrue(isElementExist("去投票获取收益"));
@@ -145,7 +145,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.confirmDeposit().click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(isElementExist("1 票"));
-        frozen.comfirm_btn().click();
+        frozen.confirm_btn().click();
         frozen.frozenInputPassword();
         Assert.assertTrue(isElementExist("质押成功"));
         Assert.assertTrue(isElementExist("去投票获取收益"));

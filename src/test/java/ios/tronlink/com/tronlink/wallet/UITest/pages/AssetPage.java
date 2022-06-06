@@ -460,8 +460,7 @@ public class AssetPage extends AbstractPage {
     }
 
     public MultiSignRecodPage enterMultiSignRecordView() throws Exception {
-        TimeUnit.SECONDS.sleep(2);
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         gotoDetailBtn.click();
         TimeUnit.SECONDS.sleep(3);
         return new MultiSignRecodPage(driver);

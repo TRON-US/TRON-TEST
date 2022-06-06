@@ -40,11 +40,13 @@ public class MultiSignRecodPage extends AbstractPage {
     @FindBy(id = "failedcell")
     public List<WebElement> failedcells;
 
-    @FindBy(id = "waitingCell")
-    public List<WebElement> waitingCells;
+
 
     @FindBy(id = "signBtn")
     public List<WebElement> signBtns;
+
+    @FindBy(id = "signBtn")
+    public WebElement signBtn;
 
     @FindBy(id = "copyS")
     public List<WebElement> copySend_btn;
@@ -142,7 +144,7 @@ public class MultiSignRecodPage extends AbstractPage {
     public boolean signWrongPass() throws Exception {
         waiteTime();
         signBtns.get(0).click();
-        waiteTime();
+        confirm_btn().click();
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         password_input.sendKeys("Test000");
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'").click();

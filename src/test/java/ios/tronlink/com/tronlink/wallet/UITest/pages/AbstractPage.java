@@ -32,18 +32,44 @@ public class AbstractPage {
     public WebElement queding_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确定'");
     }
-    public WebElement comfirm_btn(){
+    public WebElement confirm_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
     public WebElement sendAction_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '发送'");
     }
 
+    public WebElement getConfirm_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '完成'");
+    }
+
+    @FindBy(id = "waitingCell")
+    public List<WebElement> waitingCells;
+
+    @FindBy(name = "typeLabel")
+    public WebElement typeLabel;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"下一步\"]")
+    public WebElement nextBtn;
+
+    @FindBy(className = "XCUIElementTypeCell")
+    public WebElement getFirstCell;
+
+
+    @FindBy(className = "XCUIElementTypeSecureTextField")
+    public WebElement checkPasswotd_input;
+
     @FindBy(id = "black path")
     public WebElement blackBackNavBtn;
 
     public void  navBack(){
         blackBackNavBtn.click();
+    }
+
+    public void passwordInputFinish() throws Exception{
+        checkPasswotd_input.sendKeys("Test0001");
+        getConfirm_btn().click();
+        TimeUnit.SECONDS.sleep(7);
     }
 
     public boolean iosToast(String text){

@@ -34,6 +34,11 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         }catch (Exception e){}
     }
 
+    public void multiSignFirst() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        getFirstCell.click();
+        nextBtn.click();
+    }
 
 
     @FindBy(id = "resource_type_bandwidth_btn")
@@ -188,17 +193,16 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
+
+
     public WebElement getfreezenBtnPopView(){
 
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeStaticText' AND name = '解冻'");
 
     }
 
-    public WebElement getDirectionFzUfz_btn(){
-        return  driver.findElementsById("resource_switch_btn").get(1);
-//        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结' OR name = '解冻'");
-//        return list.get(0);
-    }
+
+
     public WebElement getFreeze_btn(){
         return  driver.findElementByIosNsPredicate("label == \"下一步\" AND name == \"下一步\" AND type == \"XCUIElementTypeButton\"");
     }
@@ -224,9 +228,15 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return new DetailsAndRulesPage(driver);
     }
 
+    @FindBy(name = "多重签名质押")
+    public WebElement multiSignBtn;
+
+    public void multiSignView(){
+        multiSignBtn.click();
+    }
     public boolean multiSignBtnIsShow(){
         try {
-            driver.findElementById("多重签名");
+            driver.findElementById("多重签名质押");
             return true;
         }catch (Exception e){
             return false;

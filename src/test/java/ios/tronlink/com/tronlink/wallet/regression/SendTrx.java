@@ -5,8 +5,6 @@ import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
-import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -166,7 +164,7 @@ public class SendTrx extends BaseTest {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendAllTrx("max");
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(transfer.findsend_btn().isEnabled());
+        Assert.assertTrue(transfer.findSend_btn().isEnabled());
     }
 
 

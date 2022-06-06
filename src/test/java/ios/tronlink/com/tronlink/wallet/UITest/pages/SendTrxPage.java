@@ -180,7 +180,7 @@ public class SendTrxPage extends AbstractPage {
         Helper.swipScreen(driver);
     }
 
-    public WebElement findsend_btn(){
+    public WebElement findSend_btn(){
         WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '转账'");
         return element;
     }
@@ -303,15 +303,74 @@ public class SendTrxPage extends AbstractPage {
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(1);
     }
-    public boolean overstepAuthority(String addr) throws Exception{
-        enterSendTextField(addr);
-        try{
-            driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").getText();
-            return true;
-        }catch (Exception e){
-            return  false;
-        }
+
+    @FindBy(name = "多重签名转账")
+    public WebElement multiSignBtn;
+
+
+    public void overstepAuthority(String address) throws Exception{
+        multiSignBtn.click();
+        TimeUnit.SECONDS.sleep(2);
+        enterSendTextField(address);
+
     }
+
+
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeImage[2]")
+    public WebElement searchCoin;
+
+    @FindBy(id = "ID 1000002")
+    public WebElement trc10token;
+
+    @FindBy(id = "TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71")
+    public WebElement trc20token;
+
+    public void inputTRC10AndSendAmount(String amount)throws Exception{
+        searchCoin.click();
+        TimeUnit.SECONDS.sleep(3);
+        TextField.sendKeys("tronlink_token");
+        closeKeyBoard();
+        trc10token.click();
+        TextField.sendKeys(amount);
+        closeKeyBoard();
+        findSend_btn().click();
+        TimeUnit.SECONDS.sleep(4);
+    }
+
+    public void inputTRC20AndSendAmount(String amount)throws Exception{
+        searchCoin.click();
+        TimeUnit.SECONDS.sleep(3);
+        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
+        closeKeyBoard();
+        trc20token.click();
+        TextField.sendKeys(amount);
+        closeKeyBoard();
+        findSend_btn().click();
+        TimeUnit.SECONDS.sleep(4);
+    }
+
+    public void sendMultiSignStepTwo() throws Exception{
+        multiSignBtn.click();
+        TimeUnit.SECONDS.sleep(2);
+        getFirstCell.click();
+        nextBtn.click();
+        TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        closeKeyBoard();
+        nextBtn.click();
+    }
+
+    public void sendTrxMultiSignToConfirm() throws Exception{
+        sendMultiSignStepTwo();
+        TextField.sendKeys("1.123");
+        closeKeyBoard();
+        findSend_btn().click();
+        TimeUnit.SECONDS.sleep(4);
+    }
+
+//    public void confirmAction(){
+//
+//    }
 
     public boolean multiSignUIChanged(String addr) throws Exception{
         enterSendTextField(addr);
@@ -397,6 +456,9 @@ public class SendTrxPage extends AbstractPage {
         driver.findElementByIosNsPredicate("label == \"确认\" AND name == \"确认\" AND type == \"XCUIElementTypeButton\"").click();
     }
 
+    @FindBy(id = "sendAddress")
+    public WebElement sendAddress;
+
     public TrxPage sendTrxWithNumber(String number) throws Exception{
 
         inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
@@ -445,6 +507,7 @@ public class SendTrxPage extends AbstractPage {
         return new QRCodePage(driver);
     }
 
+    //only send
     public TrxPage sendTrx10WithNumber(String number) throws Exception{
         waiteTime();
         textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
@@ -467,6 +530,7 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(4);
         return new TrxPage(driver);
     }
+
 
     public TrxPage sendTrx20WithNumber(String number) throws Exception{
         waiteTime();

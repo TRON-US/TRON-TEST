@@ -106,7 +106,7 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
         waiteTime(8);
-        comfirm_btn().click();
+        confirm_btn().click();
         waiteTime(4);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
@@ -123,7 +123,7 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         get_inter_btn().click();
         waiteTime(8);
-        comfirm_btn().click();
+        confirm_btn().click();
         waiteTime(4);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
@@ -141,7 +141,7 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         get_out_btn().click();
         waiteTime(8);
-        comfirm_btn().click();
+        confirm_btn().click();
         waiteTime(4);
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
@@ -159,7 +159,7 @@ public class TransferPage extends AbstractPage {
         waiteTime();
         get_out_btn().click();
         waiteTime();
-        comfirm_btn().click();
+        confirm_btn().click();
         waiteTime();
         password_input.sendKeys("Test0001");
         Helper.tapWhitePlace(driver);
