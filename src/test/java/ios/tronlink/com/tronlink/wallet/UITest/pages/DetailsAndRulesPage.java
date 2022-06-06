@@ -19,4 +19,6 @@ public class DetailsAndRulesPage extends AbstractPage {
 
 
 
+    @FindBy(name = "我知道了")
+    public WebElement iKnowButton;
 }

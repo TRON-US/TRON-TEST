@@ -50,17 +50,18 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(name = "home pop close")
     public WebElement adClose_btn;
 
-    @FindBy(name = "input_textField")
+    @FindBy(className = "XCUIElementTypeTextField")
     public WebElement inputTextField;
+
 
 
     @FindBy(name = "资源")
     public WebElement assert_title;
 
-    @FindBy(name = "freeze_btn")
+    @FindBy(name = "下一步")
     public WebElement freeze_btn;
 
-    @FindBy(id = "receive_source_address_textFiled")
+    @FindBy(className = "XCUIElementTypeTextField")
     public WebElement receivedTF;
 
 //    @FindBy(name = "解冻")
@@ -116,7 +117,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public List<WebElement> totalFreeze_btn;
 
 
-    @FindBy(id = "assets instruction")
+    @FindBy(id = "resource manager introduce")
     public WebElement detailsAndRules_btn;
 
 
@@ -167,6 +168,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public WebElement getConfirm_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '完成'");
     }
+
+    public WebElement getFinish_btn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '完成'");
+    }
+
+
     public WebElement getbandwidth_btn(){
         return driver.findElementById("resource_type_bandwidth_label");
 //        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '带宽'");
@@ -193,17 +200,24 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 //        return list.get(0);
     }
     public WebElement getFreeze_btn(){
-//        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '质押'");
-
-        return freeze_btn;
-//        List<WebElement> list = (List<WebElement>) driver.findElementsByIosNsPredicate("type='XCUIElementTypeButton' AND name = '冻结'");
-//        return list.get((list.size()-1 >0)?list.size()-1:0);
+        return  driver.findElementByIosNsPredicate("label == \"下一步\" AND name == \"下一步\" AND type == \"XCUIElementTypeButton\"");
     }
+
+    public WebElement confirmDeposit(){
+        return driver.findElementByIosNsPredicate("label == \"确认质押\" AND name == \"确认质押\" AND type == \"XCUIElementTypeButton\"");
+    }
+
+    public WebElement bandWidthTab(){
+        return driver.findElementByIosNsPredicate("label == \"带宽\" AND name == \"带宽\" AND type == \"XCUIElementTypeButton\"");
+    }
+
+    public WebElement energyTab(){
+        return driver.findElementByXPath("//XCUIElementTypeButton[@name=\"能量\"]");
+    }
+
     public DetailsAndRulesPage enterDetailsAndRulesPage() {
         try {
             detailsAndRules_btn.click();
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-            //TimeUnit.SECONDS.sleep(2);
         }catch (Exception e){
 
         }
@@ -286,6 +300,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         }
     }
 
+    public void frozenInputPassword() throws Exception{
+        checkPasswotd_input.sendKeys("Test0001");
+        getConfirm_btn().click();
+        TimeUnit.SECONDS.sleep(7);
+    }
+
     public AssetPage enterAssetPage() {
         back_btn.click();
         return new AssetPage(driver);
@@ -300,24 +320,31 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
     public void inputFrozenCount(String count) throws Exception {
-        Helper.swipScreen(driver);
-        log("begain input");
         inputTextField.sendKeys(count);
-        log("input over");
         TimeUnit.SECONDS.sleep(1);
         closeKeyBoard();
-        log("keyboard is hide");
     }
 
+    public void click100(){
+        driver.findElementByIosNsPredicate("label == \"100%\" AND name == \"100%\" AND value == \"100%\"").click();
+    }
 
+    @FindBy(id = "transfer address clear")
+    public WebElement addressClear;
 
     public void inputReceivingAddress(String address) throws Exception {
-        //Helper.swipScreen(driver);
-        Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
+        addressClear.click();
         receivedTF.sendKeys(address);
         closeKeyBoard();
 
+    }
+
+    @FindBy(className = "XCUIElementTypeImage")
+    public WebElement agreeRect;
+
+    public void agreeClick(){
+        agreeRect.click();
     }
 
     public String getAvailableTrx() {

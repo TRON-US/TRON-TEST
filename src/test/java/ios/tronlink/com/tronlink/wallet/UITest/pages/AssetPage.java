@@ -225,7 +225,6 @@ public class AssetPage extends AbstractPage {
         try {
             driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             send_btn.click();
-//            transfer_btn().click();
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {
             e.printStackTrace();
