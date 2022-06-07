@@ -234,6 +234,15 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public void multiSignView(){
         multiSignBtn.click();
     }
+
+    public WebElement multiSignDirectBtn(){
+        return driver.findElementByIosClassChain("**/XCUIElementTypeStaticText[`label == \"多重签名质押\"`][2]");
+    }
+//(   xpath
+    public void multiSignViewDirect() throws Exception{
+        TimeUnit.SECONDS.sleep(3);
+        multiSignDirectBtn().click();
+    }
     public boolean multiSignBtnIsShow(){
         try {
             driver.findElementById("多重签名质押");
@@ -328,9 +337,12 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
 
-
+    public WebElement inputTextField(){
+        return driver.findElementByIosNsPredicate("value == \"输入质押数量\"");
+    }
+//
     public void inputFrozenCount(String count) throws Exception {
-        inputTextField.sendKeys(count);
+        inputTextField().sendKeys(count);
         TimeUnit.SECONDS.sleep(1);
         closeKeyBoard();
     }

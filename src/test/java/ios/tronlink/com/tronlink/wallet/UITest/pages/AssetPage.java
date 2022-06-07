@@ -37,13 +37,13 @@ public class AssetPage extends AbstractPage {
 //        }
 //        }
 
-        try {
-            if (mutisign_closebtn.isDisplayed()) {
-                mutisign_closebtn.click();
-                System.out.println("启动后,关闭多签提示view");
-            }
-        } catch (Exception e) {
-        }
+//        try {
+//            if (mutisign_closebtn.isDisplayed()) {
+//                mutisign_closebtn.click();
+//                System.out.println("启动后,关闭多签提示view");
+//            }
+//        } catch (Exception e) {
+//        }
 
         waiteTime();
 
@@ -297,7 +297,7 @@ public class AssetPage extends AbstractPage {
 
 
     public SendTrxPage enterSendTrxPage() throws Exception {
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         send_btn.click();
         return new SendTrxPage(driver);
     }

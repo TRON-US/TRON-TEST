@@ -317,7 +317,7 @@ public class SendTrxPage extends AbstractPage {
 
 
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeImage[2]")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeButton")
     public WebElement searchCoin;
 
     @FindBy(id = "ID 1000002")
@@ -326,13 +326,16 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71")
     public WebElement trc20token;
 
+    public WebElement TextFieldSel(){
+        return  driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTextField");
+    }
     public void inputTRC10AndSendAmount(String amount)throws Exception{
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
-        TextField.sendKeys("tronlink_token");
+        TextFieldSel().sendKeys("tronlink_token");
         closeKeyBoard();
         trc10token.click();
-        TextField.sendKeys(amount);
+        TextFieldAmo().sendKeys(amount);
         closeKeyBoard();
         findSend_btn().click();
         TimeUnit.SECONDS.sleep(4);
@@ -342,12 +345,18 @@ public class SendTrxPage extends AbstractPage {
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
         TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
+        TimeUnit.SECONDS.sleep(3);
         closeKeyBoard();
         trc20token.click();
-        TextField.sendKeys(amount);
+        TextFieldAmo().sendKeys(amount);
         closeKeyBoard();
         findSend_btn().click();
         TimeUnit.SECONDS.sleep(4);
+    }
+
+
+    public WebElement TextFieldAdd(){
+        return driver.findElementByIosNsPredicate("value == \"输入接收账户地址\"");
     }
 
     public void sendMultiSignStepTwo() throws Exception{
@@ -355,14 +364,18 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         getFirstCell.click();
         nextBtn.click();
-        TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        TextFieldAdd().sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         nextBtn.click();
     }
 
+
+    public WebElement TextFieldAmo(){
+        return driver.findElementByIosClassChain("**/XCUIElementTypeTextField[`value == \"输入转账数量\"`]");
+    }
     public void sendTrxMultiSignToConfirm() throws Exception{
         sendMultiSignStepTwo();
-        TextField.sendKeys("1.123");
+        TextFieldAmo().sendKeys("1.123");
         closeKeyBoard();
         findSend_btn().click();
         TimeUnit.SECONDS.sleep(4);
