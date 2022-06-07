@@ -23,110 +23,77 @@ public class SendTrc10 extends BaseTest {
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
     }
+    @Test(alwaysRun = true)
+    public void test001_sendTrxTest() throws Exception {
 
-//    @Test(description = "SendTrc10 success test", alwaysRun = true)
-//    public void test001_sendTrc10Success() throws Exception {
-//
-//        AssetPage assetpage = new AssetPage(DRIVER);
-//        TrxPage tokenpage = assetpage.enterTrx10Page();
-//        double trc10Before = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-//
-//        SendTrxPage transfer = tokenpage.enterTransferPage();
-//        String count = random(10, 10);
-//        count = Helper.getPrettyNumber(count);
-//        log(count);
-//        successNumber = count;
-//        transfer.sendTrx10WithNumber(successNumber);
-//        TimeUnit.SECONDS.sleep(5);
-//
-//        double trc10after = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-//        System.out.println("   count:" +count + "   trc10Before:" + trc10Before + " trc10after:" + trc10after);
-//        Assert.assertTrue(trc10after + Integer.parseInt(removeSymbol(count)) <= trc10Before);
-//    }
-//
-//
-//    @Test(description = "input max send number", alwaysRun = true)
-//    public void test002_inputMaxSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc10("max");
-//        transfer.transferNow_btn.click();
-//        Assert.assertTrue(transfer.InputPasswordConfim_btn.isDisplayed());
-//    }
-//
-//
-//    @Test(description = "input min send number", alwaysRun = true)
-//    public void test003_inputMixSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc10("min");
-//        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("转账金额需大于 0"));
-//    }
-//
-//
-//    @Test(description = "input too Much trc10 send number", alwaysRun = true)
-//    public void test004_inputTooMuchSendNumber() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.sendAllTrc10("tooMuch");
-//        Assert.assertTrue(transfer.amountErrorLabel.getText().contains("余额不足"));
-//    }
-//
-//    @Test(description = "ssendaddressChanged test", alwaysRun = true)
-//    public void test005_sendaddressChanged() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        transfer.textFieldArray.get(0).sendKeys(" ");
-//        Helper.tapWhitePlace(transfer.driver);
-//        Assert.assertTrue(transfer.transferErrorLabel.getText().contains("钱包地址格式不正确"));
-//
-//    }
-//
-//
-//    @Test(description = "password error",alwaysRun = true)
-//    public void test006_passwordError() throws Exception {
-//        SendTrxPage transfer = enterToSendTrxPage();
-//        TimeUnit.SECONDS.sleep(2);
-//        transfer.textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        Helper.tapWhitePlace(transfer.driver);
-//        waiteTime();
-//        transfer.selectTokenByName("tronlink_token");
-//        transfer.textFieldArray.get(2).sendKeys("1");
-//        TimeUnit.SECONDS.sleep(2);
-//        Helper.tapWhitePlace(transfer.driver);
-//        transfer.send_btn.click();
-//        TimeUnit.SECONDS.sleep(2);
-//        transfer.transferNow_btn.click();
-//        TimeUnit.SECONDS.sleep(2);
-//        transfer.InputPasswordConfim_btn.sendKeys("forget_password");
-//        TimeUnit.SECONDS.sleep(2);
-//        transfer.broadcastButtonClick();
-//        TimeUnit.SECONDS.sleep(2);
-//        WebElement element = transfer.driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '完成'");
-//        Assert.assertTrue(element.isDisplayed());
-//    }
-//
-//
-//    @Parameters({ "address"})
-//    @Test(description = "Check OutNumberInRecord Trx10", alwaysRun = true)
-//    public void test008_CheckOutNumberInRecordTrx10(String address) throws Exception {
-//        log(successNumber);
-//        AssetPage asset = new AssetPage(DRIVER);
-//        TrxPage page = asset.enterTrx10Page();
-//        String findString = "-" + successNumber;
-//        log(findString);
-//        Assert.assertTrue(page.enterNumberRecordPage(findString));
-//        Assert.assertTrue(Helper.isElementExist(page.driver,address));
-//    }
-//
-//
-//
-//    @Test(enabled = true, description = "TRC10 transfer history record test", alwaysRun = true)
-//    public void test009_transactionRecordInMePage() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage mine = asset.enterMinePage();
-//        TransactionRecordPage transaction = mine.enterTransactionRecordPage();
-//        log("find eleTitle: " + "转账数量：" + successNumber);
-//        Assert.assertTrue( Helper.isElementExist(transaction.driver,"转账数量："+successNumber));
-//        Assert.assertTrue( Helper.isElementExist(transaction.driver,"TRC10 通证转账"));
-//    }
-//
+        AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
+        SendTrxPage transfer = asset.enterSendTrxPage();
+        Double send = getAnAmount();
+        Double before = transfer.sendTrc10WithNumber(String.valueOf(send));
+        System.out.println(before);
+        TimeUnit.SECONDS.sleep(8);
+        Assert.assertTrue(isElementExist("交易已上链"));
+        transfer.finnish();
+        asset.enterSendTrxPage();
+        transfer.inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        transfer.goToSecondPage();
+        transfer.selectTrc10nile();
+        Double after = Double.parseDouble(removeSymbol(transfer.tokenBalance.getText())) ;
+        System.out.println(after);
+        Assert.assertEquals(before - send,after);
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test002_sendTrxHistoryTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
+        SendTrxPage transfer = asset.enterSendTrxPage();
+        Double send = getAnAmount();
+        String sendStr = String.valueOf(send);
+        Double before = transfer.sendTrc10WithNumber(String.valueOf(send));
+        System.out.println(before);
+        TimeUnit.SECONDS.sleep(8);
+        transfer.detail();
+        TimeUnit.SECONDS.sleep(3);
+        String recodeAmount = "-" + sendStr + " tronlink_token";
+        Assert.assertTrue(isElementExist(recodeAmount));
+        Assert.assertTrue(isElementExist("TRC10 通证转账"));
+        Assert.assertTrue(isElementExist("交易成功"));
+        Assert.assertTrue(isElementExist("查看详细数据"));
+        Assert.assertTrue(isElementExist("transaction shareIcon"));
+        Assert.assertTrue(isElementExist("查询链接"));
+        Assert.assertTrue(isElementExist("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq"));
+
+    }
+
+
+    @Test(description = "input max send number",alwaysRun = true)
+    public void test003_inputMaxSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrc10("max");
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(transfer.findSend_btn().isEnabled());
+    }
+
+
+    @Test(description = "input too Much TRX send number",alwaysRun = true)
+    public void test004_inputTooMuchSendNumber() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrc10("tooMuch");
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(isElementExist("转账数量不可大于可用数量。"));
+    }
+
+    @Test(description = "Receiving Minimum Extra Trx",alwaysRun = true)
+    public void test005_sendMinimumTrx() throws Exception {
+        SendTrxPage transfer = enterToSendTrxPage();
+        transfer.sendAllTrc10("min");
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(isElementExist("转账数量需大于 0"));
+    }
+
 
 
 }

@@ -153,16 +153,7 @@ public class SendTrxPage extends AbstractPage {
         driver.findElementsByName("TRX").get(1).click();
     }
 
-    public void selectTokenByName(String name) throws Exception{
-        inputTokenName(name);
-        TimeUnit.SECONDS.sleep(2);
-        int size = driver.findElementsByName(name).size();
-        driver.findElementsByName(name).get(size-1).click();
-        if(Helper.isElementExist(driver,"ic search")){
-            driver.findElementsByName(name).get(0).click();
-        }
 
-    }
 
     public void inputTokenName(String name) throws Exception {
         waiteTime();
@@ -201,17 +192,39 @@ public class SendTrxPage extends AbstractPage {
 
 
     public void sendAllTrx(String value) throws Exception {
+        sendAllNormal(value,"trx");
+    }
+
+    public void sendAllTrc10(String value) throws Exception {
+        sendAllNormal(value,"trc10");
+    }
+
+    public void sendAllTrc20(String value) throws Exception {
+        sendAllNormal(value,"trc20");
+    }
+
+    public void sendAllNormal(String value,String type) throws Exception{
         waiteTime();
         TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         goToSecondPage();
-        //calculate trx
+        switch (type){
+            case "trc10":
+                selectTrc10nile();
+                break;
+            case  "trc20":
+                selectTrc20nile();
+                break;
+            default:
+                System.out.println("trx");
+                break;
+        }
         switch(value){
             case "max":
                 tvMax_btn.click();
                 break;
             case "min":
-                TextField.sendKeys("0");
+                TextField.sendKeys("0.0000001");
                 closeKeyBoard();
                 break;
             case "tooMuch":
@@ -222,63 +235,6 @@ public class SendTrxPage extends AbstractPage {
         }
         TimeUnit.SECONDS.sleep(3);
     }
-
-    public void sendAllTrc10(String value) throws Exception {
-        waiteTime();
-        textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        Helper.tapWhitePlace(driver);
-        waiteTime();
-        selectTokenByName("tronlink_token");
-        waiteTime();
-        TimeUnit.SECONDS.sleep(4);
-        waiteTime();
-        //calculate trx
-        switch(value){
-            case "max":
-                tvMax_btn.click();
-                break;
-            case "min":
-                textFieldArray.get(2).sendKeys("0");
-                break;
-            case "tooMuch":
-                textFieldArray.get(2).sendKeys("9999999999");
-                break;
-        }
-        Helper.tapWhitePlace(driver);
-        TimeUnit.SECONDS.sleep(3);
-        send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-
-    }
-
-    public void sendAllTrc20(String value) throws Exception {
-        waiteTime();
-        textFieldArray.get(1).sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        Helper.tapWhitePlace(driver);
-        waiteTime();
-        selectToken20TRX();
-        waiteTime();
-        //calculate trx
-        switch(value){
-            case "max":
-
-                tvMax_btn.click();
-                break;
-            case "min":
-                textFieldArray.get(2).sendKeys("0");
-                break;
-            case "tooMuch":
-                textFieldArray.get(2).sendKeys("9999999999");
-                break;
-        }
-        Helper.tapWhitePlace(driver);
-        waiteTime();
-        send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-
-    }
-
-
 
     public void enterSendTextField(String addr) throws Exception {
         waiteTime();
@@ -329,29 +285,66 @@ public class SendTrxPage extends AbstractPage {
     public WebElement TextFieldSel(){
         return  driver.findElementByXPath("//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTextField");
     }
-    public void inputTRC10AndSendAmount(String amount)throws Exception{
+
+    public void selectTokenByName(String name) throws Exception{
+        searchCoin.click();
+        TimeUnit.SECONDS.sleep(3);
+        TextFieldSel().sendKeys(name);
+        closeKeyBoard();
+        driver.findElementByName(name).click();
+        trc10token.click();
+
+    }
+
+    public void selectTrc10nile() throws Exception{
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
         TextFieldSel().sendKeys("tronlink_token");
         closeKeyBoard();
         trc10token.click();
-        TextFieldAmo().sendKeys(amount);
-        closeKeyBoard();
-        findSend_btn().click();
-        TimeUnit.SECONDS.sleep(4);
     }
 
-    public void inputTRC20AndSendAmount(String amount)throws Exception{
+    public void selectTrc20nile() throws Exception{
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
         TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
         trc20token.click();
+    }
+
+
+    @FindBy(id = "tokenBalance")
+    public WebElement tokenBalance;
+
+    public Double inputTRC10AndSendAmount(String amount)throws Exception{
+        searchCoin.click();
+        TimeUnit.SECONDS.sleep(3);
+        TextFieldSel().sendKeys("tronlink_token");
+        closeKeyBoard();
+        trc10token.click();
+        Double value = Double.parseDouble(removeSymbol(tokenBalance.getText())) ;
         TextFieldAmo().sendKeys(amount);
         closeKeyBoard();
         findSend_btn().click();
         TimeUnit.SECONDS.sleep(4);
+        return value;
+    }
+
+    public Double inputTRC20AndSendAmount(String amount)throws Exception{
+        searchCoin.click();
+        TimeUnit.SECONDS.sleep(3);
+        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
+        closeKeyBoard();
+        TimeUnit.SECONDS.sleep(3);
+        trc20token.click();
+        Double value = Double.parseDouble(removeSymbol(tokenBalance.getText())) ;
+        TextFieldAmo().sendKeys(amount);
+        closeKeyBoard();
+        findSend_btn().click();
+        TimeUnit.SECONDS.sleep(4);
+        return value;
+
     }
 
 
@@ -486,25 +479,31 @@ public class SendTrxPage extends AbstractPage {
         return new TrxPage(driver);
     }
 
-    public TrxPage sendTrzWithNumber(String number,String Addr) throws Exception{
+    public Double sendTrc10WithNumber(String number) throws Exception{
 
-        waiteTime();
-        textFieldArray.get(1).sendKeys(Addr);
-        waiteTime();
-        log("send Number IS: " + number + "  To: " + Addr);
-        textFieldArray.get(2).sendKeys(number);
-        waiteTime();
-        TimeUnit.SECONDS.sleep(1);
-        Helper.tapWhitePlace(driver);
-        send_btn.click();
-        waiteTime(20);
-        transferNow_btn.click();
-        waiteTime();
+        inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        goToSecondPage();
+        Double value = inputTRC10AndSendAmount(number);
+        confirmPageButtonClick();
         InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
-        TimeUnit.SECONDS.sleep(15);
-        return new TrxPage(driver);
+        TimeUnit.SECONDS.sleep(4);
+        return value;
     }
+
+    public Double sendTrc20WithNumber(String number) throws Exception{
+
+        inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        goToSecondPage();
+        Double value = inputTRC20AndSendAmount(number);
+        confirmPageButtonClick();
+        InputPasswordConfirm_btn.sendKeys("Test0001");
+        broadcastButtonClick();
+        TimeUnit.SECONDS.sleep(4);
+        return value;
+    }
+
+
     public QRCodePage sendTrzWatchWithNumber(String number,String Addr) throws Exception{
 
         waiteTime();

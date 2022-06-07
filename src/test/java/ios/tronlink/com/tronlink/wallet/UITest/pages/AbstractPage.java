@@ -43,6 +43,15 @@ public class AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '完成'");
     }
 
+    public String removeSymbol(String arg) {
+        String value = arg;
+        if (arg.contains(",")) {
+            value = arg.replace(",", "");
+        }
+        return value;
+    }
+
+
     @FindBy(id = "waitingCell")
     public List<WebElement> waitingCells;
 
