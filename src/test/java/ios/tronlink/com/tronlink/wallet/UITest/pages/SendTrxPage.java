@@ -345,8 +345,8 @@ public class SendTrxPage extends AbstractPage {
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
         TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
-        TimeUnit.SECONDS.sleep(3);
         closeKeyBoard();
+        TimeUnit.SECONDS.sleep(3);
         trc20token.click();
         TextFieldAmo().sendKeys(amount);
         closeKeyBoard();

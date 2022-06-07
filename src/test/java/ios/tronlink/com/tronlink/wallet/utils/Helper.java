@@ -445,6 +445,17 @@ public class Helper {
                 .moveTo(PointOption.point(width/2, height*3/5))
                 .release().perform();
     }
+    public static void slideScreenSmall(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*7/10))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/5))
+                .release().perform();
+    }
 
     public static void swipRefreshScreen(IOSDriver<?> driver){
         IOSTouchAction action = new IOSTouchAction(driver);
