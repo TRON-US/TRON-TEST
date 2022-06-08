@@ -65,7 +65,9 @@ public class SettingTest extends BaseTest {
         mine.changeCurrency("cny");
         Assert.assertTrue(isElementExist("CNY"));
         mine.navBack();
+//        mine.enterAssetPage();
         DriveReStart(bundleId);
+        TimeUnit.SECONDS.sleep(10);
         Assert.assertTrue(asset.assetsLabel.getText().contains("¥"));
         Assert.assertTrue(asset.cashLabel.getText().contains("¥"));
         asset.enterMinePage();
