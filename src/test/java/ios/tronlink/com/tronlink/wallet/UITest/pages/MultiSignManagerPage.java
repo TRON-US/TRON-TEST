@@ -241,7 +241,7 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public void addPermission(String name) throws Exception {
         System.out.println("into addPermission");
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         addauthorBtn.click();
         System.out.println("添加权限 clicked");
         waiteTime();
@@ -282,7 +282,7 @@ public class MultiSignManagerPage extends AbstractPage {
 
     public void modifyPermission() throws Exception {
         System.out.println("into modifyPermission");
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         haveActivedClickFunc();
         System.out.println("添加权限 clicked");
         waiteTime();
@@ -298,11 +298,11 @@ public class MultiSignManagerPage extends AbstractPage {
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
         TimeUnit.SECONDS.sleep(3);
-        System.out.println("进入确定流程...");
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(3);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(10);
+        System.out.println("进入确定流程...");
+        driver.findElementByXPath("(//XCUIElementTypeButton[@name=\"确认\"])[1]").click();
+        TimeUnit.SECONDS.sleep(2);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
@@ -311,7 +311,7 @@ public class MultiSignManagerPage extends AbstractPage {
 
 
     public void haveActivedClickFunc() throws Exception{
-        waiteTime();
+        Helper.swipScreenLitter(driver);
         System.out.println("Location:\n" + havedActive.getLocation()+"\nLocation\n Rect IS:\n" + havedActive.getRect() + "\nRect");
         IOSTouchAction action = new IOSTouchAction(driver);
         action.tap(PointOption.point(havedActive.getLocation().x+ 10,havedActive.getLocation().y + 20)).perform();
