@@ -38,34 +38,32 @@ public class MainNetDeposit10 extends BaseTest {
         return asset;
     }
 
-
-    @Test(description = "TransferIn Success Recording",alwaysRun = true)
+    @Test(groups = {"P0"},description = "TransferIn Success Recording",alwaysRun = true)
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
-        double trc10before= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        TimeUnit.SECONDS.sleep(1);
+        Double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
+        System.out.println( " trcbefore：  " + trcbefore  );
         TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
         successNumber = count;
+        System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
-        AssetPage assetPage = trx.enterAssetPage();
-        trx =  assetPage.enterTrx10Page();
-        double trc10after = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
-        System.out.println(count   + "   " + trc10before  + " " + trc10after);
-        Assert.assertTrue(trc10after + Double.parseDouble(count) <= trc10before );
-
+        Helper.refreshWalletScreen(DRIVER);
+        Double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
+        System.out.println( " trcafter：  " + trcafter );
+        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore );
     }
 
-
-    @Test(description = "Check TransferIn Trc10 Count",alwaysRun = true)
-    public void test002_checkTransferInTrc10() throws Exception {
+    @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
+    public void test002_checkTransferInTrx() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
         Assert.assertTrue(Helper.contentTexts(transferIn.textArray,"10"));
     }
-
 
 
     @Test(description = "Check TransferIn Hits",alwaysRun = true)
@@ -77,41 +75,42 @@ public class MainNetDeposit10 extends BaseTest {
     }
 
 
-
     @Test(description = "Check TransferIn Fee",alwaysRun = true)
     public void test004_checkTransferInFee() throws Exception {
         TrxPage trx = enterTrxPage();
         TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
         String val = transferIn.getvalueofBandwidthText();
-        int count = Integer.parseInt(removeSymbol(val));
-        Assert.assertTrue(50 <= count && count <= 500);
+        int count = Integer.parseInt(removeSymbolNoDot(val));
+        System.out.println("-------:----");
+        Assert.assertTrue(Double.parseDouble(transferIn.getFeeText()) > 0 || 200 <= count && count <= 500  );
     }
 
 
 
-    @Test(description = "Check Available Balance",alwaysRun = true)
-    public void test005_checkAvailableBalance() throws Exception {
-
+    @Test(description = "input min send number",alwaysRun = true)
+    public void test005_inputMixSendNumber() throws Exception {
         TrxPage trx = enterTrxPage();
-        int trxCount = Integer.parseInt(removeSymbol(trx.trxTotal_text.getText()));
-        TransferPage transferIn = trx.enterTransferInPage();
-        int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
-        Assert.assertTrue(trxCount == availableBalance);
+        trx.enterTransferInPage();
+        waiteTime();
+        trx.textField.click();
+        trx.textField.sendKeys("0");
+        closeKeyBoard();
+        Assert.assertTrue(trx.amountErrorLabel.getText().contains("转入金额需大于 0"));
+
     }
 
-
-
-
-    @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
-    public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
+    @Test(groups = {"P0"},description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
+    public void test006_CheckOutNumberInRecordDepositTrx() throws Exception {
         log("successNumber:"+successNumber);
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page = asset.enterTrx10Page();
-        String findString = "-" + successNumber;
-        Assert.assertTrue(page.enterDepositNumberRecordPage(findString));
+        TrxPage page = enterTrxPage();
+        Assert.assertTrue(page.enterDepositTrc10NumberRecordPage(successNumber));
+        Assert.assertTrue(isElementExist("触发智能合约"));
+        Assert.assertTrue(isElementExist("查看详细数据"));
+        Assert.assertTrue(isElementExist("触发合约"));
 
     }
+
 
 
 }

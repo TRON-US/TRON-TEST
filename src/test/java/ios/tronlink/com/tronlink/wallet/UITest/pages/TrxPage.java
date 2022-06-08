@@ -236,4 +236,12 @@ public WebElement shieldedDetailBtn;
         return isElementExist("-" + record + " TRX");
 
     }
+
+    public boolean enterDepositTrc10NumberRecordPage(String record) throws Exception{
+        sendOutTab().click();
+        Helper.TapLocationName(driver,"-"+record);
+        log("\n have click : -" + record);
+        return isElementExist("-" + record + " tronlink_token");
+
+    }
 }

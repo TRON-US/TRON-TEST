@@ -84,7 +84,7 @@ public class MainNetDeposit extends BaseTest {
         String val = transferIn.getvalueofBandwidthText();
         int count = Integer.parseInt(removeSymbolNoDot(val));
         System.out.println("-------:----");
-        Assert.assertTrue(200 <= count && count <= 500);
+        Assert.assertTrue(Double.parseDouble(transferIn.getFeeText()) > 0 || 200 <= count && count <= 500);
     }
 
 
@@ -119,8 +119,7 @@ public class MainNetDeposit extends BaseTest {
     @Test(groups = {"P0"},description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
         log("successNumber:"+successNumber);
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page = asset.enterTrxPage();
+        TrxPage page = enterTrxPage();
         Assert.assertTrue(page.enterDepositNumberRecordPage(successNumber));
         Assert.assertTrue(isElementExist("触发智能合约"));
         Assert.assertTrue(isElementExist("查看详细数据"));

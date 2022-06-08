@@ -95,7 +95,11 @@ public class TransferPage extends AbstractPage {
         return  val;
     }
 
-
+    @FindBy(id = "chargeLabel")
+    public WebElement chargeLabel;
+    public String getFeeText(){
+        return  chargeLabel.getText().split(" ")[0];
+    }
 
 
 
@@ -111,7 +115,7 @@ public class TransferPage extends AbstractPage {
         password_input.sendKeys("Test0001");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
-        get_finish_btn().click();
+//        get_finish_btn().click();
         TimeUnit.SECONDS.sleep(8);
         return new TrxPage(driver);
     }
@@ -127,7 +131,7 @@ public class TransferPage extends AbstractPage {
         waiteTime(4);
         password_input.sendKeys("Test0001");
         closeKeyBoard();
-        get_finish_btn().click();
+//        get_finish_btn().click();
         TimeUnit.SECONDS.sleep(8);
         return new TrxPage(driver);
     }

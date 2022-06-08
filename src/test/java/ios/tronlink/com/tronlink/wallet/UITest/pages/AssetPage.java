@@ -362,7 +362,7 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrx20Page() throws Exception {
         Helper.swipScreen(driver);
-
+        TimeUnit.SECONDS.sleep(2);
         for (int i = 1; i < nameLabels.size(); i++) {
             if (nameLabels.get(i).getText().contains("TRX")){
                 System.out.println("从第" + i + "个找到了 TRX20币");
