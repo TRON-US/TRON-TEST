@@ -33,7 +33,7 @@ public class PrivateKeySetPwdAgainPage extends AbstractPage {
 
     public AssetPage enterAssetPage(String pwdAgain) throws Exception {
         pwd_input.sendKeys(pwdAgain);
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         getComplish_btn().click();
         TimeUnit.SECONDS.sleep(1);
         return new AssetPage(driver);

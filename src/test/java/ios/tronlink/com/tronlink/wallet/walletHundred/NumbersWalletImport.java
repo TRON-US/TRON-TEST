@@ -91,7 +91,7 @@ public class NumbersWalletImport extends BaseTest {
 //            PrivateKeySetPwdAgainPage setPwdAgain = setPwd.enterPrivateKeySetPwdAgainPage("Test0001");
 //            TimeUnit.SECONDS.sleep(1);
 //            setPwdAgain.pwd_input.sendKeys("Test0001");
-//            Helper.tapWhitePlace(DRIVER);
+//            closeKeyBoard();
 //            setPwdAgain.getComplish_btn().click();
 //            TimeUnit.SECONDS.sleep(4);
 //

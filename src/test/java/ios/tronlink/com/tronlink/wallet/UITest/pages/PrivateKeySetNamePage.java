@@ -53,7 +53,7 @@ public class PrivateKeySetNamePage extends AbstractPage {
     public PrivateKeySetPwdPage enterPrivateKeySetPwdPage(String name) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         name_input.sendKeys(name);
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         getNext_btn().click();
         TimeUnit.SECONDS.sleep(2);

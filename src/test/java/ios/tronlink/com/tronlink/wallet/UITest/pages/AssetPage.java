@@ -145,6 +145,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "assetsLabel")
     public WebElement assetsLabel;
 
+    @FindBy(name = "balanceLabel")
+    public WebElement balanceLabel;
+
+    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"balanceLabel\"])[1]")
+    public WebElement balanceTrxAsset;
 
     @FindBy(name = "nameLabel")
     public List<WebElement> cellArray;
@@ -323,10 +328,12 @@ public class AssetPage extends AbstractPage {
     }
 
 
-
+    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"nameLabel\"])[1]")
+    public WebElement TRXCellName;
     public TrxPage enterTrxPage() throws Exception {
         waiteTime();
-        cellArray.get(0).click();
+        TRXCellName.click();
+//        cellArray.get(0).click();
         return new TrxPage(driver);
     }
     public TrxPage enterPublicTrzPage() throws Exception {
@@ -370,7 +377,7 @@ public class AssetPage extends AbstractPage {
 
     public String getTrxCount() throws Exception {
         waiteTime();
-        String trxCount =  trxValue.getText().split(" ")[0];
+        String trxCount =  balanceTrxAsset.getText();
         return trxCount;
     }
 

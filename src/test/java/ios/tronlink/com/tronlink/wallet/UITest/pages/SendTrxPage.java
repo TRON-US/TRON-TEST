@@ -531,7 +531,7 @@ public class SendTrxPage extends AbstractPage {
         textFieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         send_btn.click();
         waiteTime();
         transferNow_btn.click();
@@ -555,7 +555,7 @@ public class SendTrxPage extends AbstractPage {
         textFieldArray.get(2).sendKeys(number);
         TimeUnit.SECONDS.sleep(1);
         waiteTime();
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         send_btn.click();
         waiteTime();
         transferNow_btn.click();
@@ -588,7 +588,7 @@ public class SendTrxPage extends AbstractPage {
     public String sendMaxCoinWithType(String... cointype) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         textFieldArray.get(1).sendKeys(unActiveAddress);
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         if (cointype.length != 0) {
             selectTokenType(cointype[0]);
         }

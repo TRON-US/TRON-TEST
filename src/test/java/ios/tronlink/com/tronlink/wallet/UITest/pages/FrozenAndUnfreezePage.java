@@ -286,7 +286,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         Helper.scrollToElementUntilVisible(driver,getFreeze_btn());
         TimeUnit.SECONDS.sleep(1);
         freezeCount_input.get(0).sendKeys(count);
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         getFreeze_btn().click();
         TimeUnit.SECONDS.sleep(2);
         getfreezeNow_btn().click();

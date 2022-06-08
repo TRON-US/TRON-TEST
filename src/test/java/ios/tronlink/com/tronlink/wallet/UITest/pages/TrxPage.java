@@ -24,17 +24,13 @@ public class TrxPage extends AbstractPage {
     public WebElement leftAmountLabel;
 
     @FindBy(name = "rightAmountLabel")
-    public WebElement rightAmountLabel;
+    public WebElement freezeCount_text;
 
     @FindBy(name = "转入") ////XCUIElementTypeApplication[@name="TronLink"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]
     public List<WebElement> transferIn_btnArray;
     @FindBy(name = "转出") ////XCUIElementTypeApplication[@name="TronLink"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeButton[3]
     public List<WebElement> transferOut_btnArray;
 
-
-
-    @FindBy(name = "freezeLabel")
-    public WebElement freezeCount_text;
 
 
 
@@ -68,7 +64,7 @@ public WebElement shieldedDetailBtn;
     @FindBy(id = "transferWithdrawBtn")
     public WebElement tranferOutBtn;
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeButton[3]")
+    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"textLabel\"])[3]")
     public WebElement tranferInBtn;
 
 
@@ -226,36 +222,18 @@ public WebElement shieldedDetailBtn;
 
 
 
-    public boolean enterWithDrawNumberRecordPage(String record){
+    public boolean enterWithDrawNumberRecordPage(String record) throws Exception{
        return enterDepositNumberRecordPage(record);
     }
 
-    public boolean enterDepositNumberRecordPage(String record){
-        waiteTime();
-        log("进入token page");
-        Helper.swipeLeftScreen(driver);
-        waiteTime();
-        Helper.swipeLeftScreen(driver);
-        waiteTime();
-        Helper.swipeLeftScreen(driver);
-        waiteTime();
-        Helper.swipeLeftScreen(driver);
-        waiteTime();
-        Helper.swipeLeftScreen(driver);
-        waiteTime();
-        Helper.swipeLeftScreen(driver);
-        waiteTime();
-        Helper.TapLocationName(driver,record);
-        log("\n have click : " + record);
-        waiteTime();
-        try{
-            log("detail page number is：" + driver.findElementById("headerLabel").getText());
-        }catch (Exception e){
-            log("没有进入那条记录,再次尝试点击");
-            Helper.TapLocationName(driver,record);
-        }
-        waiteTime();
-        return  driver.findElementById("headerLabel").getText().contains(record);
+    public WebElement sendOutTab(){
+        return  driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"支出\"`][1]");
+    }
+    public boolean enterDepositNumberRecordPage(String record) throws Exception{
+        sendOutTab().click();
+        Helper.TapLocationName(driver,"-"+record);
+        log("\n have click : -" + record);
+        return isElementExist("-" + record + " TRX");
 
     }
 }

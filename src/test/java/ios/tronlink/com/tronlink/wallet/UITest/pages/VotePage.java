@@ -265,7 +265,7 @@ public class VotePage extends AbstractPage {
         Thread.sleep(3);
         System.out.println("suze:-" + all_witness_edit_text.size());
         all_witness_edit_text.get(2).sendKeys("1");
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '投票'").get(1).click();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即投票'").click();
         return driver.findElementsByName("numberLabel").get(0).getText().contains("1");
@@ -277,7 +277,7 @@ public class VotePage extends AbstractPage {
         driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = 'resetLabel'").get(0).click();
         Thread.sleep(3);
         all_witness_edit_text.get(2).sendKeys("1");
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         driver.findElementsByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '投票'").get(1).click();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '立即投票'").click();
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");

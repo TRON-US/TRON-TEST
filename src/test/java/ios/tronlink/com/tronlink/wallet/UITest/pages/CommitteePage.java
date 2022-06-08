@@ -115,7 +115,7 @@ public class CommitteePage extends AbstractPage {
         textfieldList.get(0).clear();
         textfieldList.get(0).sendKeys("");
         textfieldList.get(0).sendKeys(pro);
-        Helper.tapWhitePlace(driver);
+        closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
         TimeUnit.SECONDS.sleep(5);

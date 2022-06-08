@@ -44,7 +44,7 @@ public class MainNetDeposit extends BaseTest {
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TimeUnit.SECONDS.sleep(1);
-        double trcbefore= Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
         System.out.println( " trcbefore：  " + trcbefore  );
         TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbol(random(10,10));
@@ -53,9 +53,9 @@ public class MainNetDeposit extends BaseTest {
         System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
-        double trcafter = Double.parseDouble(removeSymbol(trx.trxTotal_text.getText()));
+        double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
         System.out.println( " trcafter：  " + trcafter );
-        Assert.assertTrue(trcafter + Double.parseDouble(count) <= trcbefore );
+        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore );
     }
 
     @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
@@ -82,28 +82,25 @@ public class MainNetDeposit extends BaseTest {
         TransferPage transferIn = trx.enterTransferInPage();
         transferIn.inputAndTapToTransfer();
         String val = transferIn.getvalueofBandwidthText();
-        int count = Integer.parseInt(removeSymbol(val));
+        int count = Integer.parseInt(removeSymbolNoDot(val));
         System.out.println("-------:----");
-        Assert.assertTrue(50 <= count && count <= 500);
+        Assert.assertTrue(200 <= count && count <= 500);
     }
 
 
 
+    //ios 有bug
     @Test(groups = {"P0"},description = "Check Available Balance",alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
-
         AssetPage asset = enterAssetPage();
-        int trxCount = Integer.parseInt(removeSymbol(asset.getTrxCount()));
+        Double trxCount = Double.parseDouble(removeSymbolNoDot(asset.getTrxCount()));
         TrxPage trx = asset.enterTrxPage();
-        int frozenCount = Integer.parseInt(removeSymbol(trx.freezeCount_text.getText()));
+        Double frozenCount = Double.parseDouble(removeSymbolNoDot(trx.freezeCount_text.getText()));
         TransferPage transferIn = trx.enterTransferInPage();
-        int availableBalance = Integer.parseInt(removeSymbol(transferIn.availableBalance_text.getText().split(" ")[1]));
+        Double availableBalance = Double.parseDouble(removeSymbolNoDot(transferIn.availableBalance_text.getText().split(" ")[1]));
         System.out.println("trxCount startCount:" + trxCount + "availableBalance:" + availableBalance  + "frozenCount:" +  frozenCount);
-        Assert.assertTrue(trxCount >= frozenCount + availableBalance);
+        Assert.assertEquals(trxCount , frozenCount + availableBalance);
     }
-
-
-
 
 
     @Test(description = "input min send number",alwaysRun = true)
@@ -114,7 +111,6 @@ public class MainNetDeposit extends BaseTest {
         trx.textField.click();
         trx.textField.sendKeys("0");
         Helper.tapWhitePlace(trx.driver);
-
         Assert.assertTrue( trx.amountErrorLabel.getText().contains("至少转入 10 TRX"));
 
     }
@@ -125,8 +121,10 @@ public class MainNetDeposit extends BaseTest {
         log("successNumber:"+successNumber);
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrxPage();
-        String findString = "-" + successNumber;
-        Assert.assertTrue(page.enterDepositNumberRecordPage(findString));
+        Assert.assertTrue(page.enterDepositNumberRecordPage(successNumber));
+        Assert.assertTrue(isElementExist("触发智能合约"));
+        Assert.assertTrue(isElementExist("查看详细数据"));
+        Assert.assertTrue(isElementExist("触发合约"));
 
     }
 
