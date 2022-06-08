@@ -23,7 +23,7 @@ public class AssetsPageTest extends BaseTest {
     public void test001_transportPage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         TransferPage transferPage = assetPage.enterTransportPage();
-        Assert.assertEquals(transferPage.title.getText(), "转账");
+        Assert.assertTrue(isElementExist("转账 (1/2)"));
 
     }
 
@@ -35,22 +35,22 @@ public class AssetsPageTest extends BaseTest {
     }
 
     @Test(description = "Assert frozenandunfreezePage test", alwaysRun = true)
-    public void test003_frozenandunfreezePage() throws Exception {
+    public void test003_frozenAndUnfreezePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         FrozenAndUnfreezePage receiptPage = assetPage.enterFrozenAndThawingPage();
-        Assert.assertEquals(receiptPage.assert_title.getText(), "资源");
+        Assert.assertTrue(isElementExist("质押 TRX  (1/2)"));
     }
 
 
 
     @Test(description = "Assert vote test", alwaysRun = true)
-    public void test004_56gotovotePage() throws Exception {
+    public void test004_56gotoVotePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         VotePage secondPage = assetPage.enterVotePage();
         Assert.assertTrue(Helper.isElementExist(secondPage.driver,"投票"));
-        secondPage.whiteBackBtn.click();
-        AddAssertPage assassetPage = assetPage.enterAddAssertPage();
-        Assert.assertTrue(Helper.isElementExist(assassetPage.driver,"我的全部资产"));
+        secondPage.backNav();
+        AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
+        Assert.assertTrue(Helper.isElementExist(addAssertPage.driver,"我的全部资产"));
         secondPage.blackBackBtn.click();
         SwapPage receiptPage = assetPage.enterSwapPage();
         Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"闪兑"));
