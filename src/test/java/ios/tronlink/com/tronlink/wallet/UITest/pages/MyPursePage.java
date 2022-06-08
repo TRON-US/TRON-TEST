@@ -322,14 +322,50 @@ public String getBackupKeystoreInClipboard(String password){
 //
 //    }
 
-    public void deletWallet (String password) throws Exception{
+    public void deleteWallet(String password) throws Exception{
         Helper.swipScreen(driver);
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '删除钱包'").click();
         TimeUnit.SECONDS.sleep(2);
         password_et.sendKeys(password);
         TimeUnit.SECONDS.sleep(1);
-        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'").click();
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         TimeUnit.SECONDS.sleep(3);
+    }
+
+    @FindBy(id = "oldPswField")
+    public WebElement oldPswField;
+
+    @FindBy(id = "confimPswField")
+    public WebElement confimPswField;
+
+    @FindBy(id = "newPswField")
+    public WebElement newPswField;
+
+    public void modifyPassword(String password) throws Exception{
+        Helper.swipScreen(driver);
+        driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '修改密码'").click();
+        TimeUnit.SECONDS.sleep(2);
+        oldPswField.sendKeys("Qqqqqqq1");
+        closeKeyBoard();
+        newPswField.sendKeys(password);
+        closeKeyBoard();
+        confimPswField.sendKeys(password);
+        closeKeyBoard();
+        TimeUnit.SECONDS.sleep(2);
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"完成\"`]").click();
+        TimeUnit.SECONDS.sleep(7);
+    }
+
+    @FindBy(id = "accountNameField")
+    public WebElement accountNameField;
+
+    public void modifyName(String name) throws Exception{
+        Helper.swipScreen(driver);
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"修改钱包名\"`]").click();
+        TimeUnit.SECONDS.sleep(2);
+        accountNameField.sendKeys(name);
+        closeKeyBoard();
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"完成\"`]").click();
     }
 
     public boolean deleteObserveWallet(){
@@ -339,7 +375,7 @@ public String getBackupKeystoreInClipboard(String password){
             TimeUnit.SECONDS.sleep(1);
             deletewallet_btn.click();
             TimeUnit.SECONDS.sleep(1);
-            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'");
             confirm_btn.click();
             return  !confirm_btn.isDisplayed();
 

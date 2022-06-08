@@ -35,6 +35,9 @@ public class VotePage extends AbstractPage {
     public WebElement et_input;
 
 
+    @FindBy(id = "vote sortPop close")
+    public WebElement sortFirst;
+
     @FindBy(xpath = "(//XCUIElementTypeButton[@name='投票'])[3]")
     public WebElement vote_btn;
 
@@ -170,6 +173,16 @@ public class VotePage extends AbstractPage {
         }catch (Exception e) {
             return false;
         }
+
+    }
+
+    public void backNav(){
+        try {
+            sortFirst.click();
+        }catch (Exception e){
+            log("not the first Time enter Vote");
+        }
+        whiteBackBtn.click();
 
     }
 

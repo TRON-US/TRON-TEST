@@ -2,9 +2,8 @@ package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.*;
-import ios.tronlink.com.tronlink.wallet.utils.Helper;
+
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -42,23 +41,41 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
         TimeUnit.SECONDS.sleep(5);
-        Assert.assertFalse(importKeystorePage.importBtn.isEnabled());
+        Assert.assertTrue(importKeystorePage.importKeystore().isEnabled());
     }
 
     @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
-    public  void test007_keystoreNameSetSuccess() throws Exception {
+    public  void test004_keystoreNameSetSuccess() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
-        importKeystorePage.enterPrivateKeySetNamePage(keystore,"Test0002");
+        importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
         TimeUnit.SECONDS.sleep(5);
         AssetPage assetPage = new AssetPage(DRIVER);
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("name"));
     }
 
-    @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test008_testDeletewalletSuccess() throws Exception {
+    @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
+    public  void test005_keystoreModifyPasswordSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();
-        walletPage.deletWallet("Test0002");
+        walletPage.modifyPassword("Test0002");
+        Assert.assertTrue(isElementExist("name"));
+    }
+
+    @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
+    public  void test006_keystoreModifyNameSuccess() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MyPursePage walletPage = assetPage.enterMyPursePage();
+        walletPage.modifyName("newName");
+        Assert.assertTrue(isElementExist("newName"));
+    }
+
+
+
+    @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
+    public void  test006_testDeletewalletSuccess() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MyPursePage walletPage = assetPage.enterMyPursePage();
+        walletPage.deleteWallet("Test0002");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
     }

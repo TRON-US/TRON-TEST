@@ -49,7 +49,7 @@ public class ImportMnemonic extends BaseTest {
      public void test002_deleteMnemonicWalletTest() throws Exception {
          AssetPage assetPage = new AssetPage(DRIVER);
          MyPursePage walletPage = assetPage.enterMyPursePage();
-         walletPage.deletWallet("Test0002");
+         walletPage.deleteWallet("Test0002");
          TimeUnit.SECONDS.sleep(2);
          Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
      }
