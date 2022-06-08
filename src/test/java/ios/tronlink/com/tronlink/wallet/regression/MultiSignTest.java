@@ -35,7 +35,7 @@ public class MultiSignTest extends Base {
 
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
-            screenshotAction(name);
+//            screenshotAction(name);
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);

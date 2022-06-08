@@ -34,7 +34,7 @@ public class CommitteeTest extends Base {
         try {
             String name = this.getClass().getSimpleName() + "." +
                     methed.getName();
-            screenshotAction(name);
+//            screenshotAction(name);
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
