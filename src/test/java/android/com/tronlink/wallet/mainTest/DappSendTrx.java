@@ -89,6 +89,8 @@ public class DappSendTrx extends Base {
         return transfer;
     }
 
+
+
     @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
     public void test001_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -99,7 +101,7 @@ public class DappSendTrx extends Base {
         Double sendAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(5);
                     transfer.btn_done.click();
                     TimeUnit.SECONDS.sleep(44);
                     Helper.swipeDownScreen(transfer.driver);

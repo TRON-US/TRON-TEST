@@ -96,14 +96,12 @@ public class SendTrc20 extends Base {
     @Test(alwaysRun = true)
     public void test002_redDotTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        Assert.assertTrue(isElementShotId("iv_red_dot"));
         MinePage page = asset.enterMinePage();
         Assert.assertTrue(isElementShotId("tv_bell"));
         page.tv_bell.click();
         Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
         DRIVER.navigate().back();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertFalse(isElementShotId("iv_red_dot"));
         Assert.assertFalse(isElementShotId("tv_bell"));
     }
 
