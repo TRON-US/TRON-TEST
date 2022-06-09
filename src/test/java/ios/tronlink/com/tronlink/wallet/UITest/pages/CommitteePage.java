@@ -91,7 +91,6 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         log("开始输入密码");
         passwordTF.sendKeys("Test0001");
-        closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(10);
 
