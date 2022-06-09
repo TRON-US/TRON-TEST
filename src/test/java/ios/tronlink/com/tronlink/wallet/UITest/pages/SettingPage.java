@@ -181,11 +181,21 @@ public WebElement nodeAdd_btn;
     @FindBy(name = "切换网络")
     public WebElement switchNet;
 
-    public void changeToDAppChain(){
+    public void changeToDAppChain()throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         switchNet.click();
         driver.findElementByIosClassChain("**/XCUIElementTypeStaticText[`label == \"DAppChain 主网\"`]").click();
         driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"确认\"`]").click();
+
     }
+
+    public void changeToShastaChain() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        switchNet.click();
+        driver.findElementByIosClassChain("**/XCUIElementTypeStaticText[`label == \"TRON Shasta 测试网\"`]").click();
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"确认\"`]").click();
+    }
+
 
     public NodeSetPage enterVersionSetPage() throws Exception {
         version_btn.click();

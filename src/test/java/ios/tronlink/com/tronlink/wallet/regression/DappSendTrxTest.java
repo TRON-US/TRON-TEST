@@ -67,17 +67,7 @@ public class DappSendTrxTest extends BaseTest {
         }
     }
 
-    public void guaranteeDAppChain() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.assetFindMainChain(asset)) {
-            SettingPage set = enterSettingPage();
-            set.changeToDAppChain();
-            TimeUnit.SECONDS.sleep(1);
-            MinePage mine  = set.enterMinePage();
-            mine.enterAssetPage();
-        }
 
-    }
 
 
     @Test(alwaysRun = true)

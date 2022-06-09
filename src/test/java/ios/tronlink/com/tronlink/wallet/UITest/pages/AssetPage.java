@@ -117,6 +117,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "质押")
     public WebElement frozen_btn;
 
+    @FindBy(id = "nameLabel")
+    public WebElement nameLabel;
 
     @FindBy(id = "home addAssetBtn")
     public WebElement addAssert_btn;
@@ -407,15 +409,6 @@ public class AssetPage extends AbstractPage {
     }
 
     public ReceiptPage enterReceiptPage() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            // if page display AD , cloese the AD
-            if (ad_pic.isDisplayed()) {
-                adClose_btn.click();
-                TimeUnit.SECONDS.sleep(1);
-            }
-        } catch (Exception e) {
-        }
 
         receipt_btn.click();
         return new ReceiptPage(driver);

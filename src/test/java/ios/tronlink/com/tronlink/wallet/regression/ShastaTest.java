@@ -28,47 +28,41 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 public class ShastaTest extends BaseTest {
     public String successNumber;
 
-    @Parameters({"privateKey"})
-    @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBefore(String privateKey) throws Exception {
-        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
-        Helper.guaranteeShastaChain(DRIVER);
+
+    @Parameters({"bundleId"})
+    @Test(description = "Shasta Transfer TRX")
+    public void test001_ShastaMainPage(String bundleId) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        guaranteeShastaChain(bundleId);
+        TimeUnit.SECONDS.sleep(7);
+        String show1 = asset.nameLabel.getText();
+        Assert.assertEquals("TRX",show1);
+
     }
 
     @Test(description = "Shasta Transfer TRX")
-    public void test001_ShastaTransferTRXSuccess() throws Exception {
+    public void test002_ShastaTrxMainPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TrxPage tokenpage = asset.enterTrxPage();
-        double trcBefore = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        String count = random(10,10);
-        count = Helper.getPrettyNumber(count);
-        log(count);
-        successNumber = count;
-        SendTrxPage transfer = tokenpage.enterTransferPage();
-        transfer.sendTrxWithNumber(successNumber);
-        TimeUnit.SECONDS.sleep(5);
-        double trcafter = Double.parseDouble(removeSymbol(tokenpage.trxTotal_text.getText()));
-        System.out.println("   count:" +count + "   trcBefore:" + trcBefore + " trcafter:" + trcafter);
-        Assert.assertTrue(trcafter + Integer.parseInt(removeSymbol(count)) <= trcBefore);
+        TimeUnit.SECONDS.sleep(2);
+        asset.enterTrxPage();
+        Assert.assertTrue(isElementExist("暂无数据"));
+        String show1 = asset.nameLabel.getText();
+        Assert.assertEquals("TRX",show1);
     }
-
 
 
     @Parameters({"address"})
     @Test(description = "test003_FrozenTestSuccess")
-    public void test003_FrozenTestSuccess(String address) throws Exception{
+    public void test003_ReceivedPage(String address) throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndThawingPage();
-        String availableTrxOld = frozen.getAvailableTrx();
-        frozen.inputFrozenCount("1");
-        Helper.tapWhitePlace(frozen.driver);
-        frozen.frozenTheEnergy(); //Freeze operating
-        TimeUnit.SECONDS.sleep(3);
-        String availableTrxNew = frozen.getAvailableTrx();
-        availableTrxOld = availableTrxOld.replace(",","");
-        availableTrxNew = availableTrxNew.replace(",","");
-        log("availableTrxOld: "+availableTrxOld + "availableTrxNew: " + availableTrxNew);
-        Assert.assertTrue(Double.parseDouble(availableTrxNew) + 1 == Double.parseDouble(availableTrxOld));
+        ReceiptPage page = asset.enterReceiptPage();
+        Assert.assertTrue(isElementExist("收款"));
+        Assert.assertTrue(isElementExist("扫描二维码向我付款"));
+        Assert.assertTrue(isElementExist(address));
+        Assert.assertTrue(isElementExist("保存二维码"));
+        Assert.assertTrue(isElementExist("分享"));
+        Assert.assertTrue(isElementExist("仅可向此地址转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
+        
     }
 
 }

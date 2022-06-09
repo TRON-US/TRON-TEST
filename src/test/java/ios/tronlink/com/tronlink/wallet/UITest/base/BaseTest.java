@@ -3,6 +3,10 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.offset.PointOption;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.NodeSetPage;
+import ios.tronlink.com.tronlink.wallet.UITest.pages.SettingPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import java.util.HashMap;
@@ -55,14 +59,40 @@ public class BaseTest extends Base {
 
     }
 
-    public void DriveReStart(String bundleId) throws Exception{
+
+
+
+    public void guaranteeDAppChain() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if(Helper.assetFindMainChain(asset)) {
+            MinePage mine = asset.enterMinePage();
+            SettingPage set =  mine.enterSettingPage();
+            set.changeToDAppChain();
+            TimeUnit.SECONDS.sleep(1);
+            set.enterMinePage();
+            mine.enterAssetPage();
+        }
+    }
+
+    public  void guaranteeShastaChain(String udid) throws  Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        if (asset.chainNameLabel.getText().contains("Shasta Testnet")){
+
+        }else {
+            MinePage mine = asset.enterMinePage();
+            SettingPage set = mine.enterSettingPage();
+            set.changeToShastaChain();
+            TimeUnit.SECONDS.sleep(1);
+            restartApp(udid);
+
+        }
+    }
+
+    public void restartApp(String bundleId) throws Exception{
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(6);
         DRIVER.executeScript("mobile: activateApp", params);
     }
-
-
-
 }
