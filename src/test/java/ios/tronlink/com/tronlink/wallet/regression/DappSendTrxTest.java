@@ -180,7 +180,7 @@ public class DappSendTrxTest extends BaseTest {
     }
 
     @Test(alwaysRun = true)
-    public void test007_SendPageOneAddressBookAddressTest() throws Exception {
+    public void test007_SendPageOneAddressBookAmountTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page = asset.enterTrxPage();
         TimeUnit.SECONDS.sleep(2);
