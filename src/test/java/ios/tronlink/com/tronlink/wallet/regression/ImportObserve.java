@@ -52,7 +52,7 @@ public class ImportObserve extends BaseTest {
     }
 
     @Test(description = "Observe Name chinese Too Long", alwaysRun = true)
-    public void test003_ObserveNamechineseTooLong() throws Exception {
+    public void test003_ObserveNameChineseTooLongAndAddSuccessTest() throws Exception {
         ObservePage importObservePage = enterImportObservePage();
         importObservePage.inputAddreseString(addressNew);
         List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByClassName("XCUIElementTypeTextField");
@@ -69,6 +69,8 @@ public class ImportObserve extends BaseTest {
     }
 
 
+
+
     @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
     public void  test004_testDeleteWalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -76,7 +78,7 @@ public class ImportObserve extends BaseTest {
         Helper.swipScreen(DRIVER);
         DRIVER.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '删除钱包'").click();
         TimeUnit.SECONDS.sleep(1);
-        DRIVER.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'").click();
+        DRIVER.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确认'").click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
     }
