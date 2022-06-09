@@ -280,6 +280,44 @@ public class MultiSignManagerPage extends AbstractPage {
         waiteTime();
     }
 
+    public void addPermissionWatch(String name) throws Exception {
+        System.out.println("into addPermission");
+        TimeUnit.SECONDS.sleep(3);
+        addauthorBtn.click();
+        System.out.println("添加权限 clicked");
+        waiteTime();
+        activeNameTF.sendKeys(name);
+        System.out.println("添加权限名称 clicked");
+        closeKeyBoard();
+        Helper.swipScreen(driver);
+        waiteTime();
+        activeContentEditBtn.click();
+        System.out.println("进入编辑权限页面 clicked");
+        waiteTime();
+        trxTranPower.click();
+        System.out.println("点击添加trx转账 clicked");
+        waiteTime();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+        System.out.println("确认添加对应权限 clicked");
+        waiteTime();
+        thresholdTextField.sendKeys("1");
+        System.out.println("总threahold clicked");
+        closeKeyBoard();
+        waiteTime();
+        driver.findElementsById("addressInputTF").get(0).sendKeys("TFrK5qvApM5h9HAubPRFeNN1pAGbk8tAup");
+        System.out.println("输入地址 clicked");
+        driver.findElementsById("addressThreadholdNumberTF").get(0).sendKeys("1");
+        System.out.println("地址对应阈值 clicked");
+        waiteTime();
+        closeKeyBoard();//
+        System.out.println("进入确定流程...");
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+        TimeUnit.SECONDS.sleep(4);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
+        TimeUnit.SECONDS.sleep(2);
+
+    }
+
     public void modifyPermission() throws Exception {
         System.out.println("into modifyPermission");
         TimeUnit.SECONDS.sleep(3);
