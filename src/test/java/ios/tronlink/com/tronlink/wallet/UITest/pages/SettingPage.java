@@ -114,6 +114,8 @@ public class SettingPage extends AbstractPage {
     @FindBy(id =  "切换版本")
     public WebElement switchVersionBtn;
 
+
+
     @FindBy(name = "正式版本")
     public  WebElement releaseBtn;
 
@@ -176,6 +178,15 @@ public WebElement nodeAdd_btn;
         return new NodeSetPage(driver);
     }
 
+    @FindBy(name = "切换网络")
+    public WebElement switchNet;
+
+    public void changeToDAppChain(){
+        switchNet.click();
+        driver.findElementByIosClassChain("**/XCUIElementTypeStaticText[`label == \"DAppChain 主网\"`]").click();
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"确认\"`]").click();
+    }
+
     public NodeSetPage enterVersionSetPage() throws Exception {
         version_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -192,7 +203,8 @@ public WebElement nodeAdd_btn;
     public MinePage enterMinePage() throws Exception {
         waiteTime();
         back_btn.click();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(1);
+        back_btn.click();
         return new MinePage(driver);
     }
 

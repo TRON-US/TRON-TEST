@@ -113,7 +113,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void detail(){
-        driver.findElementByIosNsPredicate("label == \"查看交易记录\" AND name == \"查看交易记录\" AND type == \"XCUIElementTypeButton\"").click();
+        driver.findElementByIosNsPredicate("label == \"查看交易详情\" AND name == \"查看交易详情\" AND type == \"XCUIElementTypeButton\"").click();
     }
 
 
@@ -182,7 +182,10 @@ public class SendTrxPage extends AbstractPage {
     }
 
 
-
+    public void broadcastWatchButtonClick(){
+        WebElement element = driver.findElementByIosNsPredicate("type == 'XCUIElementTypeButton' AND name == '生成交易二维码'");
+        element.click();
+    }
 
     public void sendKey(WebElement el,String value) throws Exception {
         waiteTime();

@@ -337,6 +337,7 @@ public class MinePage extends AbstractPage {
 
     public AssetPage enterAssetPage() throws Exception {
         TimeUnit.SECONDS.sleep(3);
+//        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"tab assets\"`]").click();
         driver.findElementByIosNsPredicate("label == \"tab assets\"").click();
 //        try{
 //            driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"tab assets\"`]").click();

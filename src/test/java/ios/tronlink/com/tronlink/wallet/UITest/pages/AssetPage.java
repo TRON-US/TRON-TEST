@@ -333,7 +333,6 @@ public class AssetPage extends AbstractPage {
     public TrxPage enterTrxPage() throws Exception {
         waiteTime();
         TRXCellName.click();
-//        cellArray.get(0).click();
         return new TrxPage(driver);
     }
     public TrxPage enterPublicTrzPage() throws Exception {

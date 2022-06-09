@@ -35,6 +35,12 @@ public class AbstractPage {
     public WebElement confirm_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
+
+    public WebElement confirmWatchBtn(){
+        return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '生成交易二维码'");
+    }
+
+
     public WebElement sendAction_btn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '发送'");
     }

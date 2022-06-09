@@ -49,7 +49,10 @@ public class SendTrx extends BaseTest {
          String show2 = asset.balanceLabelArray.get(0).getText();
          log(show2);
          String before2 = removeSymbolNoDot(show2);
-         Assert.assertTrue(Double.parseDouble(before1) - (Double.parseDouble(before2) + send) <= 0.5);
+         System.out.println("before1:" + before1 + " before2:" + before2 + " send:" + send);
+         Double re = Double.parseDouble(before1) - (Double.parseDouble(before2) + send);
+         Assert.assertTrue(re <= 0.5 && re >0);
+
 
      }
 
@@ -136,7 +139,7 @@ public class SendTrx extends BaseTest {
         transfer.firstCell.click();
         transfer.goToSecondPage();
         Assert.assertTrue(isElementExist("TRX"));
-        Assert.assertTrue(isElementExist(avNumber));
+        Assert.assertTrue( transfer.tokenBalance.getText().contains(avNumber));
     }
 
 
