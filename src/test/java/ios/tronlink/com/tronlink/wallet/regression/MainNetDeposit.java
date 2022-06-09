@@ -45,16 +45,16 @@ public class MainNetDeposit extends BaseTest {
         TrxPage trx = enterTrxPage();
         TimeUnit.SECONDS.sleep(1);
         double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
-        System.out.println( " trcbefore：  " + trcbefore  );
         TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbol(random(10,10));
         count = Helper.getPrettyNumber(count);
         successNumber = count;
-        System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
         double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
-        System.out.println( " trcafter：  " + trcafter );
+        System.out.println( " before：  " + trcbefore  );
+        System.out.println( " sendCount：  " + successNumber );
+        System.out.println( " after：  " + trcafter );
         Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore );
     }
 

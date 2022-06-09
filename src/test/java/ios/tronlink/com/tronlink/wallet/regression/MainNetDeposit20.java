@@ -88,7 +88,6 @@ public class MainNetDeposit20 extends BaseTest {
     @Test(groups = {"P0"},description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test005_CheckOutNumberInRecordDepositTrx() throws Exception {
         log("successNumber:"+successNumber);
-        successNumber = "13";
         TrxPage page = enterTrxPage();
         Assert.assertTrue(page.enterDepositNumberRecordPage(successNumber));
         Assert.assertTrue(isElementExist("TRC20 通证转账"));
