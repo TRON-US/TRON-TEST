@@ -80,7 +80,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
     public void test007_freezeEnergyNullTrx() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.inputFrozenCount("");
+        frozen.inputFrozenCount("0");
         Assert.assertTrue(isElementExist(" 最小质押数量为 1 TRX"));
         Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
     }
