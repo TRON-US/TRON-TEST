@@ -95,7 +95,6 @@ public class SwapNativeTest extends Base {
          AssetPage asset = new AssetPage(DRIVER);
          MinePage page = asset.enterMinePage();
          TimeUnit.SECONDS.sleep(2);
-         Assert.assertTrue(isElementShotId("tv_bell"));
          page.tv_bell.click();
          Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
          DRIVER.navigate().back();
