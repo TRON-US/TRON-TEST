@@ -34,7 +34,7 @@ public class ShastaTest extends BaseTest {
     public void test001_ShastaMainPage(String bundleId) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         guaranteeShastaChain(bundleId);
-        TimeUnit.SECONDS.sleep(7);
+        TimeUnit.SECONDS.sleep(8);
         String show1 = asset.nameLabel.getText();
         Assert.assertEquals("TRX",show1);
 
@@ -43,9 +43,8 @@ public class ShastaTest extends BaseTest {
     @Test(description = "Shasta Transfer TRX")
     public void test002_ShastaTrxMainPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(2);
         asset.enterTrxPage();
-        Assert.assertTrue(isElementExist("暂无数据"));
+        TimeUnit.SECONDS.sleep(2);
         String show1 = asset.nameLabel.getText();
         Assert.assertEquals("TRX",show1);
     }
@@ -62,7 +61,7 @@ public class ShastaTest extends BaseTest {
         Assert.assertTrue(isElementExist("保存二维码"));
         Assert.assertTrue(isElementExist("分享"));
         Assert.assertTrue(isElementExist("仅可向此地址转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
-        
+
     }
 
 }
