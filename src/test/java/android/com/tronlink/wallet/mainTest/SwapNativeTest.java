@@ -94,14 +94,12 @@ public class SwapNativeTest extends Base {
      public void test003_ivSendNoticeTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          MinePage page = asset.enterMinePage();
-         Assert.assertTrue(isElementShotId("tv_bell"));
-
          TimeUnit.SECONDS.sleep(2);
          page.tv_bell.click();
          Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
          DRIVER.navigate().back();
          TimeUnit.SECONDS.sleep(1);
-         Assert.assertFalse(isElementShotId("tv_bell"));
+         Assert.assertTrue(isElementShotId("tv_bell"));
      }
 
 }
