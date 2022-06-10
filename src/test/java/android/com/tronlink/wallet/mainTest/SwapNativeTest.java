@@ -46,31 +46,31 @@ public class SwapNativeTest extends Base {
         }
     }
 
-//    @Test(enabled = true)
-//    public void test001_swapMainPageTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        SwapPage page =  asset.enterSwapPage();
-//        TimeUnit.SECONDS.sleep(6);
-//        Assert.assertTrue(isElementTextExist("闪兑"));
-//        Assert.assertTrue(page.tv_token_name_to.getText().contains("USDT")&&page.tv_token_name_from.getText().contains("TRX"));
-//        Assert.assertTrue(page.tv_token_to.getText().contains("USDT")&&page.tv_token_from.getText().contains("TRX"));
-//        Assert.assertTrue(isElementTextExist("查看币种信息"));
-//        page.tv_token_name_to.click();
-//        Assert.assertTrue(page.nav_title.getText().contains("选择币种"));
-//        page.findElementByText("SUNOLD").click();
-//        TimeUnit.SECONDS.sleep(4);
-//        Assert.assertTrue(page.tv_token_name_to.getText().contains("SUNOLD")&&page.tv_token_name_from.getText().contains("TRX"));
-//        Assert.assertTrue(page.tv_token_to.getText().contains("SUNOLD")&&page.tv_token_from.getText().contains("TRX"));
-//        page.tv_token_name_from.click();
-//        Assert.assertTrue(page.nav_title.getText().contains("选择币种"));
-//        page.findElementByText("HT").click();
-//        TimeUnit.SECONDS.sleep(4);
-//        Assert.assertTrue(page.tv_token_name_from.getText().contains("HT")&&page.tv_token_name_to.getText().contains("SUNOLD"));
-//        Assert.assertTrue(page.tv_token_from.getText().contains("HT")&&page.tv_token_to.getText().contains("SUNOLD"));
-//
-//    }
-//
-//
+    @Test(enabled = true)
+    public void test001_swapMainPageTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SwapPage page =  asset.enterSwapPage();
+        TimeUnit.SECONDS.sleep(6);
+        Assert.assertTrue(isElementTextExist("闪兑"));
+        Assert.assertTrue(page.tv_token_name_to.getText().contains("USDT")&&page.tv_token_name_from.getText().contains("TRX"));
+        Assert.assertTrue(page.tv_token_to.getText().contains("USDT")&&page.tv_token_from.getText().contains("TRX"));
+        Assert.assertTrue(isElementTextExist("查看币种信息"));
+        page.tv_token_name_to.click();
+        Assert.assertTrue(page.nav_title.getText().contains("选择币种"));
+        page.findElementByText("SUNOLD").click();
+        TimeUnit.SECONDS.sleep(4);
+        Assert.assertTrue(page.tv_token_name_to.getText().contains("SUNOLD")&&page.tv_token_name_from.getText().contains("TRX"));
+        Assert.assertTrue(page.tv_token_to.getText().contains("SUNOLD")&&page.tv_token_from.getText().contains("TRX"));
+        page.tv_token_name_from.click();
+        Assert.assertTrue(page.nav_title.getText().contains("选择币种"));
+        page.findElementByText("HT").click();
+        TimeUnit.SECONDS.sleep(4);
+        Assert.assertTrue(page.tv_token_name_from.getText().contains("HT")&&page.tv_token_name_to.getText().contains("SUNOLD"));
+        Assert.assertTrue(page.tv_token_from.getText().contains("HT")&&page.tv_token_to.getText().contains("SUNOLD"));
+
+    }
+
+
     @Test(enabled = true)
     public void test002_swapSuccessTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -86,7 +86,7 @@ public class SwapNativeTest extends Base {
         System.out.println(page.token_consume_count.getText());
         System.out.println(sentAmount.toString());
         Assert.assertTrue(page.token_consume_count.getText().contains(sentAmount.toString()));
-        Assert.assertTrue(page.tv_date.getText().contains("2023"));
+        Assert.assertTrue(page.tv_date.getText().contains("2022"));
     }
 
 

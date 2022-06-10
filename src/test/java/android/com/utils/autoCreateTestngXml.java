@@ -248,14 +248,11 @@ public class autoCreateTestngXml {
                       + Configuration.getByPath("testng.conf").getString("androidShieldAccount.shieldAddress" + multiSignIndex.get())
                       + "\"/>\n");
                 multiSignIndex.addAndGet(1);
-                sb.append("        <classes>\n" +
-                        "            <class name=\"android.com.tronlink.wallet.mainTest.SwapNativeTest\"></class>\n" +
-                        "        </classes>");
-//                sb.append("        <packages>\n");
-//                for (int i = 0; i < packagesNameList.size();i++) {
-//                    sb.append("            " + packagesNameList.get(i) + "\n");
-//                }
-//                sb.append("        </packages>\n");
+                sb.append("        <packages>\n");
+                for (int i = 0; i < packagesNameList.size();i++) {
+                    sb.append("            " + packagesNameList.get(i) + "\n");
+                }
+                sb.append("        </packages>\n");
                 sb.append("    </test>\n");
                 it.remove();
             }
