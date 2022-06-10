@@ -71,23 +71,23 @@ public class SwapNativeTest extends Base {
 //    }
 //
 //
-//    @Test(enabled = true)
-//    public void test002_swapSuccessTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        SwapPage page =  asset.enterSwapPage();
-//        TimeUnit.SECONDS.sleep(5);
-//        Double sentAmount =getAnAmount();
-//        sentAmountRecoder = sentAmount;
-//        page.inputFromAmount(sentAmount.toString());
-//        TimeUnit.SECONDS.sleep(1);
-//        page.swapConfirmView();
-//        page.swapSentAction();
-//        TimeUnit.SECONDS.sleep(10);
-//        System.out.println(page.token_consume_count.getText());
-//        System.out.println(sentAmount.toString());
-//        Assert.assertTrue(page.token_consume_count.getText().contains(sentAmount.toString()));
-//        Assert.assertTrue(page.tv_date.getText().contains("2022"));
-//    }
+    @Test(enabled = true)
+    public void test002_swapSuccessTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SwapPage page =  asset.enterSwapPage();
+        TimeUnit.SECONDS.sleep(5);
+        Double sentAmount =getAnAmount();
+        sentAmountRecoder = sentAmount;
+        page.inputFromAmount(sentAmount.toString());
+        TimeUnit.SECONDS.sleep(1);
+        page.swapConfirmView();
+        page.swapSentAction();
+        TimeUnit.SECONDS.sleep(10);
+        System.out.println(page.token_consume_count.getText());
+        System.out.println(sentAmount.toString());
+        Assert.assertTrue(page.token_consume_count.getText().contains(sentAmount.toString()));
+        Assert.assertTrue(page.tv_date.getText().contains("2023"));
+    }
 
 
      @Test(alwaysRun = true)
@@ -99,7 +99,7 @@ public class SwapNativeTest extends Base {
          Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
          DRIVER.navigate().back();
          TimeUnit.SECONDS.sleep(1);
-         Assert.assertTrue(isElementShotId("tv_bell"));
+         Assert.assertFalse(isElementShotId("tv_bell"));
      }
 
 }
