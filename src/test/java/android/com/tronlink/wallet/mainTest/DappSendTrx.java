@@ -91,27 +91,6 @@ public class DappSendTrx extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
-    public void test001_sendTrxSuccess() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
-        System.out.println("beforeSendBalance-----"+ beforeValue);
-        SendTrxPage transfer = page.trxSendTrxPage();
-        Double sendAmount = getAnAmount();
-        System.out.println("sendTrxAmount-----"+ sendAmount);
-        transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(5);
-                    transfer.btn_done.click();
-                    TimeUnit.SECONDS.sleep(44);
-                    Helper.swipeDownScreen(transfer.driver);
-                    TimeUnit.SECONDS.sleep(1);
-                    Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
-                    System.out.println("afterSendBalance-----"+afterValue);
-                    Assert.assertTrue(beforeValue == sendAmount + afterValue);
-
-    }
-
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test002_sendTrxDetailSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -223,7 +202,7 @@ public class DappSendTrx extends Base {
     }
 
     @Parameters({"udid"})
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+   @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test011_transferAddressTextField(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
