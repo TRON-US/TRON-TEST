@@ -174,7 +174,7 @@ public class SendTrx extends Base {
         Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
         Double freezeValue =  Double.parseDouble(removeSymbolString(page.tv_freeze_amout.getText()));
         System.out.println("TotalValue:" + TotalValue);System.out.println("avValue:" + avValue);System.out.println("freezeValue:" + freezeValue);
-        Assert.assertEquals(TotalValue,avValue + freezeValue);
+        Assert.assertEquals(TotalValue,avValue + freezeValue,0.000001);
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
