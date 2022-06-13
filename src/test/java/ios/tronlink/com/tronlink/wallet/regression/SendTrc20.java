@@ -41,9 +41,9 @@ public class SendTrc20 extends BaseTest {
         transfer.inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.goToSecondPage();
         transfer.selectTrc20nile();
-        Double after = Double.parseDouble(removeSymbol(transfer.tokenBalance.getText())) ;
+        Double after = Double.parseDouble(removeSymbolNoDot(transfer.tokenBalance.getText())) ;
         System.out.println(after);
-        Assert.assertEquals(before - send,after);
+        Assert.assertEquals(before - send,after,0.000001);
 
     }
 
