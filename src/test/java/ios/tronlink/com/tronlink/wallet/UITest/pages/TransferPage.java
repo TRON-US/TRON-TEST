@@ -59,10 +59,10 @@ public class TransferPage extends AbstractPage {
 
 
     public WebElement get_inter_btn(){
-        return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转入'");
+        return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转链'");
     }
     public WebElement get_out_btn(){
-        return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转出'");
+        return  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '转链'");
     }
     public WebElement get_finish_btn(){
         return driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '完成'");
