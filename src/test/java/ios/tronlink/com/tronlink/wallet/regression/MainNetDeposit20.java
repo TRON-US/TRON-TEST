@@ -92,7 +92,6 @@ public class MainNetDeposit20 extends BaseTest {
         Assert.assertTrue(page.enterDepositNumberRecordPage(successNumber));
         Assert.assertTrue(isElementExist("TRC20 通证转账"));
         Assert.assertTrue(isElementExist("查看详细数据"));
-        Assert.assertTrue(isElementExist("触发合约"));
 
     }
 
