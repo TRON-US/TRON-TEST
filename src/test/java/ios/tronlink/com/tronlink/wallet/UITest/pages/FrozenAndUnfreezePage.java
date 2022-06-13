@@ -208,7 +208,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public WebElement confirmDeposit(){
-        return driver.findElementByIosNsPredicate("label == \"确认质押\" AND name == \"确认质押\" AND type == \"XCUIElementTypeButton\"");
+        return  driver.findElementByXPath("//XCUIElementTypeButton[@name=\"确认质押\"]");
+        //predicate 不好用换 xpath
+//        return driver.findElementByIosNsPredicate("label == \"确认质押\" AND name == \"确认质押\" AND type == \"XCUIElementTypeButton\"");
     }
 
     public WebElement bandWidthTab(){
@@ -357,6 +359,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     public void inputReceivingAddress(String address) throws Exception {
         TimeUnit.SECONDS.sleep(1);
         addressClear.click();
+        TimeUnit.SECONDS.sleep(1);
         receivedTF.sendKeys(address);
         closeKeyBoard();
 

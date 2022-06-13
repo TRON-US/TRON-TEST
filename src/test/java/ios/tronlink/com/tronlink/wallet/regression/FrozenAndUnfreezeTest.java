@@ -115,6 +115,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         FrozenAndUnfreezePage frozen = interferonPage();
         frozen.inputFrozenCount("1");
         frozen.getFreeze_btn().click();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertFalse(frozen.confirmDeposit().isEnabled());
         frozen.agreeClick();
         TimeUnit.SECONDS.sleep(1);
@@ -138,6 +139,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.bandWidthTab().click();
         frozen.inputFrozenCount("1");
         frozen.getFreeze_btn().click();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertFalse(frozen.confirmDeposit().isEnabled());
         frozen.agreeClick();
         TimeUnit.SECONDS.sleep(1);
