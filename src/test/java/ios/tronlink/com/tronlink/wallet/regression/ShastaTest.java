@@ -45,8 +45,7 @@ public class ShastaTest extends BaseTest {
         AssetPage asset = new AssetPage(DRIVER);
         asset.enterTrxPage();
         TimeUnit.SECONDS.sleep(2);
-        String show1 = asset.nameLabel.getText();
-        Assert.assertEquals("TRX",show1);
+        Assert.assertTrue(isElementExist("TRX"));
     }
 
 
