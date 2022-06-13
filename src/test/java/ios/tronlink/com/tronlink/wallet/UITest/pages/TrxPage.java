@@ -32,6 +32,8 @@ public class TrxPage extends AbstractPage {
     public List<WebElement> transferOut_btnArray;
 
 
+    @FindBy(id = "balanceLabel")
+    public WebElement balanceLabel;
 
 
     @FindBy(name = "balanceLabel")
