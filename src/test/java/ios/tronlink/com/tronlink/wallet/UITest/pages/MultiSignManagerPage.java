@@ -312,9 +312,9 @@ public class MultiSignManagerPage extends AbstractPage {
         closeKeyBoard();//
         System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
 
     }
 
