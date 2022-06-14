@@ -54,10 +54,10 @@ public class VoteTest extends Base {
     public void test001_VoteMainPageTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(Double.parseDouble(prettyString(vote.tv_canuse_trx.getText()))>0);
         Assert.assertTrue(vote.nav_title.getText().contains("投票"));
         Assert.assertTrue(vote.tv_common_right2.getText().contains("多重签名"));
-        Assert.assertTrue(vote.tv_walletaddress.getText().contains(address));
     }
 
      @Test(alwaysRun = true)
