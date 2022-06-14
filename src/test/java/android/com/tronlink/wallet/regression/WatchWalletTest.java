@@ -21,7 +21,7 @@ public class WatchWalletTest extends Base {
 
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
-        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
+//        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
     }
 
 
@@ -87,20 +87,20 @@ public class WatchWalletTest extends Base {
         frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
-
-    @Test(enabled = true,description = "create proposal QRCode", alwaysRun = true)
-    public void test004_createCommitteeQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
-        createProposePage.proValue_ipt.get(1).clear();
-        createProposePage.proValue_ipt.get(1).sendKeys("9919");
-        createProposePage.Creatconfirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        createProposePage.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//
+//    @Test(enabled = true,description = "create proposal QRCode", alwaysRun = true)
+//    public void test004_createCommitteeQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage mine = asset.enterMinePage();
+//        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+//        CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
+//        createProposePage.proValue_ipt.get(1).clear();
+//        createProposePage.proValue_ipt.get(1).sendKeys("9919");
+//        createProposePage.Creatconfirm_btn.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        createProposePage.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
      @Test(alwaysRun = true)
      public void test005_NotActivedShow() throws Exception {
@@ -110,17 +110,6 @@ public class WatchWalletTest extends Base {
          Assert.assertTrue(sendTrxPage.error_view.getText().contains("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
      }
 
-//    @Test(enabled = true,description = "muliSignature QRCode", alwaysRun = true)
-//    public void test005_muliSignatureQRCode() throws Exception{
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage mine = asset.enterMinePage();
-//        MyPursePage myPursePage = mine.enterMyPursePage();
-//        MultiSignManagerPage multiSignManager = myPursePage.enterMultiSignManagerPage();
-//        AddPermissionPage add = multiSignManager.enterAddPermissionPage();
-//        add.inputInfo("AutoTest_0001");
-//        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-//    }
 
 
 
@@ -166,7 +155,7 @@ public class WatchWalletTest extends Base {
         vote.firstSR.click();
         TimeUnit.SECONDS.sleep(1);
         vote.vote_page_btn.click();
-        vote.et_input.sendKeys("1");
+        vote.et_input.sendKeys("5");
         vote.bt_send.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -179,10 +168,10 @@ public class WatchWalletTest extends Base {
         SendTrxPage sendTrxPage  = asset.enterSendTrc20Page();
         sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("1");
+        sendTrxPage.tranferCount_text.sendKeys("5");
         sendTrxPage.send_btn.click();
         sendTrxPage.confirm_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
@@ -204,6 +193,7 @@ public class WatchWalletTest extends Base {
     public void test012_WithdrawRewardQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(4);
         vote.caim_reward.click();
         TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(vote.btn_confirm.getText().contains("生成交易二维码"));
