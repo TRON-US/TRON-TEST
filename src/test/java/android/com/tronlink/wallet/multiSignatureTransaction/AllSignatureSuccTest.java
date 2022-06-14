@@ -67,9 +67,9 @@ public class AllSignatureSuccTest extends Base {
             SendTrxPage SendTrx = asset.enterSendTrxPage();
             SendTrx.inputFormAddress(ownerAddress);
             SendTrx.goToSecondPage();
-            TimeUnit.SECONDS.sleep(4);
+            TimeUnit.SECONDS.sleep(6);
             SendTrx.receiveAddress_text.sendKeys(address);
-            TimeUnit.SECONDS.sleep(4);
+            TimeUnit.SECONDS.sleep(6);
             SendTrx.goToSecondPage();
             Random random = new Random();
             float count = random.nextFloat();
@@ -77,9 +77,9 @@ public class AllSignatureSuccTest extends Base {
             String str = df.format(count);
             SendTrx.trxCount = str;
             SendTrx.tranferCount_text.sendKeys(str);
-            TimeUnit.SECONDS.sleep(4);
+            TimeUnit.SECONDS.sleep(6);
             SendTrx.send_btn.click();
-            TimeUnit.SECONDS.sleep(8);
+            TimeUnit.SECONDS.sleep(12);
             Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
@@ -93,9 +93,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(unActiveAddress);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.goToSecondPage();
         Random random = new Random();
         float count = random.nextFloat();
@@ -104,31 +104,31 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.trxCount = str;
         Helper.swipScreenLitte(SendTrx.driver);
         SendTrx.tranferCount_text.sendKeys(str);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.send_btn.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
     }
 
 
     @Parameters({"ownerAddress","address"})
-    @Test(description = "test004_sendTrc20MultiSignActiveFeeCheck ", alwaysRun = true)
+    @Test(description = "test006_sendTrc20MultiSignActiveFeeCheck ", alwaysRun = true)
     public void test003_sendTrc20MultiSignActiveFeeCheck(String ownerAddress,String address) throws Exception {
 
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(address);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("20");
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
@@ -141,17 +141,17 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(unActiveAddress);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         Assert.assertTrue(SendTrx.error_view.getText().contains("账户未激活"));
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("20");
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
@@ -164,16 +164,16 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.goToSecondPage();
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.send_btn.click();
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.invalidTime_input.isDisplayed());
         Assert.assertTrue(SendTrx.signAddress_input.get(0).getText().length() == 34);
         Assert.assertTrue(SendTrx.signAddress_input.get(1).isDisplayed());
@@ -188,9 +188,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.goToSecondPage();
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
@@ -199,11 +199,11 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.et_note.sendKeys("I'm multiSign notes");
         SendTrx.send_btn.click();
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(12);
         SendTrx.rl_bottom_next.click();
         SendTrx.InputPasswordConfim_btn.sendKeys("Test0001");
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.tv_trans_type.getText().contains("TRX 转账"));
         Double amount = sepLeftNumberTextToDouble(SendTrx.tv_trans_content.getText(),"TRX");
         Assert.assertEquals(amount,sendAmount);
@@ -216,9 +216,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("10");
         Double sendAmount = getAnAmount();
@@ -228,11 +228,11 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.et_note.sendKeys("I'm multiSign notes");
         SendTrx.send_btn.click();
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(12);
         SendTrx.rl_bottom_next.click();
         SendTrx.InputPasswordConfim_btn.sendKeys("Test0001");
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.tv_trans_type.getText().contains("TRC10 通证转账"));
         Double amount = sepLeftNumberTextToDouble(SendTrx.tv_trans_content.getText(),"(tronlink_token)");
         Assert.assertEquals(amount,sendAmount);
@@ -245,9 +245,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("20");
         Double sendAmount = getAnAmount();
@@ -257,163 +257,13 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.et_note.sendKeys("I'm multiSign notes");
         SendTrx.send_btn.click();
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(12);
         SendTrx.rl_bottom_next.click();
         SendTrx.InputPasswordConfim_btn.sendKeys("Test0001");
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(12);
         Assert.assertTrue(SendTrx.tv_trans_type.getText().contains("触发智能合约"));
     }
-
-
-
-
-//    @Parameters({"ownerPrivateKey", "multiSignAddress"})
-//    @Test(groups = {"P0"}, description = "send trx sign success options Test", alwaysRun = true)
-//    public void test007_sendTrxOptions(String ownerPrivateKey, String multiSignAddress) throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(ownerPrivateKey, DRIVER);
-//        AssetPage asset = new AssetPage(DRIVER);
-//        SendTrxPage SendTrx = asset.enterSendTrxPage();
-//        SendTrx.confirm.click();
-//        SendTrx.sendRamonTrxSuccess(multiSignAddress);
-//    }
-//
-//
-//    @Parameters({"ownerPrivateKey", "multiSignAddress"})
-//    @Test(groups = {"P0"}, description = "send trx sign success two times options Test", alwaysRun = true)
-//    public void test007_sendTrxTwoTimesOptions(String ownerPrivateKey, String multiSignAddress) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        SendTrxPage SendTrx = asset.enterSendTrxPage();
-//        SendTrx.confirm.click();
-//        asset = SendTrx.sendRamonTrxSuccess(multiSignAddress);
-//    }
-//
-//
-//    @Test(groups = {"P0"}, description = "test007_multiAlreadySignSendTrxNotesCheck", alwaysRun = true)
-//    public void test008_multiAlreadySignSendTrxNotesCheck() throws Exception {
-//        //new Helper().getSign(ownerPrivateKey, DRIVER);
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage minePage = asset.enterMinePage();
-//        MyPursePage myPurse = minePage.enterMyPursePage();
-//        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-//        TimeUnit.SECONDS.sleep(3);
-//        multiSignTransactionPage.transactionAlreadySign_text.click();
-//        TimeUnit.SECONDS.sleep(3);
-//        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
-//        waiteTime();
-//        multiSignTransactionPage.tv_note_more.click();
-//        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
-//        Assert.assertTrue(multiSignTransactionPage.tv_cancle.getText().contains("我知道了"));
-//
-//    }
-//
-//    @Parameters({"multiSignPrivateKey"})
-//    @Test(groups = {"P0"}, description = "test008_multiSignWaitSendTrxNotesCheck", alwaysRun = true)
-//    public void test009_multiSignWaitSendTrxNotesCheck(String multiSignPrivateKey) throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(multiSignPrivateKey, DRIVER);
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage minePage = asset.enterMinePage();
-//        MyPursePage myPurse = minePage.enterMyPursePage();
-//        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-//        TimeUnit.SECONDS.sleep(3);
-//        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
-//        waiteTime();
-//        multiSignTransactionPage.tv_note_more.click();
-//        TimeUnit.SECONDS.sleep(1);
-//        Assert.assertEquals(multiSignTransactionPage.tv_note.getText(),"I'm multiSign notes");
-//        Assert.assertTrue(multiSignTransactionPage.tv_cancle.getText().contains("我知道了"));
-//
-//    }
-//
-//    @Parameters({"multiSignPrivateKey"})
-//    @Test(groups = {"P0"},description = "sign options Test", alwaysRun = true)
-//    public void test010_signOptions(String multiSignPrivateKey) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage minePage = asset.enterMinePage();
-//        MyPursePage myPurse = minePage.enterMyPursePage();
-//        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-//        multiSignTransactionPage.sign();
-//        TimeUnit.SECONDS.sleep(5);
-//    }
-//
-//
-//
-//    @Parameters({"multiSignPrivateKey"})
-//    @Test(groups = {"P0"},description = "sign options Test check TRX", alwaysRun = true)
-//    public void test011_signPageCheckTrx(String multiSignPrivateKey) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage minePage = asset.enterMinePage();
-//        MyPursePage myPurse = minePage.enterMyPursePage();
-//        MultiSignTransactionPage multiSignTransactionPage = myPurse.enterMultiSignTransactionPage();
-//        //multiSignTransactionPage.sign();
-//        Assert.assertTrue(multiSignTransactionPage.transConten_text.getText() != null);
-//        Assert.assertTrue(multiSignTransactionPage.transFrom_text.getText().length() == 34);
-//        Assert.assertTrue(multiSignTransactionPage.transTo_text.getText().length() == 34);
-//        Assert.assertTrue(multiSignTransactionPage.invaTime_text.isDisplayed());
-//    }
-//
-//
-//
-//
-//    @Parameters({"ownerPrivateKey"})
-//    @Test(groups = {"P0"},description = "test012_modifyMultiSignFeeCheck TR-1066", alwaysRun = true)
-//    public void test013_modifyMultiSignFeeCheck(String ownerPrivateKey) throws Exception {
-//        DRIVER.resetApp();
-//        new Helper().getSign(ownerPrivateKey, DRIVER);
-//        MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
-//        ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPage();
-//        Helper.swipScreen(modifyPermission.driver);
-//        modifyPermission.confirm_btn.click();
-//        String fee = modifyPermission.fee_text.getText();
-//        Assert.assertTrue(fee.contains("TRX") && fee.contains("101"));
-//
-//
-//    }
-//
-//    @Parameters({"multiSignAddress","ownerAddress"})
-//    @Test(description = "test012_modifyMultiSignFeeCheck TR-1066", alwaysRun = true)
-//    public void test014_FrozenMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-//        frozen.energy_btn.click();
-//        Helper.swipScreenLitte(frozen.driver);
-//        frozen.et_amount.sendKeys("1");
-//        MultiSignTransactionPage multipage = frozen.frozenMultiSign(); //Freeze operating
-//        Assert.assertTrue(multipage.isElementExist(multiSignAddress));
-//        Assert.assertTrue(multipage.tv_invalid_time.getText().contains("24"));
-//        multipage.broadcaseNow();
-//        boolean exist = false;
-//        for (int i = 0 ;i<5;i++){
-//            log("findTimes:   s" + String.valueOf(i) );
-//            try{
-//                Assert.assertTrue(multipage.isElementExist("质押资产"));
-//                Assert.assertTrue(multipage.isElementExist("质押账户:"));
-//                Assert.assertTrue(multipage.isElementExist(ownerAddress));
-//                exist = true;
-//                break;
-//            }catch (Exception e)
-//            {
-//                Helper.swipScreenLitte(multipage.driver);
-//            }
-//        }
-//        Assert.assertTrue(exist);
-//
-//    }
-
-//    @Parameters({"multiSignAddress","ownerAddress"})
-//    @Test(description = "test014_VoteMultiSignCheck", alwaysRun = true)
-//    public void test015_VoteMultiSignCheck(String multiSignAddress,String ownerAddress) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        VotePage vote = asset.enterVotePage();
-//        TimeUnit.SECONDS.sleep(1);
-//        vote.votefirstSRuseMutiSign();
-//        Assert.assertTrue(vote.isElementExist("投票"));
-//    }
-
-
-
 
 
 
