@@ -67,9 +67,9 @@ public class AllSignatureSuccTest extends Base {
             SendTrxPage SendTrx = asset.enterSendTrxPage();
             SendTrx.inputFormAddress(ownerAddress);
             SendTrx.goToSecondPage();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(4);
             SendTrx.receiveAddress_text.sendKeys(address);
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(4);
             SendTrx.goToSecondPage();
             Random random = new Random();
             float count = random.nextFloat();
@@ -77,8 +77,9 @@ public class AllSignatureSuccTest extends Base {
             String str = df.format(count);
             SendTrx.trxCount = str;
             SendTrx.tranferCount_text.sendKeys(str);
+            TimeUnit.SECONDS.sleep(4);
             SendTrx.send_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(8);
             Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
@@ -92,9 +93,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(unActiveAddress);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.goToSecondPage();
         Random random = new Random();
         float count = random.nextFloat();
@@ -103,8 +104,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.trxCount = str;
         Helper.swipScreenLitte(SendTrx.driver);
         SendTrx.tranferCount_text.sendKeys(str);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("2"));
     }
 
@@ -117,15 +119,16 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(address);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("20");
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
@@ -138,16 +141,17 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(unActiveAddress);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(SendTrx.error_view.getText().contains("账户未激活"));
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("20");
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.bt_send.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }
@@ -160,14 +164,16 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.goToSecondPage();
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.send_btn.click();
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertTrue(SendTrx.invalidTime_input.isDisplayed());
         Assert.assertTrue(SendTrx.signAddress_input.get(0).getText().length() == 34);
         Assert.assertTrue(SendTrx.signAddress_input.get(1).isDisplayed());
@@ -182,8 +188,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.goToSecondPage();
         Double sendAmount = getAnAmount();
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
@@ -209,8 +216,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("10");
         Double sendAmount = getAnAmount();
@@ -237,8 +245,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrxPage SendTrx = asset.enterSendTrxPage();
         SendTrx.inputFormAddress(ownerAddress);
         SendTrx.goToSecondPage();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.receiveAddress_text.sendKeys(multiSignAddress);
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.goToSecondPage();
         SendTrx.selectCoinType("20");
         Double sendAmount = getAnAmount();
