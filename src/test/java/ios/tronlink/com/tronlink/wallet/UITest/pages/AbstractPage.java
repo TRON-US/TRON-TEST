@@ -57,6 +57,13 @@ public class AbstractPage {
         return value;
     }
 
+    public String removeSymbolNoDot(String arg) {
+        String value = arg;
+        if (arg.contains(",")) {
+            value = arg.replace(",", "");
+        }
+        return value;
+    }
 
     @FindBy(id = "waitingCell")
     public List<WebElement> waitingCells;

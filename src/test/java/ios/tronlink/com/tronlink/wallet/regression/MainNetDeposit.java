@@ -43,19 +43,21 @@ public class MainNetDeposit extends BaseTest {
     @Test(groups = {"P0"},description = "TransferIn Success Recording",alwaysRun = true)
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
+        Helper.refreshWalletScreen(DRIVER);
         TimeUnit.SECONDS.sleep(1);
-        double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
+        Double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
         TransferPage transferIn =  trx.enterTransferInPage();
-        String count = removeSymbol(random(10,10));
-        count = Helper.getPrettyNumber(count);
+        String count = removeSymbolNoDot(random(10,10));
         successNumber = count;
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
         TimeUnit.SECONDS.sleep(1);
-        double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
+        Helper.refreshWalletScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(1);
+        Double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
         System.out.println( " before：  " + trcbefore  );
         System.out.println( " sendCount：  " + successNumber );
         System.out.println( " after：  " + trcafter );
-        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore );
+        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore ,0.00001);
     }
 
     @Test(description = "Check TransferIn Trx Count",alwaysRun = true)

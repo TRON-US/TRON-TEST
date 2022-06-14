@@ -326,7 +326,7 @@ public class SendTrxPage extends AbstractPage {
         TextFieldSel().sendKeys("tronlink_token");
         closeKeyBoard();
         trc10token.click();
-        Double value = Double.parseDouble(removeSymbol(tokenBalance.getText())) ;
+        Double value = Double.parseDouble(removeSymbolNoDot(tokenBalance.getText())) ;
         TextFieldAmo().sendKeys(amount);
         closeKeyBoard();
         findSend_btn().click();

@@ -39,8 +39,8 @@ public class SendTrc10 extends BaseTest {
         transfer.inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.goToSecondPage();
         transfer.selectTrc10nile();
-        Double after = Double.parseDouble(removeSymbol(transfer.tokenBalance.getText())) ;
-        System.out.println(after);
+        Double after = Double.parseDouble(removeSymbolNoDot(transfer.tokenBalance.getText())) ;
+        System.out.println("before:"+before+ "after:" + after + "send:" + send);
         Assert.assertEquals(before - send,after,"0.000001");
 
     }
