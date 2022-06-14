@@ -17,17 +17,6 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 public class DappSendTrxTest extends BaseTest {
     String successNumber;
-    public SendTrxPage enterToSendTrxPage() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        if(Helper.assetFindMainChain(asset)) {
-            SettingPage set = enterSettingPage();
-            NodeSetPage nodeSet = set.enterNodeSetPage();
-            set = nodeSet.enterSettingPageChoiseDappChain();
-            MinePage mine  = set.enterMinePage();
-            asset = mine.enterAssetPage();
-        }
-        return asset.enterSendTrxPage();
-    }
 
 
     //enter SettingPage
@@ -191,7 +180,9 @@ public class DappSendTrxTest extends BaseTest {
 
     @Test(description = "input not active Receiving address",alwaysRun = true)
     public void test008_inputNotActiveAddress() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        SendTrxPage transfer = page.enterTransferPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.enterSendTextField("TFjmzQrQrkUWbu2Qs5NWXjj1F4D3m8aJvu");
         Assert.assertTrue(isElementExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）"));
@@ -201,8 +192,9 @@ public class DappSendTrxTest extends BaseTest {
     @Parameters({"address"})
     @Test(groups = {"P0"},description = "input Receiving address same as send address",alwaysRun = true)
     public void test009_inputReceivingAddressSameAsSend(String address) throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        TimeUnit.SECONDS.sleep(2);
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        SendTrxPage transfer = page.enterTransferPage();        TimeUnit.SECONDS.sleep(2);
         transfer.enterSendTextField(address);
         Assert.assertTrue(isElementExist(" 接收账户与转出账户相同，请确认。"));
     }
@@ -210,7 +202,9 @@ public class DappSendTrxTest extends BaseTest {
 
     @Test(description = "input max send number",alwaysRun = true)
     public void test010_inputMaxSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        SendTrxPage transfer = page.enterTransferPage();
         transfer.sendAllTrx("max");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(transfer.findSend_btn().isEnabled());
@@ -219,7 +213,9 @@ public class DappSendTrxTest extends BaseTest {
 
     @Test(description = "input too Much TRX send number",alwaysRun = true)
     public void test011_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        SendTrxPage transfer = page.enterTransferPage();
         transfer.sendAllTrx("tooMuch");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(isElementExist("转账数量不可大于可用数量。"));
@@ -227,7 +223,9 @@ public class DappSendTrxTest extends BaseTest {
 
     @Test(description = "Receiving address trim",alwaysRun = true)
     public void test012_receivingAddressTrim() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        SendTrxPage transfer = page.enterTransferPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.TextField.sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
         closeKeyBoard();
@@ -238,7 +236,9 @@ public class DappSendTrxTest extends BaseTest {
 
     @Test(description = "Receiving Minimum Extra Trx",alwaysRun = true)
     public void test013_sendMinimumTrx() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        SendTrxPage transfer = page.enterTransferPage();
         TimeUnit.SECONDS.sleep(2);
         transfer.TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
