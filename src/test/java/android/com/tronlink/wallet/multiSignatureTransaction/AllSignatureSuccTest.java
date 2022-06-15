@@ -79,7 +79,7 @@ public class AllSignatureSuccTest extends Base {
             SendTrx.tranferCount_text.sendKeys(str);
             TimeUnit.SECONDS.sleep(6);
             SendTrx.send_btn.click();
-            TimeUnit.SECONDS.sleep(12);
+            TimeUnit.SECONDS.sleep(15);
             Assert.assertTrue(SendTrx.fee_text.getText().contains("1"));
 
     }

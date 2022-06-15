@@ -462,11 +462,8 @@ public WebElement title;
 
 
     public VotePage enterVotePage(){
-        try {
+            waiteTime(20);
             vote_btn.click();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
         return new VotePage(driver);
     }
 
@@ -502,7 +499,7 @@ public WebElement title;
 
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage() throws Exception{
 
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             freeze_btn.click();
 
         return new FrozenAndUnfreezePage(driver);
