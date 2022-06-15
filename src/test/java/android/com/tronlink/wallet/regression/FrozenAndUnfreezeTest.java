@@ -53,7 +53,7 @@ public class FrozenAndUnfreezeTest extends Base {
      * Freeze Energy
      */
     @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
-    public void test0001_freezeEnergySuccess() throws Exception{
+    public void test001_freezeEnergySuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.frozenTheEnergy(); //Freeze operating
