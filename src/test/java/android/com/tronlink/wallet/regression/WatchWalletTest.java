@@ -21,7 +21,7 @@ public class WatchWalletTest extends Base {
 
     @BeforeClass(alwaysRun = true)
     public void setUpBefore() throws Exception {
-//        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
+        new Helper().getWatchWalletSign("TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe", DRIVER);
     }
 
 
@@ -50,11 +50,13 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "watch wallet sendTrx QRCode", alwaysRun = true)
     public void test001_sendTrxQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
         sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");
         sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -67,26 +69,17 @@ public class WatchWalletTest extends Base {
     public void test002_frozenEnergyQRCode() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        TimeUnit.SECONDS.sleep(2);
         frozen.frozenTheEnergy(); //Freeze operating
+        TimeUnit.SECONDS.sleep(5);
         frozen.et_amount.sendKeys("1");
         frozen.confirmTransferPage();
+        TimeUnit.SECONDS.sleep(8);
         frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
 
-
-
-    @Test(enabled = true,description = "Frozen Bandwidth QRCode", alwaysRun = true)
-    public void test003_frozenBandwidthQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheBandwidth(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
 //
 //    @Test(enabled = true,description = "create proposal QRCode", alwaysRun = true)
 //    public void test004_createCommitteeQRCode() throws Exception{
@@ -146,12 +139,14 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "vote QRCode", alwaysRun = true)
     public void test008_voteQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         VotePage vote = asset.enterVotePage();
         try {
             vote.close.click();
         }catch (Exception e){
             log("not found pop view");
         }
+        TimeUnit.SECONDS.sleep(1);
         vote.firstSR.click();
         TimeUnit.SECONDS.sleep(1);
         vote.vote_page_btn.click();
@@ -170,6 +165,7 @@ public class WatchWalletTest extends Base {
         sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("5");
         sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(5);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -183,7 +179,9 @@ public class WatchWalletTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.toUnfreezePage();
         frozen.ll_container.click();
+        TimeUnit.SECONDS.sleep(2);
         frozen.btn_next.click();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
         frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -192,10 +190,11 @@ public class WatchWalletTest extends Base {
     @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
     public void test012_WithdrawRewardQRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         VotePage vote = asset.enterVotePage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(15);
         vote.caim_reward.click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(10);
         Assert.assertTrue(vote.btn_confirm.getText().contains("生成交易二维码"));
         vote.btn_confirm.click();
         TimeUnit.SECONDS.sleep(2);
