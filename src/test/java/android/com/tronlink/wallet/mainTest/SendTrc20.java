@@ -90,7 +90,7 @@ public class SendTrc20 extends Base {
         asset.enterTrx20Page();
         Double afterValue =  Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
-        Assert.assertEquals(beforeValue,sendAmount + afterValue);
+        Assert.assertEquals(sendAmount + afterValue,beforeValue,0.000001);
     }
 
     @Test(alwaysRun = true)

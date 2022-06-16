@@ -75,7 +75,7 @@ public class SendTrc10 extends Base {
         asset.enterTrx10Page();
         Double afterValue =  Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);        System.out.println("beforeSendBalance-----"+ beforeValue);        System.out.println("sendTrxAmount-----"+ sendAmount);
-        Assert.assertEquals(beforeValue,sendAmount + afterValue);
+        Assert.assertEquals(sendAmount + afterValue,beforeValue,0.000001);
     }
 
     @Test(alwaysRun = true)
