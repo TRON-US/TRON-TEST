@@ -94,10 +94,10 @@ public class CommitteeTest extends Base {
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
         MyProposalsPage.confirm_btn().click();
-        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(15);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(15);
         Assert.assertTrue(MyProposalsPage.approveNum_text.getText()!="0");
     }
 
@@ -111,16 +111,16 @@ public class CommitteeTest extends Base {
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
         MyProposalsPage.button_confirm.click();
-        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(5);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(15);
         MyProposalsPage.agree_btn.click();
         MyProposalsPage.button_confirm.click();
-        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(15);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        asset.driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(15);
         String number = MyProposalsPage.approveNum_text.getText();
         log("number" + number);
         Assert.assertTrue(number.equals("0") || number == "0");
@@ -140,7 +140,7 @@ public class CommitteeTest extends Base {
         proposalDetailsPage.button_confirm.click();
         proposalDetailsPage.pw_input.sendKeys("Test0001");
         proposalDetailsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(12);
+        TimeUnit.SECONDS.sleep(15);
         String proposalStatus = proposalDetailsPage.proposals_state_btn.getText();
         Assert.assertTrue(proposalStatus.equals("已取消"));
     }
