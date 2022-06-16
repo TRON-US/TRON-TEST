@@ -48,23 +48,6 @@ public class MutiSignatureTest extends Base {
     }
 
 
-    // if exist mult sign del this sign
-    public void delSignData(MultiSignManagerPage multiSign) throws Exception {
-        int tries = 0;
-        Boolean exist = false;
-        int mulCount = multiSign.mulSign_span.size();
-        System.out.println("current mulSign count is : " + mulCount);
-        if (mulCount >= 3) {
-            for (int i = 3; i <= mulCount; i++) {
-                System.out.println("delete a mulSign");
-                TimeUnit.SECONDS.sleep(4);
-                Helper.swipeLeftScreen(DRIVER);
-                Helper.swipeLeftScreen(DRIVER);
-                multiSign.delSign();
-            }
-        }
-
-    }
 
     //public method. enter the MultiSignManagerPage
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
@@ -131,9 +114,6 @@ public class MutiSignatureTest extends Base {
         add.permissionName_input.sendKeys("active");
         Assert.assertTrue(add.permissionName_input.isDisplayed());
     }
-
-
-
 
 
     @Test(description = "signature Name Is Null", alwaysRun = true)

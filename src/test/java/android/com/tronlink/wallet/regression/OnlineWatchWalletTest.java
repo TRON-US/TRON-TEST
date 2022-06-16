@@ -146,20 +146,19 @@ public class OnlineWatchWalletTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-    //TODO:三天后打开
 
-//    @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
-//    public void test008_OnlineUnfreezeQRCode() throws Exception{
-//        AssetPage asset = new AssetPage(DRIVER);
-//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-//        frozen.toUnfreezePage();
-//        frozen.ll_container.click();
-//        frozen.btn_next.click();
-//        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
-//        frozen.btn_confirm.click();
-//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-//
-//    }
+    @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
+    public void test008_OnlineUnfreezeQRCode() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.toUnfreezePage();
+        frozen.ll_container.click();
+        frozen.btn_next.click();
+        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
+        frozen.btn_confirm.click();
+        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+
+    }
 
 
     {
