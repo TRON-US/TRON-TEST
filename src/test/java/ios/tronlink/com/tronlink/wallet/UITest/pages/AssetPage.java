@@ -330,11 +330,13 @@ public class AssetPage extends AbstractPage {
     }
 
 
-    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"nameLabel\"])[1]")
-    public WebElement TRXCellName;
+//    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"nameLabel\"])[1]")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeTable/XCUIElementTypeCell[1]")
+    public WebElement TRXCell;
+
     public TrxPage enterTrxPage() throws Exception {
-        waiteTime();
-        TRXCellName.click();
+        TimeUnit.SECONDS.sleep(2);
+        TRXCell.click();
         return new TrxPage(driver);
     }
     public TrxPage enterPublicTrzPage() throws Exception {

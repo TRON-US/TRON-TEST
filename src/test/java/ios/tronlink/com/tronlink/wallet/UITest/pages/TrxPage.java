@@ -23,6 +23,9 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "leftAmountLabel")
     public WebElement leftAmountLabel;
 
+    @FindBy(id = "rightAmountLabel")
+    public WebElement rightAmountLabel;
+
     @FindBy(name = "rightAmountLabel")
     public WebElement freezeCount_text;
 

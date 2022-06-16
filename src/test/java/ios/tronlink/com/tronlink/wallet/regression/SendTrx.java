@@ -206,17 +206,17 @@ public class SendTrx extends BaseTest {
     }
 
 
-//     @Test(alwaysRun = true)
-//     public void test014_AmountTotal() throws Exception {
-//         AssetPage asset = new AssetPage(DRIVER);
-//         TrxPage page = asset.enterTrxPage();
-//         String avNumber = page.leftAmountLabel.getText();
-//         String fzNumber = page.rightAmountLabel.getText();
-//         String totalNumber = page.trxTotal_text.getText();
-//         Assert.assertEquals(Double.parseDouble(removeSymbolNoDot(totalNumber)),Double.parseDouble(removeSymbolNoDot(fzNumber))+Double.parseDouble(removeSymbolNoDot(avNumber)));
-//
-//
-//     }
+     @Test(alwaysRun = true)
+     public void test014_AmountTotal() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         TrxPage page = asset.enterTrxPage();
+         TimeUnit.SECONDS.sleep(2);
+         String avNumber = removeSymbolNoDot(page.leftAmountLabel.getText());
+         String fzNumber = removeSymbolNoDot(page.rightAmountLabel.getText());
+         String totalNumber = removeSymbolNoDot(page.trxTotal_text.getText());
+         Assert.assertEquals(Double.parseDouble(fzNumber)+Double.parseDouble(avNumber),Double.parseDouble(totalNumber),"0.000001");
+
+     }
 
 
 }
