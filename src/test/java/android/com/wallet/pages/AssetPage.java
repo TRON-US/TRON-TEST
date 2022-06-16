@@ -154,7 +154,7 @@ public WebElement title;
 
 
 
-    @FindBy(id="com.tronlinkpro.wallet:id/rl_receive")
+    @FindBy(id="com.tronlinkpro.wallet:id/iv_receive")
     public WebElement receipt_btn;
 
 

@@ -61,8 +61,9 @@ public class ReceiptTest extends Base {
      @Test(alwaysRun = true)
      public void test002_watchWalletTitle() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
+         TimeUnit.SECONDS.sleep(2);
          asset.addWatchWallet("THmxT8BKeXSKd4Zu4HJN3hXPVC1xiNhEnX");
-         TimeUnit.SECONDS.sleep(6);
+         TimeUnit.SECONDS.sleep(8);
          ReceiptPage receiptPage = asset.enterReceiptPage();
          Assert.assertEquals(receiptPage.tv_address.getText(), "THmxT8BKeXSKd4Zu4HJN3hXPVC1xiNhEnX");
          Assert.assertTrue(receiptPage.isElementExist("com.tronlinkpro.wallet:id/qr"));
