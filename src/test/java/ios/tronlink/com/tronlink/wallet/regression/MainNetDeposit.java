@@ -45,7 +45,7 @@ public class MainNetDeposit extends BaseTest {
         TrxPage trx = enterTrxPage();
         Helper.refreshWalletScreen(DRIVER);
         TimeUnit.SECONDS.sleep(1);
-        Double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
+        Double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.balanceLabel.getText()));
         TransferPage transferIn =  trx.enterTransferInPage();
         String count = removeSymbolNoDot(random(10,10));
         successNumber = count;
@@ -53,11 +53,12 @@ public class MainNetDeposit extends BaseTest {
         TimeUnit.SECONDS.sleep(1);
         Helper.refreshWalletScreen(DRIVER);
         TimeUnit.SECONDS.sleep(1);
-        Double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
+        Double trcafter = Double.parseDouble(removeSymbolNoDot(trx.balanceLabel.getText()));
         System.out.println( " before：  " + trcbefore  );
         System.out.println( " sendCount：  " + successNumber );
         System.out.println( " after：  " + trcafter );
-        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore ,0.00001);
+        //存在手续费消耗约20
+        Assert.assertEquals(trcbefore,trcafter + Double.parseDouble(count)  ,20);
     }
 
     @Test(description = "Check TransferIn Trx Count",alwaysRun = true)
