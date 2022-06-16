@@ -9,6 +9,8 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.NodeSetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.SettingPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.JavascriptExecutor;
@@ -94,5 +96,11 @@ public class BaseTest extends Base {
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(6);
         DRIVER.executeScript("mobile: activateApp", params);
+    }
+
+    public String timeYMD(){
+        Date dNow = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
+        return  ft.format(dNow);
     }
 }

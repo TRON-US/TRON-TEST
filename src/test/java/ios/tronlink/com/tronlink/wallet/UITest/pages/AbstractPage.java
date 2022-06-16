@@ -84,6 +84,9 @@ public class AbstractPage {
     @FindBy(id = "black path")
     public WebElement blackBackNavBtn;
 
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"完成\"]")
+    public WebElement xpathFinish;
+
     public void  navBack(){
         blackBackNavBtn.click();
     }

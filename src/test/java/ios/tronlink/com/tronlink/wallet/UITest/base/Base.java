@@ -348,6 +348,21 @@ public class Base {
         }
     }
 
+    public boolean isXpathElementExist(String path){
+        IOSDriver driver = DRIVER;
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            driver.findElementByXPath(path);
+            System.out.println("FindByXpath: "+path);
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex) {
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            return false;
+        }
+
+    }
+
     public  void closeKeyBoard()  throws Exception{
         IOSDriver driver = DRIVER;
 
