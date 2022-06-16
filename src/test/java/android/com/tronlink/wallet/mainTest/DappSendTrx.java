@@ -138,16 +138,6 @@ public class DappSendTrx extends Base {
         Assert.assertEquals(avValue,stepOneValue);
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test005_Amount() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        Double TotalValue = Double.valueOf(prettyString(asset.tv_count.getText()));
-        Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
-        Double freezeValue =  Double.parseDouble(removeSymbolString(page.tv_freeze_amout.getText()));
-        System.out.println("TotalValue:" + TotalValue);System.out.println("avValue:" + avValue);System.out.println("freezeValue:" + freezeValue);
-        Assert.assertEquals(TotalValue.doubleValue(),avValue.doubleValue() + freezeValue.doubleValue());
-    }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test006_enterFrozenSuccess() throws Exception {
