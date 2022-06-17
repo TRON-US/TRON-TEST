@@ -208,6 +208,16 @@ public class Base {
         return Double.valueOf(amountStr);
     }
 
+    public Double getAnAmountZero() {
+        Random rand = new Random();
+        String amountStr = Double.toString(rand.nextFloat());
+        while (amountStr.length() != 8) {
+            amountStr = Float.toString(rand.nextFloat());
+        }
+        log("\ngetAnAmount() amountStr: " + amountStr);
+        return Double.valueOf(amountStr);
+    }
+
     // random a 6 decimal places digital, return String
     public static String random(float multiple, float min) {
         Random random = new Random();

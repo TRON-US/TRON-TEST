@@ -44,7 +44,8 @@ public class MainNetDeposit20 extends BaseTest {
         Double trcbefore= Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
         System.out.println( " trcbefore：  " + trcbefore  );
         TransferPage transferIn =  trx.enterTransferInPage();
-        String count = removeSymbolNoDot(random(10,0));
+        Double sendcount = getAnAmountZero();
+        String count = Double.toString(sendcount);
         successNumber = count;
         System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);

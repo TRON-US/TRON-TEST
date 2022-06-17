@@ -117,8 +117,8 @@ public class CommitteeTest extends Base {
     }
     @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
     public void test_004makeecendNewProposal() throws  Exception{
-
-        String count = random(6,0);
+        Double sendcount = getAnAmountZero();
+        String count = Double.toString(sendcount);
         count = Helper.getPrettyNumber(count);
         System.out.println(count);
         CommitteePage committeePage = enterCommitteePage();
