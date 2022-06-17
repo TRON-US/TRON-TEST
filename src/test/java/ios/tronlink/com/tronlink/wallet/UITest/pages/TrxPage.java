@@ -235,9 +235,12 @@ public WebElement shieldedDetailBtn;
         return  driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"支出\"`][1]");
     }
     public boolean enterDepositNumberRecordPage(String record) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
         sendOutTab().click();
+        TimeUnit.SECONDS.sleep(1);
         Helper.TapLocationName(driver,"-"+record);
         log("\n have click : -" + record);
+        TimeUnit.SECONDS.sleep(1);
         return isElementExist("-" + record + " TRX");
 
     }

@@ -43,7 +43,7 @@ public class SendTrc20 extends BaseTest {
         transfer.selectTrc20nile();
         Double after = Double.parseDouble(removeSymbolNoDot(transfer.tokenBalance.getText())) ;
         System.out.println(after);
-        Assert.assertEquals(before - send,after,0.000001);
+        Assert.assertEquals(before ,after + send,0.000001);
 
     }
 

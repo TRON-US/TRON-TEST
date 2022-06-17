@@ -53,7 +53,7 @@ public class MainNetDeposit10 extends BaseTest {
         Helper.refreshWalletScreen(DRIVER);
         Double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
         System.out.println( " trcafter：  " + trcafter );
-        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore );
+        Assert.assertEquals(trcbefore ,trcafter + Double.parseDouble(count) ,0.000001);
     }
 
     @Test(description = "Check TransferIn Trx Count",alwaysRun = true)

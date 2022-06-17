@@ -92,7 +92,6 @@ public class MainNetDeposit extends BaseTest {
 
 
 
-    //ios 有bug
     @Test(groups = {"P0"},description = "Check Available Balance",alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         AssetPage asset = enterAssetPage();
@@ -102,7 +101,7 @@ public class MainNetDeposit extends BaseTest {
         TransferPage transferIn = trx.enterTransferInPage();
         Double availableBalance = Double.parseDouble(removeSymbolNoDot(transferIn.availableBalance_text.getText().split(" ")[1]));
         System.out.println("trxCount startCount:" + trxCount + "availableBalance:" + availableBalance  + "frozenCount:" +  frozenCount);
-        Assert.assertEquals(trxCount , frozenCount + availableBalance);
+        Assert.assertEquals(trxCount , frozenCount + availableBalance,0.000001);
     }
 
 
