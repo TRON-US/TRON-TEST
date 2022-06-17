@@ -28,7 +28,51 @@ public class VotePage extends AbstractPage {
     @FindBy(name = "重置")
     public WebElement reset_btn;
 
+    @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"voteHome searchBtn N\"])[1]")
+    public WebElement searchBtn;
+    public void enterSearch() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        searchBtn.click();
+        TimeUnit.SECONDS.sleep(1);
 
+    }
+
+    @FindBy(id = "http://sr-26.com")
+    public WebElement SR26;
+
+    @FindBy(name = "多重签名")
+    public WebElement multi;
+
+    public void enterMulti()throws Exception{
+        multi.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    @FindBy(name = "批量投票")
+    public WebElement multiVote;
+
+    public void enterMultiVote()throws Exception{
+        multiVote.click();
+        TimeUnit.SECONDS.sleep(5);
+    }
+
+    @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"voteHome SortBtn N\"])[1]")
+    public WebElement SortBtn;
+
+    public void enterSortVote()throws Exception{
+        SortBtn.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void enterSRPage()throws Exception{
+        SR26.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void SRSearch(String text) throws Exception{
+        SRinput.sendKeys(text);
+        closeKeyBoard();
+    }
 //    @FindBy(name = "com.tronlink.wallet:id/et_input")
 
     @FindBy(xpath = "(//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeTextField")
@@ -55,6 +99,9 @@ public class VotePage extends AbstractPage {
 
     @FindBy(name = "com.tronlink.wallet:id/tv_me")
     public WebElement my_voted_item;
+
+    @FindBy(className = "XCUIElementTypeTextField")
+    public WebElement SRinput;
 
     @FindBy(name = "XCUIElementTypeTextField")//从2开始
     public List<WebElement> all_witness_edit_text;
