@@ -348,6 +348,7 @@ public class AssetPage extends AbstractPage {
 
     public TrxPage enterTrx10Page() throws Exception {
         Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(2);
 
         for (int i = 1; i < nameLabels.size(); i++) {
             if (nameLabels.get(i).getText().contains("tronlink_token")){

@@ -43,6 +43,17 @@ public class TrxPage extends AbstractPage {
     public WebElement trxTotal_text;
 
 
+    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"textLabel\"])[2]")
+    public WebElement receipt_btn;
+
+    public ReceiptPage enterReceiptPage() throws Exception{
+
+        receipt_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new ReceiptPage(driver);
+    }
+
+
 
     @FindBy(name = "white back arrow")
     public WebElement back_btn;
