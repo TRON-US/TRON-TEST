@@ -139,7 +139,6 @@ public class SettingTest extends BaseTest {
          Helper.swipScreenLitter(DRIVER);
          mine.enterNode();
          Assert.assertTrue(isElementExist("节点设置"));
-         Assert.assertTrue(mine.nodeNameLabels.size()>2);
          Assert.assertEquals(mine.label.getText(),"Tips：延迟越小速度越快");
          Assert.assertEquals(mine.centerBtn.getText(),"添加自定义节点");
      }

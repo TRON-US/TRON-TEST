@@ -61,6 +61,15 @@ public class BaseTest extends Base {
 
     }
 
+    @Parameters({"bundleId"})
+    @AfterClass (groups = {"P0"},alwaysRun = true)
+    public void afterMethod(String bundleId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+
+    }
+
 
 
 

@@ -145,16 +145,18 @@ public class MinePage extends AbstractPage {
     public WebElement DAppBtn;
 
     public void enterDAppManage() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
         DAppBtn.click();
+        TimeUnit.SECONDS.sleep(1);
     }
 
     @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther")
     public WebElement noticeBtn;
 
     public void enterNotice() throws Exception{
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
         noticeBtn.click();
+        TimeUnit.SECONDS.sleep(1);
     }
     
     @FindBy(name = "message setting close")
@@ -223,8 +225,9 @@ public class MinePage extends AbstractPage {
 
 
     //enter Setting page
-    public SettingPage enterSettingPage() {
+    public SettingPage enterSettingPage() throws Exception{
         setting_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         return new SettingPage(driver);
     }
 

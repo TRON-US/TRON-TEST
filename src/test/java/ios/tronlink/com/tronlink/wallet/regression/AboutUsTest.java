@@ -21,7 +21,7 @@ public class AboutUsTest extends BaseTest {
         MinePage minePage =  assetPage.enterMinePage();
         Helper.swipScreenLitter(minePage.driver);
         minePage.enterAboutUsPage();
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.7.0(Build 3)"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.7.0(Build 5)"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"TronLink"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"用户协议"));
