@@ -5,13 +5,19 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonParser;
+
+import java.net.URI;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
@@ -44,6 +50,7 @@ public class autoCreateTestngXml {
     List<String> deviceNameList = new ArrayList<>();
     static HttpClient httpClient;
     static HttpPost httppost;
+    static HttpGet httpGet;
     static HttpResponse response;
     static Integer connectionTimeout = 2000;
     static Integer soTimeout = 2000;
@@ -53,7 +60,8 @@ public class autoCreateTestngXml {
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
     private Boolean isManualTest = false;
-    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+//    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+    private String httpnode = "nile.trongrid.io";
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
@@ -114,10 +122,10 @@ public class autoCreateTestngXml {
             } catch (Exception e) {
                 System.out.print(e + "\n");
             }
-            System.out.print("balance:" + balance + "\n");
+            System.out.print(" balance:" + tokenBalance + "\n");
+            System.out.print("TRXbalance:" + balance + "\n");
             if (balance <= targetAmount * 3 / 5) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
-                //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
@@ -126,27 +134,27 @@ public class autoCreateTestngXml {
 
         }
 
-        for (HashMap.Entry entry : testAccountList.entrySet()) {
-            try {
-                balance = 0L;
-                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
-                tokenBalance = 0L;
-                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
-            } catch (Exception e) {
-                System.out.print(e + "\n");
-            }
-            System.out.print("balance:" + balance + "\n");
-            if (balance <= targetAmount * 3 / 5) {
-                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
-                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
-            }
-
-            if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
-            }
-
-
-        }
+//        for (HashMap.Entry entry : testAccountList.entrySet()) {
+//            try {
+//                balance = 0L;
+//                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
+//                tokenBalance = 0L;
+//                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
+//            } catch (Exception e) {
+//                System.out.print(e + "\n");
+//            }
+//            System.out.print("balance:" + balance + "\n");
+//            if (balance <= targetAmount * 3 / 5) {
+//                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
+//                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
+//            }
+//
+//            if (tokenBalance <= targetTokenAmount * 3 / 5) {
+//                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
+//            }
+//
+//
+//        }
 
     }
 
@@ -287,7 +295,7 @@ public class autoCreateTestngXml {
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
         Long amount, String fromKey) {
       try {
-            final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
+            final String requestUrl = "https://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("to_address", toAddress);
             userBaseObj2.addProperty("owner_address", fromAddress);
@@ -296,7 +304,7 @@ public class autoCreateTestngXml {
             System.out.print("userBaseObj2:" + userBaseObj2.toString());
             response = createConnect(requestUrl, userBaseObj2);
             transactionString = EntityUtils.toString(response.getEntity());
-
+            System.out.println("\nSend amount: " + amount);
             transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
             response = broadcastTransaction(httpNode, transactionSignString);
         } catch (Exception e) {
@@ -313,7 +321,7 @@ public class autoCreateTestngXml {
     public static HttpResponse transferAsset(String httpNode, String ownerAddress,
                                              String toAddress, String assetIssueById, Long amount, String fromKey) {
         try {
-            final String requestUrl = "http://" + httpNode + "/wallet/transferasset";
+            final String requestUrl = "https://" + httpNode + "/wallet/transferasset";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("owner_address", ownerAddress);
             userBaseObj2.addProperty("to_address", toAddress);
@@ -322,7 +330,8 @@ public class autoCreateTestngXml {
             userBaseObj2.addProperty("visible", true);
             response = createConnect(requestUrl, userBaseObj2);
             transactionString = EntityUtils.toString(response.getEntity());
-            System.out.print(transactionString);
+            System.out.println("\nSend amount: " + amount);
+            System.out.println("\nSend asset_name: " + assetIssueById);
             transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
             response = broadcastTransaction(httpNode, transactionSignString);
         } catch (Exception e) {
@@ -333,17 +342,32 @@ public class autoCreateTestngXml {
         return response;
     }
 
+    public static HttpResponse createConnectGet(String url, Map<String,String> param) {
+        try {
+            CloseableHttpClient httpclient = HttpClients.createDefault();
+            URIBuilder builder = new URIBuilder(url);
+            if (param != null) {
+                for (String key : param.keySet()) {
+                    builder.addParameter(key, param.get(key));
+                }
+            }
+            URI uri = builder.build();
+            httpGet = new HttpGet(uri);
+            response = httpclient.execute(httpGet);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            httpGet.releaseConnection();
+            return null;
+        }
+        return response;
+    }
 
 
     public static HttpResponse createConnect(String url, JsonObject requestBody) {
         try {
-            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-                connectionTimeout);
-            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            CloseableHttpClient httpClient = HttpClients.createDefault();
             httppost = new HttpPost(url);
-            httppost.setHeader("Content-type", "application/json; charset=utf-8");
-            httppost.setHeader("Connection", "Close");
             if (requestBody != null) {
                 StringEntity entity = new StringEntity(requestBody.toString(), Charset.forName("UTF-8"));
                 entity.setContentEncoding("UTF-8");
@@ -353,7 +377,6 @@ public class autoCreateTestngXml {
             response = httpClient.execute(httppost);
         } catch (Exception e) {
             e.printStackTrace();
-            httppost.releaseConnection();
             return null;
         }
         return response;
@@ -363,7 +386,7 @@ public class autoCreateTestngXml {
     public static String gettransactionsign(String httpNode, String transactionString,
         String privateKey) {
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/gettransactionsign";
+            String requestUrl = "https://" + httpNode + "/wallet/gettransactionsign";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("transaction", transactionString);
             userBaseObj2.addProperty("privateKey", privateKey);
@@ -378,11 +401,11 @@ public class autoCreateTestngXml {
     }
 
     public static HttpResponse broadcastTransaction(String httpNode, String transactionSignString) {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/broadcasttransaction";
-            httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-                connectionTimeout);
-            httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeout);
+            String requestUrl = "https://" + httpNode + "/wallet/broadcasttransaction";
+
             httppost = new HttpPost(requestUrl);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
             httppost.setHeader("Connection", "Close");
@@ -404,6 +427,7 @@ public class autoCreateTestngXml {
 
         while (times++ <= 10 && responseContent.getString("code") != null && responseContent
                 .getString("code").equalsIgnoreCase("SERVER_BUSY")) {
+
             try {
                 response = httpClient.execute(httppost);
             } catch (Exception e) {
@@ -437,33 +461,32 @@ public class autoCreateTestngXml {
 
     public static Long getBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
-            JsonObject userBaseObj2 = new JsonObject();
-            userBaseObj2.addProperty("address", queryAddress);
-            userBaseObj2.addProperty("visible", true);
-            response = createConnect(requestUrl, userBaseObj2);
+            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("address",queryAddress);
+            map.put("visible","true");
+            response = createConnectGet(requestUrl, map);
         } catch (Exception e) {
             e.printStackTrace();
-            httppost.releaseConnection();
+            httpGet.releaseConnection();
             return null;
         }
         responseContent = parseResponseContent(response);
-        //HttpMethed.printJsonContent(responseContent);
-        httppost.releaseConnection();
+        httpGet.releaseConnection();
         return Long.parseLong(responseContent.get("balance").toString());
     }
 
 
     public static Long getTokenBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
-            JsonObject userBaseObj2 = new JsonObject();
-            userBaseObj2.addProperty("address", queryAddress);
-            userBaseObj2.addProperty("visible", true);
-            response = createConnect(requestUrl, userBaseObj2);
+            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("address",queryAddress);
+            map.put("visible","true");
+            response = createConnectGet(requestUrl, map);
         } catch (Exception e) {
             e.printStackTrace();
-            httppost.releaseConnection();
+            httpGet.releaseConnection();
             return null;
         }
         responseContent = parseResponseContent(response);
@@ -474,137 +497,107 @@ public class autoCreateTestngXml {
                 return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
             }
         }
-        //HttpMethed.printJsonContent(responseContent);
-        httppost.releaseConnection();
-        return 0L;
-    }
-
-    public static Long getTokenBalance(String httpNode, String queryAddress,String tokenId) {
-        try {
-            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
-            JsonObject userBaseObj2 = new JsonObject();
-            userBaseObj2.addProperty("address", queryAddress);
-            userBaseObj2.addProperty("visible", true);
-            response = createConnect(requestUrl, userBaseObj2);
-        } catch (Exception e) {
-            e.printStackTrace();
-            httppost.releaseConnection();
-            return null;
-        }
-        responseContent = parseResponseContent(response);
-        if (!responseContent.containsKey("assetV2")) {
-            return 0L;
-        }
-        JSONArray tokenArray = responseContent.getJSONArray("assetV2");
-
-        for (int i = 0; i < tokenArray.size();i++) {
-            System.out.print("V2 token:" + String.valueOf(tokenArray.getJSONObject(i).get("key")));
-            if (String.valueOf(tokenArray.getJSONObject(i).get("key")).equals(tokenId)) {
-                return Long.parseLong(tokenArray.getJSONObject(i).get("value").toString());
-            }
-        }
-        //HttpMethed.printJsonContent(responseContent);
-        httppost.releaseConnection();
+        httpGet.releaseConnection();
         return 0L;
     }
 
 
 
-    public static HttpResponse freezeBalance(String httpNode, String ownerAddress,
-                                             Long frozenBalance, Integer frozenDuration, Integer resourceCode, String receiverAddress,
-                                             String fromKey) {
-        try {
-            final String requestUrl = "http://" + httpNode + "/wallet/freezebalance";
-            JsonObject userBaseObj2 = new JsonObject();
-            userBaseObj2.addProperty("owner_address", ownerAddress);
-            userBaseObj2.addProperty("frozen_balance", frozenBalance);
-            userBaseObj2.addProperty("frozen_duration", frozenDuration);
-            userBaseObj2.addProperty("visible", true);
-            if (resourceCode == 0) {
-                userBaseObj2.addProperty("resource", "BANDWIDTH");
-            }
-            if (resourceCode == 1) {
-                userBaseObj2.addProperty("resource", "ENERGY");
-            }
-            if (receiverAddress != null) {
-                userBaseObj2.addProperty("receiver_address", receiverAddress);
-            }
-            response = createConnect(requestUrl, userBaseObj2);
-            transactionString = EntityUtils.toString(response.getEntity());
-            System.out.print(transactionString);
-            transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
-            response = broadcastTransaction(httpNode, transactionSignString);
-        } catch (Exception e) {
-            e.printStackTrace();
-            httppost.releaseConnection();
-            return null;
-        }
-        return response;
-    }
+//    public static HttpResponse freezeBalance(String httpNode, String ownerAddress,
+//                                             Long frozenBalance, Integer frozenDuration, Integer resourceCode, String receiverAddress,
+//                                             String fromKey) {
+//        try {
+//            final String requestUrl = "http://" + httpNode + "/wallet/freezebalance";
+//            JsonObject userBaseObj2 = new JsonObject();
+//            userBaseObj2.addProperty("owner_address", ownerAddress);
+//            userBaseObj2.addProperty("frozen_balance", frozenBalance);
+//            userBaseObj2.addProperty("frozen_duration", frozenDuration);
+//            userBaseObj2.addProperty("visible", true);
+//            if (resourceCode == 0) {
+//                userBaseObj2.addProperty("resource", "BANDWIDTH");
+//            }
+//            if (resourceCode == 1) {
+//                userBaseObj2.addProperty("resource", "ENERGY");
+//            }
+//            if (receiverAddress != null) {
+//                userBaseObj2.addProperty("receiver_address", receiverAddress);
+//            }
+//            response = createConnect(requestUrl, userBaseObj2);
+//            transactionString = EntityUtils.toString(response.getEntity());
+//            System.out.print(transactionString);
+//            transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
+//            response = broadcastTransaction(httpNode, transactionSignString);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            httppost.releaseConnection();
+//            return null;
+//        }
+//        return response;
+//    }
 
 
 
-  /**
-   * constructor.
-   */
-  public static HttpResponse sendShieldCoin(String httpNode, String publicZenTokenOwnerAddress,
-      long fromAmount, String publicZenTokenKey, String shieldAddress,String sendAmount) {
-    try {
-      final String requestUrl = "http://" + httpNode + "/wallet/createshieldedtransaction";
+//  /**
+//   * constructor.
+//   */
+//  public static HttpResponse sendShieldCoin(String httpNode, String publicZenTokenOwnerAddress,
+//      long fromAmount, String publicZenTokenKey, String shieldAddress,String sendAmount) {
+//    try {
+//      final String requestUrl = "http://" + httpNode + "/wallet/createshieldedtransaction";
+//
+//      Map<String, Object> map = new HashMap<String, Object>();
+//      map.put("transparent_from_address", publicZenTokenOwnerAddress);
+//      map.put("from_amount", fromAmount);
+//      map.put("ovk", "030c8c2bc59fb3eb8afb047a8ea4b028743d23e7d38c6fa30908358431e2314d");
+//      ArrayList<Object> noteList = new ArrayList<>();
+//      final Map<String, Object> note = new HashMap<String, Object>();
+//      Map<String, Object> noteInfo = new HashMap<String, Object>();
+//      noteInfo.put("value", sendAmount);
+//      noteInfo.put("payment_address", shieldAddress);
+//      noteInfo.put("rcm", "c094341876e1c857d45f7b7083912e342a0d19a499236662a02ae8ef90651007");
+//      noteInfo.put("memo", "Testgroup send shield coin");
+//      note.put("note", noteInfo);
+//      noteList.add(note);
+//      map.put("shielded_receives", noteList);
+//
+//
+//      String jsonStr = new Gson().toJson(map);
+//      JsonObject jsonObj = new JsonParser().parse(jsonStr).getAsJsonObject();
+//      response = createConnect(requestUrl, jsonObj);
+//      transactionString = EntityUtils.toString(response.getEntity());
+//      transactionSignString = gettransactionsign(httpNode, transactionString, publicZenTokenKey);
+//      response = broadcastTransaction(httpNode, transactionSignString);
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//      httppost.releaseConnection();
+//      return null;
+//    }
+//    return response;
+//  }
 
-      Map<String, Object> map = new HashMap<String, Object>();
-      map.put("transparent_from_address", publicZenTokenOwnerAddress);
-      map.put("from_amount", fromAmount);
-      map.put("ovk", "030c8c2bc59fb3eb8afb047a8ea4b028743d23e7d38c6fa30908358431e2314d");
-      ArrayList<Object> noteList = new ArrayList<>();
-      final Map<String, Object> note = new HashMap<String, Object>();
-      Map<String, Object> noteInfo = new HashMap<String, Object>();
-      noteInfo.put("value", sendAmount);
-      noteInfo.put("payment_address", shieldAddress);
-      noteInfo.put("rcm", "c094341876e1c857d45f7b7083912e342a0d19a499236662a02ae8ef90651007");
-      noteInfo.put("memo", "Testgroup send shield coin");
-      note.put("note", noteInfo);
-      noteList.add(note);
-      map.put("shielded_receives", noteList);
 
 
-      String jsonStr = new Gson().toJson(map);
-      JsonObject jsonObj = new JsonParser().parse(jsonStr).getAsJsonObject();
-      response = createConnect(requestUrl, jsonObj);
-      transactionString = EntityUtils.toString(response.getEntity());
-      transactionSignString = gettransactionsign(httpNode, transactionString, publicZenTokenKey);
-      response = broadcastTransaction(httpNode, transactionSignString);
-    } catch (Exception e) {
-      e.printStackTrace();
-      httppost.releaseConnection();
-      return null;
-    }
-    return response;
-  }
-
-
-
-    @Test(enabled = false)
-    public void sendTrzToWitnessAccountToTestShiledTransaction() throws IOException{
-        List<String> witnessAccountAddressList = new ArrayList<>();
-        for (int androidDeviceNum = 1; androidDeviceNum <= 5; androidDeviceNum++) {
-            witnessAccountAddressList.add(Configuration.getByPath("testng.conf")
-                    .getString("androidWitnessAccount.witness" + androidDeviceNum + "Address"));
-        }
-        for (int iosDeviceNum = 1; iosDeviceNum <= 3; iosDeviceNum++) {
-            witnessAccountAddressList.add(Configuration.getByPath("testng.conf")
-                    .getString("iosWitnessAccount.witness" + iosDeviceNum + "Address"));
-        }
-        Long targetShieldTokenAmount = 500000000L;
-        Long shieldTokenBalance;
-        for (int i = 0; i < witnessAccountAddressList.size(); i++) {
-            shieldTokenBalance = getTokenBalance(httpnode,witnessAccountAddressList.get(i),shieldTokenId);
-            if (shieldTokenBalance <= targetShieldTokenAmount * 2 / 5) {
-                transferAsset(httpnode,foundationAccountAddress,witnessAccountAddressList.get(i),
-                        shieldTokenId,targetShieldTokenAmount,foundationAccountKey);
-            }
-        }
-
-    }
+//    @Test(enabled = false)
+//    public void sendTrzToWitnessAccountToTestShiledTransaction() throws IOException{
+//        List<String> witnessAccountAddressList = new ArrayList<>();
+//        for (int androidDeviceNum = 1; androidDeviceNum <= 5; androidDeviceNum++) {
+//            witnessAccountAddressList.add(Configuration.getByPath("testng.conf")
+//                    .getString("androidWitnessAccount.witness" + androidDeviceNum + "Address"));
+//        }
+//        for (int iosDeviceNum = 1; iosDeviceNum <= 3; iosDeviceNum++) {
+//            witnessAccountAddressList.add(Configuration.getByPath("testng.conf")
+//                    .getString("iosWitnessAccount.witness" + iosDeviceNum + "Address"));
+//        }
+//        Long targetShieldTokenAmount = 500000000L;
+//        Long shieldTokenBalance;
+//        for (int i = 0; i < witnessAccountAddressList.size(); i++) {
+//            shieldTokenBalance = getTokenBalance(httpnode,witnessAccountAddressList.get(i),shieldTokenId);
+//            if (shieldTokenBalance <= targetShieldTokenAmount * 2 / 5) {
+//                transferAsset(httpnode,foundationAccountAddress,witnessAccountAddressList.get(i),
+//                        shieldTokenId,targetShieldTokenAmount,foundationAccountKey);
+//            }
+//        }
+//
+//    }
 
 }
