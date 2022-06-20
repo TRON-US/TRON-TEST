@@ -204,7 +204,7 @@ public class Base {
         while (amountStr.length() != 8) {
             amountStr = Float.toString(rand.nextFloat() + 1);
         }
-        log("\ngetAnAmount() amountStr: " + amountStr);
+        log("\ngetAnAmount: " + amountStr);
         return Double.valueOf(amountStr);
     }
 

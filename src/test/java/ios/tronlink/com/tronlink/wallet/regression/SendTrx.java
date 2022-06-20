@@ -33,10 +33,8 @@ public class SendTrx extends BaseTest {
      public void test001_sendTrxTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          TimeUnit.SECONDS.sleep(2);
-
          TrxPage page = asset.enterTrxPage();
          String show1 = page.balanceLabel.getText();
-         log("asset TRX:" + show1);
          String before1 = removeSymbolNoDot(show1);
 
          Double send = getAnAmount();
@@ -51,10 +49,9 @@ public class SendTrx extends BaseTest {
 
          page = asset.enterTrxPage();
          String show2 = page.balanceLabel.getText();
-         log("asset after TRX:" + show2);
          String before2 = removeSymbolNoDot(show2);
-
          System.out.println("before1:" + before1 + " before2:" + before2 + " send:" + send);
+         System.out.println("before:"+Double.parseDouble(before1)  + " cal:" + (Double.parseDouble(before2) + send));
          Assert.assertEquals(Double.parseDouble(before1) ,Double.parseDouble(before2) + send,0.5);
      }
 
