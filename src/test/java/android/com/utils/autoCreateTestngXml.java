@@ -7,8 +7,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonParser;
 
 import java.net.URI;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -60,7 +62,7 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
-    private Boolean isManualTest = false;
+    private Boolean isMuiltDevices = false;
 //    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
     private String httpnode = "nile.trongrid.io";
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
@@ -176,24 +178,30 @@ public class autoCreateTestngXml {
         testAccountList.put("TAzrJHKa57nXnn3dZGFG87PDuWx12dY97s","844f7f5da381943403e8324db4fda13dce9af35b72cf2ea3846fafa12c5d9890");
         testAccountList.put("TWhc6AAh6BWRr3k5dV8iMvkp8ys7NHzXCk","6850fd0a0f2cb94167bf0507a738fa9eef51d6fdc65e8452039f711a4bdf3135");
 
-        Random random = new Random();
-        Integer index = random.nextInt(5)+1;
 
-        if (isManualTest) {
-            multiSignIndex.addAndGet(5);
-        }
+
+       if (deviceNameList.size()>1){
+           isMuiltDevices = true;
+       }
 
         StringBuilder sb = new StringBuilder();
 
         {
-            int singleTestPackageIndex = 0;
+            Set<Integer> accIndex = new HashSet<>();
+
+            Random random = new Random();
+            Integer index = random.nextInt(5)+1;
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
+            
             for (Iterator<String> it = deviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
-                for (int i = 0; i < index; i++) {
-                    entries.next();
+                while (accIndex.contains(index)){
+                    random = new Random();
+                    index = random.nextInt(5)+1;
                 }
-                HashMap.Entry<String, String> entry = entries.next();
+                accIndex.add(index);
+
                 String udid = it.next();
+
                 sb.append("    <test name= \"" + udid + "\">\n");
                 adb = "adb -s " + udid;
                 AppiumTestCase.cmdReturn(adb + " uninstall com.tronlinkpro.wallet");
