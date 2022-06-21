@@ -8,6 +8,7 @@ import com.google.gson.JsonParser;
 
 import java.net.URI;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -175,6 +176,8 @@ public class autoCreateTestngXml {
         testAccountList.put("TAzrJHKa57nXnn3dZGFG87PDuWx12dY97s","844f7f5da381943403e8324db4fda13dce9af35b72cf2ea3846fafa12c5d9890");
         testAccountList.put("TWhc6AAh6BWRr3k5dV8iMvkp8ys7NHzXCk","6850fd0a0f2cb94167bf0507a738fa9eef51d6fdc65e8452039f711a4bdf3135");
 
+        Random random = new Random();
+        Integer index = random.nextInt(5)+1;
 
         if (isManualTest) {
             multiSignIndex.addAndGet(5);
@@ -186,6 +189,9 @@ public class autoCreateTestngXml {
             int singleTestPackageIndex = 0;
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
             for (Iterator<String> it = deviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
+                for (int i = 0; i < index; i++) {
+                    entries.next();
+                }
                 HashMap.Entry<String, String> entry = entries.next();
                 String udid = it.next();
                 sb.append("    <test name= \"" + udid + "\">\n");
@@ -213,48 +219,40 @@ public class autoCreateTestngXml {
                     "        <parameter name=\"systemPort\"  value=\"" + systemPort++ + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"address\"  value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.address" + multiSignIndex.get())
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.address" + index)
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"privateKey\"  value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.privateKey" + multiSignIndex.get())
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.privateKey" + index)
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"ownerPrivateKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.owner" + multiSignIndex.get() + "PrivateKey")
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.owner" + index + "PrivateKey")
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"ownerAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.owner" + multiSignIndex.get() + "Address")
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.owner" + index + "Address")
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"multiSignPrivateKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.multiSign" + multiSignIndex.get() + "PrivateKey")
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.multiSign" + index + "PrivateKey")
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"multiSignAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.multiSign" + multiSignIndex.get() + "Address")
+                        + Configuration.getByPath("testng.conf").getString("androidMultiSignAccount.multiSign" + index + "Address")
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"witnessKey\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Key")
+                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + index + "Key")
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"witnessAddress\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Address")
+                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + index + "Address")
                         + "\"/>\n");
                 sb.append(
                     "        <parameter name=\"witnessUrl\" value=\""
-                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + multiSignIndex.get() + "Url")
+                        + Configuration.getByPath("testng.conf").getString("androidWitnessAccount.witness" + index + "Url")
                         + "\"/>\n");
-                sb.append(
-                  "        <parameter name=\"shieldSK\" value=\""
-                      + Configuration.getByPath("testng.conf").getString("androidShieldAccount.sk" + multiSignIndex.get())
-                      + "\"/>\n");
-                sb.append(
-                  "        <parameter name=\"shieldAddress\" value=\""
-                      + Configuration.getByPath("testng.conf").getString("androidShieldAccount.shieldAddress" + multiSignIndex.get())
-                      + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <packages>\n");
                 for (int i = 0; i < packagesNameList.size();i++) {
