@@ -200,7 +200,7 @@ public class SendTrc10 extends Base {
 
     @Parameters({"address"})
     @Test(enabled = true, description = "test013_confirmInfoShowTest", alwaysRun = true)
-    public void test013_confirmInfoShowTest(String address) throws Exception {
+    public void test011_confirmInfoShowTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -228,7 +228,7 @@ public class SendTrc10 extends Base {
 
 
     @Test(enabled = true)
-    public void test016_NotFreezeBandWidthSendMaxNumberToUNActive() throws Exception {
+    public void test012_NotFreezeBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(notFreezenBandWidthAddressPrivateKey,DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -240,7 +240,7 @@ public class SendTrc10 extends Base {
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         String content = transfer.fee_text.getText();
         Assert.assertTrue(content.contains("1.1") && content.contains("TRX"));
 
@@ -248,7 +248,7 @@ public class SendTrc10 extends Base {
 
 
     @Test(enabled = true, description = "test009_inputHaveBandWidthSendMaxNumberToUNActive")
-    public void test017_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
+    public void test013_inputHaveBandWidthSendMaxNumberToUNActive() throws Exception {
         DRIVER.resetApp();
         new Helper().getSign(haveBandwidthprivateKey,DRIVER);
         AssetPage asset = new AssetPage(DRIVER);
@@ -260,9 +260,9 @@ public class SendTrc10 extends Base {
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         String content = transfer.fee_text.getText();
-        Assert.assertTrue(content.contains("≈1 TRX"));
+        Assert.assertTrue(content.contains("1 TRX"));
 
     }
 
