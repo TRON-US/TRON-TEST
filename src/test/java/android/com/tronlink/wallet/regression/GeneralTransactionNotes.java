@@ -77,7 +77,7 @@ public class GeneralTransactionNotes extends Base {
                 TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
                 Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRX 转账"));
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
-                Assert.assertEquals(detailAmount,sendAmount);
+                Assert.assertEquals(detailAmount,sendAmount,0.5);
                 Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
                 Assert.assertTrue(detail.tv_note.getText().contains("GeneralTransactionNotes"));
                 break;

@@ -17,12 +17,6 @@ import java.util.concurrent.TimeUnit;
 public class AllSignatureSuccTest extends Base {
 
 
-    public String sourceWallet = "";
-    public String fromAccountPrivateKey1 = "dad5b1d416822eb02e79bb818c35411e58b88db85562bcc8e71cac2c1ffa441c";
-    //public String fromAccountAddress = "TMx13rffk9sFto1LYv42wh9WmFYpYoKRcS";
-    public String signatureAccountPrivateKey2 = "451a602d36e0158b5d642daca47e01ec5abdc96ec67a9f88dbc165c7dbb2a08a";
-    public String signatureAccountAddress = "TS9XrumdDFBs5bQkVnhFTexoqwqaxUVG8v";
-
     static String unActiveAddress = Configuration.getByPath("testng.conf")
             .getString("unActiveAddressInNile.Address1");
 
