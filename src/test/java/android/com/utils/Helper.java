@@ -191,7 +191,9 @@ public class Helper {
 
             findWebElement("com.tronlinkpro.wallet:id/iv_wallet_manager").isDisplayed();
             gotoImportMoreWaller(key);
-            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(key);
+//            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(key);
+            driver.setClipboardText(key);
+            findWebElement("com.tronlinkpro.wallet:id/btn_paste").click();
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
             swipScreenLitte(DRIVER);
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");

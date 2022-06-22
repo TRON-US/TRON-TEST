@@ -213,6 +213,15 @@ public class Base {
         return value;
     }
 
+    public Double removeSymbolDouble(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return Double.parseDouble(value);
+    }
+
+
     public String removeSymbolFloat(String arg){
         String value = arg;
         if (arg.contains(",")){
