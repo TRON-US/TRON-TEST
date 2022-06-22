@@ -60,7 +60,7 @@ public class AssetsPageTest extends Base {
         String about = asset.abountmoneyvalue.getText();
         String result;
         if (about.contains("$")){
-             result = about.replace("≈$"," ").trim();
+            result = about.replace("≈$"," ").trim();
         }else {
             result = about.replace("≈¥"," ").trim();
         }
@@ -120,38 +120,38 @@ public class AssetsPageTest extends Base {
         Assert.assertTrue(asset.isTextExist("TNFT"));
     }
 
-     @Test(alwaysRun = true)
-     public void test006_EyeOpenAndCloseTest() throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         asset.eyesButton.click();
-         Assert.assertEquals(asset.trxValue.getText(),"****");
-         Assert.assertEquals(asset.tv_money_value.getText(),"****");
-         asset.enterSwitchWallet();
-         Assert.assertEquals(asset.tv_value.getText(),"****");
-         asset.driver.navigate().back();
-         asset.eyesButton.click();
-         Assert.assertNotEquals(asset.trxValue.getText(),"****");
-         Assert.assertNotEquals(asset.tv_money_value.getText(),"****");
-         asset.enterSwitchWallet();
-         Assert.assertNotEquals(asset.tv_value.getText(),"****");
-     }
+    @Test(alwaysRun = true)
+    public void test006_EyeOpenAndCloseTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.eyesButton.click();
+        Assert.assertEquals(asset.trxValue.getText(),"****");
+        Assert.assertEquals(asset.tv_money_value.getText(),"****");
+        asset.enterSwitchWallet();
+        Assert.assertEquals(asset.tv_value.getText(),"****");
+        asset.driver.navigate().back();
+        asset.eyesButton.click();
+        Assert.assertNotEquals(asset.trxValue.getText(),"****");
+        Assert.assertNotEquals(asset.tv_money_value.getText(),"****");
+        asset.enterSwitchWallet();
+        Assert.assertNotEquals(asset.tv_value.getText(),"****");
+    }
 
-      @Test(alwaysRun = true)
-      public void test007_ProjectTronLinkToken() throws Exception {
-          AssetPage asset = new AssetPage(DRIVER);
-          asset.enterTrx10Page();
-          ProjectItemPage page = asset.enterProjectItem();
-          Assert.assertEquals(page.assets_name.getText(),"tronlink_token");
-          Assert.assertEquals(page.assets_tag.getText(),"TRC10");
-          Assert.assertEquals(page.token_id.getText(),"1000002");
-          Assert.assertEquals(page.token_url.getText(),"http://nileex.io/");
-          Assert.assertEquals(page.token_publisher.getText(),"TN21Wx2yoNYiZ7znuQonmZMJnH5Vdfxu78");
-          Helper.swipScreenLitte(DRIVER);
-          Assert.assertEquals(page.start_time.getText(),"2019-11-27 15:11:00");
-          Assert.assertEquals(page.end_time.getText(),"2025-09-11 20:50:00");
-          Assert.assertEquals(page.total_circulation.getText(),"1000000000");
+    @Test(alwaysRun = true)
+    public void test007_ProjectTronLinkToken() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.enterTrx10Page();
+        ProjectItemPage page = asset.enterProjectItem();
+        Assert.assertEquals(page.assets_name.getText(),"tronlink_token");
+        Assert.assertEquals(page.assets_tag.getText(),"TRC10");
+        Assert.assertEquals(page.token_id.getText(),"1000002");
+        Assert.assertEquals(page.token_url.getText(),"http://nileex.io/");
+        Assert.assertEquals(page.token_publisher.getText(),"TN21Wx2yoNYiZ7znuQonmZMJnH5Vdfxu78");
+        Helper.swipScreenLitte(DRIVER);
+        Assert.assertEquals(page.start_time.getText(),"2019-11-27 15:11:00");
+        Assert.assertEquals(page.end_time.getText(),"2025-09-11 20:50:00");
+        Assert.assertEquals(page.total_circulation.getText(),"1000000000");
 
 
 
-      }
+    }
 }
