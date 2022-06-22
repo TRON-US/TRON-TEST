@@ -162,12 +162,17 @@ public class Helper {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
     public WebElement walletNameSwitch_btn;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
+    public WebElement iv_wallet_manager;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_offline_sign_desc")
     public WebElement coldWalletScan_btn;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
     public List<WebElement> asset_list;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/import_title")
+    public WebElement import_title;
 
     public void getSign(String testPrivateKey,AndroidDriver driver){
         this.DRIVER = driver;
@@ -178,6 +183,33 @@ public class Helper {
             getSignOperate(testPrivateKey);
         }
     }
+
+    public  void AddMoreWalletWithPrivateKey(String key,AndroidDriver driver) throws Exception{
+        this.DRIVER = driver;
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+        try {
+
+            findWebElement("com.tronlinkpro.wallet:id/iv_wallet_manager").isDisplayed();
+            gotoImportMoreWaller(key);
+            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(key);
+            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            swipScreenLitte(DRIVER);
+            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
+            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            TimeUnit.SECONDS.sleep(6);
+
+        }catch (Exception e){
+            getSignOperate(key);
+        }
+
+    }
+
+    public void gotoImportMoreWaller(String key) throws Exception{
+        findWebElement("com.tronlinkpro.wallet:id/iv_wallet_manager").click();
+        findWebElement("com.tronlinkpro.wallet:id/import_title").click();
+    }
+
 
     public void getWatchWalletSign(String address,AndroidDriver driver) throws Exception{
 

@@ -89,6 +89,8 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_red_dot")
     public WebElement iv_red_dot;
 
+@FindBy(id = "com.tronlinkpro.wallet:id/iv_qr")
+public WebElement iv_qr;
 
 @FindBy(id = "com.tronlinkpro.wallet:id/title")
 public WebElement title;
@@ -111,6 +113,8 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/asset_status")
     public WebElement eyesButton;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_money_value")
+    public WebElement tv_money_value;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
     public WebElement update_btn;
@@ -220,6 +224,8 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
     public WebElement currChain_name;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_value")
+    public WebElement tv_value;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
     public WebElement tv_walletname;
@@ -229,8 +235,9 @@ public WebElement title;
         findElementByText(name).click();
     }
 
-    @FindBy(className = "com.tronlinkpro.wallet:id/tv_walletname")
-    public WebElement assetList_class;
+    public void enterSwitchWallet(){
+        tv_walletname.click();
+    }
 
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
     public WebElement trc10Page_transfer_btn;
@@ -329,6 +336,11 @@ public WebElement title;
 
     }
 
+    public ProjectItemPage enterProjectItem() throws Exception{
+        iv_qr.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new ProjectItemPage(driver);
+    }
 
     public TrxPage enterTrx10Page() throws Exception {
         Helper.swipScreen(driver);
