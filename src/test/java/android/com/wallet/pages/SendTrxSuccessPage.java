@@ -29,7 +29,21 @@ public class SendTrxSuccessPage extends AbstractPage {
         return new AssetPage(driver);
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_result")
+    public WebElement tv_result ;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_done")
+    public WebElement btn_done;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_transaction_info")
+    public WebElement btn_transaction_info;
+
+
+    public DetailPage enterDetailPage() throws Exception{
+        btn_transaction_info.click();
+        TimeUnit.SECONDS.sleep(3);
+        return  new DetailPage(driver);
+    }
 
 
 }

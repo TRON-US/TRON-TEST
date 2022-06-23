@@ -290,6 +290,15 @@ public WebElement title;
         }
     }
 
+    public NFTPage enterNFTPage() throws Exception {
+        findElementByText("收藏品").click();
+        swipScreenLitte();
+        TimeUnit.SECONDS.sleep(1);
+        findElementByText("HC7T").click();
+        TimeUnit.SECONDS.sleep(1);
+        return new NFTPage(driver);
+
+    }
 
     public void waitShieldDataSynFinished() {
         Long startSynTime = System.currentTimeMillis();
