@@ -50,6 +50,8 @@ public class AssetPage extends AbstractPage {
 
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    public WebElement tv_address;
 
 
 //        try {
