@@ -95,11 +95,12 @@ public class SendNFT extends Base {
         NFTPage page = asset.enterNFTPage();
         SendTrxPage sendPage = page.enterSendPage();
         SendTrxSuccessPage successPage = sendPage.sendNFT(RAddress);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertEquals(successPage.tv_result.getText(),"交易已上链");
         Assert.assertEquals(successPage.btn_done.getText(),"完成");
         Assert.assertEquals(successPage.btn_transaction_info.getText(),"查看交易详情");
         DetailPage detail = successPage.enterDetailPage();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(detail.tv_title.getText(), "发送");
         Assert.assertEquals(detail.name.getText(), "HC7T(HC7TTTT)");
         Assert.assertEquals(detail.tv_contract_type.getText(), "TRC721 通证转账");
@@ -122,11 +123,12 @@ public class SendNFT extends Base {
         NFTPage page = asset.enterNFTPage();
         SendTrxPage sendPage = page.enterSendPage();
         SendTrxSuccessPage successPage = sendPage.sendNFT(address);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertEquals(successPage.tv_result.getText(),"交易已上链");
         Assert.assertEquals(successPage.btn_done.getText(),"完成");
         Assert.assertEquals(successPage.btn_transaction_info.getText(),"查看交易详情");
         DetailPage detail = successPage.enterDetailPage();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(detail.tv_title.getText(), "发送");
         Assert.assertEquals(detail.name.getText(), "HC7T(HC7TTTT)");
         Assert.assertEquals(detail.tv_contract_type.getText(), "TRC721 通证转账");
