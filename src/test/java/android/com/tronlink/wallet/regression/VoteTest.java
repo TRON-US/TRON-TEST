@@ -54,110 +54,117 @@ public class VoteTest extends Base {
     public void test001_VoteMainPageTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertEquals(vote.tv_main_title.getText(),"投票及奖励");
         Assert.assertEquals(vote.available_vote_right_title.getText(),"可用投票权");
         Assert.assertEquals(vote.tv_multi_sign.getText(),"多重签名投票");
-        Double total = removeSymbolDouble(vote.tv_total_vote_count.getText());
+        Double total = removeSymbolDouble(vote.tv_total_vote_rights.getText());
         Double av = removeSymbolDouble(vote.tv_available_votes.getText());
         Double use = removeSymbolDouble(vote.tv_already_vote.getText());
         System.out.println("total: "+total+" av: "+av+" use: "+ use);
         Assert.assertEquals((use+av),total,0.1);
     }
 
-//     @Test(alwaysRun = true)
-//     public void test002_BatchVoteTest() throws Exception {
-//         AssetPage asset = new AssetPage(DRIVER);
-//         VotePage vote = asset.enterVotePage();
-//         vote.enterBatchPage();
-//         Assert.assertTrue(vote.title.getText().contains("批量投票"));
-//         Assert.assertTrue(vote.tv_cancel_all_vote.getText().contains("取消全部投票"));
-//     }
-//
-//
-//    @Test(alwaysRun = true)
-//    public void test003_GetMoreVotePTTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        VotePage vote = asset.enterVotePage();
-//        vote.enterBatchPage();
-//        vote.enterGetMoreTP();
-//        if (isElementShotId("tv_ok")){
-//            Assert.assertTrue(vote.tv_content.getText().contains("更多投票权"));
-//            findByShotId("tv_ok").click();
-//        }
-//        Assert.assertTrue(vote.nav_title.getText().contains("质押"));
-//    }
-//
-//    @Test(alwaysRun = true)
-//    public void test004_GetMoreVotePTFromMainPageTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        VotePage vote = asset.enterVotePage();
-//        vote.getVotes();
-//        if (isElementShotId("tv_ok")){
-//            Assert.assertTrue(vote.tv_content.getText().contains("更多投票权"));
-//            findByShotId("tv_ok").click();
-//        }
-//        Assert.assertTrue(vote.nav_title.getText().contains("质押"));
-//    }
-//
-//     @Test(alwaysRun = true)
-//     public void test005_receiveIncome() throws Exception {
-//         AssetPage asset = new AssetPage(DRIVER);
-//         VotePage vote = asset.enterVotePage();         TimeUnit.SECONDS.sleep(8);
-//         vote.calmReward();
-//         TimeUnit.SECONDS.sleep(8);
-//         Assert.assertTrue(vote.tv_info_title.getText().contains("领取收益"));
-//     }
-//
-////      @Test(alwaysRun = true)
-////      public void test006_SearchFuncTest() throws Exception {
-////          AssetPage asset = new AssetPage(DRIVER);
-////          VotePage vote = asset.enterVotePage();
-////          vote.openSearch();
-////          Assert.assertTrue(vote.et_search.getText().contains("搜索超级代表"));
-////          vote.searchString("git.ico");
-////          Assert.assertTrue(vote.firstSR.getText().contains("https://git.ico"));
-////      }
-//
-//       @Test(alwaysRun = true)
-//       public void test007_ChangeTabVote() throws Exception {
-//           AssetPage asset = new AssetPage(DRIVER);
-//           VotePage vote = asset.enterVotePage();
-//           TimeUnit.SECONDS.sleep(2);
-//           vote.findElementByText("我的投票").click();
-//           TimeUnit.SECONDS.sleep(1);
-//           Helper.swipScreen(DRIVER);
-//           Helper.swipScreen(DRIVER);
-//           Assert.assertTrue(vote.no_more.getText().contains("没有更多了"));
-//       }
-//
-//        @Test(alwaysRun = true)
-//        public void test008_goToSRPage() throws Exception {
-//            AssetPage asset = new AssetPage(DRIVER);
-//            VotePage vote = asset.enterVotePage();
-//            vote.enterFirstSR();
-//            Assert.assertTrue(vote.tv_sr_number.getText().contains("NO.1"));
-//            Assert.assertTrue(vote.tv_voting_onsiderations.getText().contains("查看投票注意事项"));
-//        }
-//
-////         @Test(alwaysRun = true)
-////         public void test009_voteTest() throws Exception {
-////             AssetPage asset = new AssetPage(DRIVER);
-////             VotePage vote = asset.enterVotePage();
-////             vote.enterBatchPage();
-////             String number =prettyString(vote.vote_number_input.getText());
-////             if (vote.vote_number_input.getText().contains("请输入投票数量")) {
-////                 number = "1";
-////             }
-////             vote.enterVoteNumber(number);
-////             vote.signActiontoDone();
-////             TimeUnit.SECONDS.sleep(4);
-////             vote.findElementByText("我的投票").click();
-////             TimeUnit.SECONDS.sleep(8);
-////             Integer newint = Integer.parseInt(number)+1;
-////             Integer recoderInt = Integer.parseInt(prettyString(vote.tv_my_vote.getText()));
-////             Assert.assertEquals(newint,recoderInt);
-////         }
-//
+     @Test(alwaysRun = true)
+     public void test002_VotePageGetRewardTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         VotePage vote = asset.enterVotePage();
+         TimeUnit.SECONDS.sleep(2);
+         if (isElementShotId("tv_profit")){
+             Double ward = 0.0;
+             if (vote.tv_profit.getText().contains("<0.001")){
+                 ward = 0.001;
+             }else {
+                 ward = sepLeftNumberTextToDouble(vote.tv_profit.getText(),"TRX");
+             }
+             if (ward > 0){
+                 vote.enterGetReword();
+                 if (isElementShotId("tv_confirm_title")){
+                     Assert.assertEquals(vote.tv_confirm_title.getText(),"确认交易");
+                     Assert.assertEquals(vote.tv_info_title.getText(),"领取收益");
+                     Assert.assertTrue(vote.tv_right.getText().contains("当前账户"));
+                     vote.confirmAction();
+                     Assert.assertEquals(vote.tv_result.getText(),"领取收益成功");
+                 }else {
+                     log("未到24小时场景");
+                 }
+
+             }else {
+                 log("待领取收益数值 0 无法领取");
+             }
+         }else {
+             log("无待领取收益该处隐藏");
+
+         }
+     }
+
+    @Test(alwaysRun = true)
+    public void test003_VoteOrderPopViewTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
+        vote.orderPopView();
+        Assert.assertEquals(vote.tv_my_voted.getText(),"仅展示我投票的");
+        Assert.assertTrue(vote.rb_my_vote.getText().contains("已投票数"));
+        Assert.assertTrue(vote.rb_apr.getText().contains("预计年化收益"));
+        Assert.assertTrue(vote.rb_voted_count.getText().contains("得票数"));
+
+    }
+
+
+    @Test(alwaysRun = true)
+    public void test004_VoteSearchSRTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
+        Helper.swipScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
+        vote.enterSearch("china");
+        Assert.assertEquals(vote.tv_witness_name.getText(),"ChinaTRON");
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test005_VoteSRPageTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
+        Helper.swipScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
+        vote.enterSearch("sr-26");
+        Double votedNumber = removeSymbolDouble(vote.tv_voted_count.getText());
+        vote.enterSRPage();
+        Assert.assertEquals(vote.tv_name.getText(),"http://sr-26.com");
+        Assert.assertTrue(vote.tv_ranking.getText().contains("NO.1"));
+        Assert.assertEquals(vote.tv_address.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
+        Double votedSRNumber = removeSymbolDouble(vote.tv_voted_number.getText());
+        Assert.assertEquals(votedNumber,votedSRNumber,0.1);
+    }
+
+    @Test(alwaysRun = true)
+    public void test006_VoteToTronChainSRTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
+        Helper.swipScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
+        vote.enterSearch("china");
+        vote.enterSRPage();
+        if (isElementShotId("btn_vote")){
+            vote.enterVoteStep1ToConfirm();
+            Assert.assertTrue(vote.tv_vote_sr.getText().contains("ChinaTRON"));
+            vote.enterVoteStep2Password();
+            Assert.assertEquals(vote.tv_result.getText(),"投票成功");
+        }else if(isElementShotId("btn_voted_update")){
+            vote.enterEditVoteStep1ToConfirm();
+            Assert.assertTrue(vote.tv_vote_sr.getText().contains("ChinaTRON"));
+            vote.enterVoteStep2Password();
+            Assert.assertEquals(vote.tv_result.getText(),"投票成功");
+        }
+    }
+
+    //构建一个账户 投票权不足使用
+
+
 
 }

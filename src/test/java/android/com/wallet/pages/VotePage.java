@@ -52,11 +52,49 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/get_votes")
     public WebElement get_votes;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
-    public WebElement voteTitle_btn;
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_profit")
+    public WebElement tv_profit;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_get_profit")
+    public WebElement btn_get_profit;
+
+    public void enterGetReword() throws Exception{
+        btn_get_profit.click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+    public void confirmAction() throws Exception{
+        confirm_btn.click();
+        password_input.sendKeys("Test0001");
+        bt_send.click();
+        TimeUnit.SECONDS.sleep(5);
+    }
+//取消投票成功 取消投票显示 tvresult 文案
+    //投票成功
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_right")
+    public WebElement tv_right;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_batch_vote")
     public WebElement tv_batch_vote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_sort")
+    public WebElement iv_sort;
+
+    public void orderPopView(){
+        iv_sort.click();
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rb_my_vote")
+    public WebElement rb_my_vote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rb_apr")
+    public WebElement rb_apr;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rb_voted_count")
+    public WebElement rb_voted_count;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_my_voted")
+    public WebElement tv_my_voted;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletaddress")
     public WebElement tv_walletaddress;
@@ -88,6 +126,12 @@ public class VotePage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_sr_number")
     public WebElement tv_sr_number;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_voted_count")
+    public WebElement tv_voted_count;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_voted_number")
+    public WebElement tv_voted_number;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/reset")
     public WebElement reset_btn;
@@ -154,9 +198,8 @@ public class VotePage extends AbstractPage {
     public WebElement vote_number_input;
 
     public void enterVoteNumber(String number){
-        Integer newint = Integer.parseInt(number)+1;
         vote_number_input.clear();
-        vote_number_input.sendKeys(String.valueOf(newint));
+        vote_number_input.sendKeys(number);
     }
 
     @FindBy(id = "com.tronlinkpro.wallet:id/vote_count")
@@ -201,14 +244,48 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/v_common_title")
     public WebElement v_common_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote") //投票
     public WebElement btn_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update")
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update") //修改投票
     public WebElement btn_voted_update;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_cancel")
-    public WebElement voted_cancel;
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_cancel") //取消投票
+    public WebElement btn_voted_cancel;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_next")
+    public WebElement bt_next;
+
+    public void enterVoteStep1ToConfirm() throws Exception{
+        btn_vote.click();
+        if (vote_number_input.getText().contains("1")){//retry 场景覆盖
+            enterVoteNumber("2");
+        }else {
+            enterVoteNumber("1");
+        }
+        bt_next.click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+    public void enterVoteStep2Password() throws Exception{
+        btn_confirm.click();
+        password_input.sendKeys("Test0001");
+        bt_send.click();
+        TimeUnit.SECONDS.sleep(5);
+    }
+    public void enterEditVoteStep1ToConfirm() throws Exception{
+        btn_voted_update.click();
+        if (vote_number_input.getText().contains("1")){
+            enterVoteNumber("2");
+        }else {
+            enterVoteNumber("1");
+        }
+        bt_next.click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_sr")
+    public WebElement tv_vote_sr;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancel_all_vote")
     public WebElement tv_cancel_all_vote;
@@ -223,6 +300,28 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_more_vote_right")
     public WebElement tv_more_vote_right;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_search_view")
+    public WebElement ll_search_view;
+
+
+    public void enterSearch(String key)throws Exception{
+        ll_search_view.click();
+        et_search.sendKeys(key);
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_witness_name")
+    public WebElement tv_witness_name;
+
+    public void enterSRPage(){
+        tv_witness_name.click();
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ranking")
+    public WebElement tv_ranking;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    public WebElement tv_name;
 
     public void enterBatchPage(){
         tv_batch_vote.click();

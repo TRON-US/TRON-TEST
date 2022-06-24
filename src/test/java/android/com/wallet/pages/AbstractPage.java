@@ -41,6 +41,15 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
     public  WebElement confirmBan;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm_title")
+    public WebElement tv_confirm_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_info_title")
+    public WebElement tv_info_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_result")
+    public WebElement tv_result;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
     public WebElement cancelBtn;
 
