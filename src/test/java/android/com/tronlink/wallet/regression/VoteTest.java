@@ -65,6 +65,7 @@ public class VoteTest extends Base {
          AssetPage asset = new AssetPage(DRIVER);
          VotePage vote = asset.enterVotePage();
          vote.enterBatchPage();
+         TimeUnit.SECONDS.sleep(1);
          Assert.assertTrue(vote.title.getText().contains("批量投票"));
          Assert.assertTrue(vote.tv_cancel_all_vote.getText().contains("取消全部投票"));
      }

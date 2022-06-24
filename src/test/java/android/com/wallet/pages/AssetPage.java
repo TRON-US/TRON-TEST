@@ -484,9 +484,11 @@ public WebElement title;
 
 
 
-    public VotePage enterVotePage(){
+    public VotePage enterVotePage() throws Exception{
             waiteTime(20);
             vote_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
         return new VotePage(driver);
     }
 
