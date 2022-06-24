@@ -341,9 +341,11 @@ public class SendTrxPage extends AbstractPage {
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
         trc20token.click();
+        TimeUnit.SECONDS.sleep(3);
         Double value = Double.parseDouble(removeSymbol(tokenBalance.getText())) ;
         TextFieldAmo().sendKeys(amount);
         closeKeyBoard();
+        TimeUnit.SECONDS.sleep(3);
         findSend_btn().click();
         TimeUnit.SECONDS.sleep(4);
         return value;
@@ -499,7 +501,9 @@ public class SendTrxPage extends AbstractPage {
         inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         goToSecondPage();
         Double value = inputTRC20AndSendAmount(number);
+        TimeUnit.SECONDS.sleep(1);
         confirmPageButtonClick();
+        TimeUnit.SECONDS.sleep(1);
         InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
         TimeUnit.SECONDS.sleep(4);
