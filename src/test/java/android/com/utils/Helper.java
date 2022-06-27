@@ -216,7 +216,7 @@ public class Helper {
     public void getWatchWalletSign(String address,AndroidDriver driver) throws Exception{
 
         this.DRIVER = driver;
-        waiteTime();
+        TimeUnit.SECONDS.sleep(3);
         try {
             walletNameSwitch_btn.isDisplayed();
             System.out.println("已导入");
