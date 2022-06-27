@@ -136,7 +136,8 @@ public class autoCreateTestngXml {
                 System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
                 System.out.print(e + "\n");
             }
-            System.out.print("balance:" + balance + "\n");
+            System.out.print("\nTokenBalance:" + tokenBalance + "\n");
+            System.out.print("TRXBalance:" + balance + "\n");
             if (balance <= targetAmount * 3 / 5) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
@@ -148,28 +149,28 @@ public class autoCreateTestngXml {
 
         }
 
-        for (HashMap.Entry entry : testAccountList.entrySet()) {
-            try {
-                balance = 0L;
-                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
-                tokenBalance = 0L;
-                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
-            } catch (Exception e) {
-                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
-                System.out.print(e + "\n");
-            }
-            System.out.print("balance:" + balance + "\n");
-            if (balance <= targetAmount * 3 / 5) {
-                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
-                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
-            }
-
-            if (tokenBalance <= targetTokenAmount * 3 / 5) {
-                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
-            }
-
-
-        }
+//        for (HashMap.Entry entry : testAccountList.entrySet()) {
+//            try {
+//                balance = 0L;
+//                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
+//                tokenBalance = 0L;
+//                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
+//            } catch (Exception e) {
+//                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
+//                System.out.print(e + "\n");
+//            }
+//            System.out.print("balance:" + balance + "\n");
+//            if (balance <= targetAmount * 3 / 5) {
+//                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
+//                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
+//            }
+//
+//            if (tokenBalance <= targetTokenAmount * 3 / 5) {
+//                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
+//            }
+//
+//
+//        }
 
     }
 
@@ -178,12 +179,10 @@ public class autoCreateTestngXml {
         HashMap<String,String> testAccountList = new HashMap<>();
 
         testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
-//        testAccountList.put("TGamEmt6U9ZUg9bFsMq7KT9bRa3uvkdtHM","a3f47c598631ada1d24e186f96b9d6e5e5fcd1123bb51d4adfe08bb7c081ffde");
         testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
         testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
         testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
         testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-//        testAccountList.put("TCGp3JAFM5vQZpsdNiKRTci7fVb7A2TPcu","4865dab66fe80391f8de760a586258dc3ebff66ee6408c2eff85e1a2e3e43e10");
         testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
         testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
@@ -201,7 +200,7 @@ public class autoCreateTestngXml {
 //        for (int i = 0; i < taskSingleClassNameList.size();i++) {
 //            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
 //        }
-
+//
 //        taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
@@ -363,7 +362,7 @@ public class autoCreateTestngXml {
                                         Long amount, String fromKey) {
 //        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + fromAddress + "\ntoAddress: " + toAddress + "\namount: " + amount + "\nfromKey: " + fromKey);
         try {
-            final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
+            final String requestUrl = "https://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("to_address", toAddress);
             userBaseObj2.addProperty("owner_address", fromAddress);
@@ -372,6 +371,7 @@ public class autoCreateTestngXml {
             System.out.print("userBaseObj2:" + userBaseObj2.toString());
             response = createConnect(requestUrl, userBaseObj2);
             transactionString = EntityUtils.toString(response.getEntity());
+            System.out.println("\nSend amount: " + amount);
             transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
             response = broadcastTransaction(httpNode, transactionSignString);
         } catch (Exception e) {
@@ -389,7 +389,7 @@ public class autoCreateTestngXml {
                                              String toAddress, String assetIssueById, Long amount, String fromKey) {
 
         try {
-            final String requestUrl = "http://" + httpNode + "/wallet/transferasset";
+            final String requestUrl = "https://" + httpNode + "/wallet/transferasset";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("owner_address", ownerAddress);
             userBaseObj2.addProperty("to_address", toAddress);
@@ -426,7 +426,6 @@ public class autoCreateTestngXml {
             response = httpClient.execute(httppost);
         } catch (Exception e) {
             e.printStackTrace();
-            httppost.releaseConnection();
             return null;
         }
         return response;
@@ -436,7 +435,7 @@ public class autoCreateTestngXml {
     public static String gettransactionsign(String httpNode, String transactionString,
                                             String privateKey) {
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/gettransactionsign";
+            String requestUrl = "https://" + httpNode + "/wallet/gettransactionsign";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("transaction", transactionString);
             userBaseObj2.addProperty("privateKey", privateKey);
@@ -454,7 +453,7 @@ public class autoCreateTestngXml {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/broadcasttransaction";
+            String requestUrl = "https://" + httpNode + "/wallet/broadcasttransaction";
 
             httppost = new HttpPost(requestUrl);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
@@ -510,7 +509,7 @@ public class autoCreateTestngXml {
 
     public static Long getBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
+            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
             Map<String,String> map = new HashMap<String,String>();
             map.put("address",queryAddress);
             map.put("visible","true");
@@ -548,7 +547,7 @@ public class autoCreateTestngXml {
 
     public static Long getTokenBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
+            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
             Map<String,String> map = new HashMap<String,String>();
             map.put("address",queryAddress);
             map.put("visible","true");
