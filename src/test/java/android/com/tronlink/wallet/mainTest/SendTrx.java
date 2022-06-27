@@ -99,7 +99,7 @@ public class SendTrx extends Base {
         transfer.btn_done.click();
         Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
-        Assert.assertTrue(beforeValue == sendAmount + afterValue);
+        Assert.assertEquals( (sendAmount + afterValue),beforeValue,0.5);
 
     }
 

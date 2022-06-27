@@ -24,7 +24,6 @@ public class MainNetDeposit extends BaseTest {
     }
 
 
-
     //enter TRXPage
     public TrxPage enterTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);

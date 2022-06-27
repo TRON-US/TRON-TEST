@@ -281,6 +281,18 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
+    public SendTrxSuccessPage sendNFT(String address) throws Exception {
+        receiveAddress_text.sendKeys(address);
+        next_btn.click();
+        send_btn.click();
+        confirm_btn.click();
+        InputPasswordConfim_btn.sendKeys("Test0001");
+        send_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+        return new SendTrxSuccessPage(driver);
+    }
+
+
     public SendTrxSuccessPage sendTrcTokenWithCurrent(String sendAmount) throws Exception {
         receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();

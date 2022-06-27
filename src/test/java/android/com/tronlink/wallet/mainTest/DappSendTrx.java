@@ -173,7 +173,7 @@ public class DappSendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test009_transferAddressTextField() throws Exception {
+    public void test009_transferAddressContractTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -183,7 +183,7 @@ public class DappSendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test010_transferAddressTextField() throws Exception {
+    public void test010_transferAddressBlackTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -193,7 +193,7 @@ public class DappSendTrx extends Base {
 
     @Parameters({"udid"})
    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test011_transferAddressTextField(String udid) throws Exception {
+    public void test011_transferAddressFormatTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -201,6 +201,7 @@ public class DappSendTrx extends Base {
         transfer.receiveAddress_text.click();
         transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39ajkLz6c");
         DRIVER.hideKeyboard();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
         keyboardUnicode(udid);
 

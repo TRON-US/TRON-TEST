@@ -49,6 +49,8 @@ public class AssetPage extends AbstractPage {
 
 
     }
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    public WebElement tv_address;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public WebElement tv_address;
@@ -290,6 +292,15 @@ public WebElement title;
         }
     }
 
+    public NFTPage enterNFTPage() throws Exception {
+        findElementByText("收藏品").click();
+        swipScreenLitte();
+        TimeUnit.SECONDS.sleep(1);
+        findElementByText("HC7T").click();
+        TimeUnit.SECONDS.sleep(1);
+        return new NFTPage(driver);
+
+    }
 
     public void waitShieldDataSynFinished() {
         Long startSynTime = System.currentTimeMillis();
@@ -475,9 +486,11 @@ public WebElement title;
 
 
 
-    public VotePage enterVotePage(){
+    public VotePage enterVotePage() throws Exception{
             waiteTime(20);
             vote_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
         return new VotePage(driver);
     }
 

@@ -125,7 +125,7 @@ public class autoCreateTestngXml {
             } catch (Exception e) {
                 System.out.print(e + "\n");
             }
-            System.out.print(" balance:" + tokenBalance + "\n");
+            System.out.print("TokenBalance:" + tokenBalance + "\n");
             System.out.print("TRXbalance:" + balance + "\n");
             if (balance <= targetAmount * 3 / 5) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
