@@ -364,20 +364,7 @@ public class Helper {
                     assetPage.blackBackBtn.click();
                 }
             }catch (Exception es){}
-//            try {
-//                if (assetPage.ad_pic.isDisplayed()) {
-//                    assetPage.adClose_btn.click();
-//                    System.out.println("已关闭广告图");
-//                }
-//            } catch (Exception e) {
-//                try {
-//                    if (assetPage.adClose_btn.isDisplayed()) {
-//                        assetPage.adClose_btn.click();
-//                        System.out.println("已关闭广告图");
-//                    }
-//                } catch (Exception el) {
-//                }
-//            }
+
         }catch (Exception e){}
     }
 

@@ -95,9 +95,6 @@ public class Base {
                 File appDir = new File(System.getProperty("user.dir"), "");
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
-//                System.out.println(app.getAbsoluteFile());
-//                System.out.println("--------------------\n"+ desiredCapabilities.toString());
-//                System.out.println("\n URL: " +url+ "\n--------------------\n");
                 URL remoteUrl = new URL(url);
                 DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
