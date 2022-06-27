@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * market function test
  */
 
-public class MarketTest extends Base {
+public class ImportMoreWallets extends Base {
 
     @Parameters({"privateKey"})
     @BeforeClass(alwaysRun = true)
