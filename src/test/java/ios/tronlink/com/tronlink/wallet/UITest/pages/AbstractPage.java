@@ -219,4 +219,70 @@ public class AbstractPage {
         }
     }
 
+    @FindBy(id = "home manager")
+    public WebElement homeManager;
+
+    public void importWallet(String privateKey) throws Exception{
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+
+        Boolean haveImport = isElementExist("walletName");
+        System.out.println(timeStamp.format(new Date()).toString());
+        System.out.println("Imported: " + haveImport);
+        if(!haveImport){
+            driver.findElementByName("导入钱包").click();
+            findAcceptAndClick();
+        }else {
+            homeManager.click();
+            driver.findElementByName("导入钱包").click();
+        }
+        TimeUnit.SECONDS.sleep(3);
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+        driver.findElementByClassName("XCUIElementTypeTextField").sendKeys(privateKey);
+        closeKeyBoard();
+        driver.findElementByName("下一步").click();
+        slideScreenLitter();
+        WebElement pass1 = (WebElement) driver.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
+        WebElement pass2 = (WebElement) driver.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
+        pass1.sendKeys("Test0001");
+        closeKeyBoard();
+        pass2.sendKeys("Test0001");
+        closeKeyBoard();
+        driver.findElementByName("导入私钥").click();
+        TimeUnit.SECONDS.sleep(7);
+    }
+
+    public  void slideScreenLitter(){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/5))
+                .release().perform();
+    }
+
+    public void findAcceptAndClick(){
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            WebElement accBtn = driver.findElementByName("接受");
+            while (!accBtn.isEnabled()) {
+                IOSTouchAction action = new IOSTouchAction(driver);
+                int width = driver.manage().window().getSize().width;
+                int height = driver.manage().window().getSize().height;
+                Duration duration = Duration.ofMillis(30);
+                action.press(
+                        PointOption.point(width/2, height*4/5))
+                        .waitAction(WaitOptions.waitOptions(duration))
+                        .moveTo(PointOption.point(width/2, height/5))
+                        .release().perform();
+            }
+            accBtn.click();
+        }catch (Exception e){
+            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        }
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+    }
+
 }
