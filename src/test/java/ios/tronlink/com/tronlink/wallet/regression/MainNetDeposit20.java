@@ -49,11 +49,11 @@ public class MainNetDeposit20 extends BaseTest {
         successNumber = count;
         System.out.println( " successNumber：  " + successNumber );
         trx = transferIn.enterTrxPageWithTransferSuccess(count);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         Helper.refreshWalletScreen(DRIVER);
         Double trcafter = Double.parseDouble(removeSymbolNoDot(trx.trxTotal_text.getText()));
-        System.out.println( " trcafter：  " + trcafter );
-        Assert.assertEquals(trcbefore ,trcafter + Double.parseDouble(count) ,0.000001 );
+        System.out.println( " after：  " + trcbefore + "count: " + count + " = trcbefore:" + trcbefore);
+        Assert.assertEquals(trcafter + Double.parseDouble(count) ,trcbefore ,0.000001 );
     }
 
 
