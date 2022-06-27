@@ -319,7 +319,7 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_add_note")
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_add_note")
     public WebElement iv_add_note;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_note_remove")
@@ -376,7 +376,7 @@ public class SendTrxPage extends AbstractPage {
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(7);
         return new SendTrxSuccessPage(driver);
     }
 
