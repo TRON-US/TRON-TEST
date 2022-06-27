@@ -118,11 +118,19 @@ public class GuidePage extends AbstractPage {
 
     public ImportRoutePage enterCreatePage() throws Exception{
         creatBtn.click();
+        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+            swipUntilElementEnable(accBtn);
+            accBtn.click();
+        }
         return new ImportRoutePage(driver);
     }
 
     public ImportRoutePage enterObservationPage() throws Exception{
         observationBtn.click();
+        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+            swipUntilElementEnable(accBtn);
+            accBtn.click();
+        }
         return new ImportRoutePage(driver);
     }
 

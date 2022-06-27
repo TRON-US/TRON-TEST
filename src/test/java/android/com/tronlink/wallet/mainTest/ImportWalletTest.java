@@ -107,7 +107,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(impage.toptitle.getText().contains("创建成功"));
         Assert.assertTrue(impage.bt_success.getText().contains("备份钱包"));
-        impage.iv_common_left.click();
+        impage.ll_common_left.click();
         Assert.assertTrue(impage.tv_backup.getText().contains("立即备份"));
         impage.deleteWallet();
         Assert.assertTrue(impage.title.getText().contains("波场支持"));
@@ -211,7 +211,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(impage.toptitle.getText().contains("创建成功"));
         Assert.assertTrue(impage.bt_success.getText().contains("备份钱包"));
-        impage.iv_common_left.click();
+        impage.ll_common_left.click();
         impage.deleteColdWallet();
         Assert.assertTrue(impage.title.getText().contains("波场支持"));
         guide.switchBtn.click();

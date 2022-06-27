@@ -66,6 +66,9 @@ public class ImportRoutePage extends AbstractPage {
   @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
   public WebElement iv_common_left;
 
+  @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+  public WebElement ll_common_left;
+
   @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
   public WebElement watchTextField;
 
