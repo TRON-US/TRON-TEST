@@ -110,7 +110,8 @@ public class SendTrx extends Base {
          MinePage page = asset.enterMinePage();
          Assert.assertTrue(isElementShotId("tv_bell"));
          page.tv_bell.click();
-         if (page.firstAddress.getText().contains(address)){
+        TimeUnit.SECONDS.sleep(1);
+        if (page.firstAddress.getText().contains(address)){
              Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
              Assert.assertTrue(page.secondTitle.getText().contains("转账成功"));
 
