@@ -163,6 +163,52 @@ public class VoteTest extends Base {
         }
     }
 
+    @Test(alwaysRun = true)
+    public void test007_VoteToFirstSRTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
+        Helper.swipScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
+        vote.enterSearch("-26");
+        vote.enterSRPage();
+        if (isElementShotId("btn_vote")){
+            vote.enterVoteStep1ToConfirm();
+            Assert.assertTrue(vote.tv_vote_sr.getText().contains("http://sr-26.com"));
+            vote.enterVoteStep2Password();
+            Assert.assertEquals(vote.tv_result.getText(),"投票成功");
+        }else if(isElementShotId("btn_voted_update")){
+            vote.enterEditVoteStep1ToConfirm();
+            Assert.assertTrue(vote.tv_vote_sr.getText().contains("http://sr-26.com"));
+            vote.enterVoteStep2Password();
+            Assert.assertEquals(vote.tv_result.getText(),"投票成功");
+        }
+    }
+
+     @Test(alwaysRun = true)
+     public void test008_improveAPRTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         VotePage vote = asset.enterVotePage();
+         TimeUnit.SECONDS.sleep(2);
+         Assert.assertEquals(vote.to_promote.getText(),"去提升");
+         vote.enterFastVote();
+         Assert.assertEquals(vote.tv_common_title.getText(),"快速投票");
+         Assert.assertEquals(vote.tv_vote_tips.getText(),"平分您的全部投票权给 3 个年化收益最高的候选人");
+         Assert.assertEquals(vote.available_vote.getText(),"0/");
+     }
+
+    @Test(alwaysRun = true)
+    public void test009_gotoResourceTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage vote = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(2);
+        Assert.assertEquals(vote.to_stake.getText(),"去质押");
+        String fromNumber = vote.tv_total_vote_rights.getText();
+        vote.enterStake();
+        Assert.assertEquals(vote.tv_common_title.getText(),"质押 TRX");
+        Assert.assertEquals(vote.tv_stake_amount.getText(),fromNumber + " TRX");
+    }
+
     //构建一个账户 投票权不足使用
 
 

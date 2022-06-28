@@ -25,11 +25,23 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
     public WebElement tv_main_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/to_stake")
+    public WebElement to_stake;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/available_vote")
+    public WebElement available_vote;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/available_vote_right_title")
     public WebElement available_vote_right_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
     public WebElement tv_multi_sign;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/to_promote")
+    public WebElement to_promote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_tips")
+    public WebElement tv_vote_tips;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_tips")
     public WebElement iv_tips;
@@ -241,8 +253,8 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
     public WebElement et_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/v_common_title")
-    public WebElement v_common_title;
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement tv_common_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote") //投票
     public WebElement btn_vote;
@@ -255,6 +267,17 @@ public class VotePage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_next")
     public WebElement bt_next;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_stake_amount")
+    public WebElement tv_stake_amount;
+
+    public void enterFastVote(){
+        to_promote.click();
+    }
+
+    public void enterStake(){
+        to_stake.click();
+    }
 
     public void enterVoteStep1ToConfirm() throws Exception{
         btn_vote.click();
