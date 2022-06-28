@@ -193,8 +193,10 @@ public class SendTrc10 extends Base {
         SendTrxPage transfer =  asset.enterSendTrc10Page();
         Assert.assertTrue(isElementShotId("tv_address"));
         transfer.findElementByText("地址本").click();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.net_error.getText().contains("暂无其他地址"));
         transfer.findElementByText("我的账户").click();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.net_error.getText().contains("暂无其他账户"));
     }
 
