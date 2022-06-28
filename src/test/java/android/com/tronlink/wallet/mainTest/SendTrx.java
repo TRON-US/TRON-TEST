@@ -29,9 +29,9 @@ import org.testng.annotations.Test;
  */
 public class SendTrx extends Base {
     static String receiverAddress = Configuration.getByPath("testng.conf")
-        .getString("foundationAccount.receiverAddress");
+            .getString("foundationAccount.receiverAddress");
     static String currentMainNetBlockNum = Configuration.getByPath("testng.conf")
-        .getString("foundationAccount.currentMainNetBlockNum");
+            .getString("foundationAccount.currentMainNetBlockNum");
     static String notFreezenBandWidthAddressPrivateKey = Configuration.getByPath("testng.conf")
             .getString("HaveTRXandTRC10InNile.privateKey1");
     static String unActiveAddressprivateKey = Configuration.getByPath("testng.conf")
@@ -72,27 +72,31 @@ public class SendTrx extends Base {
         }
     }
 
-    public Double sentAmountRecoder;
 
     @Test(alwaysRun = true)
     public void test000_importAddressToTestNotice() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         asset.importPrivateKey("20ebe9fd7964058941714551820f91afbde28698e5ac8f6f8fd63ed6716f0683");
-        asset.switchToWallet("Auto-test");
         TimeUnit.SECONDS.sleep(2);
+        Assert.assertTrue(asset.tv_walletname.getText().contains("Received"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test001_switchWalletTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.switchToWallet("Auto-test");
         Assert.assertTrue(asset.tv_walletname.getText().contains("Auto-test"));
     }
 
 
     @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
-    public void test001_sendTrxSuccess() throws Exception {
+    public void test002_sendTrxSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
-        sentAmountRecoder = sendAmount;
         System.out.println("sendTrxAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(2);
@@ -105,29 +109,35 @@ public class SendTrx extends Base {
 
     @Parameters({"address"})
     @Test(alwaysRun = true)
-     public void test002_redDotTest(String address) throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         MinePage page = asset.enterMinePage();
-         Assert.assertTrue(isElementShotId("tv_bell"));
-         page.tv_bell.click();
+    public void test003_redDotTest(String address) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        SendTrxPage transfer = asset.enterSendTrxPage();
+        Double sendAmount = getAnAmount();
+        transfer.sendTrx(Double.toString(sendAmount));
+        TimeUnit.SECONDS.sleep(2);
+        transfer.btn_done.click();
+
+        MinePage page = asset.enterMinePage();
+        Assert.assertTrue(isElementShotId("tv_bell"));
+        page.tv_bell.click();
         TimeUnit.SECONDS.sleep(1);
         if (page.firstAddress.getText().contains(address)){
-             Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
-             Assert.assertTrue(page.secondTitle.getText().contains("转账成功"));
+            Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
+            Assert.assertTrue(page.secondTitle.getText().contains("转账成功"));
 
-         }else {
-             Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
-             Assert.assertTrue(page.secondTitle.getText().contains("收款成功"));
-         }
-         Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
-         Assert.assertTrue(page.secondContent.getText().contains(sentAmountRecoder.toString()));
-         DRIVER.navigate().back();
-         TimeUnit.SECONDS.sleep(1);
-         Assert.assertFalse(isElementShotId("tv_bell"));
-     }
+        }else {
+            Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
+            Assert.assertTrue(page.secondTitle.getText().contains("收款成功"));
+        }
+        Assert.assertTrue(page.firstContent.getText().contains(sendAmount.toString()));
+        Assert.assertTrue(page.secondContent.getText().contains(sendAmount.toString()));
+        DRIVER.navigate().back();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertFalse(isElementShotId("tv_bell"));
+    }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test003_sendTrxDetailSuccess() throws Exception {
+    public void test004_sendTrxDetailSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
@@ -155,7 +165,7 @@ public class SendTrx extends Base {
 
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test004_availableAmountInTransfer() throws Exception {
+    public void test005_availableAmountInTransfer() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
@@ -168,7 +178,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test005_trxFreezeValueAndUsedValueTotalTest() throws Exception {
+    public void test006_trxFreezeValueAndUsedValueTotalTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         Double TotalValue = Double.valueOf(prettyString(asset.tv_count.getText()));
@@ -179,7 +189,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test006_enterFrozenSuccess() throws Exception {
+    public void test007_enterFrozenSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         page.rl_price_trx.click();
@@ -191,7 +201,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test007_multiSignPathTest() throws Exception {
+    public void test008_multiSignPathTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -202,7 +212,7 @@ public class SendTrx extends Base {
 
     @Parameters({"address"})
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test008_transferAddressTextField(String address) throws Exception {
+    public void test009_transferAddressTextField(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -212,7 +222,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test009_transferAddressTextField() throws Exception {
+    public void test010_transferAddressContractTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -221,7 +231,7 @@ public class SendTrx extends Base {
     }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test010_transferAddressTextField() throws Exception {
+    public void test011_transferAddressBlackTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -231,7 +241,7 @@ public class SendTrx extends Base {
 
     @Parameters({"udid"})
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test011_transferAddressTextField(String udid) throws Exception {
+    public void test012_transferAddressFormatTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -247,14 +257,16 @@ public class SendTrx extends Base {
 
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test012_transferTherePart() throws Exception {
+    public void test013_transferTherePartTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         Assert.assertTrue(isElementShotId("tv_address"));
         transfer.findElementByText("地址本").click();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.net_error.getText().contains("暂无其他地址"));
         transfer.findElementByText("我的账户").click();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(transfer.tv_name.getText().contains("Received"));
     }
 
