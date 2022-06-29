@@ -1,6 +1,7 @@
 package android.com.wallet.UITest.base;
 
 import android.com.utils.AppiumTestCase;
+import android.com.utils.IHookableImp;
 import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.MinePage;
 
@@ -34,17 +35,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 //@Listeners(RetryListener.class)
-
+@Listeners(IHookableImp.class)
 public class Base {
 
     public static String useKeyPassword = "Test0001";
 
     public  AndroidDriver<?> DRIVER;
 
-    private  SimpleDateFormat timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss");
+    private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     public  int RetryAgainTimes = 2;
 

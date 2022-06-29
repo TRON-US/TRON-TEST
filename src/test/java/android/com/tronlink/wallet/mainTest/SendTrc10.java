@@ -210,8 +210,10 @@ public class SendTrc10 extends Base {
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        log("");
+        TimeUnit.SECONDS.sleep(4);
         String content = transfer.bandwidth_text.getText();
+        log(content);
         content = content.replace("≈","");
         String number = StringUtils.substringBeforeLast(content,"带宽");
         Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
