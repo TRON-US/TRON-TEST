@@ -134,6 +134,7 @@ public class VoteTest extends Base {
         vote.enterSearch("sr-26");
         Double votedNumber = removeSymbolDouble(vote.tv_voted_count.getText());
         vote.enterSRPage();
+        TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(vote.tv_name.getText(),"http://sr-26.com");
         Assert.assertTrue(vote.tv_ranking.getText().contains("NO.1"));
         Assert.assertEquals(vote.tv_address.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
