@@ -52,6 +52,14 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public WebElement tv_address;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_cancel")
+    public WebElement btn_cancel;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_step")
+    public WebElement tv_step;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_scan_qr_and_pay")
+    public WebElement tv_scan_qr_and_pay;
 
 //        try {
 //            if (isTextExist("我知道了")) {
@@ -366,6 +374,10 @@ public WebElement title;
         return new TrxPage(driver);
     }
 
+    public SendTrxPage enterTransferPage(){
+        transfer_btn.click();
+        return new SendTrxPage(driver);
+    }
 
     public SendTrxPage enterSendTrxPage() {
         transfer_btn.click();
