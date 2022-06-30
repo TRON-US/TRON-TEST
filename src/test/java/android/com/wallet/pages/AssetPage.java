@@ -61,6 +61,17 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_scan_qr_and_pay")
     public WebElement tv_scan_qr_and_pay;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/info")
+    public WebElement info;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_backup")
+    public WebElement tv_backup;
+    
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_desc")
+    public WebElement tv_desc;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
+    public WebElement tv_title;
 //        try {
 //            if (isTextExist("我知道了")) {
 //                findElementByText("我知道了").click();
@@ -487,8 +498,33 @@ public WebElement title;
         import_wallet_password_again.sendKeys("Test0001");
         btn_next_step.click();
         TimeUnit.SECONDS.sleep(6);
+    }
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_create")
+    public WebElement rl_create;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/bt_create")
+    public WebElement bt_create;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/input_wallet_password")
+    public WebElement input_wallet_password;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/input_wallet_password_again")
+    public WebElement input_wallet_password_again;
+
+    public void createWalletNotBackUp() throws Exception{
+        iv_wallet_manager.click();
+        rl_create.click();
+        swipScreenLitte();
+        input_wallet_password.sendKeys("Test0001");
+        input_wallet_password_again.sendKeys("Test0001");
+        bt_create.click();
+        TimeUnit.SECONDS.sleep(6);
+        driver.navigate().back();
+        driver.navigate().back();
+        driver.navigate().back();
 
     }
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_sort")
     public WebElement iv_sort;

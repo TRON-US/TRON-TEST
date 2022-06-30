@@ -156,4 +156,72 @@ public class ActiveAccountTest extends Base {
         Assert.assertEquals(asset.tv_step.getText(),"(1/3)");
     }
 
+     @Test(alwaysRun = true)
+     public void test008_CreateAccountNotBackup() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         asset.createWalletNotBackUp();
+         Assert.assertEquals(asset.tv_backup.getText(),"立即备份");
+         Assert.assertEquals(asset.tv_desc.getText(),"您的钱包助记词尚未备份，为了防止丢失资产，请务必尽快备份助记词。");
+         Assert.assertEquals(asset.tv_title.getText(),"安全提醒");
+     }
+
+     @Test(alwaysRun = true)
+     public void test009_NotBackUpAccountTransferTest() throws Exception {
+         AssetPage asset = new AssetPage(DRIVER);
+         asset.enterTransferPage();
+         Assert.assertEquals(asset.title.getText(),"安全提醒");
+         Assert.assertEquals(asset.info.getText(),"为了防止因忘记密码、应用卸载、手机丢失等情况导致资产损失，发起转账前需要先完成助记词备份。");
+         Assert.assertEquals(asset.btn_confirm.getText(),"立即备份");
+         Assert.assertEquals(asset.btn_cancel.getText(),"取消");
+         asset.btn_confirm.click();
+         TimeUnit.SECONDS.sleep(1);
+         Assert.assertTrue(isElementTextExist("钱包管理"));
+
+     }
+
+    @Test(alwaysRun = true)
+    public void test010_NotBackUpReceivedTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.enterReceiptPage();
+        Assert.assertEquals(asset.title.getText(),"安全提醒");
+        Assert.assertEquals(asset.info.getText(),"为了防止因忘记密码、应用卸载、手机丢失等情况导致资产损失，查看收款地址需要先完成助记词备份。");
+        Assert.assertEquals(asset.btn_confirm.getText(),"立即备份");
+        Assert.assertEquals(asset.btn_cancel.getText(),"取消");
+        asset.btn_confirm.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(isElementTextExist("钱包管理"));
+    }
+
+    @Test(alwaysRun = true)
+    public void test011_NotBackUpDepositTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.enterFrozenAndUnfreezePage();
+        Assert.assertEquals(asset.title.getText(),"当前账户未激活，无法质押。您可进行多重签名质押，或转入 TRX 激活账户。");
+        Assert.assertEquals(asset.btn_cancel.getText(),"发起多签质押");
+        Assert.assertEquals(asset.confirm.getText(),"确认");
+        asset.confirm.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertFalse(isElementShotId("confirm"));
+        asset.enterFrozenAndUnfreezePage();
+        asset.btn_cancel.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(asset.tv_step.getText(),"(1/3)");
+    }
+
+    @Test(alwaysRun = true)
+    public void test012_NotBackUpVoteTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.enterVotePage();
+        Assert.assertEquals(asset.title.getText(),"当前账户未激活，无法投票。您可进行多重签名投票，或转入 TRX 激活账户。");
+//        Assert.assertEquals(asset.btn_cancel.getText(),"发起多签转账");
+        Assert.assertEquals(asset.confirm.getText(),"确认");
+        asset.confirm.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertFalse(isElementShotId("confirm"));
+        asset.enterVotePage();
+        asset.btn_cancel.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(asset.tv_main_title.getText(),"多重签名投票");
+    }
+
 }
