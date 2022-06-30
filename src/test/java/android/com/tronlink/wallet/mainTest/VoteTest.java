@@ -132,6 +132,7 @@ public class VoteTest extends Base {
         Helper.swipScreen(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         vote.enterSearch("sr-26");
+        TimeUnit.SECONDS.sleep(1);
         Double votedNumber = removeSymbolDouble(vote.tv_voted_count.getText());
         vote.enterSRPage();
         TimeUnit.SECONDS.sleep(1);
@@ -191,7 +192,7 @@ public class VoteTest extends Base {
          AssetPage asset = new AssetPage(DRIVER);
          VotePage vote = asset.enterVotePage();
          TimeUnit.SECONDS.sleep(2);
-         Assert.assertEquals(vote.to_promote.getText(),"去提升");
+         Assert.assertEquals(vote.tv_to_promote.getText(),"去提升");
          vote.enterFastVote();
          Assert.assertEquals(vote.tv_common_title.getText(),"快速投票");
          Assert.assertEquals(vote.tv_vote_tips.getText(),"平分您的全部投票权给 3 个年化收益最高的候选人");
@@ -203,7 +204,7 @@ public class VoteTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertEquals(vote.to_stake.getText(),"去质押");
+        Assert.assertEquals(vote.tv_to_stake.getText(),"去质押");
         String fromNumber = vote.tv_total_vote_rights.getText();
         vote.enterStake();
         Assert.assertEquals(vote.tv_common_title.getText(),"质押 TRX");
