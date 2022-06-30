@@ -211,7 +211,7 @@ public class SendTrc10 extends Base {
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
         log("");
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(8);
         String content = transfer.bandwidth_text.getText();
         log(content);
         content = content.replace("≈","");
@@ -227,8 +227,6 @@ public class SendTrc10 extends Base {
         Assert.assertTrue(findByShotId("transfer_out_address").getText().contains(address));
         Assert.assertTrue(findByShotId("tv_chain_name").getText().contains("Mainnet"));
     }
-
-
 
 
     @Test(enabled = true)
