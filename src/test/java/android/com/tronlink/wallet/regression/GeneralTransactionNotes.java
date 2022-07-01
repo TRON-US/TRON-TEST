@@ -64,6 +64,7 @@ public class GeneralTransactionNotes extends Base {
     public void test001_sendTrxWithNoteSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
+        TimeUnit.SECONDS.sleep(1);
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -129,6 +130,7 @@ public class GeneralTransactionNotes extends Base {
      public void test004_noteClearFunctionTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          TrxPage page =  asset.enterTrxPage();
+         TimeUnit.SECONDS.sleep(1);
          Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
          System.out.println("beforeSendBalance-----"+ beforeValue);
          SendTrxPage transfer = page.trxSendTrxPage();
@@ -137,7 +139,7 @@ public class GeneralTransactionNotes extends Base {
          transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
          transfer.next_btn.click();
          transfer.tranferCount_text.sendKeys("1");
-         transfer.iv_add_note.click();
+         transfer.note_transfer.click();
          transfer.et_note.sendKeys("test004_noteClearFunctionTest");
          transfer.bt_note_remove.click();
          Assert.assertTrue(transfer.title.getText().contains("确认清除输入吗？"));
@@ -150,6 +152,7 @@ public class GeneralTransactionNotes extends Base {
     public void test005_testInputMaxLength() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
+        TimeUnit.SECONDS.sleep(1);
         Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
         System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
@@ -158,7 +161,7 @@ public class GeneralTransactionNotes extends Base {
         transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("1");
-        transfer.iv_add_note.click();
+        transfer.note_transfer.click();
         transfer.et_note.sendKeys("12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890LongMax");
         Assert.assertEquals(transfer.et_note.getText(),"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
 
