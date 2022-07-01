@@ -21,6 +21,6 @@ public class IHookableImp implements IHookable {
         //测试用例开始执行
         iHookCallBack.runTestMethod(iTestResult);
         String endTime = timeStamp.format(new Date()).toString();
-        System.out.println( " method :" + name + " 结束~ " + time);
+        System.out.println( " method :" + name + " 结束~ " + endTime);
     }
 }
