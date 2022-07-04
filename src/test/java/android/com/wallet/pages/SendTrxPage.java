@@ -322,14 +322,20 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_add_note")
     public WebElement iv_add_note;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_add_note")
+    public WebElement ll_add_note;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_note_remove")
     public WebElement bt_note_remove;
+
+    @FindBy(xpath = "//*[@text='添加转账备注']")
+    public WebElement note_transfer;
 
     public SendTrxSuccessPage sendTrxWithNote(String sendAmount,String note) throws Exception {
         receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
-        iv_add_note.click();
+        note_transfer.click();
         et_note.sendKeys(note);
         send_btn.click();
         confirm_btn.click();

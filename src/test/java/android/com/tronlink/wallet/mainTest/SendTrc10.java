@@ -211,19 +211,27 @@ public class SendTrc10 extends Base {
         transfer.tranferCount_text.sendKeys("0.000001");
         transfer.send_btn.click();
         log("");
-        TimeUnit.SECONDS.sleep(8);
-        String content = transfer.bandwidth_text.getText();
-        log(content);
-        content = content.replace("≈","");
-        String number = StringUtils.substringBeforeLast(content,"带宽");
-        Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
+        TimeUnit.SECONDS.sleep(3);
+        if (isElementShotId("tv_consume_resource")){
+            String content = transfer.bandwidth_text.getText();
+            log(content);
+            content = content.replace("≈","");
+            String number = StringUtils.substringBeforeLast(content,"带宽");
+            Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
+            Assert.assertTrue(findByShotId("tv_resource_consume_left").getText().contains("消耗资源"));
+        }else {
+            String content = transfer.fee_text.getText();
+            content = content.replace("≈","");
+            String number = StringUtils.substringBeforeLast(content,"TRX");
+            Assert.assertTrue(Double.parseDouble(number.trim()) > 0 && Double.parseDouble(number.trim()) < 0.5);
+        }
+
         log("------\n" + findByShotId("tv_info_subtitle").getText() + "\n--------");
         Assert.assertTrue(findByShotId("tv_info_subtitle").getText().contains("0.000001") && findByShotId("tv_info_subtitle").getText().contains("tronlink_token"));
         Assert.assertTrue(findByShotId("tv_wallet_name").getText().contains("Auto-test"));
         Assert.assertTrue(findByShotId("transfer_out_address_title").getText().contains("转出账户"));
         Assert.assertTrue(findByShotId("transfer_out_name").getText().contains("当前账户"));
         Assert.assertTrue(findByShotId("receiving_address_title").getText().contains("接收账户"));
-        Assert.assertTrue(findByShotId("tv_resource_consume_left").getText().contains("消耗资源"));
         Assert.assertTrue(findByShotId("transfer_out_address").getText().contains(address));
         Assert.assertTrue(findByShotId("tv_chain_name").getText().contains("Mainnet"));
     }
