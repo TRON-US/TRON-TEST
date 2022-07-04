@@ -3,13 +3,8 @@ package android.com.tronlink.wallet.mainTest;
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import android.com.wallet.pages.AssetPage;
-import android.com.wallet.pages.FrozenAndUnfreezePage;
-import android.com.wallet.pages.MinePage;
-import android.com.wallet.pages.TransactionRecordPage;
-import android.com.wallet.pages.VoteConfirmPage;
 import android.com.wallet.pages.VotePage;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -133,7 +128,7 @@ public class VoteTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         vote.enterSearch("sr-26");
         TimeUnit.SECONDS.sleep(1);
-        Double votedNumber = removeSymbolDouble(vote.tv_voted_count.getText());
+        Double votedNumber = removeSymbolDouble(vote.voted_count.getText());
         vote.enterSRPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(vote.tv_name.getText(),"http://sr-26.com");
