@@ -128,13 +128,13 @@ public class VoteTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         vote.enterSearch("sr-26");
         TimeUnit.SECONDS.sleep(1);
-        Double votedNumber = removeSymbolDouble(vote.voted_count.getText());
+        Double votedNumber = removeSymbolDouble(vote.vote_count.getText());
         vote.enterSRPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(vote.tv_name.getText(),"http://sr-26.com");
         Assert.assertTrue(vote.tv_ranking.getText().contains("NO.1"));
         Assert.assertEquals(vote.tv_address.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
-        Double votedSRNumber = removeSymbolDouble(vote.tv_voted_number.getText());
+        Double votedSRNumber = removeSymbolDouble(vote.tv_total_vote.getText());
         Assert.assertEquals(votedNumber,votedSRNumber,0.1);
     }
 
