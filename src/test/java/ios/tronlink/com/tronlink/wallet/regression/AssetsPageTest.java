@@ -40,14 +40,13 @@ public class AssetsPageTest extends BaseTest {
         FrozenAndUnfreezePage receiptPage = assetPage.enterFrozenAndThawingPage();
         Assert.assertTrue(isElementExist("质押 TRX  (1/2)"));
     }
-
-
+    
 
     @Test(description = "Assert vote test", alwaysRun = true)
     public void test004_56gotoVotePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         VotePage secondPage = assetPage.enterVotePage();
-        Assert.assertTrue(Helper.isElementExist(secondPage.driver,"投票"));
+        Assert.assertTrue(isElementExist("投票及奖励 "));
         secondPage.backNav();
         AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
         Assert.assertTrue(Helper.isElementExist(addAssertPage.driver,"我的全部资产"));

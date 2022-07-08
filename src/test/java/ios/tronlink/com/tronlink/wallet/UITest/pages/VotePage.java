@@ -224,12 +224,15 @@ public class VotePage extends AbstractPage {
     }
 
     public void backNav(){
-        try {
-            sortFirst.click();
-        }catch (Exception e){
-            log("not the first Time enter Vote");
-        }
-        whiteBackBtn.click();
+//        driver.navigate().back();
+//
+//        try {
+//            driver.navigate().back();
+////            sortFirst.click();
+//        }catch (Exception e){
+//            log("not the first Time enter Vote");
+//        }
+        blackBackBtn.click();
 
     }
 
