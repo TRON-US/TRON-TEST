@@ -37,6 +37,34 @@ public class VotePage extends AbstractPage {
 
     }
 
+    @FindBy(name = "usedVoteAmountLabel")
+    public WebElement usedVoteAmountLabel;
+
+    @FindBy(name = "totalVoteAmountLabel")
+    public WebElement totalVoteAmountLabel;
+
+    @FindBy(name = "availableAmountLabel")
+    public WebElement availableAmountLabel;
+
+    @FindBy(id = "resource manager introduce")
+    public WebElement introduce;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"我知道了\"]")
+    public WebElement know;
+
+
+    public void enterIntroduce(){
+        introduce.click();
+    }
+
+
+    @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"voteReward sort\"])[1]")
+    public WebElement sort;
+
+    public void enterSortPobView(){
+        sort.click();
+    }
+
     @FindBy(id = "http://sr-26.com")
     public WebElement SR26;
 

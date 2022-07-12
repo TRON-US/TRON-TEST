@@ -300,7 +300,10 @@ public class Base {
     public float sepRightNumberTextToFloat(String content,String lastString){
         String realNumber = StringUtils.substringAfterLast(content,lastString);
         return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
-
+    }
+    public Double sepRightNumberTextToDouble(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  Double.parseDouble(removeSymbolFloat(realNumber.trim()));
     }
     public Integer sepRightNumberTextToInter(String content,String lastString){
         String realNumber = StringUtils.substringAfterLast(content,lastString);

@@ -40,7 +40,7 @@ public class AssetsPageTest extends BaseTest {
         FrozenAndUnfreezePage receiptPage = assetPage.enterFrozenAndThawingPage();
         Assert.assertTrue(isElementExist("质押 TRX  (1/2)"));
     }
-    
+
 
     @Test(description = "Assert vote test", alwaysRun = true)
     public void test004_56gotoVotePage() throws Exception {

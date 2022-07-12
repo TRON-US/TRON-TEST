@@ -186,6 +186,11 @@ public class AbstractPage {
         action.press(PointOption.point(x+20,y+14)).release().perform();
     }
 
+    public void TapAnyWhere(int x,int y){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.press(PointOption.point(x,y)).release().perform();
+    }
+
     public  boolean isElementExist( String name) {
 
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
