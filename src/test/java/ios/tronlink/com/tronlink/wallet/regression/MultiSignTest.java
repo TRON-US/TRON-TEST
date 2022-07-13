@@ -105,7 +105,7 @@ public class MultiSignTest extends Base {
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendTrxMultiSignToConfirm();
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         Assert.assertTrue(isElementExist("Mainnet"));
         Assert.assertTrue(isElementExist("Signed"));
         page.confirmPageButtonClick();
@@ -129,7 +129,7 @@ public class MultiSignTest extends Base {
         page.inputTRC10AndSendAmount("0.3");
         Assert.assertTrue(isElementExist("0.3 tronlink_token"));
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         Assert.assertTrue(isElementExist("Mainnet"));
         Assert.assertTrue(isElementExist("Signed"));
         page.confirmPageButtonClick();
@@ -153,7 +153,7 @@ public class MultiSignTest extends Base {
         page.inputTRC20AndSendAmount("0.3");
         Assert.assertTrue(isElementExist("0.3 TRX"));
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         Assert.assertTrue(isElementExist("Mainnet"));
         Assert.assertTrue(isElementExist("Signed"));
         page.confirmPageButtonClick();
@@ -181,7 +181,7 @@ public class MultiSignTest extends Base {
         page.confirmDeposit().click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         Assert.assertTrue(isElementExist("Mainnet"));
         Assert.assertTrue(isElementExist("Signed"));
         Assert.assertTrue(isElementExist("质押"));

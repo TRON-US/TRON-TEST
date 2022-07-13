@@ -41,7 +41,7 @@ public class SendTrc10 extends BaseTest {
         transfer.selectTrc10nile();
         Double after = Double.parseDouble(removeSymbolNoDot(transfer.tokenBalance.getText())) ;
         System.out.println("before:"+before+ "after:" + after + "send:" + send);
-        Assert.assertEquals(before ,after + send,"0.000001");
+        Assert.assertEquals(before ,after + send,"0.00001");
 
     }
 
