@@ -341,19 +341,27 @@ public class Base {
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
-                    if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
-                        System.out.println("IsFindByBtn: "+name);
-                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                        return  true;
-                    }else {
+                    driver.findElementByLinkText(name);
+                    System.out.println("findElementByLinkText: "+name);
+                    return  true;
+                }catch (org.openqa.selenium.NoSuchElementException e3){
+                    try {
+                        if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
+                            System.out.println("IsFindByBtn: "+name);
+                            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                            return  true;
+                        }else {
+                            System.out.println("NotFound: "+name);
+                            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                            return  false;
+                        }
+                    }catch (org.openqa.selenium.NoSuchElementException e){
+                        System.out.println("NotFound: "+name);
                         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                         return  false;
                     }
-                }catch (org.openqa.selenium.NoSuchElementException e){
-                    System.out.println("NotFound: "+name);
-                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                    return  false;
                 }
+
             }
         }
     }

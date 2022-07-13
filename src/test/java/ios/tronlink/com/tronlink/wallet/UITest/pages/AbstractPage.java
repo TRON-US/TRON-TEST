@@ -141,10 +141,11 @@ public class AbstractPage {
 
     public  void closeKeyBoard()  throws Exception{
         try {
-            driver.findElementByName("Done").click();
+            driver.findElementByName("完成").click();
+
         }catch (Exception e){
             try {
-                driver.findElementByName("完成").click();
+                driver.findElementByName("Done").click();
 
             }catch (Exception el){
                 System.out.println("not found keyboard done");

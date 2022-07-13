@@ -104,10 +104,10 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendTrxMultiSignToConfirm();
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
         page.confirmPageButtonClick();
         Assert.assertTrue(isElementExist("多重签名设置"));
         Assert.assertTrue(isElementExist("(≤24H)"));
@@ -117,7 +117,6 @@ public class MultiSignTest extends Base {
         page.passwordInputFinish();
         Assert.assertEquals(page.sendAddress.getText(),ownerAddress);
         Assert.assertTrue(page.typeLabel.getText().contains("TRX 转账"));
-
     }
 
     @Parameters({"ownerAddress","multiSignAddress"})
@@ -127,11 +126,11 @@ public class MultiSignTest extends Base {
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendMultiSignStepTwo();
         page.inputTRC10AndSendAmount("0.3");
-        Assert.assertTrue(isElementExist("0.3 tronlink_token"));
+        Assert.assertEquals(page.topTransactionDescriptionLabel.getText(),"0.3 tronlink_token");
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
         page.confirmPageButtonClick();
         Assert.assertTrue(isElementExist("多重签名设置"));
         Assert.assertTrue(isElementExist("(≤24H)"));
@@ -151,11 +150,11 @@ public class MultiSignTest extends Base {
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendMultiSignStepTwo();
         page.inputTRC20AndSendAmount("0.3");
-        Assert.assertTrue(isElementExist("0.3 TRX"));
+        Assert.assertEquals(page.topTransactionDescriptionLabel.getText(),"0.3 TRX");
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
         page.confirmPageButtonClick();
         Assert.assertTrue(isElementExist("多重签名设置"));
         Assert.assertTrue(isElementExist("(≤24H)"));
@@ -182,8 +181,6 @@ public class MultiSignTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
         Assert.assertTrue(isElementExist("质押"));
         Assert.assertTrue(isElementExist("1 票"));
         page.confirm_btn().click();
