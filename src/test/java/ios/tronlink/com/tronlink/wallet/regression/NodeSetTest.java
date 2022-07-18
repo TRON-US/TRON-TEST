@@ -33,12 +33,12 @@ public class NodeSetTest extends BaseTest {
     @Test(description = "Test  add note  IP wrong", alwaysRun = true)
     public void test002_AddNodeIPWrong() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
-        Assert.assertEquals(page.ipwrong(),"  请输入正确的 IP 地址");
+        Assert.assertEquals(page.ipwrong()," 请输入正确的 IP 地址");
     }
     @Test(description = "Test  add note  port wrong", alwaysRun = true)
     public void test003_AddNodePortWrong() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
-        Assert.assertEquals(page.portwrong(),"  请输入正确的端口格式");
+        Assert.assertEquals(page.portwrong()," 请输入正确的端口格式");
     }
 
     @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
