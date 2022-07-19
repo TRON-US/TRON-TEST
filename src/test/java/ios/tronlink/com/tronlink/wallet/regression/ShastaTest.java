@@ -53,7 +53,7 @@ public class ShastaTest extends BaseTest {
     @Test(description = "test003_FrozenTestSuccess")
     public void test003_ReceivedPage(String address) throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
-        ReceiptPage page = asset.enterReceiptPage();
+        asset.enterReceiptPage();
         Assert.assertTrue(isElementExist("收款"));
         Assert.assertTrue(isElementExist("扫描二维码向我付款"));
         Assert.assertTrue(isElementExist(address));
@@ -63,4 +63,5 @@ public class ShastaTest extends BaseTest {
 
     }
 
+    //shasta 一些拦截的地方
 }

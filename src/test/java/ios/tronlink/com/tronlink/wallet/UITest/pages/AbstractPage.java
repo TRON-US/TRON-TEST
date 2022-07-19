@@ -269,6 +269,18 @@ public class AbstractPage {
                 .release().perform();
     }
 
+    public  void slideScreenMiddle(){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*2/5))
+                .release().perform();
+    }
+
     public void findAcceptAndClick(){
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {

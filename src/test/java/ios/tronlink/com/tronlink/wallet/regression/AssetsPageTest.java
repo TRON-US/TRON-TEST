@@ -63,7 +63,7 @@ public class AssetsPageTest extends BaseTest {
         TimeUnit.SECONDS.sleep(3);
         String about = asset.trxValue.getText();
         String result = sepLeftNumberTextToString(about,"TRX").trim();
-        Double number = Double.parseDouble(removeSymbolFloat(result));
+        Double number = Double.parseDouble(removeSymbolString(result));
         System.out.println("Total number:" + number);
         Assert.assertTrue(number > 0 );
     }
@@ -80,7 +80,7 @@ public class AssetsPageTest extends BaseTest {
         }else {
             result = about.replace("≈¥"," ").trim();
         }
-        Double number = Double.parseDouble(removeSymbolFloat(result));
+        Double number = Double.parseDouble(removeSymbolString(result));
         System.out.println("Total about number:" + number);
 
         Assert.assertTrue(number > 0 );
