@@ -211,7 +211,7 @@ public class SendTrx extends BaseTest {
          String avNumber = removeSymbolNoDot(page.leftAmountLabel.getText());
          String fzNumber = removeSymbolNoDot(page.rightAmountLabel.getText());
          String totalNumber = removeSymbolNoDot(page.trxTotal_text.getText());
-         Assert.assertEquals(Double.parseDouble(fzNumber)+Double.parseDouble(avNumber),Double.parseDouble(totalNumber),"0.000001");
+         Assert.assertEquals(Double.parseDouble(fzNumber)+Double.parseDouble(avNumber),Double.parseDouble(totalNumber),0.000001);
 
      }
 
