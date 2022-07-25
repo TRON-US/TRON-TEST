@@ -138,6 +138,12 @@ public class VotePage extends AbstractPage {
         passwordInputFinish();
     }
 
+    public void enterMultiSignVoteStep2Password() throws Exception{
+        confirm_btn().click();
+        TimeUnit.SECONDS.sleep(3);
+        confirm_btn().click();
+        passwordInputFinish();
+    }
     public void enterEditVoteStep1ToConfirm() throws Exception{
         modifyButton().click();
         voteAuto();
@@ -202,7 +208,12 @@ public class VotePage extends AbstractPage {
         sort.click();
     }
 
-
+    public void enterOwenAddressAndNext(String addr) throws Exception{
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeTextField'").sendKeys(addr);
+        closeKeyBoard();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
+        TimeUnit.SECONDS.sleep(8);
+    }
 
     @FindBy(name = "多重签名投票")
     public WebElement multi;
@@ -216,6 +227,15 @@ public class VotePage extends AbstractPage {
     @FindBy(xpath = "(//XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeTextField")
     public WebElement et_input;
 
+
+    @FindBy(id = "accountValueLabel")
+    public WebElement accountValueLabel;
+
+    @FindBy(id = "feeValueLabel")
+    public WebElement feeValueLabel;
+    public void openFeeContent(){
+        feeValueLabel.click();
+    }
 
     @FindBy(id = "vote sortPop close")
     public WebElement sortFirst;
