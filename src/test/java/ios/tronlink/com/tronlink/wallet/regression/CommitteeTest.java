@@ -25,7 +25,6 @@ public class CommitteeTest extends Base {
     @Parameters({"witnessKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String witnessKey, String udid) throws Exception {
-        System.out.println("pk: " + witnessKey + " udid: " + udid);
         new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
     }
     @Parameters({"bundleId"})
@@ -190,10 +189,9 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
     }
 
-
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_012cheackProposalName(String witnessUrl) throws Exception {
+    public void test_012checkProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -201,13 +199,27 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_013cheackProposalTime() throws Exception {
+    public void test_013checkProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
         Assert.assertTrue(states);
 
     }
+
+     @Test(alwaysRun = true)
+     public void test014checkProposalSixtyFiveSixtySix() throws Exception {
+         CommitteePage page = enterCommitteePage();
+         page.Setuppropos.click();
+         for (int i = 0; i < 4; i++) {
+             page.slideScreenMiddle();
+             TimeUnit.SECONDS.sleep(1);
+             log("Times: " + String.valueOf(i));
+         }
+         Assert.assertTrue(isElementExist("#65  提议允许提升MaxCpuTimeOfOneTx网络参数的合法上限值到400"));
+         Assert.assertTrue(isElementExist("#66  提议开启账户资产优化"));
+
+     }
 
 
 }
