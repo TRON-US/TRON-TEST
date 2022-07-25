@@ -1,6 +1,5 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import android.com.utils.AppiumTestCase;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AdvanceFuncPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
@@ -27,11 +26,19 @@ public class CommitteeTest extends Base {
     public void setUpBefore(String witnessKey, String udid) throws Exception {
         new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
     }
+
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
-    public void afterMethod(Method methed, String bundleId) throws Exception {
+    public void afterMethod(String bundleId) throws Exception {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
+        } catch (Exception e) {
 
+        }
     }
+
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId,Method method) throws Exception {
@@ -64,9 +71,7 @@ public class CommitteeTest extends Base {
             DRIVER.quit();
         } catch (Exception e) {
         }
-
     }
-
 
 
     public CommitteePage enterCommitteePage() throws Exception {
