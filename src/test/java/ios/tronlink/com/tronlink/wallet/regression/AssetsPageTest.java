@@ -42,12 +42,11 @@ public class AssetsPageTest extends BaseTest {
     }
 
 
-
     @Test(description = "Assert vote test", alwaysRun = true)
     public void test004_56gotoVotePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         VotePage secondPage = assetPage.enterVotePage();
-        Assert.assertTrue(Helper.isElementExist(secondPage.driver,"投票"));
+        Assert.assertTrue(isElementExist("投票 "));
         secondPage.backNav();
         AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
         Assert.assertTrue(Helper.isElementExist(addAssertPage.driver,"我的全部资产"));
@@ -64,7 +63,7 @@ public class AssetsPageTest extends BaseTest {
         TimeUnit.SECONDS.sleep(3);
         String about = asset.trxValue.getText();
         String result = sepLeftNumberTextToString(about,"TRX").trim();
-        Double number = Double.parseDouble(removeSymbolFloat(result));
+        Double number = Double.parseDouble(removeSymbolString(result));
         System.out.println("Total number:" + number);
         Assert.assertTrue(number > 0 );
     }
@@ -81,7 +80,7 @@ public class AssetsPageTest extends BaseTest {
         }else {
             result = about.replace("≈¥"," ").trim();
         }
-        Double number = Double.parseDouble(removeSymbolFloat(result));
+        Double number = Double.parseDouble(removeSymbolString(result));
         System.out.println("Total about number:" + number);
 
         Assert.assertTrue(number > 0 );

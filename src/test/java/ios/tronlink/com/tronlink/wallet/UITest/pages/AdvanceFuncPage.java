@@ -47,16 +47,14 @@ public class AdvanceFuncPage extends AbstractPage {
             boolean tempTag = true;
             while(tempTag){
                 try {
-                    log(tempTagName.getText());
+                    log(tempTagName.getText() + "Loading ...");
                     TimeUnit.SECONDS.sleep(1);
                 }catch (Exception le){
                     tempTag = false;
                 }
             }
-//            TimeUnit.SECONDS.sleep(20);
         } catch (Exception e) {
             new Base().log("committee_btn button not found");
-            //暂无数据
         }
         return new CommitteePage(driver);
     }

@@ -21,83 +21,170 @@ public class VoteTest extends BaseTest {
         return vote;
     }
 
-    @Parameters("address")
     @Test(description = "Test into VotePage'", alwaysRun = true)
-    public void test001_checkintoVotePage(String address) throws Exception {
+    public void test001_enterVotePageTest() throws Exception {
         enterVotePage();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(isElementExist("投票"));
-        Assert.assertTrue(isElementExist(address));
-        Assert.assertTrue(isElementExist("Auto_test"));
+        Assert.assertTrue(isElementExist("投票 "));
+        Assert.assertTrue(isElementExist("超级代表"));
+        Assert.assertTrue(isElementExist("多重签名投票"));
+        Assert.assertTrue(isElementExist("voteRewardHome  introduce"));
     }
-
-    @Test( alwaysRun = true)
-    public void test002_checkPopularSearchTest() throws Exception {
-        VotePage vote = enterVotePage();
-        vote.enterSearch();
-        Assert.assertEquals(vote.SRinput.getText(),"搜索超级代表");
-        vote.SRSearch("sr-26");
-        Assert.assertTrue(isElementExist("http://sr-26.com"));
-    }
-
-    @Test( alwaysRun = true)
-    public void test003_voteSRInfoTest() throws Exception {
-        VotePage vote = enterVotePage();
-        vote.enterSearch();
-        vote.SRSearch("sr-26");
-        vote.enterSRPage();
-        Assert.assertTrue(isElementExist("http://sr-26.com"));
-        Assert.assertTrue(isElementExist("收益分成比例"));
-        Assert.assertTrue(isElementExist("得票数"));
-        Assert.assertTrue(isElementExist("票数占比"));
-        Assert.assertTrue(isElementExist("出块数量"));
-        Assert.assertTrue(isElementExist("链接"));
-        Assert.assertTrue(isElementExist("查看投票注意事项"));
-
-    }
-    @Test( alwaysRun = true)
-    public void test004_AvailableTrxText() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page = asset.enterTrxPage();
-        String availableNumber = page.leftAmountLabel.getText();
-        page.navBack();
-        asset.enterVotePage();
-        TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(isElementExist(availableNumber));
-    }
-
-     @Test(alwaysRun = true)
-     public void test005_multiSignPageTest() throws Exception {
-         VotePage vote = enterVotePage();
-         vote.enterMulti();
-         Assert.assertTrue(isElementExist("修改投票账户"));
-         Assert.assertTrue(isElementExist("使用多重签名功能，您可以操作其他账户的投票和领取奖励，这需要该账户赋予您相应权限。"));
-         Assert.assertTrue(isElementExist("mitiSinAddressBook"));
-     }
 
     @Test(alwaysRun = true)
-    public void test006_multiVotePageTest() throws Exception {
-        VotePage vote = enterVotePage();
-        vote.enterMultiVote();
-        Assert.assertTrue(isElementExist("批量投票"));
-        Assert.assertTrue(isElementExist("取消全部投票"));
-        Assert.assertTrue(isElementExist("投票权"));
-        Assert.assertTrue(isElementExist("batchVote sort N"));
-        Assert.assertTrue(isElementExist("batchVote search N"));
-        Assert.assertTrue(isElementExist("获取投票权"));
-        Assert.assertTrue(isElementExist("投票合计"));
+    public void test002_VotePageAmountTest() throws Exception {
+        VotePage page = enterVotePage();
+        Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
+        Double voted = sepRightNumberTextToDouble( page.usedVoteAmountLabel.getText(),"已投票");
+        Double av = Double.parseDouble(page.availableAmountLabel.getText());
+        Assert.assertEquals(voted+av,total,0.0001);
 
     }
 
     @Test(alwaysRun = true)
-    public void test007_VoteOrderPageTest() throws Exception {
-        VotePage vote = enterVotePage();
-        vote.enterSortVote();
-        Assert.assertTrue(isElementExist("得票数（高到低）"));
-        Assert.assertTrue(isElementExist("得票数（低到高）"));
+    public void test003_VotePopViewTest() throws Exception {
+        VotePage page = enterVotePage();
+        page.enterIntroduce();
+        Assert.assertTrue(isElementExist("投票说明"));
+        Assert.assertTrue(isElementExist("我知道了"));
+        page.know.click();
+        page.enterSortPobView();
+        Assert.assertTrue(isElementExist("排序"));
+        Assert.assertTrue(isElementExist("已投票数（高到低）"));
         Assert.assertTrue(isElementExist("预计年化收益（高到低）"));
-        Assert.assertTrue(isElementExist("预计年化收益（低到高）"));
+        Assert.assertTrue(isElementExist("得票数（高到低）"));
+        page.TapAnyWhere(200,200);
+        Assert.assertFalse(isElementExist("排序"));
+    }
+
+    @Test(alwaysRun = true,description = "搜索功能查看")
+    public void test004_VoteSearchSRTest() throws Exception {
+        VotePage page = enterVotePage();
+        page.sliderToSearch();
+        page.enterSearch("china");
+        Assert.assertEquals(page.nameLabel.getText(),"ChinaTRON");
 
     }
+
+    @Test(alwaysRun = true)
+    public void test005_VoteSRPageTest() throws Exception {
+        VotePage page = enterVotePage();
+        page.sliderToSearch();
+        page.enterSearch("sr-26");
+        Double votedNumber = removeSymbolDouble(page.voteAmountLabel.getText());
+        page.enterFirstSRPage();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(page.nameLabel.getText(),"http://sr-26.com");
+        Assert.assertTrue(isElementExist("NO.1"));
+        Assert.assertEquals(page.addressLabel.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
+        Assert.assertEquals(removeSymbolDouble(page.voteCountLabel.getText()),votedNumber,0.1);
+    }
+
+    @Test(alwaysRun = true,description = "投票给tronChina 成功")
+    public void test006_VoteToTronChinaSRTest() throws Exception {
+        VotePage page = enterVotePage();
+        TimeUnit.SECONDS.sleep(3);
+        page.sliderToSearch();
+        page.enterSearch("china");
+        page.enterFirstSRPage();
+        TimeUnit.SECONDS.sleep(1);
+        if (page.isVoteButton()){
+            page.enterVoteStep1ToConfirm();
+        }else if(page.isModifyButton()){
+            page.enterEditVoteStep1ToConfirm();
+        }
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertTrue(isElementExist("投票"));
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
+        page.enterVoteStep2Password();
+        Assert.assertTrue(isElementExist("投票成功"));
+        Assert.assertTrue(isElementExist("完成"));
+
+    }
+
+    @Test(alwaysRun = true,description = "投票超时")
+    public void test007_VoteToTronChinaTimeOutSRTest() throws Exception {
+        VotePage page = enterVotePage();
+        TimeUnit.SECONDS.sleep(3);
+        page.sliderToSearch();
+        page.enterSearch("china");
+        page.enterFirstSRPage();
+        TimeUnit.SECONDS.sleep(1);
+        if (page.isVoteButton()){
+            page.enterVoteStep1ToConfirm();
+        }else if(page.isModifyButton()){
+            page.enterEditVoteStep1ToConfirm();
+        }
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertTrue(isElementExist("投票"));
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
+        TimeUnit.SECONDS.sleep(20);
+        TimeUnit.SECONDS.sleep(20);
+        TimeUnit.SECONDS.sleep(20);
+        page.enterVoteStep2Password();
+        Assert.assertTrue(isElementExist("投票失败"));
+        Assert.assertTrue(isElementExist("此笔交易已过期，请重新签名提交"));
+        Assert.assertTrue(isElementExist("重新发起交易"));
+        Assert.assertTrue(isElementExist("返回投票首页"));
+    }
+
+    @Test(alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
+    public void test008_CancelVoteToTronChinaTest() throws Exception {
+        VotePage page = enterVotePage();
+        TimeUnit.SECONDS.sleep(3);
+        page.sliderToSearch();
+        page.enterSearch("china");
+        page.enterFirstSRPage();
+        TimeUnit.SECONDS.sleep(1);
+        if (page.isCancelButton()){
+            if (page.votedLabel.getText().equalsIgnoreCase("1")){
+                page.enterCancelVoteStep1ToConfirm();
+                Assert.assertTrue(isElementExist("因波场网络投票数量最少为 1，将为您保留当前超级代表的一票；若您希望全部取消，可解锁全部质押的 TRX。"));
+            }else {
+                page.enterCancelVoteStep1ToConfirm();
+                Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+                Assert.assertTrue(isElementExist("取消投票"));
+                Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
+                page.enterVoteStep2Password();
+                Assert.assertTrue(isElementExist("取消投票成功"));
+            }
+
+        }else if(page.isVoteButton()){
+            page.enterVoteStep1ToConfirm();
+            page.enterVoteStep2Password();
+            Assert.assertTrue(isElementExist("投票成功"));
+        }
+    }
+
+    @Test(alwaysRun = true)
+    public void test009_goToMultiSignIntroTest() throws Exception {
+        VotePage page = enterVotePage();
+        page.enterMulti();
+        page.openTheTips();
+        Assert.assertTrue(isElementExist("您拥有控制权限的多签账户"));
+        TimeUnit.SECONDS.sleep(1);
+        page.closeTheTips();
+        page.enterWebPageMultiSignIntro();
+        TimeUnit.SECONDS.sleep(5);
+        Assert.assertTrue(isElementExist("使用教程"));
+        Assert.assertTrue(isWebView());
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test010_gotoResourceTest() throws Exception {
+        VotePage page = enterVotePage();
+        Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
+        page.enterStake();
+        Double stake = sepMiddleNumberTextToDouble( page.stakedLabel.getText(),"已质押:","TRX");
+        Assert.assertEquals(stake,total,0.1);
+    }
+
+
+
+//;投票success 单sr；修改单sr；取消单sr，取消的票数计算；查看sr说明页；交易确认页与前面页的正确性对比；多签功能nav的验证；多签说明的跳转；
+
+
+
 
 }

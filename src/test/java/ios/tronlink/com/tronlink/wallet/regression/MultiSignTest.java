@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,10 +31,6 @@ public class MultiSignTest extends Base {
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method methed, String bundleId) throws Exception {
         try {
-
-            String name = this.getClass().getSimpleName() + "." +
-                    methed.getName();
-//            screenshotAction(name);
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
@@ -104,10 +99,10 @@ public class MultiSignTest extends Base {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendTrxMultiSignToConfirm();
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         page.confirmPageButtonClick();
         Assert.assertTrue(isElementExist("多重签名设置"));
         Assert.assertTrue(isElementExist("(≤24H)"));
@@ -117,7 +112,6 @@ public class MultiSignTest extends Base {
         page.passwordInputFinish();
         Assert.assertEquals(page.sendAddress.getText(),ownerAddress);
         Assert.assertTrue(page.typeLabel.getText().contains("TRX 转账"));
-
     }
 
     @Parameters({"ownerAddress","multiSignAddress"})
@@ -127,11 +121,11 @@ public class MultiSignTest extends Base {
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendMultiSignStepTwo();
         page.inputTRC10AndSendAmount("0.3");
-        Assert.assertTrue(isElementExist("0.3 tronlink_token"));
+        Assert.assertEquals(page.topTransactionDescriptionLabel.getText(),"0.3 tronlink_token");
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         page.confirmPageButtonClick();
         Assert.assertTrue(isElementExist("多重签名设置"));
         Assert.assertTrue(isElementExist("(≤24H)"));
@@ -151,11 +145,11 @@ public class MultiSignTest extends Base {
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendMultiSignStepTwo();
         page.inputTRC20AndSendAmount("0.3");
-        Assert.assertTrue(isElementExist("0.3 TRX"));
+        Assert.assertEquals(page.topTransactionDescriptionLabel.getText(),"0.3 TRX");
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         page.confirmPageButtonClick();
         Assert.assertTrue(isElementExist("多重签名设置"));
         Assert.assertTrue(isElementExist("(≤24H)"));
@@ -165,7 +159,6 @@ public class MultiSignTest extends Base {
         page.passwordInputFinish();
         Assert.assertEquals(page.sendAddress.getText(),ownerAddress);
         Assert.assertTrue(page.typeLabel.getText().contains("触发智能合约"));
-
     }
 
     @Parameters({"ownerAddress","multiSignAddress"})
@@ -181,9 +174,7 @@ public class MultiSignTest extends Base {
         page.confirmDeposit().click();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("≈ 1 TRX"));
-        Assert.assertTrue(isElementExist("Mainnet"));
-        Assert.assertTrue(isElementExist("Signed"));
+        Assert.assertTrue(isElementExist("1 TRX"));
         Assert.assertTrue(isElementExist("质押"));
         Assert.assertTrue(isElementExist("1 票"));
         page.confirm_btn().click();
@@ -197,9 +188,34 @@ public class MultiSignTest extends Base {
 
     }
 
+    @Parameters({"ownerAddress"})
+    @Test(alwaysRun = true)
+    public void test007_voteSTtoTronChinaUseMultiSignTest(String ownerAddress) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        VotePage page = asset.enterVotePage();
+        TimeUnit.SECONDS.sleep(6);
+        page.enterMulti();
+        page.enterOwenAddressAndNext(ownerAddress);
+        page.sliderToSearch();
+        page.enterSearch("china");
+        page.enterFirstSRPage();
+        TimeUnit.SECONDS.sleep(1);
+        if (page.isVoteButton()){
+            page.enterVoteStep1ToConfirm();
+        }else if(page.isModifyButton()){
+            page.enterEditVoteStep1ToConfirm();
+        }
+        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+        Assert.assertTrue(isElementExist("投票"));
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
+        page.openFeeContent();
+        Assert.assertTrue(isElementExist("1 TRX"));
+        page.enterMultiSignVoteStep2Password();
+        Assert.assertTrue(page.typeLabel.getText().contains("投票"));
+    }
 
     @Test(description = "show multiSign Tips Test", alwaysRun = true)
-    public void test007_showMultiSignTipsTest() throws Exception {
+    public void test008_changeWalletAndShowMultiSignTipsTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.swipWalletTochange("Auto_test");
         TimeUnit.SECONDS.sleep(3);
@@ -208,129 +224,149 @@ public class MultiSignTest extends Base {
 
     }
 
-     @Test(alwaysRun = true)
-     public void test008_enterListOfMultiSignFromHome() throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         MultiSignRecodPage page = asset.enterMultiSignRecordView();
-         Assert.assertTrue(isElementExist("多重签名交易"));
-         Assert.assertTrue(page.waitingCells.size()>1);
-     }
+    @Test(alwaysRun = true)
+    public void test009_enterListOfMultiSignFromHome() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MultiSignRecodPage page = asset.enterMultiSignRecordView();
+        Assert.assertTrue(isElementExist("多重签名交易"));
+        Assert.assertTrue(page.waitingCells.size()>1);
+    }
 
-      @Test(alwaysRun = true)
-      public void test009_enterListOfMultiSignFromManage() throws Exception {
-          AssetPage asset = new AssetPage(DRIVER);
-          MyPursePage page = asset.enterMyPursePage();
-          Helper.swipScreenLitter(DRIVER);
-          page.enterMultiSignRecordView();
-          Assert.assertTrue(isElementExist("多重签名交易"));
-          Assert.assertTrue(page.waitingCells.size()>1);
-      }
+    @Test(alwaysRun = true)
+    public void test010_enterListOfMultiSignFromManage() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MyPursePage page = asset.enterMyPursePage();
+        Helper.swipScreenLitter(DRIVER);
+        page.enterMultiSignRecordView();
+        Assert.assertTrue(isElementExist("多重签名交易"));
+        Assert.assertTrue(page.waitingCells.size()>1);
+    }
 
     @Test(description = " multiSign Wrong Password Test", alwaysRun = true)
-    public void test010_multiSignWrongPasswordTest() throws Exception {
+    public void test011_multiSignWrongPasswordTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignRecodPage multiSignRecodPage = assetPage.enterMultiSignRecordView();
         Assert.assertTrue(multiSignRecodPage.signWrongPass());
-
     }
 
-     @Test(alwaysRun = true)
-     public void test011_multiSignFourTypeTest() throws Exception {
-         AssetPage assetPage = new AssetPage(DRIVER);
-         assetPage.enterMultiSignRecordView();
-         String setString = "质押资产,触发智能合约,TRC10 通证转账,TRX 转账";
-         Set<String> types = new HashSet<>(Arrays.asList(setString.split(",")));
-         List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
-         System.out.println(Secure.size());
-         for (int i = 0 ; i<Secure.size();i++){
-             System.out.println(Secure.get(i).getText());
-             Assert.assertTrue(types.contains(Secure.get(i).getText()));
-         }
-     }
-
-
-     @Test(alwaysRun = true)
-     public void test012_multiSignOtherFrozenSuccess() throws Exception {
-         AssetPage assetPage = new AssetPage(DRIVER);
-         MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
-         List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
-         Integer sizeNumber = Secure.size();
-         accountOfList = sizeNumber;
-         System.out.println(Secure.size());
-         if (sizeNumber > 0){
-             page.signBtn.click();
-             try {
-                 page.confirm_btn().click();
-             }catch (Exception e){
-                 log("This is TRC20");
-             }
-             page.passwordInputFinish();
-
-         }
-
-     }
-
     @Test(alwaysRun = true)
-    public void test013_multiSignOtherTRC20Success() throws Exception {
+    public void test012_multiSignFourTypeTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
+        assetPage.enterMultiSignRecordView();
+        String setString = "投票,质押资产,触发智能合约,TRC10 通证转账,TRX 转账";
+        Set<String> types = new HashSet<>(Arrays.asList(setString.split(",")));
         List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
-        Integer sizeNumber = Secure.size();
-        Assert.assertNotSame(sizeNumber,accountOfList);
-        accountOfList = sizeNumber;
         System.out.println(Secure.size());
-        if (sizeNumber > 0){
-            page.signBtn.click();
-            try {
-                page.confirm_btn().click();
-            }catch (Exception e){
-                log("This is TRC20");
-            }
-            page.passwordInputFinish();
-
+        for (int i = 0 ; i<Secure.size();i++){
+            System.out.println(Secure.get(i).getText());
+            Assert.assertTrue(types.contains(Secure.get(i).getText()));
         }
     }
 
     @Test(alwaysRun = true)
-    public void test013_multiSignOtherTRC10Success() throws Exception {
+    public void test013_signMultiVoteByOther() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
-        List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
-        Integer sizeNumber = Secure.size();
-        Assert.assertNotSame(sizeNumber,accountOfList);
-        accountOfList = sizeNumber;
-        System.out.println(Secure.size());
-        if (sizeNumber > 0){
-            page.signBtn.click();
-            try {
-                page.confirm_btn().click();
-            }catch (Exception e){
-                log("This is TRC20");
+        if (page.typeLabel.getText().contains("投票")){
+            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+            Integer sizeNumber = Secure.size();
+            System.out.println(Secure.size());
+            if (sizeNumber > 0){
+                page.signBtn.click();
+                try {
+                    page.confirm_btn().click();
+                }catch (Exception e){
+                }
+                page.passwordInputFinish();
             }
-            page.passwordInputFinish();
-
+            Assert.assertTrue(!isElementExist("signBtn"));
         }
+
+
     }
 
     @Test(alwaysRun = true)
-    public void test014_multiSignOtherTRXSuccess() throws Exception {
+    public void test014_signMultiFrozenByOther() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
-        List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
-        Integer sizeNumber = Secure.size();
-        Assert.assertNotSame(sizeNumber,accountOfList);
-        accountOfList = sizeNumber;
-        System.out.println(Secure.size());
-        if (sizeNumber > 0){
-            page.signBtn.click();
-            try {
-                page.confirm_btn().click();
-            }catch (Exception e){
-                log("This is TRC20");
+        if (page.typeLabel.getText().contains("质押资产")){
+            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+            Integer sizeNumber = Secure.size();
+            System.out.println(Secure.size());
+            if (sizeNumber > 0){
+                page.signBtn.click();
+                try {
+                    page.confirm_btn().click();
+                }catch (Exception e){
+                }
+                page.passwordInputFinish();
             }
-            page.passwordInputFinish();
-
+            Assert.assertTrue(!isElementExist("signBtn"));
         }
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test015_signMultiTRC20ByOther() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
+        if (page.typeLabel.getText().contains("触发智能合约")){
+            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+            Integer sizeNumber = Secure.size();
+            System.out.println(Secure.size());
+            if (sizeNumber > 0){
+                page.signBtn.click();
+                try {
+                    page.confirm_btn().click();
+                }catch (Exception e){
+                }
+                page.passwordInputFinish();
+            }
+            Assert.assertTrue(!isElementExist("signBtn"));
+        }
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test016_signMultiTRC10ByOther() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
+        if (page.typeLabel.getText().contains("TRC10 通证转账")){
+            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+            Integer sizeNumber = Secure.size();
+            System.out.println(Secure.size());
+            if (sizeNumber > 0){
+                page.signBtn.click();
+                try {
+                    page.confirm_btn().click();
+                }catch (Exception e){
+                }
+                page.passwordInputFinish();
+            }
+            Assert.assertTrue(!isElementExist("signBtn"));
+        }
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test017_signMultiTrxByOther() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
+        if (page.typeLabel.getText().contains("TRX 转账")){
+            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+            Integer sizeNumber = Secure.size();
+            System.out.println(Secure.size());
+            if (sizeNumber > 0){
+                page.signBtn.click();
+                try {
+                    page.confirm_btn().click();
+                }catch (Exception e){
+                }
+                page.passwordInputFinish();
+            }
+            Assert.assertTrue(!isElementExist("signBtn"));
+        }
+
     }
 
 

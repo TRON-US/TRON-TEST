@@ -141,10 +141,11 @@ public class AbstractPage {
 
     public  void closeKeyBoard()  throws Exception{
         try {
-            driver.findElementByName("Done").click();
+            driver.findElementByName("完成").click();
+
         }catch (Exception e){
             try {
-                driver.findElementByName("完成").click();
+                driver.findElementByName("Done").click();
 
             }catch (Exception el){
                 System.out.println("not found keyboard done");
@@ -184,6 +185,11 @@ public class AbstractPage {
         int y = wele.getLocation().getY();
         IOSTouchAction action = new IOSTouchAction(driver);
         action.press(PointOption.point(x+20,y+14)).release().perform();
+    }
+
+    public void TapAnyWhere(int x,int y){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        action.press(PointOption.point(x,y)).release().perform();
     }
 
     public  boolean isElementExist( String name) {
@@ -260,6 +266,18 @@ public class AbstractPage {
                 PointOption.point(width/2, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(width/2, height*3/5))
+                .release().perform();
+    }
+
+    public  void slideScreenMiddle(){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*2/5))
                 .release().perform();
     }
 

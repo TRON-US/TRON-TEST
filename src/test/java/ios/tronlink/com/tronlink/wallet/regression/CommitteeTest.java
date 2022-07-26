@@ -1,6 +1,5 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
-import android.com.utils.AppiumTestCase;
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AdvanceFuncPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
@@ -25,40 +24,43 @@ public class CommitteeTest extends Base {
     @Parameters({"witnessKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String witnessKey, String udid) throws Exception {
-        System.out.println("pk: " + witnessKey + " udid: " + udid);
         new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
     }
+
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
-    public void afterMethod(Method methed, String bundleId) throws Exception {
+    public void afterMethod(String bundleId) throws Exception {
         try {
-            String name = this.getClass().getSimpleName() + "." +
-                    methed.getName();
-//            screenshotAction(name);
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
         } catch (Exception e) {
-        }
 
+        }
     }
+
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
-    public void beforeMethod(String bundleId) throws Exception {
+    public void beforeMethod(String bundleId,Method method) throws Exception {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(3);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
             tries++;
             try {
-                Map<String, Object> params = new HashMap<>();
-                params.put("bundleId", bundleId);
                 DRIVER.executeScript("mobile: activateApp", params);
                 driver_is_start = true;
             } catch (Exception e) {
                 System.out.println(e);
-                TimeUnit.SECONDS.sleep(2);
+                DRIVER.executeScript("mobile: terminateApp", params);
+                TimeUnit.SECONDS.sleep(3);
             }
         }
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
     }
 
     @Parameters({"udid"})
@@ -69,9 +71,7 @@ public class CommitteeTest extends Base {
             DRIVER.quit();
         } catch (Exception e) {
         }
-
     }
-
 
 
     public CommitteePage enterCommitteePage() throws Exception {
@@ -194,10 +194,9 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
     }
 
-
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_012cheackProposalName(String witnessUrl) throws Exception {
+    public void test_012checkProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -205,13 +204,27 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_013cheackProposalTime() throws Exception {
+    public void test_013checkProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
         Assert.assertTrue(states);
 
     }
+
+     @Test(alwaysRun = true)
+     public void test014checkProposalSixtyFiveSixtySix() throws Exception {
+         CommitteePage page = enterCommitteePage();
+         page.Setuppropos.click();
+         for (int i = 0; i < 4; i++) {
+             page.slideScreenMiddle();
+             TimeUnit.SECONDS.sleep(1);
+             log("Times: " + String.valueOf(i));
+         }
+         Assert.assertTrue(isElementExist("#65  提议允许提升MaxCpuTimeOfOneTx网络参数的合法上限值到400"));
+         Assert.assertTrue(isElementExist("#66  提议开启账户资产优化"));
+
+     }
 
 
 }

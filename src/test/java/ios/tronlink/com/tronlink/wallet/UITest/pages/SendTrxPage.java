@@ -33,6 +33,15 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(name = "加入到地址本")
     public WebElement addBook;
 
+    @FindBy(id = "topNetworkLabel")
+    public WebElement topNetworkLabel;
+
+    @FindBy(id = "topWalletNameLabel")
+    public WebElement topWalletNameLabel;
+
+    @FindBy(id = "topTransactionDescriptionLabel")
+    public WebElement topTransactionDescriptionLabel;
+
     @FindBy(className = "XCUIElementTypeTextField")
     public List<WebElement> textFieldArray;
 
@@ -369,14 +378,16 @@ public class SendTrxPage extends AbstractPage {
 
 
     public WebElement TextFieldAmo(){
-        return driver.findElementByIosClassChain("**/XCUIElementTypeTextField[`value == \"输入转账数量\"`]");
+//        return driver.findElementByClassName("XCUIElementTypeTextField");
+        return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeTextField'  AND value ='输入转账数量' ");
     }
     public void sendTrxMultiSignToConfirm() throws Exception{
         sendMultiSignStepTwo();
+        TimeUnit.SECONDS.sleep(1);
         TextFieldAmo().sendKeys("1.123");
         closeKeyBoard();
         findSend_btn().click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
     }
 
 //    public void confirmAction(){

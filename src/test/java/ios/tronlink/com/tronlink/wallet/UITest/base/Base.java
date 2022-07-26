@@ -275,7 +275,9 @@ public class Base {
         }
 
     }
-    public String removeSymbolFloat(String arg){
+
+
+    public String removeSymbolString(String arg){
         String value = arg;
         if (arg.contains(",")){
             value = arg.replace(",","");
@@ -283,32 +285,49 @@ public class Base {
         return value;
     }
 
+    public Double removeSymbolDouble(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return Double.parseDouble(value);
+    }
+
     public float sepLeftNumberTextToFloat(String content,String lastString){
         String realNumber = StringUtils.substringBeforeLast(content,lastString);
-        return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
+        return  Float.parseFloat(removeSymbolString(realNumber.trim()));
 
     }
     public Integer sepLeftNumberTextToInter(String content,String lastString){
         String realNumber = StringUtils.substringBeforeLast(content,lastString);
-        return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));
+        return  Integer.parseInt(removeSymbolString(realNumber.trim()));
     }
     public String  sepLeftNumberTextToString(String content,String lastString){
         String realNumber = StringUtils.substringBeforeLast(content,lastString);
-        return  removeSymbolFloat(realNumber.trim());
+        return  removeSymbolString(realNumber.trim());
 
     }
     public float sepRightNumberTextToFloat(String content,String lastString){
         String realNumber = StringUtils.substringAfterLast(content,lastString);
-        return  Float.parseFloat(removeSymbolFloat(realNumber.trim()));
-
+        return  Float.parseFloat(removeSymbolString(realNumber.trim()));
     }
+    public Double sepRightNumberTextToDouble(String content,String lastString){
+        String realNumber = StringUtils.substringAfterLast(content,lastString);
+        return  Double.parseDouble(removeSymbolString(realNumber.trim()));
+    }
+
+    public Double sepMiddleNumberTextToDouble(String content,String leftString,String rightString){
+        String realNumber = StringUtils.substringBeforeLast(StringUtils.substringAfterLast(content,leftString),rightString);
+        return  Double.parseDouble(removeSymbolString(realNumber.trim()));
+    }
+
     public Integer sepRightNumberTextToInter(String content,String lastString){
         String realNumber = StringUtils.substringAfterLast(content,lastString);
-        return  Integer.parseInt(removeSymbolFloat(realNumber.trim()));
+        return  Integer.parseInt(removeSymbolString(realNumber.trim()));
     }
     public String  sepRightNumberTextToString(String content,String lastString){
         String realNumber = StringUtils.substringAfterLast(content,lastString);
-        return  removeSymbolFloat(realNumber.trim());
+        return  removeSymbolString(realNumber.trim());
 
     }
 
@@ -321,6 +340,16 @@ public class Base {
         log("resetApp Finish!!");
         DRIVER.launchApp();
 
+    }
+
+    public boolean isWebView(){
+        try {
+            DRIVER.findElementByClassName("XCUIElementTypeWebView");
+            return true;
+
+        }catch (Exception e){
+            return false;
+        }
     }
     public  boolean isElementExist( String name) {
         IOSDriver driver = DRIVER;
@@ -338,19 +367,27 @@ public class Base {
                 return  true;
             }catch (org.openqa.selenium.NoSuchElementException eex){
                 try {
-                    if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
-                        System.out.println("IsFindByBtn: "+name);
-                        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                        return  true;
-                    }else {
+                    driver.findElementByLinkText(name);
+                    System.out.println("findElementByLinkText: "+name);
+                    return  true;
+                }catch (org.openqa.selenium.NoSuchElementException e3){
+                    try {
+                        if (driver.findElementByClassName("XCUIElementTypeButton").getText().contains(name)){
+                            System.out.println("IsFindByBtn: "+name);
+                            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                            return  true;
+                        }else {
+                            System.out.println("NotFound: "+name);
+                            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+                            return  false;
+                        }
+                    }catch (org.openqa.selenium.NoSuchElementException e){
+                        System.out.println("NotFound: "+name);
                         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
                         return  false;
                     }
-                }catch (org.openqa.selenium.NoSuchElementException e){
-                    System.out.println("NotFound: "+name);
-                    driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-                    return  false;
                 }
+
             }
         }
     }
