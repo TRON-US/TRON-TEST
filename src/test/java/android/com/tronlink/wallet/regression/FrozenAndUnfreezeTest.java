@@ -130,6 +130,7 @@ public class FrozenAndUnfreezeTest extends Base {
         frozen.enterDetailsAndRulesPage();
         Assert.assertTrue(frozen.doc0_spe.getText().contains("1. 质押 TRX 可以选择获得带宽或者能量中的一种，同时可以获得投票权，质押 1 TRX 可以获得 1 个投票权。"));
         frozen.btn_know_it.click();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertFalse(isElementShotId("btn_know_it"));
     }
 
