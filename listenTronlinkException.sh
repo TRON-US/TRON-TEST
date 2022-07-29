@@ -22,7 +22,7 @@ for deviceName in ${devicesList[@]}
 do
   echo $deviceName
   rm -rf todaylog_$deviceName.log
-  /Users/tron/Library/Android/sdk/platform-tools/adb -s $deviceName logcat > todaylog_$deviceName.log 2>&1 &
+#  /Users/tron/Library/Android/sdk/platform-tools/adb -s $deviceName logcat > todaylog_$deviceName.log 2>&1 &
   cat todaylog_$deviceName.log | grep -E "HTTP FAILED" -A 10 | grep "tronlink" -A 9 > http_failed_$deviceName.log 2>&1 &
   cat todaylog_$deviceName.log | grep -E "FATAL" -A 30 | grep "tronlink" -A 29  > FATAL_exception_$deviceName.log 2>&1 &
 #  nohup /Users/tron/Library/Android/sdk/platform-tools/adb -s $deviceName logcat | grep " E " -A 35 | grep  'FATAL|Crash|AndroidRuntime' -A 35 | grep -A 35 'com.tronlinkpro.wallet'  > exception_$deviceName.log 2>&1 &

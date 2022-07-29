@@ -45,10 +45,12 @@ public class AdvanceFuncPage extends AbstractPage {
         try {
             commiteeBtn.click();
             boolean tempTag = true;
-            while(tempTag){
+            int times = 30;
+            while(tempTag&&times>0){
                 try {
-                    log(tempTagName.getText() + "Loading ...");
+                    log(tempTagName.getText() + "Loading ... Times: " + String.valueOf(times));
                     TimeUnit.SECONDS.sleep(1);
+                    times--;
                 }catch (Exception le){
                     tempTag = false;
                 }

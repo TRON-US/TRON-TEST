@@ -106,14 +106,14 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
     public CreateProposePage enterCreateProposePage() throws Exception {
-        TimeUnit.SECONDS.sleep(18);
-        try{
+//        TimeUnit.SECONDS.sleep(18);
+//        try{
             createPropose_btn.click();
             System.out.println("find createPropose_btn ");
-        }catch (Exception xl){
-//            findElementByText("发起提议").click();
-//            System.out.println("find 发起提议 ");
-        }
+//        }catch (Exception xl){
+////            findElementByText("发起提议").click();
+////            System.out.println("find 发起提议 ");
+//        }
         TimeUnit.SECONDS.sleep(3);
         return new CreateProposePage(driver);
     }
@@ -140,7 +140,7 @@ public class CommitteeProposalPage extends AbstractPage {
     public MyProposalsPage enterMyProposalsPage() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         myProposal_btn.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(15);
         return new MyProposalsPage(driver);
     }
 
