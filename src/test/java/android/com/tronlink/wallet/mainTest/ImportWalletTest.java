@@ -74,7 +74,6 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         impage.NextBtn.click();
         impage.passwordInput.sendKeys(useKeyPassword);
         impage.NextBtn.click();
-        Assert.assertTrue(impage.wallettag.getText().contains("Non-HD"));
         impage.deleteWallet();
         Assert.assertTrue(impage.title.getText().contains("波场支持"));
     }
@@ -127,7 +126,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
 
     @Parameters({"udid"})
     @Test( alwaysRun = true)
-    public void test007_coldImportPrivateKeyTest(String udid) throws Exception {
+    public void test006_coldImportPrivateKeyTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -150,7 +149,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     }
     @Parameters({"udid"})
     @Test( alwaysRun = true)
-    public void test008_coldImportKeyStoreTest(String udid) throws Exception {
+    public void test007_coldImportKeyStoreTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -170,7 +169,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     }
     @Parameters({"udid"})
     @Test( alwaysRun = true)
-    public void test009_coldImportMemTest(String udid) throws Exception {
+    public void test008_coldImportMemTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -197,7 +196,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
 
     @Parameters({"udid"})
     @Test( alwaysRun = true)
-    public void test010_coldCreateWalletTest(String udid) throws Exception {
+    public void test009_coldCreateWalletTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
