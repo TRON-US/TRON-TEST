@@ -327,6 +327,12 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_note_remove")
     public WebElement bt_note_remove;
+    
+    @FindBy(id = "com.tronlinkpro.wallet:id/info")
+    public WebElement info;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm_2")
+    public WebElement btn_confirm_2;
 
     @FindBy(xpath = "//*[@text='添加转账备注']")
     public WebElement note_transfer;
