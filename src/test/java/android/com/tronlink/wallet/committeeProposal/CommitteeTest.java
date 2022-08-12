@@ -117,7 +117,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(15);
         MyProposalsPage.agree_btn.click();
         MyProposalsPage.button_confirm.click();
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(5);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         TimeUnit.SECONDS.sleep(15);
