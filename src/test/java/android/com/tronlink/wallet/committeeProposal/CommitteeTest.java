@@ -109,20 +109,21 @@ public class CommitteeTest extends Base {
         CreateProposePage createProposePage = committeeProposalPage.enterCreateProposePage();
         committeeProposalPage = createProposePage.createProposal();
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
+        TimeUnit.SECONDS.sleep(5);
         MyProposalsPage.agree_btn.click();
         MyProposalsPage.button_confirm.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(20);
         MyProposalsPage.agree_btn.click();
         MyProposalsPage.button_confirm.click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         TimeUnit.SECONDS.sleep(15);
         String number = MyProposalsPage.approveNum_text.getText();
-        log("number" + number);
+        log("number:---> " + number);
         Assert.assertTrue(number.equals("0") || number == "0");
     }
 
