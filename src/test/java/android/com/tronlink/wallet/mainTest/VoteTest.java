@@ -50,7 +50,7 @@ public class VoteTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(3);
-        Assert.assertEquals(vote.tv_main_title.getText(),"投票及奖励");
+        Assert.assertEquals(vote.tv_main_title.getText(),"投票");
         Assert.assertEquals(vote.available_vote_right_title.getText(),"可用投票权");
         Assert.assertEquals(vote.tv_multi_sign.getText(),"多重签名投票");
         Double total = removeSymbolDouble(vote.tv_total_vote_rights.getText());
