@@ -168,8 +168,9 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.tranferCount_text.sendKeys(String.valueOf(sendAmount));
         TimeUnit.SECONDS.sleep(6);
         SendTrx.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(12);
+        TimeUnit.SECONDS.sleep(8);
         Assert.assertTrue(SendTrx.invalidTime_input.isDisplayed());
         Assert.assertTrue(SendTrx.signAddress_input.get(0).getText().length() == 34);
         Assert.assertTrue(SendTrx.signAddress_input.get(1).isDisplayed());
@@ -194,8 +195,9 @@ public class AllSignatureSuccTest extends Base {
         waiteTime();
         SendTrx.et_note.sendKeys("I'm multiSign notes");
         SendTrx.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(12);
+        TimeUnit.SECONDS.sleep(8);
         SendTrx.rl_bottom_next.click();
         SendTrx.InputPasswordConfim_btn.sendKeys("Test0001");
         SendTrx.bt_send.click();
@@ -223,8 +225,9 @@ public class AllSignatureSuccTest extends Base {
         waiteTime();
         SendTrx.et_note.sendKeys("I'm multiSign notes");
         SendTrx.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(12);
+        TimeUnit.SECONDS.sleep(8);
         SendTrx.rl_bottom_next.click();
         SendTrx.InputPasswordConfim_btn.sendKeys("Test0001");
         SendTrx.bt_send.click();
@@ -252,8 +255,9 @@ public class AllSignatureSuccTest extends Base {
         waiteTime();
         SendTrx.et_note.sendKeys("I'm multiSign notes");
         SendTrx.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         SendTrx.confirm_btn().click();
-        TimeUnit.SECONDS.sleep(12);
+        TimeUnit.SECONDS.sleep(8);
         SendTrx.rl_bottom_next.click();
         SendTrx.InputPasswordConfim_btn.sendKeys("Test0001");
         SendTrx.bt_send.click();

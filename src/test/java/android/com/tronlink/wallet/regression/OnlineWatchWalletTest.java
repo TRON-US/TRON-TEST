@@ -143,7 +143,7 @@ public class OnlineWatchWalletTest extends Base {
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
         sendTrxPage.SendTokenWithNameAmountWatch("0.00001","WIN");
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(sendTrxPage.info.getText(),"继续交易会消耗 TRX/资源，且存在交易失败的风险，请确认是否继续");
+        Assert.assertEquals(sendTrxPage.info.getText(),"继续交易会消耗账户剩余 TRX/资源，且存在交易失败的风险，请确认是否继续");
         sendTrxPage.btn_confirm_2.click();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
