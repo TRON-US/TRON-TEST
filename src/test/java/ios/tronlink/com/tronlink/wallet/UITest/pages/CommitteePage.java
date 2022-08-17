@@ -92,7 +92,7 @@ public class CommitteePage extends AbstractPage {
         log("开始输入密码");
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
 
     }
     public void change2proposal(String pro) throws Exception{
@@ -107,7 +107,7 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
     }
     public void change0proposal(String pro) throws Exception{
         waiteTime();
@@ -121,7 +121,7 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(15);
 
 
     }
@@ -149,14 +149,14 @@ public class CommitteePage extends AbstractPage {
         enterMyProposal();
         log("success 进入我发起的提议");
         TimeUnit.SECONDS.sleep(3);
-        waiteTime(10);
+        waiteTime();
         List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
         return wls.get(0);
     }
     public WebElement findFirstAgreedroposalWl( ) throws Exception {
         TimeUnit.SECONDS.sleep(3);
         enterMyAgreedProposal();
-        waiteTime(10);
+        waiteTime();
         List<WebElement> wls = (List<WebElement>) driver.findElementsByClassName("XCUIElementTypeCell");
         return wls.get(0);
     }
@@ -164,13 +164,13 @@ public class CommitteePage extends AbstractPage {
     public int findvoteNumbers() throws Exception {
         waiteTime();
         findFirstAgreedroposalWl().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         return  Integer.parseInt(totalVoteValue.getText());
     }
     public int findvoteafterNumbers() throws Exception {
         waiteTime();
         findFirstproposalWl().click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         return  Integer.parseInt(totalVoteValue.getText());
     }
     public boolean getagreedStateofproposal() throws Exception {
@@ -188,7 +188,7 @@ public class CommitteePage extends AbstractPage {
     }
 
     public void enterProposalDetail() throws Exception {
-        waiteTime(10);
+        waiteTime();
         WebElement wl = findFirstproposalWl();
         wl.click();
         TimeUnit.SECONDS.sleep(8);
@@ -197,7 +197,7 @@ public class CommitteePage extends AbstractPage {
 
     public void enterMyProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        waiteTime(10);
+        waiteTime();
         int topX = mysetuppropos.getLocation().x + 10;
         int topY = mysetuppropos.getLocation().y + 10;
         log("\n MyProposal topX: " + topX + " botY: " + topY );
@@ -209,7 +209,7 @@ public class CommitteePage extends AbstractPage {
 
     public void enterMyAgreedProposal() throws Exception {
         TimeUnit.SECONDS.sleep(2);
-        waiteTime(10);
+        waiteTime();
         int topX = myagreedpropos.getLocation().x + 10;
         int topY = myagreedpropos.getLocation().y + 10;
         log("\n AgreedProposal topX: " + topX + " botY: " + topY );
