@@ -3,6 +3,7 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 
 import android.com.utils.AppiumTestCase;
+import android.com.utils.IHookableImp;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 import java.io.BufferedInputStream;
@@ -32,14 +34,14 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
 
-
+@Listeners(IHookableImp.class)
 public class Base {
 
     public IOSDriver<?> DRIVER;
 
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss ");
 
-    public int RetryAgainTimes = 3;
+    public int RetryAgainTimes = 4;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
