@@ -108,7 +108,6 @@ public class Base {
                 TimeUnit.SECONDS.sleep(1);
             }
         }
-        screenOn();
     }
 
 
