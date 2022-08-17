@@ -160,7 +160,6 @@ public class CommitteeTest extends Base {
 
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         committeePage.change2proposal("0.2");

@@ -40,7 +40,7 @@ public class Retry implements IRetryAnalyzer {
         //调用截图功能
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss");
-            String path = "build/tmp/screenshot/#" + clasname +"."+ methodname + dateFormat.format(new Date()) + ".png";
+            String path = "build/tmp/" + clasname +"."+ methodname + dateFormat.format(new Date()) + ".png";
             System.out.println(path);
             Runtime.getRuntime().exec("idevicescreenshot " + path);
         }catch (Exception e){

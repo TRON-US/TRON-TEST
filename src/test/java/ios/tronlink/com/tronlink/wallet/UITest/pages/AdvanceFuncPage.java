@@ -62,6 +62,7 @@ public class AdvanceFuncPage extends AbstractPage {
     }
 
 
+
     public MnemonicToolsPage enternemTools_btnPage() throws Exception {
         TimeUnit.SECONDS.sleep(1);
         mnemTools_btn.click();
