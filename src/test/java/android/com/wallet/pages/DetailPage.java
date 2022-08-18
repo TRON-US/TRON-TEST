@@ -29,5 +29,14 @@ public class DetailPage extends AbstractPage {
     public WebElement iv_share;
 
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/start_time")
+    public WebElement start_time;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/token_describe")
+    public WebElement token_describe;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/token_url")
+    public WebElement token_url;
+
 
 }
