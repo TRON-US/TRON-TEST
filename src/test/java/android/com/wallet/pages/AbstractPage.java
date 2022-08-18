@@ -257,6 +257,11 @@ public WebElement bt_go;
 
     public void deleteWallet() throws Exception{
         driver.findElementById("com.tronlinkpro.wallet:id/tv_trx_value").click();
+        delete();
+
+    }
+
+    public void delete() throws Exception{
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
         driver.findElementById("com.tronlinkpro.wallet:id/delete").click();

@@ -20,6 +20,23 @@ public class ImportRoutePage extends AbstractPage {
   }
 
 
+  @FindBy(id = "com.tronlinkpro.wallet:id/tv_linked_account_count")
+  public WebElement tv_linked_account_count;
+
+  public void enterLinkedWallet(){
+    tv_linked_account_count.click();
+  }
+
+  @FindBy(id = "com.tronlinkpro.wallet:id/net_error")
+  public WebElement net_error;
+
+  @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_right")
+  public WebElement iv_common_right;
+
+  public void closeLinked(){
+    iv_common_right.click();
+  }
+
   @FindBy(id = "com.tronlinkpro.wallet:id/import_content")
   public WebElement importContent;
 
@@ -71,6 +88,13 @@ public class ImportRoutePage extends AbstractPage {
 
   @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
   public WebElement watchTextField;
+
+  @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_value")
+  public WebElement tv_trx_value;
+
+  public void enterManagePage(){
+    tv_trx_value.click();
+  }
 
   @FindBy(id = "com.tronlinkpro.wallet:id/tv_backup")
   public WebElement tv_backup;

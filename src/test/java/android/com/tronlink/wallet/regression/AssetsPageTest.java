@@ -175,6 +175,7 @@ public class AssetsPageTest extends Base {
         TrxPage page = asset.enterTrx10Page();
         DetailPage item = page.enterProjectInfoPage();
         Assert.assertEquals(item.tv_vdd.getText(),"查看详细数据");
+        Assert.assertTrue(isElementTextExist("通证ID"));
         Assert.assertTrue(isElementTextExist("官方网站"));
         Assert.assertEquals(item.token_url.getText(),"http://nileex.io/");
         Assert.assertTrue(isElementTextExist("精度"));
