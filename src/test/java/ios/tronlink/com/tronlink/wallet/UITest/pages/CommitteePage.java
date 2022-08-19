@@ -186,8 +186,12 @@ public class CommitteePage extends AbstractPage {
     public boolean getdisagreedStateofproposal() throws Exception {
         waiteTime();
         findFirstproposalWl().click();
-        TimeUnit.SECONDS.sleep(4);
-        return agreeBtn.isDisplayed();
+        TimeUnit.SECONDS.sleep(5);
+        if(isElementExist("赞成")){
+            return agreeBtn.isDisplayed();
+        }else {
+            return isElementExist("无赞成者");
+        }
     }
 
     public void enterProposalDetail() throws Exception {
@@ -237,6 +241,7 @@ public class CommitteePage extends AbstractPage {
             agreeBtn.click();
             TimeUnit.SECONDS.sleep(4);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+            TimeUnit.SECONDS.sleep(3);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
             TimeUnit.SECONDS.sleep(15);
@@ -245,28 +250,32 @@ public class CommitteePage extends AbstractPage {
 
     }
 
-    public void disagreeAction() throws Exception {
+    public boolean disagreeAction() throws Exception {
         enterMyAgreedProposal();
         TimeUnit.SECONDS.sleep(3);
-        proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(6);
-        if (Helper.isElementExist(driver,"赞成")) {
-            waiteTime();
-            backBtn.click();
-            waiteTime();
-            backBtn.click();
+        if (isElementExist("暂无数据")){
+            return false;
         }else {
-            disagreeBtn.click();
-            TimeUnit.SECONDS.sleep(4);
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            passwordTF.sendKeys("Test0001");
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(10);
-            TimeUnit.SECONDS.sleep(10);
-            backBtn.click();
+            proposCells.get(0).click();
+            TimeUnit.SECONDS.sleep(6);
+            if (Helper.isElementExist(driver, "赞成")) {
+                waiteTime();
+                backBtn.click();
+                waiteTime();
+                backBtn.click();
+            } else {
+                disagreeBtn.click();
+                TimeUnit.SECONDS.sleep(4);
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+                TimeUnit.SECONDS.sleep(3);
+                passwordTF.sendKeys("Test0001");
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(10);
+                backBtn.click();
+            }
+            return true;
         }
-
-
     }
 
     public void deleteAction() throws Exception {

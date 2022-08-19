@@ -146,7 +146,7 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "be delete three My Proposal", alwaysRun = true)
-    public void test_007deleteagreedProposal() throws Exception {
+    public void test_007deleteAgreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
         String states = committeePage.getStateofproposal();
@@ -180,9 +180,12 @@ public class CommitteeTest extends Base {
     @Test(groups = {"P0"},description = "be dis agreed Proposal", alwaysRun = true)
     public void test_010disagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
-        committeePage.disagreeAction();
-        Assert.assertTrue(committeePage.getdisagreedStateofproposal());
-        log("dis agreed时间");
+        boolean have = committeePage.disagreeAction();
+        if (have){
+            Assert.assertTrue(committeePage.getdisagreedStateofproposal());
+        }else {
+            Assert.assertTrue(isElementExist("暂无数据"));
+        }
     }
 
     //1个状态
