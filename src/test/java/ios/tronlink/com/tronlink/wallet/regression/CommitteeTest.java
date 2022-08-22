@@ -96,9 +96,7 @@ public class CommitteeTest extends Base {
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Assert.assertTrue(Helper.contentTexts(textarray, count));
     }
-
-
-
+    
     @Test(description = "cheack state proposal", alwaysRun = true)
     public void test_002cheackProposalState() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
@@ -146,7 +144,7 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "be delete three My Proposal", alwaysRun = true)
-    public void test_007deleteagreedProposal() throws Exception {
+    public void test_007deleteAgreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
         String states = committeePage.getStateofproposal();
@@ -157,10 +155,8 @@ public class CommitteeTest extends Base {
 
     @Test(groups = {"P0"},description = "newProposal",alwaysRun = true)
     public void test_008makeNewProposal() throws  Exception{
-
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(15);
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         committeePage.change2proposal("0.2");
@@ -177,26 +173,20 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(committeePage.getagreedStateofproposal());
     }
 
-    //有没有攥成着
     @Test(groups = {"P0"},description = "be dis agreed Proposal", alwaysRun = true)
     public void test_010disagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
-        committeePage.disagreeAction();
-        Assert.assertTrue(committeePage.getdisagreedStateofproposal());
-        log("dis agreed时间");
-    }
-
-    //1个状态
-    @Test(description = "be disagreed value Proposal", alwaysRun = true)
-    public void test_011disagreedValueProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        log("three 结束执行时间");
-        Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
+        boolean have = committeePage.disagreeAction();
+        if (have){
+            Assert.assertTrue(committeePage.getdisagreedStateofproposal());
+        }else {
+            Assert.assertTrue(isElementExist("暂无数据"));
+        }
     }
 
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_012checkProposalName(String witnessUrl) throws Exception {
+    public void test_011checkProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -204,7 +194,7 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_013checkProposalTime() throws Exception {
+    public void test_012checkProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
@@ -213,7 +203,7 @@ public class CommitteeTest extends Base {
     }
 
      @Test(alwaysRun = true)
-     public void test014checkProposalSixtyFiveSixtySix() throws Exception {
+     public void test013checkProposalSixtyFiveSixtySix() throws Exception {
          CommitteePage page = enterCommitteePage();
          page.Setuppropos.click();
          for (int i = 0; i < 4; i++) {

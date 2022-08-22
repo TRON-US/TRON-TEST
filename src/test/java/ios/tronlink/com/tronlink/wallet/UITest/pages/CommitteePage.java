@@ -4,6 +4,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -102,13 +103,15 @@ public class CommitteePage extends AbstractPage {
         textfieldList.get(2).sendKeys(pro);
         closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(15);
         log("开始找第二个确认");
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(15);
     }
+
+
     public void change0proposal(String pro) throws Exception{
         waiteTime();
         textfieldList.get(0).clear();
@@ -183,8 +186,12 @@ public class CommitteePage extends AbstractPage {
     public boolean getdisagreedStateofproposal() throws Exception {
         waiteTime();
         findFirstproposalWl().click();
-        TimeUnit.SECONDS.sleep(4);
-        return agreeBtn.isDisplayed();
+        TimeUnit.SECONDS.sleep(5);
+        if(isElementExist("赞成")){
+            return agreeBtn.isDisplayed();
+        }else {
+            return isElementExist("无赞成者");
+        }
     }
 
     public void enterProposalDetail() throws Exception {
@@ -234,6 +241,7 @@ public class CommitteePage extends AbstractPage {
             agreeBtn.click();
             TimeUnit.SECONDS.sleep(4);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+            TimeUnit.SECONDS.sleep(3);
             passwordTF.sendKeys("Test0001");
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
             TimeUnit.SECONDS.sleep(15);
@@ -242,27 +250,32 @@ public class CommitteePage extends AbstractPage {
 
     }
 
-    public void disagreeAction() throws Exception {
+    public boolean disagreeAction() throws Exception {
         enterMyAgreedProposal();
         TimeUnit.SECONDS.sleep(3);
-        proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(6);
-        if (Helper.isElementExist(driver,"赞成")) {
-            waiteTime();
-            backBtn.click();
-            waiteTime();
-            backBtn.click();
+        if (isElementExist("暂无数据")){
+            return false;
         }else {
-            disagreeBtn.click();
-            TimeUnit.SECONDS.sleep(4);
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            passwordTF.sendKeys("Test0001");
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(15);
-            backBtn.click();
+            proposCells.get(0).click();
+            TimeUnit.SECONDS.sleep(6);
+            if (Helper.isElementExist(driver, "赞成")) {
+                waiteTime();
+                backBtn.click();
+                waiteTime();
+                backBtn.click();
+            } else {
+                disagreeBtn.click();
+                TimeUnit.SECONDS.sleep(4);
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+                TimeUnit.SECONDS.sleep(3);
+                passwordTF.sendKeys("Test0001");
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(10);
+                backBtn.click();
+            }
+            return true;
         }
-
-
     }
 
     public void deleteAction() throws Exception {
@@ -284,7 +297,27 @@ public class CommitteePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(15);
             backBtn.click();
         }
-
-
     }
+
+    @FindBy(name = "暂无数据")
+    public WebElement tempTagName;
+
+    public void loadingWaitForOS(){
+        try {
+            boolean tempTag = true;
+            int times = 30;
+            while(tempTag&&times>0){
+                try {
+                    log(tempTagName.getText() + "Loading ... Times: " + String.valueOf(times));
+                    TimeUnit.SECONDS.sleep(1);
+                    times--;
+                }catch (Exception le){
+                    tempTag = false;
+                }
+            }
+        } catch (Exception e) {
+            new Base().log("committee_btn button not found");
+        }
+    }
+
 }
