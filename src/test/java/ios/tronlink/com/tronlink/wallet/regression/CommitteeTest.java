@@ -157,7 +157,6 @@ public class CommitteeTest extends Base {
 
     @Test(groups = {"P0"},description = "newProposal",alwaysRun = true)
     public void test_008makeNewProposal() throws  Exception{
-
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
         committeePage.Setuppropos.click();
@@ -176,7 +175,6 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(committeePage.getagreedStateofproposal());
     }
 
-    //有没有攥成着
     @Test(groups = {"P0"},description = "be dis agreed Proposal", alwaysRun = true)
     public void test_010disagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
@@ -188,17 +186,9 @@ public class CommitteeTest extends Base {
         }
     }
 
-    //1个状态
-    @Test(description = "be disagreed value Proposal", alwaysRun = true)
-    public void test_011disagreedValueProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        log("three 结束执行时间");
-        Assert.assertTrue(committeePage.findvoteafterNumbers() == 0);
-    }
-
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_012checkProposalName(String witnessUrl) throws Exception {
+    public void test_011checkProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -206,7 +196,7 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_013checkProposalTime() throws Exception {
+    public void test_012checkProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
@@ -215,7 +205,7 @@ public class CommitteeTest extends Base {
     }
 
      @Test(alwaysRun = true)
-     public void test014checkProposalSixtyFiveSixtySix() throws Exception {
+     public void test013checkProposalSixtyFiveSixtySix() throws Exception {
          CommitteePage page = enterCommitteePage();
          page.Setuppropos.click();
          for (int i = 0; i < 4; i++) {

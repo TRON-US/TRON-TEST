@@ -106,7 +106,7 @@ public class MainNetDeposit extends BaseTest {
 
 
     @Test(description = "input min send number",alwaysRun = true)
-    public void test007_inputMixSendNumber() throws Exception {
+    public void test007_inputMinSendNumber() throws Exception {
         TrxPage trx = enterTrxPage();
         trx.enterTransferInPage();
         waiteTime();
