@@ -96,9 +96,7 @@ public class CommitteeTest extends Base {
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Assert.assertTrue(Helper.contentTexts(textarray, count));
     }
-
-
-
+    
     @Test(description = "cheack state proposal", alwaysRun = true)
     public void test_002cheackProposalState() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
