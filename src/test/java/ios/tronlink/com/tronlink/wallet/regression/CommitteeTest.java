@@ -96,25 +96,25 @@ public class CommitteeTest extends Base {
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Assert.assertTrue(Helper.contentTexts(textarray, count));
     }
-    
-    @Test(description = "cheack state proposal", alwaysRun = true)
-    public void test_002cheackProposalState() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
 
+    @Test(description = "check state proposal", alwaysRun = true)
+    public void test_002checkProposalState() throws Exception {
+        CommitteePage committeePage = enterCommitteePage();
         String states = committeePage.getStateofproposal();
         System.out.println(states);
         Assert.assertTrue(states.contains("投票中"));
     }
 
     @Test(groups = {"P0"}, description = "be delete My first Proposal", alwaysRun = true)
-    public void test_003cancalagreedProposal() throws Exception {
+    public void test_003cancelAgreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
         String states = committeePage.getStateofproposal();
         Assert.assertTrue(states.contains("已取消"));
     }
+
     @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
-    public void test_004makeecendNewProposal() throws  Exception{
+    public void test_004makeSecondNewProposal() throws  Exception{
         Double sendcount = getAnAmountZero();
         String count = Double.toString(sendcount);
         count = Helper.getPrettyNumber(count);
@@ -143,18 +143,9 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(committeePage.findvoteNumbers() > 0);
     }
 
-    @Test(description = "be delete three My Proposal", alwaysRun = true)
-    public void test_007deleteAgreedProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        committeePage.deleteAction();
-        String states = committeePage.getStateofproposal();
-        log("second 结束执行时间");
-        Assert.assertTrue(states.contains("已取消"));
-
-    }
 
     @Test(groups = {"P0"},description = "newProposal",alwaysRun = true)
-    public void test_008makeNewProposal() throws  Exception{
+    public void test_007makeNewProposal() throws  Exception{
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
         committeePage.Setuppropos.click();
@@ -167,14 +158,14 @@ public class CommitteeTest extends Base {
     }
 
     @Test(groups = {"P0"},description = "be agreed Proposal", alwaysRun = true)
-    public void test_009agreedProposal() throws Exception {
+    public void test_008agreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.agreeAction();
         Assert.assertTrue(committeePage.getagreedStateofproposal());
     }
 
     @Test(groups = {"P0"},description = "be dis agreed Proposal", alwaysRun = true)
-    public void test_010disagreedProposal() throws Exception {
+    public void test_009disagreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean have = committeePage.disagreeAction();
         if (have){
@@ -186,7 +177,7 @@ public class CommitteeTest extends Base {
 
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
-    public void test_011checkProposalName(String witnessUrl) throws Exception {
+    public void test_010checkProposalName(String witnessUrl) throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         String names = committeePage.getNameofproposal();
         System.out.println(names);
@@ -194,27 +185,13 @@ public class CommitteeTest extends Base {
     }
 
     @Test(description = "cheack time order proposal", alwaysRun = true)
-    public void test_012checkProposalTime() throws Exception {
+    public void test_011checkProposalTime() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         boolean states = committeePage.cheacktimeorderofproposal();
         System.out.println(states);
         Assert.assertTrue(states);
 
     }
-
-     @Test(alwaysRun = true)
-     public void test013checkProposalSixtyFiveSixtySix() throws Exception {
-         CommitteePage page = enterCommitteePage();
-         page.Setuppropos.click();
-         for (int i = 0; i < 4; i++) {
-             page.slideScreenMiddle();
-             TimeUnit.SECONDS.sleep(1);
-             log("Times: " + String.valueOf(i));
-         }
-         Assert.assertTrue(isElementExist("#65  提议允许提升MaxCpuTimeOfOneTx网络参数的合法上限值到400"));
-         Assert.assertTrue(isElementExist("#66  提议开启账户资产优化"));
-
-     }
-
+    
 
 }
