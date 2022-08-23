@@ -300,7 +300,6 @@ public class SendTrxPage extends AbstractPage {
 
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
         SendTRXToConfirmView(sendAmount);
-        send_btn.click();
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
@@ -312,6 +311,7 @@ public class SendTrxPage extends AbstractPage {
         receiveAddress_text.sendKeys(address);
         next_btn.click();
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
@@ -325,7 +325,7 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
@@ -338,6 +338,7 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         tranferCount_text.sendKeys(number);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
