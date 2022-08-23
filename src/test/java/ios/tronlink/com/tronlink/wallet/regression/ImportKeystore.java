@@ -41,7 +41,7 @@ public class ImportKeystore extends BaseTest {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.inputKeyAndPassword(keystore,"aaasdfdsf");
         TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(importKeystorePage.importKeystore().isEnabled());
+        Assert.assertTrue(importKeystorePage.importKeystore().isDisplayed());
     }
 
     @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
@@ -72,7 +72,7 @@ public class ImportKeystore extends BaseTest {
 
 
     @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
-    public void  test006_testDeletewalletSuccess() throws Exception {
+    public void  test007_testDeletewalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();
         walletPage.deleteWallet("Test0002");
