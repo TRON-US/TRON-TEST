@@ -100,7 +100,7 @@ public class MultiSignTest extends Base {
         SendTrxPage page = assetPage.enterSendTrxPage();
         page.sendTrxMultiSignToConfirm();
         Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
-        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
         page.confirmPageButtonClick();
@@ -123,7 +123,7 @@ public class MultiSignTest extends Base {
         page.inputTRC10AndSendAmount("0.3");
         Assert.assertEquals(page.topTransactionDescriptionLabel.getText(),"0.3 tronlink_token");
         Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
-        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
         page.confirmPageButtonClick();
@@ -147,7 +147,7 @@ public class MultiSignTest extends Base {
         page.inputTRC20AndSendAmount("0.3");
         Assert.assertEquals(page.topTransactionDescriptionLabel.getText(),"0.3 TRX");
         Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
-        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
         Assert.assertTrue(isElementExist("多签交易"));
         Assert.assertTrue(isElementExist("1 TRX"));
         page.confirmPageButtonClick();
@@ -207,7 +207,7 @@ public class MultiSignTest extends Base {
         }
         Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
         Assert.assertTrue(isElementExist("投票"));
-        Assert.assertEquals(page.topWalletNameLabel.getText(),"Signed");
+        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
         page.openFeeContent();
         Assert.assertTrue(isElementExist("1 TRX"));
         page.enterMultiSignVoteStep2Password();
@@ -295,8 +295,9 @@ public class MultiSignTest extends Base {
             System.out.println(Secure.size());
             if (sizeNumber > 0){
                 page.signBtn.click();
+                TimeUnit.SECONDS.sleep(4);
                 try {
-                    page.confirm_btn().click();
+                    page.confirmButton.click();
                 }catch (Exception e){
                 }
                 page.passwordInputFinish();

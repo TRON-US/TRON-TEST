@@ -36,6 +36,9 @@ public class AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
+    @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"确认\"])[1]")
+    public WebElement confirmButton;
+
     public WebElement confirmWatchBtn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '生成交易二维码'");
     }

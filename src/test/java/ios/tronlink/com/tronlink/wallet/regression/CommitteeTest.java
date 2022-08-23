@@ -192,6 +192,6 @@ public class CommitteeTest extends Base {
         Assert.assertTrue(states);
 
     }
-    
+
 
 }
