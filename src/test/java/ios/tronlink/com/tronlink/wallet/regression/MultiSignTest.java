@@ -273,6 +273,7 @@ public class MultiSignTest extends Base {
             System.out.println(Secure.size());
             if (sizeNumber > 0){
                 page.signBtn.click();
+                TimeUnit.SECONDS.sleep(3);
                 try {
                     page.confirm_btn().click();
                 }catch (Exception e){
@@ -295,7 +296,7 @@ public class MultiSignTest extends Base {
             System.out.println(Secure.size());
             if (sizeNumber > 0){
                 page.signBtn.click();
-                TimeUnit.SECONDS.sleep(4);
+                TimeUnit.SECONDS.sleep(5);
                 try {
                     page.confirmButton.click();
                 }catch (Exception e){
@@ -317,6 +318,7 @@ public class MultiSignTest extends Base {
             System.out.println(Secure.size());
             if (sizeNumber > 0){
                 page.signBtn.click();
+                TimeUnit.SECONDS.sleep(5);
                 try {
                     page.confirm_btn().click();
                 }catch (Exception e){
@@ -338,6 +340,7 @@ public class MultiSignTest extends Base {
             System.out.println(Secure.size());
             if (sizeNumber > 0){
                 page.signBtn.click();
+                TimeUnit.SECONDS.sleep(5);
                 try {
                     page.confirm_btn().click();
                 }catch (Exception e){
@@ -359,6 +362,7 @@ public class MultiSignTest extends Base {
             System.out.println(Secure.size());
             if (sizeNumber > 0){
                 page.signBtn.click();
+                TimeUnit.SECONDS.sleep(5);
                 try {
                     page.confirm_btn().click();
                 }catch (Exception e){
