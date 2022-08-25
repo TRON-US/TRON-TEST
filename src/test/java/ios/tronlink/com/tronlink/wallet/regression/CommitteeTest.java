@@ -33,7 +33,9 @@ public class CommitteeTest extends Base {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
-            final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
+            DRIVER.executeScript("mobile: terminateApp", params);
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Over ");
         } catch (Exception e) {
 
         }
@@ -42,11 +44,8 @@ public class CommitteeTest extends Base {
     @Parameters({"bundleId"})
     @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod(String bundleId,Method method) throws Exception {
-
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
-        DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(3);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -60,17 +59,17 @@ public class CommitteeTest extends Base {
                 TimeUnit.SECONDS.sleep(3);
             }
         }
+        TimeUnit.SECONDS.sleep(1);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
     }
 
-    @Parameters({"udid"})
-    @AfterClass(groups = {"P0"},alwaysRun = true)
-    public void tearDownAfterClass(String udid) {
-        try {
-            DRIVER.closeApp();
-            DRIVER.quit();
-        } catch (Exception e) {
-        }
+    @Parameters({"bundleId"})
+    @AfterClass (groups = {"P0"},alwaysRun = true)
+    public void afterClass(String bundleId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+
     }
 
 

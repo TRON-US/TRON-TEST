@@ -34,7 +34,12 @@ public class BaseTest extends Base {
 
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
-    public void afterMethod(Method methed, String bundleId) throws Exception {
+    public void afterMethod(Method method, String bundleId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Over: " + method.getName());
     }
 
     @Parameters({"bundleId"})
@@ -42,8 +47,6 @@ public class BaseTest extends Base {
     public void beforeMethod(String bundleId,Method method) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
-        DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(3);
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -57,13 +60,13 @@ public class BaseTest extends Base {
                 TimeUnit.SECONDS.sleep(3);
             }
         }
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
-
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Begin: " + method.getName());
     }
 
     @Parameters({"bundleId"})
     @AfterClass (groups = {"P0"},alwaysRun = true)
-    public void afterMethod(String bundleId) throws Exception {
+    public void afterClass(String bundleId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
