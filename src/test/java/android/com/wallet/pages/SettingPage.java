@@ -44,6 +44,9 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_speed")
     public WebElement tv_node_speed;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_node_root")
+    public WebElement ll_node_root;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/server_name")
     public WebElement server_name_speed;
 
@@ -129,7 +132,7 @@ public class SettingPage extends AbstractPage {
 
     public AddCustomNodePage enterEditCustomNodePage() throws Exception{
         iv_node_edit.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         return new AddCustomNodePage(driver);
     }
 

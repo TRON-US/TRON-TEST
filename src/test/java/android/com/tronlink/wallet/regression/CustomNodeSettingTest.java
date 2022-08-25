@@ -87,9 +87,10 @@ public class CustomNodeSettingTest extends Base {
     public void test003_AddCustomNodeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
-        sett.tv_node_speed.click();
+        sett.ll_node_root.click();
         AddCustomNodePage addCustomNodePage = sett.enterAddCustomNodePage();
         mainNetCustomIp = createRandomIp();
+        log("createdIP: " + mainNetCustomIp);
         addCustomNodePage.nodeIp_input.sendKeys(mainNetCustomIp);
         addCustomNodePage.nodePort_input.sendKeys("50051");
         addCustomNodePage.saveNode();
@@ -109,10 +110,11 @@ public class CustomNodeSettingTest extends Base {
     public void test004_EditCustomNodeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
-        sett.tv_node_speed.click();
+        sett.ll_node_root.click();
         AddCustomNodePage editPage =sett.enterEditCustomNodePage();
         editPage.nodeIp_input.clear();
         mainNetCustomIp = createRandomIp();
+        log("modifyIP: " + mainNetCustomIp);
         editPage.nodeIp_input.sendKeys(mainNetCustomIp);
         editPage.saveNode();
         Assert.assertTrue(assertToast("修改成功"));
@@ -122,7 +124,7 @@ public class CustomNodeSettingTest extends Base {
     public void test005_DeleteCustomNodeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
-        sett.tv_node_speed.click();
+        sett.ll_node_root.click();
         AddCustomNodePage editPage =sett.enterEditCustomNodePage();
         editPage.deleteNode();
         Assert.assertTrue(assertToast("删除成功"));
