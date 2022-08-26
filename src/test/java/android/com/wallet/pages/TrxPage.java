@@ -32,7 +32,14 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_action")
     public WebElement ll_action;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr")
+    public WebElement iv_qr;
 
+    public DetailPage enterProjectInfoPage() throws Exception{
+        iv_qr.click();
+        TimeUnit.SECONDS.sleep(2);
+        return new DetailPage(driver);
+    }
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_amount")
     public WebElement trx_text;
 

@@ -40,6 +40,7 @@ public class BaseTest extends Base {
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(2);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Over: " + method.getName());
+
     }
 
     @Parameters({"bundleId"})
@@ -57,10 +58,10 @@ public class BaseTest extends Base {
             } catch (Exception e) {
                 System.out.println(e);
                 DRIVER.executeScript("mobile: terminateApp", params);
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(2);
             }
         }
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Begin: " + method.getName());
     }
 

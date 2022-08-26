@@ -107,8 +107,14 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
         Assert.assertTrue(impage.toptitle.getText().contains("创建成功"));
         Assert.assertTrue(impage.bt_success.getText().contains("备份钱包"));
         impage.ll_common_left.click();
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(impage.tv_backup.getText().contains("立即备份"));
-        impage.deleteWallet();
+        impage.enterManagePage();
+        Assert.assertEquals(impage.tv_linked_account_count.getText(),"关联钱包：\t0");
+        impage.enterLinkedWallet();
+        Assert.assertEquals(impage.net_error.getText(),"暂无关联钱包");
+        impage.closeLinked();
+        impage.delete();
         Assert.assertTrue(impage.title.getText().contains("波场支持"));
     }
 

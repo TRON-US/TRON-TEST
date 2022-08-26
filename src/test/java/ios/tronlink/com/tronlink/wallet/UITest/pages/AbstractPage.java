@@ -36,6 +36,9 @@ public class AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
+    @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"确认\"])[1]")
+    public WebElement confirmButton;
+
     public WebElement confirmWatchBtn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '生成交易二维码'");
     }
@@ -133,7 +136,7 @@ public class AbstractPage {
         IOSTouchAction action = new IOSTouchAction(driver);
         Duration duration = Duration.ofMillis(200);
         action.press(
-                PointOption.point(-10, 100))
+                        PointOption.point(-10, 100))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(260, 100))
                 .release().perform();
@@ -142,19 +145,28 @@ public class AbstractPage {
     public  void closeKeyBoard()  throws Exception{
         try {
             driver.findElementByName("完成").click();
-
+            log("点击了 完成 收起键盘");
         }catch (Exception e){
             try {
                 driver.findElementByName("Done").click();
-
+                log("点击了 Done 收起键盘");
             }catch (Exception el){
                 System.out.println("not found keyboard done");
                 TouchAction action = new TouchAction(driver);
                 PointOption whiteplace = PointOption.point(8,200);
                 action.tap(whiteplace).perform().release();
+                log("点击了 8，200 坐标 收起键盘");
             }
         }
 
+    }
+
+    public  void tapCloseKeyBoard()  throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        TouchAction action = new TouchAction(driver);
+        PointOption whiteplace = PointOption.point(3,120);
+        action.tap(whiteplace).perform().release();
+        log("点击了 3，120 坐标 收起键盘");
     }
 
     @FindBy(name = "white back arrow")
@@ -263,7 +275,7 @@ public class AbstractPage {
         int height = driver.manage().window().getSize().height;
         Duration duration = Duration.ofMillis(200);
         action.press(
-                PointOption.point(width/2, height*4/5))
+                        PointOption.point(width/2, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(width/2, height*3/5))
                 .release().perform();
@@ -275,7 +287,7 @@ public class AbstractPage {
         int height = driver.manage().window().getSize().height;
         Duration duration = Duration.ofMillis(200);
         action.press(
-                PointOption.point(width/2, height*4/5))
+                        PointOption.point(width/2, height*4/5))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(width/2, height*2/5))
                 .release().perform();
@@ -291,7 +303,7 @@ public class AbstractPage {
                 int height = driver.manage().window().getSize().height;
                 Duration duration = Duration.ofMillis(30);
                 action.press(
-                        PointOption.point(width/2, height*4/5))
+                                PointOption.point(width/2, height*4/5))
                         .waitAction(WaitOptions.waitOptions(duration))
                         .moveTo(PointOption.point(width/2, height/5))
                         .release().perform();

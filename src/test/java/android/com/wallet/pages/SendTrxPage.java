@@ -160,6 +160,26 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement back_bt;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tips")
+    public WebElement iv_tips;
+
+    public void showResTips(){
+        iv_tips.click();
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tips_fee")
+    public WebElement iv_tips_fee;
+
+    public void showFeeResTips(){
+        iv_tips_fee.click();
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_resource_consume_left")
+    public WebElement tv_resource_consume_left;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_left")
+    public WebElement tv_left;
+
     @FindBy(xpath = "//*[@text='(1000002)']")
     public WebElement trc10_btn;
 
@@ -269,11 +289,17 @@ public class SendTrxPage extends AbstractPage {
 
 
 
-    public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
+
+    public void SendTRXToConfirmView(String sendAmount) throws Exception{
         receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+    }
+
+    public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
+        SendTRXToConfirmView(sendAmount);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
@@ -285,6 +311,7 @@ public class SendTrxPage extends AbstractPage {
         receiveAddress_text.sendKeys(address);
         next_btn.click();
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
@@ -298,7 +325,7 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
@@ -311,6 +338,7 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         tranferCount_text.sendKeys(number);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();

@@ -62,31 +62,20 @@ public class WatchWalletHelpPage extends AbstractPage {
         String count = String.format("%.0f", Math.random() * 100000);
         System.out.println("委员会提议修改超级代表燃烧TRX值："+count);
         TimeUnit.SECONDS.sleep(1);
-        committeePage.textfieldList.get(1).clear();
-        committeePage.textfieldList.get(1).sendKeys("");
-        committeePage.textfieldList.get(1).sendKeys(count);
+        WebElement textField = committeePage.textfieldList.get(1);
+        textField.clear();
+        textField.sendKeys("");
+        textField.sendKeys(count);
         closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(10);
         log("开始找第二个确认");
-        committeePage.confirmButton.click();
-
-
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '生成交易二维码'").click();
+        log("开始输入密码--观察钱包看是否出现二维码");
     }
-    public void multiSignSend() throws Exception {
-
-        AssetPage assetPage = new AssetPage(driver);
-        SendTrxPage page = assetPage.enterSendTrxPage();
-        page.sendTrxMultiSignToConfirm();
-
-        page.confirmPageButtonClick();
-
-        page.confirmWatchBtn().click();
 
 
-        TimeUnit.SECONDS.sleep(2);
 
-    }
     public void maketransferIn() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
         TrxPage trxPage = assetPage.enterTrxPage();

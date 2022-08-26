@@ -30,7 +30,8 @@ public class ImportKeystorePage extends AbstractPage {
   public WebElement importBtn;
 
   public WebElement importKeystore(){
-    return driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '导入Keystore'");
+//    return driver.findElementByXPath("//XCUIElementTypeButton[@name=\"导入Keystore\"]");
+    return driver.findElementByIosNsPredicate("name == \"导入Keystore\" AND type == \"XCUIElementTypeButton\"");
   }
 
   @FindBy(name = "com.tronlink.wallet:id/tv_error")

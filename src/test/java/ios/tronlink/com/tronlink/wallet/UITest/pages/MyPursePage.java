@@ -257,30 +257,30 @@ public class MyPursePage extends AssetPage {
         return keystore;
     }
 
-//XCUIElementTypeButton
-public String getBackupKeystoreInClipboard(String password){
-    String keystore = "";
-    try {
-        Helper.swipScreen(driver);
-        TimeUnit.SECONDS.sleep(2);
-        backkeystore_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        password_et.sendKeys(password);
-        TimeUnit.SECONDS.sleep(2);
-        WebElement  confirm_btn;
-        confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        WebElement clipboard = driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '复制'");
-        clipboard.click();
-        TimeUnit.SECONDS.sleep(2);
-        keystore =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '已复制'").getText();
-        done_btn.click();
-    }catch (Exception e){
-        System.out.println(e);
+    //XCUIElementTypeButton
+    public String getBackupKeystoreInClipboard(String password){
+        String keystore = "";
+        try {
+            Helper.swipScreen(driver);
+            TimeUnit.SECONDS.sleep(2);
+            backkeystore_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+            password_et.sendKeys(password);
+            TimeUnit.SECONDS.sleep(2);
+            WebElement  confirm_btn;
+            confirm_btn =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '确定'");
+            confirm_btn.click();
+            TimeUnit.SECONDS.sleep(2);
+            WebElement clipboard = driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '复制'");
+            clipboard.click();
+            TimeUnit.SECONDS.sleep(2);
+            keystore =  driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '已复制'").getText();
+            done_btn.click();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return keystore;
     }
-    return keystore;
-}
 
     //XCUIElementTypeButton
     public boolean deletableCancel(String password){
@@ -346,11 +346,12 @@ public String getBackupKeystoreInClipboard(String password){
         driver.findElementByIosNsPredicate("type =='XCUIElementTypeButton' AND name == '修改密码'").click();
         TimeUnit.SECONDS.sleep(2);
         oldPswField.sendKeys("Qqqqqqq1");
-        closeKeyBoard();
+        tapCloseKeyBoard();
         newPswField.sendKeys(password);
-        closeKeyBoard();
+        tapCloseKeyBoard();
         confimPswField.sendKeys(password);
-        closeKeyBoard();
+        TimeUnit.SECONDS.sleep(1);
+        tapCloseKeyBoard();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"完成\"`]").click();
         TimeUnit.SECONDS.sleep(7);
@@ -364,7 +365,7 @@ public String getBackupKeystoreInClipboard(String password){
         driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"修改钱包名\"`]").click();
         TimeUnit.SECONDS.sleep(2);
         accountNameField.sendKeys(name);
-        closeKeyBoard();
+        tapCloseKeyBoard();
         driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"完成\"`]").click();
     }
 
@@ -399,7 +400,7 @@ public String getBackupKeystoreInClipboard(String password){
 //        return new AssetPage(driver);
 //    }
 
-//    public AssetPage backtoAssetPage() throws Exception{
+    //    public AssetPage backtoAssetPage() throws Exception{
 //        backbtn.click();
 //        TimeUnit.SECONDS.sleep(2);
 //        return new AssetPage(driver);
@@ -415,7 +416,7 @@ public String getBackupKeystoreInClipboard(String password){
         Duration duration = Duration.ofMillis(200);
         System.out.println("start");
         action.press(
-                PointOption.point(120, botY))
+                        PointOption.point(120, botY))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(120, topY))
                 .release().perform();
@@ -436,7 +437,7 @@ public String getBackupKeystoreInClipboard(String password){
         Duration duration = Duration.ofMillis(200);
         System.out.println("start");
         action.press(
-                PointOption.point(120, topY))
+                        PointOption.point(120, topY))
                 .waitAction(WaitOptions.waitOptions(duration))
                 .moveTo(PointOption.point(120, botY))
                 .release().perform();

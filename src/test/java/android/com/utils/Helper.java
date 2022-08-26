@@ -25,8 +25,12 @@ public class Helper {
 
 
     public static void tapScreen(AndroidDriver<?> driver){
+        tapScreenPoint(driver,8,166);
+    }
+
+    public static void tapScreenPoint(AndroidDriver<?> driver,int x,int y){
         AndroidTouchAction action = new AndroidTouchAction(driver);
-        PointOption whiteplace = PointOption.point(8,166);
+        PointOption whiteplace = PointOption.point(x,y);
         action.tap(whiteplace).release().perform();
     }
 

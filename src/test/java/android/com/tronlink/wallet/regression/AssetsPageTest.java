@@ -5,8 +5,10 @@ import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 
 import android.com.wallet.pages.AssetPage;
+import android.com.wallet.pages.DetailPage;
 import android.com.wallet.pages.ProjectItemPage;
 
+import android.com.wallet.pages.TrxPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -150,8 +152,50 @@ public class AssetsPageTest extends Base {
         Assert.assertEquals(page.start_time.getText(),"2019-11-27 15:11:00");
         Assert.assertEquals(page.end_time.getText(),"2025-09-11 20:50:00");
         Assert.assertEquals(page.total_circulation.getText(),"1000000000");
+    }
 
+    @Test(alwaysRun = true)
+    public void test008_TRXProjectInfoTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        DetailPage item = page.enterProjectInfoPage();
+        Assert.assertEquals(item.tv_vdd.getText(),"查看详细数据");
+        Assert.assertTrue(isElementTextExist("官方网站"));
+        Assert.assertEquals(item.token_url.getText(),"https://tron.network/");
+        Assert.assertTrue(isElementTextExist("精度"));
+        Helper.swipScreenLitte(DRIVER);
+        Assert.assertEquals(item.token_describe.getText(),"Official Token of TRON Protocol");
+        Assert.assertEquals(item.start_time.getText(),"2018-06-25 09:51:09");
 
+    }
+
+    @Test(alwaysRun = true)
+    public void test009_TRC10ProjectInfoTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx10Page();
+        DetailPage item = page.enterProjectInfoPage();
+        Assert.assertEquals(item.tv_vdd.getText(),"查看详细数据");
+        Assert.assertTrue(isElementTextExist("通证ID"));
+        Assert.assertTrue(isElementTextExist("官方网站"));
+        Assert.assertEquals(item.token_url.getText(),"http://nileex.io/");
+        Assert.assertTrue(isElementTextExist("精度"));
+        Helper.swipScreenLitte(DRIVER);
+        Assert.assertEquals(item.token_describe.getText(),"nileex_TestCoin");
+        Assert.assertEquals(item.start_time.getText(),"2019-11-27 15:11:00");
+    }
+
+    @Test(alwaysRun = true)
+    public void test010_TRC20ProjectInfoTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx20Page();
+        DetailPage item = page.enterProjectInfoPage();
+        Assert.assertEquals(item.tv_vdd.getText(),"查看详细数据");
+        Assert.assertTrue(isElementTextExist("官方网站"));
+        Assert.assertEquals(item.token_url.getText(),"www.tronlinknilhe.com");
+        Assert.assertTrue(isElementTextExist("精度"));
+        Helper.swipScreenLitte(DRIVER);
+        Assert.assertEquals(item.token_describe.getText(),"TronlinknilheTRC20");
+        Assert.assertEquals(item.start_time.getText(),"2019-12-04 03:29:01");
 
     }
 }
