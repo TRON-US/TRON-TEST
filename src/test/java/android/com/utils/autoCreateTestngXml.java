@@ -64,7 +64,8 @@ public class autoCreateTestngXml {
     static JSONObject transactionApprovedListContent;
     private Boolean isMuiltDevices = false;
 //    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
-    private String httpnode = "nile.trongrid.io";
+//    private String httpnode = "nile.trongrid.io";
+    private String httpnode = "http://47.252.3.238:8090";
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
@@ -300,7 +301,7 @@ public class autoCreateTestngXml {
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
         Long amount, String fromKey) {
       try {
-            final String requestUrl = "https://" + httpNode + "/wallet/createtransaction";
+            final String requestUrl =  httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("to_address", toAddress);
             userBaseObj2.addProperty("owner_address", fromAddress);
@@ -326,7 +327,7 @@ public class autoCreateTestngXml {
     public static HttpResponse transferAsset(String httpNode, String ownerAddress,
                                              String toAddress, String assetIssueById, Long amount, String fromKey) {
         try {
-            final String requestUrl = "https://" + httpNode + "/wallet/transferasset";
+            final String requestUrl = httpNode + "/wallet/transferasset";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("owner_address", ownerAddress);
             userBaseObj2.addProperty("to_address", toAddress);
@@ -391,7 +392,7 @@ public class autoCreateTestngXml {
     public static String gettransactionsign(String httpNode, String transactionString,
         String privateKey) {
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/gettransactionsign";
+            String requestUrl =  httpNode + "/wallet/gettransactionsign";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("transaction", transactionString);
             userBaseObj2.addProperty("privateKey", privateKey);
@@ -409,7 +410,7 @@ public class autoCreateTestngXml {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/broadcasttransaction";
+            String requestUrl =  httpNode + "/wallet/broadcasttransaction";
 
             httppost = new HttpPost(requestUrl);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
@@ -466,7 +467,7 @@ public class autoCreateTestngXml {
 
     public static Long getBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
+            String requestUrl =  httpNode + "/wallet/getaccount";
             Map<String,String> map = new HashMap<String,String>();
             map.put("address",queryAddress);
             map.put("visible","true");
@@ -484,7 +485,7 @@ public class autoCreateTestngXml {
 
     public static Long getTokenBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
+            String requestUrl =  httpNode + "/wallet/getaccount";
             Map<String,String> map = new HashMap<String,String>();
             map.put("address",queryAddress);
             map.put("visible","true");

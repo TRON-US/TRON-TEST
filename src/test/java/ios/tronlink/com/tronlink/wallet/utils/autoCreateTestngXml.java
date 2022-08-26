@@ -67,7 +67,8 @@ public class autoCreateTestngXml {
     static List<String> taskClassNameList = new ArrayList<>();
     static List<String> taskSingleClassNameList = new ArrayList<>();
     static List<String> singleClassNameList = new ArrayList<>();
-    private String httpnode = "nile.trongrid.io";//Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+//    private String httpnode = "nile.trongrid.io";//Configuration.getByPath("testng.conf").getString("nileex.httpnode");
+    private String httpnode = "47.252.3.238:8090";
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
@@ -123,7 +124,7 @@ public class autoCreateTestngXml {
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
         Long balance = 0L;
-        Long targetAmount = 2998000000L;
+        Long targetAmount = 6999000000L;
         Long tokenBalance = 0L;
         Long targetTokenAmount = 500000000L;
         for (HashMap.Entry entry : testAccountList.entrySet()) {
@@ -138,7 +139,7 @@ public class autoCreateTestngXml {
             }
             System.out.print("\nTokenBalance:" + tokenBalance + "\n");
             System.out.print("TRXBalance:" + balance + "\n");
-            if (balance <= targetAmount * 3 / 5) {
+            if (balance <= 5000000000L) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
@@ -236,9 +237,9 @@ public class autoCreateTestngXml {
                     continue;
                 }
                 AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-                System.out.print("Uninstall tronlink from " + udid + " succesfully\n");
+                System.out.print("\nUninstall  " + udid + " Success\n");
                 AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-                System.out.print("Install tronlink to " + udid + " succesfully");
+                System.out.print("\nInstall " + udid + " Success\n");
 
                 sb.append("    <test name= \"" + udid + "\">\n");
                 String platformVersion = getDeviceVersion(udid);
@@ -359,23 +360,27 @@ public class autoCreateTestngXml {
     }
 
 
+
     public static HttpResponse sendCoin(String httpNode, String fromAddress, String toAddress,
                                         Long amount, String fromKey) {
 //        System.out.println("\nhttpNode: " + httpNode + "\nfromAddress: " + fromAddress + "\ntoAddress: " + toAddress + "\namount: " + amount + "\nfromKey: " + fromKey);
         try {
-            final String requestUrl = "https://" + httpNode + "/wallet/createtransaction";
+            final String requestUrl = "http://" + httpNode + "/wallet/createtransaction";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("to_address", toAddress);
             userBaseObj2.addProperty("owner_address", fromAddress);
             userBaseObj2.addProperty("amount", amount);
             userBaseObj2.addProperty("visible", true);
-            System.out.print("userBaseObj2:" + userBaseObj2.toString());
             response = createConnect(requestUrl, userBaseObj2);
-            transactionString = EntityUtils.toString(response.getEntity());
-            System.out.println("\nSend amount: " + amount);
+//            System.out.println(parseResponseContent(response));
+//            System.out.println("\n\nSend TRX Amount: " + amount + "To Address: " + toAddress);
             transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
             response = broadcastTransaction(httpNode, transactionSignString);
+            System.out.println(parseResponseContent(response));
+            System.out.println("\n\nSend TRX Amount: " + amount + "To Address: " + toAddress);
+
         } catch (Exception e) {
+            System.out.println("\n\nSend TRX Failed: " + amount + "To Address: " + toAddress);
             e.printStackTrace();
             httppost.releaseConnection();
             return null;
@@ -390,7 +395,7 @@ public class autoCreateTestngXml {
                                              String toAddress, String assetIssueById, Long amount, String fromKey) {
 
         try {
-            final String requestUrl = "https://" + httpNode + "/wallet/transferasset";
+            final String requestUrl = "http://" + httpNode + "/wallet/transferasset";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("owner_address", ownerAddress);
             userBaseObj2.addProperty("to_address", toAddress);
@@ -399,7 +404,7 @@ public class autoCreateTestngXml {
             userBaseObj2.addProperty("visible", true);
             response = createConnect(requestUrl, userBaseObj2);
             transactionString = EntityUtils.toString(response.getEntity());
-            System.out.print(transactionString);
+            System.out.println("\n\nSend Token"+ assetIssueById  +" Amount: " + amount + "To Address: " + toAddress);
             transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
             response = broadcastTransaction(httpNode, transactionSignString);
         } catch (Exception e) {
@@ -436,7 +441,7 @@ public class autoCreateTestngXml {
     public static String gettransactionsign(String httpNode, String transactionString,
                                             String privateKey) {
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/gettransactionsign";
+            String requestUrl = "http://" + httpNode + "/wallet/gettransactionsign";
             JsonObject userBaseObj2 = new JsonObject();
             userBaseObj2.addProperty("transaction", transactionString);
             userBaseObj2.addProperty("privateKey", privateKey);
@@ -454,7 +459,7 @@ public class autoCreateTestngXml {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/broadcasttransaction";
+            String requestUrl = "http://" + httpNode + "/wallet/broadcasttransaction";
 
             httppost = new HttpPost(requestUrl);
             httppost.setHeader("Content-type", "application/json; charset=utf-8");
@@ -510,7 +515,7 @@ public class autoCreateTestngXml {
 
     public static Long getBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
+            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
             Map<String,String> map = new HashMap<String,String>();
             map.put("address",queryAddress);
             map.put("visible","true");
@@ -548,7 +553,7 @@ public class autoCreateTestngXml {
 
     public static Long getTokenBalance(String httpNode, String queryAddress) {
         try {
-            String requestUrl = "https://" + httpNode + "/wallet/getaccount";
+            String requestUrl = "http://" + httpNode + "/wallet/getaccount";
             Map<String,String> map = new HashMap<String,String>();
             map.put("address",queryAddress);
             map.put("visible","true");
