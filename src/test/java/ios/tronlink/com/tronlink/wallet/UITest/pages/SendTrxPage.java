@@ -319,7 +319,8 @@ public class SendTrxPage extends AbstractPage {
     public void selectTrc20nile() throws Exception{
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
-        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
+        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n7");
+        TextField.sendKeys("1");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
         trc20token.click();
@@ -346,11 +347,13 @@ public class SendTrxPage extends AbstractPage {
     public Double inputTRC20AndSendAmount(String amount)throws Exception{
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
-        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71");
+        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n7");
+        TextField.sendKeys("1");
+        TimeUnit.SECONDS.sleep(1);
         closeKeyBoard();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         trc20token.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(2);
         Double value = Double.parseDouble(removeSymbol(tokenBalance.getText())) ;
         TextFieldAmo().sendKeys(amount);
         closeKeyBoard();

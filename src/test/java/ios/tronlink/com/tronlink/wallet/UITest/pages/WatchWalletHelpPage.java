@@ -12,9 +12,10 @@ public class WatchWalletHelpPage extends AbstractPage {
 
     public IOSDriver<?> driver;
 
-    public WatchWalletHelpPage(io.appium.java_client.ios.IOSDriver<?> driver) {
+    public WatchWalletHelpPage(IOSDriver<?> driver) {
         super(driver);
         this.driver = driver;
+        waiteTime();
     }
 
 
@@ -30,6 +31,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         trxPage.broadcastWatchButtonClick();
         TimeUnit.SECONDS.sleep(4);
     }
+
     public void send10token() throws Exception {
         AssetPage assetPage = new AssetPage(driver);
         SendTrxPage trxPage = assetPage.enterSendTrxPage();
@@ -83,7 +85,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
         page.count_text.sendKeys("10");
         closeKeyBoard();
-        waiteTime();
+        TimeUnit.SECONDS.sleep(2);
         page.get_inter_btn().click();
         TimeUnit.SECONDS.sleep(8);
         confirm_btn().click();
