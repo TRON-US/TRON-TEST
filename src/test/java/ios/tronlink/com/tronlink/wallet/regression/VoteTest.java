@@ -102,34 +102,9 @@ public class VoteTest extends BaseTest {
 
     }
 
-//    @Test(alwaysRun = true,description = "投票超时")
-//    public void test007_VoteToTronChinaTimeOutSRTest() throws Exception {
-//        VotePage page = enterVotePage();
-//        TimeUnit.SECONDS.sleep(3);
-//        page.sliderToSearch();
-//        page.enterSearch("china");
-//        page.enterFirstSRPage();
-//        TimeUnit.SECONDS.sleep(1);
-//        if (page.isVoteButton()){
-//            page.enterVoteStep1ToConfirm();
-//        }else if(page.isModifyButton()){
-//            page.enterEditVoteStep1ToConfirm();
-//        }
-//        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
-//        Assert.assertTrue(isElementExist("投票"));
-//        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
-//        TimeUnit.SECONDS.sleep(20);
-//        TimeUnit.SECONDS.sleep(20);
-//        TimeUnit.SECONDS.sleep(20);
-//        page.enterVoteStep2Password();
-//        Assert.assertTrue(isElementExist("投票失败"));
-//        Assert.assertTrue(isElementExist("此笔交易已过期，请重新签名提交"));
-//        Assert.assertTrue(isElementExist("重新发起交易"));
-//        Assert.assertTrue(isElementExist("返回投票首页"));
-//    }
 
     @Test(alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
-    public void test008_CancelVoteToTronChinaTest() throws Exception {
+    public void test007_CancelVoteToTronChinaTest() throws Exception {
         VotePage page = enterVotePage();
         TimeUnit.SECONDS.sleep(3);
         page.sliderToSearch();
@@ -157,7 +132,7 @@ public class VoteTest extends BaseTest {
     }
 
     @Test(alwaysRun = true)
-    public void test009_goToMultiSignIntroTest() throws Exception {
+    public void test008_goToMultiSignIntroTest() throws Exception {
         VotePage page = enterVotePage();
         page.enterMulti();
         page.openTheTips();
@@ -172,7 +147,7 @@ public class VoteTest extends BaseTest {
     }
 
     @Test(alwaysRun = true)
-    public void test010_gotoResourceTest() throws Exception {
+    public void test009_gotoResourceTest() throws Exception {
         VotePage page = enterVotePage();
         Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
         page.enterStake();

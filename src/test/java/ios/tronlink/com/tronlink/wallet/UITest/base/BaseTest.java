@@ -71,7 +71,7 @@ public class BaseTest extends Base {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
-
+        TimeUnit.SECONDS.sleep(2);
     }
 
 
