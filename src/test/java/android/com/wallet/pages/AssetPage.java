@@ -584,7 +584,7 @@ public WebElement title;
         try {
             TimeUnit.SECONDS.sleep(1);
             mine_btn.click();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
         } catch (Exception e ){
             System.out.println( e );
         }
