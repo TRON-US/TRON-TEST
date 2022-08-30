@@ -239,13 +239,12 @@ public class CommitteePage extends AbstractPage {
         proposCells.get(0).click();
         TimeUnit.SECONDS.sleep(6);
         if (Helper.isElementExist(driver,"取消赞成")) {
-            waiteTime();
             backBtn.click();
-            waiteTime();
+            TimeUnit.SECONDS.sleep(1);
             backBtn.click();
         }else {
             agreeBtn.click();
-            TimeUnit.SECONDS.sleep(8);
+            TimeUnit.SECONDS.sleep(10);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
             TimeUnit.SECONDS.sleep(10);
             passwordTF.sendKeys("Test0001");
@@ -258,16 +257,15 @@ public class CommitteePage extends AbstractPage {
 
     public boolean disagreeAction() throws Exception {
         enterMyAgreedProposal();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         if (isElementExist("暂无数据")){
             return false;
         }else {
             proposCells.get(0).click();
             TimeUnit.SECONDS.sleep(6);
             if (Helper.isElementExist(driver, "赞成")) {
-                waiteTime();
                 backBtn.click();
-                waiteTime();
+                TimeUnit.SECONDS.sleep(1);
                 backBtn.click();
             } else {
                 disagreeBtn.click();
@@ -292,9 +290,8 @@ public class CommitteePage extends AbstractPage {
             proposCells.get(0).click();
             TimeUnit.SECONDS.sleep(6);
             if (stateLabel.getText().contains("已取消")){
-                waiteTime();
                 backBtn.click();
-                waiteTime();
+                TimeUnit.SECONDS.sleep(1);
                 backBtn.click();
             }else {
                 deleteBtn.click();
