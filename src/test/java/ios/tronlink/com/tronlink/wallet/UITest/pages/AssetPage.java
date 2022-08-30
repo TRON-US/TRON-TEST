@@ -178,6 +178,16 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "WalletManageMenuView")
     public WebElement activePath;
 
+
+    public void cancelAction(){
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"取消\"`]").click();
+    }
+
+    public void cancelTipsByConfirm(){
+        driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"确认\"`]").click();
+    }
+
+
     public ImportPage enterImportPage(){
         addWallet_btn.click();
         driver.findElementByName("导入钱包").click();
@@ -230,7 +240,6 @@ public class AssetPage extends AbstractPage {
     //enter transfer Page
     public TransferPage enterTransportPage() {
         try {
-            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             send_btn.click();
             TimeUnit.SECONDS.sleep(1);
         } catch (Exception e) {

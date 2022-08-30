@@ -33,6 +33,20 @@ public class MyPursePage extends AssetPage {
     @FindBy(name = "多重签名交易")
     public WebElement multiSignBtn;
 
+    @FindBy(id = "linkedTip Icon")
+    public WebElement linkedTipIcon;
+
+    public void showLinkTip(){
+        linkedTipIcon.click();
+    }
+
+    @FindBy(name = "关联钱包: 0")
+    public WebElement Association0WalletList;
+
+    public void enterAssociationWalletList(){
+        Association0WalletList.click();
+    }
+
     public MultiSignRecodPage enterMultiSignRecordView() throws Exception {
         multiSignBtn.click();
         TimeUnit.SECONDS.sleep(3);
