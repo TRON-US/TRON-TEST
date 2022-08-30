@@ -34,6 +34,8 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
 
+import javax.management.DescriptorRead;
+
 @Listeners(IHookableImp.class)
 public class Base {
 
@@ -352,7 +354,20 @@ public class Base {
             return false;
         }
     }
-    public  boolean isElementExist( String name) {
+    public  boolean isElementPredicateExist( String iosPre) {
+        waiteTime(5);
+        try {
+            DRIVER.findElementByIosNsPredicate(iosPre);
+                    waiteTime();
+                    return true;
+        }catch (Exception e){
+            waiteTime();
+            return false;
+        }
+
+    }
+
+        public  boolean isElementExist( String name) {
         IOSDriver driver = DRIVER;
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {

@@ -62,7 +62,11 @@ public class TrxPage extends AbstractPage {
     @FindBy(name = "token details")
     public WebElement tokendetails;
 
-//匿名币的详情按钮
+    public void enterTokenProjectDetail( ) {
+        tokendetails.click();
+    }
+
+    //匿名币的详情按钮
 @FindBy(id = "shieldedDetailBtn")
 public WebElement shieldedDetailBtn;
 //票据详情页里面 返回按钮  black path  一个图片

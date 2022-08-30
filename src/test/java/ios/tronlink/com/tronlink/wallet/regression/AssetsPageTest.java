@@ -58,9 +58,10 @@ public class AssetsPageTest extends BaseTest {
 
 
     @Test(enabled = true,description = "assets total amount test", alwaysRun = true)
-    public void test007_AssetsTotalAmountTest() throws Exception {
+    public void test007_AssetsAmountAndFrozenTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(isElementExist("已质押: 114")); //无ID 无法定位
         String about = asset.trxValue.getText();
         String result = sepLeftNumberTextToString(about,"TRX").trim();
         Double number = Double.parseDouble(removeSymbolString(result));
@@ -84,6 +85,53 @@ public class AssetsPageTest extends BaseTest {
         System.out.println("Total about number:" + number);
 
         Assert.assertTrue(number > 0 );
+    }
+
+    @Test(alwaysRun = true)
+    public void test009_TRXProjectInfoTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrxPage();
+        page.enterTokenProjectDetail();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(isElementPredicateExist("label == \"查看详细数据\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"TRON\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"https://tron.network/\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"精度\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"6\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"Official Token of TRON Protocol\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"2018/06/25 09:51:09\""));
+
+    }
+    @Test(alwaysRun = true)
+    public void test010_TRC10ProjectInfoTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx10Page();
+        page.enterTokenProjectDetail();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(isElementPredicateExist("label == \"查看详细数据\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"通证 ID\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"1000002\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"http://nileex.io/\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"精度\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"nileex_TestCoin\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"2019/11/27 15:11:00\""));
+
+    }
+
+    @Test(alwaysRun = true)
+    public void test011_TRC20ProjectInfoTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        TrxPage page = asset.enterTrx20Page();
+        page.enterTokenProjectDetail();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertTrue(isElementPredicateExist("label == \"查看详细数据\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"Tronix(TRX)\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"暂无市场价格\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n71\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"精度\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"TronlinknilheTRC20\""));
+        Assert.assertTrue(isElementPredicateExist("label == \"2019-12-04 03:29:01\""));
+
     }
 
 }
