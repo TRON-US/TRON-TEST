@@ -21,11 +21,14 @@ import java.util.concurrent.TimeUnit;
 public class MultiSignTest extends BaseTest {
 
 
-    @Parameters({"ownerPrivateKey", "udid"})
+
+    @Parameters({"ownerPrivateKey"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBefore(String ownerPrivateKey, String udid) throws Exception {
+    public void setUpBefore(String ownerPrivateKey) throws Exception {
         new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
+        log("TestClass Import ---Over");
     }
+
 
     @Parameters({"multiSignPrivateKey"})
     @Test(groups = {"P0"},description = "add sign account", alwaysRun = true)
