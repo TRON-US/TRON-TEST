@@ -271,7 +271,7 @@ public class CommitteePage extends AbstractPage {
                 backBtn.click();
             } else {
                 disagreeBtn.click();
-                TimeUnit.SECONDS.sleep(8);
+                TimeUnit.SECONDS.sleep(10);
                 driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
                 TimeUnit.SECONDS.sleep(10);
                 passwordTF.sendKeys("Test0001");
@@ -286,24 +286,29 @@ public class CommitteePage extends AbstractPage {
 
     public void deleteAction() throws Exception {
         enterMyProposal();
-        TimeUnit.SECONDS.sleep(3);
-        proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(6);
-        if (stateLabel.getText().contains("已取消")){
-            waiteTime();
-            backBtn.click();
-            waiteTime();
-            backBtn.click();
-        }else {
-            deleteBtn.click();
-            TimeUnit.SECONDS.sleep(8);
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-            TimeUnit.SECONDS.sleep(10);
-            passwordTF.sendKeys("Test0001");
-            driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-            TimeUnit.SECONDS.sleep(15);
-            backBtn.click();
+        TimeUnit.SECONDS.sleep(4);
+
+        if (!isElementExist("暂无数据")){
+            proposCells.get(0).click();
+            TimeUnit.SECONDS.sleep(6);
+            if (stateLabel.getText().contains("已取消")){
+                waiteTime();
+                backBtn.click();
+                waiteTime();
+                backBtn.click();
+            }else {
+                deleteBtn.click();
+                TimeUnit.SECONDS.sleep(10);
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+                TimeUnit.SECONDS.sleep(10);
+                passwordTF.sendKeys("Test0001");
+                driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
+                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(10);
+            }
+
         }
+
     }
 
     @FindBy(name = "暂无数据")

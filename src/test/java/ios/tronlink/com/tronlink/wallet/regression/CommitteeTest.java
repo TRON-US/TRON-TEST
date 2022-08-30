@@ -108,8 +108,7 @@ public class CommitteeTest extends Base {
     public void test_003cancelAgreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
-        String states = committeePage.getStateofproposal();
-        Assert.assertTrue(states.contains("已取消"));
+        Assert.assertTrue(committeePage.isElementExist("已取消"));
     }
 
     @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
