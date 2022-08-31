@@ -139,7 +139,7 @@ public class autoCreateTestngXml {
             }
             System.out.print("\nTokenBalance:" + tokenBalance + "\n");
             System.out.print("TRXBalance:" + balance + "\n");
-            if (balance <= 5000000000L) {
+            if (balance <= targetAmount) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
                 //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
@@ -372,11 +372,12 @@ public class autoCreateTestngXml {
             userBaseObj2.addProperty("amount", amount);
             userBaseObj2.addProperty("visible", true);
             response = createConnect(requestUrl, userBaseObj2);
-//            System.out.println(parseResponseContent(response));
-//            System.out.println("\n\nSend TRX Amount: " + amount + "To Address: " + toAddress);
+            transactionString = EntityUtils.toString(response.getEntity());
+//            System.out.println("createConnect: " + response);
             transactionSignString = gettransactionsign(httpNode, transactionString, fromKey);
+//            System.out.println("transactionSignString: " + transactionSignString);
             response = broadcastTransaction(httpNode, transactionSignString);
-            System.out.println(parseResponseContent(response));
+//            System.out.println("broadcastTransaction: " + parseResponseContent(response));
             System.out.println("\n\nSend TRX Amount: " + amount + "To Address: " + toAddress);
 
         } catch (Exception e) {
