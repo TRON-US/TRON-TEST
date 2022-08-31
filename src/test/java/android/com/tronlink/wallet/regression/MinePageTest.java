@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeClass;
 
 import org.testng.annotations.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 我的页面功能测试
  */
@@ -23,6 +25,7 @@ public class MinePageTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
+            TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}

@@ -38,7 +38,13 @@ public class DiscoverTest extends Base {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        DeviceRestart();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            DeviceRestart();
+        }catch (Exception e){
+
+        }
+
     }
 
     @AfterClass(alwaysRun = true)

@@ -113,7 +113,7 @@ public class autoCreateTestngXml {
         testAccountList.put("TMDs8oTj8mVnakqiVyDKdp2ruWPdFeDgbq","7652071f95c376e6d1100f9fed5c520f22262c1530f328bb1c3ed10bad771e68");
 
         Long balance = 0L;
-        Long targetAmount = 3998000000L;
+        Long targetAmount = 6998000000L;
         Long tokenBalance = 0L;
         Long targetTokenAmount = 500000000L;
         for (HashMap.Entry entry : testAccountList.entrySet()) {
@@ -307,7 +307,7 @@ public class autoCreateTestngXml {
             userBaseObj2.addProperty("owner_address", fromAddress);
             userBaseObj2.addProperty("amount", amount);
             userBaseObj2.addProperty("visible", true);
-            System.out.print("userBaseObj2:" + userBaseObj2.toString());
+//            System.out.print("userBaseObj2:" + userBaseObj2.toString());
             response = createConnect(requestUrl, userBaseObj2);
             transactionString = EntityUtils.toString(response.getEntity());
             System.out.println("\nSend amount: " + amount);

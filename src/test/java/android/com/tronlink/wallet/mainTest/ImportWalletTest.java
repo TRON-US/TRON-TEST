@@ -26,6 +26,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
+            TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
         }catch (Exception e){}
     }

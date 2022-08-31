@@ -21,6 +21,7 @@ public class GuideTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
+            TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
         }catch (Exception e){}
     }

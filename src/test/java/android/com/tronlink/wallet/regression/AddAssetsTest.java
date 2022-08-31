@@ -40,6 +40,7 @@ public class AddAssetsTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
+            TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}

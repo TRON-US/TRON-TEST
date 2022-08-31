@@ -14,6 +14,8 @@ import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.FriendInvitationPage;
 import android.com.wallet.pages.MinePage;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * mine page function test
@@ -30,6 +32,7 @@ public class MineTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         try {
+            TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}

@@ -41,6 +41,7 @@ public class AddressBookTest extends Base {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() throws Exception {
         try {
+            TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
         }catch (Exception e){}
