@@ -17,10 +17,10 @@ public class IHookableImp implements IHookable {
         ConstructorOrMethod method = iTestResult.getMethod().getConstructorOrMethod();
         String name = method.getName();
         String time = timeStamp.format(new Date()).toString();
-        System.out.println( " 测试method是 : " + name + " 开始执行~ " + time);
+        System.out.println( " method : " + name + " 开始时间：" + time);
         //测试用例开始执行
         iHookCallBack.runTestMethod(iTestResult);
         String endTime = timeStamp.format(new Date()).toString();
-        System.out.println( " method :" + name + " 结束~ " + endTime);
+        System.out.println( " method :" + name + " 结束时间：" + endTime);
     }
 }

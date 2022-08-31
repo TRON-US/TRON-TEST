@@ -23,15 +23,14 @@ public class Retry implements IRetryAnalyzer {
 
         if (retryCount < maxRetryCount) {
             retryCount++;
-            System.out.println("Retry #" + retryCount + " for test: " + result.getMethod().getMethodName() + ", on thread: " + Thread.currentThread().getName());
-            System.out.println(retryCount);
+            System.out.println("Retry Times:" + retryCount + " Test: " + result.getMethod().getMethodName() );
             if(retryCount == 1){
-                String[] namestemp = result.getTestClass().getName().split("\\.");
-                ScreenShot(namestemp[namestemp.length-1],result.getMethod().getMethodName());
+                String[] timestamp = result.getTestClass().getName().split("\\.");
+                ScreenShot(timestamp[timestamp.length-1],result.getMethod().getMethodName());
             }
             return true;
         }
-        System.err.println("giving up after " + maxRetryCount + " failures");
+        System.err.println("Giving up after " + maxRetryCount + " failures");
         return false;
     }
 
@@ -39,7 +38,7 @@ public class Retry implements IRetryAnalyzer {
     public void ScreenShot(String clasname, String methodname){
         //调用截图功能
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-hhmmss");
+            DateFormat dateFormat = new SimpleDateFormat("MM-dd-hh-mm-ss");
             String path = "build/tmp/" + clasname +"."+ methodname + dateFormat.format(new Date()) + ".png";
             System.out.println(path);
             Runtime.getRuntime().exec("idevicescreenshot " + path);

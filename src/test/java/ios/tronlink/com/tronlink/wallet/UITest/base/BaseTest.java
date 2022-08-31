@@ -35,11 +35,12 @@ public class BaseTest extends Base {
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method method, String bundleId) throws Exception {
+//        System.out.println("afterMethod");
+        TimeUnit.SECONDS.sleep(2);
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(2);
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Over: " + method.getName());
 
     }
 
@@ -62,7 +63,6 @@ public class BaseTest extends Base {
             }
         }
         TimeUnit.SECONDS.sleep(2);
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Begin: " + method.getName());
     }
 
     @Parameters({"bundleId"})
