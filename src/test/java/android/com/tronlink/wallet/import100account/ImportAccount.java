@@ -2,6 +2,7 @@ package android.com.tronlink.wallet.import100account;
 
 
 
+import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -39,39 +40,15 @@ public class ImportAccount extends Base {
 
     @Test(description = "import 100 account", alwaysRun = true)
     public void test001_importWallet() throws Exception {
-        findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-        swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-        findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
-        findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647");
-        findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Automation_1");
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        findWebElement("com.tronlinkpro.wallet:id/creat").click();
-        System.out.println("点击完创建按钮1111");
+//        new Helper().getSign("a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026", DRIVER);
+
         TimeUnit.SECONDS.sleep(3);
 //        findWebElement("com.tronlinkpro.wallet:id/tv_walletname").click();
 //        System.out.println("点击完我的钱包名称222222222");
 //        findWebElement("com.tronlinkpro.wallet:id/tv_create").click();
 //        System.out.println("点击完新建按钮3333333333");
-        for (int i = 0;i<addressList.length;i++){
-            findWebElement("com.tronlinkpro.wallet:id/tv_walletname").click();
-            findWebElement("com.tronlinkpro.wallet:id/tv_create").click();
-            findWebElement("com.tronlinkpro.wallet:id/cd_pk").click();
-            //findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys("a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
-            findWebElement("com.tronlinkpro.wallet:id/et_content").sendKeys(addressList[i]);
-            findWebElement("com.tronlinkpro.wallet:id/bt_next").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys("Automation_"+(i+2));
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+        for (int i = 0;i<testAddressList.length;i++){
+            new Helper().AddMoreWalletWithPrivateKey(testAddressList[i], DRIVER);
             TimeUnit.SECONDS.sleep(2);
         }
     }
@@ -123,11 +100,42 @@ public class ImportAccount extends Base {
     }
 
 
+//
+//  testAccountList.put("TR8CyAPJFMjCvphCVuWeeVxBh5iTG7VWxe","cfd889566341aea937737ecf4bc35f9be7c5b43f594c9a230a0348183472245e");
+//        testAccountList.put("TMhGDU7NiXwckCW64PqAvWFuC2kR1WSF5J","11c7013416aac83fd6070abb8ffceb0ad102d9f87dfc9c98308b0fd47e8c3a1a");
+//        testAccountList.put("TDf3JZtjDeEqsFdPGp6vT9meG3JxMwmXwA","0ea138885c1fb2b6adaad51033c8876df0e37ccf7dd322cfad5504d671fb2a79");
+//        testAccountList.put("TEtG9fnVi2qythiog6owPrg4sD9rwFBQBN","8f3839e21b4ada348da3d85ccc72e1f1898a39b877f0f6f5b35137588a344345");
+//        testAccountList.put("TUvda1oqrNLbqDKhZDxDnrPhiDCdxem218","cf9933e99ee2b272147dd563c7f880de751c30d61cd6681a158f0a8056023d9b");
+//        testAccountList.put("TKEH31jJ2YQ3Bteh1ngjwdT8667ztyYPSp","223f2e4a3010286540d3c119d2a1d55b1d54248f63f1c4d9ccfbd0d105ab15c7");
+//        testAccountList.put("TAzrJHKa57nXnn3dZGFG87PDuWx12dY97s","844f7f5da381943403e8324db4fda13dce9af35b72cf2ea3846fafa12c5d9890");
+//        testAccountList.put("TWhc6AAh6BWRr3k5dV8iMvkp8ys7NHzXCk","6850fd0a0f2cb94167bf0507a738fa9eef51d6fdc65e8452039f711a4bdf3135");
+//        testAccountList.put("TSsaSxHnb3xLTop2A8LrDk1P896yiDeupe","cec7fc3c9c603ae6cdc026c777db037b8ca4995d451fa5fe7b2f19a0dc01cd98");
+//        testAccountList.put("TMDs8oTj8mVnakqiVyDKdp2ruWPdFeDgbq","7652071f95c376e6d1100f9fed5c520f22262c1530f328bb1c3ed10bad771e68");
+//
+//
+//  testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
+//        testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
+//        testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
+//        testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
+//        testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
+//        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
+//        testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
+//        testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
+//
 
+    String[] testAddressList = {
+            "11c7013416aac83fd6070abb8ffceb0ad102d9f87dfc9c98308b0fd47e8c3a1a",
+            "cfd889566341aea937737ecf4bc35f9be7c5b43f594c9a230a0348183472245e",
+            "0ea138885c1fb2b6adaad51033c8876df0e37ccf7dd322cfad5504d671fb2a79",
+            "8f3839e21b4ada348da3d85ccc72e1f1898a39b877f0f6f5b35137588a344345",
+            "cf9933e99ee2b272147dd563c7f880de751c30d61cd6681a158f0a8056023d9b",
+            "223f2e4a3010286540d3c119d2a1d55b1d54248f63f1c4d9ccfbd0d105ab15c7",
+            "844f7f5da381943403e8324db4fda13dce9af35b72cf2ea3846fafa12c5d9890",
+            "6850fd0a0f2cb94167bf0507a738fa9eef51d6fdc65e8452039f711a4bdf3135",
+            "cec7fc3c9c603ae6cdc026c777db037b8ca4995d451fa5fe7b2f19a0dc01cd98",
+            "7652071f95c376e6d1100f9fed5c520f22262c1530f328bb1c3ed10bad771e68",
 
-
-
-
+    };
 
     String[] addressList = {
             "55eaf3ccb59835bd8a62cb5b5df91a858cfbaacb8ca9dbd4f8f6f6cde7a8366a",
