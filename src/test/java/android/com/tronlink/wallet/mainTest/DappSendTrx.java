@@ -199,12 +199,14 @@ public class DappSendTrx extends Base {
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         keyboardSogou(udid);
+        TimeUnit.SECONDS.sleep(1);
         transfer.receiveAddress_text.click();
         transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39ajkLz6c");
         DRIVER.hideKeyboard();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
         keyboardUnicode(udid);
+        Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
+
 
     }
 
