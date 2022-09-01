@@ -294,6 +294,7 @@ public class MultiSignTest extends BaseTest {
             Integer sizeNumber = Secure.size();
             System.out.println(Secure.size());
             if (sizeNumber > 0){
+                TimeUnit.SECONDS.sleep(1);
                 page.signBtn.click();
                 TimeUnit.SECONDS.sleep(5);
                 try {

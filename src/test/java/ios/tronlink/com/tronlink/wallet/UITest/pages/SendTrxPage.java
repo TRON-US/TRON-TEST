@@ -320,6 +320,7 @@ public class SendTrxPage extends AbstractPage {
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
         TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n7");
+        TimeUnit.SECONDS.sleep(1);
         TextField.sendKeys("1");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
@@ -339,6 +340,7 @@ public class SendTrxPage extends AbstractPage {
         Double value = Double.parseDouble(removeSymbolNoDot(tokenBalance.getText())) ;
         TextFieldAmo().sendKeys(amount);
         closeKeyBoard();
+        TimeUnit.SECONDS.sleep(1);
         findSend_btn().click();
         TimeUnit.SECONDS.sleep(4);
         return value;

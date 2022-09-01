@@ -73,7 +73,7 @@ public class TransferPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         count_text.sendKeys("10");
         closeKeyBoard();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         get_inter_btn().click();
         TimeUnit.SECONDS.sleep(8);
 

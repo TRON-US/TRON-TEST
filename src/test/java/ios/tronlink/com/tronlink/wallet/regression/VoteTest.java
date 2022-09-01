@@ -17,7 +17,7 @@ public class VoteTest extends BaseTest {
     public VotePage enterVotePage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(5);
         return vote;
     }
 
