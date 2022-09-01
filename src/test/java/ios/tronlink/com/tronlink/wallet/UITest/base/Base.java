@@ -54,17 +54,16 @@ public class Base {
     public void startServer(String port, String platformName, String platformVersion, String deviceName, String udid, String bpPort, String webDriverPort) throws IOException {
 
         try {
-            System.out.println("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
-            Process process = Runtime.getRuntime().exec("appium --session-override -a 127.0.0.1 -p " + port + " -bp " + bpPort + " --udid " + udid + " --webdriveragent-port " + webDriverPort);
+            System.out.println("startByPort: "+port+" \nudid:"+udid);
+            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p " + port  + " --udid " + udid );
             InputStreamReader isr = new InputStreamReader(process.getInputStream());
             Scanner sc = new Scanner(isr);
             StringBuffer sb = new StringBuffer();
             sb.append(sc.next());
-            System.out.println(sb.toString());
-            System.out.println("\n server  Start \n" );
+            System.out.println("\n appium  setup  success \n" );
 
         } catch (Exception e) {
-            System.out.println("\n server  Fail \n" );
+            System.out.println("\n appium  setup  fail \n" );
             e.printStackTrace();
         }
     }
@@ -78,17 +77,17 @@ public class Base {
         log("启动设备名称: " + deviceName);
         int tries = 0;
         Boolean driver_is_start = false;
-        while (!driver_is_start && tries < 3) {
+        while (!driver_is_start && tries < 5) {
             tries++;
             try {
+                System.out.println("Try start driver "+tries+" times");
                 String url = "http://127.0.0.1:" + port + "/wd/hub";
-
                 desiredCapabilities.setCapability("deviceName", deviceName);
                 desiredCapabilities.setCapability("platformName", platformName);
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("automationName", automationName);
-                desiredCapabilities.setCapability("newCommandTimeout", 1000);
+                desiredCapabilities.setCapability("newCommandTimeout", 3000);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
                 desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
@@ -102,10 +101,10 @@ public class Base {
                 URL remoteUrl = new URL(url);
                 DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
-                System.out.println(" driver Start");
+                System.out.println("setUp DRIVER success");
 
             } catch (Exception e) {
-                System.out.println(" driver Fail");
+                System.out.println("setUp DRIVER fail");
                 System.out.println(e);
                 TimeUnit.SECONDS.sleep(1);
             }

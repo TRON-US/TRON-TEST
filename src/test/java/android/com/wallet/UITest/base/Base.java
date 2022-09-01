@@ -70,10 +70,10 @@ public class Base {
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
             sb.append(sc.next());
-            System.out.println(sb.toString());
             System.out.println("appium setup  success");
 
         } catch (Exception e) {
+            System.out.println("\n appium  setup  fail \n" );
             e.printStackTrace();
         }
     }
@@ -88,7 +88,7 @@ public class Base {
         while (!driver_is_start && tries < 5) {
             tries++;
             try {
-                System.out.println("try start driver "+tries+" times");
+                System.out.println("Try start driver "+tries+" times");
                 String url = "http://127.0.0.1:"+port+"/wd/hub";
                 desiredCapabilities.setCapability("deviceName", deviceName);
                 desiredCapabilities.setCapability("language", "zh");
@@ -119,6 +119,7 @@ public class Base {
                 waiteTime();
                 System.out.println("setUp DRIVER success");
             }catch (Exception e){
+                System.out.println("setUp DRIVER fail");
                 System.out.println(e);
                 TimeUnit.SECONDS.sleep(2);
             }

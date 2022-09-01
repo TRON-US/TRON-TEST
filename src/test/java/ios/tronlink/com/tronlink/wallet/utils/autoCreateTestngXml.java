@@ -49,7 +49,7 @@ public class autoCreateTestngXml {
     private String platformName = "iOS";
     private Boolean noReset = false;
     private Integer webDriverPort = 8100;
-    private Integer port = 4725;
+    private Integer port = 4700;
     private Integer bpPort = 2251;
     List<String> iosDeviceNameList = new ArrayList<>();
     List<String> iosDeviceUdidList = new ArrayList<>();
