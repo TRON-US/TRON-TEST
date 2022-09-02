@@ -539,7 +539,7 @@ public class AssetPage extends AbstractPage {
         log("walletArrow ed");
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByName("权限管理").click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
         return new MultiSignManagerPage(driver);
 
 

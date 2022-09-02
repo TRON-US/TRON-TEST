@@ -187,11 +187,6 @@ public class MultiSignManagerPage extends AbstractPage {
             System.out.println("need to del...");
             Helper.swipScreen(driver);
             haveActivedClickFunc();
-//            TimeUnit.SECONDS.sleep(3);
-//            System.out.println("Location:\n" + havedActive.getLocation()+"\nLocation\n Rect IS:\n" + havedActive.getRect() + "\nRect");
-//            IOSTouchAction action = new IOSTouchAction(driver);
-//            action.tap(PointOption.point(havedActive.getLocation().x+ 10,havedActive.getLocation().y + 20)).perform();
-//            TimeUnit.SECONDS.sleep(3);
             System.out.println("Entered Active detailPage..");
             Helper.swipScreen(driver);
             waiteTime();
@@ -323,28 +318,25 @@ public class MultiSignManagerPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
         haveActivedClickFunc();
         System.out.println("添加权限 clicked");
-        waiteTime();
         closeKeyBoard();
         Helper.swipScreen(driver);
-        waiteTime();
         activeContentEditBtn.click();
         System.out.println("进入编辑权限页面 clicked");
-        waiteTime();
         freezeAssetPower.click();
         System.out.println("点击添加质押资产 clicked");
-        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         System.out.println("确认添加对应权限 clicked");
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(1);
+        Helper.swipScreenLitter(driver);
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println("进入确定流程...");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='确认'").click();
         TimeUnit.SECONDS.sleep(8);
-        System.out.println("进入确定流程...");
+        TimeUnit.SECONDS.sleep(5);
         driver.findElementByXPath("(//XCUIElementTypeButton[@name=\"确认\"])[1]").click();
         TimeUnit.SECONDS.sleep(2);
         driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys("Test0001");
-        waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton'  AND name ='完成'").click();
-        waiteTime();
     }
 
 
