@@ -30,7 +30,7 @@ public class SendTrx extends BaseTest {
 
 
      @Test(alwaysRun = true)
-     public void test001_sendTrxTest() throws Exception {
+     public void test001_sendTrxCheckNumberTotalTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          TimeUnit.SECONDS.sleep(2);
          TrxPage page = asset.enterTrxPage();
@@ -56,7 +56,7 @@ public class SendTrx extends BaseTest {
      }
 
     @Test(alwaysRun = true)
-    public void test002_sendTrxHistoryTest() throws Exception {
+    public void test002_sendTrxAndNumberHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         TrxPage page = asset.enterTrxPage();
