@@ -235,6 +235,7 @@ public class MinePage extends AbstractPage {
             TimeUnit.SECONDS.sleep(2);
             committeeProposals_btn.click();
             TimeUnit.SECONDS.sleep(18);
+            TimeUnit.SECONDS.sleep(6);
         }catch (Exception e){
             System.out.println(e);
         }

@@ -94,6 +94,7 @@ public class CommitteeTest extends Base {
         TimeUnit.SECONDS.sleep(3);
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         MyProposalsPage.agree_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         MyProposalsPage.confirm_btn().click();
         TimeUnit.SECONDS.sleep(15);
         MyProposalsPage.pw_input.sendKeys("Test0001");
@@ -112,14 +113,16 @@ public class CommitteeTest extends Base {
         MyProposalsPage MyProposalsPage = committeeProposalPage.enterMyProposalsPage();
         TimeUnit.SECONDS.sleep(5);
         MyProposalsPage.agree_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         MyProposalsPage.button_confirm.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         TimeUnit.SECONDS.sleep(20);
         MyProposalsPage.agree_btn.click();
+        TimeUnit.SECONDS.sleep(3);
         MyProposalsPage.button_confirm.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         MyProposalsPage.pw_input.sendKeys("Test0001");
         MyProposalsPage.send_btn.click();
         TimeUnit.SECONDS.sleep(20);
