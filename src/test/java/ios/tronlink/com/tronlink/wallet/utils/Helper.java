@@ -260,12 +260,13 @@ public class Helper {
 
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         System.out.println(timeStamp.format(new Date()).toString());
+        TimeUnit.SECONDS.sleep(3);
         Boolean haveImport = isElementExist(DRIVER,"walletName");
         System.out.println(timeStamp.format(new Date()).toString());
         System.out.println("Imported: " + haveImport);
         if(!haveImport){
-            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
     }

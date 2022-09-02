@@ -64,6 +64,7 @@ public class Base {
 
         } catch (Exception e) {
             System.out.println("\n appium  setup  fail \n" );
+            ScreenShot("AppiumFail");
             e.printStackTrace();
         }
     }
@@ -105,12 +106,25 @@ public class Base {
 
             } catch (Exception e) {
                 System.out.println("setUp DRIVER fail");
+                ScreenShot("DRIVERFail");
                 System.out.println(e);
                 TimeUnit.SECONDS.sleep(1);
             }
         }
     }
 
+    public void ScreenShot(String name){
+        //调用截图功能
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("MM-dd-hh-mm-ss");
+            String path = "build/tmp/" + name + "." + dateFormat.format(new Date()) + ".png";
+            System.out.println(path);
+            Runtime.getRuntime().exec("idevicescreenshot " + path);
+        }catch (Exception e){
+            System.out.println(e);
+            e.printStackTrace();
+        }
+    }
 
     public void tearDownclass() {
         DRIVER.closeApp();
