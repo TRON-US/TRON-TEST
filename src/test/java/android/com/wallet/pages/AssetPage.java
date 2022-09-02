@@ -373,8 +373,8 @@ public WebElement title;
 
     public TrxPage enterTrx10Page() throws Exception {
         Helper.swipScreen(driver);
+        TimeUnit.SECONDS.sleep(1);
         try {
-            waiteTime();
             trx10_btn.click();
         } catch (Exception e) {
             if (trx10_icon_btns.size() > 2){
