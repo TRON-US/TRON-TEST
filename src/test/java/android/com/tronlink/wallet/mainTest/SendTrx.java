@@ -250,7 +250,7 @@ public class SendTrx extends Base {
         keyboardSogou(udid);
         TimeUnit.SECONDS.sleep(1);
         transfer.receiveAddress_text.click();
-        transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39ajkLz6c");
+        transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39aj6c");
         TimeUnit.SECONDS.sleep(1);
         DRIVER.hideKeyboard();
         TimeUnit.SECONDS.sleep(1);

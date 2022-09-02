@@ -51,7 +51,7 @@ public class WatchWalletTest extends Base {
         sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");
         sendTrxPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
