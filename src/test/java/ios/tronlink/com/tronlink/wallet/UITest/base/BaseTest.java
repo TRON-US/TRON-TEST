@@ -25,9 +25,16 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest extends Base {
 
-    @Parameters({"privateKey"})
+    @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBefore(String privateKey) throws Exception {
+    public void setUpBefore(String privateKey,String bundleId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(2);
+        DRIVER.executeScript("mobile: activateApp", params);
+        TimeUnit.SECONDS.sleep(2);
+
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
         log("TestClass Import ---Over");
     }
@@ -35,7 +42,6 @@ public class BaseTest extends Base {
     @Parameters({"bundleId"})
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(Method method, String bundleId) throws Exception {
-//        System.out.println("afterMethod");
         TimeUnit.SECONDS.sleep(2);
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
