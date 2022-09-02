@@ -492,7 +492,7 @@ public class SendTrxPage extends AbstractPage {
         goToSecondPage();
         inputReceivedAmount(number);
         sendButtonClick();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         confirmPageButtonClick();
         InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
