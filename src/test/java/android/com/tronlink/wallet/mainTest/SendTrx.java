@@ -282,7 +282,6 @@ public class SendTrx extends Base {
         SendTrxPage transfer = asset.enterSendTrxPage();
         Double sendAmount = getAnAmount();
         transfer.SendTRXToConfirmView(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(transfer.tv_resource_consume_left.getText(),"交易所需资源");
         transfer.showResTips();
         Assert.assertEquals(transfer.tv_left.getText(),"交易所需资源 = 带宽消耗 + 能量消耗");
