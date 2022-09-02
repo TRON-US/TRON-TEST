@@ -494,6 +494,9 @@ public class SendTrxPage extends AbstractPage {
         sendButtonClick();
         TimeUnit.SECONDS.sleep(5);
         confirmPageButtonClick();
+        if (isElementExist("提示")){
+            driver.findElementByName("确认").click();
+        }
         InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
         TimeUnit.SECONDS.sleep(4);
