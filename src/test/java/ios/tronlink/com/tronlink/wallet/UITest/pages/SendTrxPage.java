@@ -320,7 +320,7 @@ public class SendTrxPage extends AbstractPage {
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
         TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n7");
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         TextField.sendKeys("1");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
@@ -508,6 +508,7 @@ public class SendTrxPage extends AbstractPage {
         inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         goToSecondPage();
         Double value = inputTRC10AndSendAmount(number);
+        TimeUnit.SECONDS.sleep(5);
         confirmPageButtonClick();
         InputPasswordConfirm_btn.sendKeys("Test0001");
         broadcastButtonClick();
@@ -520,7 +521,7 @@ public class SendTrxPage extends AbstractPage {
         inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         goToSecondPage();
         Double value = inputTRC20AndSendAmount(number);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(5);
         confirmPageButtonClick();
         TimeUnit.SECONDS.sleep(1);
         InputPasswordConfirm_btn.sendKeys("Test0001");
