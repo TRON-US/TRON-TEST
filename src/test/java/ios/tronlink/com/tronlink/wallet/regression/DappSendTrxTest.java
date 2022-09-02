@@ -59,39 +59,9 @@ public class DappSendTrxTest extends BaseTest {
 
 
 
-//    @Test(alwaysRun = true)
-//    public void test001_sendTrxTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        guaranteeDAppChain();
-//        TimeUnit.SECONDS.sleep(2);
-//
-//        TrxPage page = asset.enterTrxPage();
-//        String show1 = page.balanceLabel.getText();
-//        log("asset TRX:" + show1);
-//        String before1 = removeSymbolNoDot(show1);
-//        SendTrxPage transfer = page.enterTransferPage();
-//
-//        Double send = getAnAmount();
-//        transfer.sendTrxWithNumber(String.valueOf(send));
-//        TimeUnit.SECONDS.sleep(8);
-//        transfer.finnish();
-//        Helper.refreshWalletScreen(DRIVER);
-//        TimeUnit.SECONDS.sleep(2);
-//        Helper.refreshWalletScreen(DRIVER);
-//        TimeUnit.SECONDS.sleep(2);
-//
-//        page = asset.enterTrxPage();
-//        String show2 = page.balanceLabel.getText();
-//        log("asset after TRX:" + show2);
-//        String before2 = removeSymbolNoDot(show2);
-//
-//        System.out.println("before1:" + before1 + " before2:" + before2 + " send:" + send);
-//        Assert.assertEquals(Double.parseDouble(before1) ,Double.parseDouble(before2) + send,0.5);
-//
-//    }
 
     @Test(alwaysRun = true)
-    public void test002_sendTrxHistoryTest() throws Exception {
+    public void test002_sendTrxAndHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         TrxPage page = asset.enterTrxPage();
