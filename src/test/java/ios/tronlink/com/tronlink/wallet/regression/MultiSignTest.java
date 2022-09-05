@@ -22,11 +22,18 @@ public class MultiSignTest extends BaseTest {
 
 
 
-    @Parameters({"ownerPrivateKey"})
+    @Parameters({"ownerPrivateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBefore(String ownerPrivateKey) throws Exception {
-        new Helper().importFirstWallet(Helper.importType.normal,ownerPrivateKey,DRIVER);
-        log("TestClass Import ---Over");
+    public void setUpBefore(String privateKey,String bundleId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", bundleId);
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(2);
+        DRIVER.executeScript("mobile: activateApp", params);
+        TimeUnit.SECONDS.sleep(2);
+        log("TestClass Import ---Start");
+        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
+        log("TestClass Import ---Success");
     }
 
 

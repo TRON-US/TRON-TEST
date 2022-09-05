@@ -34,9 +34,9 @@ public class BaseTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         DRIVER.executeScript("mobile: activateApp", params);
         TimeUnit.SECONDS.sleep(2);
-
+        log("BaseTest Import ---start");
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
-        log("TestClass Import ---Over");
+        log("BaseTest Import ---Success");
     }
 
     @Parameters({"bundleId"})
