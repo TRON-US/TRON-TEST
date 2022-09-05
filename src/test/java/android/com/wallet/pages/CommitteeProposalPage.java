@@ -131,10 +131,10 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
     public MyProposalsPage enterMyProposalsPage() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         myProposal_btn.click();
-        TimeUnit.SECONDS.sleep(15);
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(18);
+        TimeUnit.SECONDS.sleep(9);
         return new MyProposalsPage(driver);
     }
 
