@@ -100,7 +100,7 @@ public class SendTrx extends Base {
         Double sendAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         transfer.btn_done.click();
         Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
@@ -115,7 +115,7 @@ public class SendTrx extends Base {
         SendTrxPage transfer = asset.enterSendTrxPage();
         Double sendAmount = getAnAmount();
         transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         transfer.btn_done.click();
 
         MinePage page = asset.enterMinePage();
@@ -147,7 +147,7 @@ public class SendTrx extends Base {
         Double sendAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         log("send: " +sendAmount );
         for (int i = 0; i < 5; i++) {
             if(transfer.btn_transaction_info.isEnabled()){
