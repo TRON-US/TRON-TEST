@@ -121,9 +121,9 @@ public WebElement tv_info_title;
         weight_input.sendKeys("1");
         Helper.swipScreen(driver);
         confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(6);
         btn_confirm.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
     }
 
 

@@ -301,6 +301,7 @@ public class SendTrxPage extends AbstractPage {
     public SendTrxSuccessPage sendTrx(String sendAmount) throws Exception {
         SendTRXToConfirmView(sendAmount);
         confirm_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
@@ -313,6 +314,7 @@ public class SendTrxPage extends AbstractPage {
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
         confirm_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -325,8 +327,9 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         confirm_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -372,8 +375,9 @@ public class SendTrxPage extends AbstractPage {
         note_transfer.click();
         et_note.sendKeys(note);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(6);
         confirm_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(1);
@@ -508,7 +512,7 @@ public class SendTrxPage extends AbstractPage {
         }
         Helper.swipScreen(driver);
         send_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
     }
 
     public void sendTokenMin(String type, String udid) throws Exception {
