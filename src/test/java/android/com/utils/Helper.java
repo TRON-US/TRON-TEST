@@ -202,8 +202,9 @@ public class Helper {
             swipScreenLitte(DRIVER);
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            TimeUnit.SECONDS.sleep(1);
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
-            TimeUnit.SECONDS.sleep(6);
+            TimeUnit.SECONDS.sleep(8);
 
         }catch (Exception e){
             getSignOperate(key);
@@ -307,8 +308,9 @@ public class Helper {
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").sendKeys("Auto-test");
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            TimeUnit.SECONDS.sleep(1);
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
-            TimeUnit.SECONDS.sleep(6);
+            TimeUnit.SECONDS.sleep(8);
             System.out.println("开始校验是否导入成功");
             findWebElement("com.tronlinkpro.wallet:id/tv_walletname");
             System.out.println("完成校验，导入成功");
@@ -337,9 +339,9 @@ public class Helper {
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
 
             findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            TimeUnit.SECONDS.sleep(1);
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
-            TimeUnit.SECONDS.sleep(6);
-
+            TimeUnit.SECONDS.sleep(8);
             findWebElement("com.tronlinkpro.wallet:id/tv_nonet_desc");
 
         }catch (Exception e){
@@ -360,7 +362,7 @@ public class Helper {
         findWebElement("com.tronlinkpro.wallet:id/add_watch_name").clear();
         findWebElement("com.tronlinkpro.wallet:id/add_watch_name").sendKeys("WatchWallet");
         findWebElement("com.tronlinkpro.wallet:id/add_watch_wallet").click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
 
     }
 
