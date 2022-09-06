@@ -22,7 +22,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
-import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -66,7 +65,7 @@ public class autoCreateTestngXml {
     static JSONObject transactionApprovedListContent;
     static List<String> taskClassNameList = new ArrayList<>();
     static List<String> taskSingleClassNameList = new ArrayList<>();
-    static List<String> singleClassNameList = new ArrayList<>();
+    static List<String> removeClassNameList = new ArrayList<>();
 //    private String httpnode = "nile.trongrid.io";//Configuration.getByPath("testng.conf").getString("nileex.httpnode");
     private String httpnode = "http://47.252.3.238:8090";
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
@@ -197,12 +196,8 @@ public class autoCreateTestngXml {
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
         taskClassNameList= taskSingleClassNameList;
 
-//        String extendSingleClassContent = "";
-//        for (int i = 0; i < taskSingleClassNameList.size();i++) {
-//            extendSingleClassContent = extendSingleClassContent + "            " + preClass + taskSingleClassNameList.get(i).substring(0,taskSingleClassNameList.get(i).length() - 5) + afterClass + "\n";
-//        }
-//
-//        taskClassNameList = removeSingleClass(taskSingleClassNameList,singleClassNameList);
+        removeClassNameList.add("DappSendTrxTest");
+        taskClassNameList = removeSingleClass(taskSingleClassNameList, removeClassNameList);
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
@@ -322,17 +317,17 @@ public class autoCreateTestngXml {
                 sb.append(classContent);
                 sb.append("        </classes>\n");
                 sb.append("    </test>\n");
-                String res = sb.toString();
-                System.out.println("----------------------------\nft111ag: \n----------------------------");
-                System.out.println(res);
+//                String res = sb.toString();
+//                System.out.println("----------------------------\nft111ag: \n----------------------------");
+//                System.out.println(res);
                 it.remove();
             }
 
 
         sb.append("</suite>");
         String res = sb.toString();
-        System.out.println("----------------------------\nftag: \n----------------------------");
-        System.out.println(res);
+//        System.out.println("----------------------------\nftag: \n----------------------------");
+//        System.out.println(res);
 
         try {
             Files.write((Paths.get(reportPath)), res.getBytes("utf-8"), StandardOpenOption.APPEND);

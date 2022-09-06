@@ -28,6 +28,7 @@ public class BaseTest extends Base {
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
+        log("BaseTest --Begin");
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
