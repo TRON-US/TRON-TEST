@@ -465,7 +465,7 @@ public WebElement tv_stake_energy;
         freeze_btn.click();
         chk_stake_amount.click();
         btn_next.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
 
     }
 

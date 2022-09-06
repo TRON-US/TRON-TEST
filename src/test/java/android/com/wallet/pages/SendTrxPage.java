@@ -390,6 +390,7 @@ public class SendTrxPage extends AbstractPage {
         selectTokenByName(name);
         tranferCount_text.sendKeys(amount);
         send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         confirm_btn.click();
     }
 
