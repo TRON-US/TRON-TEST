@@ -206,7 +206,7 @@ public class DappSendTrx extends Base {
         DRIVER.hideKeyboard();
         TimeUnit.SECONDS.sleep(1);
         keyboardUnicode(udid);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
 
 
