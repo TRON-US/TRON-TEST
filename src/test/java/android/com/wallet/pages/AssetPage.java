@@ -571,7 +571,7 @@ public WebElement title;
 
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage() throws Exception{
 
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(5);
             freeze_btn.click();
 
         return new FrozenAndUnfreezePage(driver);
