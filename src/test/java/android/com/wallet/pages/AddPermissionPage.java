@@ -123,7 +123,7 @@ public WebElement tv_info_title;
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(6);
         btn_confirm.click();
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(4);
     }
 
 
