@@ -31,6 +31,7 @@ public class CommitteeTest extends Base {
     @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod(String bundleId) throws Exception {
         try {
+            TimeUnit.SECONDS.sleep(2);
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             DRIVER.executeScript("mobile: terminateApp", params);
