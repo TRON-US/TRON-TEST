@@ -43,14 +43,14 @@ public class CommitteeTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Enter Proposal Detail success test", alwaysRun = true)
-    public void test001_enterProposalDetails() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage mine = asset.enterMinePage();
-        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
-        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
-        Assert.assertTrue(proposalDetailsPage.proposalName_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Enter Proposal Detail success test", alwaysRun = true)
+//    public void test001_enterProposalDetails() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage mine = asset.enterMinePage();
+//        CommitteeProposalPage committeeProposalPage = mine.enterCommitteeProposalPage();
+//        ProposalDetailsPage proposalDetailsPage = committeeProposalPage.enterpProposalDetailsPage();
+//        Assert.assertTrue(proposalDetailsPage.proposalName_text.isDisplayed());
+//    }
 
 //    @Test(enabled = true,description = "Create proposal page reset btn test", alwaysRun = true)
 //    public void test002_createProposalReset() throws Exception{
