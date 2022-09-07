@@ -244,7 +244,7 @@ public class CommitteePage extends AbstractPage {
             backBtn.click();
         }else {
             agreeBtn.click();
-            TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(15);
             driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
             TimeUnit.SECONDS.sleep(10);
             passwordTF.sendKeys("Test0001");
@@ -269,7 +269,7 @@ public class CommitteePage extends AbstractPage {
                 backBtn.click();
             } else {
                 disagreeBtn.click();
-                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(15);
                 driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
                 TimeUnit.SECONDS.sleep(10);
                 passwordTF.sendKeys("Test0001");
@@ -295,7 +295,7 @@ public class CommitteePage extends AbstractPage {
                 backBtn.click();
             }else {
                 deleteBtn.click();
-                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(15);
                 driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
                 TimeUnit.SECONDS.sleep(10);
                 passwordTF.sendKeys("Test0001");
