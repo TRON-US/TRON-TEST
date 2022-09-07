@@ -296,6 +296,7 @@ public class Helper {
         try {
             findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
             try {
+                TimeUnit.SECONDS.sleep(2);
                 swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
                 findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
             }catch (Exception el){
