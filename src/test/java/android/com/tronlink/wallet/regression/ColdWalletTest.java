@@ -173,7 +173,7 @@ public class ColdWalletTest extends Base {
     }
 
     @Test(alwaysRun = true)
-    public void test011_advanceTest()  {
+    public void test011_advanceTest()  throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         Assert.assertTrue(isElementTextExist("高级功能"));

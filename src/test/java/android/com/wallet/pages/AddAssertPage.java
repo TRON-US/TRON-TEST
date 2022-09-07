@@ -61,8 +61,7 @@ public class AddAssertPage extends AbstractPage {
     public WebElement myNewAddAsset_btn;
 
 
-    public AssetPage enterAssetPage(){
-        //driver.navigate().back();
+    public AssetPage enterAssetPage() throws Exception{
         back_btn.click();
         return new AssetPage(driver);
     }

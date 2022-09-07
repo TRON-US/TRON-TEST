@@ -98,7 +98,7 @@ public class MineTest extends Base {
      }
 
       @Test(alwaysRun = true)
-      public void test006_advanceTest()  {
+      public void test006_advanceTest()  throws Exception{
           AssetPage asset = new AssetPage(DRIVER);
           MinePage minePage = asset.enterMinePage();
           Assert.assertTrue(isElementTextExist("高级功能"));
@@ -108,7 +108,7 @@ public class MineTest extends Base {
 
 
     @Test(alwaysRun = true)
-    public void test008_helpingTest()  {
+    public void test008_helpingTest()  throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         Helper.swipScreen(minePage.driver);

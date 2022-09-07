@@ -71,7 +71,7 @@ public class DappSendTrc10 extends Base {
 
 
 
-    public SendTrxPage enterToSendTrc10Page() {
+    public SendTrxPage enterToSendTrc10Page() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrc10Page();
         return transfer;

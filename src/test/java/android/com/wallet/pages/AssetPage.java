@@ -19,7 +19,7 @@ public class AssetPage extends AbstractPage {
     public AndroidDriver<?> driver;
 
 
-    public AssetPage(AndroidDriver<?> driver) {
+    public AssetPage(AndroidDriver<?> driver) throws Exception{
 
         super(driver);
         this.driver = driver;
@@ -46,7 +46,7 @@ public class AssetPage extends AbstractPage {
         }
 
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-
+        TimeUnit.SECONDS.sleep(3);
 
     }
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")

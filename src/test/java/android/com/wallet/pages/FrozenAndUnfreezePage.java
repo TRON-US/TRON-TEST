@@ -384,7 +384,7 @@ public WebElement tv_stake_energy;
 
 
 
-    public AssetPage enterAssetPage() {
+    public AssetPage enterAssetPage() throws Exception{
         iv_back.click();
         return new AssetPage(driver);
     }

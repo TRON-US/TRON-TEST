@@ -55,7 +55,7 @@ public class GeneralTransactionNotes extends Base {
     }
 
 
-    public SendTrxPage enterToSendTrxPage() {
+    public SendTrxPage enterToSendTrxPage() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();
         return transfer;
