@@ -29,12 +29,16 @@ public class BaseTest extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
         log("BaseTest --Begin");
-        Map<String, Object> params = new HashMap<>();
-        params.put("bundleId", bundleId);
-        DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(2);
-        DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(2);
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            DRIVER.executeScript("mobile: terminateApp", params);
+            TimeUnit.SECONDS.sleep(2);
+            DRIVER.executeScript("mobile: activateApp", params);
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+            log("restart fail");
+        }
         log("BaseTest Import ---start");
         new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
         log("BaseTest Import ---Success");
