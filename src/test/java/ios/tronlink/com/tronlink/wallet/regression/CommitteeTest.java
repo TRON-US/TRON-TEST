@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.regression;
 
 import ios.tronlink.com.tronlink.wallet.UITest.base.Base;
+import ios.tronlink.com.tronlink.wallet.UITest.base.BaseTest;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AdvanceFuncPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.CommitteePage;
@@ -18,60 +19,30 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
-public class CommitteeTest extends Base {
+public class CommitteeTest extends BaseTest {
 
 
     @Parameters({"witnessKey", "udid"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBefore(String witnessKey, String udid) throws Exception {
-        new Helper().importFirstWallet(Helper.importType.normal,witnessKey,DRIVER);
-    }
+    public void setUpBefore(String privateKey,String bundleId) throws Exception {
 
-    @Parameters({"bundleId"})
-    @AfterMethod(groups = {"P0"},alwaysRun = true)
-    public void afterMethod(String bundleId) throws Exception {
-        try {
+        try{
             TimeUnit.SECONDS.sleep(2);
             Map<String, Object> params = new HashMap<>();
             params.put("bundleId", bundleId);
             DRIVER.executeScript("mobile: terminateApp", params);
             TimeUnit.SECONDS.sleep(2);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test Case Over ");
-        } catch (Exception e) {
-
+            DRIVER.executeScript("mobile: activateApp", params);
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
         }
+
+        log("BaseTest Import ---start");
+        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
+        log("BaseTest Import ---Success");
     }
 
-    @Parameters({"bundleId"})
-    @BeforeMethod(groups = {"P0"},alwaysRun = true)
-    public void beforeMethod(String bundleId,Method method) throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("bundleId", bundleId);
-        int tries = 0;
-        Boolean driver_is_start = false;
-        while (!driver_is_start && tries < 5) {
-            tries++;
-            try {
-                DRIVER.executeScript("mobile: activateApp", params);
-                driver_is_start = true;
-            } catch (Exception e) {
-                System.out.println(e);
-                DRIVER.executeScript("mobile: terminateApp", params);
-                TimeUnit.SECONDS.sleep(3);
-            }
-        }
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: " + method.getName());
-    }
 
-    @Parameters({"bundleId"})
-    @AfterClass (groups = {"P0"},alwaysRun = true)
-    public void afterClass(String bundleId) throws Exception {
-        try {
-            DRIVER.quit();
-        } catch (Exception e) {
-        }
-    }
 
 
     public CommitteePage enterCommitteePage() throws Exception {
