@@ -104,6 +104,7 @@ public class WatchWalletTest extends Base {
         TransferPage transfer = trxPage.enterTransferInPage();
         transfer.count_text.sendKeys("10");
         transfer.transferIn_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         transfer.bt_send.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
@@ -118,6 +119,7 @@ public class WatchWalletTest extends Base {
         sendTrxPage.next_btn.click();
         sendTrxPage.tranferCount_text.sendKeys("1");
         sendTrxPage.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         sendTrxPage.confirm_btn.click();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -176,7 +178,7 @@ public class WatchWalletTest extends Base {
         frozen.ll_container.click();
         TimeUnit.SECONDS.sleep(2);
         frozen.btn_next.click();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(4);
         Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
         frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
@@ -198,6 +200,7 @@ public class WatchWalletTest extends Base {
             if (ward > 0){
                 vote.enterGetReword();
                 if (isElementShotId("tv_confirm_title")){
+                    TimeUnit.SECONDS.sleep(2);
                     Assert.assertEquals(vote.tv_confirm_title.getText(),"确认交易");
                     Assert.assertEquals(vote.tv_info_title.getText(),"领取收益");
                     Assert.assertTrue(vote.tv_right.getText().contains("当前账户"));
