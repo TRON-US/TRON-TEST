@@ -59,6 +59,7 @@ public class CustomNodeSettingTest extends Base {
         SettingPage sett = asset.enterMinePage().enterSettingPage();
         Assert.assertTrue(sett.network_setting_title.getText().contains("网络设置"));
         Assert.assertTrue(sett.tv_network_name.getText().contains("TRON 主网"));
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(sett.tv_node_speed.getText().contains("ms"));
     }
 
