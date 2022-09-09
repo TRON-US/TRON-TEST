@@ -24,12 +24,16 @@ public class CreateWalletTest extends BaseTest {
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("bundleId", bundleId);
-        DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(2);
-        DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(2);
+        try{
+            TimeUnit.SECONDS.sleep(2);
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", bundleId);
+            DRIVER.executeScript("mobile: terminateApp", params);
+            TimeUnit.SECONDS.sleep(2);
+            DRIVER.executeScript("mobile: activateApp", params);
+            TimeUnit.SECONDS.sleep(2);
+        }catch (Exception e){
+        }
         log("over write wallet BeforeClass");
     }
 

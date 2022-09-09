@@ -192,7 +192,7 @@ public class CommitteePage extends AbstractPage {
     public boolean getdisagreedStateofproposal() throws Exception {
         waiteTime();
         findFirstproposalWl().click();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(6);
         if(isElementExist("赞成")){
             return agreeBtn.isDisplayed();
         }else {
@@ -201,10 +201,10 @@ public class CommitteePage extends AbstractPage {
     }
 
     public void enterProposalDetail() throws Exception {
-        waiteTime();
+        TimeUnit.SECONDS.sleep(1);
         WebElement wl = findFirstproposalWl();
         wl.click();
-        TimeUnit.SECONDS.sleep(8);
+        TimeUnit.SECONDS.sleep(7);
     }
 
 
@@ -217,6 +217,7 @@ public class CommitteePage extends AbstractPage {
         IOSTouchAction action = new IOSTouchAction(driver);
         action.tap(PointOption.point(topX,topY)).perform();
         log("MyProposal have clicked");
+        TimeUnit.SECONDS.sleep(4);
 
     }
 
