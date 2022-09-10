@@ -113,18 +113,18 @@ public class DappSendTrx extends Base {
 //
 //    }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test003_transferTherePart() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        SendTrxPage transfer = page.trxSendTrxPage();
-        Assert.assertTrue(isElementShotId("tv_address"));
-        transfer.findElementByText("地址本").click();
-        Assert.assertTrue(transfer.net_error.getText().contains("暂无其他地址"));
-        transfer.findElementByText("我的账户").click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(transfer.net_error.getText().contains("暂无其他账户"));
-    }
+//    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+//    public void test003_transferTherePart() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        Assert.assertTrue(isElementShotId("tv_address"));
+//        transfer.findElementByText("地址本").click();
+//        Assert.assertTrue(transfer.net_error.getText().contains("暂无其他地址"));
+//        transfer.findElementByText("我的账户").click();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(transfer.net_error.getText().contains("暂无其他账户"));
+//    }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test004_availableAmountInTransfer() throws Exception {
