@@ -92,26 +92,26 @@ public class DappSendTrx extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test002_sendTrxDetailSuccess() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
-        System.out.println("beforeSendBalance-----"+ beforeValue);
-        SendTrxPage transfer = page.trxSendTrxPage();
-        Double sendAmount = getAnAmount();
-        System.out.println("sendTrxAmount-----"+ sendAmount);
-        transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(2);
-        while (transfer.btn_transaction_info.isEnabled()){
-            TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
-            Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRX 转账"));
-            Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
-            Assert.assertTrue(detailAmount == sendAmount);
-            Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
-        }
-
-    }
+//    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+//    public void test002_sendTrxDetailSuccess() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        Double beforeValue = Double.valueOf(prettyString(asset.tv_count.getText()));
+//        System.out.println("beforeSendBalance-----"+ beforeValue);
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        Double sendAmount = getAnAmount();
+//        System.out.println("sendTrxAmount-----"+ sendAmount);
+//        transfer.sendTrx(Double.toString(sendAmount));
+//        TimeUnit.SECONDS.sleep(2);
+//        while (transfer.btn_transaction_info.isEnabled()){
+//            TransactionDetailInfomaitonPage detail = transfer.enterTransationDetailPage();
+//            Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRX 转账"));
+//            Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
+//            Assert.assertTrue(detailAmount == sendAmount);
+//            Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+//        }
+//
+//    }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test003_transferTherePart() throws Exception {
