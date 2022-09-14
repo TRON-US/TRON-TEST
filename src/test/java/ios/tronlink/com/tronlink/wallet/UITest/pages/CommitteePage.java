@@ -192,7 +192,7 @@ public class CommitteePage extends AbstractPage {
     public boolean getdisagreedStateofproposal() throws Exception {
         waiteTime();
         findFirstproposalWl().click();
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(10);
         if(isElementExist("赞成")){
             return agreeBtn.isDisplayed();
         }else {
@@ -268,7 +268,7 @@ public class CommitteePage extends AbstractPage {
                 backBtn.click();
                 TimeUnit.SECONDS.sleep(1);
                 backBtn.click();
-            } else {
+            } else if(isElementExist("提议详情")){
                 disagreeBtn.click();
                 TimeUnit.SECONDS.sleep(15);
                 driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
