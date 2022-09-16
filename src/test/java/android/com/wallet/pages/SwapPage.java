@@ -19,46 +19,46 @@ public class SwapPage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlink.global:id/ll_common_left")
     public WebElement back_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_token_name_from")
+    @FindBy(id = "com.tronlink.global:id/tv_token_name_from")
     public WebElement tv_token_name_from;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_token_name_to")
+    @FindBy(id = "com.tronlink.global:id/tv_token_name_to")
     public WebElement tv_token_name_to;
     
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_token_from")
+    @FindBy(id = "com.tronlink.global:id/tv_token_from")
     public WebElement tv_token_from;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_token_to")
+    @FindBy(id = "com.tronlink.global:id/tv_token_to")
     public WebElement tv_token_to;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_amount_from")
+    @FindBy(id = "com.tronlink.global:id/et_amount_from")
     public WebElement et_amount_from;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_amount_to")
+    @FindBy(id = "com.tronlink.global:id/et_amount_to")
     public WebElement et_amount_to;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_rate_number")
+    @FindBy(id = "com.tronlink.global:id/tv_rate_number")
     public WebElement tv_rate_number;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_swap_instant")
+    @FindBy(id = "com.tronlink.global:id/btn_swap_instant")
     public WebElement btn_swap_instant;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/text_token_to")
+    @FindBy(id = "com.tronlink.global:id/text_token_to")
     public WebElement text_token_to;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_rate_right")
+    @FindBy(id = "com.tronlink.global:id/tv_rate_right")
     public WebElement tv_rate_right ;
     
-    @FindBy(id = "com.tronlinkpro.wallet:id/token_consume_name")
+    @FindBy(id = "com.tronlink.global:id/token_consume_name")
     public WebElement token_consume_name;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_date")
+    @FindBy(id = "com.tronlink.global:id/tv_date")
     public WebElement tv_date;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/token_consume_count")
+    @FindBy(id = "com.tronlink.global:id/token_consume_count")
     public WebElement token_consume_count;
 
     public void  inputFromAmount(String amount){

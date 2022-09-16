@@ -20,18 +20,18 @@ public class UserAgreementPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement UserAgreementTitle;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_accept")
+    @FindBy(id = "com.tronlink.global:id/bt_accept")
     public WebElement accept_btn;
 
 
 
     public AddwalletPage enterAddwalletPage() throws Exception {
-        new Helper().swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept",driver);
+        new Helper().swipUntilElementEnable("com.tronlink.global:id/bt_accept",driver);
         accept_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new AddwalletPage(driver);

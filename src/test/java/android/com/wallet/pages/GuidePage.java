@@ -23,58 +23,58 @@ public class GuidePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_import")
+    @FindBy(id = "com.tronlink.global:id/tv_import")
     public WebElement impAccount;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
+    @FindBy(id = "com.tronlink.global:id/tv_title")
     public WebElement title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_know")
+    @FindBy(id = "com.tronlink.global:id/btn_know")
     public WebElement knowBtn ;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
+    @FindBy(id = "com.tronlink.global:id/btn_confirm")
     public WebElement modeconfirmBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_note_notice")
+    @FindBy(id = "com.tronlink.global:id/tv_note_notice")
     public WebElement noticeTitle;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/indicator_1")
+    @FindBy(id = "com.tronlink.global:id/indicator_1")
     public WebElement indicator1;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/indicator_2")
+    @FindBy(id = "com.tronlink.global:id/indicator_2")
     public WebElement indicator2;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/indicator_3")
+    @FindBy(id = "com.tronlink.global:id/indicator_3")
     public WebElement indicator3;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_observation")
+    @FindBy(id = "com.tronlink.global:id/tv_observation")
     public WebElement observationBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ledger")
+    @FindBy(id = "com.tronlink.global:id/tv_ledger")
     public WebElement ledgerBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_switch")
+    @FindBy(id = "com.tronlink.global:id/rl_switch")
     public WebElement switchBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_inner_title")
+    @FindBy(id = "com.tronlink.global:id/tv_inner_title")
     public WebElement subtitle;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_import")
+    @FindBy(id = "com.tronlink.global:id/tv_import")
     public WebElement importBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_import")
+    @FindBy(id = "com.tronlink.global:id/rl_import")
     public WebElement rl_import;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_create")
+    @FindBy(id = "com.tronlink.global:id/tv_create")
     public WebElement creatBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_right")
+    @FindBy(id = "com.tronlink.global:id/iv_common_right")
     public WebElement safariBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_accept")
+    @FindBy(id = "com.tronlink.global:id/bt_accept")
     public WebElement accBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement backBtn;
 
     public UserAgreementPage enterUserAgreementPage() {
@@ -104,7 +104,7 @@ public class GuidePage extends AbstractPage {
 
     public ImportRoutePage enterImportPage() throws Exception{
         importBtn.click();
-        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+        if (isElementExist("com.tronlink.global:id/bt_accept")){
             swipUntilElementEnable(accBtn);
             accBtn.click();
         }
@@ -118,7 +118,7 @@ public class GuidePage extends AbstractPage {
 
     public ImportRoutePage enterCreatePage() throws Exception{
         creatBtn.click();
-        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+        if (isElementExist("com.tronlink.global:id/bt_accept")){
             swipUntilElementEnable(accBtn);
             accBtn.click();
         }
@@ -127,7 +127,7 @@ public class GuidePage extends AbstractPage {
 
     public ImportRoutePage enterObservationPage() throws Exception{
         observationBtn.click();
-        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+        if (isElementExist("com.tronlink.global:id/bt_accept")){
             swipUntilElementEnable(accBtn);
             accBtn.click();
         }

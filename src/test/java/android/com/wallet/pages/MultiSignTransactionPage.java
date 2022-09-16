@@ -20,89 +20,89 @@ public class MultiSignTransactionPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_sign")
+    @FindBy(id = "com.tronlink.global:id/bt_sign")
     public WebElement  sign_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlink.global:id/et_new_password")
     public WebElement password_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlink.global:id/bt_send")
     public WebElement send_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlink.global:id/ll_common_left")
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_note")
+    @FindBy(id = "com.tronlink.global:id/tv_note")
     public WebElement tv_note;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_note_more")
+    @FindBy(id = "com.tronlink.global:id/tv_note_more")
     public WebElement tv_note_more;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
+    @FindBy(id = "com.tronlink.global:id/tv_cancle")
     public WebElement tv_cancle;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sign_success")
+    @FindBy(id = "com.tronlink.global:id/tv_sign_success")
     public WebElement signSuccess_tab;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_type")
+    @FindBy(id = "com.tronlink.global:id/tv_trans_type")
     public WebElement trans_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_content")
+    @FindBy(id = "com.tronlink.global:id/tv_trans_content")
     public WebElement transContent_text;
 
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/transaction_from")
+    @FindBy(id = "com.tronlink.global:id/transaction_from")
     public WebElement transactionFrom_text;
 
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sign_success")
+    @FindBy(id = "com.tronlink.global:id/tv_sign_success")
     public WebElement transactionSuc_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sign_already")
+    @FindBy(id = "com.tronlink.global:id/tv_sign_already")
     public WebElement transactionAlreadySign_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/transaction_to")
+    @FindBy(id = "com.tronlink.global:id/transaction_to")
     public WebElement transactionTo_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    @FindBy(id = "com.tronlink.global:id/rl_bottom_next")
     public WebElement rl_bottom_next;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trans_content")
+    @FindBy(id = "com.tronlink.global:id/tv_trans_content")
     public WebElement transConten_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_invalid_time")
+    @FindBy(id = "com.tronlink.global:id/tv_invalid_time")
     public WebElement tv_invalid_time;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/transaction_from")
+    @FindBy(id = "com.tronlink.global:id/transaction_from")
     public WebElement transFrom_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/transaction_to")
+    @FindBy(id = "com.tronlink.global:id/transaction_to")
     public WebElement transTo_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cv_countdownView")
+    @FindBy(id = "com.tronlink.global:id/cv_countdownView")
     public WebElement invaTime_text;
 
 

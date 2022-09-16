@@ -19,31 +19,31 @@ public class NFTPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    @FindBy(id = "com.tronlink.global:id/tv_name")
     public WebElement tv_name;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_contract_address")
+    @FindBy(id = "com.tronlink.global:id/tv_contract_address")
     public WebElement tv_contract_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
+    @FindBy(id = "com.tronlink.global:id/tv_common_right2")
     public WebElement tv_common_right2;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_contract_address_title")
+    @FindBy(id = "com.tronlink.global:id/tv_contract_address_title")
     public WebElement tv_contract_address_title ;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_transfer")
+    @FindBy(id = "com.tronlink.global:id/iv_transfer")
     public WebElement iv_transfer;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_inner")
+    @FindBy(id = "com.tronlink.global:id/rl_inner")
     public List<WebElement> inners ;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/address_title")
+    @FindBy(id = "com.tronlink.global:id/address_title")
     public WebElement address_title ;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/time")
+    @FindBy(id = "com.tronlink.global:id/time")
     public WebElement time;
 
-    @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_receive\"]/android.widget.ImageView[1]")
+    @FindBy(xpath = "//*[@resource-id=\"com.tronlink.global:id/ll_receive\"]/android.widget.ImageView[1]")
     public WebElement receive;
 
 

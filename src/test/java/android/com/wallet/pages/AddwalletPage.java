@@ -25,21 +25,21 @@ public class AddwalletPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='Private key']")
     public WebElement privateKeyE_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cd_pk")
+    @FindBy(id = "com.tronlink.global:id/cd_pk")
     public WebElement privateKey_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cd_kt")
+    @FindBy(id = "com.tronlink.global:id/cd_kt")
     public WebElement keystore_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlink.global:id/ll_common_left")
     public WebElement back_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_option_desc")
+    @FindBy(id = "com.tronlink.global:id/create_option_desc")
     public WebElement normal_account_type;
 
-    //com.tronlinkpro.wallet:id/create_option_desc_shield
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_option_desc_shield")
+    //com.tronlink.global:id/create_option_desc_shield
+    @FindBy(id = "com.tronlink.global:id/create_option_desc_shield")
     public WebElement shield_account_type;
 
 

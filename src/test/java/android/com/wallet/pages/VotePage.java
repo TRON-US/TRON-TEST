@@ -22,52 +22,52 @@ public class VotePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
+    @FindBy(id = "com.tronlink.global:id/tv_main_title")
     public WebElement tv_main_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_to_stake")
+    @FindBy(id = "com.tronlink.global:id/tv_to_stake")
     public WebElement tv_to_stake;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/available_vote")
+    @FindBy(id = "com.tronlink.global:id/available_vote")
     public WebElement available_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/available_vote_right_title")
+    @FindBy(id = "com.tronlink.global:id/available_vote_right_title")
     public WebElement available_vote_right_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
+    @FindBy(id = "com.tronlink.global:id/tv_multi_sign")
     public WebElement tv_multi_sign;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_to_promote")
+    @FindBy(id = "com.tronlink.global:id/tv_to_promote")
     public WebElement tv_to_promote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_tips")
+    @FindBy(id = "com.tronlink.global:id/tv_vote_tips")
     public WebElement tv_vote_tips;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tips")
+    @FindBy(id = "com.tronlink.global:id/iv_tips")
     public WebElement iv_tips;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_available_votes")
+    @FindBy(id = "com.tronlink.global:id/tv_available_votes")
     public WebElement tv_available_votes;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_total_vote_rights")
+    @FindBy(id = "com.tronlink.global:id/tv_total_vote_rights")
     public WebElement tv_total_vote_rights;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_already_vote")
+    @FindBy(id = "com.tronlink.global:id/tv_already_vote")
     public WebElement tv_already_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    @FindBy(id = "com.tronlink.global:id/iv_close")
     public WebElement close;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/caim_reward")
+    @FindBy(id = "com.tronlink.global:id/caim_reward")
     public WebElement caim_reward;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/get_votes")
+    @FindBy(id = "com.tronlink.global:id/get_votes")
     public WebElement get_votes;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_profit")
+    @FindBy(id = "com.tronlink.global:id/tv_profit")
     public WebElement tv_profit;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_get_profit")
+    @FindBy(id = "com.tronlink.global:id/btn_get_profit")
     public WebElement btn_get_profit;
 
     public void enterGetReword() throws Exception{
@@ -83,136 +83,136 @@ public class VotePage extends AbstractPage {
     }
 //取消投票成功 取消投票显示 tvresult 文案
     //投票成功
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_right")
+    @FindBy(id = "com.tronlink.global:id/tv_right")
     public WebElement tv_right;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_batch_vote")
+    @FindBy(id = "com.tronlink.global:id/tv_batch_vote")
     public WebElement tv_batch_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_sort")
+    @FindBy(id = "com.tronlink.global:id/iv_sort")
     public WebElement iv_sort;
 
     public void orderPopView(){
         iv_sort.click();
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rb_my_vote")
+    @FindBy(id = "com.tronlink.global:id/rb_my_vote")
     public WebElement rb_my_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rb_apr")
+    @FindBy(id = "com.tronlink.global:id/rb_apr")
     public WebElement rb_apr;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rb_voted_count")
+    @FindBy(id = "com.tronlink.global:id/rb_voted_count")
     public WebElement rb_voted_count;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_my_voted")
+    @FindBy(id = "com.tronlink.global:id/tv_my_voted")
     public WebElement tv_my_voted;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletaddress")
+    @FindBy(id = "com.tronlink.global:id/tv_walletaddress")
     public WebElement tv_walletaddress;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_canuse_trx")
+    @FindBy(id = "com.tronlink.global:id/tv_canuse_trx")
     public WebElement tv_canuse_trx;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_canuse_votes")
+    @FindBy(id = "com.tronlink.global:id/tv_canuse_votes")
     public WebElement tv_canuse_votes;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
+    @FindBy(id = "com.tronlink.global:id/tv_common_right2")
     public WebElement tv_common_right2;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_person_name")
+    @FindBy(id = "com.tronlink.global:id/tv_person_name")
     public WebElement firstSR;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/no_more")
+    @FindBy(id = "com.tronlink.global:id/no_more")
     public WebElement no_more;
 
     public void enterFirstSR(){
         firstSR.click();
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_voting_onsiderations")
+    @FindBy(id = "com.tronlink.global:id/tv_voting_onsiderations")
     public WebElement tv_voting_onsiderations;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "com.tronlink.global:id/tv_address")
     public WebElement tv_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_sr_number")
+    @FindBy(id = "com.tronlink.global:id/tv_sr_number")
     public WebElement tv_sr_number;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/vote_count")
+    @FindBy(id = "com.tronlink.global:id/vote_count")
     public WebElement vote_count;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_voted_count")
+    @FindBy(id = "com.tronlink.global:id/tv_voted_count")
     public WebElement tv_voted_count;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_total_vote")
+    @FindBy(id = "com.tronlink.global:id/tv_total_vote")
     public WebElement tv_total_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_voted_number")
+    @FindBy(id = "com.tronlink.global:id/tv_voted_number")
     public WebElement tv_voted_number;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/reset")
+    @FindBy(id = "com.tronlink.global:id/reset")
     public WebElement reset_btn;
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_bottom_next")
+    @FindBy(id = "com.tronlink.global:id/rl_bottom_next")
     public WebElement rl_bottom_next;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_vote_amount")
+    @FindBy(id = "com.tronlink.global:id/et_vote_amount")
     public WebElement et_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_vote")
+    @FindBy(id = "com.tronlink.global:id/rl_vote")
     public WebElement vote_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote")
+    @FindBy(id = "com.tronlink.global:id/btn_vote")
     public WebElement vote_page_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/surplus_available")
+    @FindBy(id = "com.tronlink.global:id/surplus_available")
     public WebElement surplusAvailableVote_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_vote_select")
+    @FindBy(id = "com.tronlink.global:id/ll_vote_select")
     public WebElement vote_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_all")
+    @FindBy(id = "com.tronlink.global:id/tv_all")
     public WebElement all_witness_item;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_me")
+    @FindBy(id = "com.tronlink.global:id/tv_me")
     public WebElement my_voted_item;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
+    @FindBy(id = "com.tronlink.global:id/et_input")
     public List<WebElement> all_witness_edit_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/address")
+    @FindBy(id = "com.tronlink.global:id/address")
     public List<WebElement> voted_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_role")
+    @FindBy(id = "com.tronlink.global:id/tv_vote_role")
     public WebElement myVoteAndAllWitnessList;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_person_name")
+    @FindBy(id = "com.tronlink.global:id/tv_person_name")
     public List<WebElement> myVotesNetInfoList;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
+    @FindBy(id = "com.tronlink.global:id/et_search")
     public WebElement search_edit_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
+    @FindBy(id = "com.tronlink.global:id/et_search")
     public WebElement et_search;
 
     public void searchString(String str){
         et_search.sendKeys(str);
     }
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
+    @FindBy(id = "com.tronlink.global:id/btn_asset_confirm")
     public WebElement btgo_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/caim_reward")
+    @FindBy(id = "com.tronlink.global:id/caim_reward")
     public WebElement reward_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
+    @FindBy(id = "com.tronlink.global:id/btn_confirm")
     public WebElement confirm_btn;
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
+    @FindBy(id = "com.tronlink.global:id/btn_confirm")
     public WebElement btn_confirm;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/root")
+    @FindBy(id = "com.tronlink.global:id/root")
     public List<WebElement> witness_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_input")
+    @FindBy(id = "com.tronlink.global:id/et_input")
     public WebElement vote_number_input;
 
     public void enterVoteNumber(String number){
@@ -220,10 +220,10 @@ public class VotePage extends AbstractPage {
         vote_number_input.sendKeys(number);
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/vote_count")
+    @FindBy(id = "com.tronlink.global:id/vote_count")
     public WebElement witness_total_vote_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_batch_vote")
+    @FindBy(id = "com.tronlink.global:id/btn_batch_vote")
     public WebElement btn_batch_vote;
     public void signActiontoDone(){
         btn_batch_vote.click();
@@ -232,7 +232,7 @@ public class VotePage extends AbstractPage {
         bt_send.click();
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_my_vote")
+    @FindBy(id = "com.tronlink.global:id/tv_my_vote")
     public WebElement tv_my_vote;
 
     @FindBy(xpath = "//*[@text='可用投票数不足']")
@@ -247,34 +247,34 @@ public class VotePage extends AbstractPage {
     @FindBy(xpath = "//*[@text='0 vote']")
     public WebElement english_availableVote_toast_null;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlink.global:id/et_new_password")
     public WebElement password_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/total_vote")
+    @FindBy(id = "com.tronlink.global:id/total_vote")
     public WebElement total_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_clear")
+    @FindBy(id = "com.tronlink.global:id/rl_clear")
     public WebElement rl_clear;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_address")
+    @FindBy(id = "com.tronlink.global:id/et_address")
     public WebElement et_address;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement tv_common_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote") //投票
+    @FindBy(id = "com.tronlink.global:id/btn_vote") //投票
     public WebElement btn_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update") //修改投票
+    @FindBy(id = "com.tronlink.global:id/btn_voted_update") //修改投票
     public WebElement btn_voted_update;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_cancel") //取消投票
+    @FindBy(id = "com.tronlink.global:id/btn_voted_cancel") //取消投票
     public WebElement btn_voted_cancel;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_next")
+    @FindBy(id = "com.tronlink.global:id/bt_next")
     public WebElement bt_next;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_stake_amount")
+    @FindBy(id = "com.tronlink.global:id/tv_stake_amount")
     public WebElement tv_stake_amount;
 
     public void enterFastVote(){
@@ -313,23 +313,23 @@ public class VotePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_sr")
+    @FindBy(id = "com.tronlink.global:id/tv_vote_sr")
     public WebElement tv_vote_sr;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancel_all_vote")
+    @FindBy(id = "com.tronlink.global:id/tv_cancel_all_vote")
     public WebElement tv_cancel_all_vote;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_available_vote_count")
+    @FindBy(id = "com.tronlink.global:id/tv_available_vote_count")
     public WebElement tv_available_vote_count;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_total_vote_count")
+    @FindBy(id = "com.tronlink.global:id/tv_total_vote_count")
     public WebElement tv_total_vote_count;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_more_vote_right")
+    @FindBy(id = "com.tronlink.global:id/tv_more_vote_right")
     public WebElement tv_more_vote_right;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_search_view")
+    @FindBy(id = "com.tronlink.global:id/ll_search_view")
     public WebElement ll_search_view;
 
 
@@ -339,17 +339,17 @@ public class VotePage extends AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_witness_name")
+    @FindBy(id = "com.tronlink.global:id/tv_witness_name")
     public WebElement tv_witness_name;
 
     public void enterSRPage(){
         tv_witness_name.click();
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ranking")
+    @FindBy(id = "com.tronlink.global:id/tv_ranking")
     public WebElement tv_ranking;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    @FindBy(id = "com.tronlink.global:id/tv_name")
     public WebElement tv_name;
 
     public void enterBatchPage(){
@@ -369,10 +369,10 @@ public class VotePage extends AbstractPage {
         caim_reward.click();
     }
 
-@FindBy(id = "com.tronlinkpro.wallet:id/tv_info_title")
+@FindBy(id = "com.tronlink.global:id/tv_info_title")
 public WebElement tv_info_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_search")
+    @FindBy(id = "com.tronlink.global:id/iv_search")
     public WebElement iv_search;
 
     public void openSearch(){

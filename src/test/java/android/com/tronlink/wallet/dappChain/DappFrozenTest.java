@@ -39,7 +39,7 @@ public class DappFrozenTest extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("com.tronlink.global");
         }catch (Exception e){}
     }
 

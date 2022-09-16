@@ -20,95 +20,95 @@ public class SettingPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_language")
+    @FindBy(id = "com.tronlink.global:id/tv_language")
     public WebElement languane_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/switch_button")
+    @FindBy(id = "com.tronlink.global:id/switch_button")
     public WebElement switch_button;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/selected")
+    @FindBy(id = "com.tronlink.global:id/selected")
     public List<WebElement> selected_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    @FindBy(id = "com.tronlink.global:id/title")
     public List<WebElement> language_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    @FindBy(id = "com.tronlink.global:id/title")
     public List<WebElement> currency_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/network_setting_title")
+    @FindBy(id = "com.tronlink.global:id/network_setting_title")
     public WebElement network_setting_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_network_name")
+    @FindBy(id = "com.tronlink.global:id/tv_network_name")
     public WebElement tv_network_name;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_speed")
+    @FindBy(id = "com.tronlink.global:id/tv_node_speed")
     public WebElement tv_node_speed;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_node_root")
+    @FindBy(id = "com.tronlink.global:id/ll_node_root")
     public WebElement ll_node_root;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/server_name")
+    @FindBy(id = "com.tronlink.global:id/server_name")
     public WebElement server_name_speed;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/testnode")
+    @FindBy(id = "com.tronlink.global:id/testnode")
     public WebElement developerOptions_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_name")
+    @FindBy(id = "com.tronlink.global:id/tv_node_name")
     public WebElement tv_node_name;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_testnode")
+    @FindBy(id = "com.tronlink.global:id/tv_testnode")
     public WebElement testnode_text;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlink.global:id/tv_ok")
     public WebElement connect_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/server")
+    @FindBy(id = "com.tronlink.global:id/server")
     public WebElement server_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/node")
+    @FindBy(id = "com.tronlink.global:id/node")
     public WebElement node_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/switch_version")
+    @FindBy(id = "com.tronlink.global:id/switch_version")
     public WebElement version_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_name")
+    @FindBy(id = "com.tronlink.global:id/tv_node_name")
     public WebElement node_name;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/money")
+    @FindBy(id = "com.tronlink.global:id/money")
     public WebElement currency_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
+    @FindBy(id = "com.tronlink.global:id/node_ip")
     public List<WebElement> node_ips;
 
-    //com.tronlinkpro.wallet:id/select_online
-    @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
+    //com.tronlink.global:id/select_online
+    @FindBy(id = "com.tronlink.global:id/select_online")
     public WebElement online_version_icon;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
+    @FindBy(id = "com.tronlink.global:id/btn_add_node")
     public WebElement btn_add_node;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_shasta")
+    @FindBy(id = "com.tronlink.global:id/li_node_name_shasta")
     public WebElement li_node_name_shasta;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name")
+    @FindBy(id = "com.tronlink.global:id/li_node_name")
     public WebElement li_node_name;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/li_node_name_dappchain")
+    @FindBy(id = "com.tronlink.global:id/li_node_name_dappchain")
     public WebElement li_node_name_dappchain;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
+    @FindBy(id = "com.tronlink.global:id/btn_add_node")
     public WebElement addNote_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_node_edit")
+    @FindBy(id = "com.tronlink.global:id/iv_node_edit")
     public WebElement iv_node_edit;
 
 //    public void switchLanguage(String language){

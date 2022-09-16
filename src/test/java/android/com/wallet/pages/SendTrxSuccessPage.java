@@ -16,11 +16,11 @@ public class SendTrxSuccessPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "com.tronlink.global:id/tv_count")
     public WebElement trxCount;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
     public AssetPage enterSendTrxPage() throws Exception {
@@ -29,13 +29,13 @@ public class SendTrxSuccessPage extends AbstractPage {
         return new AssetPage(driver);
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_result")
+    @FindBy(id = "com.tronlink.global:id/tv_result")
     public WebElement tv_result ;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_done")
+    @FindBy(id = "com.tronlink.global:id/btn_done")
     public WebElement btn_done;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_transaction_info")
+    @FindBy(id = "com.tronlink.global:id/btn_transaction_info")
     public WebElement btn_transaction_info;
 
 

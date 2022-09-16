@@ -18,24 +18,24 @@ public class SearchAssertPage  extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
+    @FindBy(id = "com.tronlink.global:id/et_search")
     public WebElement addAssert_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_switch")
+    @FindBy(id = "com.tronlink.global:id/iv_switch")
     public WebElement turnAsset_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_s;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement search_btn;
 
 

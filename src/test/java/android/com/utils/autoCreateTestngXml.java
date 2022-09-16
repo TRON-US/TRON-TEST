@@ -204,7 +204,7 @@ public class autoCreateTestngXml {
 
                 sb.append("    <test name= \"" + udid + "\">\n");
                 adb = "adb -s " + udid;
-                AppiumTestCase.cmdReturn(adb + " uninstall com.tronlinkpro.wallet");
+                AppiumTestCase.cmdReturn(adb + " uninstall com.tronlink.global");
                 System.out.print("Uninstall succesfully\n");
                 //install app
                 AppiumTestCase.cmdReturn(adb + " install TronLink.apk");

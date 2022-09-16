@@ -40,7 +40,7 @@ public class SendNFT extends Base {
         try {
             TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("com.tronlink.global");
         } catch (Exception e){
 
         }
@@ -83,7 +83,7 @@ public class SendNFT extends Base {
         NFTPage page = asset.enterNFTPage();
         ReceiptPage receiptPage = page.enterReceive();
         Assert.assertEquals(receiptPage.tv_address.getText(), address);
-        Assert.assertTrue(receiptPage.isElementExist("com.tronlinkpro.wallet:id/qr"));
+        Assert.assertTrue(receiptPage.isElementExist("com.tronlink.global:id/qr"));
         Assert.assertTrue(receiptPage.pagetitle.getText().contains("扫描二维码向我付款"));
         Assert.assertTrue(receiptPage.wallettitle.getText().contains("Auto-test"));
         receiptPage.copy_btn.click();

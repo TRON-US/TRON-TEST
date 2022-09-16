@@ -15,7 +15,7 @@ public class AnnouncementPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement announcementPage_title;
 
 

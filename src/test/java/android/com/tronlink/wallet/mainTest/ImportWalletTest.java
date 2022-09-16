@@ -34,7 +34,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         try {
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("com.tronlink.global");
         }catch (Exception e){
         }
     }

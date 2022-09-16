@@ -163,19 +163,19 @@ public class Helper {
     public AndroidDriver DRIVER = null;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
+    @FindBy(id = "com.tronlink.global:id/tv_walletname")
     public WebElement walletNameSwitch_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
+    @FindBy(id = "com.tronlink.global:id/iv_wallet_manager")
     public WebElement iv_wallet_manager;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_offline_sign_desc")
+    @FindBy(id = "com.tronlink.global:id/tv_offline_sign_desc")
     public WebElement coldWalletScan_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    @FindBy(id = "com.tronlink.global:id/assets_name")
     public List<WebElement> asset_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/import_title")
+    @FindBy(id = "com.tronlink.global:id/import_title")
     public WebElement import_title;
 
     public void getSign(String testPrivateKey,AndroidDriver driver){
@@ -193,17 +193,17 @@ public class Helper {
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         try {
 
-            findWebElement("com.tronlinkpro.wallet:id/iv_wallet_manager").isDisplayed();
+            findWebElement("com.tronlink.global:id/iv_wallet_manager").isDisplayed();
             gotoImportMoreWaller(key);
-//            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(key);
+//            findWebElement("com.tronlink.global:id/import_content").sendKeys(key);
             driver.setClipboardText(key);
-            findWebElement("com.tronlinkpro.wallet:id/btn_paste").click();
-            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            findWebElement("com.tronlink.global:id/btn_paste").click();
+            findWebElement("com.tronlink.global:id/btn_next_step").click();
             swipScreenLitte(DRIVER);
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            findWebElement("com.tronlink.global:id/import_wallet_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.global:id/import_wallet_password_again").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            findWebElement("com.tronlink.global:id/btn_next_step").click();
             TimeUnit.SECONDS.sleep(8);
 
         }catch (Exception e){
@@ -213,8 +213,8 @@ public class Helper {
     }
 
     public void gotoImportMoreWaller(String key) throws Exception{
-        findWebElement("com.tronlinkpro.wallet:id/iv_wallet_manager").click();
-        findWebElement("com.tronlinkpro.wallet:id/import_title").click();
+        findWebElement("com.tronlink.global:id/iv_wallet_manager").click();
+        findWebElement("com.tronlink.global:id/import_title").click();
     }
 
 
@@ -251,34 +251,34 @@ public class Helper {
         NodeSetPage nodeSetPage = setting.enterNodeSetPage();
         nodeSetPage.enterSettingPageChoiseDappChain();
         DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlinkpro.wallet");
+        DRIVER.activateApp("com.tronlink.global");
     }
 
     public void getCreateWallet(Boolean isNormal,String walletName,String password){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("com.tronlink.global:id/tv_import").click();
+            swipUntilElementEnable("com.tronlink.global:id/bt_accept");
+            findWebElement("com.tronlink.global:id/bt_accept").click();
             if (isNormal) {
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc").click();
+                findWebElement("com.tronlink.global:id/create_option_desc").click();
             } else {
-                findWebElement("com.tronlinkpro.wallet:id/create_option_desc_shield").click();
+                findWebElement("com.tronlink.global:id/create_option_desc_shield").click();
             }
             TimeUnit.SECONDS.sleep(1);
             //点击创建钱包
-            findWebElement("com.tronlinkpro.wallet:id/cd_cw").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_name").sendKeys(walletName);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys(password);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
-            findWebElement("com.tronlinkpro.wallet:id/et_password").sendKeys(password);
-            findWebElement("com.tronlinkpro.wallet:id/creat").click();
+            findWebElement("com.tronlink.global:id/cd_cw").click();
+            findWebElement("com.tronlink.global:id/et_name").sendKeys(walletName);
+            findWebElement("com.tronlink.global:id/creat").click();
+            findWebElement("com.tronlink.global:id/et_password").sendKeys(password);
+            findWebElement("com.tronlink.global:id/creat").click();
+            findWebElement("com.tronlink.global:id/et_password").sendKeys(password);
+            findWebElement("com.tronlink.global:id/creat").click();
             TimeUnit.SECONDS.sleep(8);
-            findWebElement("com.tronlinkpro.wallet:id/iv_common_left").click();
+            findWebElement("com.tronlink.global:id/iv_common_left").click();
             TimeUnit.SECONDS.sleep(3);
             //校验是否导入成功
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/assets_name");
+            findWebElement("com.tronlink.global:id/assets_name");
             System.out.println("完成校验，导入成功");
         } catch (Exception e) {
             System.out.println(e);
@@ -294,26 +294,26 @@ public class Helper {
 
     public void getSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
+            findWebElement("com.tronlink.global:id/tv_import").click();
             try {
                 TimeUnit.SECONDS.sleep(2);
-                swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-                findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+                swipUntilElementEnable("com.tronlink.global:id/bt_accept");
+                findWebElement("com.tronlink.global:id/bt_accept").click();
             }catch (Exception el){
                 System.out.println("not the first time import");
             }
-            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            findWebElement("com.tronlink.global:id/import_content").sendKeys(testPrivateKey);
+            findWebElement("com.tronlink.global:id/btn_next_step").click();
             swipScreenLitte(DRIVER);
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").clear();
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").sendKeys("Auto-test");
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            findWebElement("com.tronlink.global:id/import_wallet_name").clear();
+            findWebElement("com.tronlink.global:id/import_wallet_name").sendKeys("Auto-test");
+            findWebElement("com.tronlink.global:id/import_wallet_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.global:id/import_wallet_password_again").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            findWebElement("com.tronlink.global:id/btn_next_step").click();
             TimeUnit.SECONDS.sleep(8);
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/tv_walletname");
+            findWebElement("com.tronlink.global:id/tv_walletname");
             System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println("\n-----------\n导入失败!!!!!\n" + e + "\n--------------------!!!!!\n");
@@ -324,26 +324,26 @@ public class Helper {
 
     public void  getColdWalletSignOperate(String testPrivateKey){
         try {
-            findWebElement("com.tronlinkpro.wallet:id/rl_switch").click();
-            findWebElement("com.tronlinkpro.wallet:id/btn_confirm").click();
+            findWebElement("com.tronlink.global:id/rl_switch").click();
+            findWebElement("com.tronlink.global:id/btn_confirm").click();
 
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
-            swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-            findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+            findWebElement("com.tronlink.global:id/tv_import").click();
+            swipUntilElementEnable("com.tronlink.global:id/bt_accept");
+            findWebElement("com.tronlink.global:id/bt_accept").click();
 
-            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(testPrivateKey);
-            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            findWebElement("com.tronlink.global:id/import_content").sendKeys(testPrivateKey);
+            findWebElement("com.tronlink.global:id/btn_next_step").click();
             swipScreenLitte(DRIVER);
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").clear();
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_name").sendKeys("Cold-test");
+            findWebElement("com.tronlink.global:id/import_wallet_name").clear();
+            findWebElement("com.tronlink.global:id/import_wallet_name").sendKeys("Cold-test");
 
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password").sendKeys("Test0001");
+            findWebElement("com.tronlink.global:id/import_wallet_password").sendKeys("Test0001");
 
-            findWebElement("com.tronlinkpro.wallet:id/import_wallet_password_again").sendKeys("Test0001");
+            findWebElement("com.tronlink.global:id/import_wallet_password_again").sendKeys("Test0001");
             TimeUnit.SECONDS.sleep(1);
-            findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
+            findWebElement("com.tronlink.global:id/btn_next_step").click();
             TimeUnit.SECONDS.sleep(8);
-            findWebElement("com.tronlinkpro.wallet:id/tv_nonet_desc");
+            findWebElement("com.tronlink.global:id/tv_nonet_desc");
 
         }catch (Exception e){
             System.out.println(e);
@@ -353,16 +353,16 @@ public class Helper {
 
     public void  getWatchWalletSignOperate(String address) throws Exception{
         TimeUnit.SECONDS.sleep(5);
-        findWebElement("com.tronlinkpro.wallet:id/tv_observation").click();
-        swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
-        findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
+        findWebElement("com.tronlink.global:id/tv_observation").click();
+        swipUntilElementEnable("com.tronlink.global:id/bt_accept");
+        findWebElement("com.tronlink.global:id/bt_accept").click();
         TimeUnit.SECONDS.sleep(1);
 
-        findWebElement("com.tronlinkpro.wallet:id/add_watch_address").sendKeys(address);
+        findWebElement("com.tronlink.global:id/add_watch_address").sendKeys(address);
 
-        findWebElement("com.tronlinkpro.wallet:id/add_watch_name").clear();
-        findWebElement("com.tronlinkpro.wallet:id/add_watch_name").sendKeys("WatchWallet");
-        findWebElement("com.tronlinkpro.wallet:id/add_watch_wallet").click();
+        findWebElement("com.tronlink.global:id/add_watch_name").clear();
+        findWebElement("com.tronlink.global:id/add_watch_name").sendKeys("WatchWallet");
+        findWebElement("com.tronlink.global:id/add_watch_wallet").click();
         TimeUnit.SECONDS.sleep(4);
 
     }

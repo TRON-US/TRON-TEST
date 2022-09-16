@@ -32,7 +32,7 @@ public class ImportAccount extends Base {
     public void afterMethod() {
         try {
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("com.tronlink.global");
         }catch (Exception e){}
     }
 
@@ -43,9 +43,9 @@ public class ImportAccount extends Base {
 //        new Helper().getSign("a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026", DRIVER);
 
         TimeUnit.SECONDS.sleep(3);
-//        findWebElement("com.tronlinkpro.wallet:id/tv_walletname").click();
+//        findWebElement("com.tronlink.global:id/tv_walletname").click();
 //        System.out.println("点击完我的钱包名称222222222");
-//        findWebElement("com.tronlinkpro.wallet:id/tv_create").click();
+//        findWebElement("com.tronlink.global:id/tv_create").click();
 //        System.out.println("点击完新建按钮3333333333");
         for (int i = 0;i<testAddressList.length;i++){
             new Helper().AddMoreWalletWithPrivateKey(testAddressList[i], DRIVER);

@@ -28,81 +28,81 @@ public class MyPursePage extends AbstractPage {
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_sign_manager")
+    @FindBy(id = "com.tronlink.global:id/rl_sign_manager")
     public WebElement multSignManager_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "com.tronlink.global:id/tv_address")
     public WebElement address_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_name")
+    @FindBy(id = "com.tronlink.global:id/tv_name")
     public WebElement walletname_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/change_password")
+    @FindBy(id = "com.tronlink.global:id/change_password")
     public WebElement walletPassword_btn;
 
 
 
 
-    //@FindBy(id = "com.tronlinkpro.wallet:id/tv_create")
+    //@FindBy(id = "com.tronlink.global:id/tv_create")
     //public WebElement newCreate_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_create")
+    @FindBy(id = "com.tronlink.global:id/iv_create")
     public WebElement newCreate_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_option_desc")
+    @FindBy(id = "com.tronlink.global:id/create_option_desc")
     public WebElement normal_account_type;
 
-    //com.tronlinkpro.wallet:id/create_option_desc_shield
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_option_desc_shield")
+    //com.tronlink.global:id/create_option_desc_shield
+    @FindBy(id = "com.tronlink.global:id/create_option_desc_shield")
     public WebElement shield_account_type;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_keystore")
+    @FindBy(id = "com.tronlink.global:id/rl_keystore")
     public WebElement backupKeystore_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_privatekey")
+    @FindBy(id = "com.tronlink.global:id/rl_privatekey")
     public WebElement backupPrivateKey_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_password")
+    @FindBy(id = "com.tronlink.global:id/et_password")
     public WebElement password_et;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlink.global:id/tv_ok")
     public WebElement confirm_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_keystore")
+    @FindBy(id = "com.tronlink.global:id/tv_keystore")
     public WebElement keystore_text;
 
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/backup")
+    @FindBy(id = "com.tronlink.global:id/backup")
     public WebElement done_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "com.tronlink.global:id/tv_address")
     public WebElement walletAddress_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
+    @FindBy(id = "com.tronlink.global:id/tv_chain_name")
     public WebElement chainName_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
 
@@ -111,13 +111,13 @@ public class MyPursePage extends AbstractPage {
     @FindBy(xpath = "//*[@text='多重签名交易']")
     public WebElement mulSignTranfer_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/editText")
+    @FindBy(id = "com.tronlink.global:id/editText")
     public WebElement sk_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/editText")
+    @FindBy(id = "com.tronlink.global:id/editText")
     public WebElement shieldAddress_text;
 
-//    @FindBy(id = "com.tronlinkpro.wallet:id/bt_know")
+//    @FindBy(id = "com.tronlink.global:id/bt_know")
 //    public WebElement i_know_btn;
 
     @FindBy(xpath = "//*[@text='显示 Keystore']")

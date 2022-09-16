@@ -34,7 +34,7 @@ public class MineTest extends Base {
         try {
             TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("com.tronlink.global");
         }catch (Exception e){}
     }
 

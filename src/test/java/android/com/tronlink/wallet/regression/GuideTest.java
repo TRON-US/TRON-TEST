@@ -29,7 +29,7 @@ public class GuideTest extends Base {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         try {
-            DRIVER.activateApp("com.tronlinkpro.wallet");
+            DRIVER.activateApp("com.tronlink.global");
         }catch (Exception e){
         }
     }

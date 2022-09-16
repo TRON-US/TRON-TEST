@@ -18,34 +18,34 @@ public class MyProposalsPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_agree")
+    @FindBy(id = "com.tronlink.global:id/iv_agree")
     public WebElement agree_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlink.global:id/et_new_password")
     public WebElement pw_input;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/button_confirm")
+    @FindBy(id = "com.tronlink.global:id/button_confirm")
     public WebElement button_confirm;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlink.global:id/bt_send")
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_proposals_id")
+    @FindBy(id = "com.tronlink.global:id/tv_proposals_id")
     public WebElement proposalId_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_make_proposal")
+    @FindBy(id = "com.tronlink.global:id/tv_make_proposal")
     public WebElement createProposal_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/num_all_votes")
+    @FindBy(id = "com.tronlink.global:id/num_all_votes")
     public WebElement approveNum_text;
 
 

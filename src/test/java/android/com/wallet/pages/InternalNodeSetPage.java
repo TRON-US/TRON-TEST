@@ -18,44 +18,44 @@ public class InternalNodeSetPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement title_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
+    @FindBy(id = "com.tronlink.global:id/btn_add_node")
     public WebElement addNote_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/li_bottom_button")
+    @FindBy(id = "com.tronlink.global:id/li_bottom_button")
     public WebElement addNoteBottom;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
+    @FindBy(id = "com.tronlink.global:id/node_ip")
     public WebElement firstIP;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_node_port")
+    @FindBy(id = "com.tronlink.global:id/tv_node_port")
     public WebElement firstPort;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
+    @FindBy(id = "com.tronlink.global:id/node_ip")
     public List<WebElement> ip_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/node_ip")
+    @FindBy(id = "com.tronlink.global:id/node_ip")
     public WebElement firstIpByID;
 
 
     @FindBy(className = "android.view.ViewGroup")
     public List<WebElement> content_list;
 
-    //com.tronlinkpro.wallet:id/custom_latency
-    @FindBy(id = "com.tronlinkpro.wallet:id/custom_latency")
+    //com.tronlink.global:id/custom_latency
+    @FindBy(id = "com.tronlink.global:id/custom_latency")
     public List<WebElement> custom_latency_list;
 
-    //com.tronlinkpro.wallet:id/tv_full_node
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_full_node")
+    //com.tronlink.global:id/tv_full_node
+    @FindBy(id = "com.tronlink.global:id/tv_full_node")
     public WebElement fulllNode_text;
 
-    //com.tronlinkpro.wallet:id/iv_node_edit
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_node_edit")
+    //com.tronlink.global:id/iv_node_edit
+    @FindBy(id = "com.tronlink.global:id/iv_node_edit")
     public WebElement edit_custom_icon;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_content")
+    @FindBy(id = "com.tronlink.global:id/tv_content")
     public WebElement tipContent;
 
 

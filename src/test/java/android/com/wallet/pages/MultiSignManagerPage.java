@@ -19,18 +19,18 @@ public class MultiSignManagerPage extends AbstractPage {
     }
 
 
-//    @FindBy(id = "com.tronlinkpro.wallet:id/btn_asset_confirm")
+//    @FindBy(id = "com.tronlink.global:id/btn_asset_confirm")
 //    public WebElement addPermission_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_add")
+    @FindBy(id = "com.tronlink.global:id/tv_add")
     public WebElement addPermission_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr")
+    @FindBy(id = "com.tronlink.global:id/iv_qr")
     public WebElement question_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_permission_name")
+    @FindBy(id = "com.tronlink.global:id/tv_permission_name")
     public WebElement permissionName_text;
 
 
@@ -38,13 +38,13 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement question_hits;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_more")
+    @FindBy(id = "com.tronlink.global:id/ll_more")
     public WebElement more_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_edit")
+    @FindBy(id = "com.tronlink.global:id/ll_edit")
     public WebElement edit_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_more")
+    @FindBy(id = "com.tronlink.global:id/iv_more")
     public WebElement iv_more;
 
 //    @FindBy(id = "/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView")
@@ -65,24 +65,24 @@ public class MultiSignManagerPage extends AbstractPage {
     public WebElement modifyConfirmE_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlink.global:id/tv_ok")
     public WebElement delConfirm_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlink.global:id/et_new_password")
     public WebElement password_input;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlink.global:id/bt_send")
     public WebElement send_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement title_text;
 
 
-//    @FindBy(id = "com.tronlinkpro.wallet:id/ll_indicator")
+//    @FindBy(id = "com.tronlink.global:id/ll_indicator")
 //    public WebElement mulSign_span;
 
 

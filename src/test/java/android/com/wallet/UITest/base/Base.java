@@ -132,7 +132,7 @@ public class Base {
 
     public void DeviceRestart(){
         DRIVER.closeApp();
-        DRIVER.activateApp("com.tronlinkpro.wallet");
+        DRIVER.activateApp("com.tronlink.global");
 //        DRIVER.launchApp();
     }
 
@@ -388,7 +388,7 @@ public class Base {
         }
     }
     public String longidWithID(String ids){
-        return "com.tronlinkpro.wallet:id/" + ids ;
+        return "com.tronlink.global:id/" + ids ;
     }
 
     public WebElement findByShotId(String ids){

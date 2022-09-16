@@ -17,35 +17,35 @@ public class ModifyPermissionPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee")
+    @FindBy(id = "com.tronlink.global:id/tv_fee")
     public WebElement fee_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_permission_name")
+    @FindBy(id = "com.tronlink.global:id/et_permission_name")
     public WebElement modifyPermissionName_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_right")
+    @FindBy(id = "com.tronlink.global:id/tv_right")
     public WebElement feetext;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_key_address")
+    @FindBy(id = "com.tronlink.global:id/et_key_address")
     public WebElement modifyAddress_input;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_fee_amount_bw")
+    @FindBy(id = "com.tronlink.global:id/tv_fee_amount_bw")
     public WebElement bandwidth;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm")
+    @FindBy(id = "com.tronlink.global:id/tv_confirm")
     public WebElement confirm_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlink.global:id/et_new_password")
     public WebElement password_input;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlink.global:id/bt_send")
     public WebElement pay_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement title_text;
 
 

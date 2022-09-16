@@ -27,75 +27,75 @@ public abstract class AbstractPage {
         return findElementByText("地址本");
     }
 
-    public  static String apkPackageName = "com.tronlinkpro.wallet";
+    public  static String apkPackageName = "com.tronlink.global";
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_content")
+    @FindBy(id = "com.tronlink.global:id/tv_content")
     public WebElement tv_content;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/title")
+    @FindBy(id = "com.tronlink.global:id/title")
     public WebElement title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/toscan")
+    @FindBy(id = "com.tronlink.global:id/toscan")
     public WebElement toscan;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
+    @FindBy(id = "com.tronlink.global:id/tv_ok")
     public  WebElement confirmBan;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_confirm_title")
+    @FindBy(id = "com.tronlink.global:id/tv_confirm_title")
     public WebElement tv_confirm_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_info_title")
+    @FindBy(id = "com.tronlink.global:id/tv_info_title")
     public WebElement tv_info_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_result")
+    @FindBy(id = "com.tronlink.global:id/tv_result")
     public WebElement tv_result;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancle")
+    @FindBy(id = "com.tronlink.global:id/tv_cancle")
     public WebElement cancelBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    @FindBy(id = "com.tronlink.global:id/ll_common_left")
     public WebElement backBtn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlink.global:id/bt_send")
     public WebElement bt_send;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/send")
+    @FindBy(id = "com.tronlink.global:id/send")
     public WebElement send;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_done")
+    @FindBy(id = "com.tronlink.global:id/btn_done")
     public WebElement btn_done;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
+    @FindBy(id = "com.tronlink.global:id/bt_send")
     public WebElement confirmBtn;
 
-@FindBy(id = "com.tronlinkpro.wallet:id/btn_confirm")
+@FindBy(id = "com.tronlink.global:id/btn_confirm")
 public WebElement btn_confirm;
 
-@FindBy(id = "com.tronlinkpro.wallet:id/bt_go")
+@FindBy(id = "com.tronlink.global:id/bt_go")
 public WebElement bt_go;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement nav_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
+    @FindBy(id = "com.tronlink.global:id/tv_common_right2")
     public WebElement tv_common_right2;
     
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
+    @FindBy(id = "com.tronlink.global:id/tv_main_title")
     public WebElement tv_main_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right")
+    @FindBy(id = "com.tronlink.global:id/tv_common_right")
     public WebElement right_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_hide_assets")
+    @FindBy(id = "com.tronlink.global:id/tv_hide_assets")
     public WebElement hidasset;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_new_password")
+    @FindBy(id = "com.tronlink.global:id/et_new_password")
     public WebElement et_new_password;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/confirm")
+    @FindBy(id = "com.tronlink.global:id/confirm")
     public WebElement confirm;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
+    @FindBy(id = "com.tronlink.global:id/tv_title")
     public WebElement tv_title;
 
     public void inputPopViewPassword(String password){
@@ -256,7 +256,7 @@ public WebElement bt_go;
     }
 
     public void deleteWallet() throws Exception{
-        driver.findElementById("com.tronlinkpro.wallet:id/tv_trx_value").click();
+        driver.findElementById("com.tronlink.global:id/tv_trx_value").click();
         delete();
 
     }
@@ -264,32 +264,32 @@ public WebElement bt_go;
     public void delete() throws Exception{
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
-        driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
-        driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        driver.findElementById("com.tronlink.global:id/delete").click();
+        driver.findElementById("com.tronlink.global:id/et_password").sendKeys("Test0001");
+        driver.findElementById("com.tronlink.global:id/tv_ok").click();
         TimeUnit.SECONDS.sleep(3);
     }
 
     public void deleteWalletNone() throws Exception{
-        driver.findElementById("com.tronlinkpro.wallet:id/tv_trx_value").click();
+        driver.findElementById("com.tronlink.global:id/tv_trx_value").click();
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
-        driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
-        driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        driver.findElementById("com.tronlink.global:id/delete").click();
+        driver.findElementById("com.tronlink.global:id/tv_ok").click();
         TimeUnit.SECONDS.sleep(3);
     }
     public void deleteColdWallet() throws Exception{
-        driver.findElementById("com.tronlinkpro.wallet:id/tv_title").click();
+        driver.findElementById("com.tronlink.global:id/tv_title").click();
         TimeUnit.SECONDS.sleep(1);
         Helper.swipScreen(driver);
-        driver.findElementById("com.tronlinkpro.wallet:id/delete").click();
-        driver.findElementById("com.tronlinkpro.wallet:id/et_password").sendKeys("Test0001");
-        driver.findElementById("com.tronlinkpro.wallet:id/tv_ok").click();
+        driver.findElementById("com.tronlink.global:id/delete").click();
+        driver.findElementById("com.tronlink.global:id/et_password").sendKeys("Test0001");
+        driver.findElementById("com.tronlink.global:id/tv_ok").click();
         TimeUnit.SECONDS.sleep(3);
     }
 
     public String longidWithID(String ids){
-        return "com.tronlinkpro.wallet:id/" + ids ;
+        return "com.tronlink.global:id/" + ids ;
     }
 
     public WebElement findByShotId(String ids){

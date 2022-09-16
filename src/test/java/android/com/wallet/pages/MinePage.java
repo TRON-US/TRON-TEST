@@ -20,34 +20,34 @@ public class MinePage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_bell")
+    @FindBy(id = "com.tronlink.global:id/tv_bell")
     public WebElement tv_bell;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/wallet_manager")
+    @FindBy(id = "com.tronlink.global:id/wallet_manager")
     public WebElement wallet_manager;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/select_online")
+    @FindBy(id = "com.tronlink.global:id/select_online")
     public WebElement online_version_icon;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement userAgreementBackBtn;
 
-    @FindBy(id = " com.tronlinkpro.wallet:id/log")
+    @FindBy(id = " com.tronlink.global:id/log")
     public WebElement logItem;
 
-    @FindBy(id = " com.tronlinkpro.wallet:id/update")
+    @FindBy(id = " com.tronlink.global:id/update")
     public WebElement updateItem;
 
-    @FindBy(id = " com.tronlinkpro.wallet:id/user_agreement")
+    @FindBy(id = " com.tronlink.global:id/user_agreement")
     public WebElement userAgreement;
 
-    @FindBy(id = " com.tronlinkpro.wallet:id/join_community")
+    @FindBy(id = " com.tronlink.global:id/join_community")
     public WebElement joinCommunity;
 
-    @FindBy(id = " com.tronlinkpro.wallet:id/tv_content")
+    @FindBy(id = " com.tronlink.global:id/tv_content")
     public WebElement tv_content;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
+    @FindBy(id = "com.tronlink.global:id/iv_pic")
     public WebElement ad_pic;
 
     @FindBy(xpath = "//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/androidx.recyclerview.widget.RecyclerView[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]/android.widget.TextView[3]")
@@ -69,65 +69,65 @@ public class MinePage extends AbstractPage {
     public WebElement secondTitle;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    @FindBy(id = "com.tronlink.global:id/iv_close")
     public WebElement adClose_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
+    @FindBy(id = "com.tronlink.global:id/tv_title")
     public WebElement userAgreementTitle;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_about")
+    @FindBy(id = "com.tronlink.global:id/tv_about")
     public WebElement aboutUs_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/setting")
+    @FindBy(id = "com.tronlink.global:id/setting")
     public WebElement setting_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_friend_invitation")
+    @FindBy(id = "com.tronlink.global:id/tv_friend_invitation")
     public WebElement friendInvitation_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/address_book")
+    @FindBy(id = "com.tronlink.global:id/address_book")
     public WebElement addressBook_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/announcement")
+    @FindBy(id = "com.tronlink.global:id/announcement")
     public WebElement announcement_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/about")
+    @FindBy(id = "com.tronlink.global:id/about")
     public WebElement abuoutus_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/transfer_history")
+    @FindBy(id = "com.tronlink.global:id/transfer_history")
     public WebElement transferHistory_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/wallet_manager")
+    @FindBy(id = "com.tronlink.global:id/wallet_manager")
     public WebElement myPurse_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/assets")
+    @FindBy(id = "com.tronlink.global:id/assets")
     public WebElement assets_btn;
 
-//    @FindBy(id = "com.tronlinkpro.wallet:id/dapp")
+//    @FindBy(id = "com.tronlink.global:id/dapp")
 //    public WebElement dapp_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/commit_proposal")
+    @FindBy(id = "com.tronlink.global:id/commit_proposal")
     public WebElement committeeProposals_btn;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/advanced_features")
+    @FindBy(id = "com.tronlink.global:id/advanced_features")
     public WebElement advanced_features_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_en")
+    @FindBy(id = "com.tronlink.global:id/tv_en")
     public WebElement enTelegramID;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_twitter")
+    @FindBy(id = "com.tronlink.global:id/tv_twitter")
     public WebElement tv_twitter;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_wechat")
+    @FindBy(id = "com.tronlink.global:id/tv_wechat")
     public WebElement tv_wechat;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_version")
+    @FindBy(id = "com.tronlink.global:id/tv_version")
     public WebElement tv_version;
 
     public void enterLogPage(){
@@ -241,7 +241,7 @@ public class MinePage extends AbstractPage {
         }
         return new CommitteeProposalPage(driver);
     }
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_assets")
+    @FindBy(id = "com.tronlink.global:id/ll_tab_assets")
     public WebElement assetsMain_btn;
 
     public AssetPage enterAssetPage() throws Exception {

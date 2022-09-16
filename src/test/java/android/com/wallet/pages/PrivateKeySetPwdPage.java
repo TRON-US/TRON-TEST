@@ -19,26 +19,26 @@ public class PrivateKeySetPwdPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/et_password")
+    @FindBy(id = "com.tronlink.global:id/et_password")
     public WebElement pwd_input;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/creat")
+    @FindBy(id = "com.tronlink.global:id/creat")
     public WebElement next_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    @FindBy(id = "com.tronlink.global:id/tv_common_title")
     public WebElement pwd_title;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_error")
+    @FindBy(id = "com.tronlink.global:id/tv_error")
     public WebElement error_hits;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
 

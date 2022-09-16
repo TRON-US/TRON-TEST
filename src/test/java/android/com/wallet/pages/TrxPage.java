@@ -18,21 +18,21 @@ public class TrxPage extends AbstractPage {
     }
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_send")
+    @FindBy(id = "com.tronlink.global:id/rl_send")
     public WebElement assets_btn;
 
 
 //TODO: not locationed
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_deposit")
+    @FindBy(id = "com.tronlink.global:id/ll_deposit")
     public WebElement transferIn_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_price_trx")
+    @FindBy(id = "com.tronlink.global:id/rl_price_trx")
     public WebElement rl_price_trx;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_action")
+    @FindBy(id = "com.tronlink.global:id/ll_action")
     public WebElement ll_action;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr")
+    @FindBy(id = "com.tronlink.global:id/iv_qr")
     public WebElement iv_qr;
 
     public DetailPage enterProjectInfoPage() throws Exception{
@@ -40,54 +40,54 @@ public class TrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         return new DetailPage(driver);
     }
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_trx_amount")
+    @FindBy(id = "com.tronlink.global:id/tv_trx_amount")
     public WebElement trx_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_freeze_amout")
+    @FindBy(id = "com.tronlink.global:id/tv_freeze_amout")
     public WebElement tv_freeze_amout;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_freeze_amout")
+    @FindBy(id = "com.tronlink.global:id/tv_freeze_amout")
     public WebElement freezeCount_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "com.tronlink.global:id/tv_count")
     public WebElement trxTotal_text;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "com.tronlink.global:id/tv_count")
     public WebElement tv_count;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_common_left")
+    @FindBy(id = "com.tronlink.global:id/iv_common_left")
     public WebElement back_btn;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_tab_title")
+    @FindBy(id = "com.tronlink.global:id/tv_tab_title")
     public List<WebElement> tranfer_tab;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
+    @FindBy(id = "com.tronlink.global:id/tv_count")
     public List<WebElement> tranferIncount_text;
 
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
+    @FindBy(id = "com.tronlink.global:id/ll_transfer2")
     public WebElement tranfer10_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_balance")
+    @FindBy(id = "com.tronlink.global:id/tv_balance")
     public WebElement tv_balance;
 
 
     @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
     public WebElement totalBalance;
-  //@FindBy(id = "com.tronlinkpro.wallet:id/send")
+  //@FindBy(id = "com.tronlink.global:id/send")
   //public WebElement send_btn;
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
+  @FindBy(id = "com.tronlink.global:id/ll_transfer2")
   public WebElement send_btn;
 
-    @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
+    @FindBy(xpath = "//*[@resource-id=\"com.tronlink.global:id/ll_transfer2\"]/android.widget.ImageView[1]")
     public WebElement trxSendBottomBtn ;
 
     public WebElement transferIn_btn(){

@@ -22,72 +22,72 @@ public class ColdAssetPage extends AbstractPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
+    @FindBy(id = "com.tronlink.global:id/tv_walletname")
     public WebElement tv_walletname;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_offline_sign_desc")
+    @FindBy(id = "com.tronlink.global:id/tv_offline_sign_desc")
     public WebElement scanQrSign_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_receive")
+    @FindBy(id = "com.tronlink.global:id/ll_receive")
     public WebElement receive_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_offline_sign")
+    @FindBy(id = "com.tronlink.global:id/ll_offline_sign")
     public WebElement offlineSign_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_nonet_desc")
+    @FindBy(id = "com.tronlink.global:id/tv_nonet_desc")
     public WebElement coldWalletKnowledge_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_nonet_tip_close")
+    @FindBy(id = "com.tronlink.global:id/iv_nonet_tip_close")
     public WebElement deleteColdWalletKnowledge_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/ll_tab_assets")
+    @FindBy(id = "com.tronlink.global:id/ll_tab_assets")
     public WebElement asset_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_my")
+    @FindBy(id = "com.tronlink.global:id/iv_tab_my")
     public WebElement me_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/bt_copy")
+    @FindBy(id = "com.tronlink.global:id/bt_copy")
     public WebElement copy_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
+    @FindBy(id = "com.tronlink.global:id/tv_address")
     public WebElement address_text;
 
     @FindBy(className = "android.view.View")
     public List<WebElement> knowledgeText_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
+    @FindBy(id = "com.tronlink.global:id/iv_wallet_manager")
     public WebElement addWallet_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cd_pk")
+    @FindBy(id = "com.tronlink.global:id/cd_pk")
     public WebElement privateKey_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cd_kt2")
+    @FindBy(id = "com.tronlink.global:id/cd_kt2")
     public WebElement keystore_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_create")
+    @FindBy(id = "com.tronlink.global:id/rl_create")
     public WebElement createWallet_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_import")
+    @FindBy(id = "com.tronlink.global:id/rl_import")
     public WebElement importWallet_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_mm")
+    @FindBy(id = "com.tronlink.global:id/rl_mm")
     public WebElement mnemonic_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_qr")
+    @FindBy(id = "com.tronlink.global:id/iv_qr")
     public WebElement privateKeyQrScan_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_option_desc")
+    @FindBy(id = "com.tronlink.global:id/create_option_desc")
     public WebElement accountType_normalAccount;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_option_desc_shield")
+    @FindBy(id = "com.tronlink.global:id/create_option_desc_shield")
     public WebElement accountType_shieldAccount;
 
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/create_opt_general")
+    @FindBy(id = "com.tronlink.global:id/create_opt_general")
     public WebElement create_opt_general;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/cd_cw")
+    @FindBy(id = "com.tronlink.global:id/cd_cw")
     public WebElement create_wallet;
 
 
