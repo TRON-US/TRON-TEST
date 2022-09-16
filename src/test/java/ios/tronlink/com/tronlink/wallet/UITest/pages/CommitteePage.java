@@ -23,6 +23,11 @@ public class CommitteePage extends AbstractPage {
         this.driver = driver;
     }
 
+
+
+    @FindBy(id = "descLabel")
+    public  WebElement descLabel;
+
     @FindBy(className = "XCUIElementTypeTextField")
     public List<WebElement> textfieldList;
 
@@ -268,7 +273,9 @@ public class CommitteePage extends AbstractPage {
                 backBtn.click();
                 TimeUnit.SECONDS.sleep(1);
                 backBtn.click();
-            } else if(isElementExist("提议详情")){
+            } else if(isElementExist("已失效")) {
+                return false;
+            }else if(isElementExist("提议详情")){
                 disagreeBtn.click();
                 TimeUnit.SECONDS.sleep(15);
                 driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
@@ -277,7 +284,7 @@ public class CommitteePage extends AbstractPage {
                 driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
                 TimeUnit.SECONDS.sleep(10);
                 TimeUnit.SECONDS.sleep(10);
-                backBtn.click();
+                navBack();
             }
             return true;
         }

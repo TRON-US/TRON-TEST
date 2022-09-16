@@ -115,35 +115,29 @@ public class CommitteeTest extends BaseTest {
 
 
     @Test(groups = {"P0"},description = "newProposal",alwaysRun = true)
-    public void test_007makeNewProposal() throws  Exception{
+    public void test_007makeNewProposal_8agreed_9disagreed() throws  Exception{
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
         committeePage.Setuppropos.click();
         TimeUnit.SECONDS.sleep(9);
         committeePage.change2proposal("0.2");
-        WebElement wl = committeePage.findFirstproposalWl();
-        log("进入new我发起的投票并获取到第一个元素");
-        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, "0.2"));
-    }
-
-    @Test(groups = {"P0"},description = "be agreed Proposal", alwaysRun = true)
-    public void test_008agreedProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
+        Assert.assertEquals(committeePage.descLabel.getText(),"提议修改创建账户费用为 0.2 TRX");
         committeePage.agreeAction();
-        Assert.assertTrue(committeePage.getagreedStateofproposal());
+        TimeUnit.SECONDS.sleep(1);
+        committeePage.enterMyAgreedProposal();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertEquals(committeePage.totalVoteValue.getText(),"1");
+        committeePage.navBack();
+        boolean have = committeePage.disagreeAction();
+        TimeUnit.SECONDS.sleep(1);
+        if (have){
+            Assert.assertEquals(committeePage.totalVoteValue.getText(),"0");
+        }else {
+            Assert.assertTrue(isElementExist("暂无数据") || isElementExist("已失效"));
+        }
+
     }
 
-    @Test(groups = {"P0"},description = "be dis agreed Proposal", alwaysRun = true)
-    public void test_009disagreedProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        boolean have = committeePage.disagreeAction();
-        if (have){
-            Assert.assertTrue(committeePage.getdisagreedStateofproposal());
-        }else {
-            Assert.assertTrue(isElementExist("暂无数据"));
-        }
-    }
 
     @Parameters({"witnessUrl"})
     @Test(description = "cheack proposals name", alwaysRun = true)
