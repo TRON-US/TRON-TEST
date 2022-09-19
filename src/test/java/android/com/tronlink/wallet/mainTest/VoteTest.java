@@ -101,8 +101,8 @@ public class VoteTest extends Base {
         TimeUnit.SECONDS.sleep(2);
         vote.orderPopView();
         Assert.assertEquals(vote.tv_my_voted.getText(),"仅展示我的投票");
-        Assert.assertTrue(vote.rb_my_vote.getText().contains("已投票数"));
-        Assert.assertTrue(vote.rb_apr.getText().contains("预计年化收益"));
+        Assert.assertTrue(vote.rb_my_vote.getText().contains("我的投票"));
+        Assert.assertTrue(vote.rb_apr.getText().contains("预计 APR"));
         Assert.assertTrue(vote.rb_voted_count.getText().contains("得票数"));
 
     }
