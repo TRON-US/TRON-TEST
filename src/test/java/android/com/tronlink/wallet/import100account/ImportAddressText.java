@@ -1,6 +1,9 @@
 package android.com.tronlink.wallet.import100account;
 
 import android.com.wallet.UITest.base.Base;
+import android.com.utils.Helper;
+import android.com.wallet.pages.AssetPage;
+import android.com.wallet.pages.MinePage;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
@@ -25,7 +28,7 @@ public class ImportAddressText extends Base {
     public void setUpBefore() throws Exception {
         //TQ1EL7zJei3VePq5B6R6r8dcGHUTXrE4oe
         //b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647
-        //new Helper().getSign("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647", DRIVER);
+//        new Helper().getSign("b69c0ce7bcb061bb6a6d5c1582e7c42547c20421493ef9c623a6ec6f8a024647", DRIVER);
     }
 
 
@@ -41,16 +44,17 @@ public class ImportAddressText extends Base {
 
     @Test(description = "import 100 address", alwaysRun = true)
     public void test001_importAddress() throws Exception {
-        findWebElement("com.tronlinkpro.wallet:id/my").click();
-        findWebElement("com.tronlinkpro.wallet:id/address_book").click();
-        for (int i = 0; i < addressList.length; i++) {
-            findWebElement("com.tronlinkpro.wallet:id/iv_qr").click();
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine =  asset.enterMinePage();
+        mine.enterAddressBookPage();
 
-            findWebElement("com.tronlinkpro.wallet:id/et_address_name").sendKeys("Auto_AddressText_" + (i+1));
-            findWebElement("com.tronlinkpro.wallet:id/et_address").sendKeys(addressList[i]);
-            findWebElement("com.tronlinkpro.wallet:id/et_description").sendKeys("Description_" + (i+1));
-            findWebElement("com.tronlinkpro.wallet:id/tv_bg_right").click();
-            TimeUnit.SECONDS.sleep(1);
+        System.out.println(addressList.length);
+        for (int i = 0; i < addressList.length; i++) {
+            findByShotId("iv_qr").click();
+            findByShotId("et_address_name").sendKeys("address_" + (i+1));
+            findByShotId("et_address").sendKeys(addressList[i]);
+            findByShotId("tv_bg_right").click();
+
         }
     }
 
@@ -201,6 +205,205 @@ public class ImportAddressText extends Base {
             "TRkqdzx5tSFws4oriPhGSoh3qJAbQfwRfK",
             "THMtHkvWw8AaMYxynMe9PeruRwHS7ehr61",
             "TFDHbg6fpr2rXSqXa53WK5VwuaiJHZc3GG",
+            "THv4eFL1ShwUtQ5472TSkbanuTQJaEvUYk",
+            "THSjCwmYVeK1oLR3TdnXhP7vcU9xVssR3m",
+            "TVcZYxYGLcL72nSo8rh16N1M1nRAGMBFEG",
+            "TUVkbW84R4t4ewtXfTnbF2QKPv4kiH5tve",
+            "TLAMqT2rHdVKgTKvRptfyC8jnZqUDyMNps",
+            "TAHiALst69f91bft9B1L3h5rjPep1v5Lbf",
+            "TJvqNiWUN2v2NBG12UhfV7WSvReJkRP3VC",
+            "TJLnaYh91pENftw3hB6Gp7ep9KCubAWR89",
+            "TAP7qf8Ao26ZAKYS5E6SGozUNoSLvBHsGa",
+            "TXkbti2FbWat8yLjXg5oKYb2Y97RUAnm68",
+            "TJ2X9enWLfQhyLUSuDTiELZ7SBAEPkZcJZ",
+            "TNeX58mQxcQndNVFMicZXHrqYtbk2eN19T",
+            "TNTNgtrJpQTDCCwvB9Dh17GNc22WzYbF7n",
+            "TApkr8onQYb4YkGxCHLbQkMQNstF1td1hw",
+            "TNoUWaZgSNia49qShdzB5VdaNF89it6hxf",
+            "TFVge5Nb6or8cpdtdwPuXSGqLHpj3PM9Rp",
+            "TKdwCRZJ7jzsmndyUi658A5EU5FHFoKMVU",
+            "TVupLGJBE5jN7zBk5G9PcS9BcqikTWDdLA",
+            "TSsm5A3btNpfa1xQopzGfVMJbWCPhVB1jP",
+            "TZF68ApzvfGRsXbhuAX4JcsTJzQW5gpxDa",
+            "TNkssRtjrtPvophW4PXaAqDH5mD9hiMV89",
+            "TWViCSgeZ8xhZMXD3aiKKJF48fwmhHas3q",
+            "TD8TabsUUQPpvbhDGG7AfRqrYRrkwGS2Yz",
+            "TBdvhbUAuDwC3B21SGoSsjJWH2ctS9EzEy",
+            "TAMPqizEWsYp8RBsAanLdRqjP6sd9Unscz",
+            "TSJywyW5zmJQ3wPhbNWRoxZ74roLNwu3CA",
+            "TACYt54Qxtv3HxPGp9sWrbRJjTFEMaURPp",
+            "TUfusVHNhywdbqFw5rgRe2a9ChM4vTcv7N",
+            "TQ7ZTbPKgZFTh3WanAx9aZTNDee9eMDREa",
+            "TRXmYPy2AXZxacoSbKGjiVto8K1EqwexU7",
+            "TUXDfjhAuwvgPeGJB8C3bSNhpoz9bPcpRt",
+            "TN1NZ7YLbZinUUB8EmarGsiqTMFSs7CAxs",
+            "TZ7EvoZdEet2P9E2DKf9CtKf6EAyFwRAS3",
+            "TAgEv9SiteDeJWu6Prros3NgMbC78u565n",
+            "TEvq5hDqLR1z9CoSnWfFvSg4UT455ioDsV",
+            "TNuhGXdAhjiJyya6BQ3hR9mHQPTBYHhQ1b",
+            "TKRYQndqTdnU4Bg17gY39rooyK6CzM3ush",
+            "TTdyBPmeWDfF9eXCdur9e9GdHnX3AZc8Ae",
+            "TPrDk8WfuMheRFiC3Q5FsmCq74GuQXGcdL",
+            "TKcVKREApseEtC6Jxcv9Dso8xtiJcdXU6d",
+            "THvZvKPLHKLJhEFYKiyqj6j8G8nGgfg7ur",
+            "TWb4fGe45Sg5Egk1PXGDbHscFs4aoxLRtD",
+            "TELY7x8LJSsj75hLK8xh9S5Ht7BNfYXSkK",
+            "TNkjPoQSh3bx38Frz44DHXxY2G3yj73PVs",
+            "THgLniqRhDg5zePSrDTdU9QwY8FjD9nLYt",
+            "TJcUfhsoBRoJCFTo82ACv5Fkp9vPdbQ3tn",
+            "TUmzcczaosRkmLLqCSAAuUL7Dsq4aGeyoL",
+            "TT3LGnQvWUXs8pWLJfCkUKKpo4nCx7c946",
+            "TEXtxKmvYY1SuFmEXQKSYToY2mP2ncMif1",
+            "THsxKhGentRkjdUfP2qMQbcyN6DbKeFZ1N",
+            "TBpxVGYFojghQDn9zKY15ThZWLyak3E4HV",
+            "TGbu32VEGpS4kDmjrmn5ZZJgUyHQiaweoq",
+            "TASrsr1Qsz8eUSajiTxXSLo44uAFfvZVUG",
+            "TXQzpozgRefXAZU1aFUvR9DqPJKcaPPBGy",
+            "TAzopbXcjczXr12k8uaXH1Adg9gpFKuUE3",
+            "TNq5PbSssK5XfmSYU4Aox4XkgTdpDoEDiY",
+            "TUcPC42A1QZR7T7gHZDn6sd7kwdoe69xba",
+            "TBGcAYjZ621Zo4rQ3CuF2LxMgiYGw8jV14",
+            "THBvB5ptRTVAxVrN3WBPbU653R6JMC9S59",
+            "TTgNnc26QYaZyRKdj6iNmhZr89BJEsvTWC",
+            "TPWSUqMpcJ1sRfXDMLKksd8jkBHf7k6pA3",
+            "TS9j7tRdpY9FDtJbgfZZwcj1JAm4z8jbzT",
+            "TFiN25tzwwW8WQEWbckohqmxd7Jd1nynFa",
+            "TX8mKRD7CCvxh98rg7MdCGjtjSuHw9LSZg",
+            "TDLzqsr1NsMhUw7b3tN7M6DfcxSVdUaJcC",
+            "TDc1rtiY9PES9iKuLhs1q8Kf4zRBVNBy5R",
+            "TJhBZCBa7bhEWDGPhAZ31eNwS8idKKFzz3",
+            "TLkKuma8mDUJYeaY97NqGbuyzuq3BEvcVj",
+            "TTrCFA3maDrpuep5ad32xmw51wsdDmHPgo",
+            "TKWcoHvuextZtPC5ztxSX9Ragz2X2f1QGj",
+            "TQyT8ZZgoyXXkJWZnMwWQ31H9M69xZEezr",
+            "TUH4wj8tox7sVxvkTqHLogn6mRVKfrK71M",
+            "TDaBezkqSwNZYCr2HPqPMoyPykD5FUvKNP",
+            "TTa7Liuaca3bFgjxkz84smyiXaECk2TjvE",
+            "TCRhVHPv6efvXgogNMhiunAMXFKcMmv2pF",
+            "TGvTEbQb7bcN44FanFqfrvdWEsXBrvcRgF",
+            "TD2931N32Sqp8hYS6pv7rSjpQyBN9VaGX7",
+            "TSeG6DRgt7iEqnaEaDqsYvvTYYRCjrtk1P",
+            "TKg3dNAYxVgNEfzBjM8ucyEr6sz2k6fUMm",
+            "TWmU3XbU7vjdW8swaKsKuUbWwA5QtyrkEN",
+            "TNoSu9vMr8kmrHWDXeE4BXbLLmijXrLSiy",
+            "TK3qbo9oX8GP9e2pcNq9hjUiUwaR2aW394",
+            "TJZwSoCdz3SraNaeX5HCS2eFAyzj1cmgeu",
+            "TTq5jUHenWvbKXk4SmqFyXQtr6pig93oeJ",
+            "TNzAESDxnQjppQ23CFbeUNrq3LcJzwvTYi",
+            "TBLrDTgEsQk6a6PkB6KYp9xU4oJpHiRde8",
+            "TQzGuuTWute287To3kyGDWUGxqZv7QDXgL",
+            "TR2XCGSShy2chMQtsiXkXs2wzWXND3RThg",
+            "TPt8DTDBZYfJ9fuyRjdWJr4PP68tRfptLG",
+            "TMSWrENmfjf6RtHzVeVWU7zHz1sUSod7Jq",
+            "THczeHtN8uy2xirumo9yAziSw3XhmKVpkx",
+            "TNQwHfwLcAPXtCfxTwuXsSKcY6s8hBvbVr",
+            "TURRqyAZ6ZfW7yVbMZ4L8kaQM76LFmw5rs",
+            "TBuLwao9iXDgfPP1TKbkes6ZcWQisLoop9",
+            "THU38thXe3tijdtPZf38PAsANaTLmscv4W",
+            "TJoSXFhctyq8Ug2rD8WLKDsDGAWUXf5rDm",
+            "TXT9SRaj6y5TJGcPd1C1J33EWGHhbsDCMJ",
+            "TFHcoENHu3HGUu2wiPGptb8cyBfMeWhrTW",
+            "TFyfB5ggmPwVDs8kU2X9vPY7idzaNpaVno",
+            "TJmki9vmWXP6QxHJ9JVCd5iyAs8xwS5HL4",
+            "TAhXFNAnpLr1PPdhZh33oQXi6tMT1Qqm24",
+            "TLvdAAh7hxDWvvhGwQbuuee565fKNXeG4w",
+            "TUSkYMEQqtJLUWdMTtbcggxE8BVxbmyKnf",
+            "TAcfhsJ26fU5u2rR9FVdnJAQVmfMV9xLhw",
+            "TTGSPXnTYdHFJkHjdKyaQH2RciT8RpjroU",
+            "TKGaR7hWDqm4k4U1MSHrK5LWgteSXbTuKx",
+            "TFVFbULw95Bj12hRELMdzHbjmEY5cx25sn",
+            "TLPDSEEkW1yJ8oQitn1LsU31PXvazw9jm7",
+            "TBd9yxF6FhYhfMwUEDDYaUrrGSgHRMJgpJ",
+            "TGY7UTqSdS1A4CXsHFvR8qRFhSHSn4zSXT",
+            "TV61VjeDAtPTuLrfDBbBj139vuvhjGr4qy",
+            "TWtoPN4ZNQ9Qr7yyEyW6Aat8VJycNxJ8E4",
+            "TUDjTAwaq4nj2HJANwqc7mF4mQ3Hhqs3VX",
+            "TGpXTrLoJX7JQuV94U2ieYKnVdNgXPssN6",
+            "TBW6PGw7PHuZiNWYr51JWwzs5zU891TUJB",
+            "TG4DDUHsU9haW2EqVVo6barsBMSyb2SM86",
+            "TMA9ma43rvdEZHygpDResKuQfuE2iide23",
+            "TXD17YmEp1nRNUyxpB8aQ5ruxKAJRp68oL",
+            "TExgUFR43XR7Q89C8nHMPmd2oxNJyM2j44",
+            "TXxoKWsyw5x3wdeWnsqedjSk5nuLUGXcfT",
+            "TR3DLthpnDdCGabhVDbD3VMsiJoCXY3bZd",
+            "TBhxyECmAg3uCqqmEHQvGJbrgj9cn1yMZ1",
+            "THDfpFaF3yhQD6USTMgykF76vmwpJWMkGM",
+            "TB3hHBrQK7xKswgmQWP1hRdnobPPkVJ36J",
+            "TWUs7FajJdRK26U1A5KZJbo8wP7jHiRFwk",
+            "TSngG7y4RDSVG6QwoWM4MvVWJb3k8VLZJk",
+            "TYAVfebadsPQxHH6Wp5nfS37G4ShNLxMqi",
+            "TLQRG1vajqi3CiH27tHQNNjnK4dAMb4s3v",
+            "TBp6ZMzkxci5o4sJjFa6Fo9Wy36gcubQLW",
+            "TWGZ7HnAhZkvxiT89vCBSd6Pzwin5vt3ZA",
+            "TLGpmtJf6C7ek3XdAKZXTKdTgYtdswoVai",
+            "TGFtw5V842oiiE1remVrSFH19CVMaaaMcr",
+            "TBYAX4PHE6oRP6F9d6exQLYqF5ctNyW9UE",
+            "TQRqT39kCQWZCJtuYTA5Txn6ciNEPJU4uN",
+            "THffre48BTSEuz2f81a5L1p24GKV8d4feu",
+            "TQorn8S5iy6fMVkPJ41pjyYc9F7Axtm8B6",
+            "TKxzVFGsBbQGLgMhpwbvkjBxuRCvLtExnK",
+            "TFFxGGpVqxCDvo6upD3od5dFNtiRMv4Hc4",
+            "TNo59Khpq46FGf4sD7XSWYFNfYfbc8CqNK",
+            "TMNTn2uFAHhkGE3uuM84rhfRRjt6ry9xnL",
+            "TRTpDp88d7BwxWM61ssExuFWDrZ39Dav95",
+            "TPBCaP2KeEurcmU4aMnRHoq3yP8KYDdFuq",
+            "TX4fcmMFDfwDgrWmvZBoJKUEwxTkqE96ty",
+            "TGcjhDQ9d5d8DqkHgcdyUF6KsTSikYLUsE",
+            "TXyrq6xE49dJhBGBYRH4pZzq9QdXNKWUQa",
+            "TVbxxBaZLZ5UiAVF9ivuBizHVUZ9ndwTUZ",
+            "TZHTVehxLeoVQ5uuQLy3TDx4Uuw6EmHVNF",
+            "TLWH5YFXkd9UgU6gspkfy7bUEJuYmtDq5i",
+            "TXHv4N6bbUnEogb7TJmsrWf8GVePtgdo4B",
+            "TQ12oPTr9s6oJkkD4mo5gmEJMx1YgrwHc3",
+            "TBgwArPSVBYvgaF4AQnHbtRpHHjQf6uXzJ",
+            "TQvpksoUg42FMT5dmDJ685xWg1ZrXiwBTv",
+            "TWGtWbv2aBTwbUK1NUktGyYhRDcgCHdCBa",
+            "TJpV3HeJQBj6cgJEFRzzAAWi8sJdvuTduu",
+            "TYPkXfKaGBJDjjs1pf9Xum6TwLEVxj77S3",
+            "TSB3KYV2dSvafvDNnq82PWZeh4wP4FDhPK",
+            "TVWpCqWppnqTqTvmJpV8ftUU5yqx78fC5o",
+            "TMnqP8yuZrKJFXN59KoVDthkmM3LRkiZXP",
+            "TKzmGojLDCCmgaKY39amVNnfkmJSGkKqNP",
+            "TDAB8XCoVpqwVUBG8TTpX6WjvNEJVvFRGi",
+            "THCkjnZTcHgEaDrcyrowTDHbDeeZm86J5C",
+            "TDqGQLfAq37Y8hc5VNPNp8k8pV2AN1LYma",
+            "TV2SZWCnsGLX3h9i3SZ1dyivDbeCuoB7fH",
+            "TAnGtDViwZBsppvN3FTthNRmpSBnyMnaZ3",
+            "TGBfBt6Y2Dm3RHdNpZAdqywBsvfdysf834",
+            "TBygReeC6sYDVzpEQ8xjMEZBhd4PVCVew8",
+            "TEqK3awVu3jy6xEg6LpNYwUgTHdzPBmzGz",
+            "TFLu6ZctS5G8RFPBsAMZWCe7wZZno7gUQR",
+            "TCMPsXjCA1FyvBrn4NR1xoMe5Cm1nLCJz8",
+            "THsSSczBw9RRMJWYL5j2MtcgaPasL2xPGP",
+            "TQDoSZbxZhW55qGq1P2RUpJTvA6HSUJWEp",
+            "TTXx5wXS4pw63QzgrdxCsU96LC2Ed7BNPZ",
+            "TDXJ1dSPLsN52jhP32NvVyhQ5X265BNU5c",
+            "TWXZxJDGWVhNz2SXx31kQGA5kb2cjAz9ys",
+            "TEoEk74PhcrtoZepG1LpELy8qEyxHVvBB7",
+            "TBj4M1feMvimdJRoiAtP3evawQtLvsApEo",
+            "TYz2awuo1Ba75ZWSqQWPJmDmDc1gRUmDGj",
+            "TKkizhNw9Qrj7aR2jSmfRCeVeuGFzqvKiB",
+            "TN4PXvT6uiev1pGtHsqNNfxJNrN12BPFAo",
+            "TU7uTrWbnt9RVQJgXtWHrf6Jt6C6gmUFcx",
+            "TDDS8x6inWYK2XrroxQLd4ZeKzjTG3zyPm",
+            "TWvipYRjC6bsXRxupe4CSg2uzutHsNQvFr",
+            "TKQKCpeMdhfCSBQKFeNUY48i4VU8BsbpGe",
+            "TEzLwVRPoK77DYsCqpkLc5AkqiRALvnH8d",
+            "TCkb46As8FHJHEH4F1zJ9taGPnGpQBgUm3",
+            "TB73wkFj6CpUtWXUVs9Z1BKm1NnbfWyTMR",
+            "TEQuSBH1jxGzqJfZSQx8tusHrLaKobnRZz",
+            "TEfnpLH77nr5VuPBoFPmak4KrwV3TkcFwq",
+            "TZ2YD4juh7nTDZ2YUB4UDsKvmbopxxP6Xa",
+            "TL9gVJ25JaFAA25uygAHAtFXpHU3Vi3AF7",
+            "TSUN94PqmxcVGxphWBQLgYwNks3HkFEzRr",
+            "TGbt2sNbHb3Vjc6xnfvgXd52BrAMvkHQvG",
+            "TAw8xzsg5GDJn48FjkxKjeJTdumFEieKyK",
+            "TXMKm8FSp6zcm3cdgkgcM1fwdkuJbZ4Hgv",
+            "TL7RJPC7zqpj9B2F4RRc4mk4YpzuVrd4Ar",
+            "TWfTeP65rJebcppK4itGgwLFLrk4aswVaA",
+            "TWHjymfkWsnhK41wBbCogWSKLCaDomEJMH",
+            "TKGchxxbU71437A2xv6i6enzfXEsMaiKmE",
+            "TCqEa49dKocHp5AnogfmgXkwut6upbuNUv"
     };
 
 
