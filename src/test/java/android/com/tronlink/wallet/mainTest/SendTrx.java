@@ -251,8 +251,12 @@ public class SendTrx extends Base {
         TimeUnit.SECONDS.sleep(2);
         transfer.receiveAddress_text.click();
         transfer.receiveAddress_text.sendKeys("s6HiKvTM9SPx");
-        TimeUnit.SECONDS.sleep(1);
+        ScreenShot("keyboard");
+        TimeUnit.SECONDS.sleep(3);
         DRIVER.hideKeyboard();
+        TimeUnit.SECONDS.sleep(2);
+        keyboardUnicode(udid);
+        ScreenShot("keyboard2");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
     }
@@ -262,7 +266,6 @@ public class SendTrx extends Base {
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test013_transferTherePartTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        keyboardUnicode(udid);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         Assert.assertTrue(isElementShotId("tv_address"));
