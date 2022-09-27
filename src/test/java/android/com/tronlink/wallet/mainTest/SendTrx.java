@@ -248,23 +248,21 @@ public class SendTrx extends Base {
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         keyboardSogou(udid);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         transfer.receiveAddress_text.click();
-        transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39aj6c");
+        transfer.receiveAddress_text.sendKeys("s6HiKvTM9SPx");
         TimeUnit.SECONDS.sleep(1);
         DRIVER.hideKeyboard();
-        TimeUnit.SECONDS.sleep(1);
-        keyboardUnicode(udid);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
-
     }
 
 
-
+    @Parameters({"udid"})
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
-    public void test013_transferTherePartTest() throws Exception {
+    public void test013_transferTherePartTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        keyboardUnicode(udid);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         Assert.assertTrue(isElementShotId("tv_address"));
