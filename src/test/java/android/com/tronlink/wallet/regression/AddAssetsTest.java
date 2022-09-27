@@ -71,8 +71,15 @@ public class AddAssetsTest extends Base {
         AddAssertPage page = asset.enterAddAssertPage();
         page.addAssert_input.click();
         page.addAssert_input.sendKeys("axeo");
+        TimeUnit.SECONDS.sleep(2);
         page.AddButton.click();
         Assert.assertTrue(assertToast("已添加到首页"));
+        page.cancelSearch();
+        page.navBackAction();
+        TimeUnit.SECONDS.sleep(2);
+        Helper.swipScreenLitte(asset.driver);
+        Assert.assertTrue(asset.isElementExist("AXE"));
+
     }
 
     @Test(description = "remove Asset Test",alwaysRun = true)

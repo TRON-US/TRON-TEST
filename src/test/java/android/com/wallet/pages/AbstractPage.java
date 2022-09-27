@@ -98,6 +98,15 @@ public WebElement bt_go;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
     public WebElement tv_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
+    public WebElement ll_common_left;
+
+    public void navBackAction() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        ll_common_left.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     public void inputPopViewPassword(String password){
         et_new_password.sendKeys(password);
         bt_send.click();

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -20,6 +21,9 @@ public class AddAssertPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_sort_pop")
     public WebElement tipview;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cancel")
+    public WebElement tv_cancel;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/et_search")
     public WebElement addAssert_input;
@@ -60,6 +64,11 @@ public class AddAssertPage extends AbstractPage {
     @FindBy(xpath = "//*[@text='ID 1000029']")
     public WebElement myNewAddAsset_btn;
 
+
+    public void cancelSearch() throws Exception{
+        tv_cancel.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
 
     public AssetPage enterAssetPage() throws Exception{
         back_btn.click();

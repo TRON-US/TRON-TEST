@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -407,6 +408,22 @@ public class Base {
         }
     }
 
+    public void ScreenShot(String name) {
+
+        System.out.println("ScreenShot-----" );
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("MM-dd-hh-mm-ss");
+            String path =    name + "_" + dateFormat.format(new Date()) + ".png";
+
+            Runtime.getRuntime().exec("mkdir /Users/tron/Desktop/screenshot");
+            Runtime.getRuntime().exec("adb shell screencap -p /sdcard/screen.png");
+            TimeUnit.SECONDS.sleep(1);
+            Runtime.getRuntime().exec("adb pull /sdcard/screen.png  /Users/tron/Desktop/screenshot/" + path);
+
+        }catch (Exception e){
+            System.out.println("exec Fail");
+        }
+    }
 
 
 //    public void swapClickUntilElementTextShow(String text) throws Exception {
