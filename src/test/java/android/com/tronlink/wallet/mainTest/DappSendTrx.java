@@ -192,24 +192,25 @@ public class DappSendTrx extends Base {
         Assert.assertTrue(findByShotId("error_view").getText().contains("此账户地址用于销毁代币，请确认您要向此地址转账！"));
     }
 
+
     @Parameters({"udid"})
-   @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test011_transferAddressFormatTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         keyboardSogou(udid);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         transfer.receiveAddress_text.click();
-        transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39ajkLz6c");
-        TimeUnit.SECONDS.sleep(1);
+        transfer.receiveAddress_text.sendKeys("s6HiKvTM9SPx");
+        ScreenShot("keyDChain");
+        TimeUnit.SECONDS.sleep(3);
         DRIVER.hideKeyboard();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         keyboardUnicode(udid);
+        ScreenShot("keyDChain");
         TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
-
-
     }
 
 
