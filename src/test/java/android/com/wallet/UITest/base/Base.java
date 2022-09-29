@@ -126,6 +126,7 @@ public class Base {
             }
         }
         screenOn();
+        wifiOpen(udid);
     }
 
 
