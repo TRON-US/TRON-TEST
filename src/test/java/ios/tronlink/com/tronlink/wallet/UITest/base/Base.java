@@ -88,7 +88,7 @@ public class Base {
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("automationName", automationName);
-                desiredCapabilities.setCapability("newCommandTimeout", 3000);
+                desiredCapabilities.setCapability("newCommandTimeout", 15000);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
                 desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
