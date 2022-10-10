@@ -490,9 +490,11 @@ public class SendTrxPage extends AbstractPage {
 
         inputReceivedAddress("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         goToSecondPage();
+        TimeUnit.SECONDS.sleep(1);
         inputReceivedAmount(number);
+        TimeUnit.SECONDS.sleep(1);
         sendButtonClick();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(8);
         confirmPageButtonClick();
         if (isElementExist("提示")){
             driver.findElementByName("确认").click();
