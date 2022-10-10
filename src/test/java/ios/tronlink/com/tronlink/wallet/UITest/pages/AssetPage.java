@@ -19,7 +19,7 @@ public class AssetPage extends AbstractPage {
 
     public AssetPage(IOSDriver<?> driver) {
         super(driver);
-        waiteTime(5);
+//        waiteTime(5);
         this.driver = driver;
 //        try {
 //            if (ad_pic.isDisplayed()) {

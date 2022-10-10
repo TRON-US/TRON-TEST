@@ -52,43 +52,43 @@ public class DiscoverTest extends Base {
         DeviceQuit();
     }
 
-    @Test(description = "Online dapp list search test",alwaysRun = true)
-    public void test001_onlineDappListSearch() throws Exception {
-        AssetPage asset =  enterOnlineAssetPage();
-        DiscoverPage discover = asset.enterDiscoverPage();
-        DAPP_SearchPage dapp_search_page = discover.enterDAPP_SearchPage();
-        for (int i = dappListIndex;i < dappNameList.length;i++) {
-            String findName = dappNameList[i];
-            System.out.println("SearchName:" + findName + " index: " + i);
-            dapp_search_page.search_text.sendKeys(findName);
-            try {
-                TimeUnit.SECONDS.sleep(3);
-            } catch (Exception e){}
-            String dappNameInSearchResult = dapp_search_page.dappName_text.getText();
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("DAppName:" + dappNameInSearchResult  + " index: " + i);
-            Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(findName) ||
-                    dappNameInSearchResult.toLowerCase().contains(findName.toLowerCase()));
-            dappListIndex++;
-            dapp_search_page.iv_delete.click();
-        }
-    }
-
-    @Test(alwaysRun = true)
-    public void test002_historyEnableTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
-        discover.findByShotId("imageview").click();
-        Assert.assertTrue(discover.nav_title.getText().contains("历史记录"));
-        discover.backBtn.click();
-        Assert.assertTrue(discover.findByShotId("tv_title").getText().contains("DApp"));
-    }
-
-    @Test(alwaysRun = true)
-    public void test003_elementExistedText() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        DiscoverPage discover = asset.enterDiscoverPage();
-        Assert.assertTrue(isElementShotId("banner_image"));
-        Assert.assertTrue(discover.findByShotId("tv_discovery").getText().contains("发现"));
-    }
+//    @Test(description = "Online dapp list search test",alwaysRun = true)
+//    public void test001_onlineDappListSearch() throws Exception {
+//        AssetPage asset =  enterOnlineAssetPage();
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        DAPP_SearchPage dapp_search_page = discover.enterDAPP_SearchPage();
+//        for (int i = dappListIndex;i < dappNameList.length;i++) {
+//            String findName = dappNameList[i];
+//            System.out.println("SearchName:" + findName + " index: " + i);
+//            dapp_search_page.search_text.sendKeys(findName);
+//            try {
+//                TimeUnit.SECONDS.sleep(3);
+//            } catch (Exception e){}
+//            String dappNameInSearchResult = dapp_search_page.dappName_text.getText();
+//            TimeUnit.SECONDS.sleep(2);
+//            System.out.println("DAppName:" + dappNameInSearchResult  + " index: " + i);
+//            Assert.assertTrue(dappNameInSearchResult.equalsIgnoreCase(findName) ||
+//                    dappNameInSearchResult.toLowerCase().contains(findName.toLowerCase()));
+//            dappListIndex++;
+//            dapp_search_page.iv_delete.click();
+//        }
+//    }
+//
+//    @Test(alwaysRun = true)
+//    public void test002_historyEnableTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        discover.findByShotId("imageview").click();
+//        Assert.assertTrue(discover.nav_title.getText().contains("历史记录"));
+//        discover.backBtn.click();
+//        Assert.assertTrue(discover.findByShotId("tv_title").getText().contains("DApp"));
+//    }
+//
+//    @Test(alwaysRun = true)
+//    public void test003_elementExistedText() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        DiscoverPage discover = asset.enterDiscoverPage();
+//        Assert.assertTrue(isElementShotId("banner_image"));
+//        Assert.assertTrue(discover.findByShotId("tv_discovery").getText().contains("发现"));
+//    }
 }

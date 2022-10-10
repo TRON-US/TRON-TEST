@@ -52,7 +52,7 @@ public class VoteTest extends Base {
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(3);
         Assert.assertEquals(vote.tv_main_title.getText(),"投票");
-        Assert.assertEquals(vote.available_vote_right_title.getText(),"可用投票权");
+        Assert.assertEquals(vote.available_vote_right_title.getText(),"剩余投票权");
         Assert.assertEquals(vote.tv_multi_sign.getText(),"多重签名投票");
         Double total = removeSymbolDouble(vote.tv_total_vote_rights.getText());
         Double av = removeSymbolDouble(vote.tv_available_votes.getText());
@@ -100,9 +100,9 @@ public class VoteTest extends Base {
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(2);
         vote.orderPopView();
-        Assert.assertEquals(vote.tv_my_voted.getText(),"仅展示我投票的");
-        Assert.assertTrue(vote.rb_my_vote.getText().contains("已投票数"));
-        Assert.assertTrue(vote.rb_apr.getText().contains("预计年化收益"));
+        Assert.assertEquals(vote.tv_my_voted.getText(),"仅展示我的投票");
+        Assert.assertTrue(vote.rb_my_vote.getText().contains("我的投票"));
+        Assert.assertTrue(vote.rb_apr.getText().contains("预计 APR"));
         Assert.assertTrue(vote.rb_voted_count.getText().contains("得票数"));
 
     }
