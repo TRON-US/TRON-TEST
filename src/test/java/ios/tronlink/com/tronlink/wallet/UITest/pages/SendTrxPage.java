@@ -342,7 +342,7 @@ public class SendTrxPage extends AbstractPage {
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(1);
         findSend_btn().click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(8);
         return value;
     }
 
@@ -361,7 +361,7 @@ public class SendTrxPage extends AbstractPage {
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(3);
         findSend_btn().click();
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(8);
         return value;
 
     }

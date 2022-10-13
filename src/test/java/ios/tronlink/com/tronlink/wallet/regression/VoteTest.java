@@ -50,8 +50,8 @@ public class VoteTest extends BaseTest {
         page.know.click();
         page.enterSortPobView();
         Assert.assertTrue(isElementExist("排序"));
-        Assert.assertTrue(isElementExist("已投票数（高到低）"));
-        Assert.assertTrue(isElementExist("预计年化收益（高到低）"));
+        Assert.assertTrue(isElementExist("我的投票（高到低）"));
+        Assert.assertTrue(isElementExist("预计 APR（高到低）"));
         Assert.assertTrue(isElementExist("得票数（高到低）"));
         page.TapAnyWhere(200,200);
         Assert.assertFalse(isElementExist("排序"));
