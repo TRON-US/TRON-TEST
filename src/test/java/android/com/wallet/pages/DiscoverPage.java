@@ -123,7 +123,6 @@ public class DiscoverPage extends AbstractPage {
         iv_menu.click();
         tv_browser_debug.click();
         TimeUnit.SECONDS.sleep(3);
-        gotoBrowserMainPage();
     }
 
     public void firstEnterAWeb() throws Exception{
