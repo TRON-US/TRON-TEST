@@ -486,6 +486,8 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/import_title")
     public WebElement import_title;
 
+
+
     public void importPrivateKey(String pkey) throws Exception{
         iv_wallet_manager.click();
         import_title.click();
@@ -598,7 +600,7 @@ public WebElement title;
         TimeUnit.SECONDS.sleep(3);
         discover_btn.click();
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(2);
         return new DiscoverPage(driver);
     }
 

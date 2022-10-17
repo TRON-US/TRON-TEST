@@ -5,12 +5,13 @@ import android.com.utils.Helper;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -149,24 +150,39 @@ public WebElement bt_go;
      * @return boolean value
      */
     public boolean isElementExist(String name) {
-        try {
-            driver.findElementById(name);
-            return  true;
-        }catch (org.openqa.selenium.NoSuchElementException ex){
+        waiteTime(3);
+        if( isShotIDExist(name) || isTextExist(name)){
+            waiteTime();
+            return true;
+        }else {
             try {
-                System.out.println("Not Fount by ID: " + name);
-                driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+name+"\")");
+                driver.findElementById(name);
+                waiteTime();
                 return  true;
-            }catch (org.openqa.selenium.NoSuchElementException eex){
+            }catch (org.openqa.selenium.NoSuchElementException ex){
                 try {
-                    System.out.println("Not Fount by Text: " + name);
                     driver.findElementByName(name);
+                    waiteTime();
                     return  true;
                 }catch (org.openqa.selenium.NoSuchElementException xxx) {
-                    System.out.println("Not Fount by Name!");
+                    System.out.println("Not Fount !!!");
+                    waiteTime();
                     return false;
                 }
             }
+        }
+
+    }
+
+    public boolean isShotIDExist(String shotID) {
+        try {
+            String ids=  apkPackageName +":id/" + shotID;
+            System.out.println(ids);
+            driver.findElementById(ids);
+            return  true;
+        }catch (org.openqa.selenium.NoSuchElementException ex){
+            System.out.println("Not Fount shotID() " + shotID);
+            return false;
         }
     }
 
@@ -175,7 +191,7 @@ public WebElement bt_go;
             driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
             return  true;
         }catch (org.openqa.selenium.NoSuchElementException ex){
-            System.out.println("Not Fount by Text" + text);
+            System.out.println("Not Fount  Text() " + text);
             return false;
         }
     }
