@@ -78,6 +78,9 @@ public WebElement bt_go;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement nav_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement tv_common_title;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement tv_common_right2;
     
