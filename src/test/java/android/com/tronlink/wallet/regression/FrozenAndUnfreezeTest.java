@@ -194,67 +194,65 @@ public class FrozenAndUnfreezeTest extends Base {
     }
 
 
-//    @Test(alwaysRun = true)
-//    public void test00x_SignPercent() throws Exception {
-//
-//    }
+    @Test(alwaysRun = true)
+    public void test011_inputPercentTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        Double total = sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
+        frozen.amount_percent_25.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total/4.0,1.0);
+        frozen.amount_percent_50.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total/2.0,1.0);
+        frozen.amount_percent_75.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),3*total/4.0,1.0);
+        frozen.amount_percent_100.click();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total,1.0);
 
-//    @Test(enabled = true, description = "frozen30Account", alwaysRun = true)
-//    public void frozen30Account() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-//
-//        Helper.swipScreenLitte(frozen.driver);
-//        frozen.freezeCount_input.sendKeys("1");
-//        Helper.swipScreen(frozen.driver);
-//        frozen.cleanAddress_btn.click();
+    }
 
-//        int book = 1;
-//        while (book < 11){
-//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
-//
-//            String addressString =  Configuration.getByPath("testng.conf")
-//                    .getString("androidMultiSignAccount.multiSign"+String.valueOf(book)+"Address");
-//            log("find address: " + addressString);
-//            frozen.freezeCount_input.clear();
-//            frozen.freezeCount_input.sendKeys("1");
-//            frozen.freezeAddress_input.clear();
-//            frozen.freezeAddress_input.clear();
-//            frozen.freezeAddress_input.sendKeys(addressString);
-//            frozen.frozenTheBandwidth();
-//            book++;
-//        }
+    @Test(alwaysRun = true)
+    public void test012_inputEnergyAndBandWidthCountTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.selectEnergyTab();
+        frozen.inputAmount("80");
+        frozen.slideScreenBottom();
+        Assert.assertTrue(removeSymbolDouble(frozen.tv_resource_get_amount.getText())>20000);
+        Assert.assertEquals(frozen.tv_resource_per_transaction.getText(),"约可以支付 1 笔转账的能量消耗");
+        Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"80");
+        frozen.selectBandWidthTab();
+        frozen.slideScreenBottom();
+        TimeUnit.SECONDS.sleep(1);
+        Assert.assertTrue(removeSymbolDouble(frozen.tv_resource_get_amount.getText())>345);
+        Assert.assertEquals(frozen.tv_resource_per_transaction.getText(),"约可以支付 1 笔转账的带宽消耗");
+        Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"80");
+    }
 
-//        while (book < 21){
-//            log("第几个 "+String.valueOf(book)+"Address");
-//
-//                        String addressString = Configuration.getByPath("testng.conf")
-//                    .getString("androidMultiSignAccount.owner" + String.valueOf(book-10) + "Address");
-//            log("find address: " + addressString);
-//            frozen.freezeCount_input.clear();
-//            frozen.freezeCount_input.sendKeys("1");
-//            frozen.freezeAddress_input.click();
-//            frozen.freezeAddress_input.clear();
-//            frozen.freezeAddress_input.sendKeys(addressString);
-//            frozen.frozenTheBandwidth();
-//            book++;
-//        }
-//
-//        while (book < 31){
-//            log("iosMultiSignAccount.owner"+String.valueOf(book)+"Address");
-//
-//            String addressString = Configuration.getByPath("testng.conf")
-//                    .getString("iosMultiSignAccount.owner" + String.valueOf(book-20) + "Address");
-//            log("find address: " + addressString);
-//            frozen.freezeCount_input.clear();
-//            frozen.freezeCount_input.sendKeys("1");
-//            frozen.freezeAddress_input.clear();
-//            frozen.freezeAddress_input.clear();
-//            frozen.freezeAddress_input.sendKeys(addressString);
-//            frozen.frozenTheBandwidth();
-//            book++;
-//        }
-//}
 
+    @Test(alwaysRun = true)
+    public void test013_inputEnergyTRXCountTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.selectEnergyTab();
+        frozen.slideScreenBottom();
+        frozen.enterEnergyBandWidth("20000");
+        Assert.assertEquals(frozen.et_amount.getText(),"74");
+        Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"74");
+    }
+
+    @Test(alwaysRun = true)
+    public void test014_inputBandWidthTRXCountTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.selectBandWidthTab();
+        frozen.slideScreenBottom();
+        frozen.enterEnergyBandWidth("345");
+        Assert.assertEquals(frozen.et_amount.getText(),"70");
+        Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"70");
+    }
 
 }

@@ -283,6 +283,33 @@ public WebElement bt_go;
                 .release().perform();
     }
 
+    public  void slideScreenTop() throws Exception{
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                 PointOption.point(width/2, height/3))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, 3*height/4))
+                .release().perform();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public  void slideScreenBottom() throws Exception{
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                        PointOption.point(width/2, 3*height/4 ))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height/3))
+                .release().perform();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+
     public void deleteWallet() throws Exception{
         driver.findElementById("com.tronlinkpro.wallet:id/tv_trx_value").click();
         delete();
