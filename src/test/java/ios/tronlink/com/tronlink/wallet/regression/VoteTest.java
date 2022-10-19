@@ -75,7 +75,6 @@ public class VoteTest extends BaseTest {
         page.enterFirstSRPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(page.nameLabel.getText(),"http://sr-26.com");
-        Assert.assertTrue(isElementExist("NO.1"));
         Assert.assertEquals(page.addressLabel.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
         Assert.assertEquals(removeSymbolDouble(page.voteCountLabel.getText()),votedNumber,0.1);
     }
