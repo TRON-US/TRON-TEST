@@ -36,7 +36,7 @@ public class VoteTest extends BaseTest {
         VotePage page = enterVotePage();
         Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
         Double voted = sepRightNumberTextToDouble( page.usedVoteAmountLabel.getText(),"已投票");
-        Double av = Double.parseDouble(page.availableAmountLabel.getText());
+        Double av = Double.parseDouble(removeSymbolString(page.availableAmountLabel.getText()) );
         Assert.assertEquals(voted+av,total,0.0001);
 
     }
