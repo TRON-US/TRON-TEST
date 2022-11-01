@@ -89,11 +89,11 @@ public class CreateWalletTest extends BaseTest {
         Assert.assertEquals(asset.contentLabel.getText(),"您的钱包助记词尚未备份，为了防止丢失资产的情况发生，请务必尽快备份助记词。");
         asset.enterReceiptPage();
         Assert.assertTrue(isElementExist("安全提醒"));
-        Assert.assertTrue(isElementExist("为了防止因忘记密码、应用卸载、手机丢失等情况导致资产损失，查看收款地址需要先完成助记词备份。"));
+        Assert.assertTrue(isElementExist("为了防止因忘记密码、应用卸载、手机丢失等情况导致资产损失，继续操作需要先完成助记词备份"));
         asset.cancelAction();
         asset.enterTransportPage();
         Assert.assertTrue(isElementExist("安全提醒"));
-        Assert.assertTrue(isElementExist("为了防止因忘记密码、应用卸载、手机丢失等情况导致资产损失，查看收款地址需要先完成助记词备份。"));
+        Assert.assertTrue(isElementExist("为了防止因忘记密码、应用卸载、手机丢失等情况导致资产损失，继续操作需要先完成助记词备份"));
         asset.cancelAction();
         asset.enterFrozenAndThawingPage();
         Assert.assertTrue(isElementExist("当前账户未激活，无法质押。您可进行多重签名质押，或转入 TRX 激活账户。"));

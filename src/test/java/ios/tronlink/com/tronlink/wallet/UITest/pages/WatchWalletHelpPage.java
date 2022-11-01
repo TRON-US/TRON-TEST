@@ -27,7 +27,7 @@ public class WatchWalletHelpPage extends AbstractPage {
         trxPage.goToSecondPage();
         trxPage.inputReceivedAmount("1");
         trxPage.sendButtonClick();
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(8);
         trxPage.broadcastWatchButtonClick();
         TimeUnit.SECONDS.sleep(4);
     }

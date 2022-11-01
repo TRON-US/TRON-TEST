@@ -163,12 +163,12 @@ public class VotePage extends AbstractPage {
     public WebElement SRField;
 
     public void enterSearch(String key) throws Exception{
+        TimeUnit.SECONDS.sleep(1);
         searchSRText.click();
         TimeUnit.SECONDS.sleep(1);
         SRField.sendKeys(key);
         TimeUnit.SECONDS.sleep(3);
     }
-
 
 
     @FindBy(name = "usedVoteAmountLabel")

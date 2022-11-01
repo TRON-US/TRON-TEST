@@ -36,10 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import org.testng.collections.Lists;
-import org.tron.api.GrpcAPI;
-import org.tron.common.utils.ByteArray;
-import org.tron.common.utils.ByteUtil;
+
 
 public class autoCreateTestngXml {
     private String reportPath = "src/test/resources/tronlink-testng.xml";

@@ -34,12 +34,41 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_available_amount")
     public WebElement tv_available_amount;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_stake_edit")
+    public WebElement iv_stake_edit;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/amount_percent_25")
+    public WebElement amount_percent_25;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/amount_percent_50")
+    public WebElement amount_percent_50;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/amount_percent_75")
+    public WebElement amount_percent_75;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/amount_percent_100")
+    public WebElement amount_percent_100;
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_resource_get_amount")
+    public WebElement tv_resource_get_amount;
+
+
     public void enterMultiSign(){
         tv_common_right2.click();
     }
 
     public void inputMultiAddress(String address){
         et_input_address.sendKeys(address);
+    }
+
+
+    public void enterEnergyBandWidth(String amount) throws Exception{
+        iv_stake_edit.click();
+        TimeUnit.SECONDS.sleep(3);
+        ed_input_res.clear();
+        ed_input_res.sendKeys(amount);
+        TimeUnit.SECONDS.sleep(1);
     }
 
 
@@ -60,10 +89,24 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     }
 
     public void stakeAmountAndNext(String amount){
-        et_amount.sendKeys(amount);
+        inputAmount(amount);
         btn_next_step.click();
     }
 
+    public void inputAmount(String amount){
+        et_amount.sendKeys(amount);
+    }
+
+    public void selectEnergyTab() throws Exception{
+        slideScreenTop();
+        tv_stake_energy.click();
+
+    }
+
+    public void selectBandWidthTab() throws Exception{
+        slideScreenTop();
+        tv_stake_bandwidth.click();
+    }
 
     public void stakeWithThisAddress() throws Exception{
         chk_stake_amount.click();
@@ -310,7 +353,6 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_stake_unstake")
     public WebElement tv_stake_unstake;
 
-
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_sign")
     public WebElement tv_multi_sign;
 
@@ -320,6 +362,23 @@ public WebElement tv_stake_energy;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_select")
     public WebElement iv_select;
+
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/ed_input_res")
+    public WebElement ed_input_res;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/ed_input_res")
+    public List <WebElement> ed_input_res_array;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_resource_per_transaction")
+    public WebElement tv_resource_per_transaction;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tips")
+    public WebElement iv_tips;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_get_amount")
+    public WebElement tv_vote_get_amount;
+
 
     public void enterDetailsAndRulesPage() {
         iv_common_title2.click();
