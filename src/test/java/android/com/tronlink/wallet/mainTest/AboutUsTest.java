@@ -47,7 +47,7 @@ public class AboutUsTest extends Base {
         MinePage mine = asset.enterMinePage();
         mine.enterAboutUsPage();
         Assert.assertTrue(mine.nav_title.getText().contains("关于我们"));
-        Assert.assertTrue(mine.tv_version.getText().contains("4.10.1"));
+        Assert.assertEquals(mine.tv_version.getText(),"v4.10.1(2012221213)");
         Assert.assertTrue(isElementTextExist("波宝"));
         Assert.assertTrue(isElementTextExist("用户协议"));
         Assert.assertTrue(isElementTextExist("版本日志"));
