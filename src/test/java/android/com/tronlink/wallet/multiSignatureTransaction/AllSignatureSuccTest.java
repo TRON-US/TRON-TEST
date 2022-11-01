@@ -120,6 +120,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.bt_send.click();
         TimeUnit.SECONDS.sleep(8);
         SendTrx.iv_arrow_right.click();
+        SendTrx.slideConfirmLitter();
         Assert.assertTrue(SendTrx.tv_right_active_account.getText().contains("1"));
 
     }
@@ -144,6 +145,7 @@ public class AllSignatureSuccTest extends Base {
         SendTrx.bt_send.click();
         TimeUnit.SECONDS.sleep(12);
         SendTrx.iv_arrow_right.click();
+        SendTrx.slideConfirmLitter();
         Assert.assertTrue(SendTrx.tv_right_active_account.getText().contains("1"));
 
     }

@@ -283,6 +283,18 @@ public WebElement bt_go;
                 .release().perform();
     }
 
+    public  void slideConfirmLitter(){
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                        PointOption.point(width/2, 4*height/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, 3*height/5))
+                .release().perform();
+    }
+
     public  void slideScreenTop() throws Exception{
         AndroidTouchAction action = new AndroidTouchAction(driver);
         int width = driver.manage().window().getSize().width;
