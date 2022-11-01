@@ -36,7 +36,7 @@ public class VoteTest extends BaseTest {
         VotePage page = enterVotePage();
         Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
         Double voted = sepRightNumberTextToDouble( page.usedVoteAmountLabel.getText(),"已投票");
-        Double av = Double.parseDouble(removeSymbolString(page.availableAmountLabel.getText().trim()));
+        Double av = Double.parseDouble(removeSymbolString(page.availableAmountLabel.getText().trim()) );
         Assert.assertEquals(voted+av,total,0.0001);
 
     }
@@ -50,8 +50,8 @@ public class VoteTest extends BaseTest {
         page.know.click();
         page.enterSortPobView();
         Assert.assertTrue(isElementExist("排序"));
-        Assert.assertTrue(isElementExist("已投票数（高到低）"));
-        Assert.assertTrue(isElementExist("预计年化收益（高到低）"));
+        Assert.assertTrue(isElementExist("我的投票（高到低）"));
+        Assert.assertTrue(isElementExist("预计 APR（高到低）"));
         Assert.assertTrue(isElementExist("得票数（高到低）"));
         page.TapAnyWhere(200,200);
         Assert.assertFalse(isElementExist("排序"));
@@ -75,7 +75,6 @@ public class VoteTest extends BaseTest {
         page.enterFirstSRPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(page.nameLabel.getText(),"http://sr-26.com");
-        Assert.assertTrue(isElementExist("NO.1"));
         Assert.assertEquals(page.addressLabel.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
         Assert.assertEquals(removeSymbolDouble(page.voteCountLabel.getText()),votedNumber,0.1);
     }
