@@ -210,7 +210,7 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),3*total/4.0,1.0);
         frozen.amount_percent_100.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total,1.0);
+        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total,2.0);
 
     }
 
