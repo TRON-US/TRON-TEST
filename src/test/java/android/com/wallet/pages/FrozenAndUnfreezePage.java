@@ -58,8 +58,9 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         tv_common_right2.click();
     }
 
-    public void inputMultiAddress(String address){
+    public void inputMultiAddress(String address) throws Exception{
         et_input_address.sendKeys(address);
+        TimeUnit.SECONDS.sleep(2);
     }
 
 
@@ -77,19 +78,21 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         btn_next.click();
     }
 
-    public void stakeEnergyWithAmount(String amount){
+    public void stakeEnergyWithAmount(String amount) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         tv_stake_energy.click();
         stakeAmountAndNext(amount);
     }
 
-    public void stakeBandWidthWithAmount(String amount){
+    public void stakeBandWidthWithAmount(String amount) throws Exception{
         tv_stake_bandwidth.click();
         stakeAmountAndNext(amount);
 
     }
 
-    public void stakeAmountAndNext(String amount){
+    public void stakeAmountAndNext(String amount) throws Exception{
         inputAmount(amount);
+        TimeUnit.SECONDS.sleep(2);
         btn_next_step.click();
     }
 
@@ -110,6 +113,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
     public void stakeWithThisAddress() throws Exception{
         chk_stake_amount.click();
+        TimeUnit.SECONDS.sleep(2);
         btn_next.click();
         TimeUnit.SECONDS.sleep(2);
     }
