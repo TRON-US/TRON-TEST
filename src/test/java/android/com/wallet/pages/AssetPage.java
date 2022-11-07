@@ -402,9 +402,10 @@ public WebElement title;
 
 //*[@resource-id="com.tronlinkpro.wallet:id/ll_transfer2"]/android.widget.ImageView[1]
 
-    public SendTrxPage enterSendTrc10Page() {
+    public SendTrxPage enterSendTrc10Page() throws Exception{
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Helper.swipScreenLitte(driver);
+        TimeUnit.SECONDS.sleep(1);
         findElementByText("tronlink_token").click();
         trc10Page_transfer_btn.click();
         return new SendTrxPage(driver);
