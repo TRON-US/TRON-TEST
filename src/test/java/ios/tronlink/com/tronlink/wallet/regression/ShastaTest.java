@@ -26,7 +26,6 @@ import ios.tronlink.com.tronlink.wallet.utils.Helper;
  * setting function test
  */
 public class ShastaTest extends BaseTest {
-    public String successNumber;
 
 
     @Parameters({"bundleId"})

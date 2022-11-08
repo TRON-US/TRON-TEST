@@ -2,6 +2,8 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSTouchAction;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.AssetPage;
 import ios.tronlink.com.tronlink.wallet.UITest.pages.MinePage;
@@ -10,10 +12,15 @@ import ios.tronlink.com.tronlink.wallet.UITest.pages.SettingPage;
 import ios.tronlink.com.tronlink.wallet.utils.Helper;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -24,26 +31,15 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest extends Base {
+    public enum importType {normal,coldWallet,coldShieldWallet,shieldWallet}
 
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
         log("BaseTest --Begin");
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            Map<String, Object> params = new HashMap<>();
-            params.put("bundleId", bundleId);
-            DRIVER.executeScript("mobile: terminateApp", params);
-            log("terminateApp");
-            TimeUnit.SECONDS.sleep(2);
-            DRIVER.executeScript("mobile: activateApp", params);
-            log("activateApp");
-            TimeUnit.SECONDS.sleep(2);
-        }catch (Exception e){
-            log("restart fail");
-        }
+        restartApp(bundleId);
         log("BaseTest Import ---start");
-        new Helper().importFirstWallet(Helper.importType.normal,privateKey,DRIVER);
+        importFirstWallet(importType.normal,privateKey,DRIVER);
         log("BaseTest Import ---Success");
     }
 
@@ -124,16 +120,157 @@ public class BaseTest extends Base {
     }
 
     public void restartApp(String bundleId) throws Exception{
+        System.out.println("resetApp1");
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(6);
         DRIVER.executeScript("mobile: activateApp", params);
+        TimeUnit.SECONDS.sleep(6);
+        System.out.println("resetApp2");
+
     }
 
     public String timeYMD(){
         Date dNow = new Date( );
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
         return  ft.format(dNow);
+    }
+
+
+    public void importFirstWallet(importType type, String privateKey, IOSDriver driver) throws Exception{
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(3);
+        Boolean haveImport = isElementExist("walletName");
+        System.out.println("Imported State: " + haveImport);
+        if(!haveImport){
+            importFirstWallet(type,privateKey,"Auto_test","Test0001");
+        }
+    }
+
+    public void importFirstWallet(importType type, String privateKey, String name, String pass) throws Exception{
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        switch (type){
+            case normal:
+            {
+                findWebElement("导入钱包").click();
+                findAcceptAndClick();
+                break;
+            }
+            case coldWallet:
+            {
+                findWebElement("冷钱包").click();
+                DRIVER.findElement(By.name("选择此模式")).click();
+                findAcceptAndClick();
+                break;
+            }
+
+        }
+        importUsePrivateKey(privateKey,name,pass);
+        TimeUnit.SECONDS.sleep(4);
+        Boolean haveImport = isElementExist("walletName") ;
+        System.out.println("Imported State: " + haveImport);
+        if(!haveImport) {
+            for (int i = 0; i < 3; i++) {
+                haveImport = isElementExist("walletName");
+                if(!haveImport){
+                    importFirstWallet(type,privateKey,"Auto_test","Test0001");
+                    restartApp("com.tronlink.hdwallet");
+                    TimeUnit.SECONDS.sleep(7);
+                }else {
+                    break;
+                }
+            }
+        }
+
+
+    }
+
+    public void importUsePrivateKey(String privatekey,String name,String pass){
+        try {
+            DRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(privatekey);
+            closeKeyBoard();
+            findWebElement("下一步").click();
+            slideScreenLitter(DRIVER);
+            TimeUnit.SECONDS.sleep(1);
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").clear();
+            DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
+            closeKeyBoard();
+            WebElement pass1 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
+            WebElement pass2 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
+            pass1.sendKeys(pass);
+            closeKeyBoard();
+            pass2.sendKeys(pass);
+            closeKeyBoard();
+            findWebElement("导入私钥").click();
+            TimeUnit.SECONDS.sleep(10);
+            AssetPage assetPage = new AssetPage(DRIVER);
+            try {
+                if (DRIVER.findElementByName("备份资产").isDisplayed()){
+                    DRIVER.findElementByName("备份资产").click();
+                    assetPage.blackBackBtn.click();
+                }
+            }catch (Exception es){}
+
+        }catch (Exception e){}
+    }
+
+
+    public WebElement findWebElement(String element) throws Exception {
+        int tries = 0;
+        Boolean Element_is_exist = false;
+        WebElement el = null;
+        while (!Element_is_exist && tries < 3) {
+            tries++;
+            try {
+                el = DRIVER.findElementByName(element);
+                Element_is_exist = true;
+            }catch (NoSuchElementException e){
+                DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+            }
+        }
+        if(el != null){
+            return  el;
+        }else {
+            el = DRIVER.findElementById(element);
+            return el;
+        }
+
+    }
+
+
+    public void findAcceptAndClick(){
+        DRIVER.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            WebElement accBtn = DRIVER.findElementByName("接受");
+            while (!accBtn.isEnabled()) {
+                IOSTouchAction action = new IOSTouchAction(DRIVER);
+                int width = DRIVER.manage().window().getSize().width;
+                int height = DRIVER.manage().window().getSize().height;
+                Duration duration = Duration.ofMillis(30);
+                action.press(
+                                PointOption.point(width/2, height*4/5))
+                        .waitAction(WaitOptions.waitOptions(duration))
+                        .moveTo(PointOption.point(width/2, height/5))
+                        .release().perform();
+            }
+            accBtn.click();
+        }catch (Exception e){
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        }
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+    }
+
+    public static void slideScreenLitter(IOSDriver<?> driver){
+        IOSTouchAction action = new IOSTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                        PointOption.point(width/2, height*4/5))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height*3/5))
+                .release().perform();
     }
 }

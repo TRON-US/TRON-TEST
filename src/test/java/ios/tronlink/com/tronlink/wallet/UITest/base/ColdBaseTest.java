@@ -22,16 +22,13 @@ public class ColdBaseTest extends Base {
         DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
-//        DRIVER.closeApp();
         try {
-
             final boolean wasRunningBefore = (Boolean)DRIVER.executeScript("mobile: terminateApp", params);
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElement(By.name("设置")).click();
             DRIVER.findElement(By.name("无线局域网")).click();
             TimeUnit.SECONDS.sleep(2);
             DRIVER.findElementByClassName("XCUIElementTypeSwitch").click();
-//            TimeUnit.SECONDS.sleep(2);
             DRIVER.navigate().back();
         } catch (Exception e) {
         }

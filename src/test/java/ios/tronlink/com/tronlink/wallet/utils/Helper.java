@@ -257,6 +257,14 @@ public class Helper {
     }
 
 
+    //导入正常的,需要报错信息不能使用此方法
+    public  void importMoreWallet(importType type,String privateKey,String name,String pass,IOSDriver driver) throws Exception{
+        this.DRIVER = driver;
+        driver.findElementByName("home manager").click();
+        driver.findElementByName("导入钱包").click();
+        importUsePrivateKey(privateKey,name,pass);
+    }
+
 
     public void importFirstWallet(importType type,String privateKey, IOSDriver driver) throws Exception{
         this.DRIVER = driver;
@@ -269,13 +277,6 @@ public class Helper {
         if(!haveImport){
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
-    }
-    //导入正常的,需要报错信息不能使用此方法
-    public  void importMoreWallet(importType type,String privateKey,String name,String pass,IOSDriver driver) throws Exception{
-        this.DRIVER = driver;
-        driver.findElementByName("home manager").click();
-        driver.findElementByName("导入钱包").click();
-        importUsePrivateKey(privateKey,name,pass);
     }
 
     public void importFirstWallet(importType type,String privateKey,String name,String pass) throws Exception{
@@ -296,8 +297,22 @@ public class Helper {
             }
 
         }
-
         importUsePrivateKey(privateKey,name,pass);
+        System.out.println("resetApp1");
+        System.out.println("resetApp2");
+        Boolean haveImport = isElementExist(DRIVER,"walletName");
+        if(!haveImport) {
+            for (int i = 0; i < 3; i++) {
+                TimeUnit.SECONDS.sleep(8);
+                haveImport = isElementExist(DRIVER,"walletName");
+                if(!haveImport){
+                    importFirstWallet(type,privateKey,"Auto_test","Test0001");
+                }else {
+                    break;
+                }
+            }
+        }
+
 
     }
 
