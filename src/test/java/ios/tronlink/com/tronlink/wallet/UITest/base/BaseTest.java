@@ -37,12 +37,7 @@ public class BaseTest extends Base {
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
         log("BaseTest --Begin");
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            restartApp(bundleId);
-        }catch (Exception e){
-            log("restart fail");
-        }
+        restartApp(bundleId);
         log("BaseTest Import ---start");
         importFirstWallet(importType.normal,privateKey,DRIVER);
         log("BaseTest Import ---Success");
@@ -131,7 +126,7 @@ public class BaseTest extends Base {
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(6);
         DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(6);
     }
 
     public String timeYMD(){
@@ -145,7 +140,7 @@ public class BaseTest extends Base {
         DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         TimeUnit.SECONDS.sleep(3);
         Boolean haveImport = isElementExist("walletName");
-        System.out.println("Imported: " + haveImport);
+        System.out.println("Imported State: " + haveImport);
         if(!haveImport){
             importFirstWallet(type,privateKey,"Auto_test","Test0001");
         }
@@ -175,6 +170,7 @@ public class BaseTest extends Base {
         System.out.println("resetApp2");
         TimeUnit.SECONDS.sleep(4);
         Boolean haveImport = isElementExist("walletName") ;
+        System.out.println("Imported State: " + haveImport);
         if(!haveImport) {
             for (int i = 0; i < 3; i++) {
                 haveImport = isElementExist("walletName");
