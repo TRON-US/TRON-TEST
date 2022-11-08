@@ -120,13 +120,15 @@ public class BaseTest extends Base {
     }
 
     public void restartApp(String bundleId) throws Exception{
-
+        System.out.println("resetApp1");
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(6);
         DRIVER.executeScript("mobile: activateApp", params);
         TimeUnit.SECONDS.sleep(6);
+        System.out.println("resetApp2");
+
     }
 
     public String timeYMD(){
@@ -165,9 +167,6 @@ public class BaseTest extends Base {
 
         }
         importUsePrivateKey(privateKey,name,pass);
-        System.out.println("resetApp1");
-        restartApp("com.tronlink.hdwallet");
-        System.out.println("resetApp2");
         TimeUnit.SECONDS.sleep(4);
         Boolean haveImport = isElementExist("walletName") ;
         System.out.println("Imported State: " + haveImport);
@@ -177,7 +176,7 @@ public class BaseTest extends Base {
                 if(!haveImport){
                     importFirstWallet(type,privateKey,"Auto_test","Test0001");
                     restartApp("com.tronlink.hdwallet");
-                    TimeUnit.SECONDS.sleep(4);
+                    TimeUnit.SECONDS.sleep(7);
                 }else {
                     break;
                 }
