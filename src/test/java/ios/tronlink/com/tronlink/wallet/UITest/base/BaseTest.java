@@ -164,8 +164,8 @@ public class BaseTest extends Base {
                 findAcceptAndClick();
                 break;
             }
-
         }
+
         importUsePrivateKey(privateKey,name,pass);
         TimeUnit.SECONDS.sleep(4);
         Boolean haveImport = isElementExist("walletName") ;
@@ -174,7 +174,9 @@ public class BaseTest extends Base {
             for (int i = 0; i < 3; i++) {
                 haveImport = isElementExist("walletName");
                 if(!haveImport){
-                    importFirstWallet(type,privateKey,"Auto_test","Test0001");
+                    findWebElement("导入钱包").click();
+                    findAcceptAndClick();
+                    importUsePrivateKey(privateKey,name,pass);
                     restartApp("com.tronlink.hdwallet");
                     TimeUnit.SECONDS.sleep(7);
                 }else {
