@@ -202,9 +202,9 @@ public class BaseTest extends Base {
             closeKeyBoard();
             WebElement pass1 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
             WebElement pass2 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
-            pass1.sendKeys(pass);
+            pass1.sendKeys("Test0001");
             closeKeyBoard();
-            pass2.sendKeys(pass);
+            pass2.sendKeys("Test0001");
             closeKeyBoard();
             findWebElement("导入私钥").click();
             TimeUnit.SECONDS.sleep(10);
