@@ -200,8 +200,8 @@ public class BaseTest extends Base {
             DRIVER.findElementByClassName("XCUIElementTypeTextField").clear();
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
             closeKeyBoard();
-            WebElement pass1 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
-            WebElement pass2 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
+            WebElement pass1 = DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
+            WebElement pass2 = DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
             pass1.sendKeys("Test0001");
             closeKeyBoard();
             pass2.sendKeys("Test0001");
