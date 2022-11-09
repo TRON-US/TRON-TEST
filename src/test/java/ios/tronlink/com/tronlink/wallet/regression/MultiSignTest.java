@@ -29,7 +29,7 @@ public class MultiSignTest extends BaseTest {
         restartApp(bundleId);
         TimeUnit.SECONDS.sleep(4);
         log("TestClass Import ---Start");
-        importFirstWallet(importType.normal,privateKey,DRIVER);
+        importFirstWallet(importType.normal,privateKey);
         log("TestClass Import ---Success");
     }
 
