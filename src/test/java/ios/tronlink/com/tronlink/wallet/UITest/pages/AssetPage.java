@@ -178,6 +178,12 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "WalletManageMenuView")
     public WebElement activePath;
 
+    @FindBy(id = "tab discover")
+    public WebElement browserBtn;
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[3]")
+    public WebElement browserXpathTab;
+
 
     public void cancelAction(){
         driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"取消\"`]").click();
@@ -198,6 +204,13 @@ public class AssetPage extends AbstractPage {
         return  driver.findElementByName("转账");
     }
 
+
+
+    public BrowserPage enterBrowserPage() throws Exception{
+        browserXpathTab.click();
+        TimeUnit.SECONDS.sleep(3);
+        return new BrowserPage(driver);
+    }
     public VotePage enterVotePage() {
         try {
             vote_btn.click();

@@ -120,14 +120,26 @@ public class BaseTest extends Base {
     }
 
     public void restartApp(String bundleId) throws Exception{
-        System.out.println("resetApp1");
+        System.out.println("restartApp1");
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
         TimeUnit.SECONDS.sleep(6);
+        System.out.println("restartApp2");
         DRIVER.executeScript("mobile: activateApp", params);
         TimeUnit.SECONDS.sleep(6);
-        System.out.println("resetApp2");
+
+    }
+
+    public void restartApp() throws Exception{
+        System.out.println("restartApp1");
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", "com.tronlink.hdwallet");
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(6);
+        System.out.println("restartApp2");
+        DRIVER.executeScript("mobile: activateApp", params);
+        TimeUnit.SECONDS.sleep(6);
 
     }
 

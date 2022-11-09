@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateWalletTest extends BaseTest {
 
-    String oldPassword = "Test0001";
 
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
