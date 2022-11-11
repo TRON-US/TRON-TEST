@@ -4,6 +4,8 @@ package ios.tronlink.com.tronlink.wallet.UITest.base;
 
 import android.com.utils.AppiumTestCase;
 import android.com.utils.IHookableImp;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.WaitOptions;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
@@ -22,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +46,7 @@ public class Base {
 
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss ");
 
-    public int RetryAgainTimes = 4;
+    public int RetryAgainTimes = 0;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
@@ -353,6 +356,45 @@ public class Base {
 
     }
 
+
+
+
+    public Double sepLeftNumberTextToDouble(String content,String lastString){
+        String realNumber = StringUtils.substringBeforeLast(content,lastString);
+        realNumber = prettyString(realNumber);
+        realNumber = realNumber.replace("+","");
+        realNumber = realNumber.replace("-","");
+        return  Double.parseDouble(removeNegative(realNumber.trim()));
+    }
+
+
+    public String prettyString(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
+    }
+
+
+    public String removeNegative(String arg){
+        String value = arg;
+        if (arg.contains("-")){
+            value = arg.replace("-","");
+        }
+        if (arg.contains("+")){
+            value = arg.replace("+","");
+        }
+        return value;
+    }
+
+    public String removeSymbolFloat(String arg){
+        String value = arg;
+        if (arg.contains(",")){
+            value = arg.replace(",","");
+        }
+        return value;
+    }
     public void resetApp(String udid) throws Exception {
         DRIVER.closeApp();
         log("开始移除app");

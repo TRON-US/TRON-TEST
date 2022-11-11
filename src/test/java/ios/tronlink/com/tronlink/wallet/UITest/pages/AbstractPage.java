@@ -1,6 +1,7 @@
 package ios.tronlink.com.tronlink.wallet.UITest.pages;
 
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -313,6 +314,33 @@ public class AbstractPage {
             driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         }
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+    }
+
+    public  void slideScreenBottom() throws Exception{
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                        PointOption.point(width/2, 3*height/4 ))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, height/3))
+                .release().perform();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+
+    public  void slideScreenTop() throws Exception{
+        AndroidTouchAction action = new AndroidTouchAction(driver);
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
+        Duration duration = Duration.ofMillis(200);
+        action.press(
+                        PointOption.point(width/2, height/3))
+                .waitAction(WaitOptions.waitOptions(duration))
+                .moveTo(PointOption.point(width/2, 3*height/4))
+                .release().perform();
+        TimeUnit.SECONDS.sleep(1);
     }
 
 }
