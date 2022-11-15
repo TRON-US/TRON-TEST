@@ -156,6 +156,7 @@ public class SendTrx extends Base {
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
                 log(detailAmount.toString());
                 Assert.assertEquals(detailAmount,sendAmount,0.4);
+                Helper.swipScreenLitte(DRIVER);
                 Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
                 break;
             }else {
