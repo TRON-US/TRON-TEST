@@ -47,6 +47,10 @@ public class SendTrxPage extends AbstractPage {
 
     @FindBy(className = "XCUIElementTypeTextField")
     public WebElement TextField;
+
+    @FindBy(className = "XCUIElementTypeTextView")
+    public WebElement TextView;
+
     
     @FindBy(id = "transfer address clear")
     public WebElement cleanBtn;
@@ -217,7 +221,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void sendAllNormal(String value,String type) throws Exception{
         waiteTime();
-        TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        TextView.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         goToSecondPage();
         switch (type){
@@ -250,7 +254,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void enterSendTextField(String addr) throws Exception {
         waiteTime();
-        TextField.sendKeys(addr);
+        TextView.sendKeys(addr);
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(4);
     }
@@ -367,16 +371,13 @@ public class SendTrxPage extends AbstractPage {
     }
 
 
-    public WebElement TextFieldAdd(){
-        return driver.findElementByIosNsPredicate("value == \"输入接收账户地址\"");
-    }
 
     public void sendMultiSignStepTwo() throws Exception{
         multiSignBtn.click();
         TimeUnit.SECONDS.sleep(2);
         getFirstCell.click();
         nextBtn.click();
-        TextFieldAdd().sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        TextView.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         nextBtn.click();
     }
@@ -454,7 +455,7 @@ public class SendTrxPage extends AbstractPage {
     }
 
     public void inputReceivedAddress(String addr) throws Exception {
-        TextField.sendKeys(addr);
+        TextView.sendKeys(addr);
         closeKeyBoard();
 
     }

@@ -26,7 +26,7 @@ public class ReceiptTest extends BaseTest {
      Assert.assertTrue(isElementExist("扫描二维码向我付款"));
         Assert.assertTrue(isElementExist("收款"));
         Assert.assertTrue(isElementExist("Auto_test"));
-        Assert.assertTrue(isElementExist("仅可向此地址转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
+        Assert.assertTrue(isElementExist("仅可向此账户转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
         Assert.assertTrue(isElementExist(address));
         Assert.assertTrue(isElementExist("分享"));
         Assert.assertTrue(isElementExist("保存二维码"));
@@ -43,7 +43,7 @@ public class ReceiptTest extends BaseTest {
         Assert.assertTrue(isElementExist("扫描二维码向我付款"));
         Assert.assertTrue(isElementExist("收款"));
         Assert.assertTrue(isElementExist("Auto_test"));
-        Assert.assertTrue(isElementExist("仅可向此地址转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
+        Assert.assertTrue(isElementExist("仅可向此账户转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
         Assert.assertTrue(isElementExist("分享"));
         Assert.assertTrue(isElementExist("保存二维码"));
 
@@ -59,7 +59,7 @@ public class ReceiptTest extends BaseTest {
         Assert.assertTrue(isElementExist("扫描二维码向我付款"));
         Assert.assertTrue(isElementExist("收款"));
         Assert.assertTrue(isElementExist("Auto_test"));
-        Assert.assertTrue(isElementExist("仅可向此地址转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
+        Assert.assertTrue(isElementExist("仅可向此账户转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
         Assert.assertTrue(isElementExist("分享"));
         Assert.assertTrue(isElementExist("保存二维码"));
 
@@ -75,7 +75,7 @@ public class ReceiptTest extends BaseTest {
         Assert.assertTrue(isElementExist("扫描二维码向我付款"));
         Assert.assertTrue(isElementExist("收款"));
         Assert.assertTrue(isElementExist("Auto_test"));
-        Assert.assertTrue(isElementExist("仅可向此地址转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
+        Assert.assertTrue(isElementExist("仅可向此账户转入波场系通证 (如 TRX 或 TRC10/20/721 通证)，转入其他通证将无法找回"));
         Assert.assertTrue(isElementExist("分享"));
         Assert.assertTrue(isElementExist("保存二维码"));
 

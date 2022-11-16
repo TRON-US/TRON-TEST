@@ -31,7 +31,7 @@ public class ImportObserve extends BaseTest {
         ObservePage importObservePage = enterImportObservePage();
         Assert.assertFalse(importObservePage.getNext_btn().isEnabled());
         importObservePage.inputAddreseString("ecd4bbba178b1b0d2a0c1e6e9108e0cab8");
-        Assert.assertTrue(isElementExist(" 钱包地址格式不正确"));
+        Assert.assertTrue(isElementExist(" 账户地址格式不正确"));
 
     }
 

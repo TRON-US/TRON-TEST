@@ -87,7 +87,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.inputFrozenCount("1");
         frozen.getFreeze_btn().click();
         frozen.inputReceivingAddress("TG5wFVvrJiTkBA1WaZN3pzyJDfkgHMn");
-        Assert.assertTrue(isElementExist(" 地址格式不正确，地址须以 T 开头，长度为 34 个字符"));
+        Assert.assertTrue(isElementExist(" 账户地址格式不正确，请检查"));
         Assert.assertFalse(frozen.confirmDeposit().isEnabled());
     }
 
@@ -97,7 +97,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         frozen.inputFrozenCount("1");
         frozen.getFreeze_btn().click();
         frozen.inputReceivingAddress("TWRjSKWxoDMetK4dhFeM763zGJZqu5oBxQ");
-        Assert.assertTrue(isElementExist(" 该账户未在波场网络上激活，请重新填写"));
+        Assert.assertTrue(isElementExist("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）"));
         Assert.assertFalse(frozen.confirmDeposit().isEnabled());
     }
 

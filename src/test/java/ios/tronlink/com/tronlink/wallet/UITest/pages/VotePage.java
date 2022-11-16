@@ -209,7 +209,7 @@ public class VotePage extends AbstractPage {
     }
 
     public void enterOwenAddressAndNext(String addr) throws Exception{
-        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeTextField'").sendKeys(addr);
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeTextView'").sendKeys(addr);
         closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '下一步'").click();
         TimeUnit.SECONDS.sleep(8);
