@@ -282,6 +282,7 @@ public class AbstractPage {
                 .release().perform();
     }
 
+
     public  void slideScreenMiddle(){
         IOSTouchAction action = new IOSTouchAction(driver);
         int width = driver.manage().window().getSize().width;

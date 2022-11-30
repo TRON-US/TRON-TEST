@@ -83,7 +83,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(name = "下一步")
     public WebElement freeze_btn;
 
-    @FindBy(className = "XCUIElementTypeTextField")
+    @FindBy(className = "XCUIElementTypeTextView")
     public WebElement receivedTF;
 
 //    @FindBy(name = "解冻")

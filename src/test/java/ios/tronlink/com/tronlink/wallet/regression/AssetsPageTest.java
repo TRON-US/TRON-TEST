@@ -46,7 +46,7 @@ public class AssetsPageTest extends BaseTest {
     public void test004_56gotoVotePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         VotePage secondPage = assetPage.enterVotePage();
-        Assert.assertTrue(isElementExist("投票 "));
+        Assert.assertTrue(isElementExist("超级代表"));
         secondPage.backNav();
         AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
         Assert.assertTrue(Helper.isElementExist(addAssertPage.driver,"我的全部资产"));

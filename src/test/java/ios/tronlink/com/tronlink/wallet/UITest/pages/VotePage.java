@@ -29,8 +29,8 @@ public class VotePage extends AbstractPage {
     @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"voteHome searchBtn N\"])[1]")
     public WebElement searchBtn;
 
-    public void sliderToSearch(){
-        slideScreenMiddle();
+    public void sliderToSearch() throws Exception{
+        slideScreenTop();
     }
 
     @FindBy(id = "multiSign transfer tip icon")

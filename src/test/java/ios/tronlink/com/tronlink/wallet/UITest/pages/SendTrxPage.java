@@ -377,6 +377,7 @@ public class SendTrxPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(2);
         getFirstCell.click();
         nextBtn.click();
+        TimeUnit.SECONDS.sleep(2);
         TextView.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         nextBtn.click();

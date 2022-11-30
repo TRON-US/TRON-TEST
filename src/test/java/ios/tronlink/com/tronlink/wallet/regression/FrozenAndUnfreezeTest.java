@@ -18,9 +18,10 @@ public class FrozenAndUnfreezeTest extends BaseTest {
 
 
     @Test(description = "enter Details of the rules", alwaysRun = true)
-    public void test001_enterDetailsOfTheRules()  {
+    public void test001_enterDetailsOfTheRules() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         DetailsAndRulesPage detailsAndRules = frozen.enterDetailsAndRulesPage();
+        TimeUnit.SECONDS.sleep(2);
         Assert.assertTrue(isElementExist("质押解锁说明"));
         Assert.assertTrue(isElementExist("1. 质押 TRX 可以选择获得带宽或者能量中的一种，同时可以获得投票权，质押 1 TRX 可以获得 1 个投票权。"));
         Assert.assertTrue(isElementExist("我知道了"));
