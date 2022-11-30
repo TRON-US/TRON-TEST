@@ -239,7 +239,7 @@ public class SendTrx extends Base {
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.receiveAddress_text.sendKeys(nileBlack);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("此账户地址用于销毁代币，请确认您要向此地址转账！"));
+        Assert.assertTrue(findByShotId("error_view").getText().contains("此账户用于销毁代币，请确认您要向此账户转账！"));
     }
 
     @Parameters({"udid"})
