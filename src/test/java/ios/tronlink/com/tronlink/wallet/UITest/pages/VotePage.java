@@ -30,7 +30,7 @@ public class VotePage extends AbstractPage {
     public WebElement searchBtn;
 
     public void sliderToSearch() throws Exception{
-        slideScreenTop();
+        slideScreenBottom();
     }
 
     @FindBy(id = "multiSign transfer tip icon")
