@@ -102,7 +102,7 @@ public class SendTrx extends BaseTest {
         SendTrxPage page = asset.enterSendTrxPage();
         page.TextView.sendKeys("notAAddress");
         closeKeyBoard();
-        Assert.assertTrue(isElementExist(" 账户地址格式不正确，请检查"));
+        Assert.assertTrue(isElementExist(" 账户地址格式不正确"));
     }
 
     @Test(alwaysRun = true)
@@ -185,7 +185,7 @@ public class SendTrx extends BaseTest {
         transfer.TextView.sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(isElementExist(" 账户地址格式不正确，请检查"));
+        Assert.assertTrue(isElementExist(" 账户地址格式不正确"));
     }
 
 
