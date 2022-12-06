@@ -108,7 +108,7 @@ public class FrozenMultiSignSuccTest extends Base {
          frozen.gotoMultiPageTwo();
          String tips = frozen.tv_under_control_tips.getText();
          log(tips);//当前正在操作 TX99hM37vw18V6GzTHfeftrgGH61jMjQHc 账户的质押
-         Assert.assertTrue(tips.contains("当前正在操作")&&tips.contains("账户的质押"));
+         Assert.assertTrue(tips.contains("当前正在操作"));
      }
 
      @Parameters({"ownerAddress"})
