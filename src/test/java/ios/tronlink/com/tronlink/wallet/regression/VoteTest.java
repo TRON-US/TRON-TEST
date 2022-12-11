@@ -16,8 +16,9 @@ public class VoteTest extends BaseTest {
 
     public VotePage enterVotePage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
         VotePage vote = asset.enterVotePage();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(2);
         return vote;
     }
 
@@ -25,7 +26,7 @@ public class VoteTest extends BaseTest {
     public void test001_enterVotePageTest() throws Exception {
         enterVotePage();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(isElementExist("投票 "));
+        Assert.assertTrue(isElementExist("剩余投票权"));
         Assert.assertTrue(isElementExist("超级代表"));
         Assert.assertTrue(isElementExist("多重签名投票"));
         Assert.assertTrue(isElementExist("voteRewardHome  introduce"));

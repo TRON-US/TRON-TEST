@@ -24,12 +24,12 @@ public class MultiSignTest extends BaseTest {
 
     @Parameters({"ownerPrivateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBefore(String privateKey,String bundleId) throws Exception {
+    public void setUpBefore(String ownerPrivateKey,String bundleId) throws Exception {
         TimeUnit.SECONDS.sleep(2);
         restartApp(bundleId);
         TimeUnit.SECONDS.sleep(4);
         log("TestClass Import ---Start");
-        importFirstWallet(importType.normal,privateKey);
+        importFirstWallet(importType.normal,ownerPrivateKey);
         log("TestClass Import ---Success");
     }
 
@@ -69,7 +69,6 @@ public class MultiSignTest extends BaseTest {
         Assert.assertTrue(isElementExist(multiSignAddress));
         page.confirmPageButtonClick();
         page.passwordInputFinish();
-        Assert.assertEquals(page.sendAddress.getText(),ownerAddress);
         Assert.assertTrue(page.typeLabel.getText().contains("TRX 转账"));
     }
 
@@ -92,7 +91,6 @@ public class MultiSignTest extends BaseTest {
         Assert.assertTrue(isElementExist(multiSignAddress));
         page.confirmPageButtonClick();
         page.passwordInputFinish();
-        Assert.assertEquals(page.sendAddress.getText(),ownerAddress);
         Assert.assertTrue(page.typeLabel.getText().contains("TRC10 通证转账"));
 
     }
@@ -116,7 +114,6 @@ public class MultiSignTest extends BaseTest {
         Assert.assertTrue(isElementExist(multiSignAddress));
         page.confirmPageButtonClick();
         page.passwordInputFinish();
-        Assert.assertEquals(page.sendAddress.getText(),ownerAddress);
         Assert.assertTrue(page.typeLabel.getText().contains("触发智能合约"));
     }
 

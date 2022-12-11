@@ -156,6 +156,7 @@ public class SendTrx extends Base {
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
                 log(detailAmount.toString());
                 Assert.assertEquals(detailAmount,sendAmount,0.4);
+                Helper.swipScreenLitte(DRIVER);
                 Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
                 break;
             }else {
@@ -238,7 +239,7 @@ public class SendTrx extends Base {
         TrxPage page =  asset.enterTrxPage();
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.receiveAddress_text.sendKeys(nileBlack);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("此账户地址用于销毁代币，请确认您要向此地址转账！"));
+        Assert.assertTrue(findByShotId("error_view").getText().contains("此账户用于销毁代币，请确认您要向此账户转账！"));
     }
 
     @Parameters({"udid"})

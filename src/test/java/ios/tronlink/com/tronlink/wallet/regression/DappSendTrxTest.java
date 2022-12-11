@@ -107,7 +107,7 @@ public class DappSendTrxTest extends BaseTest {
 //        SendTrxPage page = asset.enterSendTrxPage();
 //        page.TextField.sendKeys("notAAddress");
 //        closeKeyBoard();
-//        Assert.assertTrue(isElementExist(" 地址格式不正确，请检查"));
+//        Assert.assertTrue(isElementExist("  账户地址格式不正确，请检查"));
 //    }
 //
 //    @Test(alwaysRun = true)
@@ -200,7 +200,7 @@ public class DappSendTrxTest extends BaseTest {
 //        transfer.TextField.sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
 //        closeKeyBoard();
 //        TimeUnit.SECONDS.sleep(2);
-//        Assert.assertTrue(isElementExist(" 地址格式不正确，请检查"));
+//        Assert.assertTrue(isElementExist("  账户地址格式不正确，请检查"));
 //    }
 //
 //

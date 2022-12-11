@@ -100,16 +100,16 @@ public class SendTrx extends BaseTest {
     public void test004_SendPageOneAddressErrorTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage page = asset.enterSendTrxPage();
-        page.TextField.sendKeys("notAAddress");
+        page.TextView.sendKeys("notAAddress");
         closeKeyBoard();
-        Assert.assertTrue(isElementExist(" 地址格式不正确，请检查"));
+        Assert.assertTrue(isElementExist(" 账户地址格式不正确"));
     }
 
     @Test(alwaysRun = true)
     public void test005_SendPageOneAddressAddBookTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage page = asset.enterSendTrxPage();
-        page.TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        page.TextView.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         Assert.assertTrue(isElementExist("加入到地址本"));
     }
@@ -118,7 +118,7 @@ public class SendTrx extends BaseTest {
     public void test006_SendPageOneAddressAddBookFuncTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage page = asset.enterSendTrxPage();
-        page.TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        page.TextView.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         page.addBook.click();
         Assert.assertTrue(isElementExist("加入到地址本"));
@@ -182,10 +182,10 @@ public class SendTrx extends BaseTest {
     public void test012_receivingAddressTrim() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(2);
-        transfer.TextField.sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
+        transfer.TextView.sendKeys("  " + "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq" + "  ");
         closeKeyBoard();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(isElementExist(" 地址格式不正确，请检查"));
+        Assert.assertTrue(isElementExist(" 账户地址格式不正确"));
     }
 
 
@@ -193,7 +193,7 @@ public class SendTrx extends BaseTest {
     public void test013_sendMinimumTrx() throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(2);
-        transfer.TextField.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        transfer.TextView.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         closeKeyBoard();
         transfer.goToSecondPage();
         TimeUnit.SECONDS.sleep(2);

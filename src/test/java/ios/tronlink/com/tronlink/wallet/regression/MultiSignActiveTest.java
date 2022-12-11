@@ -99,20 +99,20 @@ public class MultiSignActiveTest extends BaseTest {
     public void test011_errorAdress() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.addressErrWith("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE").contains("请填写正确的地址"));
+        Assert.assertTrue(multiSignManagerPage.addressErrWith("AAtrbmfwZ2LxtoCveEhZT86fTss1w8rwJE").contains("请填写正确的账户地址"));
     }
 
     @Test(description = "Adress Is Null", alwaysRun = true)
     public void test012_AdressIsNull() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.addressErrWith("").contains("请填写正确的地址"));
+        Assert.assertTrue(multiSignManagerPage.addressErrWith("").contains("请填写正确的账户地址"));
     }
     @Test(description = "two Adress is equals", alwaysRun = true)
     public void test013_adressIsEquals() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
-        Assert.assertTrue(multiSignManagerPage.makedouleAddressErr().contains("重复地址"));
+        Assert.assertTrue(multiSignManagerPage.makedouleAddressErr().contains("不能输入重复账户"));
     }
 
     @Test(description = "password is wrong", alwaysRun = true)

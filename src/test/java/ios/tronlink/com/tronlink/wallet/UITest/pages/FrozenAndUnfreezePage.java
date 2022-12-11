@@ -51,8 +51,25 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(xpath = "XCUIElementTypeApplication[@name='TronLink']/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeImage")
     public WebElement ad_pic;
 
+    @FindBy(className = "XCUIElementTypeTextField")
+    public WebElement et_amount;
 
-    @FindBy(name = "home pop close")
+    @FindBy(id = "availableTRX")
+    public WebElement  tv_available_amount;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"25%\"]")
+    public WebElement amount_percent_25;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"50%\"]")
+    public WebElement amount_percent_50;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"75%\"]")
+    public WebElement amount_percent_75;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"100%\"]")
+    public WebElement amount_percent_100;
+
+    @FindBy(id = "home pop close")
     public WebElement adClose_btn;
 
     @FindBy(className = "XCUIElementTypeTextField")
@@ -66,7 +83,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(name = "下一步")
     public WebElement freeze_btn;
 
-    @FindBy(className = "XCUIElementTypeTextField")
+    @FindBy(className = "XCUIElementTypeTextView")
     public WebElement receivedTF;
 
 //    @FindBy(name = "解冻")
@@ -193,6 +210,40 @@ public class FrozenAndUnfreezePage extends AbstractPage {
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '确认'");
     }
 
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"能量\"]")
+    public WebElement tv_stake_energy;
+
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"带宽\"]")
+    public WebElement tv_stake_bandwidth;
+
+    public void selectEnergyTab() throws Exception{
+        slideScreenTop();
+        tv_stake_energy.click();
+    }
+
+    public void selectBandWidthTab() throws Exception{
+        slideScreenTop();
+        tv_stake_bandwidth.click();
+    }
+
+    public void inputAmount(String amount) throws Exception{
+        et_amount.sendKeys(amount);
+        closeKeyBoard();
+    }
+    @FindBy(id = "Stake Resource Edit Icon")
+    public WebElement iv_stake_edit;
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTextField")
+    public WebElement ed_input_res;
+
+    public void enterEnergyBandWidth(String amount) throws Exception{
+        iv_stake_edit.click();
+        TimeUnit.SECONDS.sleep(3);
+        ed_input_res.clear();
+        ed_input_res.sendKeys(amount);
+        closeKeyBoard();
+        TimeUnit.SECONDS.sleep(1);
+    }
 
 
     public WebElement getfreezenBtnPopView(){
