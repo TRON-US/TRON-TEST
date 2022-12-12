@@ -161,8 +161,7 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertTrue(frozen.tv_multi_sign.getText().contains("多重签名解锁"));
         Assert.assertTrue(frozen.error_view.getText().contains("解锁会减少您的资源和投票权，并使您当前的投票全部被取消"));
         Assert.assertFalse(frozen.btn_next.isEnabled());
-        frozen.iv_select.click();
-        Assert.assertTrue(frozen.tv_content.getText().contains("可解锁时间"));
+
      }
 
       @Test(alwaysRun = true)
