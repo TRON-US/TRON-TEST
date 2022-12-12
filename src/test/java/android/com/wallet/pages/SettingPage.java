@@ -47,7 +47,7 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_node_root")
     public WebElement ll_node_root;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/server_name")
+    @FindBy(id = "com.tronlinkpro.wallet:id/server")
     public WebElement server_name_speed;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/testnode")
