@@ -131,6 +131,8 @@ public class CustomNodeSettingTest extends Base {
     public void test006_SwitchSeverFromAutoToSelect() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
+        Helper.swipScreenLitte(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         sett.server_name_speed.click();
         if(isElementShotId("tv_node_name")){
             sett.switch_button.click();
@@ -143,6 +145,8 @@ public class CustomNodeSettingTest extends Base {
         }
 
     }
+
+
     public boolean checkIpFormat(String ipStr) {
         String[] ip = ipStr.split(".");
         for (int i = 0; i < ip.length;i++) {
