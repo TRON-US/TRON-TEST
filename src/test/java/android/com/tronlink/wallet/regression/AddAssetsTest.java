@@ -61,8 +61,7 @@ public class AddAssetsTest extends Base {
         AddAssertPage page = asset.enterAddAssertPage();
         Assert.assertTrue(page.nav_title.getText().contains("我的全部资产"));
         Assert.assertTrue(page.right_title.getText().contains("自定义通证"));
-        Assert.assertTrue(page.hidasset.getText().contains("隐藏小额资产"));
-        Assert.assertTrue(page.right_title.getText().contains("自定义通证"));
+//        Assert.assertTrue(page.hidasset.getText().contains("隐藏小额资产")); Bug TA-266
     }
 
     @Test(description = "Add Asset Test",alwaysRun = true)

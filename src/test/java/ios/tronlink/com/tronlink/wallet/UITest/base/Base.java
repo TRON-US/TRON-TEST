@@ -486,13 +486,14 @@ public class Base {
 
     public  void closeKeyBoard()  throws Exception{
         IOSDriver driver = DRIVER;
-
         try {
-            driver.findElementByName("Done").click();
+            driver.findElementByName("完成").click();
+            System.out.println("close by 完成");
+
         }catch (Exception e){
             try {
-                driver.findElementByName("完成").click();
-
+                driver.findElementByName("Done").click();
+                System.out.println("close by Done");
             }catch (Exception el){
                 System.out.println("not found keyboard done");
                 TouchAction action = new TouchAction(driver);

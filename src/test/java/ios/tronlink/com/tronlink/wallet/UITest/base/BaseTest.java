@@ -39,7 +39,7 @@ public class BaseTest extends Base {
         log("BaseTest --Begin");
         restartApp(bundleId);
         log("BaseTest Import ---start");
-        importFirstWallet(importType.normal,privateKey,DRIVER);
+        importFirstWallet(importType.normal,privateKey);
         log("BaseTest Import ---Success");
     }
 
@@ -150,7 +150,7 @@ public class BaseTest extends Base {
     }
 
 
-    public void importFirstWallet(importType type, String privateKey, IOSDriver driver) throws Exception{
+    public void importFirstWallet(importType type, String privateKey) throws Exception{
         DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
         TimeUnit.SECONDS.sleep(3);
         Boolean haveImport = isElementExist("walletName");
@@ -185,6 +185,7 @@ public class BaseTest extends Base {
         if(!haveImport) {
             for (int i = 0; i < 3; i++) {
                 haveImport = isElementExist("walletName");
+                System.out.println("Imported State: " + haveImport + "Times： " + i);
                 if(!haveImport){
                     findWebElement("导入钱包").click();
                     findAcceptAndClick();
@@ -211,19 +212,18 @@ public class BaseTest extends Base {
             DRIVER.findElementByClassName("XCUIElementTypeTextField").clear();
             DRIVER.findElementByClassName("XCUIElementTypeTextField").sendKeys(name);
             closeKeyBoard();
-            WebElement pass1 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
-            WebElement pass2 = (WebElement) DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
-            pass1.sendKeys(pass);
+            WebElement pass1 = DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(0);
+            WebElement pass2 = DRIVER.findElementsByClassName("XCUIElementTypeSecureTextField").get(1);
+            pass1.sendKeys("Test0001");
             closeKeyBoard();
-            pass2.sendKeys(pass);
+            pass2.sendKeys("Test0001");
             closeKeyBoard();
             findWebElement("导入私钥").click();
             TimeUnit.SECONDS.sleep(10);
-            AssetPage assetPage = new AssetPage(DRIVER);
             try {
                 if (DRIVER.findElementByName("备份资产").isDisplayed()){
                     DRIVER.findElementByName("备份资产").click();
-                    assetPage.blackBackBtn.click();
+                    DRIVER.findElementById("black path").click();
                 }
             }catch (Exception es){}
 

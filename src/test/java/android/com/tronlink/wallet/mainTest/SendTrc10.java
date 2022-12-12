@@ -171,8 +171,11 @@ public class SendTrc10 extends Base {
         transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         transfer.next_btn.click();
         transfer.tranferCount_text.sendKeys("1");
+        TimeUnit.SECONDS.sleep(2);
         transfer.send_btn.click();
+        TimeUnit.SECONDS.sleep(4);
         transfer.confirm_btn.click();
+        TimeUnit.SECONDS.sleep(1);
         transfer.InputPasswordConfim_btn.sendKeys("forget_password");
         transfer.send_btn.click();
         Assert.assertTrue(transfer.formatErrorHits_text.getText().contains("密码错误"));

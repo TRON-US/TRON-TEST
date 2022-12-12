@@ -38,7 +38,7 @@ public class CommitteeTest extends BaseTest {
         }
 
         log("BaseTest Import ---start");
-        importFirstWallet(importType.normal,privateKey,DRIVER);
+        importFirstWallet(importType.normal,privateKey);
         log("BaseTest Import ---Success");
     }
 
