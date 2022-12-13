@@ -34,14 +34,14 @@ public class AssetPage extends AbstractPage {
 //            }
 //        }catch (Exception e){}
 //
-//        try {
-//            TimeUnit.SECONDS.sleep(1);
-//            // if updateview display ,close
-//            if (update_topview.isDisplayed()) {
-//                update_btn.click();
-//                TimeUnit.SECONDS.sleep(1);
-//            }
-//        }catch (Exception e){}
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            // if iv_sign_close display ,close
+            if (iv_sign_close.isDisplayed()) {
+                iv_sign_close.click();
+                TimeUnit.SECONDS.sleep(1);
+            }
+        }catch (Exception e){}
 
         }
 
@@ -49,6 +49,10 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
 
     }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_sign_close")
+    public WebElement iv_sign_close;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_address")
     public WebElement tv_address;
 
