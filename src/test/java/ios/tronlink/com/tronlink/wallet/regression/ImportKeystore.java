@@ -44,7 +44,7 @@ public class ImportKeystore extends BaseTest {
         Assert.assertTrue(importKeystorePage.importKeystore().isDisplayed());
     }
 
-    @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
+    @Test(description = "test import Keystore Wallet Success",alwaysRun = true)
     public  void test004_keystoreNameSetSuccess() throws Exception {
         ImportKeystorePage importKeystorePage = getImportKeystorePage();
         importKeystorePage.enterPrivateKeySetNamePage(keystore,"Qqqqqqq1");
@@ -53,7 +53,7 @@ public class ImportKeystore extends BaseTest {
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("name"));
     }
 
-    @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
+    @Test(description = "test import Keystore Wallet Success",alwaysRun = true)
     public  void test005_keystoreModifyPasswordSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();
@@ -61,7 +61,7 @@ public class ImportKeystore extends BaseTest {
         Assert.assertTrue(isElementExist("name"));
     }
 
-    @Test(groups = {"P0"},description = "test import Keystore Wallet Success",alwaysRun = true)
+    @Test(description = "test import Keystore Wallet Success",alwaysRun = true)
     public  void test006_keystoreModifyNameSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();
@@ -71,7 +71,7 @@ public class ImportKeystore extends BaseTest {
 
 
 
-    @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
+    @Test(description = "test Delete Wallet  password",alwaysRun = true)
     public void  test007_testDeletewalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MyPursePage walletPage = assetPage.enterMyPursePage();

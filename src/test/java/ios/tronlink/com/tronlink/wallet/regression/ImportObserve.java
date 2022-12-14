@@ -71,7 +71,7 @@ public class ImportObserve extends BaseTest {
 
 
 
-    @Test(groups = {"P0"},description = "test Delete Wallet  password",alwaysRun = true)
+    @Test(description = "test Delete Wallet  password",alwaysRun = true)
     public void  test004_testDeleteWalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.enterMyPursePage();

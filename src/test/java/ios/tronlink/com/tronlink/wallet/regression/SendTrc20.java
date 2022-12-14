@@ -25,7 +25,7 @@ public class SendTrc20 extends BaseTest {
         return transfer;
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test001_sendTrxTest() throws Exception {
 
         AssetPage asset = new AssetPage(DRIVER);
@@ -47,7 +47,7 @@ public class SendTrc20 extends BaseTest {
 
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test002_sendTrxHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);

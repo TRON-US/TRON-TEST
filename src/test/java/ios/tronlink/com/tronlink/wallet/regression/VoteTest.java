@@ -80,7 +80,7 @@ public class VoteTest extends BaseTest {
         Assert.assertEquals(removeSymbolDouble(page.voteCountLabel.getText()),votedNumber,0.1);
     }
 
-    @Test(alwaysRun = true,description = "投票给tronChina 成功")
+    @Test(groups = {"P0"},alwaysRun = true,description = "投票给tronChina 成功")
     public void test006_VoteToTronChinaSRTest() throws Exception {
         VotePage page = enterVotePage();
         TimeUnit.SECONDS.sleep(3);
@@ -103,7 +103,7 @@ public class VoteTest extends BaseTest {
     }
 
 
-    @Test(alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
+    @Test(groups = {"P0"},alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
     public void test007_CancelVoteToTronChinaTest() throws Exception {
         VotePage page = enterVotePage();
         TimeUnit.SECONDS.sleep(3);

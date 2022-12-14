@@ -43,7 +43,7 @@ public class MultiSignTest extends BaseTest {
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Signed"));
     }
 
-    @Test(groups = {"P0"},description = "send trx overstep one’s authority Test", alwaysRun = true)
+    @Test(description = "send trx overstep one’s authority Test", alwaysRun = true)
     public void test002_sendTrxOptions() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage page = assetPage.enterSendTrxPage();
@@ -53,7 +53,7 @@ public class MultiSignTest extends BaseTest {
     }
 
     @Parameters({"ownerAddress","multiSignAddress"})
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test003_sendTrxSignUseMultiSignAddress(String ownerAddress,String multiSignAddress) throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         SendTrxPage page = assetPage.enterSendTrxPage();
@@ -118,7 +118,7 @@ public class MultiSignTest extends BaseTest {
     }
 
     @Parameters({"ownerAddress","multiSignAddress"})
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test006_frozenEnergyUseMultiSign(String ownerAddress,String multiSignAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage page = asset.enterFrozenAndThawingPage();
@@ -145,7 +145,7 @@ public class MultiSignTest extends BaseTest {
     }
 
     @Parameters({"ownerAddress"})
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test007_voteSTtoTronChinaUseMultiSignTest(String ownerAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage page = asset.enterVotePage();

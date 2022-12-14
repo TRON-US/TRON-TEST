@@ -37,7 +37,7 @@ public class SettingTest extends BaseTest {
 
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test002_languageTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -54,7 +54,7 @@ public class SettingTest extends BaseTest {
     }
 
     @Parameters({"bundleId"})
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test003_currencyTest(String bundleId) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         Assert.assertTrue(asset.cashLabel.getText().contains("$"));
@@ -151,7 +151,7 @@ public class SettingTest extends BaseTest {
         MnemonicToolsPage toolsPage = setting.enternemTools_btnPage();
         Assert.assertEquals(toolsPage.title.getText(),"助记词转换工具");
     }
-    @Test(groups = {"P0"},description = "Mnemonic Exchange Test",alwaysRun = true)
+    @Test(description = "Mnemonic Exchange Test",alwaysRun = true)
     public void test009_MnemonicExchangeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();

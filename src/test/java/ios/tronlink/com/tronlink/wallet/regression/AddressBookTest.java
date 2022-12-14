@@ -33,7 +33,7 @@ public class AddressBookTest extends BaseTest {
     }
 
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void Test001_addressBookTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage mine =  assetPage.enterMinePage();
@@ -87,7 +87,7 @@ public class AddressBookTest extends BaseTest {
         Assert.assertTrue(page.inputLongName().contains("12345678901234567890"));
     }
 
-    @Test(groups = {"P0"},description = "modify address book name",alwaysRun = true)
+    @Test(description = "modify address book name",alwaysRun = true)
     public void Test008_ModifyAddressBookNameTest() throws Exception{
         NotebookHelpPage page = enterAddressBook();
         page.modifyNoteName("newNameAdr");

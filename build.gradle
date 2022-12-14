@@ -81,6 +81,15 @@ task iosP0(type: Test,dependsOn: 'autoCreateiOSP0Xml') {
         threadCount 10
     }
 }
+
+task iosP0t(type: Test) {
+    useTestNG {
+        suites(file('src/test/resources/ios-p0.xml'))
+        parallel 'tests'
+        threadCount 10
+    }
+}
+
 task ios(type: Test,dependsOn: 'autoCreateIosTestngXml') {
     useTestNG {
         suites(file('src/test/resources/tronlink-ios.xml'))

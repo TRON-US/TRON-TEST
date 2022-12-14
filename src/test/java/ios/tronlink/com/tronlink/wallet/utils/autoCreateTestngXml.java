@@ -149,29 +149,6 @@ public class autoCreateTestngXml {
 
         }
 
-//        for (HashMap.Entry entry : testAccountList.entrySet()) {
-//            try {
-//                balance = 0L;
-//                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
-//                tokenBalance = 0L;
-//                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
-//            } catch (Exception e) {
-//                System.out.println("查询余额出错！！！---->" + entry.getKey().toString());
-//                System.out.print(e + "\n");
-//            }
-//            System.out.print("balance:" + balance + "\n");
-//            if (balance <= targetAmount * 3 / 5) {
-//                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
-//                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
-//            }
-//
-//            if (tokenBalance <= targetTokenAmount * 3 / 5) {
-//                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
-//            }
-//
-//
-//        }
-
     }
 
     @Test(enabled = true)

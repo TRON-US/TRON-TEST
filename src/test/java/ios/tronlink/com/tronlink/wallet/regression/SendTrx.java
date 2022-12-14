@@ -29,7 +29,7 @@ public class SendTrx extends BaseTest {
     }
 
 
-     @Test(alwaysRun = true)
+     @Test(groups = {"P0"},alwaysRun = true)
      public void test001_sendTrxCheckNumberTotalTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          TimeUnit.SECONDS.sleep(2);
@@ -55,7 +55,7 @@ public class SendTrx extends BaseTest {
          Assert.assertEquals(Double.parseDouble(before1) ,Double.parseDouble(before2) + send,0.5);
      }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test002_sendTrxAndNumberHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
@@ -152,7 +152,7 @@ public class SendTrx extends BaseTest {
     }
 
     @Parameters({"address"})
-    @Test(groups = {"P0"},description = "input Receiving address same as send address",alwaysRun = true)
+    @Test(description = "input Receiving address same as send address",alwaysRun = true)
     public void test009_inputReceivingAddressSameAsSend(String address) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         TimeUnit.SECONDS.sleep(2);
