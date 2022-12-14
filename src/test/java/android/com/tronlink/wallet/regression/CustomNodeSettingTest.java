@@ -31,12 +31,12 @@ public class CustomNodeSettingTest extends Base {
     String dappNetCustomIp = "";
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -45,7 +45,7 @@ public class CustomNodeSettingTest extends Base {
         }catch (Exception e){}
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -63,7 +63,7 @@ public class CustomNodeSettingTest extends Base {
         Assert.assertTrue(sett.tv_node_speed.getText().contains("ms"));
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test002_ChangeNodeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
@@ -80,7 +80,7 @@ public class CustomNodeSettingTest extends Base {
 
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test003_AddCustomNodeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
@@ -117,7 +117,7 @@ public class CustomNodeSettingTest extends Base {
         Assert.assertTrue(assertToast("修改成功"));
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test005_DeleteCustomNodeTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();

@@ -27,12 +27,12 @@ public class FrozenAndUnfreezeTest extends Base {
     private String otherAddress = "TLVh1FcdR57fukbFZL7DgjYY6VW9WRdNzt";
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -42,7 +42,7 @@ public class FrozenAndUnfreezeTest extends Base {
         }
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -53,7 +53,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * Freeze Energy
      */
-    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+    @Test(enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
     public void test001_freezeEnergySuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -71,7 +71,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * freeze Bandwidth
      */
-    @Test(groups = {"P0"}, enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    @Test(enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
     public void test002_freezeBandwidthSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -90,7 +90,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * Freeze Energy Other
      */
-    @Test(groups = {"P0"},enabled = true,description = "Freeze Energy Success", alwaysRun = true)
+    @Test(enabled = true,description = "Freeze Energy Success", alwaysRun = true)
     public void test003_freezeEnergyOtherSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -108,7 +108,7 @@ public class FrozenAndUnfreezeTest extends Base {
     /**
      * freeze Bandwidth Other
      */
-    @Test(groups = {"P0"}, enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+    @Test( enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
     public void test004_freezeBandwidthOtherSuccess() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -193,7 +193,7 @@ public class FrozenAndUnfreezeTest extends Base {
     }
 
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test011_inputPercentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();

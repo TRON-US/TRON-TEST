@@ -35,13 +35,13 @@ public class OnlineWatchWalletTest extends Base {
     static  String unactiveAddr = "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq";
     static  String activeAddr = "TGPhR5Kaiirvctv4PhiVQL8bbXmVL4XfB5";
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore() throws Exception {
         new Helper().getWatchWalletSign("TL5oxDYUztR3bjMqChLVZKdR4dXAiJYUyo", DRIVER);
         enterOnlineAssetPage();
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -52,7 +52,7 @@ public class OnlineWatchWalletTest extends Base {
 
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();

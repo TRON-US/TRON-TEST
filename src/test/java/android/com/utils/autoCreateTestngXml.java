@@ -1,10 +1,8 @@
 package android.com.utils;
 
 import com.alibaba.fastjson.JSONArray;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonParser;
 
 import java.net.URI;
 import java.util.HashSet;
@@ -22,7 +20,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
-import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -59,7 +56,7 @@ public class autoCreateTestngXml {
     static JSONObject responseContent;
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
-    private Boolean isMuiltDevices = false;
+    private Boolean isMultiDevices = false;
 //    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
 //    private String httpnode = "nile.trongrid.io";
     private String httpnode = "http://47.252.3.238:8090";
@@ -178,14 +175,13 @@ public class autoCreateTestngXml {
 
 
        if (deviceNameList.size()>1){
-           isMuiltDevices = true;
+           isMultiDevices = true;
        }
 
         StringBuilder sb = new StringBuilder();
 
         {
             Set<Integer> accIndex = new HashSet<>();
-
             Random random = new Random();
             Integer index = random.nextInt(5)+1;
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();

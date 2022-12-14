@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class GuideTest extends Base {
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -26,7 +26,7 @@ public class GuideTest extends Base {
         }catch (Exception e){}
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"P0"},alwaysRun = true)
     public void beforeMethod() {
         try {
             DRIVER.activateApp("com.tronlinkpro.wallet");
@@ -34,7 +34,7 @@ public class GuideTest extends Base {
         }
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -43,7 +43,7 @@ public class GuideTest extends Base {
     }
 
 
-    @Test(description = "Guide info test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Guide info test", alwaysRun = true)
     public void test001_GuideInfo() throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         Assert.assertTrue(guide.title.getText().contains("波场支持"));

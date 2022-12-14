@@ -32,7 +32,7 @@ public class ColdWalletTest extends Base {
 
 
     @Parameters({"privateKey","address","udid"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String address,String udid) throws Exception {
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -40,7 +40,7 @@ public class ColdWalletTest extends Base {
         addressString = address;
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -50,7 +50,7 @@ public class ColdWalletTest extends Base {
     }
 
     @Parameters({"udid"})
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass(String udid) {
         //Base.tearDownAfterClass();
         try {
@@ -116,7 +116,7 @@ public class ColdWalletTest extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Cold wallet manager test", alwaysRun = true)
+    @Test(enabled = true,description = "Cold wallet manager test", alwaysRun = true)
     public void test006_coldWalletManagerTest() throws Exception {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         ColdMinePage coldMine = coldAsset.enterColdMinePage();

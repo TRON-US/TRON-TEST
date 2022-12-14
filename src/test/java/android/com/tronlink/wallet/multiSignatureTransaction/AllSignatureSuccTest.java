@@ -21,14 +21,14 @@ public class AllSignatureSuccTest extends Base {
             .getString("unActiveAddressInNile.Address1");
 
     @Parameters({"multiSignPrivateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String multiSignPrivateKey) throws Exception {
         new Helper().getSign(multiSignPrivateKey, DRIVER);
 
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -41,7 +41,7 @@ public class AllSignatureSuccTest extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -152,7 +152,7 @@ public class AllSignatureSuccTest extends Base {
 
 
     @Parameters({"ownerAddress","multiSignAddress"})
-    @Test(groups = {"P0"},description = "Invalid Time is exist,ddressIsExists,signNameCheck,WaitSignAddressIsExists", alwaysRun = true)
+    @Test(description = "Invalid Time is exist,ddressIsExists,signNameCheck,WaitSignAddressIsExists", alwaysRun = true)
     public void test005_invalidTimeIsExistsAddressIsExistsWaitSignAddressIsExistsSignNameCheck(String ownerAddress,String multiSignAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage SendTrx = asset.enterSendTrxPage();

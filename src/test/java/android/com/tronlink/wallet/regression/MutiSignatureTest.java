@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MutiSignatureTest extends Base {
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
         try {
@@ -30,7 +30,7 @@ public class MutiSignatureTest extends Base {
         }catch (Exception e){}
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -40,7 +40,7 @@ public class MutiSignatureTest extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -100,7 +100,7 @@ public class MutiSignatureTest extends Base {
 
     //Modify signature,Return to the before state
     @Parameters({"address"})
-    @Test(groups = {"P0"},description = "Modify signature Test", alwaysRun = true)
+    @Test(description = "Modify signature Test", alwaysRun = true)
     public void test004_modifySignature(String address) throws Exception {
         MultiSignManagerPage multiSignManager = enterMultiSignManagerPage();
         ModifyPermissionPage modifyPermission = multiSignManager.enterModifyPermissionPage();
