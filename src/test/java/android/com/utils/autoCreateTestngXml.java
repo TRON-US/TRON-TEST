@@ -57,9 +57,7 @@ public class autoCreateTestngXml {
     static JSONObject signResponseContent;
     static JSONObject transactionApprovedListContent;
     private Boolean isMultiDevices = false;
-//    private String httpnode = Configuration.getByPath("testng.conf").getString("nileex.httpnode");
-//    private String httpnode = "nile.trongrid.io";
-    private String httpnode = "http://47.252.3.238:8090";
+    private String httpnode = "http://" +Configuration.getByPath("testng.conf").getString("nileex.httpnode");
     private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
@@ -131,27 +129,6 @@ public class autoCreateTestngXml {
 
         }
 
-//        for (HashMap.Entry entry : testAccountList.entrySet()) {
-//            try {
-//                balance = 0L;
-//                balance = getBalance(dappChainHttpNode, entry.getKey().toString());
-//                tokenBalance = 0L;
-//                tokenBalance = getTokenBalance(dappChainHttpNode,entry.getKey().toString());
-//            } catch (Exception e) {
-//                System.out.print(e + "\n");
-//            }
-//            System.out.print("balance:" + balance + "\n");
-//            if (balance <= targetAmount * 3 / 5) {
-//                sendCoin(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
-//                //freezeBalance(dappChainHttpNode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
-//            }
-//
-//            if (tokenBalance <= targetTokenAmount * 3 / 5) {
-//                transferAsset(dappChainHttpNode,foundationAccountAddress,entry.getKey().toString(),tokenId,targetTokenAmount - tokenBalance,foundationAccountKey);
-//            }
-//
-//
-//        }
 
     }
 
@@ -183,13 +160,13 @@ public class autoCreateTestngXml {
         {
             Set<Integer> accIndex = new HashSet<>();
             Random random = new Random();
-            Integer index = random.nextInt(5)+1;
+            Integer index = random.nextInt(4)+1;
             Iterator<HashMap.Entry<String, String>> entries = testAccountList.entrySet().iterator();
             
             for (Iterator<String> it = deviceNameList.iterator(); it.hasNext()&&entries.hasNext(); ) {
                 while (accIndex.contains(index)){
                     random = new Random();
-                    index = random.nextInt(5)+1;
+                    index = random.nextInt(4)+1;
                 }
                 accIndex.add(index);
 
@@ -300,7 +277,6 @@ public class autoCreateTestngXml {
             userBaseObj2.addProperty("owner_address", fromAddress);
             userBaseObj2.addProperty("amount", amount);
             userBaseObj2.addProperty("visible", true);
-//            System.out.print("userBaseObj2:" + userBaseObj2.toString());
             response = createConnect(requestUrl, userBaseObj2);
             transactionString = EntityUtils.toString(response.getEntity());
             System.out.println("\nSend amount: " + amount);

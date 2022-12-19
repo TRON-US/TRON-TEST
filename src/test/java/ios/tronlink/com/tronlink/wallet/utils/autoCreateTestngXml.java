@@ -66,9 +66,7 @@ public class autoCreateTestngXml {
     static List<String> taskClassNameList = new ArrayList<>();
     static List<String> taskSingleClassNameList = new ArrayList<>();
     static List<String> removeClassNameList = new ArrayList<>();
-//    private String httpnode = "nile.trongrid.io";//Configuration.getByPath("testng.conf").getString("nileex.httpnode");
-    private String httpnode = "http://47.252.3.238:8090";
-    private String dappChainHttpNode = Configuration.getByPath("testng.conf").getString("nileex.dappChainHttpNode");
+    private String httpnode = "http://" +Configuration.getByPath("testng.conf").getString("nileex.httpnode");
     private String foundationAccountKey = Configuration.getByPath("testng.conf").getString("foundationAccount.key");
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
     static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
