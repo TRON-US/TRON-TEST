@@ -71,7 +71,7 @@ public class autoCreateTestngXml {
     private String foundationAccountAddress = Configuration.getByPath("testng.conf").getString("foundationAccount.address");
     static String tokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.tokenId");
     static String shieldTokenId = Configuration.getByPath("testng.conf").getString("foundationAccount.shieldTokenId");
-    public static AtomicInteger multiSignIndex = new AtomicInteger(1);
+    public static AtomicInteger multiSignIndex = new AtomicInteger(3);
 
     static {
         PoolingClientConnectionManager pccm = new PoolingClientConnectionManager();
@@ -111,12 +111,7 @@ public class autoCreateTestngXml {
     @Test(enabled = true)
     public void sendCoinToTestCount() throws IOException{
         HashMap<String,String> testAccountList = new HashMap<>();
-        testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
-        testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
-        testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
-        testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
-        testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
+
         testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
@@ -138,7 +133,6 @@ public class autoCreateTestngXml {
             System.out.print("TRXBalance:" + balance + "\n");
             if (balance <= targetAmount) {
                 sendCoin(httpnode,foundationAccountAddress,entry.getKey().toString(),targetAmount - balance,foundationAccountKey);
-                //freezeBalance(httpnode,foundationAccountAddress,7000000000L,3,0,entry.getKey().toString(),foundationAccountKey);
             }
 
             if (tokenBalance <= targetTokenAmount * 3 / 5) {
@@ -153,12 +147,7 @@ public class autoCreateTestngXml {
     public void createXml() throws IOException {
         HashMap<String,String> testAccountList = new HashMap<>();
 
-        testAccountList.put("TWv2FEsoPp5XKxujVHffoNwksgJSxvf3QG","6a77e8edd232f4102e4fcaca02234df7176a9398fdde1792ae5377b009482fca");
-        testAccountList.put("TXhQk442CCGLydh6cfyfqvM6yJanEGeQj1","b50aa8ce2140be6995e79d657064e5a3983ac0a47bfdcbb5e9f4b930ba2996a5");
-        testAccountList.put("TKktQcbjXsXZDKPYLvUm8sxox2cT83g5rP","d4446cf4ccfe02f165f0ba01e3d5a56546e41eebf26c3cfe33564bababeef74d");
-        testAccountList.put("TBQUhYhdQpMRksBGAbpbTWSiE7WkGgy3Km","3999ce04f0ba5e05776d355b194f369a6d56f4fd7711a31adf2044690236bf5b");
-        testAccountList.put("TALf34yjuLZjF1WQqCaUkf73X8WbhfiEyM","022f883a91a14567a8b1ad9722b73971f5c748586e951b7a8eed0ef6e29950ac");
-        testAccountList.put("TBExF3mNvnhmEFgHW4TmYXXdhevRchnQyb","a1866b9c8b2effb0edc091b3d56b787a03b455b8b001414cb19acc1869230026");
+
         testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
@@ -270,22 +259,6 @@ public class autoCreateTestngXml {
                 sb.append(
                         "        <parameter name=\"witnessUrl\" value=\""
                                 + Configuration.getByPath("testng.conf").getString("iosWitnessAccount.witness" + multiSignIndex.get() + "Url")
-                                + "\"/>\n");
-                sb.append(
-                        "        <parameter name=\"shieldSK\" value=\""
-                                + Configuration.getByPath("testng.conf").getString("IosShieldAccount.sk" + multiSignIndex.get())
-                                + "\"/>\n");
-                sb.append(
-                        "        <parameter name=\"shieldAddress\" value=\""
-                                + Configuration.getByPath("testng.conf").getString("IosShieldAccount.shieldAddress" + multiSignIndex.get())
-                                + "\"/>\n");
-                sb.append(
-                        "        <parameter name=\"publicShieldSK\" value=\""
-                                + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.privateKey" + multiSignIndex.get())
-                                + "\"/>\n");
-                sb.append(
-                        "        <parameter name=\"publicShieldAddress\" value=\""
-                                + Configuration.getByPath("testng.conf").getString("IosShieldPublicAccount.publicAddress" + multiSignIndex.get())
                                 + "\"/>\n");
                 multiSignIndex.addAndGet(1);
                 sb.append("        <classes>\n");
