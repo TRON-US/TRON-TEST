@@ -102,7 +102,6 @@ public class autoCreateiOSP0Xml {
     @Test(enabled = true)
     public void sendCoinToTestCount() throws IOException{
         HashMap<String,String> testAccountList = new HashMap<>();
-        testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
         Long balance = 0L;
@@ -139,7 +138,6 @@ public class autoCreateiOSP0Xml {
     public void createXml() throws IOException {
         HashMap<String,String> testAccountList = new HashMap<>();
 
-        testAccountList.put("TS8o6WcHroSnzWNt4AiserAuVkye5Msvcm","f88184cfc003612d02b94956bccde12b8086c5010b3401357e7bdc8dd7727f4d");
         testAccountList.put("TBtMRD79NkLyAvMkCTTj5VC5KZnz2Po2XZ","71951c4a6b1d827ee9180ddd46d61b9963c2763737f3d3724049c6ae50e5efed");
 
         StringBuilder sb = new StringBuilder();
