@@ -42,13 +42,13 @@ public class SendTrc20 extends Base {
 
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -60,7 +60,7 @@ public class SendTrc20 extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -75,7 +75,7 @@ public class SendTrc20 extends Base {
         return transfer;
     }
 
-    @Test(groups = {"P0"},enabled = true,description = "Send trx success test", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Send trx success test", alwaysRun = true)
     public void test001_sendTrc20Success() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrx20Page();

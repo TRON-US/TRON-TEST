@@ -153,7 +153,7 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertTrue(isElementExist("我的资源"));
     }
 /////
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test012_inputPercentTest() throws Exception {
         FrozenAndUnfreezePage frozen = interferonPage();
         Double total = sepLeftNumberTextToDouble(frozen.tv_available_amount.getText().replace("可用: ",""),"TRX");

@@ -83,7 +83,7 @@ public class CommitteeTest extends BaseTest {
         Assert.assertTrue(committeePage.isElementExist("已取消"));
     }
 
-    @Test(groups = {"P0"},description = "secendnewProposal",alwaysRun = true)
+    @Test(description = "secendnewProposal",alwaysRun = true)
     public void test_004makeSecondNewProposal() throws  Exception{
         Double sendcount = getAnAmountZero();
         String count = Double.toString(sendcount);
@@ -114,7 +114,7 @@ public class CommitteeTest extends BaseTest {
     }
 
 
-    @Test(groups = {"P0"},description = "newProposal",alwaysRun = true)
+    @Test(description = "newProposal",alwaysRun = true)
     public void test_007makeNewProposal_8agreed_9disagreed() throws  Exception{
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();

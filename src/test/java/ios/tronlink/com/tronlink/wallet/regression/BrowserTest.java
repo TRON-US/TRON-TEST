@@ -54,7 +54,7 @@ public class BrowserTest extends BaseTest {
         Assert.assertTrue(isElementExist("Earn Rewards by Staking BTT"));
     }
 
-    @Test( alwaysRun = true)
+    @Test(groups = {"P0"}, alwaysRun = true)
     public void test004_BrowserNetTabFuncTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
@@ -67,7 +67,7 @@ public class BrowserTest extends BaseTest {
     }
 
 
-    @Test( alwaysRun = true)
+    @Test(groups = {"P0"}, alwaysRun = true)
     public void test005_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
@@ -81,7 +81,7 @@ public class BrowserTest extends BaseTest {
         Assert.assertTrue(isElementExist("https://sunswap.com/?lang=zh-CN?utm_source=tronlink#/home"));
     }
 
-    @Test( alwaysRun = true)
+    @Test(groups = {"P0"}, alwaysRun = true)
     public void test006_FavoritesTest() throws Exception {
         restartApp();
         AssetPage asset = new AssetPage(DRIVER);

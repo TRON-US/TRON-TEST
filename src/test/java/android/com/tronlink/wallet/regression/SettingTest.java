@@ -16,12 +16,12 @@ public class SettingTest extends Base {
     String beforeLanguage;
     String afterLanguage;
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -30,7 +30,7 @@ public class SettingTest extends Base {
         }catch (Exception e){}
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -53,7 +53,7 @@ public class SettingTest extends Base {
         TimeUnit.SECONDS.sleep(3);
     }
 
-    @Test(description = "Language switch success check")
+    @Test(groups = {"P0"},description = "Language switch success check")
     public void test002_lanaugeContentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
@@ -80,7 +80,7 @@ public class SettingTest extends Base {
     }
 
 
-    @Test(description = "Currency Test")
+    @Test(groups = {"P0"},description = "Currency Test")
     public void test006_currencyTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();

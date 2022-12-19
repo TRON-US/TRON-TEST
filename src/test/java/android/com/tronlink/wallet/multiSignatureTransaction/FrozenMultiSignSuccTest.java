@@ -17,14 +17,14 @@ public class FrozenMultiSignSuccTest extends Base {
 
 
     @Parameters({"multiSignPrivateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String multiSignPrivateKey) throws Exception {
         new Helper().getSign(multiSignPrivateKey, DRIVER);
     }
 
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -38,7 +38,7 @@ public class FrozenMultiSignSuccTest extends Base {
 
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -47,7 +47,7 @@ public class FrozenMultiSignSuccTest extends Base {
     }
 
     @Parameters({"ownerAddress"})
-     @Test(alwaysRun = true)
+     @Test(groups = {"P0"},alwaysRun = true)
      public void test001_FrozenEnergySuccess(String ownerAddress) throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
@@ -67,7 +67,7 @@ public class FrozenMultiSignSuccTest extends Base {
      }
 
     @Parameters({"ownerAddress"})
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test002_FrozenBandWidthSuccess(String ownerAddress) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();

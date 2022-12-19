@@ -39,7 +39,7 @@ public class MainNetDeposit extends BaseTest {
     }
 
 
-    @Test(groups = {"P0"},description = "TransferIn Success Recording",alwaysRun = true)
+    @Test(description = "TransferIn Success Recording",alwaysRun = true)
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         Helper.refreshWalletScreen(DRIVER);
@@ -92,7 +92,7 @@ public class MainNetDeposit extends BaseTest {
 
 
 
-    @Test(groups = {"P0"},description = "Check Available Balance",alwaysRun = true)
+    @Test(description = "Check Available Balance",alwaysRun = true)
     public void test005_checkAvailableBalance() throws Exception {
         AssetPage asset = enterAssetPage();
         Double trxCount = Double.parseDouble(removeSymbolNoDot(asset.getTrxCount()));
@@ -118,7 +118,7 @@ public class MainNetDeposit extends BaseTest {
     }
 
 
-    @Test(groups = {"P0"},description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
+    @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test008_CheckOutNumberInRecordDepositTrx() throws Exception {
         log("successNumber:"+successNumber);
         TrxPage page = enterTrxPage();

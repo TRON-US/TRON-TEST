@@ -93,7 +93,7 @@ public class DappSendTrx extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test001_availableAmountInTransfer() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -107,7 +107,7 @@ public class DappSendTrx extends Base {
     }
 
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test002_enterFrozenSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -119,7 +119,7 @@ public class DappSendTrx extends Base {
         Assert.assertTrue(isElementShotId("progress_energy"));
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test003_multiSignPathTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -130,7 +130,7 @@ public class DappSendTrx extends Base {
     }
 
     @Parameters({"address"})
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test004_transferAddressTextField(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -140,7 +140,7 @@ public class DappSendTrx extends Base {
 
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test005_transferAddressContractTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -150,7 +150,7 @@ public class DappSendTrx extends Base {
         Assert.assertTrue(findByShotId("error_view").getText().contains("此为合约地址，请确认您要向此合约地址转账，避免造成资产损失!"));
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test006_transferAddressBlackTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -160,7 +160,7 @@ public class DappSendTrx extends Base {
     }
 
     @Parameters({"udid"})
-   @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+   @Test(enabled = true, alwaysRun = true)
     public void test007_transferAddressFormatTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();

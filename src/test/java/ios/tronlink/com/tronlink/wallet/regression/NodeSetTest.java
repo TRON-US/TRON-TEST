@@ -24,7 +24,7 @@ public class NodeSetTest extends BaseTest {
 
 
 
-    @Test(groups = {"P0"},description = "Test  add note", alwaysRun = true)
+    @Test(description = "Test  add note", alwaysRun = true)
     public void test001_AddNodeSuccess() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.addNote());
@@ -41,7 +41,7 @@ public class NodeSetTest extends BaseTest {
         Assert.assertEquals(page.portwrong()," 请输入正确的端口格式");
     }
 
-    @Test(groups = {"P0"},description = "Test  note  delete", alwaysRun = true)
+    @Test(description = "Test  note  delete", alwaysRun = true)
     public void test004_noteDeleteSuccess() throws Exception {
         NodeSetHelperPage page = enterNodeSettingPaging();
         Assert.assertTrue(page.deleteNode());

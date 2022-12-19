@@ -35,7 +35,7 @@ public class SwapTradingTest extends BaseTest {
 
     }
 
-     @Test(alwaysRun = true)
+     @Test(groups = {"P0"},alwaysRun = true)
      public void test002_SwapTrxToUsdtTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          SwapPage page = asset.enterSwapPage();
@@ -57,7 +57,7 @@ public class SwapTradingTest extends BaseTest {
 
      }
 
-      @Test(alwaysRun = true)
+      @Test(groups = {"P0"},alwaysRun = true)
       public void test003_MinePageHistoryTest() throws Exception {
           AssetPage asset = new AssetPage(DRIVER);
           MinePage page = asset.enterMinePage();

@@ -20,12 +20,12 @@ public class VoteTest extends Base {
 
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -35,7 +35,7 @@ public class VoteTest extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -61,7 +61,7 @@ public class VoteTest extends Base {
         Assert.assertEquals((use+av),total,0.1);
     }
 
-     @Test(alwaysRun = true)
+     @Test(groups = {"P0"},alwaysRun = true)
      public void test002_VotePageGetRewardTest() throws Exception {
          AssetPage asset = new AssetPage(DRIVER);
          VotePage vote = asset.enterVotePage();
@@ -139,7 +139,7 @@ public class VoteTest extends Base {
         Assert.assertEquals(votedNumber,votedSRNumber,0.1);
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test006_VoteToTronChainSRTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();

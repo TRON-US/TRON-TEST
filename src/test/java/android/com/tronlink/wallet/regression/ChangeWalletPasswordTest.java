@@ -21,12 +21,12 @@ public class ChangeWalletPasswordTest extends Base {
     String newPassword = "Admin1234";
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -35,7 +35,7 @@ public class ChangeWalletPasswordTest extends Base {
         }catch (Exception e){}
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -59,7 +59,7 @@ public class ChangeWalletPasswordTest extends Base {
     }
 
 
-    @Test(description = "Input correct password", alwaysRun = true)
+    @Test(groups = {"P0"},description = "Input correct password", alwaysRun = true)
     public void test002ChangePassword() throws Exception {
         WalletPasswordPage walletPasswordPage = walletPasswordPage();
         walletPasswordPage.changePassword(oldPassword, newPassword, newPassword);

@@ -27,12 +27,12 @@ public class BrowserTest extends Base {
     String[] dappNameList = {"TRONSCAN","TRONLENDING","SunSwap","Bankroll","zkWrapper","JUST","SUN"};
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -42,7 +42,7 @@ public class BrowserTest extends Base {
 
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -50,7 +50,7 @@ public class BrowserTest extends Base {
         }
     }
 
-    @Test(description = "DebugModel", alwaysRun = true)
+    @Test(groups = {"P0"},description = "DebugModel", alwaysRun = true)
     public void test001_DebugModelOpenTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();
@@ -104,7 +104,7 @@ public class BrowserTest extends Base {
         Assert.assertTrue(page.iv_tab_snapshot.size()>1);
     }
 
-    @Test( alwaysRun = true)
+    @Test(groups = {"P0"}, alwaysRun = true)
     public void test005_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();
@@ -121,7 +121,7 @@ public class BrowserTest extends Base {
         Assert.assertTrue(isElementTextExist("浏览记录"));
     }
 
-    @Test( alwaysRun = true)
+    @Test(groups = {"P0"}, alwaysRun = true)
     public void test006_FavoritesTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();

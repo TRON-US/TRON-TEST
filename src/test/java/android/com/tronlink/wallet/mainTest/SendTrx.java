@@ -191,7 +191,7 @@ public class SendTrx extends Base {
         Assert.assertEquals(TotalValue,avValue + freezeValue,0.000001);
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test007_enterFrozenSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -203,7 +203,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(isElementShotId("progress_energy"));
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test008_multiSignPathTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -214,7 +214,7 @@ public class SendTrx extends Base {
     }
 
     @Parameters({"address"})
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test009_transferAddressTextField(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -224,7 +224,7 @@ public class SendTrx extends Base {
 
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test010_transferAddressContractTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -233,7 +233,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(findByShotId("error_view").getText().contains("此为合约地址，请确认您要向此合约地址转账，避免造成资产损失!"));
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test011_transferAddressBlackTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -243,7 +243,7 @@ public class SendTrx extends Base {
     }
 
     @Parameters({"udid"})
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test012_transferAddressFormatTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -264,7 +264,7 @@ public class SendTrx extends Base {
 
 
     @Parameters({"udid"})
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test013_transferTherePartTest(String udid) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
@@ -278,7 +278,7 @@ public class SendTrx extends Base {
         Assert.assertTrue(transfer.tv_name.getText().contains("Received"));
     }
 
-    @Test(groups = {"P0"},enabled = true, alwaysRun = true)
+    @Test(enabled = true, alwaysRun = true)
     public void test014_resourceCoastTipShowTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage transfer = asset.enterSendTrxPage();

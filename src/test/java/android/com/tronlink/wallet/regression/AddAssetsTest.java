@@ -32,12 +32,12 @@ public class AddAssetsTest extends Base {
 
 
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -47,7 +47,7 @@ public class AddAssetsTest extends Base {
 
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -64,7 +64,7 @@ public class AddAssetsTest extends Base {
 //        Assert.assertTrue(page.hidasset.getText().contains("隐藏小额资产")); Bug TA-266
     }
 
-    @Test(description = "Add Asset Test",alwaysRun = true)
+    @Test(groups = {"P0"},description = "Add Asset Test",alwaysRun = true)
     public void test002_AddAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         AddAssertPage page = asset.enterAddAssertPage();
@@ -81,7 +81,7 @@ public class AddAssetsTest extends Base {
 
     }
 
-    @Test(description = "remove Asset Test",alwaysRun = true)
+    @Test(groups = {"P0"},description = "remove Asset Test",alwaysRun = true)
     public void test003_removeAssetTest() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(5);

@@ -38,7 +38,7 @@ public class MainNetDeposit10 extends BaseTest {
         return asset;
     }
 
-    @Test(groups = {"P0"},description = "TransferIn Success Recording",alwaysRun = true)
+    @Test(description = "TransferIn Success Recording",alwaysRun = true)
     public void test001_transferInSuccessRecording() throws Exception {
         TrxPage trx = enterTrxPage();
         TimeUnit.SECONDS.sleep(1);
@@ -100,7 +100,7 @@ public class MainNetDeposit10 extends BaseTest {
 
     }
 
-    @Test(groups = {"P0"},description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
+    @Test(description = "Check OutNumberInRecord Deposit trx",alwaysRun = true)
     public void test006_CheckOutNumberInRecordDepositTrx() throws Exception {
         log("successNumber:"+successNumber);
         TrxPage page = enterTrxPage();

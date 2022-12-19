@@ -29,13 +29,13 @@ public class SendNFT extends Base {
     private String RPrivateKey = "0e44254c18f98c2998db2fa0e6d26e948ff27b4b5890b0306c7ab4553e109e24";
     private String RAddress = "TNzUJXEY45iuQBhmhDk5VucU9HS4CZhyKe";
     @Parameters({"privateKey"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey) throws Exception {
         new Helper().getSign(privateKey, DRIVER);
     }
 
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -47,7 +47,7 @@ public class SendNFT extends Base {
     }
 
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -90,7 +90,7 @@ public class SendNFT extends Base {
         Assert.assertTrue(assertToast("已复制"));
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test004_sendNFTTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         NFTPage page = asset.enterNFTPage();
@@ -110,7 +110,7 @@ public class SendNFT extends Base {
 
     }
 
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test005_AddWalletTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         new Helper().AddMoreWalletWithPrivateKey(RPrivateKey,DRIVER);
@@ -118,7 +118,7 @@ public class SendNFT extends Base {
     }
 
     @Parameters({"address"})
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test006_SendBackNFTTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         NFTPage page = asset.enterNFTPage();

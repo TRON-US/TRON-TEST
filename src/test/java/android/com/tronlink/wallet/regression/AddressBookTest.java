@@ -32,13 +32,13 @@ public class AddressBookTest extends Base {
         .getString("foundationAccount.shieldAddress");
 
     @Parameters({"privateKey","address"})
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String address) throws Exception {
         addressString = "TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq";
         new Helper().getSign(privateKey, DRIVER);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(groups = {"P0"},alwaysRun = true)
     public void afterMethod() throws Exception {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -47,7 +47,7 @@ public class AddressBookTest extends Base {
         }catch (Exception e){}
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(groups = {"P0"},alwaysRun = true)
     public void tearDownAfterClass() {
         try {
             DRIVER.quit();
@@ -124,7 +124,7 @@ public class AddressBookTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Delete address book test", alwaysRun = true)
+    @Test(groups = {"P0"},enabled = true,description = "Delete address book test", alwaysRun = true)
     public void test006_DeleteAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
