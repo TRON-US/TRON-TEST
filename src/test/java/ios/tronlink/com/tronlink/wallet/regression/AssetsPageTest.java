@@ -50,9 +50,9 @@ public class AssetsPageTest extends BaseTest {
         secondPage.backNav();
         AddAssertPage addAssertPage = assetPage.enterAddAssertPage();
         Assert.assertTrue(Helper.isElementExist(addAssertPage.driver,"我的全部资产"));
-        secondPage.blackBackBtn.click();
-        SwapPage receiptPage = assetPage.enterSwapPage();
-        Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"闪兑"));
+//        secondPage.blackBackBtn.click();
+//        SwapPage receiptPage = assetPage.enterSwapPage();
+//        Assert.assertTrue(Helper.isElementExist(receiptPage.driver,"闪兑"));
     }
 
 
