@@ -139,7 +139,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test012_inputPercentTest() throws Exception {
+    public void test011_inputPercentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(3);
         FrozenAndUnfreezePage frozen =  asset.enterFrozenAndThawingPage();
@@ -160,7 +160,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},description = "Add MultiSignature Test", alwaysRun = true)
-    public void test013_multiSignature() throws Exception {
+    public void test012_multiSignature() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
@@ -170,7 +170,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},description = "Modify signature Test", alwaysRun = true)
-    public void test014_modifySignature() throws Exception {
+    public void test013_modifySignature() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.modifyPermission();
@@ -178,7 +178,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},description = "delete signature Test", alwaysRun = true)
-    public void test015_delSignature() throws Exception {
+    public void test014_delSignature() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MultiSignManagerPage multiSignManagerPage = assetPage.enterMultiSignManagerPage();
         multiSignManagerPage.delSignData();
@@ -187,7 +187,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test016_sendTrxCheckNumberTotalTest() throws Exception {
+    public void test015_sendTrxCheckNumberTotalTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         TrxPage page = asset.enterTrxPage();
@@ -212,7 +212,7 @@ public class MainAccountTest extends BaseTest {
 
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test017_sendTrxAndNumberHistoryTest() throws Exception {
+    public void test016_sendTrxAndNumberHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         TrxPage page = asset.enterTrxPage();
@@ -233,7 +233,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test018_sendTrxTest() throws Exception {
+    public void test017_sendTrxTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -254,7 +254,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test019_sendTrxHistoryTest() throws Exception {
+    public void test018_sendTrxHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -276,7 +276,7 @@ public class MainAccountTest extends BaseTest {
 
     }
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test020_sendTrxTest() throws Exception {
+    public void test019_sendTrxTest() throws Exception {
 
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
@@ -298,7 +298,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test021_sendTrxHistoryTest() throws Exception {
+    public void test020_sendTrxHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -320,7 +320,7 @@ public class MainAccountTest extends BaseTest {
 
     }
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test022_languageTest() throws Exception {
+    public void test021_languageTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage mine = asset.enterMinePage();
         mine.enterSettingPage();
@@ -337,7 +337,7 @@ public class MainAccountTest extends BaseTest {
 
     @Parameters({"bundleId"})
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test023_currencyTest(String bundleId) throws Exception {
+    public void test022_currencyTest(String bundleId) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         Assert.assertTrue(asset.cashLabel.getText().contains("$"));
         Assert.assertTrue(asset.assetsLabel.getText().contains("$"));
@@ -359,7 +359,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true,description = "投票给tronChina 成功")
-    public void test024_VoteToTronChinaSRTest() throws Exception {
+    public void test023_VoteToTronChinaSRTest() throws Exception {
         VotePage page = enterVotePage();
         TimeUnit.SECONDS.sleep(3);
         page.sliderToSearch();
@@ -382,7 +382,7 @@ public class MainAccountTest extends BaseTest {
 
 
     @Test(groups = {"P1"},alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
-    public void test025_CancelVoteToTronChinaTest() throws Exception {
+    public void test024_CancelVoteToTronChinaTest() throws Exception {
         VotePage page = enterVotePage();
         TimeUnit.SECONDS.sleep(3);
         page.sliderToSearch();
@@ -410,7 +410,7 @@ public class MainAccountTest extends BaseTest {
     }
 
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test026_MinePageElementTest() throws Exception {
+    public void test025_MinePageElementTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage mine = assetPage.enterMinePage();
         Assert.assertTrue(isElementExist("我的钱包"));
@@ -429,7 +429,7 @@ public class MainAccountTest extends BaseTest {
 
     @Parameters("address")
     @Test(groups = {"P1"},alwaysRun = true)
-    public void test027_ReceiptPageTest(String address) throws Exception {
+    public void test026_ReceiptPageTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         asset.enterReceiptPage();
         Assert.assertTrue(isElementExist(address));

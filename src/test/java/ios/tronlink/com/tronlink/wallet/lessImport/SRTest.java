@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class SRTest extends BaseTest {
 
     @Parameters({"witnessKey", "udid"})
-    @BeforeClass(groups = {"P0"},alwaysRun = true)
+    @BeforeClass(groups = {"P1"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
 
         try{
