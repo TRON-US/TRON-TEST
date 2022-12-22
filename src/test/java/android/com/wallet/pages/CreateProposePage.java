@@ -53,8 +53,9 @@ public class CreateProposePage extends AbstractPage {
         proValue_ipt.get(1).clear();
         proValue_ipt.get(1).sendKeys("9997");
         Creatconfirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         confirm_btn().click();
+        TimeUnit.SECONDS.sleep(1);
         password_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(16);

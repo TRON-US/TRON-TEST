@@ -131,7 +131,7 @@ public class CommitteeProposalPage extends AbstractPage {
 
 
     public MyProposalsPage enterMyProposalsPage() throws Exception {
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(8);
         myProposal_btn.click();
         TimeUnit.SECONDS.sleep(18);
         TimeUnit.SECONDS.sleep(9);

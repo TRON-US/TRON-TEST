@@ -426,6 +426,16 @@ public class Base {
         }
     }
 
+    public String createRandomIp() {
+        Random random = new Random();
+        String ip = "";
+        for (int i = 0; i < 4; i++) {
+            int ipStr = random.nextInt(255);
+            ip = ip + String.valueOf(ipStr) + '.';
+        }
+        return ip.substring(0,ip.length()-1);
+
+    }
 
 //    public void swapClickUntilElementTextShow(String text) throws Exception {
 //        int i = 10 ;
