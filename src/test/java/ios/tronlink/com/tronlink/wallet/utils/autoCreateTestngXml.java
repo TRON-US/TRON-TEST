@@ -161,12 +161,13 @@ public class autoCreateTestngXml {
         System.out.println("----------------------------");
         System.out.println(deviceList);
         System.out.println("----------------------------");
-        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
+//        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
+        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/lessImport";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
         taskClassNameList= taskSingleClassNameList;
 
-        removeClassNameList.add("DappSendTrxTest");
-        taskClassNameList = removeSingleClass(taskSingleClassNameList, removeClassNameList);
+//        removeClassNameList.add("DappSendTrxTest");
+//        taskClassNameList = removeSingleClass(taskSingleClassNameList, removeClassNameList);
         String classContent = "";
         for (int i = 0; i < taskClassNameList.size();i++) {
             classContent = classContent + "            " + preClass + taskClassNameList.get(i).substring(0,taskClassNameList.get(i).length() - 5) + afterClass + "\n";
