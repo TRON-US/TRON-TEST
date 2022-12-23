@@ -8,10 +8,13 @@ import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -363,6 +366,10 @@ public WebElement bt_go;
         return driver.findElementById(longidWithID(ids));
     }
 
-
+    public void log(String log) {
+        SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
+        String time = timeStamp.format(new Date()).toString();
+        System.out.println(time + ": " + log);
+    }
 
 }
