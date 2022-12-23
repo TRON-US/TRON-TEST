@@ -232,10 +232,14 @@ public class MinePage extends AbstractPage {
             Helper.swipScreenLitte(driver);
             TimeUnit.SECONDS.sleep(1);
             advanced_features_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
             committeeProposals_btn.click();
-            TimeUnit.SECONDS.sleep(18);
-            TimeUnit.SECONDS.sleep(9);
+            while (!isShotIDExist("tv_create_propose")){
+                TimeUnit.SECONDS.sleep(1);
+                log("++");
+            }
+//            TimeUnit.SECONDS.sleep(18);
+//            TimeUnit.SECONDS.sleep(9);
         }catch (Exception e){
             System.out.println(e);
         }

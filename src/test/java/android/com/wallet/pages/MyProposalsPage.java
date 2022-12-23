@@ -52,7 +52,11 @@ public class MyProposalsPage extends AbstractPage {
 
     public ProposalDetailsPage enterpProposalDetailsPage() throws Exception {
         proposalId_text.click();
-        TimeUnit.SECONDS.sleep(2);
+        while (!isShotIDExist("tv_create_time")){
+            TimeUnit.SECONDS.sleep(1);
+            log("++");
+        }
+//        TimeUnit.SECONDS.sleep(2);
         return new ProposalDetailsPage(driver);
     }
 

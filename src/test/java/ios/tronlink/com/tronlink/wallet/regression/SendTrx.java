@@ -170,13 +170,13 @@ public class SendTrx extends BaseTest {
     }
 
 
-    @Test(description = "input too Much TRX send number",alwaysRun = true)
-    public void test011_inputTooMuchSendNumber() throws Exception {
-        SendTrxPage transfer = enterToSendTrxPage();
-        transfer.sendAllTrx("tooMuch");
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(isElementExist("转账数量不可大于可用数量。"));
-    }
+//    @Test(description = "input too Much TRX send number",alwaysRun = true)
+//    public void test011_inputTooMuchSendNumber() throws Exception {
+//        SendTrxPage transfer = enterToSendTrxPage();
+//        transfer.sendAllTrx("tooMuch");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(isElementExist("转账数量不可大于可用数量。"));
+//    }
 
     @Test(description = "Receiving address trim",alwaysRun = true)
     public void test012_receivingAddressTrim() throws Exception {
