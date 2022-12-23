@@ -12,8 +12,6 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 public class MultiSignTest extends Base {
-    static String unActiveAddress = Configuration.getByPath("testng.conf")
-            .getString("unActiveAddressInNile.Address1");
 
     @Parameters({"multiSignPrivateKey"})
     @BeforeClass(alwaysRun = true)
