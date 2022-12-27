@@ -161,8 +161,8 @@ public class autoCreateTestngXml {
         System.out.println("----------------------------");
         System.out.println(deviceList);
         System.out.println("----------------------------");
-//        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
-        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/lessImport";
+        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/regression";
+//        String testCaseDir = "src/test/java/ios/tronlink/com/tronlink/wallet/lessImport";
         taskSingleClassNameList = findNameList(taskSingleClassNameList,testCaseDir,1);
         taskClassNameList= taskSingleClassNameList;
 
