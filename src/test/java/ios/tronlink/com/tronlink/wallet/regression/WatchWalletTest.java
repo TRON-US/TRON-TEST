@@ -79,11 +79,11 @@ public class WatchWalletTest extends BaseTest {
         Assert.assertTrue(helpPage.isEnterColdPage());
     }
 
-    @Test(enabled = true, description = "transferIn QRCode", alwaysRun = true)
-    public void test008_transferInQRCode() throws Exception {
-        WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
-        helpPage.maketransferIn();
-        Assert.assertTrue(helpPage.isEnterColdPage());
-    }
+//    @Test(enabled = true, description = "transferIn QRCode", alwaysRun = true)
+//    public void test008_transferInQRCode() throws Exception {
+//        WatchWalletHelpPage helpPage = new WatchWalletHelpPage(DRIVER);
+//        helpPage.maketransferIn();
+//        Assert.assertTrue(helpPage.isEnterColdPage());
+//    }
 
 }

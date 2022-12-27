@@ -81,9 +81,9 @@ public class AssetsPageTest extends Base {
         asset.findElementByText("收款").click();
         Assert.assertTrue(asset.isTextExist("收款"));
         asset.driver.navigate().back();
-        asset.findElementByText("闪兑").click();
-        Assert.assertTrue(asset.isTextExist("闪兑"));
-        asset.driver.navigate().back();
+//        asset.findElementByText("闪兑").click();
+//        Assert.assertTrue(asset.isTextExist("闪兑"));
+//        asset.driver.navigate().back();
         asset.findElementByText("质押").click();
         Assert.assertTrue(asset.isTextExist("质押 TRX"));
         asset.driver.navigate().back();
