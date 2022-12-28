@@ -24,7 +24,11 @@ public class BrowserPage extends AbstractPage {
     public WebElement dAppMenuBtn;
 
     public void openMenu(){
-        menuBtn.click();
+        if(isElementExist("dapp topNav more")){
+            menuBtn.click();
+        }else {
+            dAppMenuBtn.click();
+        }
     }
     @FindBy(name = "搜索名称或输入网址")
     public WebElement inputText;
