@@ -140,7 +140,7 @@ public class FrozenAndUnfreezeTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.interMultiSignGuidePage();
-        Assert.assertTrue(frozen.tv_common_title.getText().contains("使用教程"));
+        Assert.assertTrue(frozen.tv_web_title.getText().contains("如何使用多重签名质押 – 帮助中心"));
     }
 
 
