@@ -98,7 +98,12 @@ public class SettingTest extends Base {
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         SeverSetPage sever = setting.enterSeverSetPage();
-        sever.Sigapor_btn.click();
+        if (isElementShotId("sigapor_layout")){
+            sever.Sigapor_btn.click();
+        }else {
+            sever.switch_button.click();
+            sever.Sigapor_btn.click();
+        }
         Assert.assertTrue(sever.isElementExist("com.tronlinkpro.wallet:id/iv_select2"));
 
     }
@@ -109,7 +114,12 @@ public class SettingTest extends Base {
         MinePage mine = asset.enterMinePage();
         SettingPage setting = mine.enterSettingPage();
         SeverSetPage sever = setting.enterSeverSetPage();
-        sever.USA_btn.click();
+        if (isElementShotId("usa_layout")){
+            sever.USA_btn.click();
+        }else {
+            sever.switch_button.click();
+            sever.Sigapor_btn.click();
+        }
         Assert.assertTrue(sever.isElementExist("com.tronlinkpro.wallet:id/iv_select1"));
 
     }
