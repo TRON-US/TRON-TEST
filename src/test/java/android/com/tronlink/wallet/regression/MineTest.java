@@ -62,7 +62,7 @@ public class MineTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         MinePage minePage = asset.enterMinePage();
         AnnouncementPage announcement = minePage.enterAnnouncementPage();
-        Assert.assertTrue(announcement.announcementPage_title.getText().contains("公告"));
+        Assert.assertTrue(announcement.tv_web_title.getText().contains("公告中心 – 帮助中心"));
     }
 
      @Test(alwaysRun = true)

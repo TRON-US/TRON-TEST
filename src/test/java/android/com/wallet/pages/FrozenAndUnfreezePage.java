@@ -347,8 +347,6 @@ public WebElement tv_stake_energy;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement tv_common_title;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_web_title")
-    public WebElement tv_web_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_tip2")
     public WebElement iv_tip2;

@@ -33,6 +33,9 @@ public abstract class AbstractPage {
 
     public  static String apkPackageName = "com.tronlinkpro.wallet";
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_web_title")
+    public WebElement tv_web_title;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_content")
     public WebElement tv_content;
 
