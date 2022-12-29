@@ -150,7 +150,7 @@ public class SendTrc10 extends Base {
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.sendAllTrx("min");
-        Assert.assertTrue(isElementTextExist("   转账金额需大于 0"));
+        Assert.assertTrue(isElementTextExist("   转账数量需大于 0"));
     }
 
 

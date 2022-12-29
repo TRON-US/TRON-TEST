@@ -146,7 +146,7 @@ public class SendTrc20 extends Base {
     public void test005_inputMinSendNumber(String privateKey,String udid) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendTokenMin("20",udid);
-        Assert.assertTrue(isElementTextExist("   转账金额需大于 0"));
+        Assert.assertTrue(isElementTextExist("   转账数量需大于 0"));
     }
 
 
