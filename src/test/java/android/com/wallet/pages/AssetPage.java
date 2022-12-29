@@ -49,6 +49,8 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
 
     }
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
+    public WebElement tv_chain_name;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_sign_close")
     public WebElement iv_sign_close;
