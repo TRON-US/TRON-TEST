@@ -24,7 +24,7 @@ public class BrowserPage extends AbstractPage {
     public WebElement dAppMenuBtn;
 
     public void openMenu(){
-        if(isElementExist("dapp topNav more")){
+        if(!isElementExist("dapp topNav more")){
             menuBtn.click();
         }else {
             dAppMenuBtn.click();
@@ -157,7 +157,9 @@ public class BrowserPage extends AbstractPage {
     }
 
     public void backHome(){
-        dAppHome.click();
+        if (isElementExist("dapp topNav home")){
+            dAppHome.click();
+        }
     }
 
     public void openHistory(){

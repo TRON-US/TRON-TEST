@@ -71,7 +71,8 @@ public class BrowserTest extends BaseTest {
     public void test005_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
-        page.inputSearch("sunswap.com");
+        page.backHome();
+        page.inputSenSearch("sunswap.com");
         page.visitTheWeb();
         page.backHome();
         page.openHistory();
@@ -86,6 +87,7 @@ public class BrowserTest extends BaseTest {
         restartApp();
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
+        page.backHome();
         page.inputSenSearch("baidu.com");
         page.visitTheWWWWeb();
         TimeUnit.SECONDS.sleep(4);
