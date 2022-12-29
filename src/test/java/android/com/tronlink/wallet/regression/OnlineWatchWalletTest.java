@@ -113,20 +113,7 @@ public class OnlineWatchWalletTest extends Base {
         frozen.btn_confirm.click();
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
-
-
-
-    @Test(groups = {"P0"},enabled = true,description = "Online deposit QRCode", alwaysRun = true)
-    public void test005_onlineDepositQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage trxPage = asset.enterBTTPage();
-        TransferPage transfer = trxPage.enterTransferInPage();
-        transfer.count_text.sendKeys("1");
-        transfer.transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        transfer.bt_send.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+    
 
 
 
