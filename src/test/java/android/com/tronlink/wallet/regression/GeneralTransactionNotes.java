@@ -81,7 +81,7 @@ public class GeneralTransactionNotes extends Base {
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
                 Assert.assertEquals(detailAmount,sendAmount,1.5);
                 Helper.swipScreenLitte(DRIVER);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 Assert.assertTrue(detail.tv_note.getText().contains("GeneralTransactionNotes"));
                 break;
             }else {

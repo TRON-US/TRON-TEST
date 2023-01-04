@@ -106,7 +106,7 @@ public class SendTrc10 extends Base {
                 Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRC10 通证转账"));
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"tronlink_token");
                 Assert.assertEquals(detailAmount,sendAmount);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);

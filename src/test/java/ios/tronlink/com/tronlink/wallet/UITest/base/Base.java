@@ -104,20 +104,21 @@ public class Base {
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 URL remoteUrl = new URL(url);
-                DRIVER = new IOSDriver<WebElement>(remoteUrl, desiredCapabilities);
+                DRIVER = new IOSDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
                 System.out.println("setUp DRIVER success");
                 TimeUnit.SECONDS.sleep(1);
 
             } catch (Exception e) {
                 System.out.println("setUp DRIVER fail");
-                ScreenShot("DRIVERFail");
-                AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-                TimeUnit.SECONDS.sleep(4);
-                System.out.print("\nUninstall  " + udid + " Success\n");
-                AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-                TimeUnit.SECONDS.sleep(10);
-                System.out.print("\nInstall " + udid + " Success\n");
+                System.out.println(e);
+//                ScreenShot("DRIVERFail");
+//                AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+//                TimeUnit.SECONDS.sleep(4);
+//                System.out.print("\nUninstall  " + udid + " Success\n");
+//                AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+//                TimeUnit.SECONDS.sleep(10);
+//                System.out.print("\nInstall " + udid + " Success\n");
             }
         }
     }
