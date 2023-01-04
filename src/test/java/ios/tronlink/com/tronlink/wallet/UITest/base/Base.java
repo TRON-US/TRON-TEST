@@ -112,13 +112,13 @@ public class Base {
             } catch (Exception e) {
                 System.out.println("setUp DRIVER fail");
                 System.out.println(e);
-//                ScreenShot("DRIVERFail");
-//                AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-//                TimeUnit.SECONDS.sleep(4);
-//                System.out.print("\nUninstall  " + udid + " Success\n");
-//                AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-//                TimeUnit.SECONDS.sleep(10);
-//                System.out.print("\nInstall " + udid + " Success\n");
+                ScreenShot("DRIVERFail");
+                AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
+                TimeUnit.SECONDS.sleep(4);
+                System.out.print("\nUninstall  " + udid + " Success\n");
+                AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
+                TimeUnit.SECONDS.sleep(10);
+                System.out.print("\nInstall " + udid + " Success\n");
             }
         }
     }
