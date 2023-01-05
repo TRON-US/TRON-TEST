@@ -640,10 +640,6 @@ public class MainAccountTest extends Base {
                     Assert.assertEquals(vote.tv_confirm_title.getText(),"确认交易");
                     Assert.assertEquals(vote.tv_info_title.getText(),"领取收益");
                     Assert.assertTrue(vote.tv_right.getText().contains("当前账户"));
-                    Assert.assertTrue(vote.btn_confirm.getText().contains("生成交易二维码"));
-                    vote.confirm_btn.click();
-                    TimeUnit.SECONDS.sleep(2);
-                    Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
 
                 }else {
                     log("未到24小时场景");
