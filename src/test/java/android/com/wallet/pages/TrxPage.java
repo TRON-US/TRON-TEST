@@ -84,7 +84,7 @@ public class TrxPage extends AbstractPage {
   //@FindBy(id = "com.tronlinkpro.wallet:id/send")
   //public WebElement send_btn;
 
-  @FindBy(id = "com.tronlinkpro.wallet:id/ll_transfer2")
+  @FindBy(xpath = "//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]")
   public WebElement send_btn;
 
     @FindBy(xpath = "//*[@resource-id=\"com.tronlinkpro.wallet:id/ll_transfer2\"]/android.widget.ImageView[1]")
