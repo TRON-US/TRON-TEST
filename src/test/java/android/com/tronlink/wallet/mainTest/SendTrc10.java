@@ -219,6 +219,11 @@ public class SendTrc10 extends Base {
         if (isElementShotId("tv_consume_resource")){
             String content = transfer.bandwidth_text.getText();
             log(content);
+            if (content.length()<2){
+                TimeUnit.SECONDS.sleep(5);
+                content = transfer.bandwidth_text.getText();
+                log(content);
+            }
             String number = StringUtils.substringBeforeLast(content,"带宽");
             Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
             Assert.assertTrue(findByShotId("tv_resource_consume_left").getText().contains("交易所需资源"));
