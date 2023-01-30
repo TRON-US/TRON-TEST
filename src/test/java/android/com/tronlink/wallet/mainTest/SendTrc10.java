@@ -106,7 +106,7 @@ public class SendTrc10 extends Base {
                 Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRC10 通证转账"));
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"tronlink_token");
                 Assert.assertEquals(detailAmount,sendAmount);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);
@@ -150,7 +150,7 @@ public class SendTrc10 extends Base {
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.sendAllTrx("min");
-        Assert.assertTrue(isElementTextExist("   转账金额需大于 0"));
+        Assert.assertTrue(isElementTextExist("   转账数量需大于 0"));
     }
 
 
@@ -219,6 +219,11 @@ public class SendTrc10 extends Base {
         if (isElementShotId("tv_consume_resource")){
             String content = transfer.bandwidth_text.getText();
             log(content);
+            if (content.length()<2){
+                TimeUnit.SECONDS.sleep(5);
+                content = transfer.bandwidth_text.getText();
+                log(content);
+            }
             String number = StringUtils.substringBeforeLast(content,"带宽");
             Assert.assertTrue(Integer.parseInt(number.trim()) > 200);
             Assert.assertTrue(findByShotId("tv_resource_consume_left").getText().contains("交易所需资源"));

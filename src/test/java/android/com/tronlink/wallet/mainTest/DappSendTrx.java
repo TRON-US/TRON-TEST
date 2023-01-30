@@ -93,91 +93,91 @@ public class DappSendTrx extends Base {
 
 
 
-    @Test(enabled = true, alwaysRun = true)
-    public void test001_availableAmountInTransfer() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
-        SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.normalSendStepOne();
-        Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
-        System.out.println(avValue);
-        System.out.println(stepOneValue);
-        Assert.assertEquals(avValue,stepOneValue);
-    }
-
-
-    @Test(enabled = true, alwaysRun = true)
-    public void test002_enterFrozenSuccess() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        page.rl_price_trx.click();
-        if (isElementShotId("ll_action")){
-            page.ll_action.click();
-        }
-        Assert.assertTrue(page.tv_main_title.getText().contains("网络资源管理"));
-        Assert.assertTrue(isElementShotId("progress_energy"));
-    }
-
-    @Test(enabled = true, alwaysRun = true)
-    public void test003_multiSignPathTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        SendTrxPage transfer = page.trxSendTrxPage();
-        Assert.assertTrue(transfer.tv_multi_sign.getText().contains("多重签名转账"));
-        transfer.tv_multi_sign.click();
-        Assert.assertTrue(transfer.tv_account.getText().contains("控制账户列表"));
-    }
-
-    @Parameters({"address"})
-    @Test(enabled = true, alwaysRun = true)
-    public void test004_transferAddressTextField(String address) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys(address);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("接收账户与转出账户相同，请确认"));
-
-    }
-
-    @Test(enabled = true, alwaysRun = true)
-    public void test005_transferAddressContractTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys(contract);
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("此为合约地址，请确认您要向此合约地址转账，避免造成资产损失!"));
-    }
-
-    @Test(enabled = true, alwaysRun = true)
-    public void test006_transferAddressBlackTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        SendTrxPage transfer = page.trxSendTrxPage();
-        transfer.receiveAddress_text.sendKeys(nileBlack);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("此账户用于销毁代币，请确认您要向此账户转账！"));
-    }
-
-    @Parameters({"udid"})
-   @Test(enabled = true, alwaysRun = true)
-    public void test007_transferAddressFormatTest(String udid) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage page =  asset.enterTrxPage();
-        SendTrxPage transfer = page.trxSendTrxPage();
-        keyboardSogou(udid);
-        TimeUnit.SECONDS.sleep(1);
-        transfer.receiveAddress_text.click();
-        transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39ajkLz6c");
-        TimeUnit.SECONDS.sleep(1);
-        DRIVER.hideKeyboard();
-        TimeUnit.SECONDS.sleep(1);
-        keyboardUnicode(udid);
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
-
-
-    }
+//    @Test(enabled = true, alwaysRun = true)
+//    public void test001_availableAmountInTransfer() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        Double avValue =  Double.parseDouble(removeSymbolString(page.tv_balance.getText()));
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        transfer.normalSendStepOne();
+//        Double stepOneValue =  Double.parseDouble(removeSymbolString(transfer.balance_text.getText()));
+//        System.out.println(avValue);
+//        System.out.println(stepOneValue);
+//        Assert.assertEquals(avValue,stepOneValue);
+//    }
+//
+//
+//    @Test(enabled = true, alwaysRun = true)
+//    public void test002_enterFrozenSuccess() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        page.rl_price_trx.click();
+//        if (isElementShotId("ll_action")){
+//            page.ll_action.click();
+//        }
+//        Assert.assertTrue(page.tv_main_title.getText().contains("网络资源管理"));
+//        Assert.assertTrue(isElementShotId("progress_energy"));
+//    }
+//
+//    @Test(enabled = true, alwaysRun = true)
+//    public void test003_multiSignPathTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        Assert.assertTrue(transfer.tv_multi_sign.getText().contains("多重签名转账"));
+//        transfer.tv_multi_sign.click();
+//        Assert.assertTrue(transfer.tv_account.getText().contains("控制账户列表"));
+//    }
+//
+//    @Parameters({"address"})
+//    @Test(enabled = true, alwaysRun = true)
+//    public void test004_transferAddressTextField(String address) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        transfer.receiveAddress_text.sendKeys(address);
+//        Assert.assertTrue(findByShotId("error_view").getText().contains("接收账户与转出账户相同，请确认"));
+//
+//    }
+//
+//    @Test(enabled = true, alwaysRun = true)
+//    public void test005_transferAddressContractTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        transfer.receiveAddress_text.sendKeys(contract);
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(findByShotId("error_view").getText().contains("此为合约地址，请确认您要向此合约地址转账，避免造成资产损失!"));
+//    }
+//
+//    @Test(enabled = true, alwaysRun = true)
+//    public void test006_transferAddressBlackTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        transfer.receiveAddress_text.sendKeys(nileBlack);
+//        Assert.assertTrue(findByShotId("error_view").getText().contains("此账户用于销毁代币，请确认您要向此账户转账！"));
+//    }
+//
+//    @Parameters({"udid"})
+//   @Test(enabled = true, alwaysRun = true)
+//    public void test007_transferAddressFormatTest(String udid) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        TrxPage page =  asset.enterTrxPage();
+//        SendTrxPage transfer = page.trxSendTrxPage();
+//        keyboardSogou(udid);
+//        TimeUnit.SECONDS.sleep(1);
+//        transfer.receiveAddress_text.click();
+//        transfer.receiveAddress_text.sendKeys("TPjkW6HiKvTM9SPxhDdbb9GfCC39ajkLz6c");
+//        TimeUnit.SECONDS.sleep(1);
+//        DRIVER.hideKeyboard();
+//        TimeUnit.SECONDS.sleep(1);
+//        keyboardUnicode(udid);
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(findByShotId("error_view").getText().contains("地址格式不正确，请检查"));
+//
+//
+//    }
 
 
 

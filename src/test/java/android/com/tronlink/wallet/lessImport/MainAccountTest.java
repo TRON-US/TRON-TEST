@@ -405,6 +405,7 @@ public class MainAccountTest extends Base {
         Assert.assertTrue(isElementTextExist("浏览记录"));
         Assert.assertTrue(isElementTextExist("多标签页"));
         Assert.assertTrue(isElementTextExist("收藏"));
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(page.tv_subtitle.getText().contains("https://bt.io/?utm_source=tronlink"));
         page.historyBackToWeb();
         page.gotoBrowserMainPage();

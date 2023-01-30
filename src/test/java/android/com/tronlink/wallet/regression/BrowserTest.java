@@ -65,10 +65,7 @@ public class BrowserTest extends Base {
         DiscoverPage page = asset.enterDiscoverPage();
         Assert.assertTrue(isElementTextExist("常用"));
         Assert.assertTrue(isElementTextExist("收藏"));
-        Assert.assertTrue(isElementTextExist("全部"));
-        Assert.assertTrue(isElementTextExist("交易"));
-        Assert.assertTrue(isElementTextExist("游戏"));
-        Assert.assertTrue(isElementTextExist("其他"));
+        Assert.assertTrue(isElementTextExist("推荐应用"));
         Assert.assertEquals(page.tv_web_title.getText(),"浏览器");
         Assert.assertEquals(page.tv_search.getText(),"搜索名称或输入网址");
         Assert.assertEquals(page.tv_browser_tab.getText(),"1");
@@ -114,6 +111,7 @@ public class BrowserTest extends Base {
         Assert.assertTrue(isElementTextExist("浏览记录"));
         Assert.assertTrue(isElementTextExist("多标签页"));
         Assert.assertTrue(isElementTextExist("收藏"));
+        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(page.tv_subtitle.getText().contains("https://bt.io/?utm_source=tronlink"));
         page.historyBackToWeb();
         page.gotoBrowserMainPage();

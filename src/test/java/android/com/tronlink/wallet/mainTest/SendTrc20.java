@@ -125,7 +125,7 @@ public class SendTrc20 extends Base {
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
                 System.out.println("detailAmount-----"+ detailAmount);
                 Assert.assertEquals(detailAmount,sendAmount);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);
@@ -146,7 +146,7 @@ public class SendTrc20 extends Base {
     public void test005_inputMinSendNumber(String privateKey,String udid) throws Exception {
         SendTrxPage transfer = enterToSendTrxPage();
         transfer.sendTokenMin("20",udid);
-        Assert.assertTrue(isElementTextExist("   转账金额需大于 0"));
+        Assert.assertTrue(isElementTextExist("   转账数量需大于 0"));
     }
 
 

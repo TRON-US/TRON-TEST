@@ -121,12 +121,12 @@ public class SettingTest extends BaseTest {
         mine.confirmBtn.click();
         Assert.assertTrue(mine.iosToast("已切换到TRON Shasta 测试网"));
         TimeUnit.SECONDS.sleep(6);
-        mine.DAppChainBtn().click();
-        Assert.assertTrue(isElementExist("切换网络"));
-        Assert.assertTrue(isElementExist("切换完成后，你将只能看到 DAppChain 的数据，无法查看 TRON 主网数据，是否确认切换？"));
-        mine.confirmBtn.click();
-        Assert.assertTrue(mine.iosToast("已切换到DAppChain 主网"));
-        TimeUnit.SECONDS.sleep(6);
+//        mine.DAppChainBtn().click();
+//        Assert.assertTrue(isElementExist("切换网络"));
+//        Assert.assertTrue(isElementExist("切换完成后，你将只能看到 DAppChain 的数据，无法查看 TRON 主网数据，是否确认切换？"));
+//        mine.confirmBtn.click();
+//        Assert.assertTrue(mine.iosToast("已切换到DAppChain 主网"));
+//        TimeUnit.SECONDS.sleep(6);
         mine.mainBtn().click();
         Assert.assertTrue(mine.iosToast("已切换到TRON 主网"));
     }

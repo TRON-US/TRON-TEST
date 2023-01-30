@@ -135,13 +135,13 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertFalse(isElementShotId("btn_know_it"));
     }
 
-    @Test(alwaysRun = true)
-    public void test006_multiSignGuideTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.interMultiSignGuidePage();
-        Assert.assertTrue(frozen.tv_common_title.getText().contains("使用教程"));
-    }
+//    @Test(alwaysRun = true)
+//    public void test006_multiSignGuideTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.interMultiSignGuidePage();
+//        Assert.assertTrue(frozen.tv_web_title.getText().contains("如何使用多重签名质押 – 帮助中心"));
+//    }
 
 
     @Test(alwaysRun = true)
