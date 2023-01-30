@@ -256,9 +256,12 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
     public WebElement tv_walletname;
 
-    public void switchToWallet(String name){
+    public void switchToWallet(String name) throws Exception{
         tv_walletname.click();
+        TimeUnit.SECONDS.sleep(1);
         findElementByText(name).click();
+        TimeUnit.SECONDS.sleep(1);
+
     }
 
     public void enterSwitchWallet(){
