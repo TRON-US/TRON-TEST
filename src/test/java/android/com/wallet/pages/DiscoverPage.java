@@ -155,6 +155,7 @@ public class DiscoverPage extends AbstractPage {
 
 
     public void inputSearch(String text) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         tv_search.click();
         TimeUnit.SECONDS.sleep(2);
         et_search.sendKeys(text);
@@ -221,6 +222,7 @@ public class DiscoverPage extends AbstractPage {
         if (isElementExist("tv_approve")){
             tv_approve.click();
         }
+        TimeUnit.SECONDS.sleep(5);
     }
 
     public void gotoBrowserMainPage(){
