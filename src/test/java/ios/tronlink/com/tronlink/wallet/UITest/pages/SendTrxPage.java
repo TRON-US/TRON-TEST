@@ -353,7 +353,8 @@ public class SendTrxPage extends AbstractPage {
     public Double inputTRC20AndSendAmount(String amount)throws Exception{
         searchCoin.click();
         TimeUnit.SECONDS.sleep(3);
-        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515n7");
+        TextField.sendKeys("TCCcBZEdTHmS1NfFtCYfwpjBKeTv515");
+        TextField.sendKeys("n7");
         TextField.sendKeys("1");
         TimeUnit.SECONDS.sleep(1);
         closeKeyBoard();
