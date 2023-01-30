@@ -218,8 +218,8 @@ public WebElement title;
 
 
 
-    @FindBy(xpath = "//*[@text='TRX']")
-    public WebElement trx_btn;
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    public List<WebElement> trx_btns;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
     public WebElement trz_btn;
@@ -616,8 +616,13 @@ public WebElement title;
 
 
     public TrxPage enterTrxPage() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,trx_btn);
-        trx_btn.click();
+        for (WebElement ele: trx_btns
+             ) {
+            if (ele.getText().contains("TRX")){
+                ele.click();
+                break;
+            }
+        }
         return new TrxPage(driver);
     }
 
