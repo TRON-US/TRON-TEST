@@ -166,6 +166,7 @@ public class DiscoverPage extends AbstractPage {
     public void visitTheWeb() throws Exception{
         tv_address.click();
         firstEnterAWeb();
+        TimeUnit.SECONDS.sleep(3);
     }
 
 

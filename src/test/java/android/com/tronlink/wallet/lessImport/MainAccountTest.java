@@ -399,13 +399,14 @@ public class MainAccountTest extends Base {
     public void test018_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();
+        page.openNewTab();
+        TimeUnit.SECONDS.sleep(2);
         page.inputSearch("bt.io");
         page.visitTheWeb();
         page.openHistory();
         Assert.assertTrue(isElementTextExist("浏览记录"));
         Assert.assertTrue(isElementTextExist("多标签页"));
         Assert.assertTrue(isElementTextExist("收藏"));
-        TimeUnit.SECONDS.sleep(3);
         Assert.assertTrue(page.tv_subtitle.getText().contains("https://bt.io/?utm_source=tronlink"));
         page.historyBackToWeb();
         page.gotoBrowserMainPage();
@@ -417,6 +418,8 @@ public class MainAccountTest extends Base {
     public void test019_FavoritesTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();
+        page.openNewTab();
+        TimeUnit.SECONDS.sleep(2);
         page.inputSearch("baidu.com");
         page.visitTheWeb();
         page.openFavorites();
