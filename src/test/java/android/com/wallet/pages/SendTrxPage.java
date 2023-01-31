@@ -274,6 +274,20 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
+    public void sendAddressAndInputNumber(String address,String number) throws Exception{
+        receiveAddress_text.sendKeys(address);
+        TimeUnit.SECONDS.sleep(2);
+        if ( next_btn.isEnabled()){
+            next_btn.click();
+        }else {
+            TimeUnit.SECONDS.sleep(3);
+            next_btn.click();
+        }
+        TimeUnit.SECONDS.sleep(1);
+        tranferCount_text.sendKeys(number);
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     public void normalSendStepOne(){
         receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
