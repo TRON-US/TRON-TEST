@@ -58,7 +58,15 @@ public class Base {
 
         try {
             System.out.println("startByPort: "+port+" \nudid:"+udid);
-            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p " + port  + " --udid " + udid );
+            Process process;
+            if (isOneVersion()){
+                process = Runtime.getRuntime().exec("appium -a 127.0.0.1  -p " + port  + " --udid " + udid );
+                System.out.println("***** appium Version one *****");
+            }else {
+                process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -pa /wd/hub -p " + port  + " --use-drivers " + udid );
+                System.out.println("***** appium Version two *****");
+            }
+
             InputStreamReader isr = new InputStreamReader(process.getInputStream());
             Scanner sc = new Scanner(isr);
             StringBuffer sb = new StringBuffer();
@@ -92,7 +100,7 @@ public class Base {
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
                 desiredCapabilities.setCapability("automationName", automationName);
-                desiredCapabilities.setCapability("newCommandTimeout", 15000);
+                desiredCapabilities.setCapability("newCommandTimeout", 4800);
                 desiredCapabilities.setCapability("autoAcceptAlerts", true);
                 desiredCapabilities.setCapability("noReset", noReset);
                 desiredCapabilities.setCapability("xcodeOrgId",xcodeOrgId );
@@ -104,6 +112,8 @@ public class Base {
                 File app = new File(appDir, "Tronlink.ipa");
                 desiredCapabilities.setCapability("app", app.getAbsolutePath());
                 URL remoteUrl = new URL(url);
+                System.out.println(url);
+                System.out.println(desiredCapabilities.getCapability("app"));
                 DRIVER = new IOSDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
                 System.out.println("setUp DRIVER success");
@@ -145,6 +155,17 @@ public class Base {
     public void tearDownAfterClass() {
     }
 
+    public boolean isOneVersion()  throws IOException{
+        Process process = Runtime.getRuntime().exec("appium --version");
+        InputStreamReader isr=new InputStreamReader(process.getInputStream());
+        Scanner s=new Scanner(isr);
+        if (s.hasNext()){
+            String ver = s.next();
+            return ver.startsWith("1");
+        }else {
+            return true;
+        }
+    }
 
     public void tearDownWithoutQuit() {
         //writeLog("remove App");
