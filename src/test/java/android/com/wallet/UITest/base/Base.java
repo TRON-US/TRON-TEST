@@ -66,7 +66,14 @@ public class Base {
     public void startServer(String port, String platformName, String platformVersion, String deviceName,String udid) {
         try {
             System.out.println("startByPort: "+port+" \nudid:"+udid);
-            Process process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -p "+port + " -U " + udid);
+            Process process;
+            if (isOneVersion()){
+                process = Runtime.getRuntime().exec("appium -a 127.0.0.1  -p " + port  + " --udid " + udid );
+                System.out.println("***** appium Version one *****");
+            }else {
+                process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -pa /wd/hub -p " + port  + " --use-drivers " + udid );
+                System.out.println("***** appium Version two *****");
+            }
             InputStreamReader isr=new InputStreamReader(process.getInputStream());
             Scanner sc=new Scanner(isr);
             StringBuffer sb = new StringBuffer();
@@ -100,10 +107,8 @@ public class Base {
                 desiredCapabilities.setCapability("unicodeKeyboard", true);
                 desiredCapabilities.setCapability("resetKeyboard", true);
                 desiredCapabilities.setCapability("automationName", "Uiautomator2");
-                desiredCapabilities.setCapability("privateKey", privateKey);
                 desiredCapabilities.setCapability("clearSystemFiles", true);
                 desiredCapabilities.setCapability("noReset", noReset);
-                desiredCapabilities.setCapability("recreateChromeDriverSessions", true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, true);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
                 desiredCapabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
@@ -157,7 +162,17 @@ public class Base {
         System.out.println(time + "  ---> : " + log);
     }
 
-
+    public boolean isOneVersion()  throws IOException{
+        Process process = Runtime.getRuntime().exec("appium --version");
+        InputStreamReader isr=new InputStreamReader(process.getInputStream());
+        Scanner s=new Scanner(isr);
+        if (s.hasNext()){
+            String ver = s.next();
+            return ver.startsWith("1");
+        }else {
+            return true;
+        }
+    }
 
     public  List<String> getDevicesInfo() throws IOException {
         List<String> list = new ArrayList<>();
