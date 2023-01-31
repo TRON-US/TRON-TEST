@@ -155,6 +155,7 @@ public class DiscoverPage extends AbstractPage {
 
 
     public void inputSearch(String text) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
         tv_search.click();
         TimeUnit.SECONDS.sleep(2);
         et_search.sendKeys(text);
@@ -165,6 +166,7 @@ public class DiscoverPage extends AbstractPage {
     public void visitTheWeb() throws Exception{
         tv_address.click();
         firstEnterAWeb();
+        TimeUnit.SECONDS.sleep(3);
     }
 
 
@@ -204,8 +206,8 @@ public class DiscoverPage extends AbstractPage {
     }
 
     public void openDebugModel() throws Exception{
-        findElementByText("其他").click();
-        findElementByText("SUN").click();
+//        findElementByText("其他").click();
+        findElementByText("APENFT").click();
         TimeUnit.SECONDS.sleep(2);
         firstEnterAWeb();
         iv_menu.click();
@@ -221,6 +223,7 @@ public class DiscoverPage extends AbstractPage {
         if (isElementExist("tv_approve")){
             tv_approve.click();
         }
+        TimeUnit.SECONDS.sleep(5);
     }
 
     public void gotoBrowserMainPage(){

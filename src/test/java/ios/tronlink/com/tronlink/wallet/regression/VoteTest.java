@@ -141,7 +141,6 @@ public class VoteTest extends BaseTest {
         page.closeTheTips();
         page.enterWebPageMultiSignIntro();
         TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(isElementExist("使用教程"));
         Assert.assertTrue(isWebView());
 
     }

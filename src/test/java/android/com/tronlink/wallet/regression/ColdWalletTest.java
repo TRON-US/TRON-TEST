@@ -86,7 +86,7 @@ public class ColdWalletTest extends Base {
         ColdAssetPage coldAsset = new ColdAssetPage(DRIVER);
         coldAsset.coldWalletKnowledge_btn.click();
         TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(coldAsset.knowledgeText_list.get(0).getText().contains("冷钱包的使用说明"));
+        Assert.assertTrue(coldAsset.knowledgeText_list.get(0).getText().contains("TronLink冷钱包教程"));
     }
 
     @Test(enabled = true,description = "Cold wallet delete knowledge icon test", alwaysRun = true)

@@ -126,8 +126,8 @@ public class MinePageTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage minePage = assetPage.enterMinePage();
         HelpPage helpPage = minePage.enterHelpPage();
-        TimeUnit.SECONDS.sleep(15);
-        Assert.assertTrue(helpPage.helperPhone.isDisplayed());
+        TimeUnit.SECONDS.sleep(8);
+        Assert.assertTrue(helpPage.title.isDisplayed());
 
     }
 

@@ -157,7 +157,7 @@ public class SendTrx extends Base {
                 log(detailAmount.toString());
                 Assert.assertEquals(detailAmount,sendAmount,0.4);
                 Helper.swipScreenLitte(DRIVER);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);

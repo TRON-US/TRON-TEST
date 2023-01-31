@@ -17,7 +17,8 @@ public class SeverSetPage extends AbstractPage {
     }
 
 
-
+    @FindBy(id = "com.tronlinkpro.wallet:id/switch_button")
+    public WebElement switch_button;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")
     public WebElement back_btn;

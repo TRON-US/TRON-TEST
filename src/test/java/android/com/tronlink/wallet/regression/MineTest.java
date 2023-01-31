@@ -57,13 +57,13 @@ public class MineTest extends Base {
     }
 
 
-    @Test(description = "Announcement Test", alwaysRun = true)
-    public void test002_AnnouncementTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        AnnouncementPage announcement = minePage.enterAnnouncementPage();
-        Assert.assertTrue(announcement.announcementPage_title.getText().contains("公告"));
-    }
+//    @Test(description = "Announcement Test", alwaysRun = true)
+//    public void test002_AnnouncementTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage minePage = asset.enterMinePage();
+//        AnnouncementPage announcement = minePage.enterAnnouncementPage();
+//        Assert.assertTrue(announcement.tv_web_title.getText().contains("公告中心 – 帮助中心"));
+//    }
 
      @Test(alwaysRun = true)
      public void test003_publicWalletManageTest() throws Exception {

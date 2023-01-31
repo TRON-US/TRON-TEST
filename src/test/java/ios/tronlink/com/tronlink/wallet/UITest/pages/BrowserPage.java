@@ -24,7 +24,11 @@ public class BrowserPage extends AbstractPage {
     public WebElement dAppMenuBtn;
 
     public void openMenu(){
-        menuBtn.click();
+        if(!isElementExist("dapp topNav more")){
+            menuBtn.click();
+        }else {
+            dAppMenuBtn.click();
+        }
     }
     @FindBy(name = "搜索名称或输入网址")
     public WebElement inputText;
@@ -67,6 +71,9 @@ public class BrowserPage extends AbstractPage {
 
     @FindBy(name = "允许")
     public WebElement approve;
+
+    @FindBy(name = "允许")
+    public List<WebElement> approves;
 
     @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell")
     public WebElement firstDAppItem;
@@ -138,7 +145,12 @@ public class BrowserPage extends AbstractPage {
         }
         TimeUnit.SECONDS.sleep(5);
         if (isElementExist("允许")){
-            approve.click();
+            System.out.println("approves.size()"+approves.size());
+            if (approves.size()>1){
+                approves.get(approves.size()-1).click();
+            }else {
+                approve.click();
+            }
         }
     }
 
@@ -153,7 +165,9 @@ public class BrowserPage extends AbstractPage {
     }
 
     public void backHome(){
-        dAppHome.click();
+        if (isElementExist("dapp topNav home")){
+            dAppHome.click();
+        }
     }
 
     public void openHistory(){

@@ -73,7 +73,7 @@ public class SendNFT extends Base {
         Assert.assertEquals(page.nav_title.getText(),"交易记录");
         Assert.assertTrue(page.inners.size() > 1);
         Assert.assertTrue(page.address_title.getText().contains("接收") || page.address_title.getText().contains("发送"));
-        Assert.assertTrue(page.time.getText().contains("2022"));
+        Assert.assertTrue(page.time.getText().contains("2023"));
     }
 
     @Parameters({"address"})

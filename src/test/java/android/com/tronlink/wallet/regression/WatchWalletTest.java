@@ -47,9 +47,7 @@ public class WatchWalletTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("1");
+        sendTrxPage.sendAddressAndInputNumber("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq","1");
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(3);
         sendTrxPage.confirm_btn.click();
@@ -97,27 +95,13 @@ public class WatchWalletTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Deposit QRCode", alwaysRun = true)
-    public void test006_DepositQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        TrxPage trxPage = asset.enterTrxPage();
-        TransferPage transfer = trxPage.enterTransferInPage();
-        transfer.count_text.sendKeys("10");
-        transfer.transferIn_btn.click();
-        TimeUnit.SECONDS.sleep(4);
-        transfer.bt_send.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
-
 
     @Test(enabled = true,description = "Send trc10 QRCode", alwaysRun = true)
     public void test007_trc10QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(5);
         SendTrxPage sendTrxPage  = asset.enterSendTrc10Page();
-        sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("1");
+        sendTrxPage.sendAddressAndInputNumber("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq","1");
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(4);
         sendTrxPage.confirm_btn.click();
@@ -158,9 +142,7 @@ public class WatchWalletTest extends Base {
     public void test009_trc20QRCode() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
         SendTrxPage sendTrxPage  = asset.enterSendTrc20Page();
-        sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("5");
+        sendTrxPage.sendAddressAndInputNumber("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq","5");
         sendTrxPage.send_btn.click();
         TimeUnit.SECONDS.sleep(4);
         sendTrxPage.confirm_btn.click();

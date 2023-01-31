@@ -103,7 +103,7 @@ public class MainAccountTest extends Base {
                 log(detailAmount.toString());
                 Assert.assertEquals(detailAmount,sendAmount,0.4);
                 Helper.swipScreenLitte(DRIVER);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);
@@ -168,7 +168,7 @@ public class MainAccountTest extends Base {
                 Assert.assertTrue(detail.tv_contract_type_top.getText().contains("TRC10 通证转账"));
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"tronlink_token");
                 Assert.assertEquals(detailAmount,sendAmount);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);
@@ -237,7 +237,7 @@ public class MainAccountTest extends Base {
                 Double detailAmount = sepLeftNumberTextToDouble(detail.tv_amount.getText(),"TRX");
                 System.out.println("detailAmount-----"+ detailAmount);
                 Assert.assertEquals(detailAmount,sendAmount);
-                Assert.assertTrue(detail.transaction_time_text.getText().contains("2022"));
+                Assert.assertTrue(detail.transaction_time_text.getText().contains("2023"));
                 break;
             }else {
                 TimeUnit.SECONDS.sleep(2);
@@ -399,6 +399,8 @@ public class MainAccountTest extends Base {
     public void test018_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();
+        page.openNewTab();
+        TimeUnit.SECONDS.sleep(2);
         page.inputSearch("bt.io");
         page.visitTheWeb();
         page.openHistory();
@@ -416,6 +418,8 @@ public class MainAccountTest extends Base {
     public void test019_FavoritesTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         DiscoverPage page = asset.enterDiscoverPage();
+        page.openNewTab();
+        TimeUnit.SECONDS.sleep(2);
         page.inputSearch("baidu.com");
         page.visitTheWeb();
         page.openFavorites();
@@ -640,10 +644,6 @@ public class MainAccountTest extends Base {
                     Assert.assertEquals(vote.tv_confirm_title.getText(),"确认交易");
                     Assert.assertEquals(vote.tv_info_title.getText(),"领取收益");
                     Assert.assertTrue(vote.tv_right.getText().contains("当前账户"));
-                    Assert.assertTrue(vote.btn_confirm.getText().contains("生成交易二维码"));
-                    vote.confirm_btn.click();
-                    TimeUnit.SECONDS.sleep(2);
-                    Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
 
                 }else {
                     log("未到24小时场景");

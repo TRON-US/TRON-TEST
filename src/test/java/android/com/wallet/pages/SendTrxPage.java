@@ -79,9 +79,6 @@ public class SendTrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_next")
     public WebElement next_btn;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/btn_next")
-    public WebElement btn_next;
-
     @FindBy(id = "com.tronlinkpro.wallet:id/et_count")
     public WebElement tranferCount_text;
 
@@ -277,6 +274,20 @@ public class SendTrxPage extends AbstractPage {
 
     }
 
+    public void sendAddressAndInputNumber(String address,String number) throws Exception{
+        receiveAddress_text.sendKeys(address);
+        TimeUnit.SECONDS.sleep(2);
+        if ( next_btn.isEnabled()){
+            next_btn.click();
+        }else {
+            TimeUnit.SECONDS.sleep(3);
+            next_btn.click();
+        }
+        TimeUnit.SECONDS.sleep(1);
+        tranferCount_text.sendKeys(number);
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     public void normalSendStepOne(){
         receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         next_btn.click();
@@ -292,6 +303,7 @@ public class SendTrxPage extends AbstractPage {
 
     public void SendTRXToConfirmView(String sendAmount) throws Exception{
         receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+        TimeUnit.SECONDS.sleep(2);
         next_btn.click();
         tranferCount_text.sendKeys(sendAmount);
         send_btn.click();

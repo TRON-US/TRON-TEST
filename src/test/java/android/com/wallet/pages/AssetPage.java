@@ -49,6 +49,8 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(3);
 
     }
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
+    public WebElement tv_chain_name;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_sign_close")
     public WebElement iv_sign_close;
@@ -216,8 +218,8 @@ public WebElement title;
 
 
 
-    @FindBy(xpath = "//*[@text='TRX']")
-    public WebElement trx_btn;
+    @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
+    public List<WebElement> trx_btns;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_main")
     public WebElement trz_btn;
@@ -254,9 +256,12 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
     public WebElement tv_walletname;
 
-    public void switchToWallet(String name){
+    public void switchToWallet(String name) throws Exception{
         tv_walletname.click();
+        TimeUnit.SECONDS.sleep(1);
         findElementByText(name).click();
+        TimeUnit.SECONDS.sleep(1);
+
     }
 
     public void enterSwitchWallet(){
@@ -611,8 +616,13 @@ public WebElement title;
 
 
     public TrxPage enterTrxPage() throws Exception {
-        Helper.scrollToElementUntilVisible(driver,trx_btn);
-        trx_btn.click();
+        for (WebElement ele: trx_btns
+             ) {
+            if (ele.getText().contains("TRX")){
+                ele.click();
+                break;
+            }
+        }
         return new TrxPage(driver);
     }
 
