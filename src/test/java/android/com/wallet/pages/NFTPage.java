@@ -65,6 +65,10 @@ public class NFTPage extends AbstractPage {
     }
 
     public SendTrxPage enterSendPage() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        if (!iv_transfer.isEnabled()){
+            TimeUnit.SECONDS.sleep(3);
+        }
         iv_transfer.click();
         TimeUnit.SECONDS.sleep(1);
         return new SendTrxPage(driver);
