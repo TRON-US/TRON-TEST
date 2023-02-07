@@ -46,7 +46,7 @@ public class AssetPage extends AbstractPage {
         }
 
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
 
     }
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
