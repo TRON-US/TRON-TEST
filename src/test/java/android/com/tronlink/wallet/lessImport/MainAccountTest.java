@@ -28,6 +28,7 @@ public class MainAccountTest extends Base {
             TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
+            TimeUnit.SECONDS.sleep(3);
         }catch (Exception e){}
     }
 
