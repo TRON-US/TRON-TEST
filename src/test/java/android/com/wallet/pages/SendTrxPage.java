@@ -322,9 +322,19 @@ public class SendTrxPage extends AbstractPage {
 
     public SendTrxSuccessPage sendNFT(String address) throws Exception {
         receiveAddress_text.sendKeys(address);
+        TimeUnit.SECONDS.sleep(3);
+        if (!next_btn.isEnabled()){
+            TimeUnit.SECONDS.sleep(3);
+        }
         next_btn.click();
+        if (!send_btn.isEnabled()){
+            TimeUnit.SECONDS.sleep(3);
+        }
         send_btn.click();
         TimeUnit.SECONDS.sleep(3);
+        if (!confirm_btn.isEnabled()){
+            TimeUnit.SECONDS.sleep(3);
+        }
         confirm_btn.click();
         TimeUnit.SECONDS.sleep(4);
         InputPasswordConfim_btn.sendKeys("Test0001");
