@@ -181,9 +181,6 @@ public class SendTrxPage extends AbstractPage {
     public WebElement trc10_btn;
 
 
-//    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[3]")
-//    public WebElement trc20_btn;
-
     @FindBy(xpath = "//*[@text='(TCCcB***15n71)']")
     public WebElement trc20_btn;
 
@@ -232,27 +229,11 @@ public class SendTrxPage extends AbstractPage {
     public WebElement token_itemIV;
 
 
-    public SendTrxSuccessPage enterSendTrxSuccessPage() {
-        confirm_btn.click();
-        return new SendTrxSuccessPage(driver);
-    }
-
     public TransactionDetailInfomaitonPage enterTransationDetailPage(){
         btn_transaction_info.click();
         return new TransactionDetailInfomaitonPage(driver);
     }
-
     public String trxCount = "";
-
-    public WebElement  trx_btn() {
-        return  token_itemIV;
-    }
-
-    public WebElement  trc10_btn() {
-        return findElementByText("ID:1000002");
-    }
-
-
 
     public void sendAddressAndInputNumber(String address,String number) throws Exception{
         receiveAddress_text.sendKeys(address);
@@ -273,14 +254,6 @@ public class SendTrxPage extends AbstractPage {
         next_btn.click();
     }
 
-//    public void  watchWalletSend(String type){
-//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        selectCoinType(type);
-//    }
-
-
-
-
     public void SendTRXToConfirmView(String sendAmount) throws Exception{
         sendKeys(receiveAddress_text,"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         enableClick(next_btn);
@@ -300,23 +273,11 @@ public class SendTrxPage extends AbstractPage {
 
     public SendTrxSuccessPage sendNFT(String address) throws Exception {
         sendKeys(receiveAddress_text,address);
-//        TimeUnit.SECONDS.sleep(3);
-//        if (!next_btn.isEnabled()){
-//            TimeUnit.SECONDS.sleep(3);
-//        }
         enableClick(next_btn);
-//        if (!send_btn.isEnabled()){
-//            TimeUnit.SECONDS.sleep(3);
-//        }
         enableClick(send_btn);
         TimeUnit.SECONDS.sleep(2);//弹出一个新的确认视图
-//        if (!confirm_btn.isEnabled()){
-//            TimeUnit.SECONDS.sleep(3);
-//        }
         enableClick(confirm_btn);
-//        TimeUnit.SECONDS.sleep(4);
         sendKeys(InputPasswordConfim_btn,"Test0001");
-//        InputPasswordConfim_btn.sendKeys("Test0001");
         send_btn.click();
         TimeUnit.SECONDS.sleep(4);
         return new SendTrxSuccessPage(driver);
@@ -325,18 +286,12 @@ public class SendTrxPage extends AbstractPage {
 
     public SendTrxSuccessPage sendTrcTokenWithCurrent(String sendAmount) throws Exception {
         sendKeys(receiveAddress_text,"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         enableClick(next_btn);
         sendKeys(tranferCount_text,sendAmount);
-//        tranferCount_text.sendKeys(sendAmount);
         enableClick(send_btn);
-//        TimeUnit.SECONDS.sleep(6);
         enableClick(confirm_btn);
-//        TimeUnit.SECONDS.sleep(4);
         sendKeys(InputPasswordConfim_btn,"Test0001");
-//        InputPasswordConfim_btn.sendKeys("Test0001");
         enableClick(send_btn);
-//        send_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new SendTrxSuccessPage(driver);
     }
@@ -375,41 +330,27 @@ public class SendTrxPage extends AbstractPage {
 
     public SendTrxSuccessPage sendTrxWithNote(String sendAmount,String note) throws Exception {
         sendKeys(receiveAddress_text,"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        next_btn.click();
         enableClick(next_btn);
         sendKeys(tranferCount_text,sendAmount);
-//        tranferCount_text.sendKeys(sendAmount);
         note_transfer.click();
         sendKeys(et_note,note);
-//        et_note.sendKeys(note);
         enableClick(send_btn);
-//        send_btn.click();
         TimeUnit.SECONDS.sleep(3);
         enableClick(confirm_btn);
-//        confirm_btn.click();
-//        TimeUnit.SECONDS.sleep(4);
         sendKeys(InputPasswordConfim_btn,"Test0001");
-//        InputPasswordConfim_btn.sendKeys("Test0001");
         enableClick(send_btn);
-//        send_btn.click();
         TimeUnit.SECONDS.sleep(1);
         return new SendTrxSuccessPage(driver);
     }
 
     public void SendTokenWithNameAmountWatch(String amount,String name) throws Exception{
         sendKeys(receiveAddress_text,"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
         enableClick(next_btn);
-//        next_btn.click();
         selectTokenByName(name);
         sendKeys(tranferCount_text,amount);
-//        tranferCount_text.sendKeys(amount);
         enableClick(send_btn);
-//        send_btn.click();
         TimeUnit.SECONDS.sleep(3);
         enableClick(confirm_btn);
-//        confirm_btn.click();
     }
 
 
@@ -447,8 +388,6 @@ public class SendTrxPage extends AbstractPage {
 //no press send button
     public void sendAllTrx(String value) throws Exception {
         sendKeys(receiveAddress_text,"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-//        next_btn.click();
         enableClick(next_btn);
         switch (value) {
             case "max":
