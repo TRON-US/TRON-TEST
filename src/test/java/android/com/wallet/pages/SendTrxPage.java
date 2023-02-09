@@ -252,27 +252,7 @@ public class SendTrxPage extends AbstractPage {
         return findElementByText("ID:1000002");
     }
 
-    public WebElement trc20_btn() {
-        try {
-            return findElementByText("TCCcB***15n71");
 
-        } catch (Exception e) {
-            System.out.println("no MainChain");
-
-        }
-
-        try {
-
-            return findElementByText("TXkdX***sNfD7");
-
-        } catch (Exception e) {
-            System.out.println("no DappChain");
-
-            return findElementByText("TXkdX***sNfD7");
-
-        }
-
-    }
 
     public void sendAddressAndInputNumber(String address,String number) throws Exception{
         receiveAddress_text.sendKeys(address);
@@ -464,57 +444,6 @@ public class SendTrxPage extends AbstractPage {
         return new SendTrxSuccessPage(driver);
     }
 
-
-    public TrxPage normalSendTrc20(String number) throws Exception {
-        receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        trc20_btn().click();
-        tranferCount_text.sendKeys(number);
-        swip();
-        send_btn.click();
-        transferNow_btn.click();
-        InputPasswordConfim_btn.sendKeys("Test0001");
-        confirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        return new TrxPage(driver);
-    }
-
-//    public double getTrc10Amount() throws Exception {
-//        token_btn.click();
-//        TimeUnit.SECONDS.sleep(1);
-//        trc10_btn.click();
-//        String balance = balance_text.getText();
-//        double trc10Amount = 0;
-//        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-//        Matcher matcher = pattern.matcher(balance);
-//        if (matcher.find())
-//            trc10Amount = Double.valueOf(matcher.group(0));
-//        return trc10Amount;
-//    }
-
-    public double getTrc20Amount() throws Exception {
-        token_btn.click();
-        TimeUnit.SECONDS.sleep(1);
-        trc20_btn().click();
-        String balance = balance_text.getText();
-
-        double balancedouble = Double.parseDouble(prettyString(balance));
-
-        return balancedouble;
-//        double trc10Amount = 0;
-//        Pattern pattern = Pattern.compile("\\d+\\.?\\d*");
-//        Matcher matcher = pattern.matcher(balance);
-//        if (matcher.find())
-//            trc10Amount = Double.valueOf(matcher.group(0));
-//        return trc10Amount;
-    }
-
-
-    public void sendKey(WebElement el, String value) throws Exception {
-        el.sendKeys(value);
-        TimeUnit.SECONDS.sleep(2);
-    }
 //no press send button
     public void sendAllTrx(String value) throws Exception {
         sendKeys(receiveAddress_text,"TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
