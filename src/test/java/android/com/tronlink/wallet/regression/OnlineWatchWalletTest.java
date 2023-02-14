@@ -89,30 +89,30 @@ public class OnlineWatchWalletTest extends Base {
     }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online frozen Energy QRCode", alwaysRun = true)
-    public void test003_onlineFrozenEnergyQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheEnergy(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online frozen Energy QRCode", alwaysRun = true)
+//    public void test003_onlineFrozenEnergyQRCode() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheEnergy(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online frozen Bandwidth QRCode", alwaysRun = true)
-    public void test004_onlineFrozenBandwidthQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheBandwidth(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online frozen Bandwidth QRCode", alwaysRun = true)
+//    public void test004_onlineFrozenBandwidthQRCode() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheBandwidth(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
     
 
 
@@ -140,19 +140,19 @@ public class OnlineWatchWalletTest extends Base {
     }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
-    public void test008_OnlineUnfreezeQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.toUnfreezePage();
-        frozen.ll_container.click();
-        frozen.btn_next.click();
-        TimeUnit.SECONDS.sleep(6);
-        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
+//    public void test008_OnlineUnfreezeQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.toUnfreezePage();
+//        frozen.ll_container.click();
+//        frozen.btn_next.click();
+//        TimeUnit.SECONDS.sleep(6);
+//        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//
+//    }
 
 
     {

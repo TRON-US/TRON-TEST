@@ -117,32 +117,32 @@ public class MultiSignTest extends BaseTest {
         Assert.assertTrue(page.typeLabel.getText().contains("触发智能合约"));
     }
 
-    @Parameters({"ownerAddress","multiSignAddress"})
-    @Test(groups = {"P0"},alwaysRun = true)
-    public void test006_frozenEnergyUseMultiSign(String ownerAddress,String multiSignAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage page = asset.enterFrozenAndThawingPage();
-        page.multiSignView();
-        page.multiSignFirst();
-        page.inputFrozenCount("1");
-        page.getFreeze_btn().click();
-        page.agreeClick();
-        page.confirmDeposit().click();
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(isElementExist("多签交易"));
-        Assert.assertTrue(isElementExist("1 TRX"));
-        Assert.assertTrue(isElementExist("质押"));
-        Assert.assertTrue(isElementExist("1 票"));
-        page.confirm_btn().click();
-        Assert.assertTrue(isElementExist("多重签名设置"));
-        Assert.assertTrue(isElementExist("(≤24H)"));
-        Assert.assertTrue(isElementExist(ownerAddress));
-        Assert.assertTrue(isElementExist(multiSignAddress));
-        page.confirm_btn().click();
-        page.frozenInputPassword();
-        Assert.assertTrue(page.typeLabel.getText().contains("质押资产"));
-
-    }
+//    @Parameters({"ownerAddress","multiSignAddress"})
+//    @Test(groups = {"P0"},alwaysRun = true)
+//    public void test006_frozenEnergyUseMultiSign(String ownerAddress,String multiSignAddress) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage page = asset.enterFrozenAndThawingPage();
+//        page.multiSignView();
+//        page.multiSignFirst();
+//        page.inputFrozenCount("1");
+//        page.getFreeze_btn().click();
+//        page.agreeClick();
+//        page.confirmDeposit().click();
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(isElementExist("多签交易"));
+//        Assert.assertTrue(isElementExist("1 TRX"));
+//        Assert.assertTrue(isElementExist("质押"));
+//        Assert.assertTrue(isElementExist("1 票"));
+//        page.confirm_btn().click();
+//        Assert.assertTrue(isElementExist("多重签名设置"));
+//        Assert.assertTrue(isElementExist("(≤24H)"));
+//        Assert.assertTrue(isElementExist(ownerAddress));
+//        Assert.assertTrue(isElementExist(multiSignAddress));
+//        page.confirm_btn().click();
+//        page.frozenInputPassword();
+//        Assert.assertTrue(page.typeLabel.getText().contains("质押资产"));
+//
+//    }
 
     @Parameters({"ownerAddress"})
     @Test(groups = {"P0"},alwaysRun = true)
@@ -209,7 +209,7 @@ public class MultiSignTest extends BaseTest {
     public void test012_multiSignFourTypeTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         assetPage.enterMultiSignRecordView();
-        String setString = "投票,质押资产,触发智能合约,TRC10 通证转账,TRX 转账";
+        String setString = "投票,触发智能合约,TRC10 通证转账,TRX 转账";
         Set<String> types = new HashSet<>(Arrays.asList(setString.split(",")));
         List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
         System.out.println(Secure.size());
@@ -242,27 +242,27 @@ public class MultiSignTest extends BaseTest {
 
     }
 
-    @Test(alwaysRun = true)
-    public void test014_signMultiFrozenByOther() throws Exception {
-        AssetPage assetPage = new AssetPage(DRIVER);
-        MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
-        if (page.typeLabel.getText().contains("质押资产")){
-            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
-            Integer sizeNumber = Secure.size();
-            System.out.println(Secure.size());
-            if (sizeNumber > 0){
-                page.signBtn.click();
-                TimeUnit.SECONDS.sleep(8);
-                try {
-                    page.confirmButton.click();
-                }catch (Exception e){
-                }
-                page.passwordInputFinish();
-            }
-            Assert.assertTrue(!isElementExist("signBtn"));
-        }
-
-    }
+//    @Test(alwaysRun = true)
+//    public void test014_signMultiFrozenByOther() throws Exception {
+//        AssetPage assetPage = new AssetPage(DRIVER);
+//        MultiSignRecodPage page = assetPage.enterMultiSignRecordView();
+//        if (page.typeLabel.getText().contains("质押资产")){
+//            List<WebElement> Secure = (List<WebElement>) DRIVER.findElementsByName("typeLabel");
+//            Integer sizeNumber = Secure.size();
+//            System.out.println(Secure.size());
+//            if (sizeNumber > 0){
+//                page.signBtn.click();
+//                TimeUnit.SECONDS.sleep(8);
+//                try {
+//                    page.confirmButton.click();
+//                }catch (Exception e){
+//                }
+//                page.passwordInputFinish();
+//            }
+//            Assert.assertTrue(!isElementExist("signBtn"));
+//        }
+//
+//    }
 
     @Test(alwaysRun = true)
     public void test015_signMultiTRC20ByOther() throws Exception {

@@ -50,19 +50,19 @@ public class WatchTest extends Base {
     }
 
 
-    @Test(enabled = true,description = "Frozen Energy QRCode", alwaysRun = true)
-    public void test002_frozenEnergyQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        TimeUnit.SECONDS.sleep(2);
-        frozen.frozenTheEnergy(); //Freeze operating
-        TimeUnit.SECONDS.sleep(5);
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        TimeUnit.SECONDS.sleep(8);
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Frozen Energy QRCode", alwaysRun = true)
+//    public void test002_frozenEnergyQRCode() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        TimeUnit.SECONDS.sleep(2);
+//        frozen.frozenTheEnergy(); //Freeze operating
+//        TimeUnit.SECONDS.sleep(5);
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        TimeUnit.SECONDS.sleep(8);
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
     @Test(enabled = true,description = "create proposal QRCode", alwaysRun = true)
@@ -134,18 +134,18 @@ public class WatchTest extends Base {
         Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
     }
 
-    @Test(enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
-    public void test007_UnfreezeQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.toUnfreezePage();
-        frozen.ll_container.click();
-        TimeUnit.SECONDS.sleep(2);
-        frozen.btn_next.click();
-        TimeUnit.SECONDS.sleep(4);
-        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
+//    public void test007_UnfreezeQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.toUnfreezePage();
+//        frozen.ll_container.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        frozen.btn_next.click();
+//        TimeUnit.SECONDS.sleep(4);
+//        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 }

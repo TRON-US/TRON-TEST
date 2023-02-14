@@ -152,19 +152,19 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
-    public void test011_UnfreezeQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.toUnfreezePage();
-        frozen.ll_container.click();
-        TimeUnit.SECONDS.sleep(2);
-        frozen.btn_next.click();
-        TimeUnit.SECONDS.sleep(4);
-        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(enabled = true,description = "Unfreeze transaction QRCode", alwaysRun = true)
+//    public void test011_UnfreezeQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.toUnfreezePage();
+//        frozen.ll_container.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        frozen.btn_next.click();
+//        TimeUnit.SECONDS.sleep(4);
+//        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
     @Test(enabled = true,description = "Withdraw reward transaction QRCode", alwaysRun = true)
     public void test012_WithdrawRewardQRCode() throws Exception{

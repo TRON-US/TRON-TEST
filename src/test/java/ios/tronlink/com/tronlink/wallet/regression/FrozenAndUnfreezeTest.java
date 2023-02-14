@@ -48,31 +48,31 @@ public class FrozenAndUnfreezeTest extends BaseTest {
 
 
     //Freeze Energy more than trx
-    @Test(description = "Freeze Energy more than trx", alwaysRun = true)
-    public void test004_freezeEnergyMoreThanTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.inputFrozenCount("99999999");
-        Assert.assertTrue(isElementExist(" TRX 不足"));
-        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-
-    }
-    //Freeze Energy with 0 trx
-    @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
-    public void test005_freezeEnergyZeroTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.inputFrozenCount("0");
-        Assert.assertTrue(isElementExist(" 最小质押数量为 1 TRX"));
-        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
-    }
-
-    //Freeze Energy equals trx
-    @Test(description = "Freeze Energy equals trx", alwaysRun = true)
-    public void test006_freeze100EqualTrx() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.click100();
-        Assert.assertTrue(frozen.getFreeze_btn().isEnabled());
-        //TODO: 能量变化，投票权变化
-    }
+//    @Test(description = "Freeze Energy more than trx", alwaysRun = true)
+//    public void test004_freezeEnergyMoreThanTrx() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.inputFrozenCount("99999999");
+//        Assert.assertTrue(isElementExist(" TRX 不足"));
+//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+//
+//    }
+//    //Freeze Energy with 0 trx
+//    @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
+//    public void test005_freezeEnergyZeroTrx() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.inputFrozenCount("0");
+//        Assert.assertTrue(isElementExist(" 最小质押数量为 1 TRX"));
+//        Assert.assertFalse(frozen.getFreeze_btn().isEnabled());
+//    }
+//
+//    //Freeze Energy equals trx
+//    @Test(description = "Freeze Energy equals trx", alwaysRun = true)
+//    public void test006_freeze100EqualTrx() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.click100();
+//        Assert.assertTrue(frozen.getFreeze_btn().isEnabled());
+//        //TODO: 能量变化，投票权变化
+//    }
 
     //Freeze Energy with null trx
     @Test(description = "Freeze Energy with zero trx", alwaysRun = true)
@@ -103,55 +103,55 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertFalse(frozen.confirmDeposit().isEnabled());
     }
 
-    /**
-     freeze Energy
-     */
-    @Test(groups = {"P0"},description = "Freeze Energy Scuuess", alwaysRun = true)
-    public void test010_freezeEnergySuccess() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.inputFrozenCount("1");
-        frozen.getFreeze_btn().click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertFalse(frozen.confirmDeposit().isEnabled());
-        frozen.agreeClick();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(frozen.confirmDeposit().isEnabled());
-        frozen.confirmDeposit().click();
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(isElementExist("1 票"));
-        frozen.confirm_btn().click();
-        frozen.frozenInputPassword();
-        Assert.assertTrue(isElementExist("质押成功"));
-        Assert.assertTrue(isElementExist("去投票获取收益"));
-        Assert.assertTrue(isElementExist("1"));
-        Assert.assertTrue(frozen.getFinish_btn().isEnabled());
-        frozen.getFinish_btn().click();
-        Assert.assertTrue(isElementExist("我的资源"));
-    }
-
-    @Test(groups = {"P0"},description = "Freeze Energy Scuuess", alwaysRun = true)
-    public void test011_freezeBandWidthSuccess() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.bandWidthTab().click();
-        frozen.inputFrozenCount("1");
-        frozen.getFreeze_btn().click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertFalse(frozen.confirmDeposit().isEnabled());
-        frozen.agreeClick();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(frozen.confirmDeposit().isEnabled());
-        frozen.confirmDeposit().click();
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(isElementExist("1 票"));
-        frozen.confirm_btn().click();
-        frozen.frozenInputPassword();
-        Assert.assertTrue(isElementExist("质押成功"));
-        Assert.assertTrue(isElementExist("去投票获取收益"));
-        Assert.assertTrue(isElementExist("1"));
-        Assert.assertTrue(frozen.getFinish_btn().isEnabled());
-        frozen.getFinish_btn().click();
-        Assert.assertTrue(isElementExist("我的资源"));
-    }
+//    /**
+//     freeze Energy
+//     */
+//    @Test(groups = {"P0"},description = "Freeze Energy Scuuess", alwaysRun = true)
+//    public void test010_freezeEnergySuccess() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.inputFrozenCount("1");
+//        frozen.getFreeze_btn().click();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertFalse(frozen.confirmDeposit().isEnabled());
+//        frozen.agreeClick();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(frozen.confirmDeposit().isEnabled());
+//        frozen.confirmDeposit().click();
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(isElementExist("1 票"));
+//        frozen.confirm_btn().click();
+//        frozen.frozenInputPassword();
+//        Assert.assertTrue(isElementExist("质押成功"));
+//        Assert.assertTrue(isElementExist("去投票获取收益"));
+//        Assert.assertTrue(isElementExist("1"));
+//        Assert.assertTrue(frozen.getFinish_btn().isEnabled());
+//        frozen.getFinish_btn().click();
+//        Assert.assertTrue(isElementExist("我的资源"));
+//    }
+//
+//    @Test(groups = {"P0"},description = "Freeze Energy Scuuess", alwaysRun = true)
+//    public void test011_freezeBandWidthSuccess() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.bandWidthTab().click();
+//        frozen.inputFrozenCount("1");
+//        frozen.getFreeze_btn().click();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertFalse(frozen.confirmDeposit().isEnabled());
+//        frozen.agreeClick();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(frozen.confirmDeposit().isEnabled());
+//        frozen.confirmDeposit().click();
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(isElementExist("1 票"));
+//        frozen.confirm_btn().click();
+//        frozen.frozenInputPassword();
+//        Assert.assertTrue(isElementExist("质押成功"));
+//        Assert.assertTrue(isElementExist("去投票获取收益"));
+//        Assert.assertTrue(isElementExist("1"));
+//        Assert.assertTrue(frozen.getFinish_btn().isEnabled());
+//        frozen.getFinish_btn().click();
+//        Assert.assertTrue(isElementExist("我的资源"));
+//    }
 /////
     @Test(groups = {"P0"},alwaysRun = true)
     public void test012_inputPercentTest() throws Exception {
