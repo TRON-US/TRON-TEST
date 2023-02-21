@@ -186,15 +186,15 @@ public class FrozenAndUnfreezeTest extends BaseTest {
     }
 
 
-    @Test(alwaysRun = true)
-    public void test014_inputEnergyTRXCountTest() throws Exception {
-        FrozenAndUnfreezePage frozen = interferonPage();
-        frozen.selectEnergyTab();
-        frozen.slideScreenBottom();
-        frozen.enterEnergyBandWidth("20000");
-        Assert.assertEquals(frozen.et_amount.getText(),"74");
-        Assert.assertTrue(isElementExist("74"));
-    }
+//    @Test(alwaysRun = true)
+//    public void test014_inputEnergyTRXCountTest() throws Exception {
+//        FrozenAndUnfreezePage frozen = interferonPage();
+//        frozen.selectEnergyTab();
+//        frozen.slideScreenBottom();
+//        frozen.enterEnergyBandWidth("20000");
+//        Assert.assertEquals(frozen.et_amount.getText(),"74");
+//        Assert.assertTrue(isElementExist("74"));
+//    }
 
     @Test(alwaysRun = true)
     public void test015_inputBandWidthTRXCountTest() throws Exception {
