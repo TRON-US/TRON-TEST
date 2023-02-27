@@ -473,7 +473,7 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
     public WebElement iv_wallet_manager;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/observation_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_obser")
     public WebElement observation_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
@@ -484,6 +484,7 @@ public WebElement title;
 
     public void addWatchWallet(String address){
         iv_wallet_manager.click();
+        swipScreenLitte();
         observation_title.click();
         add_watch_address.sendKeys(address);
         add_watch_wallet.click();

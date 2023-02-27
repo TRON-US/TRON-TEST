@@ -357,9 +357,7 @@ public class Helper {
         swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
         findWebElement("com.tronlinkpro.wallet:id/bt_accept").click();
         TimeUnit.SECONDS.sleep(1);
-
         findWebElement("com.tronlinkpro.wallet:id/add_watch_address").sendKeys(address);
-
         findWebElement("com.tronlinkpro.wallet:id/add_watch_name").clear();
         findWebElement("com.tronlinkpro.wallet:id/add_watch_name").sendKeys("WatchWallet");
         findWebElement("com.tronlinkpro.wallet:id/add_watch_wallet").click();

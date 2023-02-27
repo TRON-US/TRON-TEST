@@ -26,6 +26,9 @@ public class DiscoverPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_ok")
     public WebElement tv_ok;
 
+    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/androidx.appcompat.app.ActionBar.Tab[1]/android.widget.TextView")
+    public WebElement normalUsed;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_web_title")
     public WebElement tv_web_title;
 
