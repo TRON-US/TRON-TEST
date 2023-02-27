@@ -22,7 +22,7 @@ public class AboutUsTest extends BaseTest {
         Helper.swipScreenLitter(minePage.driver);
         minePage.enterAboutUsPage();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.11.4(Build 7)"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.12.0(Build 7)"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"TronLink"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"用户协议"));
