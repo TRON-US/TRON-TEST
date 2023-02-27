@@ -78,6 +78,17 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
     public WebElement tv_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_watch_reminder_tip")
+    public WebElement tv_watch_reminder_tip;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_watch_close")
+    public WebElement iv_watch_close;
+
+    public void closeWatchTips(){
+        iv_watch_close.click();
+    }
+
 //        try {
 //            if (isTextExist("我知道了")) {
 //                findElementByText("我知道了").click();
@@ -470,6 +481,7 @@ public WebElement title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_wallet")
     public WebElement add_watch_wallet;
+
     public void addWatchWallet(String address){
         iv_wallet_manager.click();
         observation_title.click();

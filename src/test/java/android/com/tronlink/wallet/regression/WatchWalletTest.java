@@ -42,32 +42,20 @@ public class WatchWalletTest extends Base {
 
 
 
-    @Test(enabled = true,description = "watch wallet sendTrx QRCode", alwaysRun = true)
-    public void test001_sendTrxQRCode() throws Exception {
+    @Test(enabled = true,description = "test001_homePageTipsShowAndClose", alwaysRun = true)
+    public void test001_homePageTipsShowAndClose() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
-        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.sendAddressAndInputNumber("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq","1");
-        sendTrxPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(3);
-        sendTrxPage.confirm_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+        Assert.assertEquals("观察钱包仅支持查看资产，如您持有当前钱包对应的离线冷钱包，可进行配对以开放更多功能权限。  前往配对>",asset.tv_watch_reminder_tip.getText());
+        asset.closeWatchTips();
+        Assert.assertTrue(isElementShotId("tv_watch_reminder_tip"));
     }
 
 
     @Test(enabled = true,description = "Frozen Energy QRCode", alwaysRun = true)
-    public void test002_frozenEnergyQRCode() throws Exception {
+    public void test002_addWalletInfoTestTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        TimeUnit.SECONDS.sleep(2);
-        frozen.frozenTheEnergy(); //Freeze operating
-        TimeUnit.SECONDS.sleep(5);
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        TimeUnit.SECONDS.sleep(8);
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+        asset.add_watch_wallet.click();
     }
 
 
