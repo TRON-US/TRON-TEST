@@ -208,6 +208,7 @@ public class SendTrc10 extends Base {
     @Test(enabled = true, description = "test013_confirmInfoShowTest", alwaysRun = true)
     public void test011_confirmInfoShowTest(String address) throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
+        TimeUnit.SECONDS.sleep(3);
         TrxPage page =  asset.enterTrx10Page();
         SendTrxPage transfer = page.trxSendTrxPage();
         transfer.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
@@ -216,7 +217,7 @@ public class SendTrc10 extends Base {
         transfer.send_btn.click();
         log("");
         TimeUnit.SECONDS.sleep(3);
-        if (isElementShotId("tv_consume_resource")){
+        if (isElementShotId("tv_consume_resource_bandwidth")){
             String content = transfer.bandwidth_text.getText();
             log(content);
             if (content.length()<2){

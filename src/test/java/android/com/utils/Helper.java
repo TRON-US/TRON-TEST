@@ -379,14 +379,14 @@ public class Helper {
         int height = DRIVER.manage().window().getSize().height;
         System.out.print("  " + width + "   " + height);
         AndroidTouchAction action = new AndroidTouchAction(DRIVER);
-        Duration duration = Duration.ofMillis(300);
+        Duration duration = Duration.ofMillis(100);//300 16 //
         while (!findWebElement(id).isEnabled()) {
             action.press(
                     PointOption.point(width/2, height*3/4))
                     .waitAction(WaitOptions.waitOptions(duration))
                     .moveTo(PointOption.point(width/2, height/4))
                     .release().perform();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
         }
     }
 
