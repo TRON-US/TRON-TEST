@@ -588,8 +588,8 @@ public WebElement title;
         bt_create.click();
         TimeUnit.SECONDS.sleep(6);
         driver.navigate().back();
-        driver.navigate().back();
-        driver.navigate().back();
+//        driver.navigate().back();
+//        driver.navigate().back();
 
     }
 
