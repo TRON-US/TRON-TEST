@@ -379,7 +379,7 @@ public class Helper {
         int height = DRIVER.manage().window().getSize().height;
         System.out.print("  " + width + "   " + height);
         AndroidTouchAction action = new AndroidTouchAction(DRIVER);
-        Duration duration = Duration.ofMillis(300);
+        Duration duration = Duration.ofMillis(200);
 
         while (!findWebElement(id).isEnabled()) {
             action.press(

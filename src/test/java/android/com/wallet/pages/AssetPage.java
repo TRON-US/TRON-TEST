@@ -85,6 +85,35 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_watch_close")
     public WebElement iv_watch_close;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/cold_pair_title")
+    public WebElement cold_pair_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/top_card")
+    public WebElement top_card;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cold_pair")
+    public WebElement tv_cold_pair;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_cold_pair")
+    public WebElement rl_cold_pair;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/cold_pair_info")
+    public WebElement cold_pair_info;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_go")
+    public WebElement btn_go;
+
+    public void enterColdPairPage(){
+        btn_go.click();
+    }
+
+    public void enterWalletManager(){
+        top_card.click();
+    }
+
+    public void enterColdPair(){
+        rl_cold_pair.click();
+    }
     public void closeWatchTips(){
         iv_watch_close.click();
     }
@@ -123,6 +152,7 @@ public class AssetPage extends AbstractPage {
     }
 
 
+
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_red_dot")
     public WebElement iv_red_dot;
 
@@ -131,6 +161,9 @@ public WebElement iv_qr;
 
 @FindBy(id = "com.tronlinkpro.wallet:id/title")
 public WebElement title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement tv_common_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public WebElement tv_count;
@@ -473,8 +506,11 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
     public WebElement iv_wallet_manager;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_obser")
+    @FindBy(id = "com.tronlinkpro.wallet:id/observation_title")
     public WebElement observation_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/observation_des")
+    public WebElement observation_des;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
     public WebElement add_watch_address;
@@ -488,6 +524,13 @@ public WebElement title;
         observation_title.click();
         add_watch_address.sendKeys(address);
         add_watch_wallet.click();
+    }
+    public void enterImportView(){
+        iv_wallet_manager.click();
+    }
+    public void enterWatchImportView(){
+        swipScreenLitte();
+        observation_title.click();
     }
 
     @FindBy(id = "com.tronlinkpro.wallet:id/import_content")
