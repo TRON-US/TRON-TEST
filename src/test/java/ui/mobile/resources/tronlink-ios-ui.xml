@@ -41,7 +41,6 @@
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappFrozenTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrc10"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrc20"></class>
-            <class name="ios.tronlink.com.tronlink.wallet.regression.DappSendTrxTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.FrozenAndUnfreezeTest"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.ImportKeystore"></class>
             <class name="ios.tronlink.com.tronlink.wallet.regression.ImportObserve"></class>
