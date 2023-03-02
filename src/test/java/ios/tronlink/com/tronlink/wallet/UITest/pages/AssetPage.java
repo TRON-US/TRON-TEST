@@ -73,6 +73,14 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "转账")
     public WebElement send_btn;
 
+    @FindBy(name = "配对冷钱包")
+    public WebElement pairColdTitle;
+
+    public void enterPairColdWallet() throws Exception {
+        pairColdTitle.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     @FindBy(name = "配对离线冷钱包")
     public WebElement pairColdWallet_btn;
 
@@ -149,6 +157,24 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "home manager")
     public WebElement addWallet_btn;
 
+    @FindBy(className = "XCUIElementTypeTextField")
+    public List<WebElement> textFields;
+
+    @FindBy(name = "下一步")
+    public WebElement nextBtn;
+
+    public  void  enterAddressColdWallet() throws Exception{
+        textFields.get(0).sendKeys("TX99hM37vw18V6GzTHfeftrgGH61jMjQHc");
+        closeKeyBoard();
+        unTillSomeThingEnable("下一步");
+        nextBtn.click();
+
+    }
+
+    public void addWallet() throws Exception {
+        addWallet_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
     @FindBy(name = "trxLabel")
     public WebElement trxValue;
 

@@ -161,17 +161,7 @@ public class CommitteePage extends AbstractPage {
     }
 
 
-    public void unTillSomeThing(String name) throws Exception{
-        int i = 0;
-        while (i < 10){
-            if (driver.findElementByName(name).isDisplayed()){
-                break;
-            }else {
-                TimeUnit.SECONDS.sleep(1);
-                i++;
-            }
-        }
-    }
+
     public String getNameofproposal() throws Exception {
         enterProposalDetail();
         return nodeNameLabel.getText();

@@ -363,4 +363,28 @@ public class AbstractPage {
         TimeUnit.SECONDS.sleep(1);
     }
 
+    public void unTillSomeThing(String name) throws Exception{
+        int i = 0;
+        while (i < 10){
+            if (driver.findElementByName(name).isDisplayed()){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(1);
+                i++;
+            }
+        }
+    }
+
+    public void unTillSomeThingEnable(String name) throws Exception{
+        int i = 0;
+        while (i < 10){
+            if (driver.findElementByName(name).isEnabled()){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(1);
+                i++;
+            }
+        }
+    }
+
 }
