@@ -143,7 +143,7 @@ public class BrowserPage extends AbstractPage {
         if (isElementExist("立即进入")){
             interImmediately.click();
         }
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(9);
         if (isElementExist("允许")){
             System.out.println("approves.size()"+approves.size());
             if (approves.size()>1){
