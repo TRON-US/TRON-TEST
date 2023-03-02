@@ -58,8 +58,7 @@ public class CommitteeTest extends BaseTest {
     public void test_001SendProposals() throws Exception {
 
         CommitteePage   committeePage = enterCommitteePage();
-        committeePage.Setuppropos.click();
-        TimeUnit.SECONDS.sleep(5);
+        committeePage.CreatProposalPage();
         String count = String.format("%.0f", Math.random() * 100000);
         System.out.println("委员会提议修改超级代表燃烧TRX值："+count);
         committeePage.change1proposal(count);
@@ -73,14 +72,14 @@ public class CommitteeTest extends BaseTest {
         CommitteePage committeePage = enterCommitteePage();
         String states = committeePage.getStateofproposal();
         System.out.println(states);
-        Assert.assertTrue(states.contains("投票中"));
+        Assert.assertTrue(isElementExist("投票中"));
     }
 
     @Test(groups = {"P0"}, description = "be delete My first Proposal", alwaysRun = true)
     public void test_003cancelAgreedProposal() throws Exception {
         CommitteePage committeePage = enterCommitteePage();
         committeePage.deleteAction();
-        Assert.assertTrue(committeePage.isElementExist("已取消"));
+        Assert.assertTrue(isElementExist("已取消"));
     }
 
     @Test(description = "secendnewProposal",alwaysRun = true)
@@ -90,11 +89,8 @@ public class CommitteeTest extends BaseTest {
         count = Helper.getPrettyNumber(count);
         System.out.println(count);
         CommitteePage committeePage = enterCommitteePage();
-        TimeUnit.SECONDS.sleep(15 );
-        committeePage.Setuppropos.click();
-        TimeUnit.SECONDS.sleep(9);
+        committeePage.CreatProposalPage();
         committeePage.change0proposal(count);
-        TimeUnit.SECONDS.sleep(4);
         WebElement wl = committeePage.findFirstproposalWl();
         List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
         Assert.assertTrue(Helper.contentTexts(textarray, count));
@@ -118,8 +114,7 @@ public class CommitteeTest extends BaseTest {
     public void test_007makeNewProposal_8agreed_9disagreed() throws  Exception{
         log("three 开始执行时间");
         CommitteePage committeePage = enterCommitteePage();
-        committeePage.Setuppropos.click();
-        TimeUnit.SECONDS.sleep(9);
+        committeePage.CreatProposalPage();
         committeePage.change2proposal("0.2");
         Assert.assertEquals(committeePage.descLabel.getText(),"提议修改创建账户费用为 0.2 TRX");
         committeePage.agreeAction();

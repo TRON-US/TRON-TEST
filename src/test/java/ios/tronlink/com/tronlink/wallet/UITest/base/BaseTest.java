@@ -179,13 +179,13 @@ public class BaseTest extends Base {
         }
 
         importUsePrivateKey(privateKey,name,pass);
-        TimeUnit.SECONDS.sleep(4);
-        Boolean haveImport = isElementExist("walletName") ;
+        TimeUnit.SECONDS.sleep(6);
+        Boolean haveImport = isElementExist("trxLabel") ;
         System.out.println("Imported State: " + haveImport);
         if(!haveImport) {
             for (int i = 0; i < 3; i++) {
                 haveImport = isElementExist("walletName");
-                System.out.println("Imported State: " + haveImport + "Times： " + i);
+                System.out.println("Try Import Wallet Address: " + haveImport + "Times： " + i);
                 if(!haveImport){
                     findWebElement("导入钱包").click();
                     findAcceptAndClick();

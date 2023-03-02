@@ -106,8 +106,8 @@ public class CommitteePage extends AbstractPage {
         log("开始输入密码");
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(15);
-
+//        TimeUnit.SECONDS.sleep(15);
+        unTillSomeThing("委员会提议");
     }
     public void change2proposal(String pro) throws Exception{
         waiteTime();
@@ -122,7 +122,7 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(15);
+        unTillSomeThing("委员会提议");
     }
 
 
@@ -139,7 +139,7 @@ public class CommitteePage extends AbstractPage {
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
-        TimeUnit.SECONDS.sleep(15);
+        unTillSomeThing("委员会提议");
 
 
     }
@@ -276,7 +276,8 @@ public class CommitteePage extends AbstractPage {
         enterMyProposal();
         TimeUnit.SECONDS.sleep(3);
         proposCells.get(0).click();
-        TimeUnit.SECONDS.sleep(6);
+        unTillSomeThing("提议详情");
+//        TimeUnit.SECONDS.sleep(6);
         if (Helper.isElementExist(driver,"取消赞成")) {
             backBtn.click();
             TimeUnit.SECONDS.sleep(1);
@@ -301,7 +302,7 @@ public class CommitteePage extends AbstractPage {
             return false;
         }else {
             proposCells.get(0).click();
-            TimeUnit.SECONDS.sleep(6);
+            unTillSomeThing("提议详情");
             if (Helper.isElementExist(driver, "赞成")) {
                 backBtn.click();
                 TimeUnit.SECONDS.sleep(1);
@@ -329,7 +330,7 @@ public class CommitteePage extends AbstractPage {
 
         if (!isElementExist("暂无数据")){
             proposCells.get(0).click();
-            TimeUnit.SECONDS.sleep(6);
+            unTillSomeThing("提议详情");
             if (stateLabel.getText().contains("已取消")){
                 backBtn.click();
                 TimeUnit.SECONDS.sleep(1);
