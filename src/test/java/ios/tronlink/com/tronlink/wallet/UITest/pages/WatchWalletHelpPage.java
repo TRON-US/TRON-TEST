@@ -18,7 +18,11 @@ public class WatchWalletHelpPage extends AbstractPage {
         waiteTime();
     }
 
-
+    public void closeWatchTips() throws Exception {
+        if (isElementExist("home function watch icon close")) {
+            driver.findElementByName("home function watch icon close").click();
+        }
+    }
 
     public void sendTrx() throws Exception {
         AssetPage assetPage = new AssetPage(driver);

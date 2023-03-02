@@ -46,6 +46,10 @@ public class CommitteePage extends AbstractPage {
     @FindBy(name = "发起提议")
     public  WebElement Setuppropos;
 
+    public void CreatProposalPage() throws Exception{
+        Setuppropos.click();
+       TimeUnit.SECONDS.sleep(2);
+    }
 
     @FindBy(id = "my committee touch 6")
     public WebElement outagreeBtn; //可以点击没有同意的
@@ -96,7 +100,7 @@ public class CommitteePage extends AbstractPage {
         textField.sendKeys(pro);
         closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(10);
+        unTillSomeThing("确认交易");
         log("开始找第二个确认");
         confirmButton.click();
         log("开始输入密码");
@@ -113,7 +117,7 @@ public class CommitteePage extends AbstractPage {
         textField.sendKeys(pro);
         closeKeyBoard();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(10);
+        unTillSomeThing("确认交易");
         log("开始找第二个确认");
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
@@ -131,13 +135,42 @@ public class CommitteePage extends AbstractPage {
         closeKeyBoard();
         waiteTime();
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
-        TimeUnit.SECONDS.sleep(10);
+        unTillSomeThing("确认交易");
         confirmButton.click();
         passwordTF.sendKeys("Test0001");
         driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '完成'").click();
         TimeUnit.SECONDS.sleep(15);
 
 
+    }
+    public void change0proposalStep1(String pro) throws Exception {
+        waiteTime();
+        WebElement textField = textfieldList.get(0);
+        textField.clear();
+        textField.sendKeys("");
+        textField.sendKeys(pro);
+        closeKeyBoard();
+        waiteTime();
+        driver.findElementByIosNsPredicate("type = 'XCUIElementTypeButton' AND name = '确认'").click();
+        unTillSomeThing("确认交易");
+    }
+    @FindBy(id = "生成交易二维码")
+    public WebElement generateQRCodeBtn;
+    public  void  enterQRCodePage(){
+        generateQRCodeBtn.click();
+    }
+
+
+    public void unTillSomeThing(String name) throws Exception{
+        int i = 0;
+        while (i < 10){
+            if (driver.findElementByName(name).isDisplayed()){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(1);
+                i++;
+            }
+        }
     }
     public String getNameofproposal() throws Exception {
         enterProposalDetail();

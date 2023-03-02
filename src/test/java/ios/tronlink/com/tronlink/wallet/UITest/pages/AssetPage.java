@@ -73,6 +73,14 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "转账")
     public WebElement send_btn;
 
+    @FindBy(name = "配对离线冷钱包")
+    public WebElement pairColdWallet_btn;
+
+    public void pairColdWallet() throws Exception {
+        pairColdWallet_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     @FindBy(name = "闪兑")
     public WebElement swap_btn;
 
@@ -222,15 +230,9 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter MyPurse Page
-    public MyPursePage enterMyPursePage() {
-        try {
-            trxValue.click();
-            TimeUnit.SECONDS.sleep(1);
-
-        } catch (Exception e) {
-            System.out.println("失败进入钱包管理页面");
-            e.printStackTrace();
-        }
+    public MyPursePage enterMyPursePage() throws Exception{
+        trxValue.click();
+        TimeUnit.SECONDS.sleep(1);
         return new MyPursePage(driver);
     }
 
@@ -319,7 +321,7 @@ public class AssetPage extends AbstractPage {
         }catch (Exception e){
             mine_btn_selected.click();
         }
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
 
         return new MinePage(driver);
     }
