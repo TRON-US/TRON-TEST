@@ -66,7 +66,7 @@ public class ImportObserve extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("一二三四五六七八九十十一十四十六十八二十二十三二十六二十"));
     }
-    
+
 
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
     public void  test004_testDeleteWalletSuccess() throws Exception {
