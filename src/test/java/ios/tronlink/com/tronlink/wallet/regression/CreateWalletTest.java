@@ -22,7 +22,7 @@ public class CreateWalletTest extends BaseTest {
 
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
-    public void setUpBeforeBaseTest(String privateKey,String bundleId) throws Exception {
+    public void setUpBefore(String privateKey,String bundleId) throws Exception {
         try{
             TimeUnit.SECONDS.sleep(2);
             Map<String, Object> params = new HashMap<>();
