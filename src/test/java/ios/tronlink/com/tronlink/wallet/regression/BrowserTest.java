@@ -101,13 +101,13 @@ public class BrowserTest extends BaseTest {
         page.addFavorite();
         page.openFavorites();
         Assert.assertTrue(isElementExist("百度一下"));
-
     }
 
     @Test( alwaysRun = true)
     public void test007_SwitchWalletTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
+        page.approveEnterWeb();
         try{
             page.backHome();
         }catch (Exception e) {
@@ -125,6 +125,7 @@ public class BrowserTest extends BaseTest {
     public void test008_connectManageTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
+        page.approveEnterWeb();
         page.openConnectManage();
         Assert.assertTrue(isElementExist("DApp连接管理"));
     }

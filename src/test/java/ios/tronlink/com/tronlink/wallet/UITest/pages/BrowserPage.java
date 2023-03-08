@@ -154,6 +154,16 @@ public class BrowserPage extends AbstractPage {
         }
     }
 
+    public void approveEnterWeb() throws Exception{
+        if (isElementExist("允许")){
+            System.out.println("approves.size()"+approves.size());
+            if (approves.size()>1){
+                approves.get(approves.size()-1).click();
+            }else {
+                approve.click();
+            }
+        }
+    }
 
     public void openNewTab(){
         openMenu();
