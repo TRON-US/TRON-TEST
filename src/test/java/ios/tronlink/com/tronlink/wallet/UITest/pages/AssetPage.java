@@ -135,6 +135,9 @@ public class AssetPage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
     public WebElement mine_btn;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[6]")
+    public WebElement mine_btn1;
+
     @FindBy(id = "com.tronlink.wallet:id/app1")
     public WebElement discover_btn;
 
@@ -314,10 +317,9 @@ public class AssetPage extends AbstractPage {
     //enter mine page
     public MinePage enterMinePage() throws Exception {
         try{
-            mine_btn.click();
-
+            mine_btn1.click();
         }catch (Exception e){
-            mine_btn_selected.click();
+            mine_btn.click();
         }
         TimeUnit.SECONDS.sleep(3);
 
