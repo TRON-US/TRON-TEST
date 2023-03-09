@@ -46,6 +46,10 @@ public class AssetPage extends AbstractPage {
 //        }
 
         waiteTime();
+//        try {
+//            unTillSomeThing("我的");
+//        } catch (Exception e) {
+//        }
 
 //        log("time1");
 //        try {
@@ -92,11 +96,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "闪兑")
     public WebElement swap_btn;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
+    public WebElement market_btn;
+
     @FindBy(id = "chainNameLabel")
     public WebElement chainNameLabel;
-
-    @FindBy(name = "行情")
-    public WebElement market_btn;
 
     @FindBy(id = "contentLabel")
     public WebElement contentLabel;
@@ -456,8 +460,16 @@ public class AssetPage extends AbstractPage {
     }
 
     public SwapPage enterSwapPage() throws  Exception {
+        market_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         swap_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        return new SwapPage(driver);
+    }
+
+    public SwapPage enterFinancialPage() throws  Exception {
+        market_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        unTillSomeThing("TRX");
         return new SwapPage(driver);
     }
 
