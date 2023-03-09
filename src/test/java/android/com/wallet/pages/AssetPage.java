@@ -145,12 +145,25 @@ public class AssetPage extends AbstractPage {
 //
 //        }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_market")
+    public WebElement iv_tab_market;
 
-    public SwapPage enterSwapPage(){
+    public SwapPage enterSwapPage() throws Exception{
+        enterFinancial();
         findElementByText("闪兑").click();
         return new SwapPage(driver);
     }
 
+    public SwapPage enterFinancialPage() throws Exception{
+        enterFinancial();
+        return new SwapPage(driver);
+    }
+
+    public void enterFinancial() throws Exception{
+        iv_tab_market.click();
+        TimeUnit.SECONDS.sleep(1);
+        unTillSomeThing("理财推荐");
+    }
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_red_dot")

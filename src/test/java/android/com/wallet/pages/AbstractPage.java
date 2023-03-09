@@ -160,7 +160,7 @@ public WebElement bt_go;
      */
     public boolean isElementExist(String name) {
         waiteTime(3);
-        if( isShotIDExist(name) || isTextExist(name)){
+        if( isTextExist(name) || isShotIDExist(name)){
             waiteTime();
             return true;
         }else {
@@ -205,6 +205,17 @@ public WebElement bt_go;
         }
     }
 
+    public void unTillSomeThing(String text) throws Exception{
+        int i = 0;
+        while (i < 10){
+            if (isTextExist(text)){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(1);
+                i++;
+            }
+        }
+    }
 
     /**
      *
@@ -214,6 +225,12 @@ public WebElement bt_go;
     public WebElement findElementByText(String text) {
 
        return driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+
+    }
+
+    public int sizeOfElementByText(String text) {
+
+        return driver.findElementsByAndroidUIAutomator("new UiSelector().text(\""+text+"\")").size();
 
     }
 
