@@ -319,44 +319,44 @@ public class MainAccountTest extends BaseTest {
         Assert.assertTrue(isElementExist("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq"));
 
     }
-//    @Test(groups = {"P1"},alwaysRun = true)
-//    public void test021_languageTest() throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        MinePage mine = asset.enterMinePage();
-//        mine.enterSettingPage();
-//        Assert.assertTrue(isElementExist("简体中文"));
-//        mine.changeLanguage("en");
-//        Assert.assertTrue(isElementExist("Language"));
-//        Assert.assertTrue(isElementExist("Currency"));
-//        Assert.assertTrue(isElementExist("Network Settings"));
-//        mine.changeLanguage("cn");
-//        Assert.assertTrue(isElementExist("设置"));
-//        Assert.assertTrue(isElementExist("钱包设置"));
-//        Assert.assertTrue(isElementExist("语言"));
-//    }
+    @Test(groups = {"P1"},alwaysRun = true)
+    public void test021_languageTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        MinePage mine = asset.enterMinePage();
+        mine.enterSettingPage();
+        Assert.assertTrue(isElementExist("简体中文"));
+        mine.changeLanguage("en");
+        Assert.assertTrue(isElementExist("Language"));
+        Assert.assertTrue(isElementExist("Currency"));
+        Assert.assertTrue(isElementExist("Network Settings"));
+        mine.changeLanguage("cn");
+        Assert.assertTrue(isElementExist("设置"));
+        Assert.assertTrue(isElementExist("钱包设置"));
+        Assert.assertTrue(isElementExist("语言"));
+    }
 
-//    @Parameters({"bundleId"})
-//    @Test(groups = {"P1"},alwaysRun = true)
-//    public void test022_currencyTest(String bundleId) throws Exception {
-//        AssetPage asset = new AssetPage(DRIVER);
-//        Assert.assertTrue(asset.cashLabel.getText().contains("$"));
-//        Assert.assertTrue(asset.assetsLabel.getText().contains("$"));
-//        MinePage mine = asset.enterMinePage();
-//        mine.enterSettingPage();
-//        Assert.assertTrue(isElementExist("USD"));
-//        mine.changeCurrency("cny");
-//        Assert.assertTrue(isElementExist("CNY"));
-//        mine.navBack();
-//        restartApp(bundleId);
-//        TimeUnit.SECONDS.sleep(10);
-//        Assert.assertTrue(asset.assetsLabel.getText().contains("¥"));
-//        Assert.assertTrue(asset.cashLabel.getText().contains("¥"));
-//        asset.enterMinePage();
-//        mine.enterSettingPage();
-//        Assert.assertTrue(isElementExist("CNY"));
-//        mine.changeCurrency("usd");
-//        Assert.assertTrue(isElementExist("USD"));
-//    }
+    @Parameters({"bundleId"})
+    @Test(groups = {"P1"},alwaysRun = true)
+    public void test022_currencyTest(String bundleId) throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        Assert.assertTrue(asset.cashLabel.getText().contains("$"));
+        Assert.assertTrue(asset.assetsLabel.getText().contains("$"));
+        MinePage mine = asset.enterMinePage();
+        mine.enterSettingPage();
+        Assert.assertTrue(isElementExist("USD"));
+        mine.changeCurrency("cny");
+        Assert.assertTrue(isElementExist("CNY"));
+        mine.navBack();
+        restartApp(bundleId);
+        TimeUnit.SECONDS.sleep(10);
+        Assert.assertTrue(asset.assetsLabel.getText().contains("¥"));
+        Assert.assertTrue(asset.cashLabel.getText().contains("¥"));
+        asset.enterMinePage();
+        mine.enterSettingPage();
+        Assert.assertTrue(isElementExist("CNY"));
+        mine.changeCurrency("usd");
+        Assert.assertTrue(isElementExist("USD"));
+    }
 
     @Test(groups = {"P1"},alwaysRun = true,description = "投票给tronChina 成功")
     public void test023_VoteToTronChinaSRTest() throws Exception {
@@ -409,23 +409,23 @@ public class MainAccountTest extends BaseTest {
         }
     }
 
-//    @Test(groups = {"P1"},alwaysRun = true)
-//    public void test025_MinePageElementTest() throws Exception {
-//        AssetPage assetPage = new AssetPage(DRIVER);
-//        MinePage mine = assetPage.enterMinePage();
-//        Assert.assertTrue(isElementExist("我的钱包"));
-//        Assert.assertTrue(isElementExist("message noti"));
-//        Assert.assertTrue(isElementExist("交易历史"));
-//        Assert.assertTrue(isElementExist("钱包管理"));
-//        Assert.assertTrue(isElementExist("地址本"));
-//        Assert.assertTrue(isElementExist("设置"));
-//        Assert.assertTrue(isElementExist("好友邀请"));
-//        Assert.assertTrue(isElementExist("高级功能"));
-//        Helper.swipScreenLitter(DRIVER);
-//        Assert.assertTrue(isElementExist("公告"));
-//        Assert.assertTrue(isElementExist("帮助中心"));
-//        Assert.assertTrue(isElementExist("关于我们"));
-//    }
+    @Test(groups = {"P1"},alwaysRun = true)
+    public void test025_MinePageElementTest() throws Exception {
+        AssetPage assetPage = new AssetPage(DRIVER);
+        MinePage mine = assetPage.enterMinePage();
+        Assert.assertTrue(isElementExist("我的钱包"));
+        Assert.assertTrue(isElementExist("message noti"));
+        Assert.assertTrue(isElementExist("交易历史"));
+        Assert.assertTrue(isElementExist("钱包管理"));
+        Assert.assertTrue(isElementExist("地址本"));
+        Assert.assertTrue(isElementExist("设置"));
+        Assert.assertTrue(isElementExist("好友邀请"));
+        Assert.assertTrue(isElementExist("高级功能"));
+        Helper.swipScreenLitter(DRIVER);
+        Assert.assertTrue(isElementExist("公告"));
+        Assert.assertTrue(isElementExist("帮助中心"));
+        Assert.assertTrue(isElementExist("关于我们"));
+    }
 
     @Parameters("address")
     @Test(groups = {"P1"},alwaysRun = true)
