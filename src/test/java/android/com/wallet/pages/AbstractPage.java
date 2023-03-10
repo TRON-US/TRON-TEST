@@ -375,4 +375,27 @@ public WebElement bt_go;
         System.out.println(time + ": " + log);
     }
 
+    public boolean isElementEnable(WebElement ele) throws Exception{
+        boolean enable;
+        enable = false;
+        for (int i = 0; i < 9; i++) {
+            if (ele.isEnabled()){
+                enable = true;
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(3);
+            }
+        }
+        return enable;
+    }
+
+    public void enableClick(WebElement ele) throws Exception{
+        isElementEnable(ele);
+        ele.click();
+    }
+
+    public void sendKeys(WebElement ele,String keys) throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        ele.sendKeys(keys);
+    }
 }

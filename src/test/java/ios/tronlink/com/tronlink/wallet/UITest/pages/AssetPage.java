@@ -129,11 +129,14 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "闪兑")
     public WebElement eneryRant_btn;
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[3]")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
     public WebElement market_Tab_Button;
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
     public WebElement mine_btn;
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[6]")
+    public WebElement mine_btn1;
 
     @FindBy(id = "com.tronlink.wallet:id/app1")
     public WebElement discover_btn;
@@ -181,9 +184,11 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "tab discover")
     public WebElement browserBtn;
 
-    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[3]")
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[5]")
     public WebElement browserXpathTab;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[3]")
+    public WebElement browserXpathTab1;
 
     public void cancelAction(){
         driver.findElementByIosClassChain("**/XCUIElementTypeButton[`label == \"取消\"`]").click();
@@ -207,7 +212,15 @@ public class AssetPage extends AbstractPage {
 
 
     public BrowserPage enterBrowserPage() throws Exception{
-        browserXpathTab.click();
+        try {
+            browserXpathTab.click();
+        }catch (Exception e){
+        }
+        try {
+            browserXpathTab1.click();
+        }catch (Exception e){
+        }
+
         TimeUnit.SECONDS.sleep(3);
         return new BrowserPage(driver);
     }
@@ -314,10 +327,16 @@ public class AssetPage extends AbstractPage {
     //enter mine page
     public MinePage enterMinePage() throws Exception {
         try{
-            mine_btn.click();
-
+            mine_btn1.click();
+            log("6号位置");
         }catch (Exception e){
-            mine_btn_selected.click();
+            mine_btn.click();
+            log("4号位置--Exception选择");
+        }
+        if(!isElementExist("我的钱包")){
+            mine_btn.click();
+            log("4号位置---判断选择");
+
         }
         TimeUnit.SECONDS.sleep(3);
 
@@ -423,7 +442,6 @@ public class AssetPage extends AbstractPage {
 
         market_Tab_Button.click();
         TimeUnit.SECONDS.sleep(1);
-        market_btn.click();
         return new MarketPage(driver);
     }
 

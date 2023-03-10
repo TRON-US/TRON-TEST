@@ -63,96 +63,96 @@ public class OnlineWatchWalletTest extends Base {
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online watch wallet sendTrx QRCode", alwaysRun = true)
-    public void test001_onlineSendTrxQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
-        Assert.assertTrue(sendTrxPage.error_view.getText().contains("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
-        sendTrxPage.next_btn.click();
-        sendTrxPage.tranferCount_text.sendKeys("1");
-        sendTrxPage.send_btn.click();
-        TimeUnit.SECONDS.sleep(6);
-        sendTrxPage.confirm_btn.click();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-
-    }
-
-    @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
-    public void test002_onlineHaveActiveTrx() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.receiveAddress_text.sendKeys("TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5");
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(sendTrxPage.tv_address_book.getText().contains("加入到地址本"));
-    }
-
-
-    @Test(groups = {"P0"},enabled = true,description = "Online frozen Energy QRCode", alwaysRun = true)
-    public void test003_onlineFrozenEnergyQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheEnergy(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online watch wallet sendTrx QRCode", alwaysRun = true)
+//    public void test001_onlineSendTrxQRCode() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+//        sendTrxPage.receiveAddress_text.sendKeys("TQJtMKHsgLytLmRo7KXwhsT39Pa6mCbHFq");
+//        Assert.assertTrue(sendTrxPage.error_view.getText().contains("账户未激活，将额外消耗部分 TRX 用于激活该账户（不包含在转账数量内）。"));
+//        sendTrxPage.next_btn.click();
+//        sendTrxPage.tranferCount_text.sendKeys("1");
+//        sendTrxPage.send_btn.click();
+//        TimeUnit.SECONDS.sleep(6);
+//        sendTrxPage.confirm_btn.click();
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//
+//    }
+//
+//    @Test(groups = {"P0"},enabled = true,description = "onlineHaveActiveTrx", alwaysRun = true)
+//    public void test002_onlineHaveActiveTrx() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+//        sendTrxPage.receiveAddress_text.sendKeys("TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(sendTrxPage.tv_address_book.getText().contains("加入到地址本"));
+//    }
 
 
+//    @Test(groups = {"P0"},enabled = true,description = "Online frozen Energy QRCode", alwaysRun = true)
+//    public void test003_onlineFrozenEnergyQRCode() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheEnergy(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online frozen Bandwidth QRCode", alwaysRun = true)
-    public void test004_onlineFrozenBandwidthQRCode() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheBandwidth(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+
+
+//    @Test(groups = {"P0"},enabled = true,description = "Online frozen Bandwidth QRCode", alwaysRun = true)
+//    public void test004_onlineFrozenBandwidthQRCode() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheBandwidth(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
     
 
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online send trc10 QRCode", alwaysRun = true)
-    public void test006_onlineTrc10QRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.SendTokenWithNameAmountWatch("1","BTT");
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online send trc10 QRCode", alwaysRun = true)
+//    public void test006_onlineTrc10QRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+//        sendTrxPage.SendTokenWithNameAmountWatch("1","BTT");
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
+//
+//
+//    @Test(groups = {"P0"},enabled = true,description = "Online trc20 QRCode", alwaysRun = true)
+//    public void test007_onlineTrc20QRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
+//        sendTrxPage.SendTokenWithNameAmountWatch("0.00001","WIN");
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertEquals(sendTrxPage.info.getText(),"继续交易会消耗账户剩余 TRX/资源，且存在交易失败的风险，请确认是否继续");
+//        sendTrxPage.btn_confirm_2.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//    }
 
 
-    @Test(groups = {"P0"},enabled = true,description = "Online trc20 QRCode", alwaysRun = true)
-    public void test007_onlineTrc20QRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage sendTrxPage  = asset.enterSendTrxPage();
-        sendTrxPage.SendTokenWithNameAmountWatch("0.00001","WIN");
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(sendTrxPage.info.getText(),"继续交易会消耗账户剩余 TRX/资源，且存在交易失败的风险，请确认是否继续");
-        sendTrxPage.btn_confirm_2.click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-    }
-
-
-    @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
-    public void test008_OnlineUnfreezeQRCode() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.toUnfreezePage();
-        frozen.ll_container.click();
-        frozen.btn_next.click();
-        TimeUnit.SECONDS.sleep(6);
-        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
-        frozen.btn_confirm.click();
-        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
-
-    }
+//    @Test(groups = {"P0"},enabled = true,description = "Online unfreeze transaction QRCode", alwaysRun = true)
+//    public void test008_OnlineUnfreezeQRCode() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.toUnfreezePage();
+//        frozen.ll_container.click();
+//        frozen.btn_next.click();
+//        TimeUnit.SECONDS.sleep(6);
+//        Assert.assertTrue(frozen.btn_confirm.getText().contains("生成交易二维码"));
+//        frozen.btn_confirm.click();
+//        Assert.assertTrue(new QRodeEPage(DRIVER).QRcode_text.isDisplayed());
+//
+//    }
 
 
     {

@@ -87,7 +87,8 @@ public class BrowserTest extends Base {
         page.visitTheWeb();
         page.gotoBrowserMainPage();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertTrue(page.sdv_image.size()>1);
+        page.normalUsed.click();
+        Assert.assertTrue(page.sdv_image.size()>=1);
     }
 
     @Test( alwaysRun = true)

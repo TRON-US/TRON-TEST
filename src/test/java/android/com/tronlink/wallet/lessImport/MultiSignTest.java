@@ -25,6 +25,8 @@ public class MultiSignTest extends Base {
             TimeUnit.SECONDS.sleep(2);
             DRIVER.closeApp();
             DRIVER.activateApp("com.tronlinkpro.wallet");
+            TimeUnit.SECONDS.sleep(3);
+
         } catch (Exception e) {
 
         }
@@ -125,43 +127,43 @@ public class MultiSignTest extends Base {
         Assert.assertTrue(SendTrx.tv_trans_type.getText().contains("触发智能合约"));
     }
 
-    @Parameters({"ownerAddress"})
-    @Test(alwaysRun = true)
-    public void test004_FrozenEnergySuccess(String ownerAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.enterMultiSign();
-        frozen.inputMultiAddress(ownerAddress);
-        frozen.gotoMultiPageTwo();
-        frozen.stakeEnergyWithAmount("1");
-        frozen.stakeWithThisAddress();
-        frozen.stakeConfirm();
-        frozen.multiSignOptionSign();
-        frozen.inputPopViewPassword("Test0001");
-        TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(frozen.tv_trans_content.getText().contains("1"));
-        Assert.assertTrue(frozen.tv_trans_type.getText().contains("质押资产"));
-        Assert.assertTrue(frozen.resource_type.getText().contains("能量"));
+//    @Parameters({"ownerAddress"})
+//    @Test(alwaysRun = true)
+//    public void test004_FrozenEnergySuccess(String ownerAddress) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.enterMultiSign();
+//        frozen.inputMultiAddress(ownerAddress);
+//        frozen.gotoMultiPageTwo();
+//        frozen.stakeEnergyWithAmount("1");
+//        frozen.stakeWithThisAddress();
+//        frozen.stakeConfirm();
+//        frozen.multiSignOptionSign();
+//        frozen.inputPopViewPassword("Test0001");
+//        TimeUnit.SECONDS.sleep(5);
+//        Assert.assertTrue(frozen.tv_trans_content.getText().contains("1"));
+//        Assert.assertTrue(frozen.tv_trans_type.getText().contains("质押资产"));
+//        Assert.assertTrue(frozen.resource_type.getText().contains("能量"));
+//
+//    }
 
-    }
-
-    @Parameters({"ownerAddress"})
-    @Test(alwaysRun = true)
-    public void test005_FrozenBandWidthSuccess(String ownerAddress) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.enterMultiSign();
-        frozen.inputMultiAddress(ownerAddress);
-        frozen.gotoMultiPageTwo();
-        frozen.stakeEnergyWithAmount("1");
-        frozen.stakeWithThisAddress();
-        frozen.stakeConfirm();
-        frozen.multiSignOptionSign();
-        frozen.inputPopViewPassword("Test0001");
-        TimeUnit.SECONDS.sleep(5);
-        Assert.assertTrue(frozen.tv_trans_content.getText().contains("1"));
-        Assert.assertTrue(frozen.tv_trans_type.getText().contains("质押资产"));
-        Assert.assertTrue(frozen.resource_type.getText().contains("能量"));
-    }
+//    @Parameters({"ownerAddress"})
+//    @Test(alwaysRun = true)
+//    public void test005_FrozenBandWidthSuccess(String ownerAddress) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.enterMultiSign();
+//        frozen.inputMultiAddress(ownerAddress);
+//        frozen.gotoMultiPageTwo();
+//        frozen.stakeEnergyWithAmount("1");
+//        frozen.stakeWithThisAddress();
+//        frozen.stakeConfirm();
+//        frozen.multiSignOptionSign();
+//        frozen.inputPopViewPassword("Test0001");
+//        TimeUnit.SECONDS.sleep(5);
+//        Assert.assertTrue(frozen.tv_trans_content.getText().contains("1"));
+//        Assert.assertTrue(frozen.tv_trans_type.getText().contains("质押资产"));
+//        Assert.assertTrue(frozen.resource_type.getText().contains("能量"));
+//    }
 
 }

@@ -53,6 +53,7 @@ public class NFTPage extends AbstractPage {
     }
 
     public ReceiptPage enterReceive() throws Exception{
+        isElementEnable(receive);
         TimeUnit.SECONDS.sleep(2);
         if (receive.isEnabled()){
             receive.click();

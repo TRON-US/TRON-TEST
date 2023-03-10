@@ -46,7 +46,7 @@ public class AssetPage extends AbstractPage {
         }
 
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
 
     }
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
@@ -78,6 +78,17 @@ public class AssetPage extends AbstractPage {
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_title")
     public WebElement tv_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_watch_reminder_tip")
+    public WebElement tv_watch_reminder_tip;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_watch_close")
+    public WebElement iv_watch_close;
+
+    public void closeWatchTips(){
+        iv_watch_close.click();
+    }
+
 //        try {
 //            if (isTextExist("我知道了")) {
 //                findElementByText("我知道了").click();
@@ -462,7 +473,7 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
     public WebElement iv_wallet_manager;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/observation_title")
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_obser")
     public WebElement observation_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
@@ -470,8 +481,10 @@ public WebElement title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_wallet")
     public WebElement add_watch_wallet;
+
     public void addWatchWallet(String address){
         iv_wallet_manager.click();
+        swipScreenLitte();
         observation_title.click();
         add_watch_address.sendKeys(address);
         add_watch_wallet.click();
@@ -594,9 +607,9 @@ public WebElement title;
 
     public MinePage enterMinePage(){
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(4);
             mine_btn.click();
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
         } catch (Exception e ){
             System.out.println( e );
         }

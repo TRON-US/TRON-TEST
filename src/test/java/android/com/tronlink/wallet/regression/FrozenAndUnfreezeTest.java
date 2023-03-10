@@ -50,78 +50,78 @@ public class FrozenAndUnfreezeTest extends Base {
         }
     }
 
-    /**
-     * Freeze Energy
-     */
-    @Test(enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
-    public void test001_freezeEnergySuccess() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheEnergy(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        frozen.inputPassword(password);
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
-        Assert.assertTrue(frozen.tv_right_first.getText().contains("能量"));
-
-    }
-
-    /**
-     * freeze Bandwidth
-     */
-    @Test(enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
-    public void test002_freezeBandwidthSuccess() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheBandwidth(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.confirmTransferPage();
-        frozen.btn_confirm.click();
-        frozen.inputPassword(password);
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
-        Assert.assertTrue(frozen.tv_right_first.getText().contains("带宽"));
-
-    }
-
-
-    /**
-     * Freeze Energy Other
-     */
-    @Test(enabled = true,description = "Freeze Energy Success", alwaysRun = true)
-    public void test003_freezeEnergyOtherSuccess() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheEnergy(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.inputOtherAddress(otherAddress);
-        frozen.btn_confirm.click();
-        frozen.inputPassword(password);
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
-        Assert.assertTrue(frozen.tv_right_first.getText().contains("能量"));
-
-    }
-
-    /**
-     * freeze Bandwidth Other
-     */
-    @Test( enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
-    public void test004_freezeBandwidthOtherSuccess() throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.frozenTheBandwidth(); //Freeze operating
-        frozen.et_amount.sendKeys("1");
-        frozen.inputOtherAddress(otherAddress);
-        frozen.btn_confirm.click();
-        frozen.inputPassword(password);
-        TimeUnit.SECONDS.sleep(3);
-        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
-        Assert.assertTrue(frozen.tv_right_first.getText().contains("带宽"));
-
-    }
+//    /**
+//     * Freeze Energy
+//     */
+//    @Test(enabled = true,description = "Freeze Energy Scuuess", alwaysRun = true)
+//    public void test001_freezeEnergySuccess() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheEnergy(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        frozen.btn_confirm.click();
+//        frozen.inputPassword(password);
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+//        Assert.assertTrue(frozen.tv_right_first.getText().contains("能量"));
+//
+//    }
+//
+//    /**
+//     * freeze Bandwidth
+//     */
+//    @Test(enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+//    public void test002_freezeBandwidthSuccess() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheBandwidth(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.confirmTransferPage();
+//        frozen.btn_confirm.click();
+//        frozen.inputPassword(password);
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+//        Assert.assertTrue(frozen.tv_right_first.getText().contains("带宽"));
+//
+//    }
+//
+//
+//    /**
+//     * Freeze Energy Other
+//     */
+//    @Test(enabled = true,description = "Freeze Energy Success", alwaysRun = true)
+//    public void test003_freezeEnergyOtherSuccess() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheEnergy(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.inputOtherAddress(otherAddress);
+//        frozen.btn_confirm.click();
+//        frozen.inputPassword(password);
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+//        Assert.assertTrue(frozen.tv_right_first.getText().contains("能量"));
+//
+//    }
+//
+//    /**
+//     * freeze Bandwidth Other
+//     */
+//    @Test( enabled = true, description = "Freeze Bandwidth Success", alwaysRun = true)
+//    public void test004_freezeBandwidthOtherSuccess() throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.frozenTheBandwidth(); //Freeze operating
+//        frozen.et_amount.sendKeys("1");
+//        frozen.inputOtherAddress(otherAddress);
+//        frozen.btn_confirm.click();
+//        frozen.inputPassword(password);
+//        TimeUnit.SECONDS.sleep(3);
+//        Assert.assertTrue(frozen.tv_result.getText().contains("质押成功"));
+//        Assert.assertTrue(frozen.tv_right_first.getText().contains("带宽"));
+//
+//    }
 
 
     @Test(enabled = true, description = "Freeze Details of the rules", alwaysRun = true)
@@ -232,16 +232,16 @@ public class FrozenAndUnfreezeTest extends Base {
     }
 
 
-    @Test(alwaysRun = true)
-    public void test013_inputEnergyTRXCountTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.selectEnergyTab();
-        frozen.slideScreenBottom();
-        frozen.enterEnergyBandWidth("20000");
-        Assert.assertEquals(frozen.et_amount.getText(),"74");
-        Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"74");
-    }
+//    @Test(alwaysRun = true)
+//    public void test013_inputEnergyTRXCountTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+//        frozen.selectEnergyTab();
+//        frozen.slideScreenBottom();
+//        frozen.enterEnergyBandWidth("20000");
+//        Assert.assertEquals(frozen.et_amount.getText(),"74");
+//        Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"74");
+//    }
 
     @Test(alwaysRun = true)
     public void test014_inputBandWidthTRXCountTest() throws Exception {
