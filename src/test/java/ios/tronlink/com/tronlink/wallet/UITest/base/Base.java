@@ -123,11 +123,7 @@ public class Base {
                 System.out.println("setUp DRIVER fail");
                 System.out.println(e);
                 ScreenShot("DRIVERFail");
-                AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid);
-                TimeUnit.SECONDS.sleep(4);
-                System.out.print("\nUninstall  " + udid + " Success\n");
-                AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-                TimeUnit.SECONDS.sleep(10);
+                reInstall(udid);
                 System.out.print("\nInstall " + udid + " Success\n");
             }
         }
@@ -417,14 +413,14 @@ public class Base {
         }
         return value;
     }
-    public void resetApp(String udid) throws Exception {
-        DRIVER.closeApp();
-        log("开始移除app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + udid); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+    public void reInstall(String id) throws Exception {
+        log("开始卸载app");
+        AppiumTestCase.cmdReturn("ideviceinstaller -U com.tronlink.hdwallet -u " + id); //00008020-000D04D62132002E ideviceinstaller -U com.tronlink.hdwallet -u
+        TimeUnit.SECONDS.sleep(4);
         log("开始安装app");
-        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + udid);
-        log("resetApp Finish!!");
-        DRIVER.launchApp();
+        AppiumTestCase.cmdReturn("ideviceinstaller -i Tronlink.ipa -u " + id);
+        TimeUnit.SECONDS.sleep(10);
+        log("等待10s");
 
     }
 
