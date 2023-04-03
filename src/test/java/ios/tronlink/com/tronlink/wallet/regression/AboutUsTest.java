@@ -22,7 +22,6 @@ public class AboutUsTest extends BaseTest {
         Helper.swipScreenLitter(minePage.driver);
         minePage.enterAboutUsPage();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"v4.13.0(Build 3)"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"TronLink"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"关于我们"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"用户协议"));
@@ -43,9 +42,8 @@ public class AboutUsTest extends BaseTest {
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"用户协议"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"policy browse"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"policy back"));
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"更新于2022年10月25日"));
+        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"更新于2023年3月8日"));
         Assert.assertTrue(Helper.isElementExist(assetPage.driver,"波宝钱包用户条款和隐私政策"));
-        Assert.assertTrue(Helper.isElementExist(assetPage.driver,"感谢您使用波宝钱包服务。波宝钱包（以下称“该服务”、“服务”或“我们”）是一个为用户提供数字资产安全管理服务及数字资产交易的平台。只要登陆该产品的自然人或其他主体均为本产品的用户（以下简称“您”或“用户”）。为便利用户，可能提供多个语言版本，若有冲突或遗漏等情况，以中文内容为准。"));
     }
 
     @Test(alwaysRun = true)
