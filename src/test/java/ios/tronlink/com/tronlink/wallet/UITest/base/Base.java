@@ -25,11 +25,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.TouchAction;
@@ -64,6 +60,7 @@ public class Base {
                 System.out.println("***** appium Version one *****");
             }else {
                 process = Runtime.getRuntime().exec("appium -a 127.0.0.1 -pa /wd/hub -p " + port  + " --use-drivers " + udid );
+                System.out.println("appium -a 127.0.0.1 -pa /wd/hub -p " + port  + " --use-drivers " + udid);
                 System.out.println("***** appium Version two *****");
             }
 
@@ -117,7 +114,6 @@ public class Base {
                 DRIVER = new IOSDriver(remoteUrl, desiredCapabilities);
                 driver_is_start = true;
                 System.out.println("setUp DRIVER success");
-                TimeUnit.SECONDS.sleep(1);
 
             } catch (Exception e) {
                 System.out.println("setUp DRIVER fail");
@@ -127,6 +123,14 @@ public class Base {
                 System.out.print("\nInstall " + udid + " Success\n");
             }
         }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("bundleId", "com.tronlink.hdwallet");
+        DRIVER.executeScript("mobile: terminateApp", params);
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println("----startApp----");
+        DRIVER.executeScript("mobile: activateApp", params);
+        TimeUnit.SECONDS.sleep(4);
     }
 
     public void ScreenShot(String name){

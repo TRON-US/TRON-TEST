@@ -46,20 +46,20 @@ public class SwapPage extends AbstractPage {
         }catch (Exception e){
             log("4.12.0");
         }
-        unTillSomeThing("TRON");
+        unTillSomeThing("TRON DAO");
         TimeUnit.SECONDS.sleep(2);
     }
 
     public void enterMyFinancial() throws Exception{
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByName("理财资产").click();
-        unTillSomeThing("TRON");
+        unTillSomeThing("TRON DAO");
     }
 
     public void showByTypeItem() throws Exception{
         TimeUnit.SECONDS.sleep(1);
         driver.findElementByName("按项目").click();
-        unTillSomeThing("TRON");
+        unTillSomeThing("TRON DAO");
     }
 
     public void enterSwitchPage() throws Exception{

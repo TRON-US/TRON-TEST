@@ -36,11 +36,11 @@ public class BaseTest extends Base {
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
-        log("BaseTest --Begin");
-        restartApp(bundleId);
-        log("BaseTest Import ---start");
+//        log("BaseTest --Begin");
+//        restartApp(bundleId);
+        log(" Import ---start");
         importFirstWallet(importType.normal,privateKey);
-        log("BaseTest Import ---Success");
+        log(" Import ---success");
     }
 
     @Parameters({"bundleId"})
@@ -112,22 +112,23 @@ public class BaseTest extends Base {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(3);
         System.out.println("restartApp2");
         DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(4);
 
     }
+
 
     public void restartApp() throws Exception{
         System.out.println("restartApp1");
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", "com.tronlink.hdwallet");
         DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(3);
         System.out.println("restartApp2");
         DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(4);
 
     }
 

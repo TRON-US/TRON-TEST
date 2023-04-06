@@ -85,7 +85,7 @@ public class SwapTradingTest extends BaseTest {
         Assert.assertTrue(isElementExist("待领取收益"));
         Assert.assertTrue(isElementExist("待领取总收益"));
         Assert.assertTrue(isElementExist("JustLend DAO"));
-        Assert.assertTrue(isElementExist("TRON"));
+        Assert.assertTrue(isElementExist("TRON DAO"));
         Assert.assertTrue(isElementExist("BTTC"));
     }
 
