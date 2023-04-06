@@ -28,6 +28,11 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_to_stake")
     public WebElement tv_to_stake;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/ic_token_right_arrow")
+    public WebElement ic_token_right_arrow;
+
+
+
     @FindBy(id = "com.tronlinkpro.wallet:id/available_vote")
     public WebElement available_vote;
 
@@ -262,6 +267,8 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement tv_common_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/all_stake_count_title")
+    public WebElement all_stake_count_title;
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote") //投票
     public WebElement btn_vote;
 
@@ -282,7 +289,7 @@ public class VotePage extends AbstractPage {
     }
 
     public void enterStake(){
-        tv_to_stake.click();
+        ic_token_right_arrow.click();
     }
 
     public void enterVoteStep1ToConfirm() throws Exception{

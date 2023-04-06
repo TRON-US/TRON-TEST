@@ -205,6 +205,9 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
     public WebElement tv_main_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/net_error")
+    public WebElement net_error;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
     public WebElement ad_pic;
 

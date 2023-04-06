@@ -186,7 +186,7 @@ public class VotePage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"我知道了\"]")
     public WebElement know;
 
-    @FindBy(name = "去质押")
+    @FindBy(name = "已质押")
     public WebElement goStake;
 
     @FindBy(id = "stakedLabel")

@@ -60,7 +60,7 @@ public void enterMyFinancial() throws Exception{
 
     public void enterSwitchPage() throws Exception{
         TimeUnit.SECONDS.sleep(1);
-        findElementByText("钱包汇总").click();
+        findElementByText("Auto-test").click();
         unTillSomeThing("选择后可查看单一钱包理财数据");
     }
 

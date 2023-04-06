@@ -200,11 +200,9 @@ public class VoteTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertEquals(vote.tv_to_stake.getText(),"去质押");
-        String fromNumber = vote.tv_total_vote_rights.getText();
         vote.enterStake();
-        Assert.assertEquals(vote.tv_common_title.getText(),"质押 TRX");
-        Assert.assertEquals(vote.tv_stake_amount.getText(),fromNumber + " TRX");
+        Assert.assertEquals(vote.all_stake_count_title.getText(),"总质押");
+
     }
 
     //构建一个账户 投票权不足使用

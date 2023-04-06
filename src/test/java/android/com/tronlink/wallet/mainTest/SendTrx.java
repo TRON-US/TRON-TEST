@@ -199,8 +199,8 @@ public class SendTrx extends Base {
         if (isElementShotId("ll_action")){
             page.ll_action.click();
         }
-        Assert.assertTrue(page.tv_main_title.getText().contains("网络资源管理"));
-        Assert.assertTrue(isElementShotId("progress_energy"));
+        Assert.assertTrue(page.tv_main_title.getText().contains("质押"));
+        Assert.assertTrue(isElementShotId("tv_bandwidth_bar"));
     }
 
     @Test(enabled = true, alwaysRun = true)
