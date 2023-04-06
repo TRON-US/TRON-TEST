@@ -655,8 +655,12 @@ public WebElement title;
 
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage() throws Exception{
 
-            TimeUnit.SECONDS.sleep(5);
-            freeze_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
+        freeze_btn.click();
+        if (isElementExist("我知道了")){
+            findElementByText("我知道了").click();
+        }
 
         return new FrozenAndUnfreezePage(driver);
     }

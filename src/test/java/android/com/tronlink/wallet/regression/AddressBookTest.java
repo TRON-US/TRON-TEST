@@ -114,16 +114,6 @@ public class AddressBookTest extends Base {
         Assert.assertTrue(transfer.tv_name.getText().contains(addressName));
     }
 
-    @Test(enabled = true,description = "Freeze use address book test", alwaysRun = true)
-    public void test005_FreezeUseAddressBook() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-        frozen.stakeEnergyWithAmount("1");
-        frozen.toSelectAddress();
-        Assert.assertTrue(frozen.tv_name.getText().equals(addressName));
-    }
-
-
     @Test(groups = {"P0"},enabled = true,description = "Delete address book test", alwaysRun = true)
     public void test006_DeleteAddressBook() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);

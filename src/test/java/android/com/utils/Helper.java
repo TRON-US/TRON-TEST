@@ -175,16 +175,36 @@ public class Helper {
     @FindBy(id = "com.tronlinkpro.wallet:id/assets_name")
     public List<WebElement> asset_list;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/import_title")
-    public WebElement import_title;
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_walletname")
+    public WebElement tv_walletname;
 
     public void getSign(String testPrivateKey,AndroidDriver driver){
         this.DRIVER = driver;
         waiteTime();
         try {
-            walletNameSwitch_btn.isDisplayed();
+            if (isShotIDExist("iv_wallet_manager")){
+                System.out.println("-----wallet-----");
+            }else {
+                System.out.println("-----Import wallet-----");
+                getSignOperate(testPrivateKey);
+            }
         }catch (Exception e){
+            System.out.println("-----getSign Exception-----");
             getSignOperate(testPrivateKey);
+
+        }
+
+    }
+
+    public boolean isShotIDExist(String shotID) {
+        try {
+            String ids=  "com.tronlinkpro.wallet:id/" + shotID;
+            System.out.println(ids);
+            DRIVER.findElementById(ids);
+            return  true;
+        }catch (Exception ex){
+            System.out.println("Not Fount shotID() " + shotID);
+            return false;
         }
     }
 
@@ -195,7 +215,6 @@ public class Helper {
 
             findWebElement("com.tronlinkpro.wallet:id/iv_wallet_manager").isDisplayed();
             gotoImportMoreWaller(key);
-//            findWebElement("com.tronlinkpro.wallet:id/import_content").sendKeys(key);
             driver.setClipboardText(key);
             findWebElement("com.tronlinkpro.wallet:id/btn_paste").click();
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
