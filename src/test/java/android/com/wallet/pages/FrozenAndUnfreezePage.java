@@ -598,5 +598,38 @@ public WebElement tv_stake_energy;
 
     }
 
+    public void inputText(String text){
+        et_input.sendKeys(text);
+    }
 
+    public void unFreezeAndInputPassword() throws Exception{
+        TimeUnit.SECONDS.sleep(2);
+        bt_next.click();
+        unTillSomeThing("确认交易");
+        btn_confirm.click();
+        checkPasswotd_input.sendKeys("Test0001");
+        bt_send.click();
+    }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_vote_entrance")
+    public WebElement tv_vote_entrance;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/available_vote_right_title")
+    public WebElement available_vote_right_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/resource_title")
+    public WebElement resource_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_energy_management")
+    public WebElement tv_energy_management;
+
+    public void gotoVotePage() throws Exception{
+        tv_vote_entrance.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    public void gotoResourcePage() throws Exception{
+        resource_title.click();
+        TimeUnit.SECONDS.sleep(2);
+    }
 }

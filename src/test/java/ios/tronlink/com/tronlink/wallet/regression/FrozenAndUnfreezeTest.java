@@ -171,4 +171,6 @@ public class FrozenAndUnfreezeTest extends BaseTest {
         Assert.assertTrue(isElementExist("资源管理"));
         Assert.assertTrue(isElementExist("多重签名"));
     }
+
+
 }

@@ -177,4 +177,53 @@ public class FrozenAndUnfreezeTest extends Base {
         Assert.assertEquals(frozen.tv_vote_get_amount.getText(),"71");
     }
 
+    @Test(alwaysRun = true)
+    public void test010_unfreezeEnergyTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage page = asset.enterFrozenAndUnfreezePage();
+        page.toUnfreezePage();
+
+        if(isElementTextExist("0 TRX")){
+            Assert.assertTrue(isElementTextExist("输入解锁数量"));
+        }else {
+            page.inputText("1");
+            page.unFreezeAndInputPassword();
+            Assert.assertTrue(isElementTextExist("解锁成功"));
+        }
+    }
+
+    @Test(alwaysRun = true)
+    public void test011_unfreezeBandWidthTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage page = asset.enterFrozenAndUnfreezePage();
+        page.toUnfreezePage();
+        page.tv_tab_bandwidth.click();
+        if(isElementTextExist("0 TRX")){
+            Assert.assertTrue(isElementTextExist("输入解锁数量"));
+        }else {
+            page.inputText("1");
+            page.unFreezeAndInputPassword();
+            Assert.assertTrue(isElementTextExist("解锁成功"));
+        }
+    }
+
+    @Test(alwaysRun = true)
+    public void test012_gotVotePageTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage page = asset.enterFrozenAndUnfreezePage();
+        page.gotoVotePage();
+        Assert.assertEquals(page.tv_main_title.getText(),"投票");
+        Assert.assertEquals(page.available_vote_right_title.getText(),"剩余投票权");
+    }
+
+    @Test(alwaysRun = true)
+    public void test013_gotResourcePageTest() throws Exception{
+        AssetPage asset = new AssetPage(DRIVER);
+        FrozenAndUnfreezePage page = asset.enterFrozenAndUnfreezePage();
+        page.gotoResourcePage();
+        Assert.assertEquals(page.tv_main_title.getText(),"资源管理");
+        Assert.assertEquals(page.tv_energy_management.getText(),"能量管理");
+    }
+
+
 }
