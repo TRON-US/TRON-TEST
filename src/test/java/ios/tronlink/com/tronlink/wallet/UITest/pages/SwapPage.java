@@ -64,8 +64,8 @@ public class SwapPage extends AbstractPage {
 
     public void enterSwitchPage() throws Exception{
         TimeUnit.SECONDS.sleep(1);
-        driver.findElementByName("钱包汇总").click();
-        unTillSomeThing("选择后可查看单一钱包理财数据");
+        driver.findElementByName("Auto_test").click();
+        unTillSomeThing("选择后可查看全部钱包汇总数据");
     }
     @FindBy(name = "TRX")
     public WebElement trxButton;

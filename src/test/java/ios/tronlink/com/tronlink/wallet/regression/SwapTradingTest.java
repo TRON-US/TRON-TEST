@@ -108,7 +108,7 @@ public class SwapTradingTest extends BaseTest {
         page.enterSwitchPage();
         Assert.assertTrue(isElementExist("切换钱包"));
         Assert.assertTrue(isElementExist("钱包汇总"));
-        Assert.assertTrue(isElementExist("选择后可查看全部钱包汇总数据"));
+        Assert.assertTrue(isElementExist("选择后可查看单一钱包理财数据"));
     }
 
 

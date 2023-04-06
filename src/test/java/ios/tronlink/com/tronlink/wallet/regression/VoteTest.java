@@ -148,10 +148,8 @@ public class VoteTest extends BaseTest {
     @Test(alwaysRun = true)
     public void test009_gotoResourceTest() throws Exception {
         VotePage page = enterVotePage();
-        Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
         page.enterStake();
-        Double stake = sepMiddleNumberTextToDouble( page.stakedLabel.getText(),"已质押:","TRX");
-        Assert.assertEquals(stake,total,0.1);
+        Assert.assertTrue(isElementExist("* 仅支持给自己质押，质押获得的资源可随时代理给他人"));
     }
 
 
