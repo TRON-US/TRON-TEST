@@ -31,8 +31,14 @@ public class FrozenAndUnfreezePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_under_control_tips")
     public WebElement tv_under_control_tips;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi_warning")
+    public WebElement tv_multi_warning;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_available_amount")
     public WebElement tv_available_amount;
+    @FindBy(id = "com.tronlinkpro.wallet:id/all_stake_trx_count")
+    public WebElement all_stake_trx_count;
+
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_stake_edit")
     public WebElement iv_stake_edit;
@@ -55,7 +61,7 @@ public class FrozenAndUnfreezePage extends AbstractPage {
 
 
     public void enterMultiSign(){
-        tv_common_right2.click();
+        tv_multi.click();
     }
 
     public void inputMultiAddress(String address) throws Exception{
@@ -170,6 +176,9 @@ public WebElement tv_stake_energy;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_right2")
     public WebElement tv_common_right2;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_multi")
+    public WebElement tv_multi;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_bandwidth_arrow")
     public WebElement freezeBandwidthDetail_btn;
