@@ -126,7 +126,7 @@ public class SwapNativeTest extends Base {
         Assert.assertTrue(isElementTextExist("待领取收益"));
         Assert.assertTrue(isElementTextExist("待领取总收益"));
         Assert.assertTrue(isElementTextExist("JustLend DAO"));
-        Assert.assertTrue(isElementTextExist("TRON"));
+        Assert.assertTrue(isElementTextExist("TRON DAO"));
         Assert.assertTrue(isElementTextExist("BTTC"));
     }
 

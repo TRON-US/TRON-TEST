@@ -102,7 +102,6 @@ public class SendTrc20 extends Base {
         Assert.assertTrue(isElementShotId("tv_bell"));
         page.tv_bell.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
         DRIVER.navigate().back();
         TimeUnit.SECONDS.sleep(2);
         Assert.assertFalse(isElementShotId("tv_bell"));

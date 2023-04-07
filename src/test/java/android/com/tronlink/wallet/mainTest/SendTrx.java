@@ -195,10 +195,7 @@ public class SendTrx extends Base {
     public void test007_enterFrozenSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
-        page.rl_price_trx.click();
-        if (isElementShotId("ll_action")){
-            page.ll_action.click();
-        }
+        page.enterDepositPage();
         Assert.assertTrue(page.tv_main_title.getText().contains("质押"));
         Assert.assertTrue(isElementShotId("tv_bandwidth_bar"));
     }

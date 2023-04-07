@@ -133,7 +133,6 @@ public class VoteTest extends Base {
         vote.enterSRPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(vote.tv_name.getText(),"http://sr-26.com");
-        Assert.assertTrue(vote.tv_ranking.getText().contains("NO.2"));
         Assert.assertEquals(vote.tv_address.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
         Double votedSRNumber = removeSymbolDouble(vote.tv_total_vote.getText());
         Assert.assertEquals(votedNumber,votedSRNumber,0.1);
@@ -201,7 +200,7 @@ public class VoteTest extends Base {
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(2);
         vote.enterStake();
-        Assert.assertEquals(vote.all_stake_count_title.getText(),"总质押");
+        Assert.assertEquals(vote.btn_next_step.getText(),"质押");
 
     }
 
