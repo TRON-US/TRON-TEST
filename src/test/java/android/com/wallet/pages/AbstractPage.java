@@ -388,6 +388,19 @@ public WebElement bt_go;
         }
         return enable;
     }
+    public boolean untilElementEnable(WebElement ele) throws Exception{
+        boolean enable;
+        enable = false;
+        for (int i = 0; i < 9; i++) {
+            if (ele.isEnabled()){
+                enable = true;
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(3);
+            }
+        }
+        return enable;
+    }
 
     public void enableClick(WebElement ele) throws Exception{
         isElementEnable(ele);

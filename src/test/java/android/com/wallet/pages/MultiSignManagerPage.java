@@ -125,7 +125,7 @@ public class MultiSignManagerPage extends AbstractPage {
         findElementByText("删除权限").click();
         TimeUnit.SECONDS.sleep(1);
         delConfirm_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        untilElementEnable(findElementByText("确认"));
         findElementByText("确认").click();
         password_input.sendKeys("Test0001");
         send_btn.click();

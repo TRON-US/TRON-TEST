@@ -46,7 +46,7 @@ public class Base {
 
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss ");
 
-    public int RetryAgainTimes = 2;
+    public int RetryAgainTimes = 0;
 
     protected DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
