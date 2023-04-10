@@ -25,6 +25,7 @@ public class AssetPage extends AbstractPage {
         this.driver = driver;
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         {
+
             //        try {
 //            driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //            // if page display AD , cloese the AD
@@ -34,14 +35,20 @@ public class AssetPage extends AbstractPage {
 //            }
 //        }catch (Exception e){}
 //
-        try {
-            TimeUnit.SECONDS.sleep(1);
-            // if iv_sign_close display ,close
-            if (iv_sign_close.isDisplayed()) {
-                iv_sign_close.click();
-                TimeUnit.SECONDS.sleep(1);
+            if (isElementExist("下次再说")){
+                findElementByText("下次再说").click();
             }
-        }catch (Exception e){}
+
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                // if iv_sign_close display ,close
+                if (iv_sign_close.isDisplayed()) {
+                    iv_sign_close.click();
+                    TimeUnit.SECONDS.sleep(1);
+                }
+            }catch (Exception e){
+                System.out.println("not found iv_sign_close");
+            }
 
         }
 

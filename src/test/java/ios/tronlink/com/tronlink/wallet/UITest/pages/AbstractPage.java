@@ -344,7 +344,7 @@ public class AbstractPage {
         action.press(
                         PointOption.point(width/2, 3*height/4 ))
                 .waitAction(WaitOptions.waitOptions(duration))
-                .moveTo(PointOption.point(width/2, height/3))
+                .moveTo(PointOption.point(width/2, height/2))
                 .release().perform();
         TimeUnit.SECONDS.sleep(1);
     }

@@ -31,6 +31,7 @@ public class VotePage extends AbstractPage {
 
     public void sliderToSearch() throws Exception{
         slideScreenBottom();
+        TimeUnit.SECONDS.sleep(2);
     }
 
     @FindBy(id = "multiSign transfer tip icon")
