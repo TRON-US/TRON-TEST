@@ -432,10 +432,11 @@ public class MainAccountTest extends Base {
         Assert.assertTrue(page.dapp_title.getText().contains("百度一下"));
     }
     //
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test020_inputPercentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.enterFrozen();
         Double total = sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
         frozen.amount_percent_25.click();
         TimeUnit.SECONDS.sleep(1);
@@ -452,7 +453,6 @@ public class MainAccountTest extends Base {
 
     }
 
-    //
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
