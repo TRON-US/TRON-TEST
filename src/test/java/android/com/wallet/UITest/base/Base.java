@@ -128,6 +128,7 @@ public class Base {
             }catch (Exception e){
                 System.out.println("setUp DRIVER fail");
                 System.out.println(e);
+                TimeUnit.SECONDS.sleep(2);
             }
         }
         screenOn();

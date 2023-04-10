@@ -196,8 +196,8 @@ public class SendTrx extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
         page.enterDepositPage();
-        Assert.assertTrue(page.tv_main_title.getText().contains("质押"));
-        Assert.assertTrue(isElementShotId("tv_bandwidth_bar"));
+        Assert.assertTrue(isElementTextExist("质押"));
+        Assert.assertTrue(isElementTextExist("解锁"));
     }
 
     @Test(enabled = true, alwaysRun = true)
