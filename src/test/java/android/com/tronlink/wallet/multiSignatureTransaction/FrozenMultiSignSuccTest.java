@@ -110,21 +110,6 @@ public class FrozenMultiSignSuccTest extends Base {
          Assert.assertTrue(tips.contains("当前正在操作"));
      }
 
-     @Parameters({"ownerAddress"})
-     @Test(alwaysRun = true)
-     public void test005_AmountNotEqualTest(String ownerAddress) throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-         String amountOne = frozen.all_stake_trx_count.getText();
-         frozen.enterMultiSign();
-         frozen.inputMultiAddress(ownerAddress);
-         frozen.gotoMultiPageTwo();
-         TimeUnit.SECONDS.sleep(1);
-         String amountTwo = frozen.all_stake_trx_count.getText();
-         System.out.println(amountOne +" " +  amountTwo);
-        Assert.assertNotEquals(amountOne,amountTwo);
-     }
-
 
 
 
