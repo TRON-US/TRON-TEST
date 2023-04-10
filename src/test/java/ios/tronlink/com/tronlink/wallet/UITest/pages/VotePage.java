@@ -163,10 +163,12 @@ public class VotePage extends AbstractPage {
     @FindBy(className = "XCUIElementTypeTextField")
     public WebElement SRField;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton")
+    public WebElement SRSearchBtn;
     public void enterSearch(String key) throws Exception{
         TimeUnit.SECONDS.sleep(1);
-        searchSRText.click();
-        TimeUnit.SECONDS.sleep(1);
+        SRSearchBtn.click();
+        TimeUnit.SECONDS.sleep(2);
         SRField.sendKeys(key);
         TimeUnit.SECONDS.sleep(3);
     }

@@ -50,9 +50,14 @@ public class MainAccountTest extends Base {
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+ sendAmount);
+        log("time1");
+        transfer.untilElementEnable(transfer.btn_done);
+        log("time2");
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(6);
         transfer.btn_done.click();
+        TimeUnit.SECONDS.sleep(2);
+        Helper.swipeDownScreen(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
