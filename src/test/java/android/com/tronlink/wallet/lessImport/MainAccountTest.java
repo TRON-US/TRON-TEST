@@ -51,6 +51,9 @@ public class MainAccountTest extends Base {
         Double sendAmount = getAnAmount();
         System.out.println("sendTrxAmount-----"+ sendAmount);
         transfer.sendTrx(Double.toString(sendAmount));
+        log("time1");
+        transfer.untilElementEnable(transfer.btn_done);
+        log("time2");
         TimeUnit.SECONDS.sleep(6);
         transfer.btn_done.click();
         TimeUnit.SECONDS.sleep(2);
