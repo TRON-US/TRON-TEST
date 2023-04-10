@@ -54,6 +54,8 @@ public class MainAccountTest extends Base {
         TimeUnit.SECONDS.sleep(6);
         transfer.btn_done.click();
         TimeUnit.SECONDS.sleep(2);
+        Helper.swipeDownScreen(DRIVER);
+        TimeUnit.SECONDS.sleep(2);
         Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
         Assert.assertEquals( (sendAmount + afterValue),beforeValue,0.5);
