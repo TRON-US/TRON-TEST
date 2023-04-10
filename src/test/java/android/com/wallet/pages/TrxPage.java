@@ -29,6 +29,12 @@ public class TrxPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/rl_price_trx")
     public WebElement rl_price_trx;
 
+    public void enterDepositPage(){
+        rl_price_trx.click();
+        if (isElementExist("我知道了")){
+            findElementByText("我知道了").click();
+        }
+    }
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_action")
     public WebElement ll_action;
 

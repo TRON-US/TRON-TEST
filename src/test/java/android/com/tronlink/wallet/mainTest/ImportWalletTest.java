@@ -2,10 +2,8 @@ package android.com.tronlink.wallet.mainTest;
 
 import android.com.utils.Helper;
 import android.com.wallet.UITest.base.Base;
-import android.com.wallet.pages.AssetPage;
 import android.com.wallet.pages.GuidePage;
 import android.com.wallet.pages.ImportRoutePage;
-import android.com.wallet.pages.MyPursePage;
 
 
 import org.testng.Assert;
@@ -131,9 +129,18 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
 
     }
 
+    @Test(alwaysRun = true)
+    public void test006_ColdPairedWalletTest() throws Exception {
+        GuidePage page = new GuidePage(DRIVER);
+        page.enterColdPairedPage();
+        Assert.assertEquals(page.inputAddress.getText(),"请输入钱包地址");
+        Assert.assertEquals(page.inputName.getText(), "冷钱包");
+        Assert.assertTrue(isElementTextExist("实时查看钱包的余额和交易信息，且可配合另一台设备的“离线冷钱包”互相扫码完成签名，以便提升资产安全。"));
+    }
+
     @Parameters({"udid"})
     @Test( alwaysRun = true)
-    public void test006_coldImportPrivateKeyTest(String udid) throws Exception {
+    public void test007_coldImportPrivateKeyTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -156,7 +163,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     }
     @Parameters({"udid"})
     @Test(groups = {"P0"}, alwaysRun = true)
-    public void test007_coldImportKeyStoreTest(String udid) throws Exception {
+    public void test008_coldImportKeyStoreTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -176,7 +183,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
     }
     @Parameters({"udid"})
     @Test(groups = {"P0"}, alwaysRun = true)
-    public void test008_coldImportMemTest(String udid) throws Exception {
+    public void test009_coldImportMemTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);
@@ -203,7 +210,7 @@ public static String keystorestr = "{\"id\":\"ff40e017-2877-436c-b367-446ee03b8c
 
     @Parameters({"udid"})
     @Test(groups = {"P0"}, alwaysRun = true)
-    public void test009_coldCreateWalletTest(String udid) throws Exception {
+    public void test010_coldCreateWalletTest(String udid) throws Exception {
         GuidePage guide = new GuidePage(DRIVER);
         wifiClose(udid);
         TimeUnit.SECONDS.sleep(3);

@@ -23,6 +23,12 @@ public class GuidePage extends AbstractPage {
         this.driver = driver;
     }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/input_address")
+    public WebElement inputAddress;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/input_name")
+    public WebElement inputName;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_import")
     public WebElement impAccount;
 
@@ -133,6 +139,17 @@ public class GuidePage extends AbstractPage {
         }
         return new ImportRoutePage(driver);
     }
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cold")
+    public WebElement tv_cold;
+    public void enterColdPairedPage() throws Exception{
+        tv_cold.click();
+        if (isElementExist("com.tronlinkpro.wallet:id/bt_accept")){
+            swipUntilElementEnable(accBtn);
+            accBtn.click();
+        }
+    }
+
 
     public ImportRoutePage enterLedgerPage() throws Exception{
         ledgerBtn.click();

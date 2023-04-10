@@ -36,11 +36,11 @@ public class BaseTest extends Base {
     @Parameters({"privateKey","bundleId"})
     @BeforeClass(groups = {"P0"},alwaysRun = true)
     public void setUpBefore(String privateKey,String bundleId) throws Exception {
-        log("BaseTest --Begin");
-        restartApp(bundleId);
-        log("BaseTest Import ---start");
+//        log("BaseTest --Begin");
+//        restartApp(bundleId);
+        log(" Import ---start");
         importFirstWallet(importType.normal,privateKey);
-        log("BaseTest Import ---Success");
+        log(" Import ---success");
     }
 
     @Parameters({"bundleId"})
@@ -78,20 +78,8 @@ public class BaseTest extends Base {
     @Parameters({"bundleId"})
     @AfterClass (groups = {"P0"},alwaysRun = true)
     public void afterClass(String bundleId) throws Exception {
-
-        try {
-            DRIVER.quit();
-        } catch (Exception e) {
-        }
-
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("bundleId", bundleId);
-//        DRIVER.executeScript("mobile: terminateApp", params);
-//        TimeUnit.SECONDS.sleep(2);
+        DRIVER.quit();
     }
-
-
-
 
     public void guaranteeDAppChain() throws Exception{
         AssetPage asset = new AssetPage(DRIVER);
@@ -124,22 +112,23 @@ public class BaseTest extends Base {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
         DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(3);
         System.out.println("restartApp2");
         DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(4);
 
     }
+
 
     public void restartApp() throws Exception{
         System.out.println("restartApp1");
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", "com.tronlink.hdwallet");
         DRIVER.executeScript("mobile: terminateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(3);
         System.out.println("restartApp2");
         DRIVER.executeScript("mobile: activateApp", params);
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(4);
 
     }
 
@@ -179,13 +168,13 @@ public class BaseTest extends Base {
         }
 
         importUsePrivateKey(privateKey,name,pass);
-        TimeUnit.SECONDS.sleep(4);
-        Boolean haveImport = isElementExist("walletName") ;
+        TimeUnit.SECONDS.sleep(6);
+        Boolean haveImport = isElementExist("trxLabel") ;
         System.out.println("Imported State: " + haveImport);
         if(!haveImport) {
             for (int i = 0; i < 3; i++) {
                 haveImport = isElementExist("walletName");
-                System.out.println("Imported State: " + haveImport + "Times： " + i);
+                System.out.println("Try Import Wallet Address: " + haveImport + "Times： " + i);
                 if(!haveImport){
                     findWebElement("导入钱包").click();
                     findAcceptAndClick();

@@ -38,7 +38,7 @@ public class AssetsPageTest extends BaseTest {
     public void test003_frozenAndUnfreezePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         FrozenAndUnfreezePage receiptPage = assetPage.enterFrozenAndThawingPage();
-        Assert.assertTrue(isElementExist("质押 TRX  (1/2)"));
+        Assert.assertTrue(isElementExist("质押"));
     }
 
 

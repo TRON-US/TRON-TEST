@@ -138,24 +138,24 @@ public class MainAccountTest extends BaseTest {
 
     }
 
-    @Test(groups = {"P1"},alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test011_inputPercentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
-        TimeUnit.SECONDS.sleep(3);
-        FrozenAndUnfreezePage frozen =  asset.enterFrozenAndThawingPage();
-        Double total = sepLeftNumberTextToDouble(frozen.tv_available_amount.getText().replace("可用: ",""),"TRX");
-        frozen.amount_percent_25.click();
+        FrozenAndUnfreezePage page = asset.enterFrozenAndThawingPage();
+        page.enterDepositPage();
+        Double total = sepLeftNumberTextToDouble(page.tv_available_amount.getText().replace("可用: ",""),"TRX");
+        page.amount_percent_25.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total/4.0,1.0);
-        frozen.amount_percent_50.click();
+        Assert.assertEquals(removeSymbolDouble(page.et_amount.getText()),total/4.0,1.0);
+        page.amount_percent_50.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total/2.0,1.0);
-        frozen.amount_percent_75.click();
+        Assert.assertEquals(removeSymbolDouble(page.et_amount.getText()),total/2.0,1.0);
+        page.amount_percent_75.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),3*total/4.0,1.0);
-        frozen.amount_percent_100.click();
+        Assert.assertEquals(removeSymbolDouble(page.et_amount.getText()),3*total/4.0,1.0);
+        page.amount_percent_100.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(removeSymbolDouble(frozen.et_amount.getText()),total,2.0);
+        Assert.assertEquals(removeSymbolDouble(page.et_amount.getText()),total,2.0);
 
     }
 

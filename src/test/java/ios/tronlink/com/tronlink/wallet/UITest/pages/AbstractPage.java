@@ -27,6 +27,22 @@ public class AbstractPage {
     @FindBy(name = "white back arrow")
     public WebElement BackBtn_White;
 
+    @FindBy(name = "前往配对 >")
+    public WebElement goPairBtn;
+
+    public void goPair(){
+        goPairBtn.click();
+    }
+
+    @FindBy(name = "前往配对")
+    public WebElement pairCold;
+
+    public void enterPairColdWalletPage() throws Exception {
+        pairCold.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+
     public IOSDriver<?> driver;
     private SimpleDateFormat timeStamp = new SimpleDateFormat("yyyy MM dd_ HH:mm:ss ");
 
@@ -39,6 +55,9 @@ public class AbstractPage {
 
     @FindBy(xpath = "(//XCUIElementTypeButton[@name=\"确认\"])[1]")
     public WebElement confirmButton;
+
+
+
 
     public WebElement confirmWatchBtn(){
         return driver.findElementByIosNsPredicate("type='XCUIElementTypeButton' AND name = '生成交易二维码'");
@@ -342,6 +361,30 @@ public class AbstractPage {
                 .moveTo(PointOption.point(width/2, 3*height/4))
                 .release().perform();
         TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void unTillSomeThing(String name) throws Exception{
+        int i = 0;
+        while (i < 10){
+            if (driver.findElementByName(name).isDisplayed()){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(1);
+                i++;
+            }
+        }
+    }
+
+    public void unTillSomeThingEnable(String name) throws Exception{
+        int i = 0;
+        while (i < 10){
+            if (driver.findElementByName(name).isEnabled()){
+                break;
+            }else {
+                TimeUnit.SECONDS.sleep(1);
+                i++;
+            }
+        }
     }
 
 }

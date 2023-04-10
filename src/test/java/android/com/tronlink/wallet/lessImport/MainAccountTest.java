@@ -53,6 +53,7 @@ public class MainAccountTest extends Base {
         transfer.sendTrx(Double.toString(sendAmount));
         TimeUnit.SECONDS.sleep(6);
         transfer.btn_done.click();
+        TimeUnit.SECONDS.sleep(2);
         Double afterValue =  Double.valueOf(prettyString(asset.assets_count.getText()));
         System.out.println("afterSendBalance-----"+afterValue);
         Assert.assertEquals( (sendAmount + afterValue),beforeValue,0.5);
@@ -431,10 +432,11 @@ public class MainAccountTest extends Base {
         Assert.assertTrue(page.dapp_title.getText().contains("百度一下"));
     }
     //
-    @Test(alwaysRun = true)
+    @Test(groups = {"P0"},alwaysRun = true)
     public void test020_inputPercentTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
+        frozen.enterFrozen();
         Double total = sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
         frozen.amount_percent_25.click();
         TimeUnit.SECONDS.sleep(1);
@@ -451,7 +453,6 @@ public class MainAccountTest extends Base {
 
     }
 
-    //
 
     public MultiSignManagerPage enterMultiSignManagerPage() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);

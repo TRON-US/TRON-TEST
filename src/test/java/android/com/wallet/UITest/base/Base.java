@@ -89,8 +89,9 @@ public class Base {
 
     @Parameters({"port","platformName", "platformVersion", "deviceName","udid","systemPort","privateKey","noReset"})
     @BeforeClass(groups = {"P0"}) //Increase stability(because some case star setup error)
-    public void setUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey,String noReset)throws Exception {
+    public void beganSetUp(String port, String platformName, String platformVersion, String deviceName,String udid,String systemPort,String privateKey,String noReset)throws Exception {
         TimeUnit.SECONDS.sleep(2);
+        System.out.println("----launch app ---");
         int tries = 0;
         Boolean driver_is_start = false;
         while (!driver_is_start && tries < 5) {
@@ -99,8 +100,8 @@ public class Base {
                 System.out.println("Try start driver "+tries+" times");
                 String url = "http://127.0.0.1:"+port+"/wd/hub";
                 desiredCapabilities.setCapability("deviceName", deviceName);
-                desiredCapabilities.setCapability("language", "zh");
-                desiredCapabilities.setCapability("locale", "CN");
+//                desiredCapabilities.setCapability("language", "zh");
+//                desiredCapabilities.setCapability("locale", "CN");
                 desiredCapabilities.setCapability("platformName", platformName);
                 desiredCapabilities.setCapability("platformVersion", platformVersion);
                 desiredCapabilities.setCapability("udid", udid);
@@ -132,6 +133,10 @@ public class Base {
         }
         screenOn();
         wifiOpen(udid);
+        DRIVER.activateApp("com.tronlinkpro.wallet");
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println("----launch app over ---");
+
     }
 
 

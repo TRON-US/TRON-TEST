@@ -85,6 +85,35 @@ public class AssetPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_watch_close")
     public WebElement iv_watch_close;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/cold_pair_title")
+    public WebElement cold_pair_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/top_card")
+    public WebElement top_card;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_cold_pair")
+    public WebElement tv_cold_pair;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/rl_cold_pair")
+    public WebElement rl_cold_pair;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/cold_pair_info")
+    public WebElement cold_pair_info;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_go")
+    public WebElement btn_go;
+
+    public void enterColdPairPage(){
+        btn_go.click();
+    }
+
+    public void enterWalletManager(){
+        top_card.click();
+    }
+
+    public void enterColdPair(){
+        rl_cold_pair.click();
+    }
     public void closeWatchTips(){
         iv_watch_close.click();
     }
@@ -116,10 +145,24 @@ public class AssetPage extends AbstractPage {
 //
 //        }
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_tab_market")
+    public WebElement iv_tab_market;
 
-    public SwapPage enterSwapPage(){
+    public SwapPage enterSwapPage() throws Exception{
+        enterFinancial();
         findElementByText("闪兑").click();
         return new SwapPage(driver);
+    }
+
+    public SwapPage enterFinancialPage() throws Exception{
+        enterFinancial();
+        return new SwapPage(driver);
+    }
+
+    public void enterFinancial() throws Exception{
+        iv_tab_market.click();
+        TimeUnit.SECONDS.sleep(1);
+        unTillSomeThing("理财推荐");
     }
 
 
@@ -131,6 +174,9 @@ public WebElement iv_qr;
 
 @FindBy(id = "com.tronlinkpro.wallet:id/title")
 public WebElement title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
+    public WebElement tv_common_title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_count")
     public WebElement tv_count;
@@ -158,6 +204,9 @@ public WebElement title;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_main_title")
     public WebElement tv_main_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/net_error")
+    public WebElement net_error;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_pic")
     public WebElement ad_pic;
@@ -473,8 +522,11 @@ public WebElement title;
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_wallet_manager")
     public WebElement iv_wallet_manager;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/rl_obser")
+    @FindBy(id = "com.tronlinkpro.wallet:id/observation_title")
     public WebElement observation_title;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/observation_des")
+    public WebElement observation_des;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/add_watch_address")
     public WebElement add_watch_address;
@@ -488,6 +540,13 @@ public WebElement title;
         observation_title.click();
         add_watch_address.sendKeys(address);
         add_watch_wallet.click();
+    }
+    public void enterImportView(){
+        iv_wallet_manager.click();
+    }
+    public void enterWatchImportView(){
+        swipScreenLitte();
+        observation_title.click();
     }
 
     @FindBy(id = "com.tronlinkpro.wallet:id/import_content")
@@ -545,8 +604,8 @@ public WebElement title;
         bt_create.click();
         TimeUnit.SECONDS.sleep(6);
         driver.navigate().back();
-        driver.navigate().back();
-        driver.navigate().back();
+//        driver.navigate().back();
+//        driver.navigate().back();
 
     }
 
@@ -596,8 +655,12 @@ public WebElement title;
 
     public FrozenAndUnfreezePage enterFrozenAndUnfreezePage() throws Exception{
 
-            TimeUnit.SECONDS.sleep(5);
-            freeze_btn.click();
+        TimeUnit.SECONDS.sleep(3);
+
+        freeze_btn.click();
+        if (isElementExist("我知道了")){
+            findElementByText("我知道了").click();
+        }
 
         return new FrozenAndUnfreezePage(driver);
     }

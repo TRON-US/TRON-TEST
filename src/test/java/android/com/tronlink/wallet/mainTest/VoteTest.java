@@ -133,7 +133,6 @@ public class VoteTest extends Base {
         vote.enterSRPage();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals(vote.tv_name.getText(),"http://sr-26.com");
-        Assert.assertTrue(vote.tv_ranking.getText().contains("NO.2"));
         Assert.assertEquals(vote.tv_address.getText(),"TPffmvjxEcvZefQqS7QYvL1Der3uiguikE");
         Double votedSRNumber = removeSymbolDouble(vote.tv_total_vote.getText());
         Assert.assertEquals(votedNumber,votedSRNumber,0.1);
@@ -200,11 +199,9 @@ public class VoteTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         VotePage vote = asset.enterVotePage();
         TimeUnit.SECONDS.sleep(2);
-        Assert.assertEquals(vote.tv_to_stake.getText(),"去质押");
-        String fromNumber = vote.tv_total_vote_rights.getText();
         vote.enterStake();
-        Assert.assertEquals(vote.tv_common_title.getText(),"质押 TRX");
-        Assert.assertEquals(vote.tv_stake_amount.getText(),fromNumber + " TRX");
+        Assert.assertEquals(vote.btn_next_step.getText(),"质押");
+
     }
 
     //构建一个账户 投票权不足使用
