@@ -25,7 +25,6 @@ public class SendTrc10 extends BaseTest {
     }
     @Test(groups = {"P0"},alwaysRun = true)
     public void test001_sendTrxTest() throws Exception {
-
         AssetPage asset = new AssetPage(DRIVER);
         TimeUnit.SECONDS.sleep(2);
         SendTrxPage transfer = asset.enterSendTrxPage();
@@ -42,7 +41,6 @@ public class SendTrc10 extends BaseTest {
         Double after = Double.parseDouble(removeSymbolNoDot(transfer.tokenBalance.getText())) ;
         System.out.println("before:"+before+ "after:" + after + "send:" + send);
         Assert.assertEquals(before ,after + send,0.000001);
-
     }
 
     @Test(groups = {"P0"},alwaysRun = true)

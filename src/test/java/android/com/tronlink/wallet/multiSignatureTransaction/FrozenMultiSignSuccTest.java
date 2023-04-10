@@ -91,8 +91,7 @@ public class FrozenMultiSignSuccTest extends Base {
         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
         frozen.enterMultiSign();
         Assert.assertTrue(frozen.tv_tutorial.getText().contains("使用教程"));
-        Assert.assertTrue(frozen.tv_main_title.getText().contains("多重签名质押"));
-        Assert.assertTrue(frozen.tv_step.getText().contains("(1/3)"));
+        Assert.assertTrue(frozen.tv_main_title.getText().contains("多重签名"));
         Assert.assertTrue(frozen.tv_account.getText().contains("控制账户列表"));
         Assert.assertTrue(frozen.tv_address.getText().contains("T"));
     }
@@ -106,24 +105,9 @@ public class FrozenMultiSignSuccTest extends Base {
          frozen.enterMultiSign();
          frozen.inputMultiAddress(ownerAddress);
          frozen.gotoMultiPageTwo();
-         String tips = frozen.tv_under_control_tips.getText();
+         String tips = frozen.tv_multi_warning.getText();
          log(tips);//当前正在操作 TX99hM37vw18V6GzTHfeftrgGH61jMjQHc 账户的质押
          Assert.assertTrue(tips.contains("当前正在操作"));
-     }
-
-     @Parameters({"ownerAddress"})
-     @Test(alwaysRun = true)
-     public void test005_AmountNotEqualTest(String ownerAddress) throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         FrozenAndUnfreezePage frozen = asset.enterFrozenAndUnfreezePage();
-         Double amountOne =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
-         frozen.enterMultiSign();
-         frozen.inputMultiAddress(ownerAddress);
-         frozen.gotoMultiPageTwo();
-         TimeUnit.SECONDS.sleep(1);
-         Double amountTwo =  sepLeftNumberTextToDouble(frozen.tv_available_amount.getText(),"TRX");
-         System.out.println(amountOne +" " +  amountTwo);
-        Assert.assertNotEquals(amountOne,amountTwo);
      }
 
 

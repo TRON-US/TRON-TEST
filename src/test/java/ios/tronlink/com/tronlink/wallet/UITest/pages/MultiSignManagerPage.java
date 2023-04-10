@@ -45,7 +45,7 @@ public class MultiSignManagerPage extends AbstractPage {
     @FindBy(id = "TRX 转账")
     public WebElement trxTranPower;
 
-    @FindBy(id = "质押资产")
+    @FindBy(id = "提取资产")
     public WebElement freezeAssetPower;
 
     @FindBy(id = "thresholdTextField")

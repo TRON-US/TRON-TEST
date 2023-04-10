@@ -28,6 +28,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_to_stake")
     public WebElement tv_to_stake;
 
+
     @FindBy(id = "com.tronlinkpro.wallet:id/available_vote")
     public WebElement available_vote;
 
@@ -262,8 +263,13 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_common_title")
     public WebElement tv_common_title;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/all_stake_count_title")
+    public WebElement all_stake_count_title;
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_vote") //投票
     public WebElement btn_vote;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_next_step") //下一步
+    public WebElement btn_next_step;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_voted_update") //修改投票
     public WebElement btn_voted_update;

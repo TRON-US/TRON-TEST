@@ -19,8 +19,7 @@ public class ImportObserve extends BaseTest {
 
     public ObservePage enterImportObservePage() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
-        assetPage.addWallet_btn.click();
-        waiteTime();
+        assetPage.addWallet();
         DRIVER.findElementByName("添加观察钱包").click();
         TimeUnit.SECONDS.sleep(2);
         return new ObservePage(DRIVER);
@@ -69,8 +68,6 @@ public class ImportObserve extends BaseTest {
     }
 
 
-
-
     @Test(description = "test Delete Wallet  password",alwaysRun = true)
     public void  test004_testDeleteWalletSuccess() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
@@ -83,5 +80,15 @@ public class ImportObserve extends BaseTest {
         Assert.assertTrue(assetPage.walletNameBtn.getText().contains("Auto_test"));
     }
 
+    @Test(description = "import Cold Wallet Test",alwaysRun = true)
+    public void  test005_importColdWalletTest() throws Exception {
+        AssetPage asset = new AssetPage(DRIVER);
+        asset.addWallet();
+        asset.enterPairColdWallet();
+        Assert.assertTrue(isElementExist("配对冷钱包"));
+        Assert.assertTrue(isElementExist("实时查看钱包的余额和交易信息，且可配合另一台设备的“离线冷钱包”互相扫码完成签名，以便提升资产安全。"));
+        asset.enterAddressColdWallet();
+        Assert.assertTrue(isElementExist("请使用冷钱包扫描二维码"));
+    }
 
 }

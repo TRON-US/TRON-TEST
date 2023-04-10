@@ -29,7 +29,7 @@
 <!--            <package name="android.com.tronlink.wallet.multiSignatureTransaction.*"></package>-->
 <!--        </packages>-->
         <classes>
-            <class name="android.com.tronlink.wallet.regression.ImportWalletTest"></class>
+            <class name="android.com.tronlink.wallet.mainTest.ImportWalletTest"></class>
         </classes>
     </test>
 </suite>

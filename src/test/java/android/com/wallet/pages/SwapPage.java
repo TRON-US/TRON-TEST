@@ -3,6 +3,7 @@ package android.com.wallet.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -17,6 +18,51 @@ public class SwapPage extends AbstractPage {
     }
 
 
+//
+public void enterMyFinancial() throws Exception{
+    TimeUnit.SECONDS.sleep(1);
+    findElementByText("理财资产").click();
+    unTillSomeThing("TRON");
+}
+
+    public void showByTypeItem() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        findElementByText("按项目").click();
+        unTillSomeThing("TRON");
+    }
+
+
+    public float getTrxButtonY(){
+        return findElementByText("TRX").getLocation().getY();
+    }
+
+    public void switchToAPY() throws Exception{
+        findElementByText("按默认").click();
+        TimeUnit.SECONDS.sleep(1);
+        findElementByText("按 APY").click();
+    }
+
+    public void enterClmPage() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        findElementByText("待领取收益").click();
+        TimeUnit.SECONDS.sleep(1);
+        try {
+            if (isElementExist("选择钱包")) {
+                findElementByText("Auto-test").click();
+            }
+        }catch (Exception e){
+            log("4.12.0");
+        }
+        unTillSomeThing("TRON");
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+
+    public void enterSwitchPage() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
+        findElementByText("Auto-test").click();
+        unTillSomeThing("选择后可查看单一钱包理财数据");
+    }
 
 
     @FindBy(id = "com.tronlinkpro.wallet:id/ll_common_left")

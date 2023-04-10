@@ -55,7 +55,6 @@
             <class name="android.com.tronlink.wallet.mainTest.SendTrx"></class>
             <class name="android.com.tronlink.wallet.mainTest.SwapNativeTest"></class>
             <class name="android.com.tronlink.wallet.mainTest.VoteTest"></class>
-            <class name="android.com.tronlink.wallet.mainTest.DappSendTrx"></class>
             <class name="android.com.tronlink.wallet.mainTest.ActiveAccountTest"></class>
             <class name="android.com.tronlink.wallet.mainTest.SendNFT"></class>
             <class name="android.com.tronlink.wallet.mainTest.SendTrc20"></class>

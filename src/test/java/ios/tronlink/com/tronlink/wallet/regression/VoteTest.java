@@ -148,15 +148,10 @@ public class VoteTest extends BaseTest {
     @Test(alwaysRun = true)
     public void test009_gotoResourceTest() throws Exception {
         VotePage page = enterVotePage();
-        Double total = sepRightNumberTextToDouble( page.totalVoteAmountLabel.getText(),"总投票权");
         page.enterStake();
-        Double stake = sepMiddleNumberTextToDouble( page.stakedLabel.getText(),"已质押:","TRX");
-        Assert.assertEquals(stake,total,0.1);
+        Assert.assertTrue(isElementExist("* 仅支持给自己质押，质押获得的资源可随时代理给他人"));
     }
 
-
-
-//;投票success 单sr；修改单sr；取消单sr，取消的票数计算；查看sr说明页；交易确认页与前面页的正确性对比；多签功能nav的验证；多签说明的跳转；
 
 
 

@@ -65,6 +65,9 @@ public class DiscoverPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_search")
     public WebElement tv_search;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/search_view")
+    public WebElement search_view;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/tv_browser_tab")
     public WebElement tv_browser_tab;
 
@@ -159,7 +162,7 @@ public class DiscoverPage extends AbstractPage {
 
     public void inputSearch(String text) throws Exception{
         TimeUnit.SECONDS.sleep(2);
-        tv_search.click();
+        search_view.click();
         TimeUnit.SECONDS.sleep(2);
         et_search.sendKeys(text);
         TimeUnit.SECONDS.sleep(1);

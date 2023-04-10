@@ -46,6 +46,10 @@ public class AssetPage extends AbstractPage {
 //        }
 
         waiteTime();
+//        try {
+//            unTillSomeThing("我的");
+//        } catch (Exception e) {
+//        }
 
 //        log("time1");
 //        try {
@@ -73,14 +77,30 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "转账")
     public WebElement send_btn;
 
+    @FindBy(name = "配对冷钱包")
+    public WebElement pairColdTitle;
+
+    public void enterPairColdWallet() throws Exception {
+        pairColdTitle.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    @FindBy(name = "配对离线冷钱包")
+    public WebElement pairColdWallet_btn;
+
+    public void pairColdWallet() throws Exception {
+        pairColdWallet_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
     @FindBy(name = "闪兑")
     public WebElement swap_btn;
 
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
+    public WebElement market_btn;
+
     @FindBy(id = "chainNameLabel")
     public WebElement chainNameLabel;
-
-    @FindBy(name = "行情")
-    public WebElement market_btn;
 
     @FindBy(id = "contentLabel")
     public WebElement contentLabel;
@@ -144,6 +164,24 @@ public class AssetPage extends AbstractPage {
     @FindBy(name = "home manager")
     public WebElement addWallet_btn;
 
+    @FindBy(className = "XCUIElementTypeTextField")
+    public List<WebElement> textFields;
+
+    @FindBy(name = "下一步")
+    public WebElement nextBtn;
+
+    public  void  enterAddressColdWallet() throws Exception{
+        textFields.get(0).sendKeys("TX99hM37vw18V6GzTHfeftrgGH61jMjQHc");
+        closeKeyBoard();
+        unTillSomeThingEnable("下一步");
+        nextBtn.click();
+
+    }
+
+    public void addWallet() throws Exception {
+        addWallet_btn.click();
+        TimeUnit.SECONDS.sleep(1);
+    }
     @FindBy(name = "trxLabel")
     public WebElement trxValue;
 
@@ -235,15 +273,9 @@ public class AssetPage extends AbstractPage {
     }
 
     //enter MyPurse Page
-    public MyPursePage enterMyPursePage() {
-        try {
-            trxValue.click();
-            TimeUnit.SECONDS.sleep(1);
-
-        } catch (Exception e) {
-            System.out.println("失败进入钱包管理页面");
-            e.printStackTrace();
-        }
+    public MyPursePage enterMyPursePage() throws Exception{
+        trxValue.click();
+        TimeUnit.SECONDS.sleep(1);
         return new MyPursePage(driver);
     }
 
@@ -338,7 +370,7 @@ public class AssetPage extends AbstractPage {
             log("4号位置---判断选择");
 
         }
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
 
         return new MinePage(driver);
     }
@@ -446,8 +478,16 @@ public class AssetPage extends AbstractPage {
     }
 
     public SwapPage enterSwapPage() throws  Exception {
+        market_btn.click();
+        TimeUnit.SECONDS.sleep(2);
         swap_btn.click();
-        TimeUnit.SECONDS.sleep(1);
+        return new SwapPage(driver);
+    }
+
+    public SwapPage enterFinancialPage() throws  Exception {
+        market_btn.click();
+        TimeUnit.SECONDS.sleep(2);
+        unTillSomeThing("TRX");
         return new SwapPage(driver);
     }
 

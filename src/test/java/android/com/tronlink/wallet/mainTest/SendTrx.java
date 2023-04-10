@@ -195,12 +195,9 @@ public class SendTrx extends Base {
     public void test007_enterFrozenSuccess() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         TrxPage page =  asset.enterTrxPage();
-        page.rl_price_trx.click();
-        if (isElementShotId("ll_action")){
-            page.ll_action.click();
-        }
-        Assert.assertTrue(page.tv_main_title.getText().contains("网络资源管理"));
-        Assert.assertTrue(isElementShotId("progress_energy"));
+        page.enterDepositPage();
+        Assert.assertTrue(isElementTextExist("质押"));
+        Assert.assertTrue(isElementTextExist("解锁"));
     }
 
     @Test(enabled = true, alwaysRun = true)

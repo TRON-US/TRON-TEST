@@ -80,7 +80,7 @@ public class ActiveAccountTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         asset.enterFrozenAndUnfreezePage();
         Assert.assertEquals(asset.title.getText(),"当前账户未激活，无法质押。您可进行多重签名质押，或转入 TRX 激活账户。");
-        Assert.assertEquals(asset.btn_cancel.getText(),"发起多签质押");
+        Assert.assertEquals(asset.btn_cancel.getText(),"多重签名质押");
         Assert.assertEquals(asset.confirm.getText(),"确认");
         asset.confirm.click();
         TimeUnit.SECONDS.sleep(1);
@@ -88,7 +88,8 @@ public class ActiveAccountTest extends Base {
         asset.enterFrozenAndUnfreezePage();
         asset.btn_cancel.click();
         TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(asset.tv_step.getText(),"(1/3)");
+        Assert.assertEquals(asset.tv_main_title.getText(),"多重签名");
+        Assert.assertEquals(asset.net_error.getText(),"当前账户无可控制的账户");
     }
 
     @Test(alwaysRun = true)
@@ -191,22 +192,6 @@ public class ActiveAccountTest extends Base {
         asset.btn_confirm.click();
         TimeUnit.SECONDS.sleep(1);
         Assert.assertTrue(isElementTextExist("钱包管理"));
-    }
-
-    @Test(alwaysRun = true)
-    public void test011_NotBackUpDepositTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        asset.enterFrozenAndUnfreezePage();
-        Assert.assertEquals(asset.title.getText(),"当前账户未激活，无法质押。您可进行多重签名质押，或转入 TRX 激活账户。");
-        Assert.assertEquals(asset.btn_cancel.getText(),"发起多签质押");
-        Assert.assertEquals(asset.confirm.getText(),"确认");
-        asset.confirm.click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertFalse(isElementShotId("confirm"));
-        asset.enterFrozenAndUnfreezePage();
-        asset.btn_cancel.click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertEquals(asset.tv_step.getText(),"(1/3)");
     }
 
     @Test(alwaysRun = true)
