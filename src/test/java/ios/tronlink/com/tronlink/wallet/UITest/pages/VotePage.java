@@ -157,7 +157,7 @@ public class VotePage extends AbstractPage {
     @FindBy(id = "votedLabel")
     public WebElement votedLabel;
 
-    @FindBy(id = "搜索超级代表")
+    @FindBy(name = "搜索超级代表")
     public WebElement searchSRText;
 
     @FindBy(className = "XCUIElementTypeTextField")
