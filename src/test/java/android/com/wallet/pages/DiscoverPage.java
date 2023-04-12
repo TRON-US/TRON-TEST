@@ -213,7 +213,7 @@ public class DiscoverPage extends AbstractPage {
 
     public void openDebugModel() throws Exception{
 //        findElementByText("其他").click();
-        findElementByText("APENFT").click();
+        findElementByText("Tronscan").click();
         TimeUnit.SECONDS.sleep(2);
         firstEnterAWeb();
         iv_menu.click();
