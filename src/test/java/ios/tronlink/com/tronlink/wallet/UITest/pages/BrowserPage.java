@@ -35,9 +35,11 @@ public class BrowserPage extends AbstractPage {
 
     @FindBy(xpath = "//XCUIElementTypeTable[@name=\"搜索名称或输入网址, 开始您的探索吧\"]/XCUIElementTypeOther[2]/XCUIElementTypeButton")
     public WebElement searchEntrance;
-
-    @FindBy(xpath = "//XCUIElementTypeTable[@name=\"空列表\"]/XCUIElementTypeOther[2]/XCUIElementTypeButton")
+    @FindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"搜索名称或输入网址\"])[2]")
     public WebElement searchSenEntrance;
+
+    @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeButton")
+    public WebElement searchBtn;
 
     @FindBy(className = "XCUIElementTypeTextField")
     public WebElement inputTextField;
@@ -78,6 +80,8 @@ public class BrowserPage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell")
     public WebElement firstDAppItem;
 
+    @FindBy(id = "访问网址 sunswap.com")
+    public WebElement sunSwap;
     @FindBy(xpath = "//XCUIElementTypeApplication[@name=\"TronLink\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]")
     public WebElement webUrlPath;
 
@@ -122,7 +126,8 @@ public class BrowserPage extends AbstractPage {
     }
 
     public void inputSenSearch(String text) throws Exception{
-        searchSenEntrance.click();
+        TimeUnit.SECONDS.sleep(2);
+        searchBtn.click();
         TimeUnit.SECONDS.sleep(2);
         inputTextField.sendKeys(text);
         TimeUnit.SECONDS.sleep(2);
