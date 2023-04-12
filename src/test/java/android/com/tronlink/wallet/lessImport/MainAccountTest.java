@@ -49,13 +49,13 @@ public class MainAccountTest extends Base {
         System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
+
+        transfer.sendTrx(Double.toString(sendAmount));
         System.out.println("sendTrxAmount-----"+ sendAmount);
         log("time1");
-        transfer.untilElementEnable(transfer.btn_done);
+        transfer.untilElementEnable(transfer.btn_transaction_info);
         log("time2");
-        transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(6);
-        transfer.btn_done.click();
+        transfer.btn_done_loading.click();
         TimeUnit.SECONDS.sleep(2);
         Helper.swipeDownScreen(DRIVER);
         TimeUnit.SECONDS.sleep(2);
@@ -401,7 +401,7 @@ public class MainAccountTest extends Base {
         page.iv_menu.click();
         Assert.assertEquals(page.tv_browser_debug.getText(),"退出调试");
     }
-
+//
     @Test( alwaysRun = true)
     public void test018_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);

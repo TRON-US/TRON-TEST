@@ -75,6 +75,12 @@ public abstract class AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_done")
     public WebElement btn_done;
 
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_done_loading")
+    public WebElement btn_done_loading;
+
+    @FindBy(id = "com.tronlinkpro.wallet:id/btn_transaction_info")
+    public WebElement btn_transaction_info;
+
     @FindBy(id = "com.tronlinkpro.wallet:id/bt_send")
     public WebElement confirmBtn;
 
