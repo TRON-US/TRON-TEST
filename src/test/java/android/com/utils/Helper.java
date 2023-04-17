@@ -313,6 +313,9 @@ public class Helper {
 
     public void getSignOperate(String testPrivateKey){
         try {
+            if (isElementExist(DRIVER,"我已知晓")) {
+                findWebElementByText("我已知晓").click();
+            }
             findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
             try {
                 TimeUnit.SECONDS.sleep(2);
@@ -448,7 +451,9 @@ public class Helper {
     public WebElement findWebElement(String element) throws Exception {
         return DRIVER.findElementById(element);
     }
-
+    public WebElement findWebElementByText(String text) throws Exception {
+        return DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+    }
     public static boolean isElementExist(AndroidDriver<?> driver, String text) {
         try {
             driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
