@@ -21,29 +21,29 @@ public class AssetPage extends AbstractPage {
         super(driver);
 //        waiteTime(5);
         this.driver = driver;
-//        try {
-//            if (ad_pic.isDisplayed()) {
-//                adClose_btn.click();
-//                log("已关闭广告图");
-//            }
-//        } catch (Exception e) {
-//            try {
-//                if (adClose_btn.isDisplayed()) {
-//                    adClose_btn.click();
-//                    System.out.println("adClose_btn:已关闭广告图");
-//                }
-//            } catch (Exception el) {
-//            }
-//        }
-//        }
+        try {
+            if (ad_pic.isDisplayed()) {
+                adClose_btn.click();
+                log("已关闭广告图");
+            }
+        } catch (Exception e) {
+        }
 
-//        try {
-//            if (mutisign_closebtn.isDisplayed()) {
-//                mutisign_closebtn.click();
-//                System.out.println("启动后,关闭多签提示view");
-//            }
-//        } catch (Exception e) {
-//        }
+        try {
+            if(isElementExist("开始使用")){
+                driver.findElementByName("开始使用").click();
+                log("开始使用");
+            }
+        }catch (Exception  e){
+        }
+
+        try {
+            if (mutisign_closebtn.isDisplayed()) {
+                mutisign_closebtn.click();
+                System.out.println("启动后,关闭多签提示view");
+            }
+        } catch (Exception e) {
+        }
 
         waiteTime();
 //        try {
