@@ -313,10 +313,11 @@ public class Helper {
 
     public void getSignOperate(String testPrivateKey){
         try {
+
+            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
             if (isElementExist(DRIVER,"我已知晓")) {
                 findWebElementByText("我已知晓").click();
             }
-            findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
             try {
                 TimeUnit.SECONDS.sleep(2);
                 swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
