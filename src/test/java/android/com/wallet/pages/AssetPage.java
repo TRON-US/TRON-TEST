@@ -34,16 +34,16 @@ public class AssetPage extends AbstractPage {
 //                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //            }
 //        }catch (Exception e){}
-//
-            if (isElementExist("iv_close")){
-                iv_close.click();
-            }
-            if (isElementExist("下次再说")){
-                findElementByText("下次再说").click();
-            }
-            if (isElementExist("开始使用")){
-                findElementByText("开始使用").click();
-            }
+
+//            if (isElementExist("iv_close")){
+//                iv_close.click();
+//            }
+//            if (isElementExist("下次再说")){
+//                findElementByText("下次再说").click();
+//            }
+//            if (isElementExist("开始使用")){
+//                findElementByText("开始使用").click();
+//            }
             try {
                 TimeUnit.SECONDS.sleep(1);
                 // if iv_sign_close display ,close
