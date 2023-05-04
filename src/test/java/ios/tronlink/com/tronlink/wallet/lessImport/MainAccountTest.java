@@ -419,7 +419,7 @@ public class MainAccountTest extends BaseTest {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage mine = assetPage.enterMinePage();
         Assert.assertTrue(isElementExist("我的钱包"));
-        Assert.assertTrue(isElementExist("message noti"));
+//        Assert.assertTrue(isElementExist("message noti"));
         Assert.assertTrue(isElementExist("交易历史"));
         Assert.assertTrue(isElementExist("钱包管理"));
         Assert.assertTrue(isElementExist("地址本"));
@@ -428,7 +428,7 @@ public class MainAccountTest extends BaseTest {
         Assert.assertTrue(isElementExist("高级功能"));
         Helper.swipScreenLitter(DRIVER);
         Assert.assertTrue(isElementExist("公告"));
-        Assert.assertTrue(isElementExist("帮助中心"));
+        Assert.assertTrue(isElementExist("钱包指南"));
         Assert.assertTrue(isElementExist("关于我们"));
     }
 

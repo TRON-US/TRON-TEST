@@ -29,13 +29,13 @@ public class AssetPage extends AbstractPage {
 //        } catch (Exception e) {
 //        }
 //
-//        try {
-//            if(isElementExist("开始使用")){
-//                driver.findElementByName("开始使用").click();
-//                log("开始使用");
-//            }
-//        }catch (Exception  e){
-//        }
+        try {
+            if(isElementExist("开始使用")){
+                driver.findElementByName("开始使用").click();
+                log("开始使用");
+            }
+        }catch (Exception  e){
+        }
 
         try {
             if (mutisign_closebtn.isDisplayed()) {
