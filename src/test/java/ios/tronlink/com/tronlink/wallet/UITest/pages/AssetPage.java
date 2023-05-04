@@ -21,21 +21,21 @@ public class AssetPage extends AbstractPage {
         super(driver);
 //        waiteTime(5);
         this.driver = driver;
-        try {
-            if (ad_pic.isDisplayed()) {
-                adClose_btn.click();
-                log("已关闭广告图");
-            }
-        } catch (Exception e) {
-        }
-
-        try {
-            if(isElementExist("开始使用")){
-                driver.findElementByName("开始使用").click();
-                log("开始使用");
-            }
-        }catch (Exception  e){
-        }
+//        try {
+//            if (ad_pic.isDisplayed()) {
+//                adClose_btn.click();
+//                log("已关闭广告图");
+//            }
+//        } catch (Exception e) {
+//        }
+//
+//        try {
+//            if(isElementExist("开始使用")){
+//                driver.findElementByName("开始使用").click();
+//                log("开始使用");
+//            }
+//        }catch (Exception  e){
+//        }
 
         try {
             if (mutisign_closebtn.isDisplayed()) {
