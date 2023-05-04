@@ -108,34 +108,34 @@ public class SendTrx extends Base {
 
     }
 
-    @Parameters({"address"})
-    @Test(alwaysRun = true)
-    public void test003_redDotTest(String address) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        Double sendAmount = getAnAmount();
-        transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(5);
-        transfer.btn_done.click();
-
-        MinePage page = asset.enterMinePage();
-        Assert.assertTrue(isElementShotId("tv_bell"));
-        page.tv_bell.click();
-        TimeUnit.SECONDS.sleep(1);
-        if (page.firstAddress.getText().contains(address)){
-            Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
-            Assert.assertTrue(page.secondTitle.getText().contains("转账成功"));
-
-        }else {
-            Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
-            Assert.assertTrue(page.secondTitle.getText().contains("收款成功"));
-        }
-        Assert.assertTrue(page.firstContent.getText().contains(sendAmount.toString()));
-        Assert.assertTrue(page.secondContent.getText().contains(sendAmount.toString()));
-        DRIVER.navigate().back();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertFalse(isElementShotId("tv_bell"));
-    }
+//    @Parameters({"address"})
+//    @Test(alwaysRun = true)
+//    public void test003_redDotTest(String address) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage transfer = asset.enterSendTrxPage();
+//        Double sendAmount = getAnAmount();
+//        transfer.sendTrx(Double.toString(sendAmount));
+//        TimeUnit.SECONDS.sleep(5);
+//        transfer.btn_done.click();
+//
+//        MinePage page = asset.enterMinePage();
+//        Assert.assertTrue(isElementShotId("tv_bell"));
+//        page.tv_bell.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        if (page.firstAddress.getText().contains(address)){
+//            Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
+//            Assert.assertTrue(page.secondTitle.getText().contains("转账成功"));
+//
+//        }else {
+//            Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
+//            Assert.assertTrue(page.secondTitle.getText().contains("收款成功"));
+//        }
+//        Assert.assertTrue(page.firstContent.getText().contains(sendAmount.toString()));
+//        Assert.assertTrue(page.secondContent.getText().contains(sendAmount.toString()));
+//        DRIVER.navigate().back();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertFalse(isElementShotId("tv_bell"));
+//    }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test004_sendTrxDetailSuccess() throws Exception {

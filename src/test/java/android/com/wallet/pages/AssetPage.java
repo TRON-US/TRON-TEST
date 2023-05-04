@@ -41,9 +41,9 @@ public class AssetPage extends AbstractPage {
 //            if (isElementExist("下次再说")){
 //                findElementByText("下次再说").click();
 //            }
-//            if (isElementExist("开始使用")){
-//                findElementByText("开始使用").click();
-//            }
+            if (isElementExist("开始使用")){
+                findElementByText("开始使用").click();
+            }
             try {
                 TimeUnit.SECONDS.sleep(1);
                 // if iv_sign_close display ,close
