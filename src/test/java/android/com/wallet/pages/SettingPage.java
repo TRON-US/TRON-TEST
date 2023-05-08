@@ -158,10 +158,8 @@ public class SettingPage extends AbstractPage {
                 li_node_name_shasta.click();
                 btn_confirm.click();
                 break;
-
             case "MainChain":
                 System.out.println("MainChain");
-                li_node_name.click();
                 break;
             case "Nile":
                 System.out.println("DAppChain");
@@ -170,7 +168,8 @@ public class SettingPage extends AbstractPage {
                 break;
             default:
                 System.out.println("default");
-                li_node_name.click();
+                li_node_name_dappchain.click();
+                btn_confirm.click();
         }
     }
 

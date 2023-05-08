@@ -569,12 +569,13 @@ public class MainAccountTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
         sett.changNetWorkTo("Shasta");
-        TimeUnit.SECONDS.sleep(6);
-        sett = asset.enterMinePage().enterSettingPage();
-        Assert.assertTrue(sett.tv_network_name.getText().contains("TRON Shasta 测试网"));
+        TimeUnit.SECONDS.sleep(8);
+        Assert.assertTrue(asset.currChain_name.getText().contains("Shasta Testnet"));
+        asset.enterMinePage().enterSettingPage();
         sett.changNetWorkTo("Nile");
-        TimeUnit.SECONDS.sleep(6);
-        Assert.assertTrue(isElementTextExist("Nile Testnet"));
+        TimeUnit.SECONDS.sleep(8);
+        Assert.assertTrue(asset.currChain_name.getText().contains("Nile Testnet"));
+
     }
 
     @Test(alwaysRun = true)
