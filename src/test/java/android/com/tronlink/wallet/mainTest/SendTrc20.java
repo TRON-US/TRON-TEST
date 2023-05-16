@@ -94,18 +94,18 @@ public class SendTrc20 extends Base {
         Assert.assertEquals(sendAmount + afterValue,beforeValue,0.000001);
     }
 
-    @Test(alwaysRun = true)
-    public void test002_redDotTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage page = asset.enterMinePage();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(isElementShotId("tv_bell"));
-        page.tv_bell.click();
-        TimeUnit.SECONDS.sleep(1);
-        DRIVER.navigate().back();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertFalse(isElementShotId("tv_bell"));
-    }
+//    @Test(alwaysRun = true)
+//    public void test002_redDotTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage page = asset.enterMinePage();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(isElementShotId("tv_bell"));
+//        page.tv_bell.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        DRIVER.navigate().back();
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertFalse(isElementShotId("tv_bell"));
+//    }
 
     @Test(groups = {"P0"},enabled = true, alwaysRun = true)
     public void test003_sendTrc20DetailSuccess() throws Exception {

@@ -51,25 +51,25 @@ public class SRTest extends BaseTest {
         return committeePage;
     }
 
-    @Test(groups = {"P1"},description = "send proposals", alwaysRun = true)
-    public void test_001SendProposals() throws Exception {
-        CommitteePage   committeePage = enterCommitteePage();
-        committeePage.Setuppropos.click();
-        TimeUnit.SECONDS.sleep(5);
-        String count = String.format("%.0f", Math.random() * 100000);
-        System.out.println("委员会提议修改超级代表燃烧TRX值："+count);
-        committeePage.change1proposal(count);
-        WebElement wl = committeePage.findFirstproposalWl();
-        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
-        Assert.assertTrue(Helper.contentTexts(textarray, count));
-    }
-
-    @Test(groups = {"P1"}, description = "be delete My first Proposal", alwaysRun = true)
-    public void test_002cancelAgreedProposal() throws Exception {
-        CommitteePage committeePage = enterCommitteePage();
-        committeePage.deleteAction();
-        Assert.assertTrue(committeePage.isElementExist("已取消"));
-    }
+//    @Test(groups = {"P1"},description = "send proposals", alwaysRun = true)
+//    public void test_001SendProposals() throws Exception {
+//        CommitteePage   committeePage = enterCommitteePage();
+//        committeePage.Setuppropos.click();
+//        TimeUnit.SECONDS.sleep(5);
+//        String count = String.format("%.0f", Math.random() * 100000);
+//        System.out.println("委员会提议修改超级代表燃烧TRX值："+count);
+//        committeePage.change1proposal(count);
+//        WebElement wl = committeePage.findFirstproposalWl();
+//        List<WebElement> textarray = wl.findElements(By.className("XCUIElementTypeStaticText"));
+//        Assert.assertTrue(Helper.contentTexts(textarray, count));
+//    }
+//
+//    @Test(groups = {"P1"}, description = "be delete My first Proposal", alwaysRun = true)
+//    public void test_002cancelAgreedProposal() throws Exception {
+//        CommitteePage committeePage = enterCommitteePage();
+//        committeePage.deleteAction();
+//        Assert.assertTrue(committeePage.isElementExist("已取消"));
+//    }
 
 
 

@@ -71,7 +71,7 @@ public class CustomNodeSettingTest extends Base {
         TimeUnit.SECONDS.sleep(6);
         sett = asset.enterMinePage().enterSettingPage();
         Assert.assertTrue(sett.tv_network_name.getText().contains("TRON Shasta 测试网"));
-        sett.changNetWorkTo("MainChain");
+        sett.changNetWorkTo("Nile");
         TimeUnit.SECONDS.sleep(6);
         Assert.assertEquals(asset.currChain_name.getText(),"MainChain");
 

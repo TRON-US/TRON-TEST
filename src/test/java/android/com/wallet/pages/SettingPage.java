@@ -103,7 +103,7 @@ public class SettingPage extends AbstractPage {
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_mainnet_select")
     public WebElement li_node_name;
 
-    @FindBy(id = "com.tronlinkpro.wallet:id/iv_dappchain_select")
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_nile_chain_select")
     public WebElement li_node_name_dappchain;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/btn_add_node")
@@ -158,19 +158,18 @@ public class SettingPage extends AbstractPage {
                 li_node_name_shasta.click();
                 btn_confirm.click();
                 break;
-
             case "MainChain":
                 System.out.println("MainChain");
-                li_node_name.click();
                 break;
-            case "DAppChain":
+            case "Nile":
                 System.out.println("DAppChain");
                 li_node_name_dappchain.click();
                 btn_confirm.click();
                 break;
             default:
                 System.out.println("default");
-                li_node_name.click();
+                li_node_name_dappchain.click();
+                btn_confirm.click();
         }
     }
 

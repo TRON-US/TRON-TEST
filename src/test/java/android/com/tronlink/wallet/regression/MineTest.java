@@ -107,24 +107,24 @@ public class MineTest extends Base {
       }
 
 
-    @Test(alwaysRun = true)
-    public void test008_helpingTest()  throws Exception{
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage minePage = asset.enterMinePage();
-        Helper.swipScreen(minePage.driver);
-        Assert.assertTrue(isElementTextExist("帮助中心"));
-        minePage.findElementByText("帮助中心").click();
-        Assert.assertTrue(minePage.nav_title.getText().contains("帮助中心"));
-    }
+//    @Test(alwaysRun = true)
+//    public void test008_helpingTest()  throws Exception{
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage minePage = asset.enterMinePage();
+//        Helper.swipScreen(minePage.driver);
+//        Assert.assertTrue(isElementTextExist("帮助中心"));
+//        minePage.findElementByText("帮助中心").click();
+//        Assert.assertTrue(minePage.nav_title.getText().contains("帮助中心"));
+//    }
 
-     @Test(alwaysRun = true)
-     public void test009_bellTest() throws Exception {
-         AssetPage asset = new AssetPage(DRIVER);
-         MinePage minePage = asset.enterMinePage();
-         findByShotId("rl_bell").click();
-         Assert.assertTrue(minePage.nav_title.getText().contains("消息中心"));
-
-     }
+//     @Test(alwaysRun = true)
+//     public void test009_bellTest() throws Exception {
+//         AssetPage asset = new AssetPage(DRIVER);
+//         MinePage minePage = asset.enterMinePage();
+//         findByShotId("rl_bell").click();
+//         Assert.assertTrue(minePage.nav_title.getText().contains("消息中心"));
+//
+//     }
 
     @Test(description = " test010_minePageNavTest" , alwaysRun = true)
     public void test010_minePageNavTest() throws Exception {

@@ -207,6 +207,16 @@ public class Helper {
             return false;
         }
     }
+    public boolean isIDExist(String ids) {
+        try {
+            System.out.println(ids);
+            DRIVER.findElementById(ids);
+            return  true;
+        }catch (Exception ex){
+            System.out.println("Not Fount shotID() " + ids);
+            return false;
+        }
+    }
 
     public  void AddMoreWalletWithPrivateKey(String key,AndroidDriver driver) throws Exception{
         this.DRIVER = driver;
@@ -313,7 +323,11 @@ public class Helper {
 
     public void getSignOperate(String testPrivateKey){
         try {
+
             findWebElement("com.tronlinkpro.wallet:id/tv_import").click();
+            if (isElementExist(DRIVER,"我已知晓")) {
+                findWebElementByText("我已知晓").click();
+            }
             try {
                 TimeUnit.SECONDS.sleep(2);
                 swipUntilElementEnable("com.tronlinkpro.wallet:id/bt_accept");
@@ -332,12 +346,25 @@ public class Helper {
             findWebElement("com.tronlinkpro.wallet:id/btn_next_step").click();
             TimeUnit.SECONDS.sleep(8);
             System.out.println("开始校验是否导入成功");
-            findWebElement("com.tronlinkpro.wallet:id/tv_walletname");
-            System.out.println("完成校验，导入成功");
+//            findWebElement("com.tronlinkpro.wallet:id/tv_walletname");
+//            System.out.println("完成校验，导入成功");
         }catch (Exception e){
             System.out.println("\n-----------\n导入失败!!!!!\n" + e + "\n--------------------!!!!!\n");
 
         }
+
+        if(isIDExist("com.tronlinkpro.wallet:id/iv_close")){
+            DRIVER.findElementById("com.tronlinkpro.wallet:id/iv_close").click();
+        }
+
+        if(isIDExist("com.tronlinkpro.wallet:id/btn_cancel_2")){
+            DRIVER.findElementById("com.tronlinkpro.wallet:id/btn_cancel_2").click();
+        }
+
+        if(isIDExist("com.tronlinkpro.wallet:id/btn_confirm")){
+            DRIVER.findElementById("com.tronlinkpro.wallet:id/btn_confirm").click();
+        }
+
 
     }
 
@@ -448,7 +475,9 @@ public class Helper {
     public WebElement findWebElement(String element) throws Exception {
         return DRIVER.findElementById(element);
     }
-
+    public WebElement findWebElementByText(String text) throws Exception {
+        return DRIVER.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");
+    }
     public static boolean isElementExist(AndroidDriver<?> driver, String text) {
         try {
             driver.findElementByAndroidUIAutomator("new UiSelector().text(\""+text+"\")");

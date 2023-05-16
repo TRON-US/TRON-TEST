@@ -34,12 +34,20 @@ public class AssetPage extends AbstractPage {
 //                driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 //            }
 //        }catch (Exception e){}
-//
-            if (isElementExist("下次再说")){
-                findElementByText("下次再说").click();
-            }
+
+//            if (isElementExist("iv_close")){
+//                iv_close.click();
+//            }
+//            if (isElementExist("下次再说")){
+//                findElementByText("下次再说").click();
+//            }
+
 
             try {
+                if (isElementExist("开始使用")){
+                    findElementByText("开始使用").click();
+                }
+
                 TimeUnit.SECONDS.sleep(1);
                 // if iv_sign_close display ,close
                 if (iv_sign_close.isDisplayed()) {
@@ -56,8 +64,8 @@ public class AssetPage extends AbstractPage {
         TimeUnit.SECONDS.sleep(5);
 
     }
-    @FindBy(id = "com.tronlinkpro.wallet:id/tv_chain_name")
-    public WebElement tv_chain_name;
+    @FindBy(id = "com.tronlinkpro.wallet:id/iv_close")
+    public WebElement iv_close;
 
     @FindBy(id = "com.tronlinkpro.wallet:id/iv_sign_close")
     public WebElement iv_sign_close;

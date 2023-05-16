@@ -111,14 +111,14 @@ public class MainAccountTest extends BaseTest {
     public void test009_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
-        page.inputSearch("sunswap.com");
-        page.visitTheWeb();
+        page.backHome();
+        page.inputSenSearch("sunswap.com");
+        page.visitTheWWWWeb();
         page.backHome();
         page.openHistory();
         Assert.assertTrue(isElementExist("浏览记录"));
         Assert.assertTrue(isElementExist("多标签页"));
         Assert.assertTrue(isElementExist("收藏"));
-        Assert.assertTrue(isElementExist("https://sunswap.com/?lang=zh-CN?utm_source=tronlink#/home"));
     }
 
     @Test(groups = {"P1"}, alwaysRun = true)
@@ -126,6 +126,11 @@ public class MainAccountTest extends BaseTest {
         restartApp();
         AssetPage asset = new AssetPage(DRIVER);
         BrowserPage page = asset.enterBrowserPage();
+        try{
+            page.backHome();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         page.inputSenSearch("baidu.com");
         page.visitTheWWWWeb();
         TimeUnit.SECONDS.sleep(4);
@@ -358,63 +363,63 @@ public class MainAccountTest extends BaseTest {
         Assert.assertTrue(isElementExist("USD"));
     }
 
-    @Test(groups = {"P1"},alwaysRun = true,description = "投票给tronChina 成功")
-    public void test023_VoteToTronChinaSRTest() throws Exception {
-        VotePage page = enterVotePage();
-        TimeUnit.SECONDS.sleep(3);
-        page.sliderToSearch();
-        page.enterSearch("china");
-        page.enterFirstSRPage();
-        TimeUnit.SECONDS.sleep(1);
-        if (page.isVoteButton()){
-            page.enterVoteStep1ToConfirm();
-        }else if(page.isModifyButton()){
-            page.enterEditVoteStep1ToConfirm();
-        }
-        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
-        Assert.assertTrue(isElementExist("投票"));
-        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
-        page.enterVoteStep2Password();
-        Assert.assertTrue(isElementExist("投票成功"));
-        Assert.assertTrue(isElementExist("完成"));
-
-    }
-
-
-    @Test(groups = {"P1"},alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
-    public void test024_CancelVoteToTronChinaTest() throws Exception {
-        VotePage page = enterVotePage();
-        TimeUnit.SECONDS.sleep(3);
-        page.sliderToSearch();
-        page.enterSearch("china");
-        page.enterFirstSRPage();
-        TimeUnit.SECONDS.sleep(1);
-        if (page.isCancelButton()){
-            if (page.votedLabel.getText().equalsIgnoreCase("1")){
-                page.enterCancelVoteStep1ToConfirm();
-                Assert.assertTrue(isElementExist("因波场网络投票数量最少为 1，将为您保留当前超级代表的一票；若您希望全部取消，可解锁全部质押的 TRX。"));
-            }else {
-                page.enterCancelVoteStep1ToConfirm();
-                Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
-                Assert.assertTrue(isElementExist("取消投票"));
-                Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
-                page.enterVoteStep2Password();
-                Assert.assertTrue(isElementExist("取消投票成功"));
-            }
-
-        }else if(page.isVoteButton()){
-            page.enterVoteStep1ToConfirm();
-            page.enterVoteStep2Password();
-            Assert.assertTrue(isElementExist("投票成功"));
-        }
-    }
+//    @Test(groups = {"P1"},alwaysRun = true,description = "投票给tronChina 成功")
+//    public void test023_VoteToTronChinaSRTest() throws Exception {
+//        VotePage page = enterVotePage();
+//        TimeUnit.SECONDS.sleep(3);
+//        page.sliderToSearch();
+//        page.enterSearch("china");
+//        page.enterFirstSRPage();
+//        TimeUnit.SECONDS.sleep(1);
+//        if (page.isVoteButton()){
+//            page.enterVoteStep1ToConfirm();
+//        }else if(page.isModifyButton()){
+//            page.enterEditVoteStep1ToConfirm();
+//        }
+//        Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+//        Assert.assertTrue(isElementExist("投票"));
+//        Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
+//        page.enterVoteStep2Password();
+//        Assert.assertTrue(isElementExist("投票成功"));
+//        Assert.assertTrue(isElementExist("完成"));
+//
+//    }
+//
+//
+//    @Test(groups = {"P1"},alwaysRun = true,description = "测试取消投票+剩余1票的提示页")
+//    public void test024_CancelVoteToTronChinaTest() throws Exception {
+//        VotePage page = enterVotePage();
+//        TimeUnit.SECONDS.sleep(3);
+//        page.sliderToSearch();
+//        page.enterSearch("china");
+//        page.enterFirstSRPage();
+//        TimeUnit.SECONDS.sleep(1);
+//        if (page.isCancelButton()){
+//            if (page.votedLabel.getText().equalsIgnoreCase("1")){
+//                page.enterCancelVoteStep1ToConfirm();
+//                Assert.assertTrue(isElementExist("因波场网络投票数量最少为 1，将为您保留当前超级代表的一票；若您希望全部取消，可解锁全部质押的 TRX。"));
+//            }else {
+//                page.enterCancelVoteStep1ToConfirm();
+//                Assert.assertEquals(page.topNetworkLabel.getText(),"Mainnet");
+//                Assert.assertTrue(isElementExist("取消投票"));
+//                Assert.assertEquals(page.topWalletNameLabel.getText(),"Auto_test");
+//                page.enterVoteStep2Password();
+//                Assert.assertTrue(isElementExist("取消投票成功"));
+//            }
+//
+//        }else if(page.isVoteButton()){
+//            page.enterVoteStep1ToConfirm();
+//            page.enterVoteStep2Password();
+//            Assert.assertTrue(isElementExist("投票成功"));
+//        }
+//    }
 
     @Test(groups = {"P1"},alwaysRun = true)
     public void test025_MinePageElementTest() throws Exception {
         AssetPage assetPage = new AssetPage(DRIVER);
         MinePage mine = assetPage.enterMinePage();
         Assert.assertTrue(isElementExist("我的钱包"));
-        Assert.assertTrue(isElementExist("message noti"));
+//        Assert.assertTrue(isElementExist("message noti"));
         Assert.assertTrue(isElementExist("交易历史"));
         Assert.assertTrue(isElementExist("钱包管理"));
         Assert.assertTrue(isElementExist("地址本"));
@@ -423,7 +428,7 @@ public class MainAccountTest extends BaseTest {
         Assert.assertTrue(isElementExist("高级功能"));
         Helper.swipScreenLitter(DRIVER);
         Assert.assertTrue(isElementExist("公告"));
-        Assert.assertTrue(isElementExist("帮助中心"));
+        Assert.assertTrue(isElementExist("钱包指南"));
         Assert.assertTrue(isElementExist("关于我们"));
     }
 

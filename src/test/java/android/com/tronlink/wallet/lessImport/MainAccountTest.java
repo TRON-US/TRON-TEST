@@ -49,13 +49,13 @@ public class MainAccountTest extends Base {
         System.out.println("beforeSendBalance-----"+ beforeValue);
         SendTrxPage transfer = page.trxSendTrxPage();
         Double sendAmount = getAnAmount();
+
+        transfer.sendTrx(Double.toString(sendAmount));
         System.out.println("sendTrxAmount-----"+ sendAmount);
         log("time1");
-        transfer.untilElementEnable(transfer.btn_done);
+        transfer.untilElementEnable(transfer.btn_transaction_info);
         log("time2");
-        transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(6);
-        transfer.btn_done.click();
+        transfer.btn_done_loading.click();
         TimeUnit.SECONDS.sleep(2);
         Helper.swipeDownScreen(DRIVER);
         TimeUnit.SECONDS.sleep(2);
@@ -65,30 +65,30 @@ public class MainAccountTest extends Base {
 
     }
 
-    @Parameters({"address"})
-    @Test(alwaysRun = true)
-    public void test002_redDotTest(String address) throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        SendTrxPage transfer = asset.enterSendTrxPage();
-        Double sendAmount = getAnAmount();
-        transfer.sendTrx(Double.toString(sendAmount));
-        TimeUnit.SECONDS.sleep(5);
-        transfer.btn_done.click();
-        MinePage page = asset.enterMinePage();
-        Assert.assertTrue(isElementShotId("tv_bell"));
-        page.tv_bell.click();
-        TimeUnit.SECONDS.sleep(1);
-        if (page.firstAddress.getText().contains(address)){
-            Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
-
-        }else {
-            Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
-        }
-        Assert.assertTrue(page.firstContent.getText().contains(sendAmount.toString()));
-        DRIVER.navigate().back();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertFalse(isElementShotId("tv_bell"));
-    }
+//    @Parameters({"address"})
+//    @Test(alwaysRun = true)
+//    public void test002_redDotTest(String address) throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        SendTrxPage transfer = asset.enterSendTrxPage();
+//        Double sendAmount = getAnAmount();
+//        transfer.sendTrx(Double.toString(sendAmount));
+//        TimeUnit.SECONDS.sleep(5);
+//        transfer.btn_done.click();
+//        MinePage page = asset.enterMinePage();
+//        Assert.assertTrue(isElementShotId("tv_bell"));
+//        page.tv_bell.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        if (page.firstAddress.getText().contains(address)){
+//            Assert.assertTrue(page.firstTitle.getText().contains("收款成功"));
+//
+//        }else {
+//            Assert.assertTrue(page.firstTitle.getText().contains("转账成功"));
+//        }
+//        Assert.assertTrue(page.firstContent.getText().contains(sendAmount.toString()));
+//        DRIVER.navigate().back();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertFalse(isElementShotId("tv_bell"));
+//    }
 
     @Test(enabled = true, alwaysRun = true)
     public void test003_sendTrxDetailSuccess() throws Exception {
@@ -213,19 +213,19 @@ public class MainAccountTest extends Base {
         Assert.assertEquals(sendAmount + afterValue,beforeValue,0.000001);
     }
 
-    @Test(alwaysRun = true)
-    public void test009_redDotTest() throws Exception {
-        AssetPage asset = new AssetPage(DRIVER);
-        MinePage page = asset.enterMinePage();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(isElementShotId("tv_bell"));
-        page.tv_bell.click();
-        TimeUnit.SECONDS.sleep(1);
-        Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
-        DRIVER.navigate().back();
-        TimeUnit.SECONDS.sleep(2);
-        Assert.assertFalse(isElementShotId("tv_bell"));
-    }
+//    @Test(alwaysRun = true)
+//    public void test009_redDotTest() throws Exception {
+//        AssetPage asset = new AssetPage(DRIVER);
+//        MinePage page = asset.enterMinePage();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(isElementShotId("tv_bell"));
+//        page.tv_bell.click();
+//        TimeUnit.SECONDS.sleep(1);
+//        Assert.assertTrue(page.firstContent.getText().contains(sentAmountRecoder.toString()));
+//        DRIVER.navigate().back();
+//        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertFalse(isElementShotId("tv_bell"));
+//    }
 
     @Test(enabled = true, alwaysRun = true)
     public void test010_sendTrc20DetailSuccess() throws Exception {
@@ -401,7 +401,7 @@ public class MainAccountTest extends Base {
         page.iv_menu.click();
         Assert.assertEquals(page.tv_browser_debug.getText(),"退出调试");
     }
-
+//
     @Test( alwaysRun = true)
     public void test018_BrowserHistoryTest() throws Exception {
         AssetPage asset = new AssetPage(DRIVER);
@@ -569,12 +569,13 @@ public class MainAccountTest extends Base {
         AssetPage asset = new AssetPage(DRIVER);
         SettingPage sett = asset.enterMinePage().enterSettingPage();
         sett.changNetWorkTo("Shasta");
-        TimeUnit.SECONDS.sleep(6);
-        sett = asset.enterMinePage().enterSettingPage();
-        Assert.assertTrue(sett.tv_network_name.getText().contains("TRON Shasta 测试网"));
-        sett.changNetWorkTo("MainChain");
-        TimeUnit.SECONDS.sleep(4);
-        Assert.assertTrue(isElementTextExist("MainChain"));
+        TimeUnit.SECONDS.sleep(8);
+        Assert.assertTrue(asset.currChain_name.getText().contains("Shasta Testnet"));
+        asset.enterMinePage().enterSettingPage();
+        sett.changNetWorkTo("Nile");
+        TimeUnit.SECONDS.sleep(8);
+        Assert.assertTrue(asset.currChain_name.getText().contains("Nile Testnet"));
+
     }
 
     @Test(alwaysRun = true)

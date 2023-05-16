@@ -155,6 +155,7 @@ public class BaseTest extends Base {
             case normal:
             {
                 findWebElement("导入钱包").click();
+                safeAlertPass();
                 findAcceptAndClick();
                 break;
             }
@@ -162,6 +163,7 @@ public class BaseTest extends Base {
             {
                 findWebElement("冷钱包").click();
                 DRIVER.findElement(By.name("选择此模式")).click();
+                safeAlertPass();
                 findAcceptAndClick();
                 break;
             }
@@ -185,6 +187,21 @@ public class BaseTest extends Base {
                     break;
                 }
             }
+        }
+        //4.13.2 def update
+        TimeUnit.SECONDS.sleep(1);
+        if(isElementExist("home pop close")){
+            DRIVER.findElementById("home pop close").click();
+        }
+        //4.13.2 def update
+        TimeUnit.SECONDS.sleep(1);
+        if(isElementExist("稍后")){
+            DRIVER.findElementByName("稍后").click();
+        }
+        //4.13.2 def safe
+        TimeUnit.SECONDS.sleep(1);
+        if (isElementExist("开始使用")){
+            DRIVER.findElementByName("开始使用").click();
         }
 
 
@@ -243,6 +260,18 @@ public class BaseTest extends Base {
     }
 
 
+    public void safeAlertPass(){
+        DRIVER.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        try {
+            WebElement safeBtn = DRIVER.findElementByName("我已知晓");
+            if (safeBtn.isEnabled()) {
+                safeBtn.click();
+            }
+        }catch (Exception e){
+            DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+        }
+        DRIVER.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
+    }
     public void findAcceptAndClick(){
         DRIVER.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         try {
